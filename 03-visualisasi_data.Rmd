@@ -1,0 +1,853 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Visualisasi Data {#dataviz}
+
+Visualisasi data merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga membantu kita untuk memperoleh gambaran terkait data selama proses analisa data sehingga membantu kita dalam memutuskan metode analisa apa yang dapat kita terapkan pada data tersebut.
+
+`R` memiliki library visualisasi yang sangat beragam, baik yang merupakan fungsi dasar pada `R` maupun dari sumber lain seperti ggplot dan lattice. Seluruh library visualisasi tersebut memiliki kelebihan dan kekurangannya masing-masing.
+
+Pada *chapter* ini kita tidak akan membahas seluruh library tersebut. Kita akab berfokus pada fungsi visualisasi dasar bawaan dari `R`. kita akan mempelajari mengenai jenis visualisasi data sampai dengan melakukan kustomisasi pada parameter grafik yang kita buat.
+
+## Visualisasi Data Menggunakan Fungsi plot() {#plotfunc}
+
+Fungsi `plot()` merupakan fungsi umum yang digunakan untuk membuat plot pada `R`. Format dasarnya adalah sebagai berikut:
+
+```{r, eval=FALSE}
+plot(x, y, type="p")
+```
+
+> **Catatan:**
+>
+> - **x dan y**: titik koordinat plot Berupa variabel dengan panjang atau jumlah observasi yang sama.
+> - **type**: jenis grafik yang hendak dibuat. Nilai yang dapat dimasukkan antara lain:
+>    + type="p" : membuat plot titik atau scatterplot. Nilai ini merupakan default pada fungsi `plot()`.
+>    + type="l" : membuat plot garis.
+>    + type="b" : membuat plot titik yang terhubung dengan garis.
+>    + type="o" : membuat plot titik yang ditimpa oleh garis.
+>    + type="h" : membuat plot garis vertikal dari titik ke garis y=0.
+>    + type="s" : membuat fungsi tangga.
+>    + type="n" : tidak membuat grafik plot sama sekali, kecuali plot dari axis. Dapat digunakan untuk mengatur tampilan suatu plot utama yang diikuti oleh sekelompok plot tambahan.
+
+
+Untuk lebih memahaminya berikut penulis akan sajikan contoh untuk masing-masing grafik tersebut. Berikut adalah contoh sintaks dan hasil plot yang disajikan pada Gambar \@ref(fig:plot):
+
+```{r}
+# membuat vektor data 
+x <- c(1:10); y <- x^2
+```
+
+```{r plot, fig.cap='Plot berbagai jenis setting type', tidy=FALSE, fig.align='center', out.width='80%'}
+# membagi jendela grafik menajdi 2 baris dan 4 kolom
+par(mfrow=c(2,4))
+
+# loop
+type <- c("p","l","b","o","h","s","n")
+for (i in type){
+  plot(x,y, type= i,
+       main= paste("type=", i))
+}
+```
+
+```{r, echo=FALSE}
+par(mfrow=c(1,1))
+```
+
+Pada contoh selanjutnya kita akan mencoba membuat kembali data yang akan kita plotkan. Data pada contoh kali ini merupakan data suatu fungsi matematika. Berikut adalah sintaks yang digunakan:
+
+```{r}
+set.seed(123)
+x <- seq(from=0, to=10, by=0.1)
+y <- x^2*exp(-x/2)*(1+rnorm(n=length(x), mean=0, sd=0.05))
+```
+
+```{r plot2, fig.cap='Plot fungsi matematika', tidy=FALSE, fig.align='center', out.width='80%'}
+par(mfrow=c(1,2),
+    # mengatur margin grafik
+    mar=c(4,4,1.5,1.5),
+    # mengatur margin sumbu
+    mex=0.8,
+    # arah tick sumbu koordinat
+    tcl=0.3)
+plot(x, y, type="l")
+plot(x, y, type="o")
+
+```
+
+```{r, echo=FALSE}
+par(mfrow=c(1,1))
+```
+
+Fungsi lain yang dapat digunakan untuk membuat kurva suatu persamaan matematis adalah fungsi `curve()`. Berbeda dengan fungsi `plot()` yang perlu menspesifikasi objek pada sumbu x dan y, fungsi `curve()` hanya perlu menspesifikasi objek sumbu x saja. Format fungsi `curve()` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+curve(expr, from = NULL, to = NULL, add = FALSE)
+```
+
+> **Catatan:**
+>
+> - **expr**: persamaan matematika
+> - **from dan to**: nilai awal dan akhir (maksimum atau minimum)
+> - **add**: nilai logik yang menentukan apakah kurva perlu ditambahkan kedalam kurva sebelumnya.
+
+Berikut adalah contoh visualisasi menggunakan fungsi `curve()`:
+
+```{r curve, fig.cap='Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)', tidy=FALSE, fig.align='center', out.width='80%'}
+par(mfrow=c(1,2),
+    # mengatur margin grafik
+    mar=c(4,4,1.5,1.5),
+    # mengatur margin sumbu
+    mex=0.8,
+    # arah tick sumbu koordinat
+    tcl=0.3)
+
+# Grafik kiri
+curve(expr=x^2*exp(-x/2), 
+      from=0, to=10)
+
+# Grafik kanan
+plot(x, y, pch=19, cex=0.7,
+     xlab="Waktu (detik)",
+     ylab="Sinyal Intensitas")
+curve(expr=x^2*exp(-x/2), 
+      from=0, to=10, add=TRUE)
+
+```
+
+```{r, echo=FALSE}
+par(mfrow=c(1,1))
+```
+
+## Visualisasi Lainnya {#otherviz}
+
+Visualisasi lainnya yang sering digunakan antara lain: histogram, density plot, bar plot, dan box plot.
+
+
+### Bar Plot {#barplot}
+
+Barplot pada `R` dapat dibuat menggunakan fungsi `barplot()`. Untuk lebih memahaminya berikut disajikan contoh barplot menggunakan dataset `VADeaths`. Untuk memuatnya jalankan sintaks berikut:
+
+```{r}
+VADeaths
+```
+
+Contoh bar plot untuk variabel `Rural Male` disajikan pada Gambar \@ref(fig:barplot):
+
+```{r barplot, fig.cap='a. bar plot vertikal; b. bar plot horizontal', tidy=FALSE, fig.align='center',out.width='70%'}
+par(mfrow=c(1,2))
+barplot(VADeaths[, "Rural Male"], main="a")
+barplot(VADeaths[, "Rural Male"], main="b", horiz=TRUE)
+```
+
+```{r, eval=FALSE}
+par(mfrow=c(1,1))
+```
+
+
+Kita dapat mengubah warna pada masing-masing bar, baik outline bar maupun box pada bar. Selain itu kita juga dapat mengubah nama grup yang telah dihasilkan sebelumnya. Berikut sintaks untuk melakukannya dan output yang dihasilkan pada Gambar \@ref(fig:barplot2):
+
+```{r barplot2, fig.cap='Kustomisasi bar plot', tidy=FALSE, fig.align='center',out.width='70%'}
+barplot(VADeaths[, "Rural Male"],
+        # ubah warna ouline menjadi steelblue
+        border="steelblue",
+        # ubah wana box
+        col= c("grey", "yellow", "steelblue", "green", "orange"),
+        # ubah nama grup dari A sampai E
+        names.arg = LETTERS[1:5],
+        # ubah orientasi menajadi horizontal
+        horiz=TRUE)
+```
+
+Untuk bar plot dengan *multiple group*, tersedia dua pengaturan posisi yaitu *stacked bar plot*(menunjukkan proporsi penyusun pada masing-masing grup) dan *grouped bar plot*(melihat perbedaan individual pada masing-masing grup). Pada Gambar \@ref(fig:barplot3) dan Gambar \@ref(fig:barplot4) , disajikan kedua jenis bar plot tersebut.
+
+```{r barplot3, fig.cap='Stacked bar plot', tidy=FALSE, fig.align='center', out.width='70%'}
+# staked
+barplot(VADeaths,
+         col = c("lightblue", "mistyrose", "lightcyan", 
+                 "lavender", "cornsilk"),
+        legend = rownames(VADeaths))
+
+```
+
+```{r barplot4, fig.cap='Grouped bar plot', tidy=FALSE, fig.align='center', out.width='70%'}
+# grouped
+barplot(VADeaths,
+         col = c("lightblue", "mistyrose", "lightcyan", 
+                 "lavender", "cornsilk"),
+        legend = rownames(VADeaths), beside = TRUE)
+
+```
+
+### Histogram dan Density Plot {#histogram}
+
+Fungsi `hist()` dapat digunakan untuk membuat histogram pada `R`. Secara sederhana fungsi tersebut didefinisikan sebagai berikut:
+```{r, eval=FALSE}
+hist(x, breaks="Sturges")
+```
+
+> **Catatan: **
+>
+> - **x**: vektor numerik
+> - **breaks**: *breakpoints* antar sel histogram.
+
+Pada dataset `trees` akan dibuat histogram variabel `Height`. Untuk melakukannya jalankan sintaks berikut:
+
+```{r, eval=FALSE}
+hist(trees$Height)
+```
+
+Output yang dihasilkan disajikan pada Gambar \@ref(fig:hist): 
+
+```{r hist,fig.cap='Histogram', tidy=FALSE, fig.align='center', echo=FALSE, out.width='70%'}
+hist(trees$Height, col="steelblue")
+```
+
+Density plot pada `R` dapat dibuat menggunakan fungsi `density()`. Berbeda dengan fungsi `hist()`, fungsi ini tidak langsung menghasilkan grafik densitas. Fungsi `density()` hanya menghitung kernel densitas pada data. Densitas yang telah dihitung selanjutnya diplotkan menggunakan fungsi `plot()`. Berikut adalah sintaks dan output yang dihasilkan pada  Gambar \@ref(fig:dens):
+
+```{r dens,fig.cap='Density plot', tidy=FALSE, fig.align='center', out.width='70%'}
+# menghitung kernel density
+dens <- density(trees$Height)
+
+# plot densitas dengan outline merah
+plot(dens,col="red")
+```
+
+Kita juga dapat menambahkan grafik densitas pada histogram sehingga mempermudah pembacaan pada histogram. Untuk melakukannya kita perlu mengubah kernel histigram dari frekuensi menjadi density dengan menambahkan argumen `freq=FALSE` pada fungsi `hist()`. Selanjutnya tambahkan fungsi `polygon()` untuk memplotkan grafik densitas. Berikut adalah sintak dan output yang dihasilkan pada  Gambar \@ref(fig:denshist):
+
+```{r denshist,fig.cap='Density plot dan histogram', tidy=FALSE, fig.align='center', out.width='70%'}
+# menghitung kernel density
+dens <- density(trees$Height)
+
+# histogram
+hist(trees$Height, freq=FALSE, col="steelblue")
+
+# tambahkan density plot
+polygon(dens, border="red")
+```
+
+### Box plot {#boxplot}
+
+Box plot pada `R` dapat dibuat menggunakan fungsi `boxplot()`. Berikut adalah sintaks untuk membuat boxplot variabel `Sepal.Lenght` pada dataset `iris` dan output yang dihasilkan pada Gambar \@ref(fig:boxplot):
+
+```{r boxplot, fig.cap='Boxplot variabel Sepal.Length', tidy=FALSE, fig.align='center',out.width='70%'}
+boxplot(iris$Sepal.Length)
+
+```
+
+Boxplot juga dapat dibuat berdasarkan variabel factor. Hal ini berguna untuk melihat perbedaan ditribusi data pada masing-masing grup. Pada sintaks berikut dibuat boxplot berdasarkan variabel `Species`. Output yang dihasilkan disajikan pada Gambar \@ref(fig:boxplot2):
+
+```{r boxplot2, fig.cap='Boxplot berdasarkan variabel species', tidy=FALSE, fig.align='center',out.width='70%'}
+boxplot(iris$Sepal.Length~iris$Species)
+```
+
+Kita juga dapat mengubah warna outline dan box pada boxplot. Berikut adalah contoh sintaks yang digunakan untuk melakukannya dan output yang dihasilkan disajikan pada Gambar \@ref(fig:boxplot3):
+
+```{r boxplot3, fig.cap='Boxplot dengan warna berdasarkan spesies', tidy=FALSE, fig.align='center',out.width='70%'}
+boxplot(iris$Sepal.Length~iris$Species,
+        # ubah warna outline menjadi steelblue
+        border = "steelblue",
+        # ubah warna box berdasarkan grup
+        col= c("#999999", "#E69F00", "#56B4E9"))
+```
+
+Kita juga dapat membuat boxplot pada *multiple group*. Data yang digunakan untuk contoh tersebut adalah dataset `ToothGrowth`. Berikut adalah sintaks untuk memuat dataset tersebut:
+
+```{r}
+# ubah variable dose menjadi factor
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+
+# print
+head(ToothGrowth)
+```
+
+Contoh sintaks dan output boxplot *multiple group* disajikan pada Gambar \@ref(fig:boxplot4):
+
+```{r boxplot4, fig.cap='Boxplot multiple group', tidy=FALSE, fig.align='center',out.width='70%'}
+boxplot(len ~ supp*dose, data = ToothGrowth,
+        col = c("white", "steelblue"))
+```
+
+## Kustomisasi Parameter Grafik {#customise}
+
+Pada bagian ini penulis akan menjelaskan cara untuk kustomisasi parameter grafik seperti:
+
+a. menambahkan judul, legend, teks, axis, dan garis.
+b. mengubah skala axis, simbol plot, jenis garis, dan warna.
+
+### Menambahkan Judul {#addtitle}
+
+Pada grafik di `R`, kita dapat menambahkan judul dengan dua cara, yaitu: pada plot melalui parameter dan melalui fungsi plot(). Kedua cara tersebut tidak berbeda satu sama lain pada parameter input.
+
+Untuk menambahkan judul pada plot secara langsung, kita dapat menggunakan argumen tambahan sebagai berikut:
+
+a. **main**: teks untuk judul.
+b. **xlab**: teks untuk keterangan axis X.
+c. **ylab**: teks untuk keterangan axis y.
+d. **sub**: teks untuk sub-judul.
+
+Berikut contoh sintaks penerapan masing-masing argumen tersebut beserta dengan output yang dihasilkan pada Gambar \@ref(fig:title):
+
+```{r title,fig.cap='Menambahkan Judul', tidy=FALSE, fig.align='center', out.width='70%'}
+# menambahkan judul
+barplot(c(2,5), main="Main title",
+        xlab="X axis title",
+        ylab="Y axis title",
+        sub="Sub-title")
+```
+
+kita juga dapat melakukan kustomisasi pada warna, *font style*, dan ukuran font judul. Untuk melakukan kustomisasi pada warna pada judul, kita dapat menambahkan argumen sebagai berikut:
+
+a. **col.main**: warna untuk judul.
+b. **col.lab**: warna untuk keterangan axis.
+c. **col.sub**: warna untuk sub-judul
+
+Untuk kustomisasi font judul, kita dapat menambahkan argumen berikut:
+
+a. **font.main**: *font style* untuk judul.
+b. **font.lab**: *font style* untuk keterangan axis.
+c. **font.sub**: *font style* untuk sub-judul.
+
+> **Penting!!!**
+>
+> Nilai yang dapat dimasukkan antara lain:
+>
+> - **1**: untuk teks normal.
+> - **2**: untuk teks cetak tebal.
+> - **3**: untuk teks cetak miring.
+> - **4**: untuk teks cetak tebal dan miring.
+> - **5**: untuk font simbol.
+
+
+Sedangkan untuk ukuran font, kita dapat menambahkan variabel berikut:
+
+a. **cex.main**: ukuran teks judul.
+b. **cex.lab**: ukuran teks keterangan axis.
+c. **cex.sub**: ukuran teks sub-judul.
+
+Berikut sintaks penerapan seluruh argumen tersebut beserta output yang dihasilkan pada Gambar \@ref(fig:title2):
+
+```{r title2,fig.cap='Menambahkan Judul (2)', tidy=FALSE, fig.align='center', out.width='70%'}
+# menambahkan judul
+barplot(c(2,5), 
+        # menambahkan judul
+        main="Main title",
+        xlab="X axis title",
+        ylab="Y axis title",
+        sub="Sub-title",
+        # kustomisasi warna font
+        col.main="red", 
+        col.lab="blue", 
+        col.sub="black",
+        # kustomisasi font style
+        font.main=4, 
+        font.lab=4, 
+        font.sub=4,
+        # kustomisasi ukuran font
+        cex.main=2, 
+        cex.lab=1.7, 
+        cex.sub=1.2)
+```
+
+Kita telah belajar bagaimana menambahkan judul langsung pada fungsi plot. Selain cara tersebut, telah penulis jelaskan bahwa kita dapat menambahkan judul melalui fungsi `title()`. argumen yang dimasukkan pada dasarnya tidak berbeda dengan ketika kita menambahkan judul secara langsung pada plot. Berikut adalah contoh sintaks dan output yang dihasilkan pada Gambar \@ref(fig:title3):
+
+```{r title3,fig.cap='Menambahkan Judul (3)', tidy=FALSE, fig.align='center', out.width='70%'}
+# menambahkan judul
+barplot(c(2,5,8))
+
+# menambahkan judul
+title(main="Main title",
+      xlab="X axis title",
+      ylab="Y axis title",
+      sub="Sub-title",
+      # kustomisasi warna font
+      col.main="red", 
+      col.lab="blue", 
+      col.sub="black",
+      # kustomisasi font style
+      font.main=4, 
+      font.lab=4, 
+      font.sub=4,
+      # kustomisasi ukuran font
+      cex.main=2, 
+      cex.lab=1.7, 
+      cex.sub=1.2)
+``` 
+
+### Menambahkan Legend {#addlegend}
+
+Fungsi `legend()` pada `R` dapat digunakan untuk menambahkan legend pada grafik. Format sederhananya adalah sebagai berikut:
+
+```{r, eval=FALSE}
+legend(x, y=NULL, legend, fill, col, bg)
+```
+
+> **Catatan:**
+>
+> - **x** dan **y**: koordinat yang digunakan untuk posisi legend.
+> - **legend**: teks pada legend
+> - **fill**: warna yang digunakan untuk mengisi box disamping teks legend.
+> - **col**: warna garis dan titik disamping teks legend.
+> - **bg**: warna latar belakang legend box.
+
+Berikut adalah contoh sintaks dan ouput penerapan argumen disajikan pada Gambar \@ref(fig:legend):
+
+```{r legend,fig.cap='Menambahkan legend', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat vektor numerik
+x <- c(1:10)
+y <- x^2
+z <- x*2
+
+# membuat line plot
+plot(x,y, type="o", col="red", lty=1)
+
+# menambahkan line plot
+lines(x,z, type="o", col="blue", lty=2)
+
+# menambahkan legend
+legend(1, 95, legend=c("Line 1", "Line 2"),
+       col=c("red", "blue"), lty=1:2, cex=0.8)
+```
+
+Kita dapat menambahkan judul, merubah font, dan merubah warna backgroud pada legend. Argumen  yang ditambahkan pada legend adalah sebagai berikut:
+
+a. **title**: Judul legend
+b. **text.font**: integer yang menunjukkan *font style* pada teks legend. Nilai yang dapat dimasukkan adalah sebagai berikut:
+    + **1**: normal
+    + **2**: cetak tebal
+    + **3**: cetak miring
+    + **4**: cetak tebal dan miring.
+c. **bg**: warna background legend box.
+
+Berikut adalah penerapan sintaks dan output yang dihasilkan pada Gambar \@ref(fig:legend2):
+
+```{r legend2,fig.cap='Menambahkan legend (2)', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat line plot
+plot(x,y, type="o", col="red", lty=1)
+
+# menambahkan line plot
+lines(x,z, type="o", col="blue", lty=2)
+
+# menambahkan legend
+legend(1, 95, legend=c("Line 1", "Line 2"),
+       col=c("red", "blue"), lty=1:2, cex=0.8,
+       title="Line types", text.font=4, bg='lightblue')
+```
+
+Kita dapat melakukan kustomisasi pada border dari legend melalui argumen `box.lty= `(jenis garis), `box.lwd= `(ukuran garis), dan `box.col= `(warna box). Berikut adalah penerapan argumen tersebut beserta output yang dihasilkan pada Gambar \@ref(fig:legend3):
+
+```{r legend3,fig.cap='Menambahkan legend (3)', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat line plot
+plot(x,y, type="o", col="red", lty=1)
+
+# menambahkan line plot
+lines(x,z, type="o", col="blue", lty=2)
+
+# menambahkan legend
+legend(1, 95, legend=c("Line 1", "Line 2"),
+       col=c("red", "blue"), lty=1:2, cex=0.8,
+       title="Line types", text.font=4, bg='white',
+       box.lty=2, box.lwd=2, box.col="steelblue")
+```
+
+Selain menggunakan koordinat, kita juga dapat melakukan kustomisasi posisi legend menggunakan *keyword* seperti: bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center". Sejumlah kustomisasi legend berdasarkan *keyword* disajikan pada Gambar \@ref(fig:legend4):
+
+```{r legend4,fig.cap='Kustomisasi posisi legend', tidy=FALSE, fig.align='center', out.width='70%'}
+# plot
+plot(x,y, type = "n")
+
+# posisi kiri atas, inset =0.05
+legend("topleft",
+  legend = "(x,y)",
+  title = "topleft, inset = .05",
+  inset = 0.05)
+# posisi atas
+legend("top",
+       legend = "(x,y)",
+       title = "top")
+# posisi kanan atas inset = .02
+legend("topright",
+       legend = "(x,y)",
+       title = "topright, inset = .02",
+       inset = 0.02)
+# posisi kiri
+legend("left",
+       legend = "(x,y)",
+       title = "left")
+# posisi tengah
+legend("center",
+       legend = "(x,y)",
+       title = "center")
+# posisi kanan
+legend("right",
+       legend = "(x,y)",
+       title = "right")
+# posisi kiri bawah
+legend("bottomleft",
+       legend = "(x,y)",
+       title = "bottomleft")
+# posisi bawah
+legend("bottom",
+       legend = "(x,y)",
+       title = "bottom")
+# posisi kanan bawah
+legend("bottomright",
+       legend = "(x,y)",
+       title = "bottomright")
+```
+
+### Menambahkan Teks Pada Grafik {#addtext}
+
+Teks pada grafik dapat kita tambahkan baik sebagai keterangan yang menunjukkan label suatu observasi, keterangan tambahan disekitar bingkai grafik, maupun sebuah persamaan yang ada pada bidang grafik. Untuk menambahkannya kita dapat menggunakan dua buah fungsi yaitu: `text()` dan `mtext()`.
+
+FUngsi `text()` berguna untuk menambahkan teks di dalam bidang grafik seperti label titik observasi dan persamaan di dalam bidang grafik. Format yang digunakan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+text(x, y, labels)
+```
+
+> **Catatan:**
+>
+> - **x** dan **y**: vektor numerik yang menunjukkan koordinat posisi teks.
+- **labels**: vektor karakter yang menunjukkan teks yang hendak ditulis.
+
+
+Berikut adalah contoh sintaks untuk memberi label pada sejumlah data yang memiliki kriteria yang kita inginkan dan output yang dihasilkan pada Gambar \@ref(fig:text):
+
+```{r text,fig.cap='Menambahkan teks', tidy=FALSE, fig.align='center', out.width='70%'}
+
+# tandai observasi yang memiliki nilai
+# mpg < 15 dan wt > 5
+d <- mtcars[mtcars$wt >= 5 & mtcars$mpg <= 15, ]
+
+
+# plot
+plot(mtcars$wt, mtcars$mpg, main="Milage vs. Car Weight",
+      xlab="Weight", ylab="Miles/(US) gallon")
+
+# menambahkan text
+text(d$wt, d$mpg,  row.names(d),
+     cex=0.65, pos=3,col="red")
+
+```
+
+Sedangkan sintaks berikut adalah contoh bagaimana menambahkan persamaan kedalam bidang grafik dan output yang dihasilkan pada Gambar \@ref(fig:text2):
+
+```{r text2,fig.cap='Menambahkan teks (2)', tidy=FALSE, fig.align='center', out.width='70%'}
+
+plot(1:10, 1:10, 
+     main="text(...) examples\n~~~~~~~~~~~")
+text(4, 9, expression(hat(beta) == (X^t * X)^{-1} * X^t * y))
+text(7, 4, expression(bar(x) == sum(frac(x[i], n), i==1, n)))
+
+```
+
+Fungsi `mtext()` berguna untuk menambahkan teks pada frame sekitar bidang grafik. Format yang digunakan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+mtext(text, side=3)
+```
+
+> **Catatan:**
+>
+> - **text**: teks yang akan ditulis.
+> - **side**: integer yang menunjukkan lokasi teks yang akan ditulis. Nilai yang dapat dimasukkan antara lain:
+   + 1: bawah
+   + 2: kiri
+   + 3: atas
+   + 4: kanan.
+
+Berikut adalah contoh penerapan dan output yang dihasilkan pada Gambar \@ref(fig:text3):
+
+```{r text3, fig.cap='Menambahkan teks (3)', tidy=FALSE, fig.align='center', out.width='70%'}
+plot(1:10, 1:10, 
+     main="mtext(...) examples\n~~~~~~~~~~~")
+mtext("Magic function", side=3)
+```
+
+### Menambahkan Garis Pada Plot {#addlines}
+
+Fungsi `abline()` dapat digunakan untuk menamabahkan garis pada plot. Garis yang ditambahkan dapat berupa garis vertikal, horizontal, maupun garis regresi. Format yang digunakan adalah sebagi berikut:
+
+```{r, eval=FALSE}
+abline(v=y)
+```
+
+Berikut adalah contoh sintaks bagaimana menambahkan garis pada sebuah plot dan output yang dihasilkan disajikan pada Gambar \@ref(fig:abline):
+
+```{r abline, fig.cap='Menambahkan garis', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat plot
+plot(mtcars$wt, mtcars$mpg, main="Milage vs. Car Weight",
+      xlab="Weight", ylab="Miles/(US) gallon")
+
+# menambahkan garis vertikal di titik rata-rata weight
+abline(v=mean(mtcars$wt), col="red", lwd=3, lty=2)
+
+# menambahkan garis horizontal di titik rata-rata  mpg
+abline(h=mean(mtcars$mpg), col="blue", lwd=3, lty=3)
+
+# menambahkan garis regresi
+abline(lm(mpg~wt, data=mtcars), lwd=4, lty=4)
+
+```
+
+### Merubah Simbol plot dan Jenis Garis {#changepoint}
+
+Simbol plot (jenis titik) dapat diubah dengan menambahkan argumen `pch= ` pada plot. Nilai yang dimasukkan pada argumen tersebut adalah integer dengan kemungkinan nilai sebagai berikut:
+
+- pch = 0,square
+- pch = 1,circle (default)
+- pch = 2,triangle point up
+- pch = 3,plus
+- pch = 4,cross
+- pch = 5,diamond
+- pch = 6,triangle point down
+- pch = 7,square cross
+- pch = 8,star
+- pch = 9,diamond plus
+- pch = 10,circle plus
+- pch = 11,triangles up and down
+- pch = 12,square plus
+- pch = 13,circle cross
+- pch = 14,square and triangle down
+- pch = 15, filled square
+- pch = 16, filled circle
+- pch = 17, filled triangle point-up
+- pch = 18, filled diamond
+- pch = 19, solid circle
+- pch = 20,bullet (smaller circle)
+- pch = 21, filled circle blue
+- pch = 22, filled square blue
+- pch = 23, filled diamond blue
+- pch = 24, filled triangle point-up blue
+- pch = 25, filled triangle point down blue
+
+Untuk lebih memahami bentuk simbol tersebut, penulis akan menyajikan sintaks yang menampilkan seluruh simbol tersebut pada satu grafik. Output yang dihasilkan disajikan pada Gambar \@ref(fig:symbol):
+
+```{r symbol,fig.cap='Symbol plot', tidy=FALSE, fig.align='center', out.width='70%'}
+generateRPointShapes<-function(){
+  # menentukan parameter plot
+  oldPar<-par()
+  par(font=2, mar=c(0.5,0,0,0))
+  # produksi titik axis
+  y=rev(c(rep(1,6),rep(2,5), rep(3,5), rep(4,5), rep(5,5)))
+  x=c(rep(1:5,5),6)
+  # plot seluruh titik dan label
+  plot(x, y, pch = 0:25, cex=1.5, ylim=c(1,5.5), xlim=c(1,6.5), 
+       axes=FALSE, xlab="", ylab="", bg="blue")
+  text(x, y, labels=0:25, pos=3)
+  par(mar=oldPar$mar,font=oldPar$font )
+}
+
+# Print
+generateRPointShapes()
+```
+
+Pada `R` kita juga dapat mengatur jenis garis yang akan ditampilkan pada plot dengan menambahkan argumen `lty= ` (*line type*) pada fungsi plot. Nilai yang dapat dimasukkan adalah nilai integer. Keterangan masing-masing nilai tersebut adalah sebagai berikut:
+
+- lty = 0, blank
+- lty = 1, solid (default)
+- lty = 2, dashed
+- lty = 3, dotted
+- lty = 4, dotdash
+- lty = 5, longdash
+- lty = 6, twodash
+
+Untuk lebih memahaminya, pada sintaks berikut disajikan plot seluruh jenis garis tersebut beserta output yang dihasilkannya pada Gambar \@ref(fig:lty):
+
+```{r lty,fig.cap='Line type', tidy=FALSE, fig.align='center', out.width='70%'}
+generateRLineTypes<-function(){
+  oldPar<-par()
+  par(font=2, mar=c(0,0,0,0))
+  plot(1, pch="", ylim=c(0,6), xlim=c(0,0.7), axes = FALSE ,xlab="", ylab="")
+  for(i in 0:6) lines(c(0.3,0.7), c(i,i), lty=i, lwd=3)
+  text(rep(0.1,6), 0:6, 
+       labels=c("0.'blank'", "1.'solid'", "2.'dashed'", "3.'dotted'", 
+                "4.'dotdash'", "5.'longdash'", "6.'twodash'"))
+  par(mar=oldPar$mar,font=oldPar$font )
+}
+generateRLineTypes()
+```
+
+### Mengatur Axis Plot
+
+Kita dapat melakukan pengaturan lebih jauh terhadap axis, seperti: menambahkan axis tambahan pada atas dan bawah frame, mengubah rentang nilai axis, serta kustomisasi *tick mark* pada nilai axis. Hal ini diperlukan karena fungsi grafik dasar `R` tidak dapat mengatur axis secara otomatis saat plot baru ditambahkan pada plot pertama dan rentang nilai plot baru lebih besar dibanding plot pertama, sehingga sebagian nilai plot baru tidak ditampilkan pada hasil akhir.
+
+Untuk menambahkan axis pada `R` kita dapat menambahkan fungsi `axis()` setelah plot dilakukan. Format yang digunakan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+axis(side, at=NULL, labels=TRUE)
+```
+
+> **Catatan:**
+>
+> - **side**: nilai integer yang mengidikasikan posisi axix yang hendak ditambahkan. Nilai yang dapat dimasukkan adalah sebagai berikut:
+>   + 1: bawah
+>   + 2: kiri
+>   + 3: atas
+>   + 4: kanan.
+> - **at**: titik dimana *tick-mark* hendak digambarkan. Nilai yang dapat dimasukkan sama dengan `side`.
+> - **labels**: Teks label *tick-mark*. Dapat juga secara logis menentukan apakah anotasi harus dibuat pada *tick mark*.
+
+
+Berikut contoh sintaks penerapan fungsi tersebut dan output yang dihasilkan pada Gambar \@ref(fig:axis):
+
+```{r axis,fig.cap='Modifikasi axis', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat vektor numerik
+x <- c(1:4)
+y <- x^2
+
+# plot
+plot(x, y, pch=18, col="red", type="b",
+     frame=FALSE, xaxt="n") # Remove x axis
+
+# menambahkan axis
+# bawah
+axis(1, 1:4, LETTERS[1:4], col.axis="blue")
+# atas
+axis(3, col = "darkgreen", lty = 2, lwd = 0.5)
+# kanan
+axis(4, col = "violet", col.axis = "dark violet", lwd = 2)
+```
+
+Kita dapat mengubah rentang nilai pada axis menggunakan fungsi `xlim()` dan `ylim()` yang menyatakan vektor nilai masimum dan minimum rentang. Selain itu kita dapat juga melakukan tranformasi baik pada sumbu x dan sumbu y. Berikut adalah argumen yang dapat ditambahkan pada fungsi grafik:
+
+- **xlim**: limit nilai sumbu x dengan format: `xlim(min, max)`.
+- **ylim**: limit nilai sumbu x dengan format: `ylim(min, max)`.
+
+Untuk transformasi skala log, kita dapat menambahkan argumen berikut:
+
+- **log="x"**: transformasi log sumbu x.
+- **log="y"**: transformasi log sumbu y.
+- **log="xy"**: transformasi log sumbu x dan y.
+
+Berikut adalah contoh sintaks penerapan argumen tersebut beserta output yang dihasilkan pada Gambar \@ref(fig:axis2):
+
+```{r axis2,fig.cap='Mengubah rentang dan skala axis', tidy=FALSE, fig.align='center', out.width='80%'}
+# membagi jendela grafik menjadi 1 baris dan 3 kolom
+par(mfrow=c(1,3))
+
+# membuat vektor numerik
+x<-c(1:10); y<-x*x
+
+# simple plot
+plot(x, y)
+
+# plot dengan pengaturan rentang skala
+plot(x, y, xlim=c(1,15), ylim=c(1,150))
+
+# plot dengan transformasi skala log
+plot(x, y, log="y")
+```
+
+```{r, echo=FALSE}
+par(mfrow=c(1,1))
+```
+
+Kita dapat melakukan kustomisasi pada *tick mark*. Kustomisasi yang dapat dilakukan adalah merubah warna, *font style*, ukuran font, orientasi, serta menyembunyikan *tick mark*.
+
+Argumen yang ditambahkan adalah sebagai berikut:
+
+- **col.axis**: warna *tick mark*.
+- **font.axis**: integer yang menunjukkan *font style*. Sama dengan pengaturan judul.
+- **cex.axis**: pengaturan ukuran *tick mark*.
+- **las**: mengatur orientasi *tick mark*. Nilai yang dapat dimasukkan adalah sebagai berikut:
+
+  + **0**: paralel terhadap posisi axis (default)
+  + **1**: selalu horizontal
+  + **2**: selalu perpendikular dengan posisi axis
+  + **3**: selalu vertikal
+
+- **xaxt** dan **yaxt**: karakter untuk menunjukkan apakah axis akan ditampilkan atau tidak. nilai dapat berupa "n"(sembunyika) dan "s"(tampilkan).
+
+Berikut adalah contoh penerapan argumen tersebut beserta output pada Gambar \@ref(fig:axis3):
+
+```{r axis3,fig.cap='Kustomisasi tick mark', tidy=FALSE, fig.align='center', out.width='70%'}
+# membuat vektor numerik
+x<-c(1:10); y<-x*x
+
+# plot
+plot(x,y,
+     # warna
+     col.axis="red",
+     # font style
+     font.axis=2,
+     # ukuran
+     cex=1.5,
+     # orientasi
+     las=3,
+     # sembunyikan sumbu x
+     xaxt="n")
+```
+
+### Mengatur Warna {#changecolor}
+
+Pada fungsi dasar `R`, warna dapat diatur dengan mengetikkan nama warna maupun kode hexadesimal. Selain itu kita juga dapat menamambahkan warna lain melalui library lain yang tidak dijelaskan pada chapter ini.
+
+Untuk penggunaan warna hexadesima kita perlu mengetikkan "#" yang diukuti oleh 6 kode warna. Untuk memperlajari kode-kode dan warna yang dihasilkan, silahkan pembaca mengunjungi situs <http://www.visibone.com/>.
+
+Pada sintaks berikut disajikan visualisasi nama-nama warna bawaan yang ada pada `R`. Output yang dihasilkan disajikan pada Gambar \@ref(fig:color):
+
+```{r color,fig.cap='Nama warna', tidy=FALSE, fig.align='center', out.width='70%'}
+showCols <- function(cl=colors(), bg = "grey",
+                     cex = 0.75, rot = 30) {
+    m <- ceiling(sqrt(n <-length(cl)))
+    length(cl) <- m*m; cm <- matrix(cl, m)
+    require("grid")
+    grid.newpage(); vp <- viewport(w = .92, h = .92)
+    grid.rect(gp=gpar(fill=bg))
+    grid.text(cm, x = col(cm)/m, y = rev(row(cm))/m, rot = rot,
+              vp=vp, gp=gpar(cex = cex, col = cm))
+}
+
+# print 60 nama warna pertama
+showCols(bg="gray20", cl=colors()[1:60], rot=30, cex=0.9)
+```
+
+## Plot Dua dan Tiga Dimensi
+
+`R` dapat digunakan untuk memproduksi visualisasi pada skala 2 dan 3 dimensi. Untuk proyeksi 2 dimensi, fungsi yang digunakan adalah `image()` atau `contour()`.  Untuk informasi lebih lanjut terkait fungsi tersebut pembaca dapat mengakses menu bantuan. Pada sintak berikut diberikan contoh bagaimana cara memproduksi visualisasi dua dimensi menggunakan kedua fungsi tersebut:
+
+```{r map,fig.cap='image plot (kiri) dan contour plot (kanan)', tidy=FALSE, fig.align='center', out.width='80%'}
+n <- 1:20
+x <- sin(n)
+y <- cos(n)*exp(-n/3)
+z <- outer(x,y)
+par(mar=c(3,3,1.5,1.5), mex=0.8, mgp=c(2,0.5,0), tcl=0.3)
+par(mfrow=c(1,2))
+
+# plot pertama
+image(z, col=gray(1:10/10))
+
+# plot kedua
+contour(z)
+```
+
+```{r, eval=FALSE}
+par(mfrow=c(1,1))
+```
+
+Proyeksi 3 dimensi dapat dilakukan menggunakan fungsi `persp()`. Sudut penglihatan dapat diatur melalui argumen`theta` (sudut) dan `phi()` (rotasi). Sintaks berikut merupakan contoh bagaimana cara menghasilkan visualisasi 3 dimensi dari data yang telah diproduksi sebelumnya:
+
+```{r persp,fig.cap='proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan', tidy=FALSE, fig.align='center', out.width='80%'}
+par(mar=c(3,3,1.5,1.5), mex=0.8, mgp=c(2,0.5,0), tcl=0.3)
+par(mfrow=c(1,2))
+
+# plot pertama
+persp(n,n,z, theta=45, phi=20)
+
+# plot kedua
+persp(n,n,z, theta=45, phi=20, shade=0.5)
+```
+
+```{r, eval=FALSE}
+par(mfrow=c(1,1))
+```
+
+## Referensi
+
+1. Maindonald, J.H. 2008. **Using R for Data Analysis and Graphics Introduction, Code and Commentary**. Centre for Mathematics and Its Applications Australian National University.
+2. Scherber, C. 2007. **An introduction to statistical data analysis using R**. R_Manual Goettingen.
+3. STHDA. **R Base Graphs**. <http://www.sthda.com/english/wiki/r-base-graphs>
+4. Venables, W.N. Smith D.M. and R Core Team. 2018. **An Introduction to R**. R Manuals.

@@ -1,0 +1,325 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Bahasa Pemrograman R {#intro}
+
+Dewasa ini tersedia banyak sekali *software* yang dapat digunakan untuk membantu kita dalam melakukan analisa data. *software* yang digunakan dapat berupa *software* berbayar atau gratis.
+
+`R` merupakan merupakan salah satu *software* gratis yang sangat populer di Indonesia. Kemudahan penggunaan serta banyaknya besarnya dukungan komunitas membuat `R` menjadi salah satu bahasa pemrograman paling populer di dunia.
+
+Paket yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat `R` banyak digunakan oleh para analis data.
+
+Pada *chapter* ini penulis akan memperkenalkan kepada pembaca mengenai bahasa pemrograman `R`. Mulai dari sejarah, cara instalasi sampai dengan bagaimana kita memanfaatkan fitur dasar bantuan untuk menggali lebih jauh tentang fungsi-fungsi `R`
+
+## Sejarah R {#sejarahR}
+
+`R` Merupakan bahasa yang digunakan dalam komputasi **statistik** yang pertama kali dikembangkan oleh **Ross Ihaka** dan **Robert Gentlement** di University of Auckland  New Zealand yang merupakan akronim dari nama depan kedua pembuatnya. Sebelum `R` dikenal ada `S` yang dikembangkan oleh **John Chambers** dan rekan-rekan dari **Bell Laboratories** yang memiliki fungsi yang sama untuk komputasi statistik. Hal yang membedakan antara keduanya adalah `R` merupakan sistem komputasi yang bersifat gratis.Logo `R` dapat dilihat pada Gambar \@ref(fig:Logo).
+
+```{r Logo,echo=FALSE, fig.cap='Logo R.', tidy=FALSE, out.width='40%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/r-icon.png"
+include_graphics(img1_path)
+
+```
+
+`R` dapat dibilang merupakan aplikasi sistem **statistik** yang kaya. Hal ini disebabkan banyak sekali paket yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti *linear regression*, *clustering*, *statistical test*, dll. Selain itu, `R` juga dapat ditambahkan paket-paket lain yang dapat meningkatkan fiturnya.
+
+Sebagai sebuah bahasa pemrograman yang banyak digunakan untuk keperluan analisa data, `R` dapat dioperasikan pada berbagai sistem operasi pada komputer. Adapun sistem operasi yang didukung antara lain: `UNIX`, `Linux`, `Windows`, dan `MacOS`.
+
+## Fitur dan Karakteristik R {#fiturR}
+
+`R` memiliki karakteristik yang berbeda dengan bahasa pemrograman lain seperti `C++`,`python`, dll. `R` memiliki aturan/sintaks yang berbeda dengan bahasa pemrograman yang lain yang membuatnya memiliki ciri khas tersendiri dibanding bahasa pemrograman yang lain.
+
+Beberapa ciri dan fitur pada `R` antara lain:
+
+1. **Bahasa `R` bersifat case sensitif**. maksudnya adalah dalam proses input `R` huruf besar dan kecil sangat diperhatikan. Sebagai contoh kita ingin melihat apakah objek A dan B pada sintaks berikut:
+```{r}
+A <- "Andi"
+B <- "andi"
+
+# cek kedua objek A dan B
+A == B
+
+# Kesimpulan : Kedua objek berbeda
+
+```
+2. **Segala sesuatu yang ada pada program `R` akan diangap sebagai objek**. konsep objek ini sama dengan bahasa pemrograma berbasis objek yang lain seperti `Java`, `C++`, `python`, dll.Perbedaannya adalah bahasa `R` relatif lebih sederhana dibandingkan bahasa pemrograman berbasis obejk yang lain.
+3. **interpreted language atau script**. Bahasa `R` memungkinkan pengguna untuk melakukan kerja pada `R` tanpa perlu kompilasi kode program menjadi bahasa mesin.
+4. Mendukung proses **loop**, **decision making**, dan menyediakan berbagai jenis **operstor** (aritmatika, logika, dll).
+5. **Mendukung export dan import berbagai format file**, seperti:TXT, CSV, XLS, dll.
+6. **Mudah ditingkatkan melalui penambahan fungsi atau paket**. Penambahan paket dapat dilakukan secara online melalui [CRAN](https://cran.r-project.org/) atau melalui sumber seperti [github](https://github.com/).
+7. **Menyedikan berbagai fungsi untuk keperluan visualisasi data**. Visualisasi data pada `R` dapat menggunakan paket bawaan atau paket lain seperti `ggplo2`,`ggvis`, dll.
+
+##  Kelebihan dan Kekurangan R {#prosconsR}
+
+Selain karena `R` dapat digunakan secara gratis terdapat **kelebihan** lain yang ditawarkan, antara lain:
+
+1. **Protability**. Penggunaan software dapat digunakan kapanpun tanpa terikat oleh masa berakhirnya lisensi.
+2. **Multiplatform**. `R` bersifat *Multiplatform Operating Systems*, dimana *software* `R` lebih kompatibel dibanding *software* statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena `R` baik pada sistem operasi seperti `windows` akan sama pengoperasiannya dengan yang ada di `Linux` (paket yang digunakan sama).
+3. **General** dan **Cutting-edge**. Berbagai metode statistik baik metode klasik maupun baru telah diprogram kedalam `R`. Dengan demikian *software* ini dapat digunakan untuk analisis statistika dengan pendekatan klasik dan pendekatan modern.
+4. **Programable**. Pengguna dapat memprogram metode baru atau mengembangakan modifikasi dari analisis statistika yang telah ada pada sistem `R`.
+5. **Berbasis analisis matriks**. Bahasa `R` sangat baik digunakan untuk *programming* dengan basis matriks.
+6. Fasiltas grafik yang lengkap.
+
+Adapun kekurangan dari `R` antara lain:
+
+1. **Point and Click GUI**. Interaksi utama dengan `R` bersifat *CLI* (*Command Line Interface*), walaupun saat ini telah dikembangkan paket yang memungkinkan kita berinteraksi dengan `R` menggunakan *GUI* (*Graphical User Interface*) sederhana menggunakan paket `R-Commander` yang memiliki fungsi yang terbatas. `R- Commander` sendiri merupakan *GUI* yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas paket ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.
+2. **Missing statistical function**. Meskipun analisis statistika dalam `R` sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam `R`. Namun karena `R` merupakan *lingua franca* untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk paket hanya masalah waktu saja.
+
+## RStudio {#rstudio}
+
+Aplikasi `R` pada dasarnya berbasis teks atau *command line* sehingga pengguna harus mengetikkan perintah-perintah tertentu dan harus hapal perintah-perintahnya. Setidaknya jika kita ingin melakukan kegiatan analisa data menggunakan `R` kita harus selalu siap dengan perintah-perintah yang hendak digunakan sehingga buku manual menjadi sesuatu yang wajib adasaat berkeja dengan `R`.
+
+Kondisi ini sering kali membingunkan bagi pengguna pemula maupun pengguna mahir yang sudah terbiasa dengan aplikasi statistik lain seperti SAS, SPSS, Minitab, dll. Alasan itulah yang menyebabkan pengembang `R` membuat berbagai *frontend* untuk `R` yang berguna untuk memudahkan dalam pengoperasian `R`. 
+
+`RStudio` merupakan salah satu bentuk *frontend* `R` yang cukup populer dan nyaman digunakan. Selain nyaman digunakan, `RStudio`  memungkinkan kita melakukan penulisan laporan menggunakan `Rmarkdown` atau `RNotebook` serta membuat berbagai bentuk project seperti shyni, dll. Pada `R` studio juga memungkinkan kita mengatur *working directory* tanpa perlu mengetikkan sintaks pada Commander, yang diperlukan hanya memilihnya di menu `RStudio`. Selain itu, kita juga dapat meng-import file berisikan data tanpa perlu mengetikkan pada Commander  dengan cara memilih pada menu `Environment`.
+
+##  Menginstall R dan RStudio {#installR}
+
+Pada tutorial ini hanya akan dijelaskan bagaimana menginstal `R` dan `RStudio` pada sistem operasi `windows`. Sebelum memulai menginstal sebaiknya pembaca mengunduh terlebih dahulu *installer* [R](https://cran.r-project.org/bin/windows/base/) dan [RStudio](https://www.rstudio.com/products/rstudio/download/).
+
+1. Jalankan proses pemasangan dengan meng-klik *installer* aplikasi `R` dan `RStudio`.
+2. Ikuti langkah proses pemasangan aplikasi yang ditampilkan dengan klik `OK` atau `Next`.
+3. Apabila pemasangan telah dilakukan, jalankan aplikasi yang telah terpasang untuk menguji jika aplikasi telah berjalan dengan baik.
+
+Jendela aplikasi yang telah terpasang ditampilkan pada Gambar \@ref(fig:jendela-R) dan Gambar \@ref(fig:jendela-RStudio).
+
+```{r jendela-R,echo=FALSE, fig.cap='Jendela R.', tidy=FALSE, fig.align='center',out.width='80%'}
+library(knitr)
+img1_path <- "./images/jendela_r.png"
+include_graphics(img1_path)
+
+```
+
+```{r jendela-RStudio,echo=FALSE, fig.cap='Jendela RStudio.', tidy=FALSE, out.width='80%', fig.align='center'}
+library(knitr)
+img1_path <- "./images/jendela_rstudio.png"
+include_graphics(img1_path)
+
+```
+
+
+
+> **Tips:** Sebaiknya install `R` terlebih dahulu sebelum `RStudio`
+
+
+##  Working Directory {#wdR}
+
+Setiap pengguna akan bekerja pada tempat khusus yang disebut sebagai *working directory*. *working directory* merupakan sebuah folder dimana `R` akan membaca dan menyimpan file kerja kita. Pada pengguna `windows`, *working directory* secara default pada saat pertama kali menginstall `R` terletak pada folder `c:\\Document`.
+
+### Mengubah Lokasi Working Directory {#changewdR}
+
+Kita dapat mengubah lokasi *working directory* berdasarkan lokasi yang kita inginkan, misalnya letak data yang akan kita olah tidak ada pada folder default atau kita ingin pekerjaan kita terkait `R` dapat berlangsung pada satu folder khusus.
+
+Berikut adalah cara mengubah *working directory* pada `R`.
+
+1. Buatlah folder pada drive (kita bisa membuat folder pada selain drive c) dan namai dengan nama yang kalian inginkan. Pada tutorial ini penulis menggunakan nama folder `R`.
+2. Jika pengguna menggunakan `RStudio`, pada menu `RStudio` pilih **Session > Set Working Directory > Chooses Directory**. Proses tersebut ditampilkan pada Gambar \@ref(fig:working)
+3. Pilih folder yang telah dibuat pada step 1 sebagai *working directory.
+
+> **Penting:** Data atau file yang hendak dibaca selama proses kerja pada `R` harus selalu diletakkan pada working directory. Jika tidak maka data atau file tidak akan terbaca.
+
+
+Untuk mengecek apakah proses perubahan telah terjadi, kita dapat mengeceknya dengan menjalankan perintah berikut untuk melihat lokasi *working directory* kita yang baru.
+
+```{r, eval=FALSE}
+getwd()
+```
+
+```{r working, echo=FALSE, fig.cap='Mengubah working directory.', tidy=FALSE, out.width='80%', fig.align='center'}
+library(knitr)
+img1_path <- "./images/working.png"
+include_graphics(img1_path)
+
+```
+
+Selain itu kita dapat mengubah *working directory* menggunakan perintah berikut:
+
+```{r, eval=FALSE}
+# Ubah working directori pada folder R
+setwd("/Documents/R")
+```
+
+
+> **Peringatan !!!**
+>
+> Pada proses pengisian lokasi folder pastikan pemisah pada lokasi folder menggunakan tanda "/" bukan "\"
+
+### Mengubah Lokasi Working Directory Default {#defaultwdR}
+
+Pada proses yang telah penulis jelaskan sebelumnya. Proses perubahan *working directory* hanya berlaku pada saat pekerjaan tersebut dilakukan. Setelah pekerjaan selesai dan kita menjalankan kembali `R` maka *working directory* akan kembali secara default pada working directory lama.
+
+Untuk membuat lokasi default *working directory* pindah, kita dapat melakukannya dengan memilih pada menu: **Tools > Global options > pada "General" klik pada "Browse" dan pilih lokasi working directory yang diinginkan**. Proses tersebut ditampilkan pada Gambar \@ref(fig:default)
+
+```{r default, echo=FALSE, fig.cap='Merubah working directory melalui Global options.', tidy=FALSE, out.width='80%', fig.align='center'}
+library(knitr)
+img1_path <- "./images/default.png"
+include_graphics(img1_path)
+
+```
+
+## Memasang dan Mengaktifkan Paket R {#installlibraryR}
+
+`R` dapat ditingkatkan fungsionalitasnya melalui paket-paket yang tersedia secara luas. Paket-paket ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: `tidyverse` untuk *data science*, `pracma` untuk analisis diferensial, dll. 
+
+Untuk menginstall paket yang kita inginkan, kita dapat menggunakan fungsi `install.packages()`. Berikut adalah contoh bagaimana cara menginstall paket `tidyverse`:
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+Paket yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada paket tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi `library()`. Berikut adalah contoh sintaks untuk mengaktifkan paket `tidyverse`:
+
+```{r, eval=FALSE}
+library(tidyverse)
+```
+
+Bagaimana ingin menggunakan fungsi pada paket namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi `library()`? Untuk melakukannya kita perlu mengetikkan nama paket dikuti oleh tanda "::" diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi `read_csv()` dari paket `readr` (salah satu paket yang terdapat pada kumpulan paket `tidyverse`) untuk membaca file `contoh.csv`:
+
+```{r, eval=FALSE}
+readr::read_csv("contoh.csv")
+```
+
+## Fasilitas Help {#helpR}
+
+Agar dapat menggunakan `R` dengan secara lebih baik, pengetahuan untuk mengakses fasilitas *help* in cukup penting untuk disampaikan. Adapun cara yang dapat digunakan adalah sebagai berikut.
+
+### Mencari Help dari Suatu Perintah Tertentu {#searchhelp}
+
+Untuk memperoleh bantuan terkait suatu perintah tertentu kita dapat menggunakan fungsi `help()`. Secara umum format yang digunakan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+help(nama_perintah)
+```
+
+atau dapat juga menggunakan tanda tanya (?) pada awal `nama_perintah` seperti berikut:
+
+```{r, eval=FALSE}
+?nama_perintah
+```
+
+Misalkan kita kebingungan terkait bagaimana cara menuliskan perintah untuk menghitung rata-rata suatu vektor. Kita dapat mengetikkan perintah berikut untuk mengakses fasilitas *help*.
+
+```{r, eval=FALSE}
+help(mean)
+
+#atau
+?mean
+
+```
+
+Perintah tersebut akan memunculkan hasil berupa dokumentasi yang ditampilkan pada Gambar \@ref(fig:meandoc).
+
+```{r meandoc,echo=FALSE, fig.cap='Jendela help dokumentasi fungsi mean().', tidy=FALSE, fig.align='center',out.width='50%'}
+library(knitr)
+img1_path <- "./images/meandoc.png"
+include_graphics(img1_path)
+
+```
+
+Keterangan pada jendela pada Gambar \@ref(fig:meandoc) adalah sebagia berikut:
+
+1. Pada bagian jendela kiri atas jendela *help*, diberikan keterangan nama dari perintah yang sedang ditampilkan.
+2. Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama *library* yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama *library* ditunjukkan pada teks `mean {base}` yang menunjukkan perintah `mean()` pada paket (*library*) *base* (paket bawaan `R`).
+3. Setiap jendela *help* dari suatu perintah tertentu selanjutnya akan memuat bagian-bagian berikut:
+- *Title*
+- *Description* : deskripsi singkat tentang perintah.
+- *Usage* : menampilkan sintaks perintah untuk penggunaan perintah tersebut.
+- *Arguments* : keterangan mengenai *argument/input*yang diperlukan pada perintah tersebut.
+- *Details* : keterangan lebih lengkap lengkap tentang perintah tersebut.
+- *Value* : keterangan tentang *output* suatu perintah dapat diperoleh pada bagian ini.
+- *Author(s)* : memberikan keterangan tentang *Author* dari perintah tersebut.
+- *References* : seringkali referensi yang dapat digunakan untuk memperoleh keterangan lebih lanjut terhadap suatu perintah ditampilkan pada bagian ini.
+- *See also*: bagian ini berisikan daftar perintah/fungsi yang berhubungan erat dengan perintah tersebut.
+- *Example* : berisikan contoh-contoh penggunaan perintah tersebut.
+
+Kita juga dapat melihat contoh penggunaan dari perintah tersebut. Untuk melakukannya kita dapat menggunakan fungsi `example()`. Fungsi tersebut akan menampilkan contoh kode penerapan dari fungsi yang kita inginkan. Secara sederhana fungsi tersebut dapat dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+example(nama_perintah)
+```
+
+Untuk mengetahui contoh kode fungsi `mean()`, ketikkan sintaks berikut:
+
+```{r}
+example(mean)
+```
+
+kita juga dapat mencoba kode yang dihasilkan pada console `R`. Berikut adalah contoh penerapannya:
+
+```{r}
+# Menghitung rata-rata bilangan 1 sampai 10 dan 50
+# membuat vektor
+x <- c(0:10, 50)
+
+# Print
+x
+
+# mean
+mean(x)
+```
+
+Pembaca dapat mencoba melakukanya sendiri dengan mengganti nilai yang telah ada serta mencoba contoh kode yang lain.
+
+### General Help {#generalhelp}
+
+Kita juga dapat membaca beberapa dokumen manual yang ada pada `R`. Untuk melakukannya jalankan perintah berikut:
+
+```{r, eval=FALSE}
+help.start()
+```
+
+Output yang dihasilkan berupa link pada sejumlah dokumen yang dapat kita klik. Tampilan halaman yang dihasilkan disajikan pada Gambar \@ref(fig:generalhelp).
+
+```{r generalhelp,echo=FALSE, fig.cap='Jendela general help dokumentasi fungsi mean().', tidy=FALSE, fig.align='center',out.width='50%'}
+library(knitr)
+img1_path <- "./images/generalhelp.png"
+include_graphics(img1_path)
+
+```
+
+### Fasilitas Help Lainnya {#othershelp}
+
+Selain yang telah penulis sebutkan sebelumnya. Kita juga dapat memanfaatkan fasilitas *help* lainnya melalui fungsi `apropos()` dan `help.search()`.
+
+`apropos ()`: mengembalikan daftar objek, berisi pola yang pembaca cari, dengan pencocokan sebagian. Ini berguna ketika pembaca tidak ingat persis nama fungsi yang akan digunakan. Berikut adalah contoh ketika penulis ingin mengetahui fungsi yang digunakan untuk menghitung median.
+
+```{r}
+apropos("med")
+```
+
+*List* yang dihasilkan berupa fungsi-fungsi yang memiliki elemen kata "med". Berdasarkan pencaria tersebut penulis dapat mencoba menggunakan fungsi "median" untuk menghitung median.
+
+`help.search ()` (sebagai alternatif ??): mencari dokumentasi yang cocok dengan karakter yang diberikan dengan cara yang berbeda. Ini mengembalikan daftar fungsi yang mengandung istilah yang pembaca cari dengan deskripsi singkat dari fungsi.
+
+Berikut adalah contoh penerapan dari fungsi tersebut:
+
+```{r, eval=FALSE}
+help.search("mean")
+
+# atau
+??mean
+```
+
+*Output* yang dihasilkan akan tampak seperti pada Gambar \@ref(fig:helpsearch).
+
+```{r helpsearch,echo=FALSE, fig.cap='Jendela help search dokumentasi fungsi mean().', tidy=FALSE, fig.align='center',out.width='50%'}
+library(knitr)
+img1_path <- "./images/helpsearch.png"
+include_graphics(img1_path)
+
+```
+
+## Referensi
+
+1. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung
+2. Rosadi,D. 2016. **Analisis Statistika dengan R**. Gadjah Mada University Press: Yogyakarta
+3. STHDA. Running RStudio and Setting Up Your Working Directory - Easy R Programming .<http://www.sthda.com/english/wiki/running-rstudio-and-setting-up-your-working-directory-easy-r-programming#set-your-working-directory>
+4. STDHA. **Getting Help With Functions In R Programming**. <http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming> .
+5. Venables, W.N. Smith D.M. and R Core Team. 2018. **An Introduction to R**. R Manuals.
+
+
+
+

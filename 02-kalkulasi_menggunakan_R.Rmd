@@ -1,0 +1,948 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Kalkulasi Menggunakan R{#calculation}
+
+Pada *Chapter* ini penulis akan menjelaskan bagaimana melakukan perhitungan menggunakan `R`. Hal-hal yang akan dibahas pada *chapter* ini antara lain:
+
+- Operator dan fungsi dasar pada `R`
+- Jenis dan struktur data
+- Vektor (cara membuat dan melakukan operasi matematika pada vektor)
+- Matriks (cara membuat dan melakukan operasi matematika pada matriks)
+
+## Operator Aritmatik {#aritmetikoperator}
+
+Proses perhitungan akan ditangani oleh fungsi khusus. `R` akan memahami urutannya secara benar. Kecuali kita secara eksplisit menetapkan yang lain. Sebagai contoh jalankan sintaks berikut:
+
+```{r}
+2+4*2
+```
+
+Bandingkan dengan sintaks berikut:
+
+```{r}
+(2+4)*2
+```
+
+
+> **Tips:** `R` dapat digunakan sebagai kalkulator
+
+
+Berdasarkan kedua hasil tersebut dapat disimpulkan bahwa ketika kita tidak menetapkan urutan perhitungan menggunakan tanda kurung, `R` akan secara otomatis akan menghitung terlebih dahulu perkalian atau pembangian. 
+
+Operator aritmatika yang disediakan `R` disajikan pada Tabel \@ref(tab:oparitmatika):
+
+
+**Simbol**     | **Keterangan**
+---------------|--------------------------------------------------------------------------------------
++              | *Addition*, untuk operasi penjumlahan
+-              | *Substraction*, untuk operasi pengurangan
+*              | *Multiplication*, untuk operasi pembagian
+/              | *Division*, untuk operasi pembagian
+^              | *Eksponentiation*, untuk operasi pemangkatan
+%%             | *Modulus*, Untuk mencari sisa pembagian
+%/%            | *Integer*, Untuk mencari bilangan bulat hasil pembagian saja dan tanpa sisa pembagian
+
+: (\#tab:oparitmatika) Operator Aritmatika `R`.
+
+Untuk lebih memahaminya berikut contoh sintaks penerapan operator tersebut.
+
+```{r}
+# Addition
+5+3
+
+# Substraction
+5-3
+
+# Multiplication
+5*3
+
+# Division
+5/3
+
+# Eksponetiation
+5^3
+
+# Modulus
+5%%3
+
+# Integer
+5%/%3
+
+```
+
+
+> **Tips:** Pada `R` tanda `#` berfungsi menambahkan keterangan untuk menjelaskan sebuah sintaks pada `R`
+
+
+## Fungsi Aritmetik {#aritmaticfunction}
+
+Selain fungsi operator aritmetik, pada `R` juga telah tersedia fungsi aritmetik yang lain seperti logaritmik, ekponensial, trigonometri, dll.
+
+1. Logaritma dan eksponensial
+
+Untuk contoh fungsi logaritmik dan eksponensial jalankan sintaks berikut:
+
+```{r}
+log2(8) # logaritma basis 2 untuk 8
+log10(8) # logaritma basis 10 untuk 8
+exp(8) # eksponensial 8
+```
+
+2. Fungsi trigonometri
+
+fungsi trigonometri yang ditampilkan seperti sin,cos, tan, dll.
+
+```{r, eval=FALSE}
+cos(x) # cos x
+sin(x) # Sin x
+tan(x) # Tan x
+acos(x) # arc-cos x
+asin(x) # arc-sin x
+atan(x) #arc-tan x
+```
+
+
+> **Penting!!!**
+>
+> x dalam fungsi trigonometri memiliki satuan radian
+
+
+Berikut adalah salah satu contoh penggunaannya:
+
+```{r}
+cos(pi)
+```
+
+Pada paket `pracma` fungsi-fungsi trigonometri dapat ditambah lagi. Fungsi-fungsi tersebut antara lain:
+
+```{r, eval=FALSE}
+cot(x) # cotan x
+csc(x) # cosecan x
+sec(x) # secan x
+acot(x) # arc-cotan x
+acsc(x) # arc-cosecan x
+asec(x) # arc-secan x
+```
+
+
+3. Fungsi Hiperbolik
+
+fungsi hiperbolik yang tersedia antara lain:
+
+```{r, eval=FALSE}
+cosh(x) 
+sinh(x)
+tanh(x)
+acosh(x)
+asinh(x)
+atanh(x)
+```
+
+Fungsi tersebut dapat ditambah lagi dari paket `pracma`. Fungsi-fungsi yang tersedia antara lain:
+
+```{r, eval=FALSE}
+coth(x)
+csch(x)
+sech(x)
+acoth(x)
+acsch(x)
+asech(x)
+```
+
+
+4. Fungsi matematik lainnya
+
+Fungsi lainnya yang dapat digunakan adalah fungsi absolut, akar kuadrat, dll. Berikut adalah contoh sintaks penggunaan fungsi absolut dan akar kuadrat.
+
+```{r}
+abs(-2) # nilai absolut -2
+sqrt(4) # akar kuadrat 4
+```
+
+## Operator Relasi {#relationoperators}
+
+Operator relasi digunakan untuk membandingkan satu objek dengan objek lainnya. Operator yang disediakan `R` disajikan pada Tabel \@ref(tab:oprelasi).
+
+**Simbol**     | **Keterangan**           
+---------------|-----------------------------
+">"            | Lebih besar dari
+"<"            | Lebih Kecil dari
+"=="           | Sama dengan
+">="           | Lebih besar sama dengan
+"<="           | Lebih kecil sama dengan
+"!="           | Tidak sama dengan
+
+: (\#tab:oprelasi) Operator Relasi `R`.
+
+Berikut adalah penerapan operator pada tabel tersebut:
+
+```{r}
+x <- 34
+y <- 35
+
+# Operator >
+x > y
+
+# Operator <
+x < y
+
+# operator ==
+x == y
+
+# Operator >=
+x >= y
+
+# Operator <=
+x <= y
+
+# Operator !=
+x != y
+
+```
+
+## Operator Logika {#logicoperators}
+
+Operator logika hanya berlaku pada vektor dengan tipe logical, numeric, atau complex. Semua angka bernilai 1 akan dianggap bernilai logika `TRUE`. Operator logika yang disediakan `R` dapat dilihat pada Tabel \@ref(tab:oplogika).
+
+**Simbol**     | **Keterangan**           
+---------------|----------------------------------
+"&&"           | Operator logika AND
+"||"           | Operator logika OR
+"!"            | Opeartor logika NOT
+"&"            | Operator logika AND element wise
+"|"            | Operator logika OR element wise
+ 
+: (\#tab:oplogika) Operator logika `R`.
+
+Penerapannya terdapat pada sintaks berikut:
+
+```{r}
+v <- c(TRUE,TRUE, FALSE)
+t <- c(FALSE,FALSE,FALSE)
+
+# Operator &&
+print(v&&t)
+
+# Operator ||
+print(v||t)
+
+# Operator !
+print(!v)
+
+# operator &
+print(v&t)
+
+# Operator |
+print(v|t)
+```
+
+> **Penting!!!**
+>
+> - operator `&` dan `|` akan mengecek logika tiap elemen pada vektor secara berpesangan (sesuai urutan dari kiri ke kanan). 
+Operator `%%` dan `||` hanya mengecek dari kiri ke kanan pada 
+> - observasi pertama. Misal saat menggunakan && jika observasi pertama `TRUE` maka observasi pertama pada vektor lainnya akan dicek, namun jika observasi pertama `FALSE` maka proses akan segera dihentikan dan menghasilkan FALSE.
+
+
+## Memasukkan Nilai Kedalam Variabel {#assigningvar}
+
+Variabel pada `R` dapat digunakan untuk menyimpan nilai. Sebagai contoh jalankan sintaks berikut:
+
+```{r}
+# Harga sebuah lemon adalah 500 rupiah
+lemon <- 500
+
+# Atau
+500 -> lemon
+
+# dapat juga menggunakan tanda "="
+lemon = 500
+
+```
+
+> **Penting!!!**
+> 
+> 1. `R` memungkinkan penggunaan `<-`,`->`, atau `=` sebagai perintah pengisi nilai variabel
+> 2. `R` bersifat *case-sensitive*. Maksudnya adalah variabel Lemon tidak sama dengan lemon (Besar kecil huruf berpengaruh)
+
+
+Untuk mengetahui nilai dari objek `lemon` kita dapat menggunakan fungsi `print()` atau mengetikkan nama objeknya secara langsung.
+
+```{r}
+# Menggunakan fungsi print()
+print(lemon)
+
+# Atau
+lemon
+```
+
+`R` akan menyimpan variabel `lemon` sebagai objek pada memori. Sehingga kita dapat melakukan operasi terhadap objek tersebut seperti mengalikannya atau menjumlahkannya dengan bilangan lain. Sebagai contoh jalankan sintaks berikut:
+
+```{r}
+# Operasi perkalian terhadap objek lemon
+5*lemon
+```
+
+Kita dapat juga mengubah nilai dari objek `lemon` dengan cara menginput nilai baru terhadap objek yang sama. `R` secara otomatis akan menggatikan nilai sebelumnya. Untuk lebih memahaminya jalankan sintaks berikut:
+
+```{r}
+lemon <- 1000
+
+# Print lemon
+print(lemon)
+```
+
+Untuk lebih memahaminya berikut adalah sintaks untuk menghitung volume suatu objek.
+
+```{r}
+# Dimensi objek
+panjang <- 10
+lebar <- 5
+tinggi <- 5
+
+# Menghitung volume
+volume <- panjang*lebar*tinggi
+
+# Print objek volume
+print(volume)
+```
+
+Untuk mengetahui objek apa saja yang telah kita buat sepanjang artikel ini kita dapang menggunakan fungsi `ls()`.
+
+```{r}
+ls()
+```
+
+
+> **Catatan:** Kumpulan objek yang telah tersimpan dalam memori disebut sebagai **workspace**
+
+
+Untuk menghapus objek pada memori kita dapat menggunakan fungsi `rm()`. Pada sintaks berikut penulis hendak menghapus objek `lemon` dan `volume`.
+
+```{r}
+# Menghapus objek lemon dan volume
+rm(lemon, volume)
+
+# Tampilkan kembali objek yang tersisa
+ls()
+```
+
+
+> **Tips:** Setiap variabel atau objek yang dibuat akan menempati sejumlah memori pada komputer sehingga jika kita bekerja dengan jumlah data yang banyak pastikan kita menghapus seluruh objek pada memori sebelum memulai kerja.
+
+
+## Tipe dan Struktur Data {#typedata}
+
+Data pada `R` dapat dikelompokan berdasarkan beberapa tipe. Tipe data pada `R` disajikan pada Tabel \@ref(tab:tipedata).
+
+**Tipe Data**  | **Contoh**              | **Keterangan**
+---------------|-------------------------|---------------------------------------------------------------------------------
+Logical        | TRUE, FALSE             | Nilai Boolean
+Numeric        | 12.3, 5, 999            | Segala jenis angka
+Integer        | 23L, 97L, 3L            | Bilangan integer (bilangan bulat)
+Complex        | 2i, 3i, 9i              | Bilangan kompleks
+Character      | 'a', "b", "123"         | Karakter dan string
+Factor         | 1, 0, "Merah"           | Dapat berupa numerik atau string (namun pada proses akan terbaca sebagai angka)
+Raw            | Identik dengan "hello"  | Segala jenis data yang disimpan sebagai raw bytes
+
+: (\#tab:tipedata) Tipe data `R`.
+
+Sintaks berikut adalah contoh dari tipe data pada `R`. Untuk mengetahui tipa data suatu objek kita dapat menggunakan perintah `class()`
+
+```{r}
+# Logical
+apel <- TRUE
+class(apel)
+
+# Numeric
+x <- 2.3
+class(x)
+
+# Integer
+y <- 2L
+class(y)
+
+# Compleks
+z <- 5+2i
+class(z)
+
+# string
+w <- "saya"
+class(w)
+
+# Raw
+xy <- charToRaw("hello world")
+class(xy)
+
+```
+
+Keenam jenis data tersebut disebut sebagai tipe data atomik. Hal ini disebabkan karena hanya dapat menangani satu tipe data saja. Misalnya hanya numeric atau hanya integer.
+
+Selain menggunakan fungsi `class()`, kita dapat pula menggunakan fungsi `is_numeric()`, `is.character()`, `is.logical()`, dan sebagainya berdasarkan jenis data apa yang ingin kita cek. Berbeda dengan fungsi `class()`, ouput yang dihasilkan pada fungsi seperti `is_numeric()` adalah nilai Boolean sehingga fungsi ini hanya digunakan untuk mengecek apakah jenis data pada objek sama seperti yang kita pikirkan. Sebagai contoh disajikan pada sintaks berikut:
+
+```{r}
+data <- 25
+
+# Cek apakah objek berisi data numerik
+is.numeric(data)
+
+# Cek apakah objek adalah karakter
+is.character(data)
+```
+
+Kita juga dapat mengubah jenis data menjadi jenis lainnya seperti integer menjadi numerik atau sebaliknya. Fungsi yang digunakan adalah `as.numeric()` jika ingin mengubah suatu jenis data menjadi numerik. Fungsi lainnya juga dapat digunakan sesuai dengan kita ingin mengubah jenis data objek menjadi jenis data lainnya.
+
+```{r}
+# Integer
+apel <- 2L
+
+# Ubah menjadi numerik
+as.numeric(apel)
+
+# Cek
+is.numeric(apel)
+
+# Logical
+nangka <- TRUE
+
+# Ubah logical menjadi numeric
+as.numeric(nangka)
+
+# Karakter
+minum <- "minum"
+
+# ubah karakter menjadi numerik
+as.numeric(minum)
+
+```
+
+> **Penting!!!**
+>
+> Konversi karakter menjadi numerik akan menghasilkan output NA (*not available*). `R` tidak mengetahui bagaimana cara merubah karakter menjadi bentuk numerik.
+
+
+Berdasarkan Tabel 2, vektor karakter dapat dibuat menggunakan tanda kurung baik *double quote* ("") maupun *single quote* ('').Jika pada teks yang kita tuliskan mengandung *quote* maka kita harus menghentikannya menggunakan tanda ( \ ). Sbegai contoh kita ingin menuliskan `**My friend's name is "Adi"**, pada sintaks akan dituliskan:
+
+```{r}
+'My friend\`s name is "Adi"'
+
+# Atau
+
+"My friend's name \"Adi\""
+```
+
+Struktur data diklasifikasikan berdasarkan dimensi data dan tie data di dalamnya (homogen atau heterogen). Klasifikasi jenis data disajikan pada Tabel \@ref(tab:strukturdata).
+
+**Dimensi**  | **Homogen**      | **Heterogen**
+-------------|------------------|---------------
+1d           | Atomik vektor    | List
+2d           | Matriks          | Dataframe
+nd           | Array            |               
+
+: (\#tab:strukturdata) Struktur data `R`.
+
+Berdasarkan Tabel tersebut dapat kita lihat bahwa objek terbagi atas dua buah struktur data yaitu homogen dan heterogen. Objek dengan struktur data homogen hanya dapat menyimpan satu tipe atau jenis data saja (numerik saja atau factor saja), sedangkan objek dengan struktur data heterogen akan dapat menyimpan berbagai jenis data. 
+
+## Vektor {#vector}
+
+Vektor merupakan kombinasi berbagai nilai (numerik, karakter, logical, dan sebagainya berdasarkan jenis input data) pada objek yang sma. Pada contoh kasus berikut, pembaca akan memiliki sesuai jenis data input yaitu**vektor numerik**, **vector karakter**, **vektor logical**, dll.
+
+
+### Membuat vektor {#createvector}
+
+Vektor dibuat dengan menggunakan fungsi `c()`(concatenate) seperti yang disajikan pada sintaks berikut:
+
+```{r}
+# membuat vektor numerik
+x <- c(3,3.5,4,7)
+x # print vektor
+
+# membuat vektor karakter
+y <- c("Apel", "Jeruk", "Rambutan", "Salak")
+y # print vektor
+
+# membuat vektor logical
+t <- c("TRUE", "FALSE", "TRUE")
+t # print vektor
+
+```
+
+selain menginput nilai pada vektor, kita juga dapat memberi nama nilai setiap vektor menggunakan fungsi `names()`.
+
+```{r}
+# Membuat vektor jumlah buah yang dibeli
+Jumlah <- c(5,5,6,7)
+names(Jumlah) <- c("Apel", "Jeruk", "Rambutan", "Salak")
+
+# Atau
+Jumlah <- c(Apel=5, Jeruk=5, Rambutan=6, Salak=7)
+
+# Print
+Jumlah
+```
+
+
+> **Penting!!!**
+>
+> Vektor hanya dapat memuat satu buah jenis data. Vektor hanya dapat mengandung jenis data numerik saja, karakter saja, dll.
+
+
+Untuk menentukan panjang sebuah vektor kita dapat menggunakan fungsi `lenght()`.
+
+```{r}
+length(Jumlah)
+```
+
+### Missing Values {#missingvalue}
+
+Seringkali nilai pada vektor kita tidak lengkap atau terdapat nilai yang hilang (*missing value*) pada vektor. *Missing value* pada `R` dilambangkan oleh `NA`(*not available*). Berikut adalah contoh vektor dengan *missing value*.
+
+```{r}
+Jumlah <- c(Apel=5, Jeruk=NA, Rambutan=6, Salak=7)
+```
+
+Untuk mengecek apakah dalam objek terdapat *missing value* dapat menggunakan fungsi `is.na()`. ouput dari fungsi tersebut adalah nilai Boolean. Jika terdapat *Missing value*, maka output yang dihasilkan akan memberikan nilai `TRUE`.
+
+```{r}
+is.na(Jumlah)
+```
+
+> **Penting!!!**
+>
+> 1. Selain `NA` terdapat NaN (*not a number*) sebagai *missing value8*. Nilai tersebut muncul ketika fungsi matematika yang digunakan pada proses perhitungan tidak bekerja sebagaimana mestinya. Contoh: `0/0 = NaN`
+> 2. `is.na()` juga akan menghasilkan nilai `TRUE` pada NaN. Untuk membedakannya dengan `NA` dapat digunakan fungsi `is.nan()`.
+
+
+### Subset Pada Vektor {#subsetvector}
+
+*Subseting vector* terdiri atas tiga jenis, yaitu: *positive indexing*, *Negative Indexing*, dan .
+
+* **Positive indexing**: memilih elemen vektor berdasarkan posisinya (indeks) dalam kurung siku.
+
+```{r}
+# Subset vektor pada urutan kedua
+Jumlah[2]
+
+# Subset vektor pada urutan 2 dan 4
+Jumlah[c(2, 4)]
+```
+
+Selain melalui urutan (indeks), kita juga dapat melakukan subset (membuat himpunan bagian) berdasarkan nama elemen vektornya.
+
+```{r}
+Jumlah["Jeruk"]
+```
+
+> **Penting!!!**
+>
+> Indeks pada `R` dimulai dari 1. Sehingga kolom atau elemen pertama vektor dimulai dari [1]
+
+
+* **Negative indexing**: mengecualikan (*exclude*) elemen vektor.
+
+```{r}
+# mengecualikan elemen vektor 2 dan 4
+Jumlah[-c(2,4)]
+
+# mengecualikan elemen vektor 1 sampai 3
+Jumlah[-c(1:3)]
+```
+
+* **Subset berdasarkan vektor logical**: Hanya, elemen-elemen yang nilai yang bersesuaian dalam vektor pemilihan bernilai TRUE, akan disimpan dalam subset.
+
+> **Penting!!!**
+>
+> panjang vektor yang digunakan untuk subset harus sama.
+
+
+```{r}
+Jumlah <- c(Apel=5, Jeruk=NA, Rambutan=6, Salak=7)
+
+# selecting vector
+merah <- c(TRUE, FALSE, TRUE, FALSE)
+
+# Subset
+Jumlah[merah==TRUE]
+
+# Subset untuk elemen vektor bukan missing value
+Jumlah[!is.na(Jumlah)]
+```
+
+### Operasi Matematis Menggunakan Vektor {#vectorops}
+
+Jika pembaca melakukan operasi dengan vektor, operasi akan diterapkan ke setiap elemen vektor. Contoh disediakan pada sintaks di bawah ini:
+
+```{r}
+pendapatan <- c(2000, 1800, 2500, 3000)
+names(pendapatan) <- c("Andi", "Joni", "Lina", "Rani")
+pendapatan
+
+# Kalikan pendapatan dengan 3
+pendapatan*3
+```
+
+Seperti yang dapat dilihat, `R` mengalikan setiap elemen dengan bilangan pengali.
+
+Kita juga dapat mengalikan vektor dengan vektor lainnya.Contohnya disajikan pada sintaks berikut:
+
+```{r}
+# membuat vektor dengan panjang 
+# sama dengan dengan vektor pendapatan
+coefs <- c(2, 1.5, 1, 3)
+
+# Mengalikan pendapatan dengan vektor coefs
+pendapatan*coefs
+```
+
+Berdasarkan sintaks tersebut dapat terlihat bahwa operasi matematik terhadap masing-masing vektor dapat berlangsung jika panjang vektornya sama.
+
+Berikut adalah fungsi lain yang dapat digunakan pada operasi matematika vektor.
+
+```{r, results='hide'}
+max(x) # memperoleh nilai maksimum x
+min(x) # memperoleh nilai minimum x
+range(x) # memperoleh range vektor x
+length(x) # memperoleh jumlah vektor x
+sum(x) # memperoleh total penjumlahan vektor x
+prod(x) # memeperoleh produk elemen vektor x
+mean(x) # memperoleh nilai mean vektor x
+sd(x) # standar deviasi vektor x
+var(x) # varian vektor x
+sort(x) # mengurutkan elemen vektor x dari yang terbesar
+```
+
+Contoh penggunaan fungsi tersebut disajikan beberapa pada sintaks berikut:
+
+```{r}
+# Menghitung range pendapatan
+range(pendapatan)
+
+# menghitung rata-rata dan standar deviasi pendapatan
+mean(pendapatan)
+sd(pendapatan)
+
+```
+
+### Membuat Deret Angka {#seq}
+
+Secara sederhana vektor merupakan deret angka. Vektor bisa jadi berupa data yang kita miliki atau sengaja kita buat untuk tujuan simulasi matematika. Urutan angka-angka ini bisa memiliki interval konstan, contoh: titik waktu pada analisis reaksi kimia, atau dapat pula intervalnya bersifat acak seperti pada simulasi Monte Carlo.
+
+#### *Regular Sequences* {#regseq}
+
+Operator *colon* (":") dapat digunakan untuk membuat *sequence vector*. Operator tersebut berfungsi sebagai pemisah antara nilai awal dan akhir deret bilangan. Interval nilai *sequence* yang terbentuk adalah `. Berikut adalah contoh bagaimana cara membuat *sequence vector* menggunakan operator *colon*:
+
+```{r}
+# vektor benilai 1 s/d 10
+1:10
+
+# vektor bernilai 10 s/d -1
+10:-1
+```
+
+Perlu diperhatikan bahwa dalam aplikasinya operator *colon* memiliki prioritas tinggi untuk dilakukan komputasi terlebih dahulu dibandingkan operator matematika. Perhatikan sintaks berikut:
+
+```{r}
+n = 10
+
+# membuat vektor bernilai 0 s/d 9
+1:n-1
+
+# membuat vektor bernilai 1 s/d 9
+1:(n-1)
+```
+
+Jika kita menginginkan interval antar angka selain 1, kita dapat menggunakan fungsi `seq()`. Format sintaks tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+seq(from, to, by)
+```
+
+> **Catatan:**
+>
+> - **from, to**: angka awal dan akhir atau nilai maksimum dan minimum deret bilangan yang diinginkan.
+> - **by**: interval antar nilai
+
+Misalkan kita akan membuat deret bilangan dari 3 sampai 8 dengan interval antar deret sebesar 0,5. Berikut adalah sintaks yang digunakan:
+
+```{r}
+seq(from=3,to=8,by=0.5)
+```
+
+### Nilai Berulang {#repseq}
+
+Fungsi `rep()` dapat digunakan untuk membuat deret dengan nilai berulang. Format fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+rep(x, times, each)
+```
+
+> **Catatan:**
+>
+> - **x**: nilai yang hendak dibuat berulang.
+> - **times**: jumlah pengulangan.
+> - **each**: argumen tambahan yang menentukan jumlah masing-masing elemen vektor akan dicetak.
+
+```{r}
+# cetak angka 5 sebanyak 5 kali
+rep(x=5, times=5)
+
+# cetak angka 5 dan 6 sebanyak 3 kali
+rep(c(5,6), times=3)
+
+# cetak angka 5 dan 6 masing-masing 3 kali
+rep(c(5,6), each=3)
+```
+
+### Deret Bilangan Acak {#randnumb}
+
+Deret bilangan acak biasanya banyak digunakan dalam sebuah simulasi. `R` menyediakan fungsi untuk memproduksi bilangan-bilangan acak tersebut berdasarkan distribusi tertentu. Berikut adalah tabel rangkuman nama distribusi, fungsi, dan argumen yang digunakan:
+
+**Distribusi**   | **Fungsi**                                   | **Argumen**
+---------------- |----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------
+Beta             | `rbeta(n, shape1, shape2, ncp = 0)`          | `n` = jumlah observasi; `shape1,shape2` = parameter non-negatif distribusi beta; `ncp` = *non-centrality parameter*
+Binomial         | `rbinom(n, size, prob)`                      | `n`= jumlah observasi; `prob` = probabilitas sukses; `size` = jumlah percobaan
+Cauchy           | `rcauchy(n, location = 0, scale = 1)`        | `n` = jumlah observasi; `location, scale` =  parameter lokasi dan skala distribusi Cauchy
+Chi-Square       | `rchisq(n, df, ncp = 0)`                     | `n` = jumlah observasi; `df` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Exponensial      | `rexp(n, rate = 1)`                          | `n` = jumlah observasi; `rate` = vektor parameter *rate*
+F                | `rf(n, df1, df2, ncp)`                       | `n` = jumlah observasi; `df1, df2` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Gamma            | `rgamma(n, shape, rate = 1, scale = 1/rate)` | `n` = jumlah observasi; `shape, scale` = parameter *shape* dan *scale*; `rate` = alternatif lain argumen `rate`
+Geometri         | `rgeom(n, prob)`                             | `n` = jumlah observasi; `prob` = probabilitas sukses
+Hipergeometri    | `rhyper(nn, m, n, k)`                        | `nn` = jumlah observasi; `m` = jumlah bola putih dalam wadah; `n` = jumlah bola hitam dalam wadah; `k` = jumlah pengambilan
+Log-normal       | `rlnorm(n, meanlog = 0, sdlog = 1)`          | `n` = jumlah observasi; `meanlog, sdlog` = nilai mean dan simpangan baku dalam skala logaritmik
+Negatif Binomial | `rnbinom(n, size, prob, mu)`                 | `n` = jumlah observasi; `size` = target jumlah percobaan sukses pertama kali; `prob` = probabilitas sukses; `mu` = parameterisasi alternatif melalui mean
+Normal           | `rnorm(n, mean = 0, sd = 1)`                 | `n` = jumlah observasi; `mead, sd` = nilai mean dan simpangan baku
+Poisson          | `rpois(n, lambda)`                           | `n` = jumlah observasi; `lambda` = vektor nilai mean
+Student t        | `rt(n, df, ncp)`                             | `n` = jumlah observasi; `df` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Uniform          | `runif(n, min = 0, max = 1)`                 | `n` = jumlah observasi; `min, max` = nilai maksimum dan minimum distribusi
+Weibull          | `rweibull(n, shape, scale = 1)`              | `n` = jumlah observasi; `shape, scale` = parameter *shape* dan *scale*
+
+: (\#tab:randomsequence) Ringkasan Fungsi dan Argumen Distribusi Probabilitas.
+
+Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi normal:
+
+```{r}
+x <- 1:6
+error <- rnorm(n=1, mean=0, sd=1)
+
+# cetak x + error dengan 3 nilai signifikan
+round((x+error), 3)
+```
+
+## Matriks {#matriks}
+
+Matriks seperti Excel sheet yang berisi banyak baris dan kolom (kumpulan bebrapa vektor). Matriks digunakan untuk menggabungkan vektor dengan tipe yang sama, yang bisa berupa numerik, karakter, atau logis. Matriks digunakan untuk menyimpan tabel data dalam R. Baris-baris matriks pada umumnya adalah individu / pengamatan dan kolom adalah variabel.
+
+### Membuat matriks {#creatematrix}
+
+Untuk membuat matriks kita dapat menggunakan fungsi `cbind()` atau `rbind()`. Berikut adalah contoh sintaks untuk membuat matriks.
+
+```{r}
+# membuat vektor numerik
+col1 <- c(5, 6, 7, 8, 9)
+col2 <- c(2, 4, 5, 9, 8)
+col3 <- c(7, 3, 4, 8, 7)
+
+# menggabungkan vektor berdasarkan kolom
+my_data <- cbind(col1, col2, col3)
+my_data
+
+# Mengubah atau menambahkan nama baris
+rownames(my_data) <- c("row1", "row2", 
+                       "row3", "row4", 
+                       "row5")
+my_data
+```
+
+> **Catatan:**
+>
+> + `cbind()`: menggabungkan objek `R` berdasarkan kolom
+> + `rbind()`: menggabungkan objek `R` berdasarkan baris
+> + `rownames()`: mengambil atau menetapkan nama-nama baris dari objek seperti-matriks
+> + `colnames()`: mengambil atau menetapkan nama-nama kolom dari objek seperti-matriks
+```
+
+Kita dapat melakukan tranpose (merotasi matriks sehingga kolom menjadi baris dan sebaliknya) menggunakan fungsi `t()`. Berikut adalah contoh penerapannya:
+
+```{r}
+t(my_data)
+```
+
+Selain melalui pembentukan sejumlah objek vektor, kita juga dapat membuat matriks menggunakan fungsi `matrix()`. Secara sederhana fungsi tersebut dapat dituliskan sebagai berikut:
+
+```{r, results='hide'}
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,
+       dimnames = NULL)
+```
+
+> **Catatan:**
+>
+> + `data`: vektor data opsional
+> + `nrow`, **ncol**: jumlah baris dan kolom yang diinginkan, masing-masing.
+> + `byrow`: nilai logis. Jika FALSE (default) matriks diisi oleh kolom, jika tidak, matriks diisi oleh baris.
+> + `dimnames`: Daftar dua vektor yang memberikan nama baris dan kolom masing-masing.
+```
+
+Dalam kode `R` di bawah ini, data input memiliki panjang 6. Kita ingin membuat matriks dengan dua kolom. Kita tidak perlu menentukan jumlah baris (di sini `nrow = 3`). `R` akan menyimpulkan ini secara otomatis. Matriks diisi kolom demi kolom saat argumen `byrow = FALSE`. Jika kita ingin mengisi matriks dengan baris, gunakan `byrow = TRUE`. Berikut adalah contoh pembuatan matriks menggunakan fungsi `matrix()`.
+
+```{r}
+data <- matrix(
+           data = c(1,2,3, 11,12,13), 
+           nrow = 2, byrow = TRUE,
+           dimnames = list(c("row1", "row2"), 
+                           c("C.1", "C.2", "C.3"))
+           )
+data
+```
+
+Untuk mengetahui dimensi dari suatu matriks, kita dapat menggunakan fungsi `ncol()` untuk mengetahui jumlah kolom matriks dan `nrow()` untuk mengetahui jumlah baris pada matriks. Berikut adalah contoh penerapannya:
+
+```{r}
+# mengetahui jumlah kolom
+ncol(my_data)
+
+# mengetahui jumlah baris
+nrow(my_data)
+```
+
+Jika ingin memperoleh ringkasan terkait dimensi matriks kita juga dapat mengunakan fungsi `dim()` untuk mengetahui jumlah baris dan kolom matriks. Berikut adalah contoh penerapannya:
+
+```{r}
+dim(my_data) # jumlah baris dan kolom
+```
+
+### Subset Pada Matriks {#subsetmatrix}
+
+Sama dengan vektor, subset juga dapat dilakukan pada matriks. Bedanya subset dilakukan berdasarkan baris dan kolom pada matriks.
+
+* **Memilih baris/kolom** berdasarkan pengindeksan positif
+
+baris atau kolom dapat diseleksi menggunakan format `data[row, col]`. Cara selesi ini sama dengan vektor, bedanya kita harus menetukan baris dan kolom dari data yang akan kita pilih. Berikut adalah contoh penerapannya:
+
+```{r}
+# Pilih baris ke-2
+my_data[2,]
+
+# Pilih baris 2 sampai 4
+my_data[2:4,]
+
+# Pilih baris 2 dan 4
+my_data[c(2,4),]
+
+# Pilih baris 2 dan kolom 3
+my_data[2, 3]
+
+```
+
+* **Pilih berdasarkan nama baris/kolom**
+
+Berikut adalah contoh subset berdasarkan nama baris atau kolom.
+
+```{r}
+# Pilih baris 1 dan kolom 3
+my_data["row1","col3"]
+
+# Pilih baris 1 sampai 4 dan kolom 3
+baris <- c("row1","row2","row3")
+my_data[baris, "col3"]
+```
+
+* **Kecualikan baris/kolom** dengan pengindeksan negatif
+
+Sama seperti vektor pengecualian data dapat dilakukan di matriks menggunakan pengindeksan negatif. Berikut cara melakukannya:
+
+```{r}
+# Kecualikan baris 2 dan 3 serta kolom 3
+my_data[-c(2,3), -3]
+
+```
+
+* **Pilihan dengan logik**
+
+Dalam kode `R` di bawah ini, misalkan kita ingin hanya menyimpan baris di mana col3> = 4:
+
+```{r}
+col3 <- my_data[, "col3"]
+my_data[col3 >= 4, ]
+```
+
+### Perhitungan Menggunakan Matriks {#matrixcalculation}
+_
+Kita juga dapat melakukan operasi matematika pada matriks. Pada operasi matematika pada matriks proses yang terjadi bisa lebih kompleks dibanding pada vektor, dimana kita dapat melakukan operasi untuk memperoleh gambaran data pada tiap kolom atau baris.
+
+Berikut adalah contoh operasi matematika sederhana pada matriks:
+
+```{r}
+# mengalikan masing-masing elemen matriks dengan 2
+my_data*2
+
+# memperoleh nilai log basis 2 pada masing-masing elemen matriks
+log2(my_data)
+```
+
+Seperti yang telah penulis jelaskan sebelumnya, kita juga dapat melakukan operasi matematika untuk memperoleh hasil penjumlahan elemen pada tiap baris atau kolom dengan menggunakan fungsi `rowSums()` untuk baris dan `colSums()` untuk kolom.
+
+```{r}
+# Total pada tiap kolom
+colSums(my_data)
+
+# Total pada tiap baris
+rowSums(my_data)
+```
+
+Jika kita tertarik untuk mencari nilai rata-rata tiap baris arau kolom kita juga dapat menggunakan fungsi `rowMeans()` atau `colMeans()`. Berikut adalah contoh penerapannya:
+
+```{r}
+# Rata-rata tiap baris
+rowMeans(my_data)
+
+# Rata-rata tiap kolom
+colMeans(my_data)
+```
+
+Kita juga dapat melakukan perhitungan statistika lainnya menggunakan fungsi `apply()`. Berikut adalah format sederhananya:
+
+```{r, echo=FALSE}
+x <- my_data
+FUN <- mean
+MARGIN <-1
+```
+
+```{r, results='hide'}
+apply(x, MARGIN, FUN)
+```
+
+> **Catatan:**
+>
+> * `x` : data matriks
+> * `MARGIN` : Nilai yang dapat digunakan adalah `1` (untuk operasi pada baris) dan `2` (untuk operasi pada kolom)
+> * `FUN` : fungsi yang diterapkan pada baris atau kolom
+
+untuk mengetahui fungsi (`FUN`) apa saja yang dapat diterapkan pada fungsi `apply()` jalankan sintaks bantuan berikut:
+
+```{r, results='hide', eval=FALSE}
+help(apply)
+```
+
+Berikut adalah contoh penerapannya:
+
+```{r}
+# Rata-rata pada tiap baris
+apply(my_data, 1, mean)
+
+# Median pada tiap kolom
+apply(my_data, 2, median)
+```
+
+Perhitungan lainnya tidak akan dibahas pada *chapter* ini. Operasi matriks lebih lengkap selanjutnya akan dibahas pada *chapter* selanjutnya.
+
+## Referensi
+
+1. Bloomfield, V.A. 2014. **Using R for Numerical Analysis in Science and Engineering**. CRC Press
+2. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung.
+3. Rosadi,D. 2016. **Analisis Statistika dengan R**. Gadjah Mada University Press: Yogyakarta.
+4. STHDA. **Easy R Programming Basics**. <http://www.sthda.com/english/wiki/easy-r-programming-basics>
+5. The R Core Team. 2018. **R: A Language and Environment for Statistical Computing**. R Manuals.
+6. Venables, W.N. Smith D.M. and R Core Team. 2018. **An Introduction to R**. R Manuals.
+

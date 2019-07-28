@@ -1,0 +1,127 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Pengantar Metode Numerik {#numericmethod}
+
+*Chapter* ini memberikan pengantar bagi pembaca untuk mengenal terlebih dahulu mengenai metode numerik. Pada *chapter* ini akan dibahas mengenai apa itu metode numerik, perbedaannya dengan metode analitik, dan analisis error.
+
+## Mengenal Metode Numerik {#numericmethodintro}
+
+Metode numerik merupakan teknik penyelesaian permsalahn yang diformulasikan secara matematis dengan menggunakan operasi hitungan (aritmatik) yaitu operasi tambah, kurang, kali, dan bagi. Metode ini digunakan karena banyak permasalahan matematis tidak dapat diselesaikan menggunakan metode analitik. Jikapun terdapat penyelesaiannya secara analitik, proses penyelesaiaannya sering kali cukup rumit dan memakan banyak waktu sehingga tidak efisien.
+
+Terdapat keuntungan dan kerugian terkait penggunaan metode numerik. Keuntungan dari metode ini antara lain:
+
+1. Solusi persoalan selalu dapat diperoleh.
+2. Dengan bantuan komputer, perhitungan dapat dilakukan dengan cepat serta hasil yang diperoleh dapat dibuat sedekat mungkin dengan nilai sesungguhnya.
+3. Tampilan hasil perhitungan dapat disimulasikan.
+
+Adapun kelemahan metode ini antara lain:
+
+1. Nilai yang diperoleh berupa pendekatan atau hampiran.
+2. Tanpa bantuan komputer, proses perhitungan akan berlangsung lama dan berulang-ulang.
+
+
+### Perbedaan Antara Metode Numerik dan Analitik {#diffanalitycnumeric}
+
+Perbedaan antara metode numerik dan metode analitik dapat dijelaskan sebagai berikut:
+
+1. Solusi metode numerik selalu berbentuk angka, sedangkan solusi metode analitik dapat berbentuk fungsi matematik yang selanjutnya dapat dievaluasi untuk menghasilkan nilai dalam bentuk angka.
+
+2. Solusi dari metode numerik berupa hampiran, sedangkan metode analitik berupa solusi sejati. Kondisi ini berakibat pada nilai error metode analitik adalah 0, sedangkan metode numerik $\neq 0$.
+
+3. Metode analitik cocok untuk permasalahan dengan model terbatas dan sederhana, sedangkan metode numerik cocok dengan semua jenis permasalahan.
+
+### Tahapan Penyelesaian Menggunakan Metode Numerik
+
+Terdapat beberapa tahapan dalam menyelesaikan suatu permasalahan dengan metode numerik. Tahapan-tahapan tersebut antara lain:
+
+* Pemodelan
+
+Persoalan dunia nyata dimodelkan ke dalam persamaan matematika. Persamaan matematika yang terbentuk dapat berupa persamaan linier, non-linier, dan sebagainya sesuai dengan persoalan yang dihadapi.
+
+* Penyederhanaan Model
+
+Model matematika yang dihasilkan dari tahap 1 mungkin saja terlalu kompleks. Semakin kompleks suatu model, semakin rumit penyelesaiaannya, sehingga model perlu disederhanakan.
+
+Seberapa sederhana model yang akan kita buat? tergantung pada permasalahan apa yang hendak pembaca selesaikan. Model yang terlalu sederhana akan tidak cocok digunakan untuk digunakan sebagai pendekatan sistem nyata atau lingkungan yang begitu kompleks. Penyederhanaan dapat berupa asumsi sejumlah variabel yang terlibat tidak signifikan, atau asumsi kondisi reaktor (*steady* atau *non-steady*).
+
+* Formulasi Numerik
+
+Setelah model matematika sederhana diperoleh, tahap selanjutnya adalah memformulasikan model matematika secara numerik. Tahapan ini terdiri atas:
+
+    + menentukan metode numerik yang akan dipakai bersama-sama dengan analisis galat (error) awal.
+    + menyusun algoritma dari metode numerik yang dipilih.
+
+* Pemrograman
+
+Tahap selanjutnya adalah menerjemahkan algoritma ke dalam program komputer. Pada tahapan ini pembaca bisa memilih bahasa pemrograman yang pembaca kuasai. 
+
+Dalam buku ini kita hanya akan berfokus pada bahasa pemrograman `R`. Pembaca dapat menggunakan bahasa pemrograman lain selain dari buku ini. Pembaca hanya perlu memperhatikan bagaimana penulis membangun algoritma penyelesaian dan memtransfernya menjadi bentuk sintaks `R`. Dari sintaks tersebut pembaca dapat melihat bagaimana meletakakkan tiap tahapan algoritma menjadi sintaks pada bahasa pemrograman.
+
+* Operasional
+
+Sebelum digunakan dengan data sesungguhnya, program komputer perlu dilakukan uji coba dengan data simulasi dan dievaluasi hasilnya. jika hasil keluaran diyakini sudah sesuai, baru dioperasikan dengan data yang sesungguhnya.
+
+* Evaluasi
+
+Bila program sudah selesai dijalankan dengan data yang sesungguhnya, maka hasil yang diperoleh dilakukan interpretasi, meliputi analisis hasil keluaran dan membandingkannya dengan prinsip dasar dan hasil-hasil empriik untuk menaksir kualitas soluasi numerik termasuk keputusan untuk menjalankan kembali progrma dengan memperoleh hasil yang lebih baik.
+
+## Akurasi dan Presisi {#acuracy}
+
+Perhatikan Gambar \@ref(fig:akurasi) berikut:
+
+```{r akurasi,echo=FALSE, fig.cap='4 ilustrasi terkait akurasi dan presisi', tidy=FALSE, fig.align='center',out.width='75%', warning=FALSE}
+library(knitr)
+img1_path <- "./images/akurasi.png"
+include_graphics(img1_path)
+
+```
+
+Pada Gambar \@ref(fig:akurasi) terdapat 4 buah kondisi ketika kita menembakkan beberapa perluru pada sebuah sasaran. Tujuan kita disini adalah untuk menembak bagian tengah sasaran tersebut.
+
+Pada Gambar (a) dan (c) pada Gambar \@ref(fig:akurasi) merupakan gambar yang menunjukkan seseorang telah berhasil mengenai bagian tengah sasaran tersebut dapat kita katakan pula tembakan pada kedua gambar tersebut akurat. Akurat dalam hal ini dapat diartikan suatu kondisi dimana kedekatan lubang peluru dengan pusat sasaran. Secara umum akurasi diartikan sebagai tingkat kedekatan pengukuran kuantitas terhadap nilai sebenarnya.
+
+Terdapat dua buah cara untuk mengukur akurasi. Metode pengukuran akurasi antara lain: error absolut dan error relatif.
+
+Error absolut merupakan nilai absolut dari selisih antara nilai sebenarnya $x$ dengan nilai observasi $x'$. Error absolut dapat dituliskan menggunakan Persamaan \@ref(eq:errorabsolut).
+
+\begin{equation}
+   \epsilon_A=\left|x-x'\right|
+  (\#eq:errorabsolut)
+\end{equation} 
+
+Pengukuran lain yang sering digunakan untuk mengukur akurasi adalah error relatif. Berbeda dengan error absolut, error relatif membagi selisih antara nilai sebenarnya $x$ dan nilai observasi $x'$ dengan nilai sebenarnya. Hasil yang diperoleh merupakan nilai tanpa satuan. Persamaan error relatif disajikan pada Persamaan \@ref(eq:errorrelatif).
+
+\begin{equation}
+   \epsilon_R=\left|\frac{x-x'}{x}\right|
+  (\#eq:errorrelatif)
+\end{equation}
+
+Dalam suatu pengukuran, hal lain yang perlu diperhatikan selain akurasi adalah presisi. Presisi adalah sejauh mana pengulangan pengukuran dalam kondisi yang tidak berubah mendapat hasil yang sama. Berdasarkan Gambar \@ref(fig:akurasi), Gambar (a) dan (b) menunjukkan kepresisian yang tinggi. Hal ini terlihat dari jarak antara lubang peluru yang saling berdekatan dan mengelompok.
+
+Berdasarkan Gambar \@ref(fig:akurasi) dapat kita simpulkan bahwa dalam suatu sistem pengukuran akan terdapat 4 buah kondisi. Pengukuran akurat dan presisi (Gambar (a)), tidak akurat namun presisi (Gambar (b)), akurat namun tidak presisi (Gambar (c)), dan tidak akurat serta tidak presisi (Gambar (d)).
+
+Dari kondisi-kondisi tersebut, akan meuncul yang dinamakan error. Dalam analisa numerik error atau kesalahan menjadi hal yang perlu diperhatikan.
+
+## Error Numerik {#numerror}
+
+Kesalahan numerik merupakan error atau kesalahan yang timbul akibat adanya proses pendekatan atau hampiran. Kesalahan numerik terjadi karena tiga hal, antara lain:
+
+- **Kesalahan bawaan (*inherent error*)**, merupakan kesalahan data yang timbul akibat adanya pengkuran, *human error* seperti kesalahan pencatatan, atau tidak memahami hukum-hukum fisik dari data yang diukur.
+
+- **Kesalahan pembulatan (*round-off error*)**, adalah kesalahan yang terjadi karena adanya pembulatan. Contoh: 3,142857143... menjadi 3,14.
+
+- **Kesalahan pemotongan (*truncation error*)**, adalah kesalahan yang ditimbulkan pada saat dilakukan pengurangan jumlah angka signifikan.
+
+Kesalahan atau error dapat diukur menggunakan Persamaan \@ref(eq:errorabsolut) dan Persamaan \@ref(eq:errorrelatif) yang telah penulis jelaskan pada Chapter \@ref(acuracy).
+
+## Referensi
+
+1. Howard, J.P. 2017. **Computational Methods for Numerical Analysis with R**. CRC Press.
+2. Sidiq, M. Tanpa Tahun. **Materi Kuliah Metode Numerik**. Repository Universitas Dian Nuswantoro.
+3. Subakti, I. 2006. **Metode Numerik**. Institut Teknologi Sepuluh Nopember.
+4. Sutarno,H., Rachmatin,D. 2008. **Hands Out Metode Numerik**. Universitas Pendidikan Indonesia.
+
+

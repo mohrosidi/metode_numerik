@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Visualisasi Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Visualisasi Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Visualisasi Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  
+  <meta name="twitter:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2019-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="calculation.html">
+<link rel="next" href="programmingandfunction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#prosconsR"><i class="fa fa-check"></i><b>1.3</b> Kelebihan dan Kekurangan R</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#installR"><i class="fa fa-check"></i><b>1.5</b> Menginstall R dan RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#wdR"><i class="fa fa-check"></i><b>1.6</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
+<li class="chapter" data-level="1.8.3" data-path="intro.html"><a href="intro.html#othershelp"><i class="fa fa-check"></i><b>1.8.3</b> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#referensi"><i class="fa fa-check"></i><b>1.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="calculation.html"><a href="calculation.html"><i class="fa fa-check"></i><b>2</b> Kalkulasi Menggunakan R</a><ul>
+<li class="chapter" data-level="2.1" data-path="calculation.html"><a href="calculation.html#aritmetikoperator"><i class="fa fa-check"></i><b>2.1</b> Operator Aritmatik</a></li>
+<li class="chapter" data-level="2.2" data-path="calculation.html"><a href="calculation.html#aritmaticfunction"><i class="fa fa-check"></i><b>2.2</b> Fungsi Aritmetik</a></li>
+<li class="chapter" data-level="2.3" data-path="calculation.html"><a href="calculation.html#relationoperators"><i class="fa fa-check"></i><b>2.3</b> Operator Relasi</a></li>
+<li class="chapter" data-level="2.4" data-path="calculation.html"><a href="calculation.html#logicoperators"><i class="fa fa-check"></i><b>2.4</b> Operator Logika</a></li>
+<li class="chapter" data-level="2.5" data-path="calculation.html"><a href="calculation.html#assigningvar"><i class="fa fa-check"></i><b>2.5</b> Memasukkan Nilai Kedalam Variabel</a></li>
+<li class="chapter" data-level="2.6" data-path="calculation.html"><a href="calculation.html#typedata"><i class="fa fa-check"></i><b>2.6</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.7" data-path="calculation.html"><a href="calculation.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vektor</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="calculation.html"><a href="calculation.html#createvector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vektor</a></li>
+<li class="chapter" data-level="2.7.2" data-path="calculation.html"><a href="calculation.html#missingvalue"><i class="fa fa-check"></i><b>2.7.2</b> Missing Values</a></li>
+<li class="chapter" data-level="2.7.3" data-path="calculation.html"><a href="calculation.html#subsetvector"><i class="fa fa-check"></i><b>2.7.3</b> Subset Pada Vektor</a></li>
+<li class="chapter" data-level="2.7.4" data-path="calculation.html"><a href="calculation.html#vectorops"><i class="fa fa-check"></i><b>2.7.4</b> Operasi Matematis Menggunakan Vektor</a></li>
+<li class="chapter" data-level="2.7.5" data-path="calculation.html"><a href="calculation.html#seq"><i class="fa fa-check"></i><b>2.7.5</b> Membuat Deret Angka</a></li>
+<li class="chapter" data-level="2.7.6" data-path="calculation.html"><a href="calculation.html#repseq"><i class="fa fa-check"></i><b>2.7.6</b> Nilai Berulang</a></li>
+<li class="chapter" data-level="2.7.7" data-path="calculation.html"><a href="calculation.html#randnumb"><i class="fa fa-check"></i><b>2.7.7</b> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="calculation.html"><a href="calculation.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="calculation.html"><a href="calculation.html#creatematrix"><i class="fa fa-check"></i><b>2.8.1</b> Membuat matriks</a></li>
+<li class="chapter" data-level="2.8.2" data-path="calculation.html"><a href="calculation.html#subsetmatrix"><i class="fa fa-check"></i><b>2.8.2</b> Subset Pada Matriks</a></li>
+<li class="chapter" data-level="2.8.3" data-path="calculation.html"><a href="calculation.html#matrixcalculation"><i class="fa fa-check"></i><b>2.8.3</b> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="calculation.html"><a href="calculation.html#referensi-1"><i class="fa fa-check"></i><b>2.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualisasi Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#plotfunc"><i class="fa fa-check"></i><b>3.1</b> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#otherviz"><i class="fa fa-check"></i><b>3.2</b> Visualisasi Lainnya</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#barplot"><i class="fa fa-check"></i><b>3.2.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dataviz.html"><a href="dataviz.html#histogram"><i class="fa fa-check"></i><b>3.2.2</b> Histogram dan Density Plot</a></li>
+<li class="chapter" data-level="3.2.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>3.2.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#customise"><i class="fa fa-check"></i><b>3.3</b> Kustomisasi Parameter Grafik</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#addtitle"><i class="fa fa-check"></i><b>3.3.1</b> Menambahkan Judul</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#addlegend"><i class="fa fa-check"></i><b>3.3.2</b> Menambahkan Legend</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#addtext"><i class="fa fa-check"></i><b>3.3.3</b> Menambahkan Teks Pada Grafik</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#addlines"><i class="fa fa-check"></i><b>3.3.4</b> Menambahkan Garis Pada Plot</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#changepoint"><i class="fa fa-check"></i><b>3.3.5</b> Merubah Simbol plot dan Jenis Garis</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dataviz.html"><a href="dataviz.html#mengatur-axis-plot"><i class="fa fa-check"></i><b>3.3.6</b> Mengatur Axis Plot</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dataviz.html"><a href="dataviz.html#changecolor"><i class="fa fa-check"></i><b>3.3.7</b> Mengatur Warna</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#plot-dua-dan-tiga-dimensi"><i class="fa fa-check"></i><b>3.4</b> Plot Dua dan Tiga Dimensi</a></li>
+<li class="chapter" data-level="3.5" data-path="dataviz.html"><a href="dataviz.html#referensi-2"><i class="fa fa-check"></i><b>3.5</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programmingandfunction.html"><a href="programmingandfunction.html"><i class="fa fa-check"></i><b>4</b> Pemrograman dan Fungsi</a><ul>
+<li class="chapter" data-level="4.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loop"><i class="fa fa-check"></i><b>4.1</b> Loop</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#forloop"><i class="fa fa-check"></i><b>4.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="4.1.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#whileloop"><i class="fa fa-check"></i><b>4.1.2</b> While Loop</a></li>
+<li class="chapter" data-level="4.1.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#repeatloop"><i class="fa fa-check"></i><b>4.1.3</b> Repeat Loop</a></li>
+<li class="chapter" data-level="4.1.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#break"><i class="fa fa-check"></i><b>4.1.4</b> Break</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loopapply"><i class="fa fa-check"></i><b>4.2</b> Loop Menggunakan Apply Family Function</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#apply"><i class="fa fa-check"></i><b>4.2.1</b> Apply</a></li>
+<li class="chapter" data-level="4.2.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#lapply"><i class="fa fa-check"></i><b>4.2.2</b> lapply</a></li>
+<li class="chapter" data-level="4.2.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#sapply"><i class="fa fa-check"></i><b>4.2.3</b> sapply</a></li>
+<li class="chapter" data-level="4.2.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#vapply"><i class="fa fa-check"></i><b>4.2.4</b> vapply</a></li>
+<li class="chapter" data-level="4.2.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#tapply"><i class="fa fa-check"></i><b>4.2.5</b> tapply</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#dm"><i class="fa fa-check"></i><b>4.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifstatement"><i class="fa fa-check"></i><b>4.3.1</b> if statement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifelsestatement"><i class="fa fa-check"></i><b>4.3.2</b> if else statement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#switchstatement"><i class="fa fa-check"></i><b>4.3.3</b> switch statement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#fungsi"><i class="fa fa-check"></i><b>4.4</b> Fungsi</a></li>
+<li class="chapter" data-level="4.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#debugging"><i class="fa fa-check"></i><b>4.5</b> Debugging</a></li>
+<li class="chapter" data-level="4.6" data-path="programmingandfunction.html"><a href="programmingandfunction.html#referensi-3"><i class="fa fa-check"></i><b>4.6</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="numericmethod.html"><a href="numericmethod.html"><i class="fa fa-check"></i><b>5</b> Pengantar Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericmethod.html"><a href="numericmethod.html#numericmethodintro"><i class="fa fa-check"></i><b>5.1</b> Mengenal Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="numericmethod.html"><a href="numericmethod.html#diffanalitycnumeric"><i class="fa fa-check"></i><b>5.1.1</b> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li class="chapter" data-level="5.1.2" data-path="numericmethod.html"><a href="numericmethod.html#tahapan-penyelesaian-menggunakan-metode-numerik"><i class="fa fa-check"></i><b>5.1.2</b> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="numericmethod.html"><a href="numericmethod.html#acuracy"><i class="fa fa-check"></i><b>5.2</b> Akurasi dan Presisi</a></li>
+<li class="chapter" data-level="5.3" data-path="numericmethod.html"><a href="numericmethod.html#numerror"><i class="fa fa-check"></i><b>5.3</b> Error Numerik</a></li>
+<li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan Matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-vektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-matriks"><i class="fa fa-check"></i><b>6.1.2</b> Operasi Matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-dasar-pada-baris-matriks"><i class="fa fa-check"></i><b>6.2</b> Operasi Dasar Pada Baris Matriks</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metode Numerik Menggunakan R Untuk Teknik Lingkungan</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dataviz" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Visualisasi Data</h1>
+<p>Visualisasi data merupakan bagian yang sangat penting untuk mengkomunikasikan hasil analisa yang telah kita lakukan. Selain itu, komunikasi juga membantu kita untuk memperoleh gambaran terkait data selama proses analisa data sehingga membantu kita dalam memutuskan metode analisa apa yang dapat kita terapkan pada data tersebut.</p>
+<p><code>R</code> memiliki library visualisasi yang sangat beragam, baik yang merupakan fungsi dasar pada <code>R</code> maupun dari sumber lain seperti ggplot dan lattice. Seluruh library visualisasi tersebut memiliki kelebihan dan kekurangannya masing-masing.</p>
+<p>Pada <em>chapter</em> ini kita tidak akan membahas seluruh library tersebut. Kita akab berfokus pada fungsi visualisasi dasar bawaan dari <code>R</code>. kita akan mempelajari mengenai jenis visualisasi data sampai dengan melakukan kustomisasi pada parameter grafik yang kita buat.</p>
+<div id="plotfunc" class="section level2">
+<h2><span class="header-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</h2>
+<p>Fungsi <code>plot()</code> merupakan fungsi umum yang digunakan untuk membuat plot pada <code>R</code>. Format dasarnya adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="kw">plot</span>(x, y, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>x dan y</strong>: titik koordinat plot Berupa variabel dengan panjang atau jumlah observasi yang sama.</li>
+<li><strong>type</strong>: jenis grafik yang hendak dibuat. Nilai yang dapat dimasukkan antara lain:
+<ul>
+<li>type=“p” : membuat plot titik atau scatterplot. Nilai ini merupakan default pada fungsi <code>plot()</code>.</li>
+<li>type=“l” : membuat plot garis.</li>
+<li>type=“b” : membuat plot titik yang terhubung dengan garis.</li>
+<li>type=“o” : membuat plot titik yang ditimpa oleh garis.</li>
+<li>type=“h” : membuat plot garis vertikal dari titik ke garis y=0.</li>
+<li>type=“s” : membuat fungsi tangga.</li>
+<li>type=“n” : tidak membuat grafik plot sama sekali, kecuali plot dari axis. Dapat digunakan untuk mengatur tampilan suatu plot utama yang diikuti oleh sekelompok plot tambahan.</li>
+</ul></li>
+</ul>
+</blockquote>
+<p>Untuk lebih memahaminya berikut penulis akan sajikan contoh untuk masing-masing grafik tersebut. Berikut adalah contoh sintaks dan hasil plot yang disajikan pada Gambar <a href="dataviz.html#fig:plot">3.1</a>:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="co"># membuat vektor data </span></a>
+<a class="sourceLine" id="cb233-2" title="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>); y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="co"># membagi jendela grafik menajdi 2 baris dan 4 kolom</span></a>
+<a class="sourceLine" id="cb234-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb234-3" title="3"></a>
+<a class="sourceLine" id="cb234-4" title="4"><span class="co"># loop</span></a>
+<a class="sourceLine" id="cb234-5" title="5">type &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;p&quot;</span>,<span class="st">&quot;l&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;o&quot;</span>,<span class="st">&quot;h&quot;</span>,<span class="st">&quot;s&quot;</span>,<span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb234-6" title="6"><span class="cf">for</span> (i <span class="cf">in</span> type){</a>
+<a class="sourceLine" id="cb234-7" title="7">  <span class="kw">plot</span>(x,y, <span class="dt">type=</span> i,</a>
+<a class="sourceLine" id="cb234-8" title="8">       <span class="dt">main=</span> <span class="kw">paste</span>(<span class="st">&quot;type=&quot;</span>, i))</a>
+<a class="sourceLine" id="cb234-9" title="9">}</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:plot"></span>
+<img src="Metode_Numerik_files/figure-html/plot-1.png" alt="Plot berbagai jenis setting type" width="80%" />
+<p class="caption">
+Figure 3.1: Plot berbagai jenis setting type
+</p>
+</div>
+<p>Pada contoh selanjutnya kita akan mencoba membuat kembali data yang akan kita plotkan. Data pada contoh kali ini merupakan data suatu fungsi matematika. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb235-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>, <span class="dt">by=</span><span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb235-3" title="3">y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>x<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="kw">length</span>(x), <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="fl">0.05</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb236-2" title="2">    <span class="co"># mengatur margin grafik</span></a>
+<a class="sourceLine" id="cb236-3" title="3">    <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>),</a>
+<a class="sourceLine" id="cb236-4" title="4">    <span class="co"># mengatur margin sumbu</span></a>
+<a class="sourceLine" id="cb236-5" title="5">    <span class="dt">mex=</span><span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb236-6" title="6">    <span class="co"># arah tick sumbu koordinat</span></a>
+<a class="sourceLine" id="cb236-7" title="7">    <span class="dt">tcl=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb236-8" title="8"><span class="kw">plot</span>(x, y, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb236-9" title="9"><span class="kw">plot</span>(x, y, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:plot2"></span>
+<img src="Metode_Numerik_files/figure-html/plot2-1.png" alt="Plot fungsi matematika" width="80%" />
+<p class="caption">
+Figure 3.2: Plot fungsi matematika
+</p>
+</div>
+<p>Fungsi lain yang dapat digunakan untuk membuat kurva suatu persamaan matematis adalah fungsi <code>curve()</code>. Berbeda dengan fungsi <code>plot()</code> yang perlu menspesifikasi objek pada sumbu x dan y, fungsi <code>curve()</code> hanya perlu menspesifikasi objek sumbu x saja. Format fungsi <code>curve()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="kw">curve</span>(expr, <span class="dt">from =</span> <span class="ot">NULL</span>, <span class="dt">to =</span> <span class="ot">NULL</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>expr</strong>: persamaan matematika</li>
+<li><strong>from dan to</strong>: nilai awal dan akhir (maksimum atau minimum)</li>
+<li><strong>add</strong>: nilai logik yang menentukan apakah kurva perlu ditambahkan kedalam kurva sebelumnya.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh visualisasi menggunakan fungsi <code>curve()</code>:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb238-2" title="2">    <span class="co"># mengatur margin grafik</span></a>
+<a class="sourceLine" id="cb238-3" title="3">    <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>),</a>
+<a class="sourceLine" id="cb238-4" title="4">    <span class="co"># mengatur margin sumbu</span></a>
+<a class="sourceLine" id="cb238-5" title="5">    <span class="dt">mex=</span><span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb238-6" title="6">    <span class="co"># arah tick sumbu koordinat</span></a>
+<a class="sourceLine" id="cb238-7" title="7">    <span class="dt">tcl=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb238-8" title="8"></a>
+<a class="sourceLine" id="cb238-9" title="9"><span class="co"># Grafik kiri</span></a>
+<a class="sourceLine" id="cb238-10" title="10"><span class="kw">curve</span>(<span class="dt">expr=</span>x<span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>x<span class="op">/</span><span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb238-11" title="11">      <span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb238-12" title="12"></a>
+<a class="sourceLine" id="cb238-13" title="13"><span class="co"># Grafik kanan</span></a>
+<a class="sourceLine" id="cb238-14" title="14"><span class="kw">plot</span>(x, y, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">cex=</span><span class="fl">0.7</span>,</a>
+<a class="sourceLine" id="cb238-15" title="15">     <span class="dt">xlab=</span><span class="st">&quot;Waktu (detik)&quot;</span>,</a>
+<a class="sourceLine" id="cb238-16" title="16">     <span class="dt">ylab=</span><span class="st">&quot;Sinyal Intensitas&quot;</span>)</a>
+<a class="sourceLine" id="cb238-17" title="17"><span class="kw">curve</span>(<span class="dt">expr=</span>x<span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>x<span class="op">/</span><span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb238-18" title="18">      <span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:curve"></span>
+<img src="Metode_Numerik_files/figure-html/curve-1.png" alt="Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)" width="80%" />
+<p class="caption">
+Figure 3.3: Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)
+</p>
+</div>
+</div>
+<div id="otherviz" class="section level2">
+<h2><span class="header-section-number">3.2</span> Visualisasi Lainnya</h2>
+<p>Visualisasi lainnya yang sering digunakan antara lain: histogram, density plot, bar plot, dan box plot.</p>
+<div id="barplot" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Bar Plot</h3>
+<p>Barplot pada <code>R</code> dapat dibuat menggunakan fungsi <code>barplot()</code>. Untuk lebih memahaminya berikut disajikan contoh barplot menggunakan dataset <code>VADeaths</code>. Untuk memuatnya jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1">VADeaths</a></code></pre></div>
+<pre><code>##       Rural Male Rural Female Urban Male Urban Female
+## 50-54       11.7          8.7       15.4          8.4
+## 55-59       18.1         11.7       24.3         13.6
+## 60-64       26.9         20.3       37.0         19.3
+## 65-69       41.0         30.9       54.6         35.1
+## 70-74       66.0         54.3       71.1         50.0</code></pre>
+<p>Contoh bar plot untuk variabel <code>Rural Male</code> disajikan pada Gambar <a href="dataviz.html#fig:barplot">3.4</a>:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb241-2" title="2"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>], <span class="dt">main=</span><span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb241-3" title="3"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>], <span class="dt">main=</span><span class="st">&quot;b&quot;</span>, <span class="dt">horiz=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot"></span>
+<img src="Metode_Numerik_files/figure-html/barplot-1.png" alt="a. bar plot vertikal; b. bar plot horizontal" width="70%" />
+<p class="caption">
+Figure 3.4: a. bar plot vertikal; b. bar plot horizontal
+</p>
+</div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>Kita dapat mengubah warna pada masing-masing bar, baik outline bar maupun box pada bar. Selain itu kita juga dapat mengubah nama grup yang telah dihasilkan sebelumnya. Berikut sintaks untuk melakukannya dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:barplot2">3.5</a>:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>],</a>
+<a class="sourceLine" id="cb243-2" title="2">        <span class="co"># ubah warna ouline menjadi steelblue</span></a>
+<a class="sourceLine" id="cb243-3" title="3">        <span class="dt">border=</span><span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb243-4" title="4">        <span class="co"># ubah wana box</span></a>
+<a class="sourceLine" id="cb243-5" title="5">        <span class="dt">col=</span> <span class="kw">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>),</a>
+<a class="sourceLine" id="cb243-6" title="6">        <span class="co"># ubah nama grup dari A sampai E</span></a>
+<a class="sourceLine" id="cb243-7" title="7">        <span class="dt">names.arg =</span> LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],</a>
+<a class="sourceLine" id="cb243-8" title="8">        <span class="co"># ubah orientasi menajadi horizontal</span></a>
+<a class="sourceLine" id="cb243-9" title="9">        <span class="dt">horiz=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot2"></span>
+<img src="Metode_Numerik_files/figure-html/barplot2-1.png" alt="Kustomisasi bar plot" width="70%" />
+<p class="caption">
+Figure 3.5: Kustomisasi bar plot
+</p>
+</div>
+<p>Untuk bar plot dengan <em>multiple group</em>, tersedia dua pengaturan posisi yaitu <em>stacked bar plot</em>(menunjukkan proporsi penyusun pada masing-masing grup) dan <em>grouped bar plot</em>(melihat perbedaan individual pada masing-masing grup). Pada Gambar <a href="dataviz.html#fig:barplot3">3.6</a> dan Gambar <a href="dataviz.html#fig:barplot4">3.7</a> , disajikan kedua jenis bar plot tersebut.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="co"># staked</span></a>
+<a class="sourceLine" id="cb244-2" title="2"><span class="kw">barplot</span>(VADeaths,</a>
+<a class="sourceLine" id="cb244-3" title="3">         <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;mistyrose&quot;</span>, <span class="st">&quot;lightcyan&quot;</span>, </a>
+<a class="sourceLine" id="cb244-4" title="4">                 <span class="st">&quot;lavender&quot;</span>, <span class="st">&quot;cornsilk&quot;</span>),</a>
+<a class="sourceLine" id="cb244-5" title="5">        <span class="dt">legend =</span> <span class="kw">rownames</span>(VADeaths))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot3"></span>
+<img src="Metode_Numerik_files/figure-html/barplot3-1.png" alt="Stacked bar plot" width="70%" />
+<p class="caption">
+Figure 3.6: Stacked bar plot
+</p>
+</div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="co"># grouped</span></a>
+<a class="sourceLine" id="cb245-2" title="2"><span class="kw">barplot</span>(VADeaths,</a>
+<a class="sourceLine" id="cb245-3" title="3">         <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;mistyrose&quot;</span>, <span class="st">&quot;lightcyan&quot;</span>, </a>
+<a class="sourceLine" id="cb245-4" title="4">                 <span class="st">&quot;lavender&quot;</span>, <span class="st">&quot;cornsilk&quot;</span>),</a>
+<a class="sourceLine" id="cb245-5" title="5">        <span class="dt">legend =</span> <span class="kw">rownames</span>(VADeaths), <span class="dt">beside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot4"></span>
+<img src="Metode_Numerik_files/figure-html/barplot4-1.png" alt="Grouped bar plot" width="70%" />
+<p class="caption">
+Figure 3.7: Grouped bar plot
+</p>
+</div>
+</div>
+<div id="histogram" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Histogram dan Density Plot</h3>
+<p>Fungsi <code>hist()</code> dapat digunakan untuk membuat histogram pada <code>R</code>. Secara sederhana fungsi tersebut didefinisikan sebagai berikut:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">hist</span>(x, <span class="dt">breaks=</span><span class="st">&quot;Sturges&quot;</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan: </strong></p>
+<ul>
+<li><strong>x</strong>: vektor numerik</li>
+<li><strong>breaks</strong>: <em>breakpoints</em> antar sel histogram.</li>
+</ul>
+</blockquote>
+<p>Pada dataset <code>trees</code> akan dibuat histogram variabel <code>Height</code>. Untuk melakukannya jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">hist</span>(trees<span class="op">$</span>Height)</a></code></pre></div>
+<p>Output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:hist">3.8</a>:</p>
+<div class="figure" style="text-align: center"><span id="fig:hist"></span>
+<img src="Metode_Numerik_files/figure-html/hist-1.png" alt="Histogram" width="70%" />
+<p class="caption">
+Figure 3.8: Histogram
+</p>
+</div>
+<p>Density plot pada <code>R</code> dapat dibuat menggunakan fungsi <code>density()</code>. Berbeda dengan fungsi <code>hist()</code>, fungsi ini tidak langsung menghasilkan grafik densitas. Fungsi <code>density()</code> hanya menghitung kernel densitas pada data. Densitas yang telah dihitung selanjutnya diplotkan menggunakan fungsi <code>plot()</code>. Berikut adalah sintaks dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:dens">3.9</a>:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="co"># menghitung kernel density</span></a>
+<a class="sourceLine" id="cb248-2" title="2">dens &lt;-<span class="st"> </span><span class="kw">density</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb248-3" title="3"></a>
+<a class="sourceLine" id="cb248-4" title="4"><span class="co"># plot densitas dengan outline merah</span></a>
+<a class="sourceLine" id="cb248-5" title="5"><span class="kw">plot</span>(dens,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:dens"></span>
+<img src="Metode_Numerik_files/figure-html/dens-1.png" alt="Density plot" width="70%" />
+<p class="caption">
+Figure 3.9: Density plot
+</p>
+</div>
+<p>Kita juga dapat menambahkan grafik densitas pada histogram sehingga mempermudah pembacaan pada histogram. Untuk melakukannya kita perlu mengubah kernel histigram dari frekuensi menjadi density dengan menambahkan argumen <code>freq=FALSE</code> pada fungsi <code>hist()</code>. Selanjutnya tambahkan fungsi <code>polygon()</code> untuk memplotkan grafik densitas. Berikut adalah sintak dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:denshist">3.10</a>:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="co"># menghitung kernel density</span></a>
+<a class="sourceLine" id="cb249-2" title="2">dens &lt;-<span class="st"> </span><span class="kw">density</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb249-3" title="3"></a>
+<a class="sourceLine" id="cb249-4" title="4"><span class="co"># histogram</span></a>
+<a class="sourceLine" id="cb249-5" title="5"><span class="kw">hist</span>(trees<span class="op">$</span>Height, <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">col=</span><span class="st">&quot;steelblue&quot;</span>)</a>
+<a class="sourceLine" id="cb249-6" title="6"></a>
+<a class="sourceLine" id="cb249-7" title="7"><span class="co"># tambahkan density plot</span></a>
+<a class="sourceLine" id="cb249-8" title="8"><span class="kw">polygon</span>(dens, <span class="dt">border=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:denshist"></span>
+<img src="Metode_Numerik_files/figure-html/denshist-1.png" alt="Density plot dan histogram" width="70%" />
+<p class="caption">
+Figure 3.10: Density plot dan histogram
+</p>
+</div>
+</div>
+<div id="boxplot" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Box plot</h3>
+<p>Box plot pada <code>R</code> dapat dibuat menggunakan fungsi <code>boxplot()</code>. Berikut adalah sintaks untuk membuat boxplot variabel <code>Sepal.Lenght</code> pada dataset <code>iris</code> dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:boxplot">3.11</a>:</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot-1.png" alt="Boxplot variabel Sepal.Length" width="70%" />
+<p class="caption">
+Figure 3.11: Boxplot variabel Sepal.Length
+</p>
+</div>
+<p>Boxplot juga dapat dibuat berdasarkan variabel factor. Hal ini berguna untuk melihat perbedaan ditribusi data pada masing-masing grup. Pada sintaks berikut dibuat boxplot berdasarkan variabel <code>Species</code>. Output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:boxplot2">3.12</a>:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length<span class="op">~</span>iris<span class="op">$</span>Species)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot2"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot2-1.png" alt="Boxplot berdasarkan variabel species" width="70%" />
+<p class="caption">
+Figure 3.12: Boxplot berdasarkan variabel species
+</p>
+</div>
+<p>Kita juga dapat mengubah warna outline dan box pada boxplot. Berikut adalah contoh sintaks yang digunakan untuk melakukannya dan output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:boxplot3">3.13</a>:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length<span class="op">~</span>iris<span class="op">$</span>Species,</a>
+<a class="sourceLine" id="cb252-2" title="2">        <span class="co"># ubah warna outline menjadi steelblue</span></a>
+<a class="sourceLine" id="cb252-3" title="3">        <span class="dt">border =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb252-4" title="4">        <span class="co"># ubah warna box berdasarkan grup</span></a>
+<a class="sourceLine" id="cb252-5" title="5">        <span class="dt">col=</span> <span class="kw">c</span>(<span class="st">&quot;#999999&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>, <span class="st">&quot;#56B4E9&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot3"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot3-1.png" alt="Boxplot dengan warna berdasarkan spesies" width="70%" />
+<p class="caption">
+Figure 3.13: Boxplot dengan warna berdasarkan spesies
+</p>
+</div>
+<p>Kita juga dapat membuat boxplot pada <em>multiple group</em>. Data yang digunakan untuk contoh tersebut adalah dataset <code>ToothGrowth</code>. Berikut adalah sintaks untuk memuat dataset tersebut:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="co"># ubah variable dose menjadi factor</span></a>
+<a class="sourceLine" id="cb253-2" title="2">ToothGrowth<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw">as.factor</span>(ToothGrowth<span class="op">$</span>dose)</a>
+<a class="sourceLine" id="cb253-3" title="3"></a>
+<a class="sourceLine" id="cb253-4" title="4"><span class="co"># print</span></a>
+<a class="sourceLine" id="cb253-5" title="5"><span class="kw">head</span>(ToothGrowth)</a></code></pre></div>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5</code></pre>
+<p>Contoh sintaks dan output boxplot <em>multiple group</em> disajikan pada Gambar <a href="dataviz.html#fig:boxplot4">3.14</a>:</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>supp<span class="op">*</span>dose, <span class="dt">data =</span> ToothGrowth,</a>
+<a class="sourceLine" id="cb255-2" title="2">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;steelblue&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot4"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot4-1.png" alt="Boxplot multiple group" width="70%" />
+<p class="caption">
+Figure 3.14: Boxplot multiple group
+</p>
+</div>
+</div>
+</div>
+<div id="customise" class="section level2">
+<h2><span class="header-section-number">3.3</span> Kustomisasi Parameter Grafik</h2>
+<p>Pada bagian ini penulis akan menjelaskan cara untuk kustomisasi parameter grafik seperti:</p>
+<ol style="list-style-type: lower-alpha">
+<li>menambahkan judul, legend, teks, axis, dan garis.</li>
+<li>mengubah skala axis, simbol plot, jenis garis, dan warna.</li>
+</ol>
+<div id="addtitle" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Menambahkan Judul</h3>
+<p>Pada grafik di <code>R</code>, kita dapat menambahkan judul dengan dua cara, yaitu: pada plot melalui parameter dan melalui fungsi plot(). Kedua cara tersebut tidak berbeda satu sama lain pada parameter input.</p>
+<p>Untuk menambahkan judul pada plot secara langsung, kita dapat menggunakan argumen tambahan sebagai berikut:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>main</strong>: teks untuk judul.</li>
+<li><strong>xlab</strong>: teks untuk keterangan axis X.</li>
+<li><strong>ylab</strong>: teks untuk keterangan axis y.</li>
+<li><strong>sub</strong>: teks untuk sub-judul.</li>
+</ol>
+<p>Berikut contoh sintaks penerapan masing-masing argumen tersebut beserta dengan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:title">3.15</a>:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="co"># menambahkan judul</span></a>
+<a class="sourceLine" id="cb256-2" title="2"><span class="kw">barplot</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="dt">main=</span><span class="st">&quot;Main title&quot;</span>,</a>
+<a class="sourceLine" id="cb256-3" title="3">        <span class="dt">xlab=</span><span class="st">&quot;X axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb256-4" title="4">        <span class="dt">ylab=</span><span class="st">&quot;Y axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb256-5" title="5">        <span class="dt">sub=</span><span class="st">&quot;Sub-title&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:title"></span>
+<img src="Metode_Numerik_files/figure-html/title-1.png" alt="Menambahkan Judul" width="70%" />
+<p class="caption">
+Figure 3.15: Menambahkan Judul
+</p>
+</div>
+<p>kita juga dapat melakukan kustomisasi pada warna, <em>font style</em>, dan ukuran font judul. Untuk melakukan kustomisasi pada warna pada judul, kita dapat menambahkan argumen sebagai berikut:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>col.main</strong>: warna untuk judul.</li>
+<li><strong>col.lab</strong>: warna untuk keterangan axis.</li>
+<li><strong>col.sub</strong>: warna untuk sub-judul</li>
+</ol>
+<p>Untuk kustomisasi font judul, kita dapat menambahkan argumen berikut:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>font.main</strong>: <em>font style</em> untuk judul.</li>
+<li><strong>font.lab</strong>: <em>font style</em> untuk keterangan axis.</li>
+<li><strong>font.sub</strong>: <em>font style</em> untuk sub-judul.</li>
+</ol>
+<blockquote>
+<p><strong>Penting!!!</strong></p>
+<p>Nilai yang dapat dimasukkan antara lain:</p>
+<ul>
+<li><strong>1</strong>: untuk teks normal.</li>
+<li><strong>2</strong>: untuk teks cetak tebal.</li>
+<li><strong>3</strong>: untuk teks cetak miring.</li>
+<li><strong>4</strong>: untuk teks cetak tebal dan miring.</li>
+<li><strong>5</strong>: untuk font simbol.</li>
+</ul>
+</blockquote>
+<p>Sedangkan untuk ukuran font, kita dapat menambahkan variabel berikut:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>cex.main</strong>: ukuran teks judul.</li>
+<li><strong>cex.lab</strong>: ukuran teks keterangan axis.</li>
+<li><strong>cex.sub</strong>: ukuran teks sub-judul.</li>
+</ol>
+<p>Berikut sintaks penerapan seluruh argumen tersebut beserta output yang dihasilkan pada Gambar <a href="dataviz.html#fig:title2">3.16</a>:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="co"># menambahkan judul</span></a>
+<a class="sourceLine" id="cb257-2" title="2"><span class="kw">barplot</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>), </a>
+<a class="sourceLine" id="cb257-3" title="3">        <span class="co"># menambahkan judul</span></a>
+<a class="sourceLine" id="cb257-4" title="4">        <span class="dt">main=</span><span class="st">&quot;Main title&quot;</span>,</a>
+<a class="sourceLine" id="cb257-5" title="5">        <span class="dt">xlab=</span><span class="st">&quot;X axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb257-6" title="6">        <span class="dt">ylab=</span><span class="st">&quot;Y axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb257-7" title="7">        <span class="dt">sub=</span><span class="st">&quot;Sub-title&quot;</span>,</a>
+<a class="sourceLine" id="cb257-8" title="8">        <span class="co"># kustomisasi warna font</span></a>
+<a class="sourceLine" id="cb257-9" title="9">        <span class="dt">col.main=</span><span class="st">&quot;red&quot;</span>, </a>
+<a class="sourceLine" id="cb257-10" title="10">        <span class="dt">col.lab=</span><span class="st">&quot;blue&quot;</span>, </a>
+<a class="sourceLine" id="cb257-11" title="11">        <span class="dt">col.sub=</span><span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb257-12" title="12">        <span class="co"># kustomisasi font style</span></a>
+<a class="sourceLine" id="cb257-13" title="13">        <span class="dt">font.main=</span><span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb257-14" title="14">        <span class="dt">font.lab=</span><span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb257-15" title="15">        <span class="dt">font.sub=</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb257-16" title="16">        <span class="co"># kustomisasi ukuran font</span></a>
+<a class="sourceLine" id="cb257-17" title="17">        <span class="dt">cex.main=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb257-18" title="18">        <span class="dt">cex.lab=</span><span class="fl">1.7</span>, </a>
+<a class="sourceLine" id="cb257-19" title="19">        <span class="dt">cex.sub=</span><span class="fl">1.2</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:title2"></span>
+<img src="Metode_Numerik_files/figure-html/title2-1.png" alt="Menambahkan Judul (2)" width="70%" />
+<p class="caption">
+Figure 3.16: Menambahkan Judul (2)
+</p>
+</div>
+<p>Kita telah belajar bagaimana menambahkan judul langsung pada fungsi plot. Selain cara tersebut, telah penulis jelaskan bahwa kita dapat menambahkan judul melalui fungsi <code>title()</code>. argumen yang dimasukkan pada dasarnya tidak berbeda dengan ketika kita menambahkan judul secara langsung pada plot. Berikut adalah contoh sintaks dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:title3">3.17</a>:</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="co"># menambahkan judul</span></a>
+<a class="sourceLine" id="cb258-2" title="2"><span class="kw">barplot</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>))</a>
+<a class="sourceLine" id="cb258-3" title="3"></a>
+<a class="sourceLine" id="cb258-4" title="4"><span class="co"># menambahkan judul</span></a>
+<a class="sourceLine" id="cb258-5" title="5"><span class="kw">title</span>(<span class="dt">main=</span><span class="st">&quot;Main title&quot;</span>,</a>
+<a class="sourceLine" id="cb258-6" title="6">      <span class="dt">xlab=</span><span class="st">&quot;X axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb258-7" title="7">      <span class="dt">ylab=</span><span class="st">&quot;Y axis title&quot;</span>,</a>
+<a class="sourceLine" id="cb258-8" title="8">      <span class="dt">sub=</span><span class="st">&quot;Sub-title&quot;</span>,</a>
+<a class="sourceLine" id="cb258-9" title="9">      <span class="co"># kustomisasi warna font</span></a>
+<a class="sourceLine" id="cb258-10" title="10">      <span class="dt">col.main=</span><span class="st">&quot;red&quot;</span>, </a>
+<a class="sourceLine" id="cb258-11" title="11">      <span class="dt">col.lab=</span><span class="st">&quot;blue&quot;</span>, </a>
+<a class="sourceLine" id="cb258-12" title="12">      <span class="dt">col.sub=</span><span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb258-13" title="13">      <span class="co"># kustomisasi font style</span></a>
+<a class="sourceLine" id="cb258-14" title="14">      <span class="dt">font.main=</span><span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb258-15" title="15">      <span class="dt">font.lab=</span><span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb258-16" title="16">      <span class="dt">font.sub=</span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb258-17" title="17">      <span class="co"># kustomisasi ukuran font</span></a>
+<a class="sourceLine" id="cb258-18" title="18">      <span class="dt">cex.main=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb258-19" title="19">      <span class="dt">cex.lab=</span><span class="fl">1.7</span>, </a>
+<a class="sourceLine" id="cb258-20" title="20">      <span class="dt">cex.sub=</span><span class="fl">1.2</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:title3"></span>
+<img src="Metode_Numerik_files/figure-html/title3-1.png" alt="Menambahkan Judul (3)" width="70%" />
+<p class="caption">
+Figure 3.17: Menambahkan Judul (3)
+</p>
+</div>
+</div>
+<div id="addlegend" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Menambahkan Legend</h3>
+<p>Fungsi <code>legend()</code> pada <code>R</code> dapat digunakan untuk menambahkan legend pada grafik. Format sederhananya adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1"><span class="kw">legend</span>(x, <span class="dt">y=</span><span class="ot">NULL</span>, legend, fill, col, bg)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>x</strong> dan <strong>y</strong>: koordinat yang digunakan untuk posisi legend.</li>
+<li><strong>legend</strong>: teks pada legend</li>
+<li><strong>fill</strong>: warna yang digunakan untuk mengisi box disamping teks legend.</li>
+<li><strong>col</strong>: warna garis dan titik disamping teks legend.</li>
+<li><strong>bg</strong>: warna latar belakang legend box.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh sintaks dan ouput penerapan argumen disajikan pada Gambar <a href="dataviz.html#fig:legend">3.18</a>:</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="co"># membuat vektor numerik</span></a>
+<a class="sourceLine" id="cb260-2" title="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb260-3" title="3">y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb260-4" title="4">z &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb260-5" title="5"></a>
+<a class="sourceLine" id="cb260-6" title="6"><span class="co"># membuat line plot</span></a>
+<a class="sourceLine" id="cb260-7" title="7"><span class="kw">plot</span>(x,y, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb260-8" title="8"></a>
+<a class="sourceLine" id="cb260-9" title="9"><span class="co"># menambahkan line plot</span></a>
+<a class="sourceLine" id="cb260-10" title="10"><span class="kw">lines</span>(x,z, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb260-11" title="11"></a>
+<a class="sourceLine" id="cb260-12" title="12"><span class="co"># menambahkan legend</span></a>
+<a class="sourceLine" id="cb260-13" title="13"><span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">95</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Line 1&quot;</span>, <span class="st">&quot;Line 2&quot;</span>),</a>
+<a class="sourceLine" id="cb260-14" title="14">       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">cex=</span><span class="fl">0.8</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:legend"></span>
+<img src="Metode_Numerik_files/figure-html/legend-1.png" alt="Menambahkan legend" width="70%" />
+<p class="caption">
+Figure 3.18: Menambahkan legend
+</p>
+</div>
+<p>Kita dapat menambahkan judul, merubah font, dan merubah warna backgroud pada legend. Argumen yang ditambahkan pada legend adalah sebagai berikut:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>title</strong>: Judul legend</li>
+<li><strong>text.font</strong>: integer yang menunjukkan <em>font style</em> pada teks legend. Nilai yang dapat dimasukkan adalah sebagai berikut:
+<ul>
+<li><strong>1</strong>: normal</li>
+<li><strong>2</strong>: cetak tebal</li>
+<li><strong>3</strong>: cetak miring</li>
+<li><strong>4</strong>: cetak tebal dan miring.</li>
+</ul></li>
+<li><strong>bg</strong>: warna background legend box.</li>
+</ol>
+<p>Berikut adalah penerapan sintaks dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:legend2">3.19</a>:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="co"># membuat line plot</span></a>
+<a class="sourceLine" id="cb261-2" title="2"><span class="kw">plot</span>(x,y, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb261-3" title="3"></a>
+<a class="sourceLine" id="cb261-4" title="4"><span class="co"># menambahkan line plot</span></a>
+<a class="sourceLine" id="cb261-5" title="5"><span class="kw">lines</span>(x,z, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb261-6" title="6"></a>
+<a class="sourceLine" id="cb261-7" title="7"><span class="co"># menambahkan legend</span></a>
+<a class="sourceLine" id="cb261-8" title="8"><span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">95</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Line 1&quot;</span>, <span class="st">&quot;Line 2&quot;</span>),</a>
+<a class="sourceLine" id="cb261-9" title="9">       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">cex=</span><span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb261-10" title="10">       <span class="dt">title=</span><span class="st">&quot;Line types&quot;</span>, <span class="dt">text.font=</span><span class="dv">4</span>, <span class="dt">bg=</span><span class="st">&#39;lightblue&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:legend2"></span>
+<img src="Metode_Numerik_files/figure-html/legend2-1.png" alt="Menambahkan legend (2)" width="70%" />
+<p class="caption">
+Figure 3.19: Menambahkan legend (2)
+</p>
+</div>
+<p>Kita dapat melakukan kustomisasi pada border dari legend melalui argumen <code>box.lty=</code>(jenis garis), <code>box.lwd=</code>(ukuran garis), dan <code>box.col=</code>(warna box). Berikut adalah penerapan argumen tersebut beserta output yang dihasilkan pada Gambar <a href="dataviz.html#fig:legend3">3.20</a>:</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="co"># membuat line plot</span></a>
+<a class="sourceLine" id="cb262-2" title="2"><span class="kw">plot</span>(x,y, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb262-3" title="3"></a>
+<a class="sourceLine" id="cb262-4" title="4"><span class="co"># menambahkan line plot</span></a>
+<a class="sourceLine" id="cb262-5" title="5"><span class="kw">lines</span>(x,z, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb262-6" title="6"></a>
+<a class="sourceLine" id="cb262-7" title="7"><span class="co"># menambahkan legend</span></a>
+<a class="sourceLine" id="cb262-8" title="8"><span class="kw">legend</span>(<span class="dv">1</span>, <span class="dv">95</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;Line 1&quot;</span>, <span class="st">&quot;Line 2&quot;</span>),</a>
+<a class="sourceLine" id="cb262-9" title="9">       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">cex=</span><span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb262-10" title="10">       <span class="dt">title=</span><span class="st">&quot;Line types&quot;</span>, <span class="dt">text.font=</span><span class="dv">4</span>, <span class="dt">bg=</span><span class="st">&#39;white&#39;</span>,</a>
+<a class="sourceLine" id="cb262-11" title="11">       <span class="dt">box.lty=</span><span class="dv">2</span>, <span class="dt">box.lwd=</span><span class="dv">2</span>, <span class="dt">box.col=</span><span class="st">&quot;steelblue&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:legend3"></span>
+<img src="Metode_Numerik_files/figure-html/legend3-1.png" alt="Menambahkan legend (3)" width="70%" />
+<p class="caption">
+Figure 3.20: Menambahkan legend (3)
+</p>
+</div>
+<p>Selain menggunakan koordinat, kita juga dapat melakukan kustomisasi posisi legend menggunakan <em>keyword</em> seperti: bottomright“,”bottom“,”bottomleft“,”left“,”topleft“,”top“,”topright“,”right" and “center”. Sejumlah kustomisasi legend berdasarkan <em>keyword</em> disajikan pada Gambar <a href="dataviz.html#fig:legend4">3.21</a>:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb263-2" title="2"><span class="kw">plot</span>(x,y, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb263-3" title="3"></a>
+<a class="sourceLine" id="cb263-4" title="4"><span class="co"># posisi kiri atas, inset =0.05</span></a>
+<a class="sourceLine" id="cb263-5" title="5"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
+<a class="sourceLine" id="cb263-6" title="6">  <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-7" title="7">  <span class="dt">title =</span> <span class="st">&quot;topleft, inset = .05&quot;</span>,</a>
+<a class="sourceLine" id="cb263-8" title="8">  <span class="dt">inset =</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb263-9" title="9"><span class="co"># posisi atas</span></a>
+<a class="sourceLine" id="cb263-10" title="10"><span class="kw">legend</span>(<span class="st">&quot;top&quot;</span>,</a>
+<a class="sourceLine" id="cb263-11" title="11">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-12" title="12">       <span class="dt">title =</span> <span class="st">&quot;top&quot;</span>)</a>
+<a class="sourceLine" id="cb263-13" title="13"><span class="co"># posisi kanan atas inset = .02</span></a>
+<a class="sourceLine" id="cb263-14" title="14"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,</a>
+<a class="sourceLine" id="cb263-15" title="15">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-16" title="16">       <span class="dt">title =</span> <span class="st">&quot;topright, inset = .02&quot;</span>,</a>
+<a class="sourceLine" id="cb263-17" title="17">       <span class="dt">inset =</span> <span class="fl">0.02</span>)</a>
+<a class="sourceLine" id="cb263-18" title="18"><span class="co"># posisi kiri</span></a>
+<a class="sourceLine" id="cb263-19" title="19"><span class="kw">legend</span>(<span class="st">&quot;left&quot;</span>,</a>
+<a class="sourceLine" id="cb263-20" title="20">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-21" title="21">       <span class="dt">title =</span> <span class="st">&quot;left&quot;</span>)</a>
+<a class="sourceLine" id="cb263-22" title="22"><span class="co"># posisi tengah</span></a>
+<a class="sourceLine" id="cb263-23" title="23"><span class="kw">legend</span>(<span class="st">&quot;center&quot;</span>,</a>
+<a class="sourceLine" id="cb263-24" title="24">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-25" title="25">       <span class="dt">title =</span> <span class="st">&quot;center&quot;</span>)</a>
+<a class="sourceLine" id="cb263-26" title="26"><span class="co"># posisi kanan</span></a>
+<a class="sourceLine" id="cb263-27" title="27"><span class="kw">legend</span>(<span class="st">&quot;right&quot;</span>,</a>
+<a class="sourceLine" id="cb263-28" title="28">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-29" title="29">       <span class="dt">title =</span> <span class="st">&quot;right&quot;</span>)</a>
+<a class="sourceLine" id="cb263-30" title="30"><span class="co"># posisi kiri bawah</span></a>
+<a class="sourceLine" id="cb263-31" title="31"><span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>,</a>
+<a class="sourceLine" id="cb263-32" title="32">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-33" title="33">       <span class="dt">title =</span> <span class="st">&quot;bottomleft&quot;</span>)</a>
+<a class="sourceLine" id="cb263-34" title="34"><span class="co"># posisi bawah</span></a>
+<a class="sourceLine" id="cb263-35" title="35"><span class="kw">legend</span>(<span class="st">&quot;bottom&quot;</span>,</a>
+<a class="sourceLine" id="cb263-36" title="36">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-37" title="37">       <span class="dt">title =</span> <span class="st">&quot;bottom&quot;</span>)</a>
+<a class="sourceLine" id="cb263-38" title="38"><span class="co"># posisi kanan bawah</span></a>
+<a class="sourceLine" id="cb263-39" title="39"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,</a>
+<a class="sourceLine" id="cb263-40" title="40">       <span class="dt">legend =</span> <span class="st">&quot;(x,y)&quot;</span>,</a>
+<a class="sourceLine" id="cb263-41" title="41">       <span class="dt">title =</span> <span class="st">&quot;bottomright&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:legend4"></span>
+<img src="Metode_Numerik_files/figure-html/legend4-1.png" alt="Kustomisasi posisi legend" width="70%" />
+<p class="caption">
+Figure 3.21: Kustomisasi posisi legend
+</p>
+</div>
+</div>
+<div id="addtext" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</h3>
+<p>Teks pada grafik dapat kita tambahkan baik sebagai keterangan yang menunjukkan label suatu observasi, keterangan tambahan disekitar bingkai grafik, maupun sebuah persamaan yang ada pada bidang grafik. Untuk menambahkannya kita dapat menggunakan dua buah fungsi yaitu: <code>text()</code> dan <code>mtext()</code>.</p>
+<p>FUngsi <code>text()</code> berguna untuk menambahkan teks di dalam bidang grafik seperti label titik observasi dan persamaan di dalam bidang grafik. Format yang digunakan adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">text</span>(x, y, labels)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>x</strong> dan <strong>y</strong>: vektor numerik yang menunjukkan koordinat posisi teks.</li>
+<li><strong>labels</strong>: vektor karakter yang menunjukkan teks yang hendak ditulis.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh sintaks untuk memberi label pada sejumlah data yang memiliki kriteria yang kita inginkan dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:text">3.22</a>:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="co"># tandai observasi yang memiliki nilai</span></a>
+<a class="sourceLine" id="cb265-2" title="2"><span class="co"># mpg &lt; 15 dan wt &gt; 5</span></a>
+<a class="sourceLine" id="cb265-3" title="3">d &lt;-<span class="st"> </span>mtcars[mtcars<span class="op">$</span>wt <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>mpg <span class="op">&lt;=</span><span class="st"> </span><span class="dv">15</span>, ]</a>
+<a class="sourceLine" id="cb265-4" title="4"></a>
+<a class="sourceLine" id="cb265-5" title="5"></a>
+<a class="sourceLine" id="cb265-6" title="6"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb265-7" title="7"><span class="kw">plot</span>(mtcars<span class="op">$</span>wt, mtcars<span class="op">$</span>mpg, <span class="dt">main=</span><span class="st">&quot;Milage vs. Car Weight&quot;</span>,</a>
+<a class="sourceLine" id="cb265-8" title="8">      <span class="dt">xlab=</span><span class="st">&quot;Weight&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Miles/(US) gallon&quot;</span>)</a>
+<a class="sourceLine" id="cb265-9" title="9"></a>
+<a class="sourceLine" id="cb265-10" title="10"><span class="co"># menambahkan text</span></a>
+<a class="sourceLine" id="cb265-11" title="11"><span class="kw">text</span>(d<span class="op">$</span>wt, d<span class="op">$</span>mpg,  <span class="kw">row.names</span>(d),</a>
+<a class="sourceLine" id="cb265-12" title="12">     <span class="dt">cex=</span><span class="fl">0.65</span>, <span class="dt">pos=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:text"></span>
+<img src="Metode_Numerik_files/figure-html/text-1.png" alt="Menambahkan teks" width="70%" />
+<p class="caption">
+Figure 3.22: Menambahkan teks
+</p>
+</div>
+<p>Sedangkan sintaks berikut adalah contoh bagaimana menambahkan persamaan kedalam bidang grafik dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:text2">3.23</a>:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb266-2" title="2">     <span class="dt">main=</span><span class="st">&quot;text(...) examples</span><span class="ch">\n</span><span class="st">~~~~~~~~~~~&quot;</span>)</a>
+<a class="sourceLine" id="cb266-3" title="3"><span class="kw">text</span>(<span class="dv">4</span>, <span class="dv">9</span>, <span class="kw">expression</span>(<span class="kw">hat</span>(beta) <span class="op">==</span><span class="st"> </span>(X<span class="op">^</span>t <span class="op">*</span><span class="st"> </span>X)<span class="op">^</span>{<span class="op">-</span><span class="dv">1</span>} <span class="op">*</span><span class="st"> </span>X<span class="op">^</span>t <span class="op">*</span><span class="st"> </span>y))</a>
+<a class="sourceLine" id="cb266-4" title="4"><span class="kw">text</span>(<span class="dv">7</span>, <span class="dv">4</span>, <span class="kw">expression</span>(<span class="kw">bar</span>(x) <span class="op">==</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">frac</span>(x[i], n), i<span class="op">==</span><span class="dv">1</span>, n)))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:text2"></span>
+<img src="Metode_Numerik_files/figure-html/text2-1.png" alt="Menambahkan teks (2)" width="70%" />
+<p class="caption">
+Figure 3.23: Menambahkan teks (2)
+</p>
+</div>
+<p>Fungsi <code>mtext()</code> berguna untuk menambahkan teks pada frame sekitar bidang grafik. Format yang digunakan adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1"><span class="kw">mtext</span>(text, <span class="dt">side=</span><span class="dv">3</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>text</strong>: teks yang akan ditulis.</li>
+<li><strong>side</strong>: integer yang menunjukkan lokasi teks yang akan ditulis. Nilai yang dapat dimasukkan antara lain:</li>
+<li>1: bawah</li>
+<li>2: kiri</li>
+<li>3: atas</li>
+<li>4: kanan.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:text3">3.24</a>:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb268-2" title="2">     <span class="dt">main=</span><span class="st">&quot;mtext(...) examples</span><span class="ch">\n</span><span class="st">~~~~~~~~~~~&quot;</span>)</a>
+<a class="sourceLine" id="cb268-3" title="3"><span class="kw">mtext</span>(<span class="st">&quot;Magic function&quot;</span>, <span class="dt">side=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:text3"></span>
+<img src="Metode_Numerik_files/figure-html/text3-1.png" alt="Menambahkan teks (3)" width="70%" />
+<p class="caption">
+Figure 3.24: Menambahkan teks (3)
+</p>
+</div>
+</div>
+<div id="addlines" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Menambahkan Garis Pada Plot</h3>
+<p>Fungsi <code>abline()</code> dapat digunakan untuk menamabahkan garis pada plot. Garis yang ditambahkan dapat berupa garis vertikal, horizontal, maupun garis regresi. Format yang digunakan adalah sebagi berikut:</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="kw">abline</span>(<span class="dt">v=</span>y)</a></code></pre></div>
+<p>Berikut adalah contoh sintaks bagaimana menambahkan garis pada sebuah plot dan output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:abline">3.25</a>:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1"><span class="co"># membuat plot</span></a>
+<a class="sourceLine" id="cb270-2" title="2"><span class="kw">plot</span>(mtcars<span class="op">$</span>wt, mtcars<span class="op">$</span>mpg, <span class="dt">main=</span><span class="st">&quot;Milage vs. Car Weight&quot;</span>,</a>
+<a class="sourceLine" id="cb270-3" title="3">      <span class="dt">xlab=</span><span class="st">&quot;Weight&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Miles/(US) gallon&quot;</span>)</a>
+<a class="sourceLine" id="cb270-4" title="4"></a>
+<a class="sourceLine" id="cb270-5" title="5"><span class="co"># menambahkan garis vertikal di titik rata-rata weight</span></a>
+<a class="sourceLine" id="cb270-6" title="6"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(mtcars<span class="op">$</span>wt), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb270-7" title="7"></a>
+<a class="sourceLine" id="cb270-8" title="8"><span class="co"># menambahkan garis horizontal di titik rata-rata  mpg</span></a>
+<a class="sourceLine" id="cb270-9" title="9"><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(mtcars<span class="op">$</span>mpg), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb270-10" title="10"></a>
+<a class="sourceLine" id="cb270-11" title="11"><span class="co"># menambahkan garis regresi</span></a>
+<a class="sourceLine" id="cb270-12" title="12"><span class="kw">abline</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data=</span>mtcars), <span class="dt">lwd=</span><span class="dv">4</span>, <span class="dt">lty=</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:abline"></span>
+<img src="Metode_Numerik_files/figure-html/abline-1.png" alt="Menambahkan garis" width="70%" />
+<p class="caption">
+Figure 3.25: Menambahkan garis
+</p>
+</div>
+</div>
+<div id="changepoint" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</h3>
+<p>Simbol plot (jenis titik) dapat diubah dengan menambahkan argumen <code>pch=</code> pada plot. Nilai yang dimasukkan pada argumen tersebut adalah integer dengan kemungkinan nilai sebagai berikut:</p>
+<ul>
+<li>pch = 0,square</li>
+<li>pch = 1,circle (default)</li>
+<li>pch = 2,triangle point up</li>
+<li>pch = 3,plus</li>
+<li>pch = 4,cross</li>
+<li>pch = 5,diamond</li>
+<li>pch = 6,triangle point down</li>
+<li>pch = 7,square cross</li>
+<li>pch = 8,star</li>
+<li>pch = 9,diamond plus</li>
+<li>pch = 10,circle plus</li>
+<li>pch = 11,triangles up and down</li>
+<li>pch = 12,square plus</li>
+<li>pch = 13,circle cross</li>
+<li>pch = 14,square and triangle down</li>
+<li>pch = 15, filled square</li>
+<li>pch = 16, filled circle</li>
+<li>pch = 17, filled triangle point-up</li>
+<li>pch = 18, filled diamond</li>
+<li>pch = 19, solid circle</li>
+<li>pch = 20,bullet (smaller circle)</li>
+<li>pch = 21, filled circle blue</li>
+<li>pch = 22, filled square blue</li>
+<li>pch = 23, filled diamond blue</li>
+<li>pch = 24, filled triangle point-up blue</li>
+<li>pch = 25, filled triangle point down blue</li>
+</ul>
+<p>Untuk lebih memahami bentuk simbol tersebut, penulis akan menyajikan sintaks yang menampilkan seluruh simbol tersebut pada satu grafik. Output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:symbol">3.26</a>:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1">generateRPointShapes&lt;-<span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb271-2" title="2">  <span class="co"># menentukan parameter plot</span></a>
+<a class="sourceLine" id="cb271-3" title="3">  oldPar&lt;-<span class="kw">par</span>()</a>
+<a class="sourceLine" id="cb271-4" title="4">  <span class="kw">par</span>(<span class="dt">font=</span><span class="dv">2</span>, <span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb271-5" title="5">  <span class="co"># produksi titik axis</span></a>
+<a class="sourceLine" id="cb271-6" title="6">  y=<span class="kw">rev</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">5</span>,<span class="dv">5</span>)))</a>
+<a class="sourceLine" id="cb271-7" title="7">  x=<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">5</span>),<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb271-8" title="8">  <span class="co"># plot seluruh titik dan label</span></a>
+<a class="sourceLine" id="cb271-9" title="9">  <span class="kw">plot</span>(x, y, <span class="dt">pch =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">cex=</span><span class="fl">1.5</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">5.5</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">6.5</span>), </a>
+<a class="sourceLine" id="cb271-10" title="10">       <span class="dt">axes=</span><span class="ot">FALSE</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">bg=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb271-11" title="11">  <span class="kw">text</span>(x, y, <span class="dt">labels=</span><span class="dv">0</span><span class="op">:</span><span class="dv">25</span>, <span class="dt">pos=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb271-12" title="12">  <span class="kw">par</span>(<span class="dt">mar=</span>oldPar<span class="op">$</span>mar,<span class="dt">font=</span>oldPar<span class="op">$</span>font )</a>
+<a class="sourceLine" id="cb271-13" title="13">}</a>
+<a class="sourceLine" id="cb271-14" title="14"></a>
+<a class="sourceLine" id="cb271-15" title="15"><span class="co"># Print</span></a>
+<a class="sourceLine" id="cb271-16" title="16"><span class="kw">generateRPointShapes</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:symbol"></span>
+<img src="Metode_Numerik_files/figure-html/symbol-1.png" alt="Symbol plot" width="70%" />
+<p class="caption">
+Figure 3.26: Symbol plot
+</p>
+</div>
+<p>Pada <code>R</code> kita juga dapat mengatur jenis garis yang akan ditampilkan pada plot dengan menambahkan argumen <code>lty=</code> (<em>line type</em>) pada fungsi plot. Nilai yang dapat dimasukkan adalah nilai integer. Keterangan masing-masing nilai tersebut adalah sebagai berikut:</p>
+<ul>
+<li>lty = 0, blank</li>
+<li>lty = 1, solid (default)</li>
+<li>lty = 2, dashed</li>
+<li>lty = 3, dotted</li>
+<li>lty = 4, dotdash</li>
+<li>lty = 5, longdash</li>
+<li>lty = 6, twodash</li>
+</ul>
+<p>Untuk lebih memahaminya, pada sintaks berikut disajikan plot seluruh jenis garis tersebut beserta output yang dihasilkannya pada Gambar <a href="dataviz.html#fig:lty">3.27</a>:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1">generateRLineTypes&lt;-<span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb272-2" title="2">  oldPar&lt;-<span class="kw">par</span>()</a>
+<a class="sourceLine" id="cb272-3" title="3">  <span class="kw">par</span>(<span class="dt">font=</span><span class="dv">2</span>, <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb272-4" title="4">  <span class="kw">plot</span>(<span class="dv">1</span>, <span class="dt">pch=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">6</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.7</span>), <span class="dt">axes =</span> <span class="ot">FALSE</span> ,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb272-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span><span class="dv">6</span>) <span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">0.3</span>,<span class="fl">0.7</span>), <span class="kw">c</span>(i,i), <span class="dt">lty=</span>i, <span class="dt">lwd=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb272-6" title="6">  <span class="kw">text</span>(<span class="kw">rep</span>(<span class="fl">0.1</span>,<span class="dv">6</span>), <span class="dv">0</span><span class="op">:</span><span class="dv">6</span>, </a>
+<a class="sourceLine" id="cb272-7" title="7">       <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0.&#39;blank&#39;&quot;</span>, <span class="st">&quot;1.&#39;solid&#39;&quot;</span>, <span class="st">&quot;2.&#39;dashed&#39;&quot;</span>, <span class="st">&quot;3.&#39;dotted&#39;&quot;</span>, </a>
+<a class="sourceLine" id="cb272-8" title="8">                <span class="st">&quot;4.&#39;dotdash&#39;&quot;</span>, <span class="st">&quot;5.&#39;longdash&#39;&quot;</span>, <span class="st">&quot;6.&#39;twodash&#39;&quot;</span>))</a>
+<a class="sourceLine" id="cb272-9" title="9">  <span class="kw">par</span>(<span class="dt">mar=</span>oldPar<span class="op">$</span>mar,<span class="dt">font=</span>oldPar<span class="op">$</span>font )</a>
+<a class="sourceLine" id="cb272-10" title="10">}</a>
+<a class="sourceLine" id="cb272-11" title="11"><span class="kw">generateRLineTypes</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:lty"></span>
+<img src="Metode_Numerik_files/figure-html/lty-1.png" alt="Line type" width="70%" />
+<p class="caption">
+Figure 3.27: Line type
+</p>
+</div>
+</div>
+<div id="mengatur-axis-plot" class="section level3">
+<h3><span class="header-section-number">3.3.6</span> Mengatur Axis Plot</h3>
+<p>Kita dapat melakukan pengaturan lebih jauh terhadap axis, seperti: menambahkan axis tambahan pada atas dan bawah frame, mengubah rentang nilai axis, serta kustomisasi <em>tick mark</em> pada nilai axis. Hal ini diperlukan karena fungsi grafik dasar <code>R</code> tidak dapat mengatur axis secara otomatis saat plot baru ditambahkan pada plot pertama dan rentang nilai plot baru lebih besar dibanding plot pertama, sehingga sebagian nilai plot baru tidak ditampilkan pada hasil akhir.</p>
+<p>Untuk menambahkan axis pada <code>R</code> kita dapat menambahkan fungsi <code>axis()</code> setelah plot dilakukan. Format yang digunakan adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="kw">axis</span>(side, <span class="dt">at=</span><span class="ot">NULL</span>, <span class="dt">labels=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>side</strong>: nilai integer yang mengidikasikan posisi axix yang hendak ditambahkan. Nilai yang dapat dimasukkan adalah sebagai berikut:
+<ul>
+<li>1: bawah</li>
+<li>2: kiri</li>
+<li>3: atas</li>
+<li>4: kanan.</li>
+</ul></li>
+<li><strong>at</strong>: titik dimana <em>tick-mark</em> hendak digambarkan. Nilai yang dapat dimasukkan sama dengan <code>side</code>.</li>
+<li><strong>labels</strong>: Teks label <em>tick-mark</em>. Dapat juga secara logis menentukan apakah anotasi harus dibuat pada <em>tick mark</em>.</li>
+</ul>
+</blockquote>
+<p>Berikut contoh sintaks penerapan fungsi tersebut dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:axis">3.28</a>:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="co"># membuat vektor numerik</span></a>
+<a class="sourceLine" id="cb274-2" title="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb274-3" title="3">y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb274-4" title="4"></a>
+<a class="sourceLine" id="cb274-5" title="5"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb274-6" title="6"><span class="kw">plot</span>(x, y, <span class="dt">pch=</span><span class="dv">18</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>,</a>
+<a class="sourceLine" id="cb274-7" title="7">     <span class="dt">frame=</span><span class="ot">FALSE</span>, <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>) <span class="co"># Remove x axis</span></a>
+<a class="sourceLine" id="cb274-8" title="8"></a>
+<a class="sourceLine" id="cb274-9" title="9"><span class="co"># menambahkan axis</span></a>
+<a class="sourceLine" id="cb274-10" title="10"><span class="co"># bawah</span></a>
+<a class="sourceLine" id="cb274-11" title="11"><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col.axis=</span><span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb274-12" title="12"><span class="co"># atas</span></a>
+<a class="sourceLine" id="cb274-13" title="13"><span class="kw">axis</span>(<span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb274-14" title="14"><span class="co"># kanan</span></a>
+<a class="sourceLine" id="cb274-15" title="15"><span class="kw">axis</span>(<span class="dv">4</span>, <span class="dt">col =</span> <span class="st">&quot;violet&quot;</span>, <span class="dt">col.axis =</span> <span class="st">&quot;dark violet&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:axis"></span>
+<img src="Metode_Numerik_files/figure-html/axis-1.png" alt="Modifikasi axis" width="70%" />
+<p class="caption">
+Figure 3.28: Modifikasi axis
+</p>
+</div>
+<p>Kita dapat mengubah rentang nilai pada axis menggunakan fungsi <code>xlim()</code> dan <code>ylim()</code> yang menyatakan vektor nilai masimum dan minimum rentang. Selain itu kita dapat juga melakukan tranformasi baik pada sumbu x dan sumbu y. Berikut adalah argumen yang dapat ditambahkan pada fungsi grafik:</p>
+<ul>
+<li><strong>xlim</strong>: limit nilai sumbu x dengan format: <code>xlim(min, max)</code>.</li>
+<li><strong>ylim</strong>: limit nilai sumbu x dengan format: <code>ylim(min, max)</code>.</li>
+</ul>
+<p>Untuk transformasi skala log, kita dapat menambahkan argumen berikut:</p>
+<ul>
+<li><strong>log=“x”</strong>: transformasi log sumbu x.</li>
+<li><strong>log=“y”</strong>: transformasi log sumbu y.</li>
+<li><strong>log=“xy”</strong>: transformasi log sumbu x dan y.</li>
+</ul>
+<p>Berikut adalah contoh sintaks penerapan argumen tersebut beserta output yang dihasilkan pada Gambar <a href="dataviz.html#fig:axis2">3.29</a>:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="co"># membagi jendela grafik menjadi 1 baris dan 3 kolom</span></a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb275-3" title="3"></a>
+<a class="sourceLine" id="cb275-4" title="4"><span class="co"># membuat vektor numerik</span></a>
+<a class="sourceLine" id="cb275-5" title="5">x&lt;-<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>); y&lt;-x<span class="op">*</span>x</a>
+<a class="sourceLine" id="cb275-6" title="6"></a>
+<a class="sourceLine" id="cb275-7" title="7"><span class="co"># simple plot</span></a>
+<a class="sourceLine" id="cb275-8" title="8"><span class="kw">plot</span>(x, y)</a>
+<a class="sourceLine" id="cb275-9" title="9"></a>
+<a class="sourceLine" id="cb275-10" title="10"><span class="co"># plot dengan pengaturan rentang skala</span></a>
+<a class="sourceLine" id="cb275-11" title="11"><span class="kw">plot</span>(x, y, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">150</span>))</a>
+<a class="sourceLine" id="cb275-12" title="12"></a>
+<a class="sourceLine" id="cb275-13" title="13"><span class="co"># plot dengan transformasi skala log</span></a>
+<a class="sourceLine" id="cb275-14" title="14"><span class="kw">plot</span>(x, y, <span class="dt">log=</span><span class="st">&quot;y&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:axis2"></span>
+<img src="Metode_Numerik_files/figure-html/axis2-1.png" alt="Mengubah rentang dan skala axis" width="80%" />
+<p class="caption">
+Figure 3.29: Mengubah rentang dan skala axis
+</p>
+</div>
+<p>Kita dapat melakukan kustomisasi pada <em>tick mark</em>. Kustomisasi yang dapat dilakukan adalah merubah warna, <em>font style</em>, ukuran font, orientasi, serta menyembunyikan <em>tick mark</em>.</p>
+<p>Argumen yang ditambahkan adalah sebagai berikut:</p>
+<ul>
+<li><strong>col.axis</strong>: warna <em>tick mark</em>.</li>
+<li><strong>font.axis</strong>: integer yang menunjukkan <em>font style</em>. Sama dengan pengaturan judul.</li>
+<li><strong>cex.axis</strong>: pengaturan ukuran <em>tick mark</em>.</li>
+<li><p><strong>las</strong>: mengatur orientasi <em>tick mark</em>. Nilai yang dapat dimasukkan adalah sebagai berikut:</p>
+<ul>
+<li><strong>0</strong>: paralel terhadap posisi axis (default)</li>
+<li><strong>1</strong>: selalu horizontal</li>
+<li><strong>2</strong>: selalu perpendikular dengan posisi axis</li>
+<li><strong>3</strong>: selalu vertikal</li>
+</ul></li>
+<li><p><strong>xaxt</strong> dan <strong>yaxt</strong>: karakter untuk menunjukkan apakah axis akan ditampilkan atau tidak. nilai dapat berupa “n”(sembunyika) dan “s”(tampilkan).</p></li>
+</ul>
+<p>Berikut adalah contoh penerapan argumen tersebut beserta output pada Gambar <a href="dataviz.html#fig:axis3">3.30</a>:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1"><span class="co"># membuat vektor numerik</span></a>
+<a class="sourceLine" id="cb276-2" title="2">x&lt;-<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>); y&lt;-x<span class="op">*</span>x</a>
+<a class="sourceLine" id="cb276-3" title="3"></a>
+<a class="sourceLine" id="cb276-4" title="4"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb276-5" title="5"><span class="kw">plot</span>(x,y,</a>
+<a class="sourceLine" id="cb276-6" title="6">     <span class="co"># warna</span></a>
+<a class="sourceLine" id="cb276-7" title="7">     <span class="dt">col.axis=</span><span class="st">&quot;red&quot;</span>,</a>
+<a class="sourceLine" id="cb276-8" title="8">     <span class="co"># font style</span></a>
+<a class="sourceLine" id="cb276-9" title="9">     <span class="dt">font.axis=</span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb276-10" title="10">     <span class="co"># ukuran</span></a>
+<a class="sourceLine" id="cb276-11" title="11">     <span class="dt">cex=</span><span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb276-12" title="12">     <span class="co"># orientasi</span></a>
+<a class="sourceLine" id="cb276-13" title="13">     <span class="dt">las=</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb276-14" title="14">     <span class="co"># sembunyikan sumbu x</span></a>
+<a class="sourceLine" id="cb276-15" title="15">     <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:axis3"></span>
+<img src="Metode_Numerik_files/figure-html/axis3-1.png" alt="Kustomisasi tick mark" width="70%" />
+<p class="caption">
+Figure 3.30: Kustomisasi tick mark
+</p>
+</div>
+</div>
+<div id="changecolor" class="section level3">
+<h3><span class="header-section-number">3.3.7</span> Mengatur Warna</h3>
+<p>Pada fungsi dasar <code>R</code>, warna dapat diatur dengan mengetikkan nama warna maupun kode hexadesimal. Selain itu kita juga dapat menamambahkan warna lain melalui library lain yang tidak dijelaskan pada chapter ini.</p>
+<p>Untuk penggunaan warna hexadesima kita perlu mengetikkan “#” yang diukuti oleh 6 kode warna. Untuk memperlajari kode-kode dan warna yang dihasilkan, silahkan pembaca mengunjungi situs <a href="http://www.visibone.com/" class="uri">http://www.visibone.com/</a>.</p>
+<p>Pada sintaks berikut disajikan visualisasi nama-nama warna bawaan yang ada pada <code>R</code>. Output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:color">3.31</a>:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1">showCols &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">cl=</span><span class="kw">colors</span>(), <span class="dt">bg =</span> <span class="st">&quot;grey&quot;</span>,</a>
+<a class="sourceLine" id="cb277-2" title="2">                     <span class="dt">cex =</span> <span class="fl">0.75</span>, <span class="dt">rot =</span> <span class="dv">30</span>) {</a>
+<a class="sourceLine" id="cb277-3" title="3">    m &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">sqrt</span>(n &lt;-<span class="kw">length</span>(cl)))</a>
+<a class="sourceLine" id="cb277-4" title="4">    <span class="kw">length</span>(cl) &lt;-<span class="st"> </span>m<span class="op">*</span>m; cm &lt;-<span class="st"> </span><span class="kw">matrix</span>(cl, m)</a>
+<a class="sourceLine" id="cb277-5" title="5">    <span class="kw">require</span>(<span class="st">&quot;grid&quot;</span>)</a>
+<a class="sourceLine" id="cb277-6" title="6">    <span class="kw">grid.newpage</span>(); vp &lt;-<span class="st"> </span><span class="kw">viewport</span>(<span class="dt">w =</span> <span class="fl">.92</span>, <span class="dt">h =</span> <span class="fl">.92</span>)</a>
+<a class="sourceLine" id="cb277-7" title="7">    <span class="kw">grid.rect</span>(<span class="dt">gp=</span><span class="kw">gpar</span>(<span class="dt">fill=</span>bg))</a>
+<a class="sourceLine" id="cb277-8" title="8">    <span class="kw">grid.text</span>(cm, <span class="dt">x =</span> <span class="kw">col</span>(cm)<span class="op">/</span>m, <span class="dt">y =</span> <span class="kw">rev</span>(<span class="kw">row</span>(cm))<span class="op">/</span>m, <span class="dt">rot =</span> rot,</a>
+<a class="sourceLine" id="cb277-9" title="9">              <span class="dt">vp=</span>vp, <span class="dt">gp=</span><span class="kw">gpar</span>(<span class="dt">cex =</span> cex, <span class="dt">col =</span> cm))</a>
+<a class="sourceLine" id="cb277-10" title="10">}</a>
+<a class="sourceLine" id="cb277-11" title="11"></a>
+<a class="sourceLine" id="cb277-12" title="12"><span class="co"># print 60 nama warna pertama</span></a>
+<a class="sourceLine" id="cb277-13" title="13"><span class="kw">showCols</span>(<span class="dt">bg=</span><span class="st">&quot;gray20&quot;</span>, <span class="dt">cl=</span><span class="kw">colors</span>()[<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>], <span class="dt">rot=</span><span class="dv">30</span>, <span class="dt">cex=</span><span class="fl">0.9</span>)</a></code></pre></div>
+<pre><code>## Loading required package: grid</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:color"></span>
+<img src="Metode_Numerik_files/figure-html/color-1.png" alt="Nama warna" width="70%" />
+<p class="caption">
+Figure 3.31: Nama warna
+</p>
+</div>
+</div>
+</div>
+<div id="plot-dua-dan-tiga-dimensi" class="section level2">
+<h2><span class="header-section-number">3.4</span> Plot Dua dan Tiga Dimensi</h2>
+<p><code>R</code> dapat digunakan untuk memproduksi visualisasi pada skala 2 dan 3 dimensi. Untuk proyeksi 2 dimensi, fungsi yang digunakan adalah <code>image()</code> atau <code>contour()</code>. Untuk informasi lebih lanjut terkait fungsi tersebut pembaca dapat mengakses menu bantuan. Pada sintak berikut diberikan contoh bagaimana cara memproduksi visualisasi dua dimensi menggunakan kedua fungsi tersebut:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1">n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb279-2" title="2">x &lt;-<span class="st"> </span><span class="kw">sin</span>(n)</a>
+<a class="sourceLine" id="cb279-3" title="3">y &lt;-<span class="st"> </span><span class="kw">cos</span>(n)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>n<span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb279-4" title="4">z &lt;-<span class="st"> </span><span class="kw">outer</span>(x,y)</a>
+<a class="sourceLine" id="cb279-5" title="5"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>), <span class="dt">mex=</span><span class="fl">0.8</span>, <span class="dt">mgp=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="dv">0</span>), <span class="dt">tcl=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb279-6" title="6"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb279-7" title="7"></a>
+<a class="sourceLine" id="cb279-8" title="8"><span class="co"># plot pertama</span></a>
+<a class="sourceLine" id="cb279-9" title="9"><span class="kw">image</span>(z, <span class="dt">col=</span><span class="kw">gray</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb279-10" title="10"></a>
+<a class="sourceLine" id="cb279-11" title="11"><span class="co"># plot kedua</span></a>
+<a class="sourceLine" id="cb279-12" title="12"><span class="kw">contour</span>(z)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:map"></span>
+<img src="Metode_Numerik_files/figure-html/map-1.png" alt="image plot (kiri) dan contour plot (kanan)" width="80%" />
+<p class="caption">
+Figure 3.32: image plot (kiri) dan contour plot (kanan)
+</p>
+</div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>Proyeksi 3 dimensi dapat dilakukan menggunakan fungsi <code>persp()</code>. Sudut penglihatan dapat diatur melalui argumen<code>theta</code> (sudut) dan <code>phi()</code> (rotasi). Sintaks berikut merupakan contoh bagaimana cara menghasilkan visualisasi 3 dimensi dari data yang telah diproduksi sebelumnya:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>), <span class="dt">mex=</span><span class="fl">0.8</span>, <span class="dt">mgp=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="dv">0</span>), <span class="dt">tcl=</span><span class="fl">0.3</span>)</a>
+<a class="sourceLine" id="cb281-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb281-3" title="3"></a>
+<a class="sourceLine" id="cb281-4" title="4"><span class="co"># plot pertama</span></a>
+<a class="sourceLine" id="cb281-5" title="5"><span class="kw">persp</span>(n,n,z, <span class="dt">theta=</span><span class="dv">45</span>, <span class="dt">phi=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb281-6" title="6"></a>
+<a class="sourceLine" id="cb281-7" title="7"><span class="co"># plot kedua</span></a>
+<a class="sourceLine" id="cb281-8" title="8"><span class="kw">persp</span>(n,n,z, <span class="dt">theta=</span><span class="dv">45</span>, <span class="dt">phi=</span><span class="dv">20</span>, <span class="dt">shade=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:persp"></span>
+<img src="Metode_Numerik_files/figure-html/persp-1.png" alt="proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan" width="80%" />
+<p class="caption">
+Figure 3.33: proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan
+</p>
+</div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
+</div>
+<div id="referensi-2" class="section level2">
+<h2><span class="header-section-number">3.5</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Maindonald, J.H. 2008. <strong>Using R for Data Analysis and Graphics Introduction, Code and Commentary</strong>. Centre for Mathematics and Its Applications Australian National University.</li>
+<li>Scherber, C. 2007. <strong>An introduction to statistical data analysis using R</strong>. R_Manual Goettingen.</li>
+<li>STHDA. <strong>R Base Graphs</strong>. <a href="http://www.sthda.com/english/wiki/r-base-graphs" class="uri">http://www.sthda.com/english/wiki/r-base-graphs</a></li>
+<li>Venables, W.N. Smith D.M. and R Core Team. 2018. <strong>An Introduction to R</strong>. R Manuals.</li>
+</ol>
+
+<style>
+body{
+text-align: justify}
+</style>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="calculation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programmingandfunction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Metode_Numerik.pdf", "Metode_Numerik.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

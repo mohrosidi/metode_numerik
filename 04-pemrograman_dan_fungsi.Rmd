@@ -1,0 +1,514 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Pemrograman dan Fungsi {#programmingandfunction}
+
+Kita telah membahas dasar-dasar kalkulasi menggunakan `R` pada Chapter \@ref(calculation). Pada Chapter  \@ref(programmingandfunction) kita akan membahas dasar pemrograman menggunakan `R`. Pada chapter ini kita juga akan membahas bagaimana kita dapat membentuk suatu fungsi menggunakan `R` untuk pekerjaan yang berulang-ulang.
+
+## Loop {#loop}
+
+*Loop* merupakan kode program yang berulang-ulang. *Loop* berguna saat kita ingin melakukan sebuah perintah yang perlu dijalankan berulang-ulang seperti melakukan perhitungan maupaun melakukan visualisasi terhadap banyak variabel secara serentak. Hal ini tentu saja membantu kita karena kita tidak perlu menulis sejumlah sintaks yang berulang-ulang. Kita hanya perlu mengatur *statement* berdasarkan hasil yang kita harapkan.
+
+Pada `R` bentuk *loop* dapat bermacam-macam ("*for loop*","*while loop*", dll). `R` menyederhanakan bentuk *loop* ini dengan menyediakan sejumlah fungsi seperti `apply()`,`tapply()`, dll. Sehingga `loop` jarang sekali muncul dalam kode `R`. Sehingga `R` sering disebut sebagai *loopless loop*. 
+
+Meski *loop* jarang muncul bukan berarti kita tidak akan melakukannya. Terkadang saat kita melakukan komputasi statistik atau matematik dan belum terdapat paket yang mendukung proses tersebut, sering kali kita akan membuat sintaks sendiri berdasarkan algoritma metode tersebut. Pada algoritma tersebut sering pula terdapat *loop* yang diperlukan selama proses perhitungan. Secara sederhana diagram umum loop ditampilkan pada Gambar \@ref(fig:loop)
+
+```{r loop, echo=FALSE, fig.cap='Diagram umum loop (sumber: Primartha, 2018).', tidy=FALSE, out.width='40%', fig.align='center', warning=FALSE}
+library(knitr)
+img1_path <- "./images/skema_loop.png"
+include_graphics(img1_path)
+
+```
+
+### For Loop {#forloop}
+
+Mengulangi sebuah *statement* atau sekelompok *statement* sebanyak nilai yang ditentukan di awal. Jadi operasi akan terus dilakukan sampai dengan jumlah yang telah ditetapkan di awal atau dengan kata lain tes kondisi (Jika jumlah pengulangan telah cukup) hanya akan dilakukan di akhir. Secara sederhana bentuk dari *for loop* dapat dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+for (value in vector){
+  statements
+}
+```
+
+
+Berikut adalah contoh sintaks penerapan *for loop*:
+
+```{r}
+# Membuat vektor numerik
+vektor <- c(1:5)
+
+# loop 
+for(i in vektor){
+  print(i)
+}
+
+```
+
+*Loop* akan dimulai dari blok *statement for* sampai dengan  `print(i)`. Berdasarkan *loop* pada contoh tersebut, *loop* hanya dilakukan sebanyak 5 kali sesuai dengan jumlah vektor yang ada.
+
+### While Loop {#whileloop}
+
+*While loop* merupakan loop yang digunakan ketika kita telah menetapkan *stop condition* sebelumnya. Blok *statement*/kode yang sama akan terus dijalankan sampai *stop condition* ini tercapai. *Stop condition* akan di cek sebelum melakukan proses *loop*. Berikut adalah pola dari *while loop* dapat dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+while (test_expression){
+  statement
+}
+```
+
+Berikut adalah contoh penerapan dari *while loop*:
+
+```{r}
+coba <- c("Contoh")
+counter <- 1
+
+# loop
+while (counter<5){
+  # print vektor
+  print(coba)
+  # tambahkan nilai counter sehingga proses terus berlangsung sampai counter = 5 
+  counter <- counter + 1
+}
+```
+
+*Loop* akan dimulai dari blok *statement while* sampai dengan *counter* <- 1. *Loop* hanya akan dilakukan sepanjang nilai *counter* < 5. 
+
+### Repeat Loop {#repeatloop}
+
+*Repeat loop* akan menjalankan *statement*/kode yang sama berulang-ulang hingga *stop condition* tercapai. Berikut adalah pola dari *repeat loop*.
+
+```{r, eval=FALSE}
+repeat {
+  commands
+  if(condition){
+    break
+  }
+}
+```
+
+Berikut adalah contoh penerapan dari *repeat loop*:
+
+```{r}
+coba <- c("contoh")
+counter <- 1
+repeat {
+  print(coba)
+  counter <- counter + 1
+  if(counter < 5){
+break
+  }
+}
+```
+
+*Loop* akan dimulai dari blok *statement while* sampai dengan *break*. *Loop* hanya akan dilakukan sepanjang nilai *counter* < 5. Hasil yang diperoleh berbeda dengan *while loop*, dimana kita memperoleh 4 buah kata "contoh". Hal ini disebabkan karena *repeat loop* melakukan pengecekan *stop condition* tidak di awal loop seperti *while loop* sehingga berapapun nilainya, selama nilainya sesuai dengan *stop condition* maka *loop* akan dihentikan. Hal ini berbeda dengan *while loop* dimana proses dilakukan berulang-ulang sampai jumlahnya mendekati *stop condition*.
+
+### Break {#break}
+
+*Break* sebenarnya bukan bagian dari *loop*, namun sering digunakan dalam *loop*. *Break* dapat digunakan pada *loop* manakala dirasa perlu, yaitu saat kondisi yang disyaratkan pada *break* tercapai.
+
+Berikut adalah contoh penerapan *break* pada beberapa jenis *loop*.
+
+```{r}
+# for loop
+a = c(2,4,6,8,10,12,14)
+for(i in a){
+  if(i>8){
+    break
+  }
+  print(i)
+}
+
+# while loop
+a = 2
+b = 4
+while(a<7){
+  print(a)
+  a = a +1
+  if(b+a>10){
+    break
+  }
+}
+
+# repeat loop
+a = 1
+repeat{
+  print(a)
+  a = a+1
+  if(a>6){
+    break
+  }
+}
+```
+
+## Loop Menggunakan Apply Family Function {#loopapply}
+
+Penggunaan loop sangat membantu kita dalam melakukan proses perhitungan berulang. Namun, metode ini tidak cukup ringkas dalam penerapannya dan perlu penulisan sintaks yang cukup panjang untuk menyelesaikan sebuah kasus yang kita inginkan. Berikut adalah sebuah sintaks yang digunakan untuk menghitung nilai mean pada suatu dataset:
+
+```{r}
+# subset data iris
+sub_iris <- iris[,-5]
+# membuat vektor untuk menyimpan hasil loop
+a <- rep(NA,4)
+# loop
+for(i in 1:length(sub_iris)){
+  a[i]<-mean(sub_iris[,i])
+}
+# print
+a
+class(a) # cek kelas objek
+```
+
+Metode alternatif lain untuk melakukan loop suatu fungsi adalah dengan menggunakan Apply function family. Metode ini memungkinkan kita untuk melakukan loop suatu fungsi tanpa perlu menuliskan sintaks loop. Berikut adalah beberapa fungsi dari apply family yang nantinya akan sering kita gunakan:
+
+- `apply()`: fungsi generik yang mengaplikasikan fungsi kepada kolom atau baris pada matriks atau secara lebih general aplikasi dilakukan pada dimensi untuk jenis data array.
+- `lapply()`: fungsi apply yang bekerja pada jenis data list dan memberikan output berupa list juga.
+- `sapply()`: bentuk sederhana dari lapply yang menghasilkan output berupa matriks atau vektor.
+- `vapply()`: disebut juga *verified apply* (memungkinkan untuk menghasilkan output dengan jenis data yang telah ditentukan sebelumnya).
+- `tapply()`: *tagged apply* dimana dimana tag menentukan subset dari data.
+
+### Apply {#apply}
+
+Fungsi `apply()` bekerja dengan jenis data matrik atau array (jenis data homogen). Kita dapat melakukan spesifikasi apakah suatu fungsi hanya akan bekerja pada kolom saja, baris saja atau keduanya. Format fungsi ini adalah sebagai berikut:
+
+```{r, eval=FALSE}
+apply(X, MARGIN, FUN, ...)
+```
+
+> **Catatan:**
+>
+> - **X**: matriks atau array
+> - **MARGIN**: menentukan bagaimana fungsi bekerja terhadap matriks atau array. Jika nilai yang diinputkan 1, maka fungsi akan bekerja pada masing-masing baris pada matriks. Jika nilainya 2, maka fungsi akan bekerja pada tiap kolom pada matriks.
+- **FUN**: fungsi yang akan digunakan. Fungsi yang dapat digunakan dapat berupa fungsi dasar matematika atau statistika, serta user define function.
+- **...**: opsional argumen pada fungsi yang digunakan.
+
+Berikut adalah contoh bagaimana aplikasi fungsi tersebut pada matriks:
+
+```{r}
+## membuat matriks
+x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
+x # print
+class(x) # cek kelas objek
+
+## menghitung mean masing-masing kolom
+apply(x, MARGIN=2 ,FUN=mean, trim=0.2, na.rm=TRUE)
+
+## menghitung range pada masing-masing baris
+## menggunakan user define function
+apply(x, MARGIN=1,
+      FUN=function(x){
+        max(x)-min(x)
+      })
+
+```
+
+### lapply {#lapply}
+
+Fungsi ini melakukan loop fungsi terhadap input data berupa list. Output yang dihasilkan juga merupakan list dengan panjang list yang sama dengan yang diinputkan. Format yang digunakan adalah sebagai berikut:
+
+```{r, eval=FALSE}
+lapply(X, FUN, ...)
+```
+
+> **Catatan:**
+>
+> - **X**: vektor, data frame atau list
+> - **FUN**: fungsi yang akan digunakan. Fungsi yang dapat digunakan dapat berupa fungsi dasar matematika atau statistika, serta user define function. Subset juga dimungkinkan pada fungsi ini.
+> - **...**: opsional argumen pada fungsi yang digunakan.
+
+Berikut adalah contoh penerapan fungsi lapply:
+
+```{r}
+## Membuat list
+x <- list(a = 1:10, beta = exp(-3:3), logic = c(TRUE,FALSE,FALSE,TRUE))
+x # print
+class(x) # cek kelas objek
+
+## Menghitung nilai mean pada masing-masing baris lits
+lapply(x, FUN=mean)
+
+## Menghitung mean tiap kolom dataset iris
+lapply(iris, FUN=mean)
+
+## Mengalikan elemen vektor dengan suatu nilai
+y <- c(1:5)
+lapply(y, FUN=function(x){x*5})
+
+## Mengubah output menjadi vektor
+unlist(lapply(y, FUN=function(x){x*5}))
+
+```
+
+### sapply {#sapply}
+
+Fungsi `sapply()` merupakan bentuk lain dari fungsi `lapply()`. Perbedaanya terletak pada output default yang dihasilkan. Secara default `sapply()` menerima input utama berupa list (dapat pula dataframe atau vektor), namun tidak seperti `lapply()` jenis data output yang dihasilkan adalah vektor. Untuk mengubah output menjadi list perlu argumen tambahan berupa `simplify=FALSE`. Format fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+```
+
+> **Catatan:**
+>
+> - **X**: vektor, data frame atau list
+> - **FUN**: fungsi yang akan digunakan. Fungsi yang dapat digunakan dapat berupa fungsi dasar matematika atau statistika, serta user define function. Subset juga dimungkinkan pada fungsi ini.
+> - **...**: opsional argumen pada fungsi yang digunakan.
+> - **simplify**: logical. Jika nilainya `TRUE` maka output yang dihasilkan adalah bentuk sederhana dari vektor, matrix atau array.
+> - **USE.NAMES**: jika list memiliki nama pada setiap elemennya, maka nama elemen tersebut akan secara default ditampilkan.
+
+
+Berikut adalah contoh penerapannya:
+
+```{r}
+## membuat list
+x <- list(a = 1:10, beta = exp(-3:3), logic = c(TRUE,FALSE,FALSE,TRUE))
+
+## menghitung nilai mean setiap elemen
+sapply(x, FUN=mean)
+
+## menghitung nilai mean dengan output list
+sapply(x, FUN=mean, simplify=FALSE)
+
+## summary objek dataframe
+sapply(mtcars, FUN=summary)
+
+## summary objek list
+a <- list(mobil=mtcars, anggrek=iris)
+sapply(a, FUN=summary)
+```
+
+### vapply {#vapply}
+
+Funsgi ini merupakan bentuk lain dari `sapply()`. Bedanya secara kecepatan proses fungsi ini lebih cepat dari `sapply()`. Hal yang menarik dari fungsi ini kita dapat menambahkan argumen `FUN.VALUE`. pada argumen ini kita memasukkan vektor berupa output fungsi yang diinginkan. Perbedaan lainnya adalah output yang dihasilkan hanya berupa matriks atau array. Format dari fungsi ini adalah sebagai berikut:
+
+```{r, eval=FALSE}
+vapply(X, FUN, FUN.VALUE, ..., USE.NAMES = TRUE)
+```
+
+> **Catatan:**
+>
+> - **X**: vektor, data frame atau list
+> - **FUN**: fungsi yang akan digunakan. Fungsi yang dapat digunakan dapat berupa fungsi dasar matematika atau statistika, serta user define function. Subset juga dimungkinkan pada fungsi ini.
+> - **FUN.VALUE**: vektor, template dari return value FUN.
+> - **...**: opsional argumen pada fungsi yang digunakan.
+> - **USE.NAMES**: jika list memiliki nama pada setiap elemennya, maka nama elemen tersebut akan secara default ditampilkan.
+
+Berikut adalah contoh penerapannya:
+
+```{r}
+## membuat list
+x <- sapply(3:9, seq)
+x # print
+
+## membuat ringkasan data pada tiap elemen list
+vapply(x, fivenum,
+       c(Min. = 0, "1st Qu." = 0, 
+         Median = 0, "3rd Qu." = 0, Max. = 0))
+
+## membuat ringkasan data pada tiap kolom dataframe
+vapply(mtcars, summary,
+       c(Min. = 0, "1st Qu." = 0, 
+         Median = 0, "3rd Qu." = 0, Max. = 0, Mean=0))
+```
+
+
+### tapply {#tapply}
+
+Fungsi ini sangat berguna jika pembaca ingin menghitung suatu nilai misalnya mean berdasarkan grup data atau factor. Format fungsi ini adalah sebagi berikut:
+
+```{r, eval=FALSE}
+tapply(X, INDEX, FUN = NULL, ..., simplify = TRUE)
+```
+
+> **Catatan:**
+>
+> - **X**: vektor, data frame atau list
+> - **INDEX**: list satu atau beberapa factor yang memiliki panjang sama dengan X.
+> - **FUN**: fungsi yang akan digunakan. Fungsi yang dapat digunakan dapat berupa fungsi dasar matematika atau statistika, serta user define function. Subset juga dimungkinkan pada fungsi ini.
+> - **...**: opsional argumen pada fungsi yang digunakan.
+> - **simplify**: logical. Jika nilainya `TRUE` maka output yang dihasilkan adalah bentuk skalar.
+
+Berikut adalah contoh penerapannya:
+
+```{r}
+## membuat tabel frekuensi
+groups <- as.factor(rbinom(32, n = 5, prob = 0.4))
+
+tapply(groups, groups, length)
+# atau
+table(groups)
+
+## membuat tabel kontingensi
+# menghitung jumlah breaks berdasarkan faktor jenis wool
+# dan tensi level
+tapply(X=warpbreaks$breaks, INDEX=warpbreaks[,-1], FUN=sum)
+# menghitung mean panjang gigi babi hutan berdasarkan
+# jenis suplemen dan dosisnya
+tapply(ToothGrowth$len, ToothGrowth[,-1], mean)
+# menghitung mpg minimum berdasarkan jumlah silinder pada mobil
+tapply(mtcars$mpg, mtcars$cyl, min, simplify=FALSE)
+```
+
+## Decision Making {#dm}
+
+*Decicion Making* atau sering disebut sebagai *if then else statement* merupakan bentuk percabagan yang digunakan manakala kita ingin agar program dapat melakukan pengujian terhadap syarat kondisi tertentu. Pada Tabel \@ref(tab:percabangan) disajikan daftar percabangan yang digunakan pada `R`.
+
+**Statement**          | **Keterangan**
+-----------------------|--------------------------------------------------------------------------------------------------------------------------
+*if statement*         | *if statement* hanya terdiri atas sebuah ekspresi *Boolean*, dan diikuti satu atau lebih *statement*
+*if...else statement*  | *if else statement* terdiri atas beberapa buah ekspresi *Boolean*. Ekspressi *Boolean* berikutnya akan dijalankan jika ekspresi *Boolan  sebelumnya bernilai FALSE
+*switch statement*     | *switch statement* digunakan untuk mengevaluasi sebuah variabel beberapa pilihan
+
+: (\#tab:percabangan) Daftar percabangan pada `R`.
+
+### if statement {#ifstatement}
+
+Pola *if statement* disajikan pada Gambar \@ref(fig:ifstatement)
+
+```{r ifstatement, echo=FALSE, fig.cap='Diagram if statement (sumber: Primartha, 2018).', tidy=FALSE, out.width='40%', fig.align='center', warning=FALSE}
+library(knitr)
+img1_path <- "./images/ifstatement.png"
+include_graphics(img1_path)
+
+```
+
+Berikut adalah contoh penerapan *if statement*:
+
+```{r}
+x <- c(1:5)
+if(is.vector(x)){
+  print("x adalah sebuah vector")
+}
+```
+
+### if else statement {#ifelsestatement}
+
+Pola dari *if else statement* disajikan pada Gambar \@ref(fig:ifelse)
+
+```{r ifelse, echo=FALSE, fig.cap='Diagram if else statement (sumber: Primartha, 2018).', tidy=FALSE, out.width='40%', fig.align='center', warning=FALSE}
+library(knitr)
+img1_path <- "./images/ifelse.png"
+include_graphics(img1_path)
+
+```
+
+Berikut adalah contoh penerapan *if else statement*:
+
+```{r}
+x <- c("Andi","Iwan", "Adi")
+if("Rina" %in% x){
+  print("Rina ditemukan")
+} else if("Adi" %in% x){
+  print("Adi ditemukan")
+} else{
+  print("tidak ada yang ditemukan")
+}
+```
+
+### switch statement {#switchstatement}
+
+Pola dari *switch statement* disajikan pada Gambar \@ref(fig:switch)
+
+```{r switch, echo=FALSE, fig.cap='Diagram switch statement (sumber: Primartha, 2018).', tidy=FALSE, out.width='40%', fig.align='center'}
+library(knitr)
+img1_path <- "./images/switch.png"
+include_graphics(img1_path)
+
+```
+
+Berikut adalah contoh penerapan *switch statement*:
+
+```{r}
+y = 3
+
+x = switch(
+  y,
+  "Selamat Pagi",
+  "Selamat Siang",
+  "Selamat Sore",
+  "Selamat Malam"
+)
+
+print(x)
+```
+
+## Fungsi
+
+Fungsi merupakan sekumpulan instruksi atau *statement* yang dapat melakukan tugas khusus. Sebagai contoh fungsi perkalian untuk menyelesaikan operasi perkalian, fungsi pemangkatan hanya untuk operasi pemangkatan, dll.
+
+Pada `R` terdapat 2 jenis fungsi, yaitu: *build in fuction* dan *user define function*. *build in fnction* merupakan fungsi bawaan `R` saat pertama kita menginstall `R`. Contohnya adalah `mean()`, `sum()`, `ls()`, `rm()`, dll. Sedangkan *user define fuction* merupakan fungsi-fungsi yang dibuat sendiri oleh pengguna.
+
+Fungsi-fungsi buatan pengguna haruslah dideklarasikan (dibuat) terlebih dahulu sebelum dapat dijalankan. Pola pembentukan fungsi adalah sebagai berikut:
+
+```{r, eval=FALSE}
+function_name <- function(argument_1, argument_2, ...){
+  function body
+}
+```
+
+> **Catatan:**
+>
+> -  **function_name** : Nama dari fungsi `R`. `R` akan menyimpan fungsi tersebut sebagai objek
+> -  **argument_1, argument_2, ...** : *Argument* bersifat opsional (tidak wajib). *Argument* dapat digunakan untuk memberi inputan kepada fungsi
+> -  **function body** : Merupakan inti dari fungsi. Fuction body dapat terdiri atas 0 statement (kosong) hingga banyak statement.
+> -  **return** : Fungsi ada yang memiliki *output* atau *return value* ada juga yang tidak. Jika fungsi memiliki *return value* maka *return value* dapat diproses lebih lanjut
+
+
+Berikut adalah contoh penerapan *user define function*:
+
+```{r}
+# Fungsi tanpa argument
+bilang <- function(){
+  print("Hello World!!")
+}
+
+# Print
+bilang()
+
+# Fungsi dengan argumen
+tambah <- function(a,b){
+  print(a+b)
+}
+
+# Print
+tambah(5,3)
+
+# Fungsi dengan return value
+kali <- function(a,b){
+  return(a*b)
+}
+
+# Print
+kali(4,3)
+```
+
+
+## Debugging {#debugging}
+
+Sering kali fungsi atau sintaks yang kita tulis menghasilkan error sehingga output yang kita harapkan tidak terjadi. *Debugging* merupakan langkah untuk mengecek error yang terjadi. Untuk lebih memahami proses *debugging*, berikut penulis sajikan contoh error pada suatu fungsi dapat terjadi:
+
+```{r}
+f1 <- function(x){
+  xsq <- x^2
+  xsqminus4 <- xsq - 4
+  print(xsqminus4)
+  log(xsqminus4-4)
+}
+
+f1(6:1)
+```
+
+Untuk mengecek error yang terjadi dari sintaks tersebut, kita dapat menggunakan fungsi `debug()`. Pembaca tinggal memasukkan nama fungsi kedalam fungsi `debug()`. Fungsi tersebut akan secara otomatis akan menampilkan hasil samping dari pengaplikasian fungsi `f1()` untuk melihat sumber atau tahapan dimana error mulai muncul.
+
+```{r}
+debug(f1)
+f1(1:6)
+```
+
+Berdasarkan hasil *debugging*, `NaN` (**missing value**) muncul pada tahapan *debug* ke-4 (pembaca dapat melakukan enter terus menerus sampai proses *debug* selesai). Hal ini disebabkan karena terdapat nilai negatif pada objek `xsqminu4-4` yang selanjutnya dilakukan transformasi logaritmik. Untuk menghentikan proses *debugging* pembaca dapat mengetikkan `undebug(f1)`.
+
+## Referensi
+
+1. Bloomfield, V.A. 2014. **Using R for Numerical Analysis in Science and Engineering**. CRC Press
+2. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung.
+3. Rosadi,D. 2016. **Analisis Statistika dengan R**. Gadjah Mada University Press: Yogyakarta.

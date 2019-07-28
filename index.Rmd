@@ -1,0 +1,14 @@
+--- 
+title: "Metode Numerik Menggunakan R Untuk Teknik Lingkungan"
+author: "Mohammad Rosidi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan"
+---
+
+# Kata Pengantar{-}
+
