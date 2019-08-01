@@ -1,0 +1,1001 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Aljabar Linier {#linearaljabar}
+
+Pada *chapter* ini penulis akan menjelaskan mengenai cara untuk menyelesaikan sistem persamaan linier. Adapun yang akan dibahas pada *chapter* ini antara lain:
+
+* operasi Vektor dan matriks
+* Metode Eliminasi Gauss
+* Metode Dekomposisi matriks
+* Studi Kasus
+
+## Vektor dan matriks {#vecmat}
+
+Pada Chapter \@ref(vector) dan Chapter \@ref(matriks) telah dijelaskan sekilas bagaimana cara melakukan operasi pada vektor dan matriks. Pada *chapter* ini, penulis akan menambahkan operasi-operasi lain yang dapat dilakukan pada vektor dan matriks. Dasar-dasar operasi ini selanjutnya akan digunakan sebagai dasar menyusun algoritma penyelesaian sistem persamaan linier.
+
+### Operasi Vektor {#operasivektor}
+
+Misalkan saja diberikan vektor $u$ dan $v$ yang ditunjukkan pada Persamaan \@ref(eq:vectoruv).
+
+\begin{equation}
+u = \begin{bmatrix}
+      u_1            \\[0.3em]
+      u_2            \\[0.3em]
+      \vdots         \\[0.3em] 
+      u_n
+     \end{bmatrix}
+dan\ v\ = \begin{bmatrix}
+      v_1            \\[0.3em]
+      v_2            \\[0.3em]
+      \vdots         \\[0.3em] 
+      v_n
+     \end{bmatrix}
+  (\#eq:vectoruv)
+\end{equation}
+
+Jika kita menambahkan atau mengurangkan nilai elemen vektor dengan suatu skalar (konstanta yang hanya memiliki besaran), maka operasi penjumlahan/pengurangan akan dilakukan pada setiap elemen vektor. 
+
+\begin{equation}
+u \pm x = \begin{bmatrix}
+      u_1            \\[0.3em]
+      u_2            \\[0.3em]
+      \vdots         \\[0.3em] 
+      u_n
+     \end{bmatrix}
+\pm x = \begin{bmatrix}
+      u_1 \pm x            \\[0.3em]
+      u_2 \pm x           \\[0.3em]
+      \vdots         \\[0.3em] 
+      u_n \pm x
+     \end{bmatrix}
+     (\#eq:addvector)
+\end{equation}
+
+Jika kita melakukan penjumlahan pada vektor $u$ dan $v$, maka operasi akan terjadi pada masing-masing elemen dengan indeks yang sama.
+
+\begin{equation}
+u \pm v = \begin{bmatrix}
+      u_1            \\[0.3em]
+      u_2            \\[0.3em]
+      \vdots         \\[0.3em] 
+      u_n
+     \end{bmatrix}
+\pm v\ = \begin{bmatrix}
+      v_1            \\[0.3em]
+      v_2            \\[0.3em]
+      \vdots         \\[0.3em] 
+      v_n
+     \end{bmatrix}
+= \begin{bmatrix}
+      u_1 \pm v_1            \\[0.3em]
+      u_2 \pm v_2           \\[0.3em]
+      \vdots         \\[0.3em] 
+      u_n \pm v_n
+     \end{bmatrix}
+     (\#eq:addvector2)
+\end{equation}
+
+Untuk lebih memahami operasi tersebut, berikut penulis berikan contoh penerapannya pada `R`:
+
+```{r}
+u <- seq(1,5)
+v <- seq(6,10)
+
+# penjumlahan
+u+v
+
+# penguranga
+u-v
+```
+
+Bagaimana jika kita melakukan operasi dua vektor, dimaana salah satu vektor memiliki penjang yang berbeda?. Untuk memnjawab hal tersebut, perhatikan sintaks berikut:
+
+```{r}
+x <- seq(1,2)
+u+x
+
+```
+
+Berdasarkan contoh tersebut, `R` akan mengeluarkan peringatan yang menunjukkan operasi dilakukan pada vektor dengan panjang berbeda. `R` akan tetap melakukan perhitungan dengan menjumlahkan kembali vektor $u$ yang belum dijumlahkan dengan vektor $x$ sampai seluruh elemen vektor $u$ dilakukan operasi penjumlahan.
+
+Operasi lain yang dapat dilakukan pada vektor adalah menghitung *inner product* dan panjang vektor. Inner product dihitung menggunakan Persamaan \@ref(eq:innerproduct).
+
+\begin{equation}
+u.v=\sum_{i=1}^nu_1v_1+u_2v_2+\dots+u_nv_n
+  (\#eq:innerproduct)
+\end{equation}
+
+Panjang vektor atau vektor yang telah dinormalisasi dihitung menggunakan Persamaan \@ref(eq:panjangvektor)
+
+\begin{equation}
+\left|u\right|=\sqrt{u_1^2+u_2^2+\dots+u_n^2}
+  (\#eq:panjangvektor)
+\end{equation}
+
+Berikut adalah contoh bagaimana cara menghitung `inner product` dan panjang vektor menggunakan `R`:
+
+```{r}
+# inner product
+u%*%v
+
+# panjang vektor u
+sqrt(sum(u*u))
+```
+
+
+### Operasi matriks {#operasimatrik}
+
+Misalkan kita memiliki 2 buah matriks $A$ dan $B$.
+
+\begin{equation}
+A = \begin{bmatrix}
+       a_{1.1} & a_{1.2} &\cdots& a_{1.n}           \\[0.3em]
+       a_{2.1} & a_{2.2} &\cdots& a_{2.n}           \\[0.3em]
+       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+       a_{m.1} & a_{m.2} &\cdots& a_{m.n}
+     \end{bmatrix}
+dan\ B = \begin{bmatrix}
+      b_{1.1} & b_{1.2} &\cdots& b_{1.n}           \\[0.3em]
+      b_{2.1} & b_{2.2} &\cdots& b_{2.n}           \\[0.3em]
+      \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+      b_{m.1} & b_{m.2} &\cdots& b_{m.n}
+     \end{bmatrix}
+  (\#eq:matrikuv)
+\end{equation}
+
+Jika salah satu matriks tersebut dijumlahkan atau dikurangkan dengan skalar.
+
+\begin{equation}
+A \pm x = \begin{bmatrix}
+       a_{1.1} & a_{1.2} &\cdots& a_{1.n}           \\[0.3em]
+       a_{2.1} & a_{2.2} &\cdots& a_{2.n}           \\[0.3em]
+       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+       a_{m.1} & a_{m.2} &\cdots& a_{m.n}
+     \end{bmatrix}
+\pm x = \begin{bmatrix}
+      a_{1.1}\pm x & a_{1.2}\pm x &\cdots& a_{1.n}\pm x           \\[0.3em]
+      a_{2.1}\pm x & a_{2.2}\pm x &\cdots& a_{2.n}\pm x           \\[0.3em]
+      \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+      a_{m.1}\pm x & a_{m.2}\pm x &\cdots& a_{m.n}\pm x
+     \end{bmatrix}
+  (\#eq:addmatrik)
+\end{equation}
+
+Jika kedua matriks $A$ dan $B$ saling dijumlahkan atau dikurangkan. Perlu diperhatikan bahwa penjumlahan dua buah matriks hanya dapat dilakukan pada matriks dengan ukuran yang seragam.
+
+\begin{equation}
+\begin{split}
+A \pm B & = \begin{bmatrix}
+       a_{1.1} & a_{1.2} &\cdots& a_{1.n}           \\[0.3em]
+       a_{2.1} & a_{2.2} &\cdots& a_{2.n}           \\[0.3em]
+       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+       a_{m.1} & a_{m.2} &\cdots& a_{m.n}
+     \end{bmatrix}
+\pm \begin{bmatrix}
+      b_{1.1} & b_{1.2} &\cdots& b_{1.n}           \\[0.3em]
+      b_{2.1} & b_{2.2} &\cdots& b_{2.n}           \\[0.3em]
+      \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+      b_{m.1} & b_{m.2} &\cdots& b_{m.n}
+     \end{bmatrix} \\
+& = \begin{bmatrix}
+       a_{1.1}\pm b_{1.1} & a_{1.2}\pm b_{1.2} &\cdots& a_{1.n}\pm b_{1.n}           \\[0.3em]
+       a_{2.1}\pm b_{2.1} & a_{2.2}\pm b_{2.2} &\cdots& a_{2.n}\pm b_{2.n}           \\[0.3em]
+       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+       a_{m.1}\pm b_{m.1} & a_{m.2}\pm b_{m.2} &\cdots& a_{m.n}\pm b_{m.n}
+     \end{bmatrix}
+\end{split}
+  (\#eq:addmatrik2)
+\end{equation}
+
+Untuk lebih memahaminya, berikut disajikan contoh operasi penjumlahan pada matriks:
+
+```{r}
+A <- matrix(1:9,3)
+B <- matrix(10:18,3)
+C <- matrix(1:6,3)
+
+# penjumlahan dengan skalar
+A+1
+
+# penjumlahan A+B
+A+B
+```
+
+```{r, eval=FALSE}
+# penjumlahan
+A+C
+```
+
+Operasi pehitungan lain yang penting pada matriks adalah operasi perkalian matriks. Perlu diperhatikan bahwa untuk perkalian matriks, jumlah kolom matriks sebelah kiri harus sama dengan jumlah baris pada matriks sebelah kanan. Perkalian antara dua matriks disajikan pada Persamaan \@ref(eq:kalimatrik).
+
+\begin{equation}
+A_{m.n}\times B_{n.r}=AB_{m.r}
+  (\#eq:kalimatrik)
+\end{equation}
+
+Pada `R` perkalian matriks dilakukan menggunakan operator `%*%`. Berikut adalah contoh perkalian matriks pada `R`:
+
+```{r}
+# Perkalian matriks
+A%*%B
+```
+
+## Operasi Dasar Pada Baris matriks {#rowoperation}
+
+Terdapat tiga buah operasi dasar pada baris matriks. Ketiga operasi ini akan menjadi dasar operasi *sub-chapter* selanjutnya. Ketiga operasi dasar tersebut antara lain:
+
+1. **_Row Scalling_**. Mengalikan baris matriks dengan konstanta bukan nol.
+2. **_Row Swaping_**. Menukar urutan baris pada sebuah matriks (contoh: menukar baris 1 dengan baris 2 dan sebaliknya).
+3. **_Row Replacement_**. Baris matriks diganti dengan hasil penjumlahan atau pengurangan baris matriks tersebut dengan baris matriks lainnya, dimana baris matriks lainnya yang akan dijumlahkan/dikurangkan dengan matriks tersebut telah dilakukan proses *row scalling*. Luaran yang diperoleh pada umumnya adalah nilai nol pada baris matriks awal atau akhir.
+
+Ketiga proses tersebut akan terjadi secara berulang, khusunya jika kita hendak mengerjakan sistem persamaan linier menggunakan algoritma eliminasi Gauss. Untuk mempermudah proses tersebut, kita dapat membuat masing-masing fungsi untuk masing-masing operasi tersebut. Algoritma fungsi-fungsi tersebut selanjutnya menjadi dasar penyusunan algoritma fungsi-fungsi eliminasi Gauss dan dekomposisi matriks yang akan dijelaskan pada *chapter* selanjutnya.
+
+Fungsi *row scalling* pada `R` dapat dituliskan pada sintaks berikut:
+
+```{r}
+scale_row <- function(m, row, k){
+ m[row, ] <- m[row, ]*k
+ return(m)
+}
+```
+
+Berikut adalah contoh penerapannya:
+
+```{r}
+# membuat matriks A
+(A <- matrix(1:15, nrow=5))
+
+# lakukan scaling pada row 2 dengan nilai 10
+scale_row(m=A, row=2, 10)
+```
+
+> **Catatan:** Untuk menyimpan hasil perhitungan, simpan proses perhitungan dalam sebuah objek (lihat Chapter \@ref(assigningvar)).
+
+*Row swapping* merupakan proses yang berulang, kita perlu menyimpan terlebih dahulu baris matriks pertama kedalam sebuah objek. Baris matriks pertama selanjutnya diganti dengan baris matriks kedua, sedangkan baris matriks kedua selanjutnya akan diganti dengan baris matriks pertama yang telah terlebih dahulu disimpan dalam sebuah objek. Fungsi *row swapping* pada `R` dapat dituliskan pada sintaks berikut:
+
+```{r}
+swap_row <- function(m, row1, row2){
+  row_tmp <- m[row1, ]
+  m[row1, ] <- m[row2, ]
+  m[row2, ] <- row_tmp
+  return(m)
+}
+```
+
+Berikut merupakan contoh penerapan fungsi `swap_row()`:
+
+```{r}
+# pertukarkan baris 2 dengan baris 5
+swap_row(m=A, row1=2, row2=5)
+```
+
+Pada proses *row replacement*, proses perhitungan dilakukan dengan melakukan penjumlahan suatu baris matriks dengan baris matriks lainnya dengan terlebih dahulu melakukan *row scalling* terhadap matriks lainnya. Berikut adalah fungsi `replace_row()` yang ditulis pada `R`:
+
+```{r}
+replace_row <- function(m, row1, row2, k){
+  m[row2, ] <- m[row2, ] + m[row1, ]*k
+  return(m)
+}
+```
+
+Berikut adalah contoh penerapan fungsi `replace_row()`:
+
+```{r}
+replace_row(m=A, row1=1, row2=3, k=-3)
+```
+
+## Eliminasi Gauss {#gausselimination}
+
+Pada *sub-chapter* ini kita akan menggunakan operasi baris elementer yang telah dijelaskan pada Chapter \@ref(assigningvar). Terdapat dua topik yang akan dibahas pada *sub-chapter* ini, yaitu: *row echelon form* termasuk *reduced row echelon form* dan matriks tridiagonal.
+
+Eliminasi Gauss merupakan sebuah cara untuk mencari penyelesaian sistem persamaan linier. Ide dasar dari eliminasi Gauss adalah melakukan operasi matematika pada baris matriks (lihat Chapter \@ref(assigningvar)) dan melanjutkannya sampai hanya tersisa satu variabel saja. Kita dapat melakukan lebih dari satu operasi baris elementer pada proses elmininasi ini (contoh: mengalikan sebuah baris dengan konstanta dan menjumlahkan hasilnya pada baris lain).
+
+### *Row Echelon Form* {#rowechelonform}
+
+Sebuah matriks merupakan *row echelon form* jika matriks tersebut memenuhi beberapa kondisi:
+
+1. Angka bukan nol pertama dari kiri (*leading coefficient*) selalu di sebelah kanan angka bukan nol pertama pada baris di atasnya.
+2. Baris yang terdiri dari semua nol ada di bagian bawah matriks.
+
+Misalkan terdapat persamaan linier seperti yang ditunjukkan pada Persamaan \@ref(eq:spl).
+
+\begin{equation}
+\begin{matrix}
+  a_{1.1}x_1+a_{1.2}x_2+a_{1.3}x_3+\cdots+a_{1.n}x_n=b_1 \\
+  a_{2.1}x_1+a_{2.2}x_2+a_{2.3}x_3+\cdots+a_{2.n}x_n=b_2 \\
+  a_{3.1}x_1+a_{3.2}x_2+a_{3.3}x_3+\cdots+a_{3.n}x_n=b_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  a_{m.1}x_1+a_{m.2}x_2+a_{m.3}x_3+\cdots+a_{m.n}x_n=b_n
+ \end{matrix}
+  (\#eq:spl)
+\end{equation}
+
+dimana $a_{i.j}$ untuk $i=1$ sampai dengan $m$ dan $j=1$ sampai dengan $n$ merupakan koefisien persamaan linier. $x_i$ untuk $i=1$ sampai dengan $n$ merupakan variabel bebas pada sistem persamaan linier.
+
+Persamaan linier pada Persamaan \@ref(eq:spl) dapat dinyatakan ke dalam bentuk matriks pada Persamaan \@ref(eq:matrikpl).
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n}           \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n}           \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n}           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  (\#eq:matrikpl)
+\end{equation}
+
+\begin{equation}
+AX=B
+  (\#eq:matrikpl2)
+\end{equation}
+
+dimana:
+
+- matriks A merupakan matriks koefisien / Jacobian
+- vaktor X merupakan vaktor variabel
+- vektor B merupakan vektor konstanta
+
+matriks pada Persamaan \@ref(eq:matrikpl) dapat diubah menjadi *augmented matrix*, yaitu: perluasan matriks A dengan menambahkan vektor B pada kolom terakhirnya.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots            \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+  (\#eq:augmatrik)
+\end{equation}
+
+\begin{equation}
+A=\left[A|B\right]
+  (\#eq:augmatrik2)
+\end{equation}
+
+Persamaan \@ref(eq:matrikpl) dan Persamaan \@ref(eq:augmatrik) akan memiliki penyelesaian tunggal bila memenuhi syarat-syarat berikut:
+
+- ukuran persamaan linier simultan bujursangkar (jumlah persamaan sama dengan jumlah variabel bebas).
+- sistem persamaan linier *non-homogen* di mana minimal ada satu nilai vektor konstanta $B$ tidak nol atau terdapat $b_{n}\neq 0$.
+- Determinan dari matriks koefisiensistem persamaan linier tidak sama dengan nol.
+
+Untuk memperoleh penyelesaian sistem persamaan linier, Persamaan \@ref(eq:augmatrik) perlu dilakukan operasi baris elementer. Hasil operasi baris dasar akan menghasilkan matriks *row echelon form* yang disajikan pada Persamaan \@ref(eq:refeq).
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     c_{1.1} & c_{1.2} & c_{1.3} &\cdots& c_{1.n} & d_1     \\[0.3em]
+     0       & c_{2.2} & c_{2.3} &\cdots& c_{2.n} & d_2     \\[0.3em]
+     0       & 0       & c_{3.3} &\cdots& c_{3.n} & d_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     0       & 0       & 0      &\cdots& c_{m.n} & d_n
+     \end{bmatrix}
+  (\#eq:refeq)
+\end{equation}
+
+Sehingga penyelesaian sistem persamaan linier dapat diperoleh menggunakan Persamaan \@ref(eq:refsolution).
+
+\begin{equation}
+\begin{matrix}
+  x_n=\frac{d_n}{c_{m.n}} \\
+  x_{n-1}=\frac{1}{C_{m-1.n-1}}\left(d_{n-1}-c_{m-1.n}x_n\right) \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_2=\frac{1}{c_{2.2}}\left(d_2-c_{2.3}x_3-c_{2.4}x_4-\dots-c_{2.n}x_n\right) \\
+  x_1=\frac{1}{c_{1.1}}\left(d_1-c_{1.2}x_2-c_{1.3}x_3-\dots-c_{1.n}x_n\right)
+   \end{matrix}
+  (\#eq:refsolution)
+\end{equation}
+
+```{example, refexm}
+Selesaikan sistem persamaan berikut:
+```
+
+$$
+\begin{matrix}
+  x_1+x_2+x_3=6 \\
+  x_1+2x_2-x_3=2 \\
+  2x_1+x_2+2x_3=10 \\
+\end{matrix}
+$$
+
+**Jawab**:
+
+*Augmented matrix* sistem persamaan linier tersebut adalah sebagai berikut:
+
+$$
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     1 & 2 & -1 & 2     \\[0.3em]
+     2 & 1 & 2 & 10
+\end{bmatrix}
+$$
+
+Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langkah pertama, baris ke-2 dikurangkan dengan baris ke-1 ($B_2-B_1$) dan baris ke-3 dikurangkan oleh dua kali baris ke-1 ($B_3-2B_1$).
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     1 & 2 & -1 & 2     \\[0.3em]
+     2 & 1 & 2 & 10
+\end{bmatrix}
+\begin{matrix}
+  B_2-B_1 \\
+  \implies \\
+  B_3-2B_1
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & -1 & 0 & -2
+\end{bmatrix}
+\end{equation}
+
+Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah selanjutnya. Pada langkah selanjutnya operasi baris elementer kembali dilanjutkan. Baris ke-3 dikurangkan denganbaris ke-2 ($B_3-B_2$).
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & -1 & 0 & -2
+\end{bmatrix}
+\begin{matrix}
+  B_3-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & 0 & -2 & -6
+\end{bmatrix}
+\end{equation}
+
+
+Setelah diperoleh matriks *row echelon form* selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan \@ref(eq:refsolution).
+
+$$
+\begin{matrix}
+  x_3=\frac{-6}{-2}=3 \\
+  x_2=\frac{1}{1}\left(-4-\left(2\right)3\right)=2 \\
+  x_1=\frac{1}{1}\left(6-2-3\right)=1
+\end{matrix}
+$$
+
+
+**Algoritma _Row Echelon Form_**
+
+1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$
+2. Buat *augmented matrix* $\left[A|B\right]$ namakan dengan $A$
+3. Untuk baris ke-$i$ dimana $i=1$ s/d $n$, perhatikan apakah nilai $a_{i.j}$ sama dengan nol. 
+
+* **Bila iya**, lakukan *row swapping* antara baris ke-$i$ dan baris ke-$i+k\leq n$, dimana $a_{1+k.j}$ tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+* **Bila tidak**, lanjutkan.
+
+4. Untuk baris ke-$j$, dimana $j=i+1$ s/d $n$, lakukan operasi baris elementer:
+
+* Hitung $c=\frac{a_{j.i}}{a_{i.i}}$
+* untuk kolom $k$, dimana $k=1$ s/d $n+1$, hitung $a_{j.k}=a_{j.k}-c.a_{i.k}$
+
+5. Hitung akar, untuk $i=n$ s/d 1 (bergerak dari baris pertama) menggunakan Persamaan \@ref(eq:refsolution). 
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada `R` untuk menyelesaikan sistem persamaan linier menggunakan matriks *row echelon form*. Fungsi yang akan dibentuk hanya sampai pada algoritma ke-4. Proses substitusi akan dilakukan secara manual. Berikut adalah sintaks yang digunakan:
+
+```{r}
+ref_matrix <- function(m){
+  count_rows <- nrow(m)
+  count_cols <- ncol(m)
+  piv <- 1
+  
+  for(row_curr in 1:count_rows){
+    if(piv <= count_cols){
+      i <- row_curr
+      while(m[i, piv] == 0 && i < count_rows){
+        i <- i+1
+        if(i > count_rows){
+          i <- row_curr
+          piv <- piv+1
+          if(piv > count_cols)
+            return(m)
+        }
+      }
+    if(i != row_curr)
+      m <- swap_row(m, i, row_curr)
+    for(j in row_curr:count_rows)
+      if(j != row_curr){
+        k <- m[j, piv]/m[row_curr, piv]
+        m <- replace_row(m, row_curr, j, -k)
+      }
+    piv <- piv+1
+    }
+  }
+  return(m)
+}
+      
+```
+
+Dengan menggunakan fungsi `ref_matrix()`, kita dapat membentuk matriks *row echelon form* pada Contoh \@ref(exm:refexm).
+
+```{r}
+am <- c(1,1,2,
+        1,2,1,
+        1,-1,2,
+        6,2,10)
+(m <- matrix(am, nrow=3))
+
+ref_matrix(m)
+```
+
+matriks yang diperoleh selanjutnya dapat diselesaikan menggunakan Persamaan \@ref(eq:refsolution).
+
+```{example, refexm2}
+Dengan menggunakan fungsi `ref_matrix()`, buatlah matriks *row echelon form* dari sistem persamaan linier berikut:
+```
+
+$$
+\begin{matrix}
+  2x_1+x_2-x_3=1 \\
+  3x_1+2x_2-2x_3=1 \\
+  x_1-5x_2+4x_3=3 \\
+\end{matrix}
+$$
+
+**Jawab**:
+
+*Augmented matrix* dari sistem persamaan tersebut adalah sebagai berikut:
+
+$$
+\begin{bmatrix}
+     2 & 1 & -1 & 1     \\[0.3em]
+     3 & 2 & -2 & 1     \\[0.3em]
+     1 & -5 & 4 & 3
+\end{bmatrix}
+$$
+
+Penyelesaian matriks tersebut adalah sebagai berikut:
+
+```{r}
+(m <- matrix(c(2,3,1,
+              1,2,-5,
+              -1,-2,4,
+              1,1,3), nrow=3))
+ref_matrix(m)
+```
+
+Proses lebih lanjut akan menghasilkan penyelesaian sebagai berikut:
+
+$$
+\begin{matrix}
+     x_1=1     \\[0.3em]
+     x_2=2     \\[0.3em]
+     x_3=3
+\end{matrix}
+$$
+
+### Eliminasi Gauss-Jordan {#redrowechelonform}
+
+Berbeda dengan metode eliminasi Gauss yang telah dijelaskan pada Chapter \@ref(rowechelonform), metode eliminasi Gauss-Jordan membentuk matriks menjadi bentuk *reduced row echelon form*. Metode ini merupakan pengembangan metode eliminasi Gauss, dimana matriks sebelah kiri *augmented matrix* diubah menjadi matriks diagonal (lihat Persamaan \@ref(eq:gaussjordan)).
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     1       & 0       & 0       &\cdots& 0       & d_1     \\[0.3em]
+     0       & 1       & 0       &\cdots& 0       & d_2     \\[0.3em]
+     0       & 0       & 1       &\cdots& 0       & d_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     0       & 0       & 0      &\cdots& 1        & d_n
+     \end{bmatrix}
+  (\#eq:gaussjordan)
+\end{equation}
+
+
+Sehingga penyelesaian persamaan linier tersebut adalah nilai $d_1,d_2,d3,\dots,d_n$ dan atau:
+
+\begin{equation}
+\begin{matrix}
+  x_1=d_1 \\
+  x_2=d_2 \\
+  x_3=d_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_n=d_n
+   \end{matrix}
+  (\#eq:gaussjordansolution)
+\end{equation}
+
+```{example, gaussjordanexm}
+Selesaikan sistem persamaan berikut:
+```
+
+$$
+\begin{matrix}
+  x_1+x_2=3 \\
+  2x_1+4x_2=8 \\
+\end{matrix}
+$$
+
+**Jawab**:
+
+*Augmented matrix* dari persamaan linier tersebut adalah sebagai berikut:
+
+$$
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     2 & 4 & 8
+\end{bmatrix}
+$$
+
+Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. 
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     2 & 4 & 8
+\end{bmatrix}
+\begin{matrix}
+  B_2-2B_1 \\
+  \implies 
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 2 & 2
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 2 & 2
+\end{bmatrix}
+\begin{matrix}
+  \frac{B_2}{2} \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\begin{matrix}
+  B_1-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 0 & 2     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\end{equation}
+
+Penyelesaian persamaan linier tersebut adalah sebagai berikut:
+
+$$
+x_1=2\ dan\ x_2=1
+$$
+
+**Algoritma Metode Eliminasi Gauss-Jordan**
+
+1. Masukkan matriks $A$ dan vektor $B$ beserta ukurannya $n$
+2. Buat *augmented matrix* $\left[A|B\right]$ namakan dengan $A$
+3. Untuk baris ke-$i$ dimana $i=1$ s/d $n$
+
+  * Perhatikan apakah nilai $a_{i.i}$ sama dengan nol:
+  
+    + **Bila ya**: pertukakan baris ke-$i$ dan baris ke-$i+k\le n$, dimana $a_{i+k.i}$ tidak sama dengan nol, bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+    + **Bila tidak**: lanjutkan
+
+  * Jadikan nilai diagonalnya menjadi satu dengan cara untuk setiap kolom $k$ dimana $k=1$ s/d $n+1$, hitung $a_{i.k}=\frac{a_{i.k}}{a_{i.i}}$
+
+4. Untuk baris ke-$j$, dimana $j=i+1$ s/d $n$. Lakukan operasi baris elementer untuk kolom $k$ dimana $k=1$ s/d $n$.
+
+  * Hitung $c=a_{j.i}$
+  * Hitung $a_{j.k}=a_{j.k}-c.a_{i.k}$
+
+5. Penyelesaian untuk $i=n$ s/d 1 disajikan pada Persamaan \@ref(eq:gaussjordansolution).
+
+Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan `R`. Fungsi tersebut adalah sebagai berikut:
+
+```{r}
+gauss_jordan <- function (m){
+    count_rows <- nrow (m)
+    count_cols <- ncol (m)
+    piv <- 1
+    
+    for(row_curr in 1:count_rows){
+        if(piv <= count_cols){
+            i <- row_curr
+            while(m[i, piv] == 0 && i < count_rows){
+                i <- i + 1
+                if(i > count_rows){
+                    i <- row_curr
+                    piv <- piv + 1
+                    if(piv > count_cols)
+                        return (m)
+                }
+            }
+            if(i != row_curr)
+                m <- swap_row(m, i, row_curr)
+            piv_val <- m[row_curr , piv]
+            m <- scale_row (m, row_curr , 1 / piv_val)
+            for(j in 1: count_rows){
+                if(j != row_curr){
+                    k <- m[j, piv]/m[row_curr, piv]
+                    m <- replace_row (m, row_curr, j, -k)
+                }
+            }
+            piv <- piv + 1
+        }
+    }
+    return (m)
+}
+```
+
+Dengan menggunakan fungsi `gauss_jordan()`, sistem persamaan linier pada Contoh \@ref(exm:gaussjordanexm):
+
+```{r}
+(m <- matrix(c(1,2,1,4,3,8), nrow=2))
+gauss_jordan(m)
+```
+
+```{example, gaussjordanexm2}
+Dengan menggunakan fungsi `gauss_jordan()`, carilah penyelesaian sistem persamaan linier pada Contoh \@ref(exm:refexm) dan Contoh \@ref(exm:refexm2):
+```
+
+**Jawab**:
+
+Untuk Contoh \@ref(exm:refexm):
+
+```{r}
+am <- c(1,1,2,
+        1,2,1,
+        1,-1,2,
+        6,2,10)
+m <- matrix(am, nrow=3)
+
+gauss_jordan(m)
+```
+
+Untuk Contoh \@ref(exm:refexm2):
+
+```{r}
+m <- matrix(c(2,3,1,1,2,-5,
+              -1,-2,4,1,1,3), 
+            nrow=3)
+gauss_jordan(m)
+```
+  
+### Matrik Tridiagonal {#matriktridiagonal}
+
+Metode eliminasi Gauss merupakan metode yang sederhana untuk digunakan khususnya jika semua koefisien bukan nol berkumpul pada diagonal utama dan beberapa diagonal sekitarnya. Suatu sistem yang bersifat demikian disebut sebagai *banded* dan banyaknya diagonal yang memuat koefisien bukan nol disebut sebagai *bandwidth*. Contoh khusus yang sering dijumpai adalah matriks tridiagonal yang memiliki *bandwidth* tiga.
+
+Proses eliminasi untuk matriks tridiagonal bersifat trivial karena dengan membentuk sebuah subdiagonal tambahan, proses substitusi mundur segera dapat dilakukan. Bentuk matriks tridiagonal disajikan pada Persamaan \@ref(eq:matrikstridiagonal).
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & 0       &\cdots& 0                 \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& 0             \\[0.3em]
+     0       & a_{3.2} & a_{3.3} &\cdots& 0             \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0       & 0       &\cdots& a_{m.n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  (\#eq:matrikstridiagonal)
+\end{equation}
+
+Penyelesaian persamaan tersebut disajikan pada Persamaan \@ref(eq:solusimatrikstridiagonal).
+
+\begin{equation}
+x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i.j}}
+  (\#eq:solusimatrikstridiagonal)
+\end{equation}
+
+dimana $i=n-1,n-2,\dots,1$.
+
+Pada beberapa *textbook*, diagonal matriks sering dilambangkan dengan $l$(diagonal bawah), $d$(diagonal tengah), dan $u$ (diagonal atas). Bentuk matriksnya disajikan pada Persamaan \@ref(eq:matrikstridiagonal2).
+
+\begin{equation}
+\begin{bmatrix}
+     d_{1} & u_{2} & 0       &\cdots& 0                 \\[0.3em]
+     l_{2} & d_{2} & u_{3} &\cdots& 0             \\[0.3em]
+     0       & l_{3} & d_{3} &\cdots& 0             \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0       & 0       &\cdots& d_{n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  (\#eq:matrikstridiagonal2)
+\end{equation}
+
+**Algoritma Penyelesaian Matrik Tridiagonal**
+
+1. Bentuk sistem persamaan linier menjadi matriks pada Persamaan \@ref(eq:matrikstridiagonal2).
+2. Lakukan *foward sweep*. Setiap elemen diagonal $l$ dieliminasi menggunakan reduksi baris.
+
+* Untuk $i=1$
+
+  + Hitung $u_1=\frac{u_1}{d_1}$
+  + Hitung $b_1=\frac{b_1}{d_1}$
+
+* Untuk $i=2$ s/d $n-1$
+
+  + Hitung $u_i=\frac{u_i}{d_i-l_i\times u_{i-1}}$
+  + Hitung $b_i=\frac{b_i-l_i\times u_{i-1}}{d_i-l_i\times u_{i-1}}$
+
+* Hitung $b_n=\frac{b_n-l_n\times u_{n-1}}{d_n-l_n\times u_{n-1}}$
+
+3. Lakukan *backward sweep*. Setiap elemen diagonal $u$ dilakukan eliminasi.
+
+* Untuk $i=n-1$ s/d $1$
+
+  + Hitung $x_n=b_i-u_i\times x_{i+1}$
+
+* Hitung $x_n=b_n$
+
+Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada `R`. Fungsi penyelesaian matriks tridiagonal disajikan sebagai berikut:
+
+```{r}
+tridiagmatrix <- function (L, D, U, b){
+  n <- length (D)
+  L <- c(NA , L)
+  
+  ## forward sweep
+  U[1] <- U[1] / D[1]
+  b[1] <- b[1] / D[1]
+  for(i in 2:(n - 1)){
+      U[i] <- U[i] / (D[i] - L[i] * U[i - 1])
+      b[i] <- (b[i] - L[i] * b[i - 1]) /
+      (D[i] - L[i] * U[i - 1])
+  }
+  b[n] <- (b[n] - L[n] * b[n - 1])/(D[n] - L[n] * U[n - 1])
+  
+  ## backward sweep
+  x <- rep.int (0, n)
+  x[n] <- b[n]
+  for(i in (n - 1) :1)
+      x[i] <- b[i] - U[i] * x[i + 1]
+  return (x)
+}
+```
+
+```{example, tridiagexm}
+Selesaikan sistem persamaan berikut menggunakan fungsi `tridiagmatrix()` dan fungsi `gauss_jordan()`!
+```
+
+$$
+\begin{matrix}
+  3x_1+4x_2=20 \\
+  4x_1+5x_2-2x_3=28 \\
+  2x_2+5x_3-3x_4=18 \\
+  3x_3+5x_4=18
+\end{matrix}
+$$
+
+**Jawab**:
+
+Langkah pertama untuk menyelesaikannya, kita harus merubah persamaan tersebut kedalam bentuk matriks
+
+\begin{equation}
+\begin{bmatrix}
+     3 & 4 & 0  & 0     \\[0.3em]
+     4 & 5 & 2 & 0     \\[0.3em]
+     0 & 2 & 5 & 3     \\[0.3em]
+     0 & 0 & 3 & 5
+\end{bmatrix}
+x = \begin{bmatrix}
+     20     \\[0.3em]
+     28     \\[0.3em]
+     18     \\[0.3em]
+     18
+\end{bmatrix}
+\end{equation}
+
+Untuk menyelesaikan persamaan tersebut menggunakan fungsi `tridiagmatrix()`, kita perlu membentuk vektor diagonal $l$, $d$, $u$, dan $b$.
+
+```{r}
+l <- u <- c(4, 2, 3); d <- c(3, 5, 5, 5)
+b <- c(20, 28, 18, 18)
+```
+
+Setelah terbentuk, vektor tersebut dapat langsung dimasukkan ke dalam fungsi `tridiagmatrix()`.
+
+```{r}
+tridiagmatrix(L=l, D=d, U=u, b=b)
+```
+
+Untuk menyelesaikannya menggunakan fungsi `gauss_jordan()`, kita perlu membentuk *augmented matrix*-nya terlebih dahulu.
+
+```{r}
+m <- matrix(c(3,4,0,0,4,5,2,0,
+              0,2,5,3,0,0,3,5,
+              20,28,18,18), nrow=4)
+gauss_jordan(m)
+```
+
+### Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi `solve()` {#solvefunc}
+
+`R` menyediakan fungsi bawaan `solve()` untuk menyelesaiakan sistem persamaan linier. Format fungsi `solve()` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+solve(a,b)
+```
+
+> **Catatan**:
+>
+> - **a**: matriks koefisien atau matriks segiempat
+> - **b**: vektor konstanta
+
+Berikut adalah contoh penerapan fungsi `solve()` pada sistem persamaan linier yang disajikan pada Contoh \@ref(exm:refexm2):
+
+```{r}
+# memecah matriks m menjadi matriks koefisien dan vektor konstanta
+a <- matrix(c(2,3,1,1,2,-5,-1,-2,4),nrow=3)
+b <- c(1,1,3)
+
+solve(a,b)
+```
+
+
+
+
+
+
+

@@ -24,7 +24,7 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-07-28" />
+<meta name="date" content="2019-08-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -222,11 +222,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
-<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan Matriks</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-vektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
-<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-matriks"><i class="fa fa-check"></i><b>6.1.2</b> Operasi Matriks</a></li>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasivektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasimatrik"><i class="fa fa-check"></i><b>6.1.2</b> Operasi matriks</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-dasar-pada-baris-matriks"><i class="fa fa-check"></i><b>6.2</b> Operasi Dasar Pada Baris Matriks</a></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#rowoperation"><i class="fa fa-check"></i><b>6.2</b> Operasi Dasar Pada Baris matriks</a></li>
+<li class="chapter" data-level="6.3" data-path="linearaljabar.html"><a href="linearaljabar.html#gausselimination"><i class="fa fa-check"></i><b>6.3</b> Eliminasi Gauss</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linearaljabar.html"><a href="linearaljabar.html#rowechelonform"><i class="fa fa-check"></i><b>6.3.1</b> <em>Row Echelon Form</em></a></li>
+<li class="chapter" data-level="6.3.2" data-path="linearaljabar.html"><a href="linearaljabar.html#redrowechelonform"><i class="fa fa-check"></i><b>6.3.2</b> Eliminasi Gauss-Jordan</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linearaljabar.html"><a href="linearaljabar.html#matriktridiagonal"><i class="fa fa-check"></i><b>6.3.3</b> Matrik Tridiagonal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linearaljabar.html"><a href="linearaljabar.html#solvefunc"><i class="fa fa-check"></i><b>6.3.4</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -288,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:plot"></span>
 <img src="Metode_Numerik_files/figure-html/plot-1.png" alt="Plot berbagai jenis setting type" width="80%" />
 <p class="caption">
-Figure 3.1: Plot berbagai jenis setting type
+Gambar 3.1: Plot berbagai jenis setting type
 </p>
 </div>
 <p>Pada contoh selanjutnya kita akan mencoba membuat kembali data yang akan kita plotkan. Data pada contoh kali ini merupakan data suatu fungsi matematika. Berikut adalah sintaks yang digunakan:</p>
@@ -307,7 +313,7 @@ Figure 3.1: Plot berbagai jenis setting type
 <div class="figure" style="text-align: center"><span id="fig:plot2"></span>
 <img src="Metode_Numerik_files/figure-html/plot2-1.png" alt="Plot fungsi matematika" width="80%" />
 <p class="caption">
-Figure 3.2: Plot fungsi matematika
+Gambar 3.2: Plot fungsi matematika
 </p>
 </div>
 <p>Fungsi lain yang dapat digunakan untuk membuat kurva suatu persamaan matematis adalah fungsi <code>curve()</code>. Berbeda dengan fungsi <code>plot()</code> yang perlu menspesifikasi objek pada sumbu x dan y, fungsi <code>curve()</code> hanya perlu menspesifikasi objek sumbu x saja. Format fungsi <code>curve()</code> adalah sebagai berikut:</p>
@@ -342,7 +348,7 @@ Figure 3.2: Plot fungsi matematika
 <div class="figure" style="text-align: center"><span id="fig:curve"></span>
 <img src="Metode_Numerik_files/figure-html/curve-1.png" alt="Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)" width="80%" />
 <p class="caption">
-Figure 3.3: Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)
+Gambar 3.3: Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi menggunakan fungsi plot dan curve (sebelah kanan)
 </p>
 </div>
 </div>
@@ -366,7 +372,7 @@ Figure 3.3: Visualisasi menggunakan fungsi curve (sebelah kiri) dan visualisasi 
 <div class="figure" style="text-align: center"><span id="fig:barplot"></span>
 <img src="Metode_Numerik_files/figure-html/barplot-1.png" alt="a. bar plot vertikal; b. bar plot horizontal" width="70%" />
 <p class="caption">
-Figure 3.4: a. bar plot vertikal; b. bar plot horizontal
+Gambar 3.4: a. bar plot vertikal; b. bar plot horizontal
 </p>
 </div>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
@@ -383,7 +389,7 @@ Figure 3.4: a. bar plot vertikal; b. bar plot horizontal
 <div class="figure" style="text-align: center"><span id="fig:barplot2"></span>
 <img src="Metode_Numerik_files/figure-html/barplot2-1.png" alt="Kustomisasi bar plot" width="70%" />
 <p class="caption">
-Figure 3.5: Kustomisasi bar plot
+Gambar 3.5: Kustomisasi bar plot
 </p>
 </div>
 <p>Untuk bar plot dengan <em>multiple group</em>, tersedia dua pengaturan posisi yaitu <em>stacked bar plot</em>(menunjukkan proporsi penyusun pada masing-masing grup) dan <em>grouped bar plot</em>(melihat perbedaan individual pada masing-masing grup). Pada Gambar <a href="dataviz.html#fig:barplot3">3.6</a> dan Gambar <a href="dataviz.html#fig:barplot4">3.7</a> , disajikan kedua jenis bar plot tersebut.</p>
@@ -395,7 +401,7 @@ Figure 3.5: Kustomisasi bar plot
 <div class="figure" style="text-align: center"><span id="fig:barplot3"></span>
 <img src="Metode_Numerik_files/figure-html/barplot3-1.png" alt="Stacked bar plot" width="70%" />
 <p class="caption">
-Figure 3.6: Stacked bar plot
+Gambar 3.6: Stacked bar plot
 </p>
 </div>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="co"># grouped</span></a>
@@ -406,7 +412,7 @@ Figure 3.6: Stacked bar plot
 <div class="figure" style="text-align: center"><span id="fig:barplot4"></span>
 <img src="Metode_Numerik_files/figure-html/barplot4-1.png" alt="Grouped bar plot" width="70%" />
 <p class="caption">
-Figure 3.7: Grouped bar plot
+Gambar 3.7: Grouped bar plot
 </p>
 </div>
 </div>
@@ -427,7 +433,7 @@ Figure 3.7: Grouped bar plot
 <div class="figure" style="text-align: center"><span id="fig:hist"></span>
 <img src="Metode_Numerik_files/figure-html/hist-1.png" alt="Histogram" width="70%" />
 <p class="caption">
-Figure 3.8: Histogram
+Gambar 3.8: Histogram
 </p>
 </div>
 <p>Density plot pada <code>R</code> dapat dibuat menggunakan fungsi <code>density()</code>. Berbeda dengan fungsi <code>hist()</code>, fungsi ini tidak langsung menghasilkan grafik densitas. Fungsi <code>density()</code> hanya menghitung kernel densitas pada data. Densitas yang telah dihitung selanjutnya diplotkan menggunakan fungsi <code>plot()</code>. Berikut adalah sintaks dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:dens">3.9</a>:</p>
@@ -439,7 +445,7 @@ Figure 3.8: Histogram
 <div class="figure" style="text-align: center"><span id="fig:dens"></span>
 <img src="Metode_Numerik_files/figure-html/dens-1.png" alt="Density plot" width="70%" />
 <p class="caption">
-Figure 3.9: Density plot
+Gambar 3.9: Density plot
 </p>
 </div>
 <p>Kita juga dapat menambahkan grafik densitas pada histogram sehingga mempermudah pembacaan pada histogram. Untuk melakukannya kita perlu mengubah kernel histigram dari frekuensi menjadi density dengan menambahkan argumen <code>freq=FALSE</code> pada fungsi <code>hist()</code>. Selanjutnya tambahkan fungsi <code>polygon()</code> untuk memplotkan grafik densitas. Berikut adalah sintak dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:denshist">3.10</a>:</p>
@@ -454,7 +460,7 @@ Figure 3.9: Density plot
 <div class="figure" style="text-align: center"><span id="fig:denshist"></span>
 <img src="Metode_Numerik_files/figure-html/denshist-1.png" alt="Density plot dan histogram" width="70%" />
 <p class="caption">
-Figure 3.10: Density plot dan histogram
+Gambar 3.10: Density plot dan histogram
 </p>
 </div>
 </div>
@@ -465,7 +471,7 @@ Figure 3.10: Density plot dan histogram
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
 <img src="Metode_Numerik_files/figure-html/boxplot-1.png" alt="Boxplot variabel Sepal.Length" width="70%" />
 <p class="caption">
-Figure 3.11: Boxplot variabel Sepal.Length
+Gambar 3.11: Boxplot variabel Sepal.Length
 </p>
 </div>
 <p>Boxplot juga dapat dibuat berdasarkan variabel factor. Hal ini berguna untuk melihat perbedaan ditribusi data pada masing-masing grup. Pada sintaks berikut dibuat boxplot berdasarkan variabel <code>Species</code>. Output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:boxplot2">3.12</a>:</p>
@@ -473,7 +479,7 @@ Figure 3.11: Boxplot variabel Sepal.Length
 <div class="figure" style="text-align: center"><span id="fig:boxplot2"></span>
 <img src="Metode_Numerik_files/figure-html/boxplot2-1.png" alt="Boxplot berdasarkan variabel species" width="70%" />
 <p class="caption">
-Figure 3.12: Boxplot berdasarkan variabel species
+Gambar 3.12: Boxplot berdasarkan variabel species
 </p>
 </div>
 <p>Kita juga dapat mengubah warna outline dan box pada boxplot. Berikut adalah contoh sintaks yang digunakan untuk melakukannya dan output yang dihasilkan disajikan pada Gambar <a href="dataviz.html#fig:boxplot3">3.13</a>:</p>
@@ -485,7 +491,7 @@ Figure 3.12: Boxplot berdasarkan variabel species
 <div class="figure" style="text-align: center"><span id="fig:boxplot3"></span>
 <img src="Metode_Numerik_files/figure-html/boxplot3-1.png" alt="Boxplot dengan warna berdasarkan spesies" width="70%" />
 <p class="caption">
-Figure 3.13: Boxplot dengan warna berdasarkan spesies
+Gambar 3.13: Boxplot dengan warna berdasarkan spesies
 </p>
 </div>
 <p>Kita juga dapat membuat boxplot pada <em>multiple group</em>. Data yang digunakan untuk contoh tersebut adalah dataset <code>ToothGrowth</code>. Berikut adalah sintaks untuk memuat dataset tersebut:</p>
@@ -507,7 +513,7 @@ Figure 3.13: Boxplot dengan warna berdasarkan spesies
 <div class="figure" style="text-align: center"><span id="fig:boxplot4"></span>
 <img src="Metode_Numerik_files/figure-html/boxplot4-1.png" alt="Boxplot multiple group" width="70%" />
 <p class="caption">
-Figure 3.14: Boxplot multiple group
+Gambar 3.14: Boxplot multiple group
 </p>
 </div>
 </div>
@@ -538,7 +544,7 @@ Figure 3.14: Boxplot multiple group
 <div class="figure" style="text-align: center"><span id="fig:title"></span>
 <img src="Metode_Numerik_files/figure-html/title-1.png" alt="Menambahkan Judul" width="70%" />
 <p class="caption">
-Figure 3.15: Menambahkan Judul
+Gambar 3.15: Menambahkan Judul
 </p>
 </div>
 <p>kita juga dapat melakukan kustomisasi pada warna, <em>font style</em>, dan ukuran font judul. Untuk melakukan kustomisasi pada warna pada judul, kita dapat menambahkan argumen sebagai berikut:</p>
@@ -593,7 +599,7 @@ Figure 3.15: Menambahkan Judul
 <div class="figure" style="text-align: center"><span id="fig:title2"></span>
 <img src="Metode_Numerik_files/figure-html/title2-1.png" alt="Menambahkan Judul (2)" width="70%" />
 <p class="caption">
-Figure 3.16: Menambahkan Judul (2)
+Gambar 3.16: Menambahkan Judul (2)
 </p>
 </div>
 <p>Kita telah belajar bagaimana menambahkan judul langsung pada fungsi plot. Selain cara tersebut, telah penulis jelaskan bahwa kita dapat menambahkan judul melalui fungsi <code>title()</code>. argumen yang dimasukkan pada dasarnya tidak berbeda dengan ketika kita menambahkan judul secara langsung pada plot. Berikut adalah contoh sintaks dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:title3">3.17</a>:</p>
@@ -620,7 +626,7 @@ Figure 3.16: Menambahkan Judul (2)
 <div class="figure" style="text-align: center"><span id="fig:title3"></span>
 <img src="Metode_Numerik_files/figure-html/title3-1.png" alt="Menambahkan Judul (3)" width="70%" />
 <p class="caption">
-Figure 3.17: Menambahkan Judul (3)
+Gambar 3.17: Menambahkan Judul (3)
 </p>
 </div>
 </div>
@@ -656,7 +662,7 @@ Figure 3.17: Menambahkan Judul (3)
 <div class="figure" style="text-align: center"><span id="fig:legend"></span>
 <img src="Metode_Numerik_files/figure-html/legend-1.png" alt="Menambahkan legend" width="70%" />
 <p class="caption">
-Figure 3.18: Menambahkan legend
+Gambar 3.18: Menambahkan legend
 </p>
 </div>
 <p>Kita dapat menambahkan judul, merubah font, dan merubah warna backgroud pada legend. Argumen yang ditambahkan pada legend adalah sebagai berikut:</p>
@@ -685,7 +691,7 @@ Figure 3.18: Menambahkan legend
 <div class="figure" style="text-align: center"><span id="fig:legend2"></span>
 <img src="Metode_Numerik_files/figure-html/legend2-1.png" alt="Menambahkan legend (2)" width="70%" />
 <p class="caption">
-Figure 3.19: Menambahkan legend (2)
+Gambar 3.19: Menambahkan legend (2)
 </p>
 </div>
 <p>Kita dapat melakukan kustomisasi pada border dari legend melalui argumen <code>box.lty=</code>(jenis garis), <code>box.lwd=</code>(ukuran garis), dan <code>box.col=</code>(warna box). Berikut adalah penerapan argumen tersebut beserta output yang dihasilkan pada Gambar <a href="dataviz.html#fig:legend3">3.20</a>:</p>
@@ -703,7 +709,7 @@ Figure 3.19: Menambahkan legend (2)
 <div class="figure" style="text-align: center"><span id="fig:legend3"></span>
 <img src="Metode_Numerik_files/figure-html/legend3-1.png" alt="Menambahkan legend (3)" width="70%" />
 <p class="caption">
-Figure 3.20: Menambahkan legend (3)
+Gambar 3.20: Menambahkan legend (3)
 </p>
 </div>
 <p>Selain menggunakan koordinat, kita juga dapat melakukan kustomisasi posisi legend menggunakan <em>keyword</em> seperti: bottomright“,”bottom“,”bottomleft“,”left“,”topleft“,”top“,”topright“,”right" and “center”. Sejumlah kustomisasi legend berdasarkan <em>keyword</em> disajikan pada Gambar <a href="dataviz.html#fig:legend4">3.21</a>:</p>
@@ -751,7 +757,7 @@ Figure 3.20: Menambahkan legend (3)
 <div class="figure" style="text-align: center"><span id="fig:legend4"></span>
 <img src="Metode_Numerik_files/figure-html/legend4-1.png" alt="Kustomisasi posisi legend" width="70%" />
 <p class="caption">
-Figure 3.21: Kustomisasi posisi legend
+Gambar 3.21: Kustomisasi posisi legend
 </p>
 </div>
 </div>
@@ -783,7 +789,7 @@ Figure 3.21: Kustomisasi posisi legend
 <div class="figure" style="text-align: center"><span id="fig:text"></span>
 <img src="Metode_Numerik_files/figure-html/text-1.png" alt="Menambahkan teks" width="70%" />
 <p class="caption">
-Figure 3.22: Menambahkan teks
+Gambar 3.22: Menambahkan teks
 </p>
 </div>
 <p>Sedangkan sintaks berikut adalah contoh bagaimana menambahkan persamaan kedalam bidang grafik dan output yang dihasilkan pada Gambar <a href="dataviz.html#fig:text2">3.23</a>:</p>
@@ -794,7 +800,7 @@ Figure 3.22: Menambahkan teks
 <div class="figure" style="text-align: center"><span id="fig:text2"></span>
 <img src="Metode_Numerik_files/figure-html/text2-1.png" alt="Menambahkan teks (2)" width="70%" />
 <p class="caption">
-Figure 3.23: Menambahkan teks (2)
+Gambar 3.23: Menambahkan teks (2)
 </p>
 </div>
 <p>Fungsi <code>mtext()</code> berguna untuk menambahkan teks pada frame sekitar bidang grafik. Format yang digunakan adalah sebagai berikut:</p>
@@ -817,7 +823,7 @@ Figure 3.23: Menambahkan teks (2)
 <div class="figure" style="text-align: center"><span id="fig:text3"></span>
 <img src="Metode_Numerik_files/figure-html/text3-1.png" alt="Menambahkan teks (3)" width="70%" />
 <p class="caption">
-Figure 3.24: Menambahkan teks (3)
+Gambar 3.24: Menambahkan teks (3)
 </p>
 </div>
 </div>
@@ -841,7 +847,7 @@ Figure 3.24: Menambahkan teks (3)
 <div class="figure" style="text-align: center"><span id="fig:abline"></span>
 <img src="Metode_Numerik_files/figure-html/abline-1.png" alt="Menambahkan garis" width="70%" />
 <p class="caption">
-Figure 3.25: Menambahkan garis
+Gambar 3.25: Menambahkan garis
 </p>
 </div>
 </div>
@@ -896,7 +902,7 @@ Figure 3.25: Menambahkan garis
 <div class="figure" style="text-align: center"><span id="fig:symbol"></span>
 <img src="Metode_Numerik_files/figure-html/symbol-1.png" alt="Symbol plot" width="70%" />
 <p class="caption">
-Figure 3.26: Symbol plot
+Gambar 3.26: Symbol plot
 </p>
 </div>
 <p>Pada <code>R</code> kita juga dapat mengatur jenis garis yang akan ditampilkan pada plot dengan menambahkan argumen <code>lty=</code> (<em>line type</em>) pada fungsi plot. Nilai yang dapat dimasukkan adalah nilai integer. Keterangan masing-masing nilai tersebut adalah sebagai berikut:</p>
@@ -924,7 +930,7 @@ Figure 3.26: Symbol plot
 <div class="figure" style="text-align: center"><span id="fig:lty"></span>
 <img src="Metode_Numerik_files/figure-html/lty-1.png" alt="Line type" width="70%" />
 <p class="caption">
-Figure 3.27: Line type
+Gambar 3.27: Line type
 </p>
 </div>
 </div>
@@ -966,7 +972,7 @@ Figure 3.27: Line type
 <div class="figure" style="text-align: center"><span id="fig:axis"></span>
 <img src="Metode_Numerik_files/figure-html/axis-1.png" alt="Modifikasi axis" width="70%" />
 <p class="caption">
-Figure 3.28: Modifikasi axis
+Gambar 3.28: Modifikasi axis
 </p>
 </div>
 <p>Kita dapat mengubah rentang nilai pada axis menggunakan fungsi <code>xlim()</code> dan <code>ylim()</code> yang menyatakan vektor nilai masimum dan minimum rentang. Selain itu kita dapat juga melakukan tranformasi baik pada sumbu x dan sumbu y. Berikut adalah argumen yang dapat ditambahkan pada fungsi grafik:</p>
@@ -998,7 +1004,7 @@ Figure 3.28: Modifikasi axis
 <div class="figure" style="text-align: center"><span id="fig:axis2"></span>
 <img src="Metode_Numerik_files/figure-html/axis2-1.png" alt="Mengubah rentang dan skala axis" width="80%" />
 <p class="caption">
-Figure 3.29: Mengubah rentang dan skala axis
+Gambar 3.29: Mengubah rentang dan skala axis
 </p>
 </div>
 <p>Kita dapat melakukan kustomisasi pada <em>tick mark</em>. Kustomisasi yang dapat dilakukan adalah merubah warna, <em>font style</em>, ukuran font, orientasi, serta menyembunyikan <em>tick mark</em>.</p>
@@ -1035,7 +1041,7 @@ Figure 3.29: Mengubah rentang dan skala axis
 <div class="figure" style="text-align: center"><span id="fig:axis3"></span>
 <img src="Metode_Numerik_files/figure-html/axis3-1.png" alt="Kustomisasi tick mark" width="70%" />
 <p class="caption">
-Figure 3.30: Kustomisasi tick mark
+Gambar 3.30: Kustomisasi tick mark
 </p>
 </div>
 </div>
@@ -1061,7 +1067,7 @@ Figure 3.30: Kustomisasi tick mark
 <div class="figure" style="text-align: center"><span id="fig:color"></span>
 <img src="Metode_Numerik_files/figure-html/color-1.png" alt="Nama warna" width="70%" />
 <p class="caption">
-Figure 3.31: Nama warna
+Gambar 3.31: Nama warna
 </p>
 </div>
 </div>
@@ -1084,7 +1090,7 @@ Figure 3.31: Nama warna
 <div class="figure" style="text-align: center"><span id="fig:map"></span>
 <img src="Metode_Numerik_files/figure-html/map-1.png" alt="image plot (kiri) dan contour plot (kanan)" width="80%" />
 <p class="caption">
-Figure 3.32: image plot (kiri) dan contour plot (kanan)
+Gambar 3.32: image plot (kiri) dan contour plot (kanan)
 </p>
 </div>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
@@ -1100,7 +1106,7 @@ Figure 3.32: image plot (kiri) dan contour plot (kanan)
 <div class="figure" style="text-align: center"><span id="fig:persp"></span>
 <img src="Metode_Numerik_files/figure-html/persp-1.png" alt="proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan" width="80%" />
 <p class="caption">
-Figure 3.33: proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan
+Gambar 3.33: proyeksi 3 dimensi (kanan) dan proyeksi 3 dimensi dengan pewarnaan
 </p>
 </div>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>

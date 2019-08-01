@@ -24,7 +24,7 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-07-28" />
+<meta name="date" content="2019-08-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -222,11 +222,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
-<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan Matriks</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-vektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
-<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-matriks"><i class="fa fa-check"></i><b>6.1.2</b> Operasi Matriks</a></li>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasivektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasimatrik"><i class="fa fa-check"></i><b>6.1.2</b> Operasi matriks</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasi-dasar-pada-baris-matriks"><i class="fa fa-check"></i><b>6.2</b> Operasi Dasar Pada Baris Matriks</a></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#rowoperation"><i class="fa fa-check"></i><b>6.2</b> Operasi Dasar Pada Baris matriks</a></li>
+<li class="chapter" data-level="6.3" data-path="linearaljabar.html"><a href="linearaljabar.html#gausselimination"><i class="fa fa-check"></i><b>6.3</b> Eliminasi Gauss</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linearaljabar.html"><a href="linearaljabar.html#rowechelonform"><i class="fa fa-check"></i><b>6.3.1</b> <em>Row Echelon Form</em></a></li>
+<li class="chapter" data-level="6.3.2" data-path="linearaljabar.html"><a href="linearaljabar.html#redrowechelonform"><i class="fa fa-check"></i><b>6.3.2</b> Eliminasi Gauss-Jordan</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linearaljabar.html"><a href="linearaljabar.html#matriktridiagonal"><i class="fa fa-check"></i><b>6.3.3</b> Matrik Tridiagonal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linearaljabar.html"><a href="linearaljabar.html#solvefunc"><i class="fa fa-check"></i><b>6.3.4</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -271,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Berdasarkan kedua hasil tersebut dapat disimpulkan bahwa ketika kita tidak menetapkan urutan perhitungan menggunakan tanda kurung, <code>R</code> akan secara otomatis akan menghitung terlebih dahulu perkalian atau pembangian.</p>
 <p>Operator aritmatika yang disediakan <code>R</code> disajikan pada Tabel <a href="calculation.html#tab:oparitmatika">2.1</a>:</p>
 <table>
-<caption><span id="tab:oparitmatika">Table 2.1: </span> Operator Aritmatika <code>R</code>.</caption>
+<caption><span id="tab:oparitmatika">Tabel 2.1: </span> Operator Aritmatika <code>R</code>.</caption>
 <colgroup>
 <col width="14%" />
 <col width="85%" />
@@ -406,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Operator Relasi</h2>
 <p>Operator relasi digunakan untuk membandingkan satu objek dengan objek lainnya. Operator yang disediakan <code>R</code> disajikan pada Tabel <a href="calculation.html#tab:oprelasi">2.2</a>.</p>
 <table>
-<caption><span id="tab:oprelasi">Table 2.2: </span> Operator Relasi <code>R</code>.</caption>
+<caption><span id="tab:oprelasi">Tabel 2.2: </span> Operator Relasi <code>R</code>.</caption>
 <thead>
 <tr class="header">
 <th><strong>Simbol</strong></th>
@@ -467,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.4</span> Operator Logika</h2>
 <p>Operator logika hanya berlaku pada vektor dengan tipe logical, numeric, atau complex. Semua angka bernilai 1 akan dianggap bernilai logika <code>TRUE</code>. Operator logika yang disediakan <code>R</code> dapat dilihat pada Tabel <a href="calculation.html#tab:oplogika">2.3</a>.</p>
 <table>
-<caption><span id="tab:oplogika">Table 2.3: </span> Operator logika <code>R</code>.</caption>
+<caption><span id="tab:oplogika">Tabel 2.3: </span> Operator logika <code>R</code>.</caption>
 <thead>
 <tr class="header">
 <th><strong>Simbol</strong></th>
@@ -597,7 +603,7 @@ Operator <code>%%</code> dan <code>||</code> hanya mengecek dari kiri ke kanan p
 <h2><span class="header-section-number">2.6</span> Tipe dan Struktur Data</h2>
 <p>Data pada <code>R</code> dapat dikelompokan berdasarkan beberapa tipe. Tipe data pada <code>R</code> disajikan pada Tabel <a href="calculation.html#tab:tipedata">2.4</a>.</p>
 <table>
-<caption><span id="tab:tipedata">Table 2.4: </span> Tipe data <code>R</code>.</caption>
+<caption><span id="tab:tipedata">Tabel 2.4: </span> Tipe data <code>R</code>.</caption>
 <colgroup>
 <col width="12%" />
 <col width="20%" />
@@ -719,7 +725,7 @@ Operator <code>%%</code> dan <code>||</code> hanya mengecek dari kiri ke kanan p
 <pre><code>## [1] &quot;My friend&#39;s name \&quot;Adi\&quot;&quot;</code></pre>
 <p>Struktur data diklasifikasikan berdasarkan dimensi data dan tie data di dalamnya (homogen atau heterogen). Klasifikasi jenis data disajikan pada Tabel <a href="calculation.html#tab:strukturdata">2.5</a>.</p>
 <table>
-<caption><span id="tab:strukturdata">Table 2.5: </span> Struktur data <code>R</code>.</caption>
+<caption><span id="tab:strukturdata">Tabel 2.5: </span> Struktur data <code>R</code>.</caption>
 <thead>
 <tr class="header">
 <th><strong>Dimensi</strong></th>
@@ -960,7 +966,7 @@ Operator <code>%%</code> dan <code>||</code> hanya mengecek dari kiri ke kanan p
 <h3><span class="header-section-number">2.7.7</span> Deret Bilangan Acak</h3>
 <p>Deret bilangan acak biasanya banyak digunakan dalam sebuah simulasi. <code>R</code> menyediakan fungsi untuk memproduksi bilangan-bilangan acak tersebut berdasarkan distribusi tertentu. Berikut adalah tabel rangkuman nama distribusi, fungsi, dan argumen yang digunakan:</p>
 <table>
-<caption><span id="tab:randomsequence">Table 2.6: </span> Ringkasan Fungsi dan Argumen Distribusi Probabilitas.</caption>
+<caption><span id="tab:randomsequence">Tabel 2.6: </span> Ringkasan Fungsi dan Argumen Distribusi Probabilitas.</caption>
 <colgroup>
 <col width="7%" />
 <col width="21%" />
@@ -1062,7 +1068,7 @@ Operator <code>%%</code> dan <code>||</code> hanya mengecek dari kiri ke kanan p
 <a class="sourceLine" id="cb181-3" title="3"></a>
 <a class="sourceLine" id="cb181-4" title="4"><span class="co"># cetak x + error dengan 3 nilai signifikan</span></a>
 <a class="sourceLine" id="cb181-5" title="5"><span class="kw">round</span>((x<span class="op">+</span>error), <span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1] 0.192 1.192 2.192 3.192 4.192 5.192</code></pre>
+<pre><code>## [1] 2.028 3.028 4.028 5.028 6.028 7.028</code></pre>
 </div>
 </div>
 <div id="matriks" class="section level2">

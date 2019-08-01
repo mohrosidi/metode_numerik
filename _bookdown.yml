@@ -1,4 +1,10 @@
 book_filename: "Metode_Numerik"
+delete_merged_file: true
 language:
+  label:
+    fig: 'Gambar '
+    tab: 'Tabel '
+    eq: 'Persamaan '
+    exm: 'Contoh '
   ui:
     chapter_name: "Chapter "

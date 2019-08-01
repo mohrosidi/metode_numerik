@@ -124,11 +124,27 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-28}
+    \date{2019-08-01}
 
 \usepackage{booktabs}
 \usepackage{lscape}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Contoh}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\let\BeginKnitrBlock\begin \let\EndKnitrBlock\end
 \begin{document}
 \maketitle
 
@@ -2259,7 +2275,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.105 2.105 3.105 4.105 5.105 6.105
+## [1] 2.718 3.718 4.718 5.718 6.718 7.718
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -5518,22 +5534,22 @@ Pada \emph{chapter} ini penulis akan menjelaskan mengenai cara untuk menyelesaik
 \begin{itemize}
 \tightlist
 \item
-  operasi Vektor dan Matriks
+  operasi Vektor dan matriks
 \item
   Metode Eliminasi Gauss
 \item
-  Metode Dekomposisi Matriks
+  Metode Dekomposisi matriks
 \item
   Studi Kasus
 \end{itemize}
 
 \hypertarget{vecmat}{%
-\section{Vektor dan Matriks}\label{vecmat}}
+\section{Vektor dan matriks}\label{vecmat}}
 
-Pada Chapter \ref{vector} dan Chapter \ref{matriks} telah dijelaskan sekilas bagaimana cara melakukan operasi pada vektor dan matrik. Pada \emph{chapter} ini, penulis akan menambahkan operasi-operasi lain yang dapat dilakukan pada vektor dan matriks. Dasar-dasar operasi ini selanjutnya akan digunakan sebagai dasar menyusun algoritma penyelesaian sistem persamaan linier.
+Pada Chapter \ref{vector} dan Chapter \ref{matriks} telah dijelaskan sekilas bagaimana cara melakukan operasi pada vektor dan matriks. Pada \emph{chapter} ini, penulis akan menambahkan operasi-operasi lain yang dapat dilakukan pada vektor dan matriks. Dasar-dasar operasi ini selanjutnya akan digunakan sebagai dasar menyusun algoritma penyelesaian sistem persamaan linier.
 
-\hypertarget{operasi-vektor}{%
-\subsection{Operasi Vektor}\label{operasi-vektor}}
+\hypertarget{operasivektor}{%
+\subsection{Operasi Vektor}\label{operasivektor}}
 
 Misalkan saja diberikan vektor \(u\) dan \(v\) yang ditunjukkan pada Persamaan \eqref{eq:vectoruv}.
 
@@ -5681,8 +5697,8 @@ Berikut adalah contoh bagaimana cara menghitung \texttt{inner\ product} dan panj
 ## [1] 7.416198
 \end{verbatim}
 
-\hypertarget{operasi-matriks}{%
-\subsection{Operasi Matriks}\label{operasi-matriks}}
+\hypertarget{operasimatrik}{%
+\subsection{Operasi matriks}\label{operasimatrik}}
 
 Misalkan kita memiliki 2 buah matriks \(A\) dan \(B\).
 
@@ -5699,7 +5715,7 @@ dan\ B = \begin{bmatrix}
       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
       b_{m.1} & b_{m.2} &\cdots& b_{m.n}
      \end{bmatrix}
-  \label{eq:matriksuv}
+  \label{eq:matrikuv}
 \end{equation}
 
 Jika salah satu matriks tersebut dijumlahkan atau dikurangkan dengan skalar.
@@ -5717,13 +5733,14 @@ A \pm x = \begin{bmatrix}
       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
       a_{m.1}\pm x & a_{m.2}\pm x &\cdots& a_{m.n}\pm x
      \end{bmatrix}
-  \label{eq:addmatriks}
+  \label{eq:addmatrik}
 \end{equation}
 
 Jika kedua matriks \(A\) dan \(B\) saling dijumlahkan atau dikurangkan. Perlu diperhatikan bahwa penjumlahan dua buah matriks hanya dapat dilakukan pada matriks dengan ukuran yang seragam.
 
 \begin{equation}
-A \pm B = \begin{bmatrix}
+\begin{split}
+A \pm B & = \begin{bmatrix}
        a_{1.1} & a_{1.2} &\cdots& a_{1.n}           \\[0.3em]
        a_{2.1} & a_{2.2} &\cdots& a_{2.n}           \\[0.3em]
        \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
@@ -5734,14 +5751,15 @@ A \pm B = \begin{bmatrix}
       b_{2.1} & b_{2.2} &\cdots& b_{2.n}           \\[0.3em]
       \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
       b_{m.1} & b_{m.2} &\cdots& b_{m.n}
-     \end{bmatrix}
-= \begin{bmatrix}
+     \end{bmatrix} \\
+& = \begin{bmatrix}
        a_{1.1}\pm b_{1.1} & a_{1.2}\pm b_{1.2} &\cdots& a_{1.n}\pm b_{1.n}           \\[0.3em]
        a_{2.1}\pm b_{2.1} & a_{2.2}\pm b_{2.2} &\cdots& a_{2.n}\pm b_{2.n}           \\[0.3em]
        \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
        a_{m.1}\pm b_{m.1} & a_{m.2}\pm b_{m.2} &\cdots& a_{m.n}\pm b_{m.n}
      \end{bmatrix}
-  \label{eq:addmatriks2}
+\end{split}
+  \label{eq:addmatrik2}
 \end{equation}
 
 Untuk lebih memahaminya, berikut disajikan contoh operasi penjumlahan pada matriks:
@@ -5785,11 +5803,11 @@ Untuk lebih memahaminya, berikut disajikan contoh operasi penjumlahan pada matri
 \end{Highlighting}
 \end{Shaded}
 
-Operasi pehitungan lain yang penting pada matriks adalah operasi perkalian matriks. Perlu diperhatikan bahwa untuk perkalian matriks, jumlah kolom matriks sebelah kiri harus sama dengan jumlah baris pada matriks sebelah kanan. Perkalian antara dua matriks disajikan pada Persamaan \eqref{eq:kalimatriks}.
+Operasi pehitungan lain yang penting pada matriks adalah operasi perkalian matriks. Perlu diperhatikan bahwa untuk perkalian matriks, jumlah kolom matriks sebelah kiri harus sama dengan jumlah baris pada matriks sebelah kanan. Perkalian antara dua matriks disajikan pada Persamaan \eqref{eq:kalimatrik}.
 
 \begin{equation}
 A_{m.n}\times B_{n.r}=AB_{m.r}
-  \label{eq:kalimatriks}
+  \label{eq:kalimatrik}
 \end{equation}
 
 Pada \texttt{R} perkalian matriks dilakukan menggunakan operator \texttt{\%*\%}. Berikut adalah contoh perkalian matriks pada \texttt{R}:
@@ -5808,8 +5826,1066 @@ Pada \texttt{R} perkalian matriks dilakukan menggunakan operator \texttt{\%*\%}.
 ## [3,]  204  258  312
 \end{verbatim}
 
-\hypertarget{operasi-dasar-pada-baris-matriks}{%
-\section{Operasi Dasar Pada Baris Matriks}\label{operasi-dasar-pada-baris-matriks}}
+\hypertarget{rowoperation}{%
+\section{Operasi Dasar Pada Baris matriks}\label{rowoperation}}
+
+Terdapat tiga buah operasi dasar pada baris matriks. Ketiga operasi ini akan menjadi dasar operasi \emph{sub-chapter} selanjutnya. Ketiga operasi dasar tersebut antara lain:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{\emph{Row Scalling}}. Mengalikan baris matriks dengan konstanta bukan nol.
+\item
+  \textbf{\emph{Row Swaping}}. Menukar urutan baris pada sebuah matriks (contoh: menukar baris 1 dengan baris 2 dan sebaliknya).
+\item
+  \textbf{\emph{Row Replacement}}. Baris matriks diganti dengan hasil penjumlahan atau pengurangan baris matriks tersebut dengan baris matriks lainnya, dimana baris matriks lainnya yang akan dijumlahkan/dikurangkan dengan matriks tersebut telah dilakukan proses \emph{row scalling}. Luaran yang diperoleh pada umumnya adalah nilai nol pada baris matriks awal atau akhir.
+\end{enumerate}
+
+Ketiga proses tersebut akan terjadi secara berulang, khusunya jika kita hendak mengerjakan sistem persamaan linier menggunakan algoritma eliminasi Gauss. Untuk mempermudah proses tersebut, kita dapat membuat masing-masing fungsi untuk masing-masing operasi tersebut. Algoritma fungsi-fungsi tersebut selanjutnya menjadi dasar penyusunan algoritma fungsi-fungsi eliminasi Gauss dan dekomposisi matriks yang akan dijelaskan pada \emph{chapter} selanjutnya.
+
+Fungsi \emph{row scalling} pada \texttt{R} dapat dituliskan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scale_row <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(m, row, k)\{}
+\NormalTok{ m[row, ] <-}\StringTok{ }\NormalTok{m[row, ]}\OperatorTok{*}\NormalTok{k}
+ \KeywordTok{return}\NormalTok{(m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah contoh penerapannya:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# membuat matriks A}
+\NormalTok{(A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{15}\NormalTok{, }\DataTypeTok{nrow=}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    6   11
+## [2,]    2    7   12
+## [3,]    3    8   13
+## [4,]    4    9   14
+## [5,]    5   10   15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# lakukan scaling pada row 2 dengan nilai 10}
+\KeywordTok{scale_row}\NormalTok{(}\DataTypeTok{m=}\NormalTok{A, }\DataTypeTok{row=}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    6   11
+## [2,]   20   70  120
+## [3,]    3    8   13
+## [4,]    4    9   14
+## [5,]    5   10   15
+\end{verbatim}
+
+\begin{quote}
+\textbf{Catatan:} Untuk menyimpan hasil perhitungan, simpan proses perhitungan dalam sebuah objek (lihat Chapter \ref{assigningvar}).
+\end{quote}
+
+\emph{Row swapping} merupakan proses yang berulang, kita perlu menyimpan terlebih dahulu baris matriks pertama kedalam sebuah objek. Baris matriks pertama selanjutnya diganti dengan baris matriks kedua, sedangkan baris matriks kedua selanjutnya akan diganti dengan baris matriks pertama yang telah terlebih dahulu disimpan dalam sebuah objek. Fungsi \emph{row swapping} pada \texttt{R} dapat dituliskan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{swap_row <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(m, row1, row2)\{}
+\NormalTok{  row_tmp <-}\StringTok{ }\NormalTok{m[row1, ]}
+\NormalTok{  m[row1, ] <-}\StringTok{ }\NormalTok{m[row2, ]}
+\NormalTok{  m[row2, ] <-}\StringTok{ }\NormalTok{row_tmp}
+  \KeywordTok{return}\NormalTok{(m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut merupakan contoh penerapan fungsi \texttt{swap\_row()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# pertukarkan baris 2 dengan baris 5}
+\KeywordTok{swap_row}\NormalTok{(}\DataTypeTok{m=}\NormalTok{A, }\DataTypeTok{row1=}\DecValTok{2}\NormalTok{, }\DataTypeTok{row2=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    6   11
+## [2,]    5   10   15
+## [3,]    3    8   13
+## [4,]    4    9   14
+## [5,]    2    7   12
+\end{verbatim}
+
+Pada proses \emph{row replacement}, proses perhitungan dilakukan dengan melakukan penjumlahan suatu baris matriks dengan baris matriks lainnya dengan terlebih dahulu melakukan \emph{row scalling} terhadap matriks lainnya. Berikut adalah fungsi \texttt{replace\_row()} yang ditulis pada \texttt{R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{replace_row <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(m, row1, row2, k)\{}
+\NormalTok{  m[row2, ] <-}\StringTok{ }\NormalTok{m[row2, ] }\OperatorTok{+}\StringTok{ }\NormalTok{m[row1, ]}\OperatorTok{*}\NormalTok{k}
+  \KeywordTok{return}\NormalTok{(m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah contoh penerapan fungsi \texttt{replace\_row()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{replace_row}\NormalTok{(}\DataTypeTok{m=}\NormalTok{A, }\DataTypeTok{row1=}\DecValTok{1}\NormalTok{, }\DataTypeTok{row2=}\DecValTok{3}\NormalTok{, }\DataTypeTok{k=}\OperatorTok{-}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    6   11
+## [2,]    2    7   12
+## [3,]    0  -10  -20
+## [4,]    4    9   14
+## [5,]    5   10   15
+\end{verbatim}
+
+\hypertarget{gausselimination}{%
+\section{Eliminasi Gauss}\label{gausselimination}}
+
+Pada \emph{sub-chapter} ini kita akan menggunakan operasi baris elementer yang telah dijelaskan pada Chapter \ref{assigningvar}. Terdapat dua topik yang akan dibahas pada \emph{sub-chapter} ini, yaitu: \emph{row echelon form} termasuk \emph{reduced row echelon form} dan matriks tridiagonal.
+
+Eliminasi Gauss merupakan sebuah cara untuk mencari penyelesaian sistem persamaan linier. Ide dasar dari eliminasi Gauss adalah melakukan operasi matematika pada baris matriks (lihat Chapter \ref{assigningvar}) dan melanjutkannya sampai hanya tersisa satu variabel saja. Kita dapat melakukan lebih dari satu operasi baris elementer pada proses elmininasi ini (contoh: mengalikan sebuah baris dengan konstanta dan menjumlahkan hasilnya pada baris lain).
+
+\hypertarget{rowechelonform}{%
+\subsection{\texorpdfstring{\emph{Row Echelon Form}}{Row Echelon Form}}\label{rowechelonform}}
+
+Sebuah matriks merupakan \emph{row echelon form} jika matriks tersebut memenuhi beberapa kondisi:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Angka bukan nol pertama dari kiri (\emph{leading coefficient}) selalu di sebelah kanan angka bukan nol pertama pada baris di atasnya.
+\item
+  Baris yang terdiri dari semua nol ada di bagian bawah matriks.
+\end{enumerate}
+
+Misalkan terdapat persamaan linier seperti yang ditunjukkan pada Persamaan \eqref{eq:spl}.
+
+\begin{equation}
+\begin{matrix}
+  a_{1.1}x_1+a_{1.2}x_2+a_{1.3}x_3+\cdots+a_{1.n}x_n=b_1 \\
+  a_{2.1}x_1+a_{2.2}x_2+a_{2.3}x_3+\cdots+a_{2.n}x_n=b_2 \\
+  a_{3.1}x_1+a_{3.2}x_2+a_{3.3}x_3+\cdots+a_{3.n}x_n=b_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  a_{m.1}x_1+a_{m.2}x_2+a_{m.3}x_3+\cdots+a_{m.n}x_n=b_n
+ \end{matrix}
+  \label{eq:spl}
+\end{equation}
+
+dimana \(a_{i.j}\) untuk \(i=1\) sampai dengan \(m\) dan \(j=1\) sampai dengan \(n\) merupakan koefisien persamaan linier. \(x_i\) untuk \(i=1\) sampai dengan \(n\) merupakan variabel bebas pada sistem persamaan linier.
+
+Persamaan linier pada Persamaan \eqref{eq:spl} dapat dinyatakan ke dalam bentuk matriks pada Persamaan \eqref{eq:matrikpl}.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n}           \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n}           \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n}           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \label{eq:matrikpl}
+\end{equation}
+
+\begin{equation}
+AX=B
+  \label{eq:matrikpl2}
+\end{equation}
+
+dimana:
+
+\begin{itemize}
+\tightlist
+\item
+  matriks A merupakan matriks koefisien / Jacobian
+\item
+  vaktor X merupakan vaktor variabel
+\item
+  vektor B merupakan vektor konstanta
+\end{itemize}
+
+matriks pada Persamaan \eqref{eq:matrikpl} dapat diubah menjadi \emph{augmented matrix}, yaitu: perluasan matriks A dengan menambahkan vektor B pada kolom terakhirnya.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots            \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+  \label{eq:augmatrik}
+\end{equation}
+
+\begin{equation}
+A=\left[A|B\right]
+  \label{eq:augmatrik2}
+\end{equation}
+
+Persamaan \eqref{eq:matrikpl} dan Persamaan \eqref{eq:augmatrik} akan memiliki penyelesaian tunggal bila memenuhi syarat-syarat berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  ukuran persamaan linier simultan bujursangkar (jumlah persamaan sama dengan jumlah variabel bebas).
+\item
+  sistem persamaan linier \emph{non-homogen} di mana minimal ada satu nilai vektor konstanta \(B\) tidak nol atau terdapat \(b_{n}\neq 0\).
+\item
+  Determinan dari matriks koefisiensistem persamaan linier tidak sama dengan nol.
+\end{itemize}
+
+Untuk memperoleh penyelesaian sistem persamaan linier, Persamaan \eqref{eq:augmatrik} perlu dilakukan operasi baris elementer. Hasil operasi baris dasar akan menghasilkan matriks \emph{row echelon form} yang disajikan pada Persamaan \eqref{eq:refeq}.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     c_{1.1} & c_{1.2} & c_{1.3} &\cdots& c_{1.n} & d_1     \\[0.3em]
+     0       & c_{2.2} & c_{2.3} &\cdots& c_{2.n} & d_2     \\[0.3em]
+     0       & 0       & c_{3.3} &\cdots& c_{3.n} & d_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     0       & 0       & 0      &\cdots& c_{m.n} & d_n
+     \end{bmatrix}
+  \label{eq:refeq}
+\end{equation}
+
+Sehingga penyelesaian sistem persamaan linier dapat diperoleh menggunakan Persamaan \eqref{eq:refsolution}.
+
+\begin{equation}
+\begin{matrix}
+  x_n=\frac{d_n}{c_{m.n}} \\
+  x_{n-1}=\frac{1}{C_{m-1.n-1}}\left(d_{n-1}-c_{m-1.n}x_n\right) \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_2=\frac{1}{c_{2.2}}\left(d_2-c_{2.3}x_3-c_{2.4}x_4-\dots-c_{2.n}x_n\right) \\
+  x_1=\frac{1}{c_{1.1}}\left(d_1-c_{1.2}x_2-c_{1.3}x_3-\dots-c_{1.n}x_n\right)
+   \end{matrix}
+  \label{eq:refsolution}
+\end{equation}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:refexm}{}{\label{exm:refexm} }Selesaikan sistem persamaan berikut:
+\EndKnitrBlock{example}
+
+\[
+\begin{matrix}
+  x_1+x_2+x_3=6 \\
+  x_1+2x_2-x_3=2 \\
+  2x_1+x_2+2x_3=10 \\
+\end{matrix}
+\]
+
+\textbf{Jawab}:
+
+\emph{Augmented matrix} sistem persamaan linier tersebut adalah sebagai berikut:
+
+\[
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     1 & 2 & -1 & 2     \\[0.3em]
+     2 & 1 & 2 & 10
+\end{bmatrix}
+\]
+
+Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langkah pertama, baris ke-2 dikurangkan dengan baris ke-1 (\(B_2-B_1\)) dan baris ke-3 dikurangkan oleh dua kali baris ke-1 (\(B_3-2B_1\)).
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     1 & 2 & -1 & 2     \\[0.3em]
+     2 & 1 & 2 & 10
+\end{bmatrix}
+\begin{matrix}
+  B_2-B_1 \\
+  \implies \\
+  B_3-2B_1
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & -1 & 0 & -2
+\end{bmatrix}
+\end{equation}
+
+Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah selanjutnya. Pada langkah selanjutnya operasi baris elementer kembali dilanjutkan. Baris ke-3 dikurangkan denganbaris ke-2 (\(B_3-B_2\)).
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & -1 & 0 & -2
+\end{bmatrix}
+\begin{matrix}
+  B_3-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 1 & 6     \\[0.3em]
+     0 & 1 & -2 & -4     \\[0.3em]
+     0 & 0 & -2 & -6
+\end{bmatrix}
+\end{equation}
+
+Setelah diperoleh matriks \emph{row echelon form} selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan \eqref{eq:refsolution}.
+
+\[
+\begin{matrix}
+  x_3=\frac{-6}{-2}=3 \\
+  x_2=\frac{1}{1}\left(-4-\left(2\right)3\right)=2 \\
+  x_1=\frac{1}{1}\left(6-2-3\right)=1
+\end{matrix}
+\]
+
+\textbf{Algoritma \emph{Row Echelon Form}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Masukkan matriks \(A\), dan vektor \(B\) beserta ukurannya \(n\)
+\item
+  Buat \emph{augmented matrix} \(\left[A|B\right]\) namakan dengan \(A\)
+\item
+  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i.j}\) sama dengan nol.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{1+k.j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+\item
+  \textbf{Bila tidak}, lanjutkan.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Untuk baris ke-\(j\), dimana \(j=i+1\) s/d \(n\), lakukan operasi baris elementer:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung \(c=\frac{a_{j.i}}{a_{i.i}}\)
+\item
+  untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j.k}=a_{j.k}-c.a_{i.k}\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Hitung akar, untuk \(i=n\) s/d 1 (bergerak dari baris pertama) menggunakan Persamaan \eqref{eq:refsolution}.
+\end{enumerate}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk menyelesaikan sistem persamaan linier menggunakan matriks \emph{row echelon form}. Fungsi yang akan dibentuk hanya sampai pada algoritma ke-4. Proses substitusi akan dilakukan secara manual. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ref_matrix <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(m)\{}
+\NormalTok{  count_rows <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(m)}
+\NormalTok{  count_cols <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(m)}
+\NormalTok{  piv <-}\StringTok{ }\DecValTok{1}
+  
+  \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{count_rows)\{}
+    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{count_cols)\{}
+\NormalTok{      i <-}\StringTok{ }\NormalTok{row_curr}
+      \ControlFlowTok{while}\NormalTok{(m[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{count_rows)\{}
+\NormalTok{        i <-}\StringTok{ }\NormalTok{i}\OperatorTok{+}\DecValTok{1}
+        \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{count_rows)\{}
+\NormalTok{          i <-}\StringTok{ }\NormalTok{row_curr}
+\NormalTok{          piv <-}\StringTok{ }\NormalTok{piv}\OperatorTok{+}\DecValTok{1}
+          \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{count_cols)}
+            \KeywordTok{return}\NormalTok{(m)}
+\NormalTok{        \}}
+\NormalTok{      \}}
+    \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)}
+\NormalTok{      m <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(m, i, row_curr)}
+    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in}\NormalTok{ row_curr}\OperatorTok{:}\NormalTok{count_rows)}
+      \ControlFlowTok{if}\NormalTok{(j }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
+\NormalTok{        k <-}\StringTok{ }\NormalTok{m[j, piv]}\OperatorTok{/}\NormalTok{m[row_curr, piv]}
+\NormalTok{        m <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{(m, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
+\NormalTok{      \}}
+\NormalTok{    piv <-}\StringTok{ }\NormalTok{piv}\OperatorTok{+}\DecValTok{1}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Dengan menggunakan fungsi \texttt{ref\_matrix()}, kita dapat membentuk matriks \emph{row echelon form} pada Contoh \ref{exm:refexm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{am <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+        \DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+        \DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+        \DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{(m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(am, }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    1    6
+## [2,]    1    2   -1    2
+## [3,]    2    1    2   10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ref_matrix}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    1    6
+## [2,]    0    1   -2   -4
+## [3,]    0    0   -2   -6
+\end{verbatim}
+
+matriks yang diperoleh selanjutnya dapat diselesaikan menggunakan Persamaan \eqref{eq:refsolution}.
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:refexm2}{}{\label{exm:refexm2} }Dengan menggunakan fungsi \texttt{ref\_matrix()}, buatlah matriks \emph{row echelon form} dari sistem persamaan linier berikut:
+\EndKnitrBlock{example}
+
+\[
+\begin{matrix}
+  2x_1+x_2-x_3=1 \\
+  3x_1+2x_2-2x_3=1 \\
+  x_1-5x_2+4x_3=3 \\
+\end{matrix}
+\]
+
+\textbf{Jawab}:
+
+\emph{Augmented matrix} dari sistem persamaan tersebut adalah sebagai berikut:
+
+\[
+\begin{bmatrix}
+     2 & 1 & -1 & 1     \\[0.3em]
+     3 & 2 & -2 & 1     \\[0.3em]
+     1 & -5 & 4 & 3
+\end{bmatrix}
+\]
+
+Penyelesaian matriks tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+              \DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{5}\NormalTok{,}
+              \DecValTok{-1}\NormalTok{,}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}
+              \DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    2    1   -1    1
+## [2,]    3    2   -2    1
+## [3,]    1   -5    4    3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ref_matrix}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    2  1.0 -1.0  1.0
+## [2,]    0  0.5 -0.5 -0.5
+## [3,]    0  0.0 -1.0 -3.0
+\end{verbatim}
+
+Proses lebih lanjut akan menghasilkan penyelesaian sebagai berikut:
+
+\[
+\begin{matrix}
+     x_1=1     \\[0.3em]
+     x_2=2     \\[0.3em]
+     x_3=3
+\end{matrix}
+\]
+
+\hypertarget{redrowechelonform}{%
+\subsection{Eliminasi Gauss-Jordan}\label{redrowechelonform}}
+
+Berbeda dengan metode eliminasi Gauss yang telah dijelaskan pada Chapter \ref{rowechelonform}, metode eliminasi Gauss-Jordan membentuk matriks menjadi bentuk \emph{reduced row echelon form}. Metode ini merupakan pengembangan metode eliminasi Gauss, dimana matriks sebelah kiri \emph{augmented matrix} diubah menjadi matriks diagonal (lihat Persamaan \eqref{eq:gaussjordan}).
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
+     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     1       & 0       & 0       &\cdots& 0       & d_1     \\[0.3em]
+     0       & 1       & 0       &\cdots& 0       & d_2     \\[0.3em]
+     0       & 0       & 1       &\cdots& 0       & d_3     \\[0.3em]
+     \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
+     0       & 0       & 0      &\cdots& 1        & d_n
+     \end{bmatrix}
+  \label{eq:gaussjordan}
+\end{equation}
+
+Sehingga penyelesaian persamaan linier tersebut adalah nilai \(d_1,d_2,d3,\dots,d_n\) dan atau:
+
+\begin{equation}
+\begin{matrix}
+  x_1=d_1 \\
+  x_2=d_2 \\
+  x_3=d_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_n=d_n
+   \end{matrix}
+  \label{eq:gaussjordansolution}
+\end{equation}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:gaussjordanexm}{}{\label{exm:gaussjordanexm} }Selesaikan sistem persamaan berikut:
+\EndKnitrBlock{example}
+
+\[
+\begin{matrix}
+  x_1+x_2=3 \\
+  2x_1+4x_2=8 \\
+\end{matrix}
+\]
+
+\textbf{Jawab}:
+
+\emph{Augmented matrix} dari persamaan linier tersebut adalah sebagai berikut:
+
+\[
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     2 & 4 & 8
+\end{bmatrix}
+\]
+
+Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     2 & 4 & 8
+\end{bmatrix}
+\begin{matrix}
+  B_2-2B_1 \\
+  \implies 
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 2 & 2
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 2 & 2
+\end{bmatrix}
+\begin{matrix}
+  \frac{B_2}{2} \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+     1 & 1 & 3     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\begin{matrix}
+  B_1-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 & 0 & 2     \\[0.3em]
+     0 & 1 & 1
+\end{bmatrix}
+\end{equation}
+
+Penyelesaian persamaan linier tersebut adalah sebagai berikut:
+
+\[
+x_1=2\ dan\ x_2=1
+\]
+
+\textbf{Algoritma Metode Eliminasi Gauss-Jordan}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Masukkan matriks \(A\) dan vektor \(B\) beserta ukurannya \(n\)
+\item
+  Buat \emph{augmented matrix} \(\left[A|B\right]\) namakan dengan \(A\)
+\item
+  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\)
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Perhatikan apakah nilai \(a_{i.i}\) sama dengan nol:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Bila ya}: pertukakan baris ke-\(i\) dan baris ke-\(i+k\le n\), dimana \(a_{i+k.i}\) tidak sama dengan nol, bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+  \item
+    \textbf{Bila tidak}: lanjutkan
+  \end{itemize}
+\item
+  Jadikan nilai diagonalnya menjadi satu dengan cara untuk setiap kolom \(k\) dimana \(k=1\) s/d \(n+1\), hitung \(a_{i.k}=\frac{a_{i.k}}{a_{i.i}}\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Untuk baris ke-\(j\), dimana \(j=i+1\) s/d \(n\). Lakukan operasi baris elementer untuk kolom \(k\) dimana \(k=1\) s/d \(n\).
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung \(c=a_{j.i}\)
+\item
+  Hitung \(a_{j.k}=a_{j.k}-c.a_{i.k}\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Penyelesaian untuk \(i=n\) s/d 1 disajikan pada Persamaan \eqref{eq:gaussjordansolution}.
+\end{enumerate}
+
+Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan \texttt{R}. Fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gauss_jordan <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (m)\{}
+\NormalTok{    count_rows <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{ (m)}
+\NormalTok{    count_cols <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{ (m)}
+\NormalTok{    piv <-}\StringTok{ }\DecValTok{1}
+    
+    \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{count_rows)\{}
+        \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{count_cols)\{}
+\NormalTok{            i <-}\StringTok{ }\NormalTok{row_curr}
+            \ControlFlowTok{while}\NormalTok{(m[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{count_rows)\{}
+\NormalTok{                i <-}\StringTok{ }\NormalTok{i }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+                \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{count_rows)\{}
+\NormalTok{                    i <-}\StringTok{ }\NormalTok{row_curr}
+\NormalTok{                    piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+                    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{count_cols)}
+                        \KeywordTok{return}\NormalTok{ (m)}
+\NormalTok{                \}}
+\NormalTok{            \}}
+            \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)}
+\NormalTok{                m <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(m, i, row_curr)}
+\NormalTok{            piv_val <-}\StringTok{ }\NormalTok{m[row_curr , piv]}
+\NormalTok{            m <-}\StringTok{ }\KeywordTok{scale_row}\NormalTok{ (m, row_curr , }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{piv_val)}
+            \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\StringTok{ }\NormalTok{count_rows)\{}
+                \ControlFlowTok{if}\NormalTok{(j }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
+\NormalTok{                    k <-}\StringTok{ }\NormalTok{m[j, piv]}\OperatorTok{/}\NormalTok{m[row_curr, piv]}
+\NormalTok{                    m <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{ (m, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
+\NormalTok{                \}}
+\NormalTok{            \}}
+\NormalTok{            piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{ (m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Dengan menggunakan fungsi \texttt{gauss\_jordan()}, sistem persamaan linier pada Contoh \ref{exm:gaussjordanexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{8}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    1    3
+## [2,]    2    4    8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gauss_jordan}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    0    2
+## [2,]    0    1    1
+\end{verbatim}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:gaussjordanexm2}{}{\label{exm:gaussjordanexm2} }Dengan menggunakan fungsi \texttt{gauss\_jordan()}, carilah penyelesaian sistem persamaan linier pada Contoh \ref{exm:refexm} dan Contoh \ref{exm:refexm2}:
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk Contoh \ref{exm:refexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{am <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+        \DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+        \DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+        \DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(am, }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+
+\KeywordTok{gauss_jordan}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    1
+## [2,]    0    1    0    2
+## [3,]    0    0    1    3
+\end{verbatim}
+
+Untuk Contoh \ref{exm:refexm2}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{5}\NormalTok{,}
+              \DecValTok{-1}\NormalTok{,}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }
+            \DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+\KeywordTok{gauss_jordan}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    1
+## [2,]    0    1    0    2
+## [3,]    0    0    1    3
+\end{verbatim}
+
+\hypertarget{matriktridiagonal}{%
+\subsection{Matrik Tridiagonal}\label{matriktridiagonal}}
+
+Metode eliminasi Gauss merupakan metode yang sederhana untuk digunakan khususnya jika semua koefisien bukan nol berkumpul pada diagonal utama dan beberapa diagonal sekitarnya. Suatu sistem yang bersifat demikian disebut sebagai \emph{banded} dan banyaknya diagonal yang memuat koefisien bukan nol disebut sebagai \emph{bandwidth}. Contoh khusus yang sering dijumpai adalah matriks tridiagonal yang memiliki \emph{bandwidth} tiga.
+
+Proses eliminasi untuk matriks tridiagonal bersifat trivial karena dengan membentuk sebuah subdiagonal tambahan, proses substitusi mundur segera dapat dilakukan. Bentuk matriks tridiagonal disajikan pada Persamaan \eqref{eq:matrikstridiagonal}.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1.1} & a_{1.2} & 0       &\cdots& 0                 \\[0.3em]
+     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& 0             \\[0.3em]
+     0       & a_{3.2} & a_{3.3} &\cdots& 0             \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0       & 0       &\cdots& a_{m.n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \label{eq:matrikstridiagonal}
+\end{equation}
+
+Penyelesaian persamaan tersebut disajikan pada Persamaan \eqref{eq:solusimatrikstridiagonal}.
+
+\begin{equation}
+x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i.j}}
+  \label{eq:solusimatrikstridiagonal}
+\end{equation}
+
+dimana \(i=n-1,n-2,\dots,1\).
+
+Pada beberapa \emph{textbook}, diagonal matriks sering dilambangkan dengan \(l\)(diagonal bawah), \(d\)(diagonal tengah), dan \(u\) (diagonal atas). Bentuk matriksnya disajikan pada Persamaan \eqref{eq:matrikstridiagonal2}.
+
+\begin{equation}
+\begin{bmatrix}
+     d_{1} & u_{2} & 0       &\cdots& 0                 \\[0.3em]
+     l_{2} & d_{2} & u_{3} &\cdots& 0             \\[0.3em]
+     0       & l_{3} & d_{3} &\cdots& 0             \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0       & 0       &\cdots& d_{n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \label{eq:matrikstridiagonal2}
+\end{equation}
+
+\textbf{Algoritma Penyelesaian Matrik Tridiagonal}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Bentuk sistem persamaan linier menjadi matriks pada Persamaan \eqref{eq:matrikstridiagonal2}.
+\item
+  Lakukan \emph{foward sweep}. Setiap elemen diagonal \(l\) dieliminasi menggunakan reduksi baris.
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Untuk \(i=1\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hitung \(u_1=\frac{u_1}{d_1}\)
+  \item
+    Hitung \(b_1=\frac{b_1}{d_1}\)
+  \end{itemize}
+\item
+  Untuk \(i=2\) s/d \(n-1\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hitung \(u_i=\frac{u_i}{d_i-l_i\times u_{i-1}}\)
+  \item
+    Hitung \(b_i=\frac{b_i-l_i\times u_{i-1}}{d_i-l_i\times u_{i-1}}\)
+  \end{itemize}
+\item
+  Hitung \(b_n=\frac{b_n-l_n\times u_{n-1}}{d_n-l_n\times u_{n-1}}\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Lakukan \emph{backward sweep}. Setiap elemen diagonal \(u\) dilakukan eliminasi.
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Untuk \(i=n-1\) s/d \(1\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hitung \(x_n=b_i-u_i\times x_{i+1}\)
+  \end{itemize}
+\item
+  Hitung \(x_n=b_n\)
+\end{itemize}
+
+Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada \texttt{R}. Fungsi penyelesaian matriks tridiagonal disajikan sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tridiagmatrix <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (L, D, U, b)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{ (D)}
+\NormalTok{  L <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{ , L)}
+  
+  \CommentTok{## forward sweep}
+\NormalTok{  U[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{U[}\DecValTok{1}\NormalTok{] }\OperatorTok{/}\StringTok{ }\NormalTok{D[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  b[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{b[}\DecValTok{1}\NormalTok{] }\OperatorTok{/}\StringTok{ }\NormalTok{D[}\DecValTok{1}\NormalTok{]}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{(n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))\{}
+\NormalTok{      U[i] <-}\StringTok{ }\NormalTok{U[i] }\OperatorTok{/}\StringTok{ }\NormalTok{(D[i] }\OperatorTok{-}\StringTok{ }\NormalTok{L[i] }\OperatorTok{*}\StringTok{ }\NormalTok{U[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\NormalTok{      b[i] <-}\StringTok{ }\NormalTok{(b[i] }\OperatorTok{-}\StringTok{ }\NormalTok{L[i] }\OperatorTok{*}\StringTok{ }\NormalTok{b[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{]) }\OperatorTok{/}
+\StringTok{      }\NormalTok{(D[i] }\OperatorTok{-}\StringTok{ }\NormalTok{L[i] }\OperatorTok{*}\StringTok{ }\NormalTok{U[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\NormalTok{  \}}
+\NormalTok{  b[n] <-}\StringTok{ }\NormalTok{(b[n] }\OperatorTok{-}\StringTok{ }\NormalTok{L[n] }\OperatorTok{*}\StringTok{ }\NormalTok{b[n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}\OperatorTok{/}\NormalTok{(D[n] }\OperatorTok{-}\StringTok{ }\NormalTok{L[n] }\OperatorTok{*}\StringTok{ }\NormalTok{U[n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{## backward sweep}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{rep.int}\NormalTok{ (}\DecValTok{0}\NormalTok{, n)}
+\NormalTok{  x[n] <-}\StringTok{ }\NormalTok{b[n]}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ (n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{:}\DecValTok{1}\NormalTok{)}
+\NormalTok{      x[i] <-}\StringTok{ }\NormalTok{b[i] }\OperatorTok{-}\StringTok{ }\NormalTok{U[i] }\OperatorTok{*}\StringTok{ }\NormalTok{x[i }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{]}
+  \KeywordTok{return}\NormalTok{ (x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:tridiagexm}{}{\label{exm:tridiagexm} }Selesaikan sistem persamaan berikut menggunakan fungsi \texttt{tridiagmatrix()} dan fungsi \texttt{gauss\_jordan()}!
+\EndKnitrBlock{example}
+
+\[
+\begin{matrix}
+  3x_1+4x_2=20 \\
+  4x_1+5x_2-2x_3=28 \\
+  2x_2+5x_3-3x_4=18 \\
+  3x_3+5x_4=18
+\end{matrix}
+\]
+
+\textbf{Jawab}:
+
+Langkah pertama untuk menyelesaikannya, kita harus merubah persamaan tersebut kedalam bentuk matriks
+
+\begin{equation}
+\begin{bmatrix}
+     3 & 4 & 0  & 0     \\[0.3em]
+     4 & 5 & 2 & 0     \\[0.3em]
+     0 & 2 & 5 & 3     \\[0.3em]
+     0 & 0 & 3 & 5
+\end{bmatrix}
+x = \begin{bmatrix}
+     20     \\[0.3em]
+     28     \\[0.3em]
+     18     \\[0.3em]
+     18
+\end{bmatrix}
+\end{equation}
+
+Untuk menyelesaikan persamaan tersebut menggunakan fungsi \texttt{tridiagmatrix()}, kita perlu membentuk vektor diagonal \(l\), \(d\), \(u\), dan \(b\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l <-}\StringTok{ }\NormalTok{u <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{); d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{18}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Setelah terbentuk, vektor tersebut dapat langsung dimasukkan ke dalam fungsi \texttt{tridiagmatrix()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tridiagmatrix}\NormalTok{(}\DataTypeTok{L=}\NormalTok{l, }\DataTypeTok{D=}\NormalTok{d, }\DataTypeTok{U=}\NormalTok{u, }\DataTypeTok{b=}\NormalTok{b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4 2 1 3
+\end{verbatim}
+
+Untuk menyelesaikannya menggunakan fungsi \texttt{gauss\_jordan()}, kita perlu membentuk \emph{augmented matrix}-nya terlebih dahulu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}
+              \DecValTok{20}\NormalTok{,}\DecValTok{28}\NormalTok{,}\DecValTok{18}\NormalTok{,}\DecValTok{18}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{gauss_jordan}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    4
+## [2,]    0    1    0    0    2
+## [3,]    0    0    1    0    1
+## [4,]    0    0    0    1    3
+\end{verbatim}
+
+\hypertarget{solvefunc}{%
+\subsection{\texorpdfstring{Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi \texttt{solve()}}{Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi solve()}}\label{solvefunc}}
+
+\texttt{R} menyediakan fungsi bawaan \texttt{solve()} untuk menyelesaiakan sistem persamaan linier. Format fungsi \texttt{solve()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{solve}\NormalTok{(a,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{a}: matriks koefisien atau matriks segiempat
+\item
+  \textbf{b}: vektor konstanta
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{solve()} pada sistem persamaan linier yang disajikan pada Contoh \ref{exm:refexm2}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# memecah matriks m menjadi matriks koefisien dan vektor konstanta}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),}\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\KeywordTok{solve}\NormalTok{(a,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3
+\end{verbatim}
 
 \bibliography{book.bib,packages.bib}
 
