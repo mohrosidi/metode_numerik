@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-01}
+    \date{2019-08-11}
 
 \usepackage{booktabs}
 \usepackage{lscape}
@@ -2275,7 +2275,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.718 3.718 4.718 5.718 6.718 7.718
+## [1] 0.538 1.538 2.538 3.538 4.538 5.538
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -5827,9 +5827,9 @@ Pada \texttt{R} perkalian matriks dilakukan menggunakan operator \texttt{\%*\%}.
 \end{verbatim}
 
 \hypertarget{rowoperation}{%
-\section{Operasi Dasar Pada Baris matriks}\label{rowoperation}}
+\section{Operasi Baris Elementer}\label{rowoperation}}
 
-Terdapat tiga buah operasi dasar pada baris matriks. Ketiga operasi ini akan menjadi dasar operasi \emph{sub-chapter} selanjutnya. Ketiga operasi dasar tersebut antara lain:
+Terdapat tiga buah operasi dasar pada baris matriksoperasi baris elementer. Ketiga operasi ini akan menjadi dasar operasi \emph{sub-chapter} selanjutnya. Ketiga operasi dasar tersebut antara lain:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6179,13 +6179,13 @@ Setelah diperoleh matriks \emph{row echelon form} selanjutnya penyelesaian persa
 \item
   Buat \emph{augmented matrix} \(\left[A|B\right]\) namakan dengan \(A\)
 \item
-  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i.j}\) sama dengan nol.
+  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i,j}\) sama dengan nol.
 \end{enumerate}
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{1+k.j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+  \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{i+k,j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
 \item
   \textbf{Bila tidak}, lanjutkan.
 \end{itemize}
@@ -6201,9 +6201,9 @@ Setelah diperoleh matriks \emph{row echelon form} selanjutnya penyelesaian persa
 \begin{itemize}
 \tightlist
 \item
-  Hitung \(c=\frac{a_{j.i}}{a_{i.i}}\)
+  Hitung \(c=\frac{a_{j,i}}{a_{i,i}}\)
 \item
-  untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j.k}=a_{j.k}-c.a_{i.k}\)
+  untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j,k}=a_{j,k}-c.a_{i,k}\)
 \end{itemize}
 
 \begin{enumerate}
@@ -6218,34 +6218,39 @@ Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ref_matrix <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(m)\{}
-\NormalTok{  count_rows <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(m)}
-\NormalTok{  count_cols <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(m)}
+\NormalTok{ref_matrix <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a)\{}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(a)}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(a)}
 \NormalTok{  piv <-}\StringTok{ }\DecValTok{1}
   
-  \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{count_rows)\{}
-    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{count_cols)\{}
+\CommentTok{# cek elemen diagonal apakah bernilai nol}
+  \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{m)\{}
+    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{n)\{}
 \NormalTok{      i <-}\StringTok{ }\NormalTok{row_curr}
-      \ControlFlowTok{while}\NormalTok{(m[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{count_rows)\{}
+      \ControlFlowTok{while}\NormalTok{(a[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{m)\{}
 \NormalTok{        i <-}\StringTok{ }\NormalTok{i}\OperatorTok{+}\DecValTok{1}
-        \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{count_rows)\{}
+        \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{m)\{}
 \NormalTok{          i <-}\StringTok{ }\NormalTok{row_curr}
 \NormalTok{          piv <-}\StringTok{ }\NormalTok{piv}\OperatorTok{+}\DecValTok{1}
-          \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{count_cols)}
-            \KeywordTok{return}\NormalTok{(m)}
+          \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{n)}
+            \KeywordTok{return}\NormalTok{(a)}
 \NormalTok{        \}}
 \NormalTok{      \}}
+      
+\CommentTok{# jika diagonal bernilai nol, lakukan row swapping}
     \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)}
-\NormalTok{      m <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(m, i, row_curr)}
-    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in}\NormalTok{ row_curr}\OperatorTok{:}\NormalTok{count_rows)}
+\NormalTok{      a <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(a, i, row_curr)}
+    
+\CommentTok{# proses triangulasi untuk membentuk matriks segitiga atas}
+    \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in}\NormalTok{ row_curr}\OperatorTok{:}\NormalTok{m)}
       \ControlFlowTok{if}\NormalTok{(j }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
-\NormalTok{        k <-}\StringTok{ }\NormalTok{m[j, piv]}\OperatorTok{/}\NormalTok{m[row_curr, piv]}
-\NormalTok{        m <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{(m, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
+\NormalTok{        c <-}\StringTok{ }\NormalTok{a[j, piv]}\OperatorTok{/}\NormalTok{a[row_curr, piv]}
+\NormalTok{        a <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{(a, row_curr, j, }\OperatorTok{-}\NormalTok{c)}
 \NormalTok{      \}}
 \NormalTok{    piv <-}\StringTok{ }\NormalTok{piv}\OperatorTok{+}\DecValTok{1}
 \NormalTok{    \}}
 \NormalTok{  \}}
-  \KeywordTok{return}\NormalTok{(m)}
+  \KeywordTok{return}\NormalTok{(a)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -6356,11 +6361,11 @@ Berbeda dengan metode eliminasi Gauss yang telah dijelaskan pada Chapter \ref{ro
 
 \begin{equation}
 \begin{bmatrix}
-     a_{1.1} & a_{1.2} & a_{1.3} &\cdots& a_{1.n} & b_1     \\[0.3em]
-     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& a_{2.n} & b_2     \\[0.3em]
-     a_{3.1} & a_{3.2} & a_{3.3} &\cdots& a_{3.n} & b_3     \\[0.3em]
+     a_{1,1} & a_{1,2} & a_{1,3} &\cdots& a_{1,n} & b_1     \\[0.3em]
+     a_{2,1} & a_{2,2} & a_{2,3} &\cdots& a_{2,n} & b_2     \\[0.3em]
+     a_{3,1} & a_{3,2} & a_{3,3} &\cdots& a_{3,n} & b_3     \\[0.3em]
      \vdots  & \vdots  & \vdots &\ddots& \vdots             \\[0.3em]
-     a_{m.1} & a_{m.2} & a_{m.3} &\cdots& a_{m.n} & b_n
+     a_{m,1} & a_{m,2} & a_{m,3} &\cdots& a_{m,n} & b_n
      \end{bmatrix}
 \implies
 \begin{bmatrix}
@@ -6517,37 +6522,42 @@ Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan \texttt{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gauss_jordan <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (m)\{}
-\NormalTok{    count_rows <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{ (m)}
-\NormalTok{    count_cols <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{ (m)}
+\NormalTok{gauss_jordan <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (a)\{}
+\NormalTok{    m <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{ (a)}
+\NormalTok{    n <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{ (a)}
 \NormalTok{    piv <-}\StringTok{ }\DecValTok{1}
     
-    \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{count_rows)\{}
-        \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{count_cols)\{}
+\CommentTok{# cek elemen diagonal utama apakah bernilai nol}
+    \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{m)\{}
+        \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{n)\{}
 \NormalTok{            i <-}\StringTok{ }\NormalTok{row_curr}
-            \ControlFlowTok{while}\NormalTok{(m[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{count_rows)\{}
+            \ControlFlowTok{while}\NormalTok{(a[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{m)\{}
 \NormalTok{                i <-}\StringTok{ }\NormalTok{i }\OperatorTok{+}\StringTok{ }\DecValTok{1}
-                \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{count_rows)\{}
+                \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{m)\{}
 \NormalTok{                    i <-}\StringTok{ }\NormalTok{row_curr}
 \NormalTok{                    piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
-                    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{count_cols)}
-                        \KeywordTok{return}\NormalTok{ (m)}
+                    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{n)}
+                        \KeywordTok{return}\NormalTok{ (a)}
 \NormalTok{                \}}
 \NormalTok{            \}}
+
+\CommentTok{# jika diagonal utama bernilai nol,lakukan row swapping}
             \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)}
-\NormalTok{                m <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(m, i, row_curr)}
-\NormalTok{            piv_val <-}\StringTok{ }\NormalTok{m[row_curr , piv]}
-\NormalTok{            m <-}\StringTok{ }\KeywordTok{scale_row}\NormalTok{ (m, row_curr , }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{piv_val)}
-            \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\StringTok{ }\NormalTok{count_rows)\{}
+\NormalTok{                a <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(a, i, row_curr)}
+            
+\CommentTok{# proses pembentukan matriks reduced row echelon form}
+\NormalTok{            piv_val <-}\StringTok{ }\NormalTok{a[row_curr , piv]}
+\NormalTok{            a <-}\StringTok{ }\KeywordTok{scale_row}\NormalTok{ (a, row_curr , }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{piv_val)}
+            \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\StringTok{ }\NormalTok{m)\{}
                 \ControlFlowTok{if}\NormalTok{(j }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
-\NormalTok{                    k <-}\StringTok{ }\NormalTok{m[j, piv]}\OperatorTok{/}\NormalTok{m[row_curr, piv]}
-\NormalTok{                    m <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{ (m, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
+\NormalTok{                    k <-}\StringTok{ }\NormalTok{a[j, piv]}\OperatorTok{/}\NormalTok{a[row_curr, piv]}
+\NormalTok{                    a <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{ (a, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
 \NormalTok{                \}}
 \NormalTok{            \}}
 \NormalTok{            piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
 \NormalTok{        \}}
 \NormalTok{    \}}
-    \KeywordTok{return}\NormalTok{ (m)}
+    \KeywordTok{return}\NormalTok{ (a)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -6632,11 +6642,11 @@ Proses eliminasi untuk matriks tridiagonal bersifat trivial karena dengan memben
 
 \begin{equation}
 \begin{bmatrix}
-     a_{1.1} & a_{1.2} & 0       &\cdots& 0                 \\[0.3em]
-     a_{2.1} & a_{2.2} & a_{2.3} &\cdots& 0             \\[0.3em]
-     0       & a_{3.2} & a_{3.3} &\cdots& 0             \\[0.3em]
+     a_{1,1} & a_{1,2} & 0       &\cdots& 0                 \\[0.3em]
+     a_{2,1} & a_{2,2} & a_{2,3} &\cdots& 0             \\[0.3em]
+     0       & a_{3,2} & a_{3,3} &\cdots& 0             \\[0.3em]
      \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
-     0       & 0       & 0       &\cdots& a_{m.n}
+     0       & 0       & 0       &\cdots& a_{m,n}
      \end{bmatrix}
 \begin{bmatrix}
      x_1                                          \\[0.3em]
@@ -6658,7 +6668,7 @@ Proses eliminasi untuk matriks tridiagonal bersifat trivial karena dengan memben
 Penyelesaian persamaan tersebut disajikan pada Persamaan \eqref{eq:solusimatrikstridiagonal}.
 
 \begin{equation}
-x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i.j}}
+x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i,j}}
   \label{eq:solusimatrikstridiagonal}
 \end{equation}
 
@@ -6886,6 +6896,1329 @@ Berikut adalah contoh penerapan fungsi \texttt{solve()} pada sistem persamaan li
 \begin{verbatim}
 ## [1] 1 2 3
 \end{verbatim}
+
+Jika kita hanya memasukkan matriks persegi, maka output yang akan dihasilkan adalah invers dari matriks yang kita masukkan.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{solve}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]          [,3]
+## [1,]    2   -1  7.401487e-17
+## [2,]   14   -9 -1.000000e+00
+## [3,]   17  -11 -1.000000e+00
+\end{verbatim}
+
+Jika kita mengalikan invers dengan matriks semula, maka akan dihasilkan output berupa matriks identitas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}\OperatorTok{%*%}\KeywordTok{solve}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1
+\end{verbatim}
+
+\hypertarget{solvetridiagfunct}{%
+\subsection{Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi 'Solve.tridiag()`}\label{solvetridiagfunct}}
+
+Penyelesaian matriks tridiagonal selain menggunakan fungsi \texttt{solve()}, juga dapat menggunakan fungsi \texttt{Solve.tridiag()} dari paket \texttt{limSolve}. Untuk menginstall dan mengaktifkan paket tersebut, jalankan sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"limSolve"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(limSolve)}
+\end{Highlighting}
+\end{Shaded}
+
+Fungsi \texttt{Solve.tridiag()} memiliki format sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Solve.tridiag}\NormalTok{ ( diam1, dia, diap1, }\DataTypeTok{B=}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DataTypeTok{times=}\KeywordTok{length}\NormalTok{(dia)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{diam1}: vektor bukan nol di bawah diagonal matriks
+\item
+  \textbf{dia}: vektor bukan nol pada diagonal matriks
+\item
+  \textbf{diap1}: vektor bukan nol di atas diagonal matriks
+\item
+  \textbf{B}: vektor konstanta
+\end{itemize}
+\end{quote}
+
+Untuk memahami penerapannya, kita akan menggunakan kembali matriks yang ada pada Contoh \ref{exm:tridiagexm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l <-}\StringTok{ }\NormalTok{u <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{); d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{18}\NormalTok{)}
+\KeywordTok{Solve.tridiag}\NormalTok{(}\DataTypeTok{diam1=}\NormalTok{l, }\DataTypeTok{dia=}\NormalTok{d, }\DataTypeTok{diap1=}\NormalTok{u, }\DataTypeTok{B=}\NormalTok{b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    4
+## [2,]    2
+## [3,]    1
+## [4,]    3
+\end{verbatim}
+
+\hypertarget{dekomposisimatriks}{%
+\section{Dekomposisi Matriks}\label{dekomposisimatriks}}
+
+Seringkali kita diminta untuk memperoleh nilai penyelesaian suatu persamaan linier \(Ax=B\), dimana nilai vektor \(B\) yang selalu berubah-ubah. Penggunaan metode eliminasi Gauss mengharuskan untuk menyelesaikan sistem persamaan linier \(Ax=B\) secara terpisah untuk setiap perubahan vektor \(B\). Untuk menghindari pekerjaan eliminasi yang selalu berulang-ulang, faktorisasi menjadi suatu hal yang dapat dilakukan untuk mempersingkat prosesnya. Faktorisasi atau dekomposisi matriks merupakan suatu algoritma untuk memecah matriks \(A\), hasil pemecahan ini selanjutnya digunakan untuk memperoleh penyelesaian sistem persamaan linier melalui perkalian antara vektor \(B\) dan hasil faktorisasi matriks \(A\).
+
+\hypertarget{ludecomp}{%
+\subsection{Dekomposisi LU}\label{ludecomp}}
+
+Misalkan kita memiliki persamaan linier seperti yang ditunjukkan oleh Persamaan \eqref{eq:matrikpl2}. Pada metode dekomposisi LU, matriks \(A\) difaktorkan menjadi matriks \(L\) dan matriks \(U\), dimana ukuran kedua matriks tersebut harus sama dengan ukuran matriks \(A\) atau dapat kita tuliskan bahwa hasil perkalian kedua matriks tersebut akan menghasilkan matriks \(A\).
+
+\begin{equation}
+A=LU
+ \label{eq:LUdecomp}
+\end{equation}
+
+Sehingga Persamaan \eqref{eq:matrikpl2} akan menjadi Persamaan \eqref{eq:LUdecomp2}.
+
+\begin{equation}
+LUx=b
+ \label{eq:LUdecomp2}
+\end{equation}
+
+Langkah penyelesaian sistem persamaan linier, diawali dengan menghadirkan vektor \(t\) yang ditunjukkan pada Persamaan \eqref{eq:LUdecomp3}.
+
+\begin{equation}
+Ux=t
+ \label{eq:LUdecomp3}
+\end{equation}
+
+Langkah pada Persamaan \eqref{eq:LUdecomp3} tidak dimaksudkan untuk menghitung vektor \(t\), melainkan untuk menghitung vektor \(x\). Vektor \(t\) diperoleh dengan menggunakan Persamaan \eqref{eq:LUdecomp4}.
+
+\begin{equation}
+Lx=t
+ \label{eq:LUdecomp4}
+\end{equation}
+
+Kita dapat menyelesaikan sistem persamaan yang ditunjukkan pada Persamaan \eqref{eq:LUdecomp3} dan Persamaan \eqref{eq:LUdecomp4} menggunakan berbagai algoritma penyelesaian yang telah dibahas sebelumnya. Namun, karena matriks \(L\) merupakan matriks segitiga bawah dengan nilai nol berada pada bagian atas diagonal utama, penyelesaian \(t\) mengambil langkah yang lebih sedikit. Kondisi ini sama dengan kondisi penyelesaian matriks tridiagonal, dimana kita memanfaatkan sejumlah jalan pintas penyelesaiaannya guna mempercepat komputasi. Matriks segitia bawah \(L\) akan berupa matriks persegi dengan ukuran \(m\), di mana \(m\) merupakan jumlah baris matriks \(A\). Persamaan \eqref{eq:LUdecomp4} dalam bentuk matriks akan terlihat seperti Persamaan \eqref{eq:LUdecomp5}.
+
+\begin{equation}
+Lt=
+\begin{bmatrix}
+     1       & 0       & 0 &\cdots& 0           \\[0.3em]
+     l_{2,1} & 1       & 0 &\cdots& 0           \\[0.3em]
+     l_{3,1} & l_{3,2} & 1 &\cdots& 0           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     l_{m,1} & l_{m,2} & l_{m,3} &\cdots& 1
+     \end{bmatrix}
+\begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     t_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \label{eq:LUdecomp5}
+\end{equation}
+
+Berdasarkan Persamaan \eqref{eq:LUdecomp5}, diketahui nilai \(t_1=b_1\). Nilai ini selanjutnya dapat digunakan untuk melakukan proses substitusi guna memperoleh seluruh nilai vektor \(t\). Proses ini disebut sebagai \emph{foward substitution}. Proses substitusi dapat dituliskan menggunakan Persamaan \eqref{eq:LUdecomp6}.
+
+\begin{equation}
+t_i=b_i-\sum_{j=1}^{i-1}l_{i,j}t_i
+  \label{eq:LUdecomp6}
+\end{equation}
+
+Seteleh nilai vektor \(t\) dihitung, kita dapat menghitung nilai \(x\) pada Persamaan \eqref{eq:LUdecomp7}.
+
+\begin{equation}
+Ux=
+\begin{bmatrix}
+     u_{1,1} & u_{1,2} & u_{1,3} &\cdots& u_{1,n}           \\[0.3em]
+     0       & u_{2,2} & u_{2,3} &\cdots& u_{2,n}           \\[0.3em]
+     0       & 0       & u_{3,3} &\cdots& u_{3,n}           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0      & 0        &\cdots& u_{m,n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     t_n                                       
+     \end{bmatrix}
+  \label{eq:LUdecomp7}
+\end{equation}
+
+Jika diperhatikan, kita dapat mengetahui mengetahui nilai \(x_n=\frac{t_n}{u_{m,n}}\). Nilai tersebut selanjutnya dapat digunakan untuk melakukan proses susbtitusi pada nilai lainnya. Proses substitusi ini disebut sebagai \emph{backward substitution}. Proses dekomposisi atau faktorisasi LU digambarkan pada Gambar \ref{fig:LUfig}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/LU} 
+
+}
+
+\caption{Tahapan dekomposisi LU.}\label{fig:LUfig}
+\end{figure}
+
+Dekomposisi LU didasarkan pada operasi baris elementer. Pertama, kita perlu menemukan matriks segitiga atas yang sesuai dengan matriks \(A\). Solusi untuk melakukan dekomposisi bisa jadi tak terhingga, namun solusi yang paling sederhana adalah mengubah matriks \(A\) menjadi matriks \emph{row echelon form}. Kedua, \(L\) harus menjadi matriks segitiga bawah yang mereduksi ke-\(l\) dengan mengikuti operasi baris yang sama yag menghasilkan \(U\). Kita dapat menggunakan algoritma Doolittle untuk menghasilkan \(L\), di mana nilai setiap entri dalam matriks segitiga bawah merupakan pengali yang digunakan untuk menghilangkan entri yang sesuai untuk setiap proses \emph{row replacement}.
+
+Pada praktiknya, proses eliminasi Gauss untuk memperoleh matriks \(U\) kadang menghasilkan nol di kolom pivotnya. Kondisi tersebut mengharuskan kita untuk melakukan proses \emph{row swapping} atau pertukaran baris (biasanya dengan baris bawahnya) untuk pivot bukan nol. Jika proses tersebut berhasil dilakukan bisa jadi matriks \(A\) mungkin setara dengan matriks LU, tetapi tidak sama dalam hal urutan nilai pada tiap barisnya. Agar kita dapat memperoleh hasil yang sama (matriks A sama dengan matriks LU), diperlukan matriks ketiga, \(P\). Matriks ini merupakan matriks identitas dengan ukuran sama dengan matriks \(A\). Jika pertukaran baris dilakukan selama proses pembentukan matriks \(U\), maka pertukaran baris yang sama juga akan diimplemenntasikan pada matriks \(P\). oleh karena itu, dalam praktiknya matriks \(A=PLU\) dan perkalian dengan matriks \(P\) berfungsi untuk mengembalikan urutan baris.
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:LUexmp}{}{\label{exm:LUexmp} }Selesaikan sistem persamaan linier berikut menggunakan faktorisasi LU
+\EndKnitrBlock{example}
+
+\[
+\begin{matrix}
+  x_1+x_2+3x_4=4 \\
+  2x_1+x_2-x_3+x_4=1 \\
+  3x_1-x_2-x_3+2x_4=-3 \\
+  -x_1-2x_2+3x_3-x_4=4
+\end{matrix}
+\]
+
+\textbf{Jawab}:
+
+Nayatakan sistem persamaan tersebut ke dalam bentuk matriks \(Ax=b\).
+
+\begin{equation}
+Ux=
+\begin{bmatrix}
+     1       & 1       & 0       & 3           \\[0.3em]
+     2       & 1       & -1      & 1           \\[0.3em]
+     3       & -1      & -1      & 2           \\[0.3em]
+     -1      & 2       & 3       & -1           
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     1                                          \\[0.3em]
+     -3                                          \\[0.3em]
+     4                                       
+     \end{bmatrix}
+\end{equation}
+
+Lakukan operasi baris elementer pada matriks \(A\) untuk memperoleh matriks \(U\). Urutan operasi baris elementer yang dilakukan adalah sebagai berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\left(B_2-2B_1\right)\to B_2 \to l_{2,1}=2\),
+\item
+  \(\left(B_3-3B_1\right)\to B_3 \to l_{3,1}=3\),
+\item
+  \(\left(B_4+B_1\right)\to B_4 \to l_{4,1}=-1\),
+\item
+  \(\left(B_3-4B_2\right)\to B_3\to l_{3,2}=4\),
+\item
+  \(\left(B_4+3B_2\right)\to B_4 \to l_{4,2}=-3\),
+\item
+  \(l_{4,3}=0\)
+\end{itemize}
+
+Simpan pengali tiap tahapan pada masing-masing elemen matriks \(L\). Hasil operasi tersebut akan menghasilkan matriks triangular \(U\).
+
+\[
+U=
+\begin{bmatrix}
+     1       & 1       & 0       & 3           \\[0.3em]
+     0       & -1      & -1      & -5          \\[0.3em]
+     0       & 0       & 3       & 13          \\[0.3em]
+     0       & 0       & 0       & -13           
+\end{bmatrix}
+\]
+
+Untuk matriks \(L\) sebagai berikut:
+
+\[
+L=
+\begin{bmatrix}
+     1         & 0       & 0       & 0           \\[0.3em]
+     2         & 1       & 0       & 0           \\[0.3em]
+     3         & 4       & 1       & 0           \\[0.3em]
+     -1        & -3      & 0       & 1           
+\end{bmatrix}
+\]
+
+Karena pada proses operasi baris elementer tidak terdapat operasi pertukaran baris, maka matriks \(P\) tidak mengalami perubahan:
+
+\[
+P=
+\begin{bmatrix}
+     1         & 0       & 0       & 0           \\[0.3em]
+     0         & 1       & 0       & 0           \\[0.3em]
+     0         & 0       & 1       & 0           \\[0.3em]
+     0         & 0       & 0       & 1           
+     \end{bmatrix}
+\]
+
+Lakukan operasi \emph{forward substitution} menggunakan Persamaan \eqref{eq:LUdecomp5}.
+
+\begin{equation}
+\begin{bmatrix}
+      1         & 0       & 0       & 0           \\[0.3em]
+      2         & 1       & 0       & 0           \\[0.3em]
+      3         & 4       & 1       & 0           \\[0.3em]
+      -1        & -3      & 0       & 1
+     \end{bmatrix}
+\begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     t_4                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     1                                          \\[0.3em]
+     -3                                          \\[0.3em]
+     4                                       
+     \end{bmatrix}
+\end{equation}
+
+Berdasarkan hasil perhitungan diperoleh nilai vektor \(t\).
+
+\[
+t_1=4, t_2=1, t_3=-3, t_4=4
+\]
+
+Operasi terakhir yang perlu dilakukan untuk memperoleh nilai \(x\) adalah dengan melakukan \emph{backward substitution} menggunakan nilai vektor \(t\) yang telah dihitung.
+
+\begin{equation}
+\begin{bmatrix}
+     1       & 1       & 0       & 3           \\[0.3em]
+     0       & -1      & -1      & -5          \\[0.3em]
+     0       & 0       & 3       & 13          \\[0.3em]
+     0       & 0       & 0       & -13
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     x_4                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     7                                          \\[0.3em]
+     13                                          \\[0.3em]
+     -13                      
+     \end{bmatrix}
+\end{equation}
+
+Berdasarkan hasil perhitungan diperoleh nilai \(x\) sebagai berikut:
+
+\[
+x_1=-1, x_2=2, x_3=0, x_4=1
+\]
+
+\textbf{Algoritma Dekomposisi LU}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Masukkan matriks \(A\), dan vektor \(B\) beserta ukurannya \(n\)
+\item
+  Lakukan langkah poin ke-4 s/d poin 5 untuk meperoleh matriks \(U\).
+\item
+  Untuk baris ke-\(i\) di mana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i,j}\) sama dengan nol.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{i+k,j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
+\item
+  \textbf{Bila tidak}, lanjutkan.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Untuk baris ke-\(j\), dimana \(j=i+1\) s/d \(n\), lakukan operasi baris elementer:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung \(c=\frac{a_{j,i}}{a_{i,i}}\)
+\item
+  untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j,k}=a_{j,k}-c_i.a_{i,k}\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Lakukan langkah poin ke-7 s/d poin 9 untuk memperoleh matriks \(L\)
+\item
+  Untuk diagonal matriks \(L\) isikan dengan nilai 1 dan elemen di atas diagonal dengan nilai nol.
+\item
+  Untuk elemen di bawah diagonal isikan dengan faktor pengali operasi baris elementer matriks \(U\).
+\item
+  Lakukan proses \emph{forward substitution} menggunakan Persamaan \eqref{eq:LUdecomp6} untuk memperoleh nilai vektor \(t\).
+\item
+  Lakukan \emph{backward substituion} menggunakan Persamaan \eqref{eq:refsolution}.
+\end{enumerate}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun algoritma faktorisasi LU menggunakan \texttt{R}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lu_solve <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, }\DataTypeTok{b=}\OtherTok{NULL}\NormalTok{)\{}
+\NormalTok{    m <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(a)}
+\NormalTok{    n <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(a)}
+\NormalTok{    piv <-}\StringTok{ }\DecValTok{1}
+
+\CommentTok{# membentuk matriks identitas P dan L}
+\NormalTok{    P <-}\StringTok{ }\NormalTok{L <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(n)}
+
+\CommentTok{# cek elemen diagonal utama apakah bernilai nol}
+    \ControlFlowTok{for}\NormalTok{(row_curr }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{m)\{}
+        \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{<=}\StringTok{ }\NormalTok{n)\{}
+\NormalTok{            i <-}\StringTok{ }\NormalTok{row_curr}
+            \ControlFlowTok{while}\NormalTok{(a[i, piv] }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{i }\OperatorTok{<}\StringTok{ }\NormalTok{m)\{}
+\NormalTok{                i <-}\StringTok{ }\NormalTok{i }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+                \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{>}\StringTok{ }\NormalTok{m)\{}
+\NormalTok{                    i <-}\StringTok{ }\NormalTok{row_curr}
+\NormalTok{                    piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+                    \ControlFlowTok{if}\NormalTok{(piv }\OperatorTok{>}\StringTok{ }\NormalTok{n)}
+                        \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{P =}\NormalTok{ P, }\DataTypeTok{L =}\NormalTok{ L, }\DataTypeTok{U =}\NormalTok{ a))}
+\NormalTok{                \}}
+\NormalTok{            \}}
+            
+\CommentTok{# jika elemen diagonal utama bernilai nol,lakukan row swapping}
+            \ControlFlowTok{if}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
+\NormalTok{                a <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(a, i, row_curr)}
+\NormalTok{                P <-}\StringTok{ }\KeywordTok{swap_row}\NormalTok{(P, i, row_curr)}
+\NormalTok{            \}}
+            
+  \CommentTok{# pembentukan matriks L dan U}
+            \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in}\NormalTok{ row_curr}\OperatorTok{:}\NormalTok{m)}
+                \ControlFlowTok{if}\NormalTok{(j }\OperatorTok{!=}\StringTok{ }\NormalTok{row_curr)\{}
+\NormalTok{                    k <-}\StringTok{ }\NormalTok{a[j, piv]}\OperatorTok{/}\NormalTok{a[row_curr, piv]}
+                    
+  \CommentTok{# matriks U}
+\NormalTok{                    a <-}\StringTok{ }\KeywordTok{replace_row}\NormalTok{(a, row_curr, j, }\OperatorTok{-}\NormalTok{k)}
+                    
+  \CommentTok{# pengisian elemen matriks L}
+\NormalTok{                    L[j, piv] <-}\StringTok{ }\NormalTok{k}
+\NormalTok{                \}}
+\NormalTok{            piv <-}\StringTok{ }\NormalTok{piv }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    
+\CommentTok{# penyelesaian persamaan linier}
+    \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(b))\{}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{P =}\NormalTok{ P, }\DataTypeTok{L =}\NormalTok{ L, }\DataTypeTok{U =}\NormalTok{ a))}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      
+      \CommentTok{# forward substitution}
+\NormalTok{      t <-}\StringTok{ }\KeywordTok{forwardsolve}\NormalTok{(L, b)}
+      
+      \CommentTok{# backward substitution}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{backsolve}\NormalTok{(a, t)}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{P =}\NormalTok{ P, }\DataTypeTok{L =}\NormalTok{ L, }\DataTypeTok{U =}\NormalTok{ a, }\DataTypeTok{result=}\NormalTok{x))}
+\NormalTok{     \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Kita dapat menyelesaikan sistem persamaan linier pada Contoh \ref{exm:LUexmp} menggunakan fungsi yang telah kita buat.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# membuat matriks a dan vektor b}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{),}
+            \DataTypeTok{nrow=}\DecValTok{4}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+\CommentTok{# penyelesaian}
+\NormalTok{decomp<-}\KeywordTok{lu_solve}\NormalTok{(a,b)}
+\end{Highlighting}
+\end{Shaded}
+
+Untuk membentuk kembali matriks \(A\), kita dapat mengalikan matriks \(L\), \(U\), dan \(P\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decomp}\OperatorTok{$}\NormalTok{L}\OperatorTok{%*%}\NormalTok{decomp}\OperatorTok{$}\NormalTok{U}\OperatorTok{%*%}\NormalTok{decomp}\OperatorTok{$}\NormalTok{P}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    0    3
+## [2,]    2    1   -1    1
+## [3,]    3   -1   -1    2
+## [4,]   -1    2    3   -1
+\end{verbatim}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:LUexmp2}{}{\label{exm:LUexmp2} }Lakukan dekomposisi LU pada matriks berikut dan lakukan pengecekan apakah perkalian hasil dekomposisi matriks akan menghasilkan matriks semula!
+\EndKnitrBlock{example}
+
+\[
+\begin{bmatrix}
+     0         & 1       & -1                  \\[0.3em]
+     1         & 5       & 9                   \\[0.3em]
+     7         & -1      & -5                  
+\end{bmatrix}
+\]
+
+\textbf{Jawab}:
+
+Lakukan proses dekomposisi menggunakan fungsi \texttt{lu\_solve()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# membentuk matriks a}
+\NormalTok{(A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{-5}\NormalTok{), }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    0    1   -2
+## [2,]    1    5    9
+## [3,]    7   -1   -5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# dekomposisi lu}
+\NormalTok{decomp<-}\KeywordTok{lu_solve}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+Lakukan pengecekan apakah matriks hasil dekomposisi akan menghasilkan matriks \(A\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decomp}\OperatorTok{$}\NormalTok{P }\OperatorTok{%*%}\StringTok{ }\NormalTok{decomp}\OperatorTok{$}\NormalTok{L }\OperatorTok{%*%}\StringTok{ }\NormalTok{decomp}\OperatorTok{$}\NormalTok{U}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    0    1   -2
+## [2,]    1    5    9
+## [3,]    7   -1   -5
+\end{verbatim}
+
+Fungsi \texttt{lu()} pada paket \texttt{Matrix} dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan paket \texttt{Matrix}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"Matrix"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(Matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+Untuk dapat menggunakannya kita hanya perlu menginputkan matriks kedalam fungsi tersebut. Berikut adalah contoh penerapannya:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# membuat matriks a }
+\NormalTok{a <-}\StringTok{ }\KeywordTok{Matrix}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{),}\DecValTok{2}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{# dekomposisi}
+\NormalTok{lum <-}\StringTok{ }\KeywordTok{lu}\NormalTok{(a)}
+\NormalTok{lum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'MatrixFactorization' of Formal class 'denseLU' [package "Matrix"] with 4 slots
+##   ..@ x       : num [1:9] -0.95 0.705 0.589 0.53 -0.604 ...
+##   ..@ perm    : int [1:3] 2 3 3
+##   ..@ Dimnames:List of 2
+##   .. ..$ : NULL
+##   .. ..$ : NULL
+##   ..@ Dim     : int [1:2] 3 3
+\end{verbatim}
+
+Untuk menampilkan hasil dekomposisi, jalankan fungsi \texttt{expand()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decomp <-}\StringTok{ }\KeywordTok{expand}\NormalTok{(lum)}
+\NormalTok{decomp}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $L
+## 3 x 3 Matrix of class "dtrMatrix" (unitriangular)
+##      [,1]       [,2]       [,3]      
+## [1,]  1.0000000          .          .
+## [2,]  0.7052632  1.0000000          .
+## [3,]  0.5894737 -0.2278591  1.0000000
+## 
+## $U
+## 3 x 3 Matrix of class "dtrMatrix"
+##      [,1]       [,2]       [,3]      
+## [1,] -0.9500000  0.5300000  1.7600000
+## [2,]          . -0.6037895 -0.7512632
+## [3,]          .          .  0.1913441
+## 
+## $P
+## 3 x 3 sparse Matrix of class "pMatrix"
+##           
+## [1,] . . |
+## [2,] | . .
+## [3,] . | .
+\end{verbatim}
+
+\hypertarget{dekomposisi-cholesky}{%
+\subsection{Dekomposisi Cholesky}\label{dekomposisi-cholesky}}
+
+Dekomposisi Cholesky memberikan faktorisasi matriks alternatif sehingga \(A = LL^T\), di mana \(L^T\) merupakan transpose konjugat dari matriks \(L\). Dalam kasus ini, penulis hanya bekerja dengan matriks rill dengan nilai rill dan bagian imajiner nol. Jadi untuk tujuan \emph{sub-chapter} ini, matriks \(L^T\) hanyalah transpose dari matriks \(L\).
+
+Seperti dekomposisi LU, dekomposisi Cholesky dapat digunakan untuk menyelesaikan sistem persamaan linier. Kelebihannya, Menemukan dekomposisi Cholesky jauh lebih cepat daripada dekomposisi LU. Namun, dekomposisi ini hanya terbatas pada matriks tertentu saja. Dekomposisi Cholesky hanya dapat digunakan pada matriks definit positif dan simetris. Matriks simeteris merupakan matriks yang nilai di atas dan di bawah diagonalnya simetris atau sama; secara matematis, untuk semua \(i\) dan \(j\) pada matriks \(A\), \(a_{i;j}=a_{j;i}\). Definit positif berarti bahwa setiap entri pivot (nilai elemen diagonal utama) selelu bernilai positif. Selain itu, untuk matriks definit positif, hubungan \(xAx>0\) untuk semua vektor, \(x\).
+
+Karena \(L^∗\) transpose dari matriks \(L\), maka \(l^{T}_{i,j} = l_{j,i}\) untuk semua nilai \(i\) dan \(j\). Tanpa kendala (\emph{constraint}) ini, dekomposisi Cholesky akan mirip dekomposisi LU. Tetapi dengan kendala ini, nilai elemen matriks \(L\) dan \(L^T\) harus dipilih dengan cermat sehingga hubungan \(A = LL^T\) berlaku. Bentuk dekomposisi Cholesky disajikan pada Persamaan \eqref{eq:cholesky}.
+
+\begin{equation}
+\begin{bmatrix}
+     a_{1,1} & a_{1,2} & a_{1,3} &\cdots& a_{1,m}           \\[0.3em]
+     a_{2,1} & a_{2,2} & a_{2,3} &\cdots& a_{2,m}           \\[0.3em]
+     a_{3,1} & a_{3,2} & a_{3,3} &\cdots& a_{3,m}           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     a_{m,1} & a_{m,2} & a_{m,3} &\cdots& a_{m,m}
+     \end{bmatrix}
+=
+\begin{bmatrix}
+     l_{1,1} & 0       & 0       &\cdots& 0           \\[0.3em]
+     l_{2,1} & l_{2,2} & 0       &\cdots& 0           \\[0.3em]
+     l_{3,1} & l_{3,2} & l_{3,3} &\cdots& 0           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     l_{m,1} & l_{m,2} & l_{m,3} &\cdots& l_{m,m}
+     \end{bmatrix}
+\begin{bmatrix}
+     l_{1,1} & l_{1,2} & l_{1,3} &\cdots& l_{1,m}           \\[0.3em]
+     0       & l_{2,2} & l_{2,3} &\cdots& l_{2,m}           \\[0.3em]
+     0       & 0       & l_{3,3} &\cdots& l_{3,m}           \\[0.3em]
+     \vdots  & \vdots  & \vdots  &\ddots& \vdots            \\[0.3em]
+     0       & 0       & 0       &\cdots& l_{m,m}
+     \end{bmatrix}
+  \label{eq:cholesky}
+\end{equation}
+
+Untuk setiap elemen matriks \(A\) memiliki hubungan yang dituliskan pada Persamaan \eqref{eq:cholesky2}.
+
+\begin{equation}
+a_{i,j}=\sum_{k=1}^mL_{i,k}L_{k,j}
+  \label{eq:cholesky2}
+\end{equation}
+
+Berdasarkan Persamaan \eqref{eq:cholesky}, sejumlah nilai elemen \(L_{i,k}\) dan \(L_{k,j}\) adalah nol. Nilai tiap elemen diagonal utama yang tidak bernilai nol dihitung menggunakan Persamaan \eqref{eq:cholesky3}.
+
+\begin{equation}
+l_{i,i}=\sqrt{\left(a_{i,i}-\sum_{k=1}^{i-1}l_{i,k}^2\right)}
+  \label{eq:cholesky3}
+\end{equation}
+
+Elemen diagonal dihitung menggunakan Persamaan \eqref{eq:cholesky5}
+
+\begin{equation}
+l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
+  \label{eq:cholesky5}
+\end{equation}
+
+\textbf{Algoritma Dekomposisi Cholesky}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Masukkan matriks \(A\), dan vektor \(B\) beserta ukurannya \(n\).
+\item
+  Untuk elemen matriks \(L\), hitung menggunakan Persamaan \eqref{eq:cholesky5}.
+\item
+  Untuk nilai diagonal utama matriks \(L\), hitung menggunakan Persamaan \eqref{eq:cholesky3}.
+\item
+  Untuk memperoleh matriks \(L^T\), lakukan transpose pada matriks \(L\).
+\item
+  Untuk memperoleh nilai \(x\),
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung vektor \(t\) menggunakan Persamaan \eqref{eq:LUdecomp4}.
+\item
+  Hitung vektor \(x\) menggunakan Persamaan \eqref{eq:LUdecomp3}, dimana matriks \(U=L^T\).
+\end{itemize}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk melakukan dekomposisi Cholesky. Fungsi tersebut disajikan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cholesky_solve <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, }\DataTypeTok{b=}\OtherTok{NULL}\NormalTok{)\{}
+\NormalTok{    m <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(a)}
+   
+\CommentTok{# membentuk matriks L dengan elemen nol}
+\NormalTok{    L =}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{0}\NormalTok{,m)}
+
+\CommentTok{# Perhitungan elemen matriks L}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{m)\{}
+        \ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{i)\{}
+\NormalTok{            p_sum <-}\StringTok{ }\DecValTok{0}
+            \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{k)}
+\NormalTok{                p_sum <-}\StringTok{ }\NormalTok{p_sum }\OperatorTok{+}\StringTok{ }\NormalTok{L[j,i]}\OperatorTok{*}\NormalTok{L[j,k]}
+                
+\CommentTok{# Pehitungan elemen diagonal utama}
+            \ControlFlowTok{if}\NormalTok{(i}\OperatorTok{==}\NormalTok{k)}
+\NormalTok{                L[k,i]<-}\KeywordTok{sqrt}\NormalTok{(a[i,i]}\OperatorTok{-}\NormalTok{p_sum)}
+            \ControlFlowTok{else}
+\NormalTok{                L[k,i]<-(a[k,i]}\OperatorTok{-}\NormalTok{p_sum)}\OperatorTok{/}\NormalTok{L[k,k]}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    
+\CommentTok{# Perhitungan elemn matriks L*}
+\NormalTok{    tL <-}\StringTok{ }\KeywordTok{t}\NormalTok{(L)}
+    
+\CommentTok{# penyelesaian persamaan linier}
+    \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(b))\{}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{L =}\NormalTok{ L, }\DataTypeTok{tL =}\NormalTok{ tL, }\DataTypeTok{a =}\NormalTok{ a))}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      
+      \CommentTok{# forward substitution}
+\NormalTok{      t <-}\StringTok{ }\KeywordTok{forwardsolve}\NormalTok{(L, b)}
+      
+      \CommentTok{# backward substitution}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{backsolve}\NormalTok{(tL, t)}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{L =}\NormalTok{ L, }\DataTypeTok{tL =}\NormalTok{ tL, }\DataTypeTok{a =}\NormalTok{ a, }\DataTypeTok{result=}\NormalTok{x))}
+\NormalTok{     \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:cholexm2}{}{\label{exm:cholexm2} }Dengan menggunakan fungsi \texttt{cholesky\_solve()}, lakukan dekomposisi pada matriks berikut! Lakukan pengecekan pada hasil dekomposisi apakah hasil kali matriks dekomposisi akan menghasilkan matriks semula!
+\EndKnitrBlock{example}
+
+\[
+\begin{bmatrix}
+     9         & -3       & 6                  \\[0.3em]
+     -3         & 17       & -10                   \\[0.3em]
+     6         & -10      & 12                  
+\end{bmatrix}
+\]
+
+\textbf{Jawab}:
+
+Dekomposisi Cholesky menggunakan fungsi \texttt{cholesky\_solve()}, disajikan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{,}\OperatorTok{-}\DecValTok{3}\NormalTok{,}\DecValTok{17}\NormalTok{,}\OperatorTok{-}\DecValTok{10}\NormalTok{,}\DecValTok{6}\NormalTok{,}\OperatorTok{-}\DecValTok{10}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{# dekomposisi Cholesky}
+\NormalTok{(decomp<-}\KeywordTok{cholesky_solve}\NormalTok{(a))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $L
+##      [,1] [,2] [,3]
+## [1,]    3   -1    2
+## [2,]    0    4   -2
+## [3,]    0    0    2
+## 
+## $tL
+##      [,1] [,2] [,3]
+## [1,]    3    0    0
+## [2,]   -1    4    0
+## [3,]    2   -2    2
+## 
+## $a
+##      [,1] [,2] [,3]
+## [1,]    9   -3    6
+## [2,]   -3   17  -10
+## [3,]    6  -10   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# mengecek hasil dekomposisi}
+\NormalTok{decomp}\OperatorTok{$}\NormalTok{tL }\OperatorTok{%*%}\StringTok{ }\NormalTok{decomp}\OperatorTok{$}\NormalTok{L}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    9   -3    6
+## [2,]   -3   17  -10
+## [3,]    6  -10   12
+\end{verbatim}
+
+Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi \texttt{chol()} pada paket \texttt{Matrix}. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh \ref{exm:cholexm2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{chol}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    3   -1    2
+## [2,]    0    4   -2
+## [3,]    0    0    2
+\end{verbatim}
+
+\begin{quote}
+\textbf{Penting!!!}
+
+Fungsi \texttt{chol()} hanya menampilkan matriks \(L^T\). Untuk menampilkan matriks \(L\), kita perlu melakukan transpose
+\end{quote}
+
+\hypertarget{othersdecomp}{%
+\subsection{Dekomposisi Lainnya}\label{othersdecomp}}
+
+Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada \emph{sub-chapter} ini antara lain: QR, \emph{singular value decomposition} (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada paket \texttt{base}.
+
+\hypertarget{qrdecomp}{%
+\subsubsection{Dekomposisi QR}\label{qrdecomp}}
+
+Dekomposisi QR merupakan dekomposisi yang penting dalam menyelesaikan sistem persamaan linier. Dekomposisi ini juga berperan penting untuk menghitung koefisien regresi dan pengaplikasian algoritma Newton-Raphson.
+
+Untuk memperoleh informasi terkait dekomposisi ini, pembaca dapat mengetikkan sintaks berikut pada \texttt{R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?qr}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut merupakan contoh penerapan fungsi \texttt{qr()} untuk menyelesaikan sistem persamaan linier:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# membuat matriks A dan B}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{((}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{)}\OperatorTok{+}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{12}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{4}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\DecValTok{2}\OperatorTok{:}\DecValTok{5}
+
+\CommentTok{# dekomposisi matriks A}
+\KeywordTok{qr}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $qr
+##            [,1]        [,2]       [,3]
+## [1,] -6.3777985 -12.1257372 -19.850120
+## [2,]  0.2774974  -6.3105459  -7.939245
+## [3,]  0.7147777  -0.6461294   2.351193
+## [4,]  0.6382310  -0.5653624   0.276672
+## 
+## $rank
+## [1] 3
+## 
+## $qraux
+## [1] 1.068915 1.512720 1.960964
+## 
+## $pivot
+## [1] 1 2 3
+## 
+## attr(,"class")
+## [1] "qr"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# memperoleh penyelesaian SPL}
+\KeywordTok{qr.solve}\NormalTok{(A,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  0.3045952 -0.1111081  0.3236862
+\end{verbatim}
+
+\hypertarget{svddecomp}{%
+\subsubsection{\texorpdfstring{\emph{Singular Value Decomposition}}{Singular Value Decomposition}}\label{svddecomp}}
+
+\emph{Singular value decomposition} (SVD) merupakan algoritma faktorisasi matriks yang mendekomposisi matriks segiempat menjadi matriks \(UDV_H\), dimana \(D\) merupakan mmatriks diagonal non negatif, \(U\) dan \(V\) merupakan matriks \emph{unitary}, dan \(V_H\) merupakan matriks tanspose konjugat dari matriks \(V\). Algoritma ini banyak digunakan dalam analisis \emph{principal component}.
+
+Pada \texttt{R}, SVD dapat dilakukan menggunakan fungsi \texttt{svd()} dari paket \texttt{base}. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?svd}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah contoh penerapan fungsi \texttt{svd()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# dekomposisi matriks A}
+\KeywordTok{svd}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $d
+## [1] 26.094305  2.727495  1.329585
+## 
+## $u
+##            [,1]       [,2]       [,3]
+## [1,] -0.3684647 -0.5661362  0.6650563
+## [2,] -0.4706958 -0.5703414 -0.6113237
+## [3,] -0.5740273  0.4324050 -0.2589679
+## [4,] -0.5596176  0.4089332  0.3419343
+## 
+## $v
+##            [,1]        [,2]       [,3]
+## [1,] -0.2257101  0.87169376 -0.4349769
+## [2,] -0.5201583 -0.48536069 -0.7027520
+## [3,] -0.8237052  0.06763865  0.5629696
+\end{verbatim}
+
+\hypertarget{eigendecomp}{%
+\subsubsection{Dekomposisi Eigen}\label{eigendecomp}}
+
+Proses umum yang digunakan untuk menemukan nilai eigen dan vektor eigen suatu matriks segiempat dapat dilihat sebagai proses dari dekomposisi eigen. Proses ini akan mendekomposisi matriks menjadi \(VDV^{-1}\), dimana \(D\) merupakan matriks diagonal yang terbentuk dari nilai eigen, dan \(V\) merupakan vektor eigen. Proses dekomposisi ini akan berguna bagi pembaca yang ingin mempelajari \emph{principal component analysis}.
+
+Fungsi \texttt{eigen()} pada paket \texttt{base} dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?eigen}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah contoh sintaks untuk melakukan dekomposisi eigen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{# dekomposisi matriks A}
+\KeywordTok{eigen}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## eigen() decomposition
+## $values
+## [1] 3.4142136 2.0000000 0.5857864
+## 
+## $vectors
+##            [,1]          [,2]      [,3]
+## [1,] -0.5000000 -7.071068e-01 0.5000000
+## [2,]  0.7071068  1.099065e-15 0.7071068
+## [3,] -0.5000000  7.071068e-01 0.5000000
+\end{verbatim}
+
+\hypertarget{iteratif}{%
+\section{Metode Iterasi}\label{iteratif}}
+
+Pada Chapter \ref{iteratif} kita akan membahas penyelesaian persamaan linier dengan menggunakan metode iterasi. Terdapat dua metode iterasi yang akan dibahas yaitu iterasi Jacobi dan Gauss-Seidel.
+
+Metode iterasi dimulai dengan estimasi nilai akhir. Setelah menerapkan beberapa perlakuan pada nilai estimasi, hasil perlakuan selanjutnya menjadi nilai estimasi untuk iterasi berikutnya. Proses tersebut akan berlangsung secara terus-menerus hingga ambang batas dipenuhi. Nilai ambang batas dapat berupa jumlah iterasi maksimum atau selisih antara nilai estimasi baru dan estimasi semula lebih kecil dari suatu nilai toleransi yang ditetapkan.
+
+Jumlah kuadrat merupakan metode yang sering digunakan untuk mengecek apakah selisih nilai estimasi baru terhadap estimasi lama lebih kecil dari nilai toleransi yang ditetapkan. Persamaan \eqref{eq:toleransi} menampilkan hubungan antara jumlah kuadrat dan nilai toleransi pada proses iterasi.
+
+\begin{equation}
+\sqrt{\sum_{i=1}^n\left(x_i^{n+1}-x_i^{n}\right)^2}<t_0
+ \label{eq:toleransi}
+\end{equation}
+
+dimana \(x^{n}\) merupakan iterasi ke-\(n\) dari algoritma dan \(t_0\) merupakan nilai toleransi maksimum yang diterima.
+
+\hypertarget{jacobiiter}{%
+\subsection{Iterasi Jacobi}\label{jacobiiter}}
+
+Untuk menyelesaikan matriks menggunakan metode iterasi, kita dapat mulai dengan premis terdapat matriks \(A\) dan vektor \(x\) dan b, sehingga \(Ax = b\). Dengan menggunakan metode Jacobi, pertama-tama kita dapat amati bahwa terdapat matriks \(R\) dan \(D\) yang memiliki hubungan \(A = R + D\). Berdasarkan kedua hubungan tersebut, dapat diturunkan operasi matriks melalui persamaan berikut:
+
+\begin{equation}
+Ax=b
+ \label{eq:jacobi}
+\end{equation}
+
+\begin{equation}
+Rx+Dx=b
+ \label{eq:jacobi2}
+\end{equation}
+
+\begin{equation}
+Dx=b-Rx
+ \label{eq:jacobi3}
+\end{equation}
+
+\begin{equation}
+x=D^{-1}\left(b-Rx\right)
+ \label{eq:jacobi4}
+\end{equation}
+
+Persamaan \eqref{eq:jacobi4} merupakan persamaan yang dapat kita gunakan untuk memperoleh nilai \(x\). Jika kita menulis kembali persamaan tersebut, maka kita akan memperoleh persamaan yang digunakan sebagai acuan iterasi Jacobi.
+
+\begin{equation}
+x^{n+1}=D^{-1}\left(b-Rx^{n}\right)
+ \label{eq:jacobi5}
+\end{equation}
+
+dimana \(D\) merupakan matriks diagonal dengan nilai elemen diagonal berupa diagonal utama matriks \(A\). Invers dari matriks \(D\) secara sederhana sebagai matriks diagonal sama dengan satu dibagi dengan elemen diagonal utama matriks \(A\). Matriks \(R\) identik dengan matriks \(A\). Namun, diagonal utamanya bernilai nol. Suatu iterasi dikatakan konvergen jika jumlah kuadrat dari vektor \(x^{\left(n+1\right)}\) dan vektor \(x^{\left(n\right)}\) semakin mengecil.
+
+Suatu persamaan linier yang hendak diselesaikan dengan menggunakan metode iterasi Jacobi harus memenuhi syarat nilai elemen diagonal utama matriks harus lebih dominan. Maksudnya adalah nilai absolut diagonal utama matriks harus lebih besar dari jumlah nilai absolut elemen matriks lainnya pada satu kolom.
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:jacobiexm}{}{\label{exm:jacobiexm} }Selesaikan sistem persamaan berikut menggunakan iterasi Jacobi!
+\EndKnitrBlock{example}
+
+\begin{equation}
+\begin{bmatrix}
+     5 & 2 & 3     \\[0.3em]
+     2 & 7 & 4     \\[0.3em]
+     1 & 3 & 8
+\end{bmatrix}
+x = \begin{bmatrix}
+     40     \\[0.3em]
+     39     \\[0.3em]
+     55
+\end{bmatrix}
+\end{equation}
+
+\textbf{Jawab}:
+
+Berdasarkan matriks \(A\) (matriks koefisien), kita dapat memastikan bahwa matriks tersebut memiliki nilai dominan pada elemen diagonal utama. Sebagai contoh:
+
+\[
+\left|5\right|>\left|2\right|+\left|1\right|\ \ \ \left(kolom\ 1\right)
+\]
+
+\[
+\left|7\right|>\left|2\right|+\left|3\right|\ \ \ \left(kolom\ 2\right)
+\]
+Untuk mempermudah proses iterasi, kita akan menggunakan bantuan \texttt{R} untuk melakukan komputasi. Langkah pertama yang perlu dilakukan adalah menyiapkan matriks \(A\), vektor \(b\), dan vektor \(x\) (nilai taksiran awal).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{), }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    5    2    3
+## [2,]    2    7    4
+## [3,]    1    3    8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{39}\NormalTok{,}\DecValTok{55}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 40 39 55
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 0
+\end{verbatim}
+
+Langkah selanjutnya adalah memperoleh invers matriks \(D\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(Dinv <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{diag}\NormalTok{(A)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]      [,2]  [,3]
+## [1,]  0.2 0.0000000 0.000
+## [2,]  0.0 0.1428571 0.000
+## [3,]  0.0 0.0000000 0.125
+\end{verbatim}
+
+Persiapan terakhir sebelum iterasi dilakukan adalah menyiapkan matriks \(R\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(R<-A}\OperatorTok{-}\KeywordTok{diag}\NormalTok{(}\KeywordTok{diag}\NormalTok{(A)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    0    2    3
+## [2,]    2    0    4
+## [3,]    1    3    0
+\end{verbatim}
+
+Iterasi selanjutnya dilakukan menggunakan Persamaan \eqref{eq:jacobi5}.
+
+\textbf{iterasi 1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x1 <-}\StringTok{ }\NormalTok{Dinv }\OperatorTok{%*%}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{R}\OperatorTok{%*%}\NormalTok{x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 8.000000
+## [2,] 5.571429
+## [3,] 6.875000
+\end{verbatim}
+
+\textbf{iterasi 2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x2 <-}\StringTok{ }\NormalTok{Dinv }\OperatorTok{%*%}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{R}\OperatorTok{%*%}\NormalTok{x1))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,]  1.6464286
+## [2,] -0.6428571
+## [3,]  3.7857143
+\end{verbatim}
+
+\textbf{iterasi 3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x3 <-}\StringTok{ }\NormalTok{Dinv }\OperatorTok{%*%}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{R}\OperatorTok{%*%}\NormalTok{x2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 5.985714
+## [2,] 2.937755
+## [3,] 6.910268
+\end{verbatim}
+
+Selama proses iterasi,jumlah akar jumlah kuadrat dihitung. Sebagai contoh berikut disajikan akar jumlah kuadrat pada iterasi ke-3:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(x3}\OperatorTok{-}\NormalTok{x2)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11.04445
+\end{verbatim}
+
+Selama proses iterasi nilai tersebut terus mengecil. Iterasi dihantikan jika nilai akar jumlah kuadrat tersebut lebih kecil dari nilai toleransi. Pada contoh ini digunakan nilai toleransi \(10^{-7}\).
+
+Proses iterasi berlangsung sampai dengan iterasi ke-62 dengan nilai \(x\) akhir sebagai berikut:
+
+\[
+x = \begin{bmatrix}
+     4     \\[0.3em]
+     1     \\[0.3em]
+     6
+\end{bmatrix}
+\]
+
+\textbf{Algoritma Dekomposisi Cholesky}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Masukkan matriks \(A\), dan vektor \(B\) beserta ukurannya \(n\).
+\item
+  Hitung invers matriks \(D\), dimana nilai invernya merupakan matriks diagonal dari satu per diagonal utama matriks \(A\).
+\item
+  Hitung matriks \(R\), dimana \(R\) merupakan selisih matriks \(A\) dikurangi dengan matriks diagonal dengan entri dari diagonal utama matriks \(A\).
+\item
+  Tetapkan vektor \(x\) estimasi.
+\item
+  Tetapkan nilai toleransi maksimum yang dapat diterima.
+\item
+  Lakukan iterasi menggunakan Persamaan \eqref{eq:jacobi5}.
+\item
+  Hitung akar jumlah kuadrat dari vektor \(x^{n+1}\) dan vektor \(x^n\).
+\item
+  Jadikan nilai \(x^{n+1}\) sebagai nilai taksiran \(x\) untuk iterasi berikutnya.
+\item
+  Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \eqref{eq:toleransi}.
+\end{enumerate}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Jacobi. Berikut sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{jacobi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{maxiter=}\OtherTok{NULL}\NormalTok{)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(b)}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{0}
+  
+\NormalTok{  Dinv <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{diag}\NormalTok{(a))}
+\NormalTok{  R <-}\StringTok{ }\NormalTok{a}\OperatorTok{-}\KeywordTok{diag}\NormalTok{(}\KeywordTok{diag}\NormalTok{(a))}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,n)}
+\NormalTok{  x_new <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(tol, n)}
+  
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(maxiter))\{}
+      \ControlFlowTok{while}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(x_new}\OperatorTok{-}\NormalTok{x)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{            x <-}\StringTok{ }\NormalTok{x_new}
+\NormalTok{            x_new <-}\StringTok{ }\NormalTok{Dinv }\OperatorTok{%*%}\StringTok{ }\NormalTok{(b }\OperatorTok{-}\StringTok{ }\NormalTok{R }\OperatorTok{%*%}\StringTok{ }\NormalTok{x)}
+\NormalTok{            iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+\NormalTok{      \}}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ x_new, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+      \ControlFlowTok{while}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(x_new}\OperatorTok{-}\NormalTok{x)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{>}\NormalTok{tol)\{}
+            \ControlFlowTok{if}\NormalTok{(maxiter}\OperatorTok{>}\NormalTok{iter)\{}
+              \KeywordTok{warning}\NormalTok{(}\StringTok{"iterasi maksimum tercapai"}\NormalTok{)}
+\NormalTok{            \}}
+\NormalTok{            x <-}\StringTok{ }\NormalTok{x_new}
+\NormalTok{            x_new <-}\StringTok{ }\NormalTok{Dinv }\OperatorTok{%*%}\StringTok{ }\NormalTok{(b }\OperatorTok{-}\StringTok{ }\NormalTok{R }\OperatorTok{%*%}\StringTok{ }\NormalTok{x)}
+\NormalTok{            iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+\NormalTok{      \}}
+      \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ x_new, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah penerpan fungsi \texttt{jacobi()} tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{jacobi}\NormalTok{(A,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $X
+##      [,1]
+## [1,]    4
+## [2,]    1
+## [3,]    6
+## 
+## $iter
+## [1] 62
+\end{verbatim}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:jacobiexm2}{}{\label{exm:jacobiexm2} }Selesaikan sistem persamaan berikut menggunakan fungsi \texttt{jacobi()}
+\EndKnitrBlock{example}
+
+\begin{equation}
+\begin{bmatrix}
+     27 & 6 & -1     \\[0.3em]
+     6 & 15 & 2     \\[0.3em]
+     1 & 1 & 54
+\end{bmatrix}
+x = \begin{bmatrix}
+     85     \\[0.3em]
+     72     \\[0.3em]
+     110
+\end{bmatrix}
+\end{equation}
+
+\textbf{Jawab}:
+
+Matriks \(A\) (matriks koefisien) berdasarkan sistem persamaan linier tersebut telah memenuhi syarat dari algoritma Jacobi (nilai diagonal utama dominan dibanding nilai lainnya pada satu kolom). Penyelesaian sistem persamaan tersebut, sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{27}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{54}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{85}\NormalTok{,}\DecValTok{72}\NormalTok{,}\DecValTok{110}\NormalTok{)}
+
+\KeywordTok{jacobi}\NormalTok{(A,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $X
+##          [,1]
+## [1,] 2.425476
+## [2,] 3.573016
+## [3,] 1.925954
+## 
+## $iter
+## [1] 17
+\end{verbatim}
+
+Nilai vektor \(x\) sesungguhnya dapat diperoleh menggunakan fungsi \texttt{solve()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{solve}\NormalTok{(A,b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.425476 3.573016 1.925954
+\end{verbatim}
+
+Berdasarkan hasil perhitungan, vektor \(x\) hasil iterasi memiliki nilai identik dengan nilai penyelesaian yang sebenarnya.
+
+Perlu diperhatikan dalam penggunaan fungsi \texttt{jacobi()} syarat utama matriks haruslah terpenuhi, seperti: nilai diagonal matriks \(A\) lebih besar dari nilai elemen lainnya pada satu kolom. Selain itu, nilai diagonal matriks \(D\) tidak boleh sama dengan nol agar inver matriks \(D\) dapat diperoleh. Jika syarat-syarat tersebut terpenuhi, maka metode Jacobi dapat diterapkan. Jika tidak terpenuhi, maka penyelesaian yang konvergen mungkin masih dapat diperoleh meskipun penulis tidak dapat menjamin hal tersebut dapat terjadi.
+
+\hypertarget{seideliter}{%
+\subsection{Iterasi Gauss-Seidel}\label{seideliter}}
 
 \bibliography{book.bib,packages.bib}
 
