@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Pengantar Metode Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <title>Chapter 7 Replace with Main Title | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
   <meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Pengantar Metode Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:title" content="Chapter 7 Replace with Main Title | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Pengantar Metode Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta name="twitter:title" content="Chapter 7 Replace with Main Title | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
   <meta name="twitter:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="programmingandfunction.html">
-<link rel="next" href="linearaljabar.html">
+<link rel="prev" href="linearaljabar.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -274,114 +274,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="numericmethod" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Pengantar Metode Numerik</h1>
-<p><em>Chapter</em> ini memberikan pengantar bagi pembaca untuk mengenal terlebih dahulu mengenai metode numerik. Pada <em>chapter</em> ini akan dibahas mengenai apa itu metode numerik, perbedaannya dengan metode analitik, dan analisis error.</p>
-<div id="numericmethodintro" class="section level2">
-<h2><span class="header-section-number">5.1</span> Mengenal Metode Numerik</h2>
-<p>Metode numerik merupakan teknik penyelesaian permsalahn yang diformulasikan secara matematis dengan menggunakan operasi hitungan (aritmatik) yaitu operasi tambah, kurang, kali, dan bagi. Metode ini digunakan karena banyak permasalahan matematis tidak dapat diselesaikan menggunakan metode analitik. Jikapun terdapat penyelesaiannya secara analitik, proses penyelesaiaannya sering kali cukup rumit dan memakan banyak waktu sehingga tidak efisien.</p>
-<p>Terdapat keuntungan dan kerugian terkait penggunaan metode numerik. Keuntungan dari metode ini antara lain:</p>
-<ol style="list-style-type: decimal">
-<li>Solusi persoalan selalu dapat diperoleh.</li>
-<li>Dengan bantuan komputer, perhitungan dapat dilakukan dengan cepat serta hasil yang diperoleh dapat dibuat sedekat mungkin dengan nilai sesungguhnya.</li>
-<li>Tampilan hasil perhitungan dapat disimulasikan.</li>
-</ol>
-<p>Adapun kelemahan metode ini antara lain:</p>
-<ol style="list-style-type: decimal">
-<li>Nilai yang diperoleh berupa pendekatan atau hampiran.</li>
-<li>Tanpa bantuan komputer, proses perhitungan akan berlangsung lama dan berulang-ulang.</li>
-</ol>
-<div id="diffanalitycnumeric" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</h3>
-<p>Perbedaan antara metode numerik dan metode analitik dapat dijelaskan sebagai berikut:</p>
-<ol style="list-style-type: decimal">
-<li><p>Solusi metode numerik selalu berbentuk angka, sedangkan solusi metode analitik dapat berbentuk fungsi matematik yang selanjutnya dapat dievaluasi untuk menghasilkan nilai dalam bentuk angka.</p></li>
-<li><p>Solusi dari metode numerik berupa hampiran, sedangkan metode analitik berupa solusi sejati. Kondisi ini berakibat pada nilai error metode analitik adalah 0, sedangkan metode numerik <span class="math inline">\(\neq 0\)</span>.</p></li>
-<li><p>Metode analitik cocok untuk permasalahan dengan model terbatas dan sederhana, sedangkan metode numerik cocok dengan semua jenis permasalahan.</p></li>
-</ol>
+<div id="replace-with-main-title" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Replace with Main Title</h1>
+<div id="your-name" class="section level3">
+<h3><span class="header-section-number">7.0.1</span> Your Name</h3>
 </div>
-<div id="tahapan-penyelesaian-menggunakan-metode-numerik" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</h3>
-<p>Terdapat beberapa tahapan dalam menyelesaikan suatu permasalahan dengan metode numerik. Tahapan-tahapan tersebut antara lain:</p>
-<ul>
-<li>Pemodelan</li>
-</ul>
-<p>Persoalan dunia nyata dimodelkan ke dalam persamaan matematika. Persamaan matematika yang terbentuk dapat berupa persamaan linier, non-linier, dan sebagainya sesuai dengan persoalan yang dihadapi.</p>
-<ul>
-<li>Penyederhanaan Model</li>
-</ul>
-<p>Model matematika yang dihasilkan dari tahap 1 mungkin saja terlalu kompleks. Semakin kompleks suatu model, semakin rumit penyelesaiaannya, sehingga model perlu disederhanakan.</p>
-<p>Seberapa sederhana model yang akan kita buat? tergantung pada permasalahan apa yang hendak pembaca selesaikan. Model yang terlalu sederhana akan tidak cocok digunakan untuk digunakan sebagai pendekatan sistem nyata atau lingkungan yang begitu kompleks. Penyederhanaan dapat berupa asumsi sejumlah variabel yang terlibat tidak signifikan, atau asumsi kondisi reaktor (<em>steady</em> atau <em>non-steady</em>).</p>
-<ul>
-<li>Formulasi Numerik</li>
-</ul>
-<p>Setelah model matematika sederhana diperoleh, tahap selanjutnya adalah memformulasikan model matematika secara numerik. Tahapan ini terdiri atas:</p>
-<pre><code>+ menentukan metode numerik yang akan dipakai bersama-sama dengan analisis galat (error) awal.
-+ menyusun algoritma dari metode numerik yang dipilih.</code></pre>
-<ul>
-<li>Pemrograman</li>
-</ul>
-<p>Tahap selanjutnya adalah menerjemahkan algoritma ke dalam program komputer. Pada tahapan ini pembaca bisa memilih bahasa pemrograman yang pembaca kuasai.</p>
-<p>Dalam buku ini kita hanya akan berfokus pada bahasa pemrograman <code>R</code>. Pembaca dapat menggunakan bahasa pemrograman lain selain dari buku ini. Pembaca hanya perlu memperhatikan bagaimana penulis membangun algoritma penyelesaian dan memtransfernya menjadi bentuk sintaks <code>R</code>. Dari sintaks tersebut pembaca dapat melihat bagaimana meletakakkan tiap tahapan algoritma menjadi sintaks pada bahasa pemrograman.</p>
-<ul>
-<li>Operasional</li>
-</ul>
-<p>Sebelum digunakan dengan data sesungguhnya, program komputer perlu dilakukan uji coba dengan data simulasi dan dievaluasi hasilnya. jika hasil keluaran diyakini sudah sesuai, baru dioperasikan dengan data yang sesungguhnya.</p>
-<ul>
-<li>Evaluasi</li>
-</ul>
-<p>Bila program sudah selesai dijalankan dengan data yang sesungguhnya, maka hasil yang diperoleh dilakukan interpretasi, meliputi analisis hasil keluaran dan membandingkannya dengan prinsip dasar dan hasil-hasil empriik untuk menaksir kualitas soluasi numerik termasuk keputusan untuk menjalankan kembali progrma dengan memperoleh hasil yang lebih baik.</p>
-</div>
-</div>
-<div id="acuracy" class="section level2">
-<h2><span class="header-section-number">5.2</span> Akurasi dan Presisi</h2>
-<p>Perhatikan Gambar <a href="numericmethod.html#fig:akurasi">5.1</a> berikut:</p>
-<div class="figure" style="text-align: center"><span id="fig:akurasi"></span>
-<img src="images/akurasi.PNG" alt="4 ilustrasi terkait akurasi dan presisi" width="75%" />
-<p class="caption">
-Gambar 5.1: 4 ilustrasi terkait akurasi dan presisi
-</p>
-</div>
-<p>Pada Gambar <a href="numericmethod.html#fig:akurasi">5.1</a> terdapat 4 buah kondisi ketika kita menembakkan beberapa perluru pada sebuah sasaran. Tujuan kita disini adalah untuk menembak bagian tengah sasaran tersebut.</p>
-<p>Pada Gambar (a) dan (c) pada Gambar <a href="numericmethod.html#fig:akurasi">5.1</a> merupakan gambar yang menunjukkan seseorang telah berhasil mengenai bagian tengah sasaran tersebut dapat kita katakan pula tembakan pada kedua gambar tersebut akurat. Akurat dalam hal ini dapat diartikan suatu kondisi dimana kedekatan lubang peluru dengan pusat sasaran. Secara umum akurasi diartikan sebagai tingkat kedekatan pengukuran kuantitas terhadap nilai sebenarnya.</p>
-<p>Terdapat dua buah cara untuk mengukur akurasi. Metode pengukuran akurasi antara lain: error absolut dan error relatif.</p>
-<p>Error absolut merupakan nilai absolut dari selisih antara nilai sebenarnya <span class="math inline">\(x\)</span> dengan nilai observasi <span class="math inline">\(x&#39;\)</span>. Error absolut dapat dituliskan menggunakan Persamaan <a href="numericmethod.html#eq:errorabsolut">(5.1)</a>.</p>
-<p><span class="math display" id="eq:errorabsolut">\[\begin{equation}
-   \epsilon_A=\left|x-x&#39;\right|
-  \tag{5.1}
-\end{equation}\]</span></p>
-<p>Pengukuran lain yang sering digunakan untuk mengukur akurasi adalah error relatif. Berbeda dengan error absolut, error relatif membagi selisih antara nilai sebenarnya <span class="math inline">\(x\)</span> dan nilai observasi <span class="math inline">\(x&#39;\)</span> dengan nilai sebenarnya. Hasil yang diperoleh merupakan nilai tanpa satuan. Persamaan error relatif disajikan pada Persamaan <a href="numericmethod.html#eq:errorrelatif">(5.2)</a>.</p>
-<p><span class="math display" id="eq:errorrelatif">\[\begin{equation}
-   \epsilon_R=\left|\frac{x-x&#39;}{x}\right|
-  \tag{5.2}
-\end{equation}\]</span></p>
-<p>Dalam suatu pengukuran, hal lain yang perlu diperhatikan selain akurasi adalah presisi. Presisi adalah sejauh mana pengulangan pengukuran dalam kondisi yang tidak berubah mendapat hasil yang sama. Berdasarkan Gambar <a href="numericmethod.html#fig:akurasi">5.1</a>, Gambar (a) dan (b) menunjukkan kepresisian yang tinggi. Hal ini terlihat dari jarak antara lubang peluru yang saling berdekatan dan mengelompok.</p>
-<p>Berdasarkan Gambar <a href="numericmethod.html#fig:akurasi">5.1</a> dapat kita simpulkan bahwa dalam suatu sistem pengukuran akan terdapat 4 buah kondisi. Pengukuran akurat dan presisi (Gambar (a)), tidak akurat namun presisi (Gambar (b)), akurat namun tidak presisi (Gambar (c)), dan tidak akurat serta tidak presisi (Gambar (d)).</p>
-<p>Dari kondisi-kondisi tersebut, akan meuncul yang dinamakan error. Dalam analisa numerik error atau kesalahan menjadi hal yang perlu diperhatikan.</p>
-</div>
-<div id="numerror" class="section level2">
-<h2><span class="header-section-number">5.3</span> Error Numerik</h2>
-<p>Kesalahan numerik merupakan error atau kesalahan yang timbul akibat adanya proses pendekatan atau hampiran. Kesalahan numerik terjadi karena tiga hal, antara lain:</p>
-<ul>
-<li><p><strong>Kesalahan bawaan (<em>inherent error</em>)</strong>, merupakan kesalahan data yang timbul akibat adanya pengkuran, <em>human error</em> seperti kesalahan pencatatan, atau tidak memahami hukum-hukum fisik dari data yang diukur.</p></li>
-<li><p><strong>Kesalahan pembulatan (<em>round-off error</em>)</strong>, adalah kesalahan yang terjadi karena adanya pembulatan. Contoh: 3,142857143… menjadi 3,14.</p></li>
-<li><p><strong>Kesalahan pemotongan (<em>truncation error</em>)</strong>, adalah kesalahan yang ditimbulkan pada saat dilakukan pengurangan jumlah angka signifikan.</p></li>
-</ul>
-<p>Kesalahan atau error dapat diukur menggunakan Persamaan <a href="numericmethod.html#eq:errorabsolut">(5.1)</a> dan Persamaan <a href="numericmethod.html#eq:errorrelatif">(5.2)</a> yang telah penulis jelaskan pada Chapter <a href="numericmethod.html#acuracy">5.2</a>.</p>
-</div>
-<div id="referensi-4" class="section level2">
-<h2><span class="header-section-number">5.4</span> Referensi</h2>
-<ol style="list-style-type: decimal">
-<li>Howard, J.P. 2017. <strong>Computational Methods for Numerical Analysis with R</strong>. CRC Press.</li>
-<li>Sidiq, M. Tanpa Tahun. <strong>Materi Kuliah Metode Numerik</strong>. Repository Universitas Dian Nuswantoro.</li>
-<li>Subakti, I. 2006. <strong>Metode Numerik</strong>. Institut Teknologi Sepuluh Nopember.</li>
-<li>Sutarno,H., Rachmatin,D. 2008. <strong>Hands Out Metode Numerik</strong>. Universitas Pendidikan Indonesia.</li>
-</ol>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">7.0.2</span> 2019-08-12</h3>
+<pre><code>## Warning: package &#39;Rcmdr&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: splines</code></pre>
+<pre><code>## Loading required package: RcmdrMisc</code></pre>
+<pre><code>## Warning: package &#39;RcmdrMisc&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Warning: package &#39;car&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Warning: package &#39;sandwich&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## Loading required package: effects</code></pre>
+<pre><code>## Warning: package &#39;effects&#39; was built under R version 3.5.3</code></pre>
+<pre><code>## lattice theme set by effectsTheme()
+## See ?effectsTheme for details.</code></pre>
+<pre><code>## The Commander GUI is launched only in interactive sessions</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Rcmdr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:car&#39;:
+## 
+##     Confint</code></pre>
+<pre><code>Warning: package &#39;rgl&#39; was built under R version 3.5.3</code></pre>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">data</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">data</span>(df)</a></code></pre></div>
+<pre><code>Warning in data(df): data set &#39;df&#39; not found</code></pre>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">data</span>(AirPassengers, <span class="dt">package=</span><span class="st">&quot;datasets&quot;</span>)</a>
+<a class="sourceLine" id="cb566-2" title="2"><span class="op">&gt;</span><span class="st"> </span>AirPassengers &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(AirPassengers)</a></code></pre></div>
 
-<style>
-body{
-text-align: justify}
-</style>
 </div>
 </div>
             </section>
@@ -389,8 +314,8 @@ text-align: justify}
           </div>
         </div>
       </div>
-<a href="programmingandfunction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linearaljabar.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="linearaljabar.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

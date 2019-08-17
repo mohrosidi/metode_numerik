@@ -371,11 +371,14 @@ A=\left[A|B\right]
   (\#eq:augmatrik2)
 \end{equation}
 
-Persamaan \@ref(eq:matrikpl) dan Persamaan \@ref(eq:augmatrik) akan memiliki penyelesaian tunggal bila memenuhi syarat-syarat berikut:
+```{theorem, name="spltheorem"}
+Suatu sistem persamaan linier mempunyai penyelesaian tunggal bila memenuhi syarat-syarat sebagai berikut:
+```
 
 - ukuran persamaan linier simultan bujursangkar (jumlah persamaan sama dengan jumlah variabel bebas).
 - sistem persamaan linier *non-homogen* di mana minimal ada satu nilai vektor konstanta $B$ tidak nol atau terdapat $b_{n}\neq 0$.
 - Determinan dari matriks koefisiensistem persamaan linier tidak sama dengan nol.
+
 
 Untuk memperoleh penyelesaian sistem persamaan linier, Persamaan \@ref(eq:augmatrik) perlu dilakukan operasi baris elementer. Hasil operasi baris dasar akan menghasilkan matriks *row echelon form* yang disajikan pada Persamaan \@ref(eq:refeq).
 
@@ -437,7 +440,7 @@ $$
 
 Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langkah pertama, baris ke-2 dikurangkan dengan baris ke-1 ($B_2-B_1$) dan baris ke-3 dikurangkan oleh dua kali baris ke-1 ($B_3-2B_1$).
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1 & 1 & 1 & 6     \\[0.3em]
      1 & 2 & -1 & 2     \\[0.3em]
@@ -453,11 +456,11 @@ Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langka
      0 & 1 & -2 & -4     \\[0.3em]
      0 & -1 & 0 & -2
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah selanjutnya. Pada langkah selanjutnya operasi baris elementer kembali dilanjutkan. Baris ke-3 dikurangkan denganbaris ke-2 ($B_3-B_2$).
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1 & 1 & 1 & 6     \\[0.3em]
      0 & 1 & -2 & -4     \\[0.3em]
@@ -472,7 +475,7 @@ Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah sela
      0 & 1 & -2 & -4     \\[0.3em]
      0 & 0 & -2 & -6
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 
 Setelah diperoleh matriks *row echelon form* selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan \@ref(eq:refsolution).
@@ -661,7 +664,7 @@ $$
 
 Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. 
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1 & 1 & 3     \\[0.3em]
      2 & 4 & 8
@@ -674,9 +677,9 @@ Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.
      1 & 1 & 3     \\[0.3em]
      0 & 2 & 2
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1 & 1 & 3     \\[0.3em]
      0 & 2 & 2
@@ -689,9 +692,9 @@ Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.
      1 & 1 & 3     \\[0.3em]
      0 & 1 & 1
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1 & 1 & 3     \\[0.3em]
      0 & 1 & 1
@@ -704,7 +707,7 @@ Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.
      1 & 0 & 2     \\[0.3em]
      0 & 1 & 1
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Penyelesaian persamaan linier tersebut adalah sebagai berikut:
 
@@ -943,7 +946,7 @@ $$
 
 Langkah pertama untuk menyelesaikannya, kita harus merubah persamaan tersebut kedalam bentuk matriks
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      3 & 4 & 0  & 0     \\[0.3em]
      4 & 5 & 2 & 0     \\[0.3em]
@@ -956,7 +959,7 @@ x = \begin{bmatrix}
      18     \\[0.3em]
      18
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Untuk menyelesaikan persamaan tersebut menggunakan fungsi `tridiagmatrix()`, kita perlu membentuk vektor diagonal $l$, $d$, $u$, dan $b$.
 
@@ -1176,7 +1179,7 @@ $$
 
 Nayatakan sistem persamaan tersebut ke dalam bentuk matriks $Ax=b$.
 
-\begin{equation}
+\begin{equation*}
 Ux=
 \begin{bmatrix}
      1       & 1       & 0       & 3           \\[0.3em]
@@ -1188,8 +1191,7 @@ Ux=
      x_1                                          \\[0.3em]
      x_2                                          \\[0.3em]
      x_3                                          \\[0.3em]
-     \cdots                                       \\[0.3em]
-     x_n                                       
+     x_4                                       
      \end{bmatrix}
 = \begin{bmatrix}
      4                                          \\[0.3em]
@@ -1197,7 +1199,7 @@ Ux=
      -3                                          \\[0.3em]
      4                                       
      \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Lakukan operasi baris elementer pada matriks $A$ untuk memperoleh matriks $U$. Urutan operasi baris elementer yang dilakukan adalah sebagai berikut: 
 
@@ -1246,7 +1248,7 @@ $$
 
 Lakukan operasi *forward substitution* menggunakan Persamaan \@ref(eq:LUdecomp5).
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
       1         & 0       & 0       & 0           \\[0.3em]
       2         & 1       & 0       & 0           \\[0.3em]
@@ -1265,7 +1267,7 @@ Lakukan operasi *forward substitution* menggunakan Persamaan \@ref(eq:LUdecomp5)
      -3                                          \\[0.3em]
      4                                       
      \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Berdasarkan hasil perhitungan diperoleh nilai vektor $t$.
 
@@ -1275,7 +1277,7 @@ $$
 
 Operasi terakhir yang perlu dilakukan untuk memperoleh nilai $x$ adalah dengan melakukan *backward substitution* menggunakan nilai vektor $t$ yang telah dihitung.
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      1       & 1       & 0       & 3           \\[0.3em]
      0       & -1      & -1      & -5          \\[0.3em]
@@ -1294,7 +1296,7 @@ Operasi terakhir yang perlu dilakukan untuk memperoleh nilai $x$ adalah dengan m
      13                                          \\[0.3em]
      -13                      
      \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 Berdasarkan hasil perhitungan diperoleh nilai $x$ sebagai berikut:
 
@@ -1725,7 +1727,7 @@ Suatu persamaan linier yang hendak diselesaikan dengan menggunakan metode iteras
 Selesaikan sistem persamaan berikut menggunakan iterasi Jacobi!
 ```
 
-\begin{equation}
+\begin{equation*}
 \begin{bmatrix}
      5 & 2 & 3     \\[0.3em]
      2 & 7 & 4     \\[0.3em]
@@ -1736,7 +1738,7 @@ x = \begin{bmatrix}
      39     \\[0.3em]
      55
 \end{bmatrix}
-\end{equation}
+\end{equation*}
 
 **Jawab**:
 
@@ -1808,7 +1810,7 @@ x = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-**Algoritma Dekomposisi Cholesky**
+**Algoritma Iterasi Jacobi**
 
 1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$.
 2. Hitung invers matriks $D$, dimana nilai invernya merupakan matriks diagonal dari satu per diagonal utama matriks $A$.
@@ -1824,7 +1826,7 @@ Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk m
 
 
 ```{r}
-jacobi <- function(a, b, tol=1e-7, maxiter=NULL){
+jacobi <- function(a, b, tol=1e-7, maxiter=100){
   n <- length(b)
   iter <- 0
   
@@ -1833,24 +1835,17 @@ jacobi <- function(a, b, tol=1e-7, maxiter=NULL){
   x <- rep(0,n)
   x_new <- rep(tol, n)
   
-  if(is.null(maxiter)){
-      while(sqrt(sum(x_new-x)^2)>tol){
-            x <- x_new
-            x_new <- Dinv %*% (b - R %*% x)
-            iter <- iter+1
-      }
-      return(list(X = x_new, iter=iter))
-  }else{
-      while(sqrt(sum(x_new-x)^2)>tol){
-            if(maxiter>iter){
+  while(sqrt(sum(x_new-x)^2)>tol){
+            if(iter>maxiter){
               warning("iterasi maksimum tercapai")
+              break
             }
             x <- x_new
             x_new <- Dinv %*% (b - R %*% x)
             iter <- iter+1
-      }
-      return(list(X = x_new, iter=iter))
   }
+  return(list(X = x_new, iter=iter))
+  
 }
 ```
 
@@ -1865,7 +1860,7 @@ jacobi(A,b)
 Selesaikan sistem persamaan berikut menggunakan fungsi `jacobi()`
 ```
 
-\begin{equation}
+$$
 \begin{bmatrix}
      27 & 6 & -1     \\[0.3em]
      6 & 15 & 2     \\[0.3em]
@@ -1876,7 +1871,7 @@ x = \begin{bmatrix}
      72     \\[0.3em]
      110
 \end{bmatrix}
-\end{equation}
+$$
 
 **Jawab**: 
 
@@ -1900,4 +1895,374 @@ Berdasarkan hasil perhitungan, vektor $x$ hasil iterasi memiliki nilai identik d
 Perlu diperhatikan dalam penggunaan fungsi `jacobi()` syarat utama matriks haruslah terpenuhi, seperti: nilai diagonal matriks $A$ lebih besar dari nilai elemen lainnya pada satu kolom. Selain itu, nilai diagonal matriks $D$ tidak boleh sama dengan nol agar inver matriks $D$ dapat diperoleh. Jika syarat-syarat tersebut terpenuhi, maka metode Jacobi dapat diterapkan. Jika tidak terpenuhi, maka penyelesaian yang konvergen mungkin masih dapat diperoleh meskipun penulis tidak dapat menjamin hal tersebut dapat terjadi. 
 
 ### Iterasi Gauss-Seidel {#seideliter}
+
+Metode iterasi Gauss-Seidel melakukan dekomposisi pada matriks $A$ menjadi matriks segitiga atas $U$ dan matriks segitiga bawah $L$. Dekomposisi ini tidak sama dengan dekomposisi LU pada Chapter \@ref(ludecomp). Matriks $U$ pada metode Gauss-Seidel merupakan elemen (entri) matriks $A$ pada bagian atas diagonal utama, sedangkan matriks $L$ merupakan elemen diagonal utama dan bagian bawah diagonal utama matriks $A$. Elemen selain yang penulis sebutkan pada kedua matriks tersebut akan bernilai nol. Persamaan iterasi Gauss-Seidel ditampilkan pada Persamaan \@ref(eq:gaussseidel).
+
+\begin{equation}
+x^{n+1}=L^{-1}\left(b-Ux^{n}\right)
+ (\#eq:gaussseidel)
+\end{equation}
+
+Syarat agar suatu sistem persamaan linier dapat diselesaikan menggunakan metode Gauss-Seidel adalah matriks harus memiliki nilai diagonal utama yang dominan. Maksudnya, nilai absolut diagonal utama lebih besar dari jumlah nilai absolut elemen lainnya dalam satu kolom. Jika syarat ini tidak terpenuhi maka metode ini tidak akan memperoleh penyelesaian yang konvergen.
+
+
+```{example, gaussseidelexm}
+Selesaikan sistem persamaan pada Contoh \@ref(exm:jacobiexm2) menggunakan iterasi Gauss-Seidel!
+```
+
+**Jawab**:
+
+Kita akan kembali menggunakan bantuan `R` untuk melakukan kalkulasi pada proses iterasi Gauss-Seidel. Kita telah melakukan pengecekan pada sistem persamaan linier pada contoh tersebut dan menghasilkan kesimpulan bahwa persamaan linier tersebut dapat diselesaikan dengan metode Gauss-Seidel. Langkah selanjutnya adalah membentuk matriks $L$ dan $U$.
+
+```{r}
+# membentuk matriks U dan L dari matriks A
+(L <- U <- A)
+```
+
+```{r}
+# membentuk matriks L dari entri bagian bawah diagonal utama matriks A
+L[upper.tri(A, diag=FALSE)]<-0
+L
+```
+
+```{r}
+# membentuk matriks U dari entri bagian atas diagonal utama matriks A
+U[lower.tri(A, diag=TRUE)]<-0
+U
+```
+
+Selanjutya lakukan invers terhadap matriks $L$ menggunakn fungsi `solve()`.
+
+```{r}
+(Linv <- solve(L))
+```
+
+Tetapkan nilai estimasi awal dan nilai toleransi yang dikehendaki. Nilai toleransi pada proses ini ditetapkan sebesar $10^-7$.
+
+```{r}
+# tebakan awal nilai x
+(x <- rep(0, length(b)))
+```
+
+Lakukan iterasi menggunakan Persamaan \@ref(eq:gaussseidel).
+
+**Iterasi 1**
+
+```{r}
+(x1 <- Linv %*% (b - U %*% x))
+```
+
+```{r}
+# akar jumlah kuadrat
+sqrt(sum(x1-x)^2)
+```
+
+**Iterasi 2**
+
+```{r}
+(x2 <- Linv %*% (b - U %*% x1))
+```
+
+```{r}
+# akar jumlah kuadrat
+sqrt(sum(x2-x1)^2)
+```
+
+Iterasi terus dilakukan sampai dengan nilai akar jumlah kuadrat lebih kecil dari nilai toleransi. Setelah iterasi ke-7 diperoleh nilai vektor $x$ sebesar:
+
+$$
+x = \begin{bmatrix}
+     2,425476     \\[0.3em]
+     3,573016     \\[0.3em]
+     1,925954
+\end{bmatrix}
+$$
+**Algoritma Iterasi Gauss-Seidel**
+
+1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$.
+2. Lakukan dekomposisi LU, dimana matriks $L$ merupakan matriks segitiga bawah dengan nilai entri diagonal utama matriks $A$ dan bagian bawah diagonalnya dan matriks $U$ merupakan matriks segitiga atas dengan entri berasal dari elemen atas diagonal utama matriks $A$. Isi elemen lain yang tidak disebut pada kedua matriks tersebut dengan nol.
+4. Tetapkan vektor $x$ estimasi.
+5. Tetapkan nilai toleransi maksimum yang dapat diterima.
+6. Lakukan iterasi menggunakan Persamaan \@ref(eq:gaussseidel).
+7. Hitung akar jumlah kuadrat dari vektor $x^{n+1}$ dan vektor $x^n$.
+8. Jadikan nilai $x^{n+1}$ sebagai nilai taksiran $x$ untuk iterasi berikutnya.
+9. Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \@ref(eq:toleransi).
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Gauss-Seidel. Berikut sintaks yang digunakan:
+
+
+```{r}
+gauss_seidel <- function(a, b, tol=1e-7, maxiter=100){
+  n <- length(b)
+  iter <- 0
+  
+  
+  L <- U <- a
+  L[upper.tri(a, diag=FALSE)] <- 0
+  U[lower.tri(a, diag=TRUE)] <- 0
+  Linv <- solve(L)
+  
+  x <- rep(0,n)
+  x_new <- rep(tol, n)
+  
+  while(sqrt(sum(x_new-x)^2)>tol){
+            if(iter>maxiter){
+              warning("iterasi maksimum tercapai")
+              break
+            }
+            x <- x_new
+            x_new <- Linv %*% (b - U %*% x)
+            iter <- iter+1
+  }
+      return(list(X = x_new, iter=iter))
+}
+```
+
+```{example, gaussseidelexm2}
+Selesaikan sistem persamaan pada Contoh \@ref(exm:jacobiexm2) menggunakan fungsi `gauss_seidel()`!
+```
+
+**Jawab**:
+
+Penyelesaiansistem persamaan linier tersebut menggunakan fungsi `gauss_seidel()` disajikan pada sintaks berikut:
+
+```{r}
+gauss_seidel(A,b)
+```
+
+## Studi Kasus {#studikasus}
+
+Aljabar linier banyak diaplikasikan baik dalam bidang *engineering*, fisika, sampai dengan statistika. Pada *sub-chapter* ini penulis akan menjelaskan penerapan aljabar linier pada metode kuadrat terkecil dan aliran massa dalam reaktor. Untuk penerapan lainnya pembaca dapat membaca buku lainnya terkait aljabar linier.
+
+### Metode Kuadrat Terkecil {#leastsquare}
+
+Metode kuadrat terkecil merupakan salah satu aplikasi penerapan aljabar linier yang paling populer. Intuisi dibalik metode ini adalah bagaimana kita meminimalkan jarak antara sejumlah titik dengan garis regresi. Misalkan kita menggambarkan scatterplot antara dua buah variabel. Pola yang terbentuk dari plot tersebut adalah terjadi korelasi positif antara variabel pada sumbu $x$ dan sumbu $y$. Kita ingin menggambarkan garis regresi terbaik yang dapat menangkap seluruh pola tersebut. Garis regresi terbaik terjadi ketika jumlah kuadrat jarak antara titik observasi dan garis regresi yang terbentuk seminimal mungkin.
+
+Untuk lebih memahaminya kita akan melakukan latihan menggunakan dataset `trees` yang berisi data hasil pengukuran kayu dari pohon yang ditebang. Pada dataset ini terdapat 31 observasi dan 3 buah kolom. Keterangan dari ketiga buah kolom tersebut adalah sebagai berikut:
+
+* `Girth`: diameter pohon dalam satuan *inch*.
+* `Height`: tinggi pohon dalam satuan *feet*.
+* `Volume`: volume kayu dalam satuan *cubic feet*.
+
+Untuk mengecek 6 observasi pertama dan struktur data, jalankan sintaks berikut:
+
+```{r}
+head(trees)
+str(trees)
+```
+
+Scatterplot matriks sangat bagus untuk mengecek korelasi antar variabel dalam dataset tersebut. Berikut adalah sintaks untuk membuatnya:
+
+```{r trees, LUfig,echo=FALSE, fig.cap='Scatterplot matriks dataset trees', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+plot(trees)
+```
+
+Kita ingin membuat sebuah model linier untuk memprediksi `Volume` kayu berdasarkan variabel `Girth` dan `Heiht` atau volume sebagia fungsi dari variabel `Girth` dan `Heiht`. Kita dapat menuliskan relasi antara variabel volume sebagai fungsi dari variabel `Girth` dan `Heiht` menggunakan Persamaan \@ref(eq:trees).
+
+\begin{equation}
+Volume=\beta_{girth} Girth+\beta_{height}Height+\beta_0
+ (\#eq:trees)
+\end{equation}
+
+dimana $\beta_0$ merupakan intersep persamaan regresi linier dan nilai $\beta$ lainnya merupakan koefisien dari variabel `Girth` dan `Heiht`. Variabel `Volume` disebut sebagai variabel respon, sedangkan variabel `Girth` dan `Heiht` disebut sebagai variabel prediktor.
+
+Metode kuadrat terkecil berusaha memperoleh seluruh koefisien variabel dan intersep dari persamaan regresi linier. Berdasarkan yang telah penulis jelaskan garis regresi terbaik adalah garis yang memiliki nilai kuadrat terkecil jarak antara titik observasi dan garis regresi. Dasar dari metode kuadrat terkecil merupakan persamaan yang relatif sederhana yang ditunjukkan pada Persamaan \@ref(eq:trees2).
+
+\begin{equation}
+A^{T}A=A^{T}b
+ (\#eq:trees2)
+\end{equation}
+
+dimana $b$ merupakan vektor dari variabel respon (`Volume`) dan matrik $A$ merupakan matriks variabel prediktor (variabel `Girth` dan `Heiht`). 
+
+Untuk menginputkan intercept kedalam persamaan linier kita perlu menmabhakan satu kolom di awal matriks $A$ yang berisi nilai 1. Berikut adalah sintaks yang digunakan untuk membentuk matriks $A$:
+
+```{r}
+# membentuk matriks A
+pred <- cbind(intercept=1, Girth=trees$Girth, Height=trees$Height)
+head(A)
+```
+
+Langkah selanjutnya adalah membentuk matriks $b$. Berikut adalah sintaks yang digunakan:
+
+```{r}
+resp<- trees$Volume
+head(resp)
+```
+
+Untuk memperoleh koefisien $\beta$, kita dapat mencarinya dengan cara menyelesaikan Persamaan \@ref(eq:trees2). Berikut adalah sintaks yang digunakan:
+
+```{r}
+A <- t(pred) %*% pred
+b <- t(pred) %*% resp
+
+Ab <- cbind(A,b)
+(x <- gauss_jordan(Ab))
+```
+
+Berdasarkan hasil yang diperoleh, persamaan linier yang terbentuk disajikan pada Persamaan \@ref(eq:trees3).
+
+\begin{equation}
+Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
+ (\#eq:trees3)
+\end{equation}
+
+Pembaca juga dapat menggunakan fungsi lain untuk memperoleh nilai koefisien tersebut, seperti: `lu_solve()`dan`solve()`. untuk fungsi `jacobi()` dan `gauss_seidel()`, kita harus pastikan syarat-syarat terkait metode tersebut. Berikut adalah contoh penyelesaian menggunakan sintaks lainnya:
+
+```{r}
+# metode LU
+lu_solve(A,b)
+```
+
+```{r}
+# fungsi solve()
+solve(A,b)
+```
+
+`R` juga menyediakan fungsi untuk membentuk model regresi linier. Fungsi yang digunakan adalah `lm()`. Berikut sintaks yang digunakan untuk membentuk model linier menggunakan fungsi `lm()`:
+
+```{r}
+lm(Volume~Girth+Height, data=trees)
+```
+
+### Aliran Massa Dalam Reaktor {#reaktorkimia}
+
+Pada *sub-chapter* ini penulis akan memberikan penerapan aljabar linier untuk menghitung konsentrasi suatu zat atau parameter lingkungan dalam reaktor yang saling terhubung. Pada contoh kasus kali ini diasumsikan terdapat lima buah reaktor yang saling terhubung satu sama lain sesuai Gambar \@ref(fig:reaktor). Debit air ($\frac{m^{3}}{detik}$) dan konsentrasi zat pencemar ($\frac{mg}{m^3}$) disajikan pula diagram alir tersebut. Diasumsikan kelima buah reaktor tersebut dalam kondisi *steady* dan volume reaktor diasumsikan sama. Kesetimbangan massa persatuan waktu dalam kondisi *steady* disajikan pada  Persamaan \@ref(eq:steady).
+
+```{r reaktor,echo=FALSE, fig.cap='Aliran massa dalam reaktor.', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/reaktor.jpeg"
+include_graphics(img1_path)
+
+```
+
+\begin{equation}
+m_in=m_out
+ (\#eq:steady)
+\end{equation}
+
+\begin{equation}
+Q_{in}C_{in}= Q_{out}C_{out}
+ (\#eq:steady2)
+\end{equation}
+
+Berdasarkan Gambar \@ref(fig:reaktor), dapat dibentuk lima buah sistem persamaan linier. Persamaan linier yang terbentuk disajikan sebagai berikut:
+
+$$
+\begin{matrix}
+  6c_{1}-c_{3}=50 \\
+  -3c_{1}+3c_{2}=0 \\
+  -c_{2}+9c_{3}=160 \\
+  -c_{2}-8c_{3}+11c_{4}-2c_{5}=0 \\
+  -3c_{1}-c_{2}+4c_{5}=0
+\end{matrix}
+$$
+
+Untuk menyelesaiakan sistem persamaan linier tersebut dan memperoleh nilai $c$ dari masing-masing reaktor, kiat perlu mengubahnya dulu kedalam bentuk matriks $Ax=b$. Berikut adalah matriks yang terbentuk:
+
+\begin{equation*}
+\begin{bmatrix}
+      6 &  0 & -1 & 0  & 0    \\[0.3em]
+     -3 &  3 & 0  & 0  & 0    \\[0.3em]
+      0 & -1 & 9  & 0  & 0    \\[0.3em]
+      0 & -1 & -8 & 11 & -2   \\[0.3em]
+     -3 & -1 & 0  & 0  & 4
+\end{bmatrix}
+c = \begin{bmatrix}
+     50     \\[0.3em]
+     0      \\[0.3em]
+     160    \\[0.3em]
+     0      \\[0.3em]
+     0
+\end{bmatrix}
+\end{equation*}
+
+Kita akan menyelesaikannya dengan menggunakan metode elminasi Gauss-Jordan, dekomposisi LU, iterasi Jacobi, dan iterasi Gauss-Seidel. Untuk dapat menyelesaikannya menggunakan metode-metode tersebut pada `R`, kita perlu membentuk matriksnya terlebih dahulu:
+
+```{r}
+(A <- matrix(c(6,-3,0,0,-3,
+              0,3,-1,-1,-1,
+              -1,0,9,-8,0,
+              0,0,0,11,0,
+              0,0,0,-2,4),nrow=5))
+(b <- c(50,0,160,0,0))
+```
+
+**Metode Eliminasi Gauss-Jordan**
+
+```{r}
+gauss_jordan(cbind(A,b))
+```
+
+**Metode Dekomposisi LU**
+
+```{r}
+lu_solve(A,b)
+```
+
+**Metode Iterasi Jacobi**
+
+```{r}
+jacobi(A,b, maxiter=100)
+```
+
+**Metode Iterasi Gauss-Seidel**
+
+```{r}
+gauss_seidel(A,b, maxiter=200)
+```
+
+Berdasarkan seluruh metode tersebut, diperoleh konsentrasi zat pencemar pada masing-masing reaktor adalah sebagai berikut:
+
+$$
+\begin{matrix}
+  c_{1}=11,50943 \frac{mg}{m^3} \\
+  c_{2}=11,50943 \frac{mg}{m^3} \\
+  c_{3}=19,05660 \frac{mg}{m^3} \\
+  c_{4}=16,99828 \frac{mg}{m^3} \\
+  c_{5}=11.50943 \frac{mg}{m^3}
+\end{matrix}
+$$
+
+## Referensi
+
+1. Bloomfield, V.A. 2014. **Using R for Numerical Analysis in Science and Engineering**. CRC Press
+2. Howard, J.P. 2017. **Computational Methods for Numerical Analysis with R**. CRC Press.
+3. Kreyszig, E. 2011. **Advanced Engineering Mathematics, 10th Edition**. John Wiley & Sons.
+4. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung.
+5. Sanjaya, M. 2015. **Metode Numerik Berbasis Phython**. Penerbit Gava Media: Yogyakarta.
+6. Suparno, S. 2008. **Komputasi untuk Sains dan Teknik Edisi II**. Departemen Fisika-FMIPA Universitas Indonesia. 
+
+
+## Latihan
+
+1. Selesaikan sistem persamaan linier berikut menggunakan eliminasi Gauss!
+
+$$
+\begin{matrix}
+  -4x+4y=-1 \\
+  -2x+2y-3z=-3 \\
+  3x+1y-3z=-3
+\end{matrix}
+$$
+
+2. Carilah penyelesaian dari sistem persamaan linier soal no.1 menggunakan algoritma dekomposisi LU!
+3. Tunjukan 5 iterasi pertama sistem persamaan linier berikut menggunakan algoritma Jacobi dan Gauss-Seidel!
+
+$$
+\begin{matrix}
+  3x+2y-1z=-3 \\
+  -3x-3y-3z=9 \\
+  1y-1z=-1
+\end{matrix}
+$$
+
+4. Gunakan fungsi `jacobi()` dan `gauss_seidel()` untuk menyelesaikan sistem persamaan linier pada soal no.4 dan tentukan metode mana yang paling cepat memperoleh penyelesaian? (**petunjuk**: gunakan fungsi `system.time()` dan jumlah iterasi yang diperlukan untuk memperoleh hasil yang konvergen)
+5. Apakah yang terjadi jika kita menginputkan matriks segiempat $A$ kedalam fungsi `solve()` dan apa yang akan terjadi jika selanjutnya argumen pada fungsi tersebut juga menyertakan vektor $b$?
+6. Dengan menggunakan dataset `mtcars` buatlah persamaan linier variabel `mpg` sebagai fungsi dari variabel `wt`, `hp`, dan `qsec` menggunakan algoritma dekomposisi LU? 
+
+
+
+
+
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-08-11" />
+<meta name="date" content="2019-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="numericmethod.html">
-
+<link rel="next" href="replace-with-main-title.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -243,6 +243,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.1" data-path="linearaljabar.html"><a href="linearaljabar.html#jacobiiter"><i class="fa fa-check"></i><b>6.5.1</b> Iterasi Jacobi</a></li>
 <li class="chapter" data-level="6.5.2" data-path="linearaljabar.html"><a href="linearaljabar.html#seideliter"><i class="fa fa-check"></i><b>6.5.2</b> Iterasi Gauss-Seidel</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="linearaljabar.html"><a href="linearaljabar.html#studikasus"><i class="fa fa-check"></i><b>6.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#leastsquare"><i class="fa fa-check"></i><b>6.6.1</b> Metode Kuadrat Terkecil</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#reaktorkimia"><i class="fa fa-check"></i><b>6.6.2</b> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linearaljabar.html"><a href="linearaljabar.html#referensi-5"><i class="fa fa-check"></i><b>6.7</b> Referensi</a></li>
+<li class="chapter" data-level="6.8" data-path="linearaljabar.html"><a href="linearaljabar.html#latihan"><i class="fa fa-check"></i><b>6.8</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="replace-with-main-title.html"><a href="replace-with-main-title.html"><i class="fa fa-check"></i><b>7</b> Replace with Main Title</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="replace-with-main-title.html"><a href="replace-with-main-title.html#your-name"><i class="fa fa-check"></i><b>7.0.1</b> Your Name</a></li>
+<li class="chapter" data-level="7.0.2" data-path="replace-with-main-title.html"><a href="replace-with-main-title.html#section"><i class="fa fa-check"></i><b>7.0.2</b> 2019-08-12</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -596,7 +606,11 @@ AX=B
 A=\left[A|B\right]
   \tag{6.14}
 \end{equation}\]</span></p>
-<p>Persamaan <a href="linearaljabar.html#eq:matrikpl">(6.11)</a> dan Persamaan <a href="linearaljabar.html#eq:augmatrik">(6.13)</a> akan memiliki penyelesaian tunggal bila memenuhi syarat-syarat berikut:</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-133" class="theorem"><strong>Theorem 6.1  (spltheorem)  </strong></span>Suatu sistem persamaan linier mempunyai penyelesaian tunggal bila memenuhi syarat-syarat sebagai berikut:
+</div>
+
 <ul>
 <li>ukuran persamaan linier simultan bujursangkar (jumlah persamaan sama dengan jumlah variabel bebas).</li>
 <li>sistem persamaan linier <em>non-homogen</em> di mana minimal ada satu nilai vektor konstanta <span class="math inline">\(B\)</span> tidak nol atau terdapat <span class="math inline">\(b_{n}\neq 0\)</span>.</li>
@@ -654,7 +668,7 @@ A=\left[A|B\right]
 \end{bmatrix}
 \]</span></p>
 <p>Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langkah pertama, baris ke-2 dikurangkan dengan baris ke-1 (<span class="math inline">\(B_2-B_1\)</span>) dan baris ke-3 dikurangkan oleh dua kali baris ke-1 (<span class="math inline">\(B_3-2B_1\)</span>).</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
      1 &amp; 2 &amp; -1 &amp; 2     \\[0.3em]
@@ -670,9 +684,9 @@ A=\left[A|B\right]
      0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
      0 &amp; -1 &amp; 0 &amp; -2
 \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah selanjutnya. Pada langkah selanjutnya operasi baris elementer kembali dilanjutkan. Baris ke-3 dikurangkan denganbaris ke-2 (<span class="math inline">\(B_3-B_2\)</span>).</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
      0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
@@ -687,7 +701,7 @@ A=\left[A|B\right]
      0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
      0 &amp; 0 &amp; -2 &amp; -6
 \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Setelah diperoleh matriks <em>row echelon form</em> selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan <a href="linearaljabar.html#eq:refsolution">(6.16)</a>.</p>
 <p><span class="math display">\[
 \begin{matrix}
@@ -863,7 +877,7 @@ A=\left[A|B\right]
 \end{bmatrix}
 \]</span></p>
 <p>Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1 &amp; 1 &amp; 3     \\[0.3em]
      2 &amp; 4 &amp; 8
@@ -876,8 +890,8 @@ A=\left[A|B\right]
      1 &amp; 1 &amp; 3     \\[0.3em]
      0 &amp; 2 &amp; 2
 \end{bmatrix}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1 &amp; 1 &amp; 3     \\[0.3em]
      0 &amp; 2 &amp; 2
@@ -890,8 +904,8 @@ A=\left[A|B\right]
      1 &amp; 1 &amp; 3     \\[0.3em]
      0 &amp; 1 &amp; 1
 \end{bmatrix}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1 &amp; 1 &amp; 3     \\[0.3em]
      0 &amp; 1 &amp; 1
@@ -904,7 +918,7 @@ A=\left[A|B\right]
      1 &amp; 0 &amp; 2     \\[0.3em]
      0 &amp; 1 &amp; 1
 \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Penyelesaian persamaan linier tersebut adalah sebagai berikut:</p>
 <p><span class="math display">\[
 x_1=2\ dan\ x_2=1
@@ -1132,7 +1146,7 @@ x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i,j}}
 \]</span></p>
 <p><strong>Jawab</strong>:</p>
 <p>Langkah pertama untuk menyelesaikannya, kita harus merubah persamaan tersebut kedalam bentuk matriks</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      3 &amp; 4 &amp; 0  &amp; 0     \\[0.3em]
      4 &amp; 5 &amp; 2 &amp; 0     \\[0.3em]
@@ -1145,7 +1159,7 @@ x = \begin{bmatrix}
      18     \\[0.3em]
      18
 \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Untuk menyelesaikan persamaan tersebut menggunakan fungsi <code>tridiagmatrix()</code>, kita perlu membentuk vektor diagonal <span class="math inline">\(l\)</span>, <span class="math inline">\(d\)</span>, <span class="math inline">\(u\)</span>, dan <span class="math inline">\(b\)</span>.</p>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">l &lt;-<span class="st"> </span>u &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>); d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb423-2" title="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">18</span>)</a></code></pre></div>
@@ -1327,7 +1341,7 @@ Gambar 6.1: Tahapan dekomposisi LU.
 \]</span></p>
 <p><strong>Jawab</strong>:</p>
 <p>Nayatakan sistem persamaan tersebut ke dalam bentuk matriks <span class="math inline">\(Ax=b\)</span>.</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 Ux=
 \begin{bmatrix}
      1       &amp; 1       &amp; 0       &amp; 3           \\[0.3em]
@@ -1339,8 +1353,7 @@ Ux=
      x_1                                          \\[0.3em]
      x_2                                          \\[0.3em]
      x_3                                          \\[0.3em]
-     \cdots                                       \\[0.3em]
-     x_n                                       
+     x_4                                       
      \end{bmatrix}
 = \begin{bmatrix}
      4                                          \\[0.3em]
@@ -1348,7 +1361,7 @@ Ux=
      -3                                          \\[0.3em]
      4                                       
      \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Lakukan operasi baris elementer pada matriks <span class="math inline">\(A\)</span> untuk memperoleh matriks <span class="math inline">\(U\)</span>. Urutan operasi baris elementer yang dilakukan adalah sebagai berikut:</p>
 <ul>
 <li><span class="math inline">\(\left(B_2-2B_1\right)\to B_2 \to l_{2,1}=2\)</span>,</li>
@@ -1389,7 +1402,7 @@ P=
      \end{bmatrix}
 \]</span></p>
 <p>Lakukan operasi <em>forward substitution</em> menggunakan Persamaan <a href="linearaljabar.html#eq:LUdecomp5">(6.26)</a>.</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
       1         &amp; 0       &amp; 0       &amp; 0           \\[0.3em]
       2         &amp; 1       &amp; 0       &amp; 0           \\[0.3em]
@@ -1408,13 +1421,13 @@ P=
      -3                                          \\[0.3em]
      4                                       
      \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Berdasarkan hasil perhitungan diperoleh nilai vektor <span class="math inline">\(t\)</span>.</p>
 <p><span class="math display">\[
 t_1=4, t_2=1, t_3=-3, t_4=4
 \]</span></p>
 <p>Operasi terakhir yang perlu dilakukan untuk memperoleh nilai <span class="math inline">\(x\)</span> adalah dengan melakukan <em>backward substitution</em> menggunakan nilai vektor <span class="math inline">\(t\)</span> yang telah dihitung.</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      1       &amp; 1       &amp; 0       &amp; 3           \\[0.3em]
      0       &amp; -1      &amp; -1      &amp; -5          \\[0.3em]
@@ -1433,7 +1446,7 @@ t_1=4, t_2=1, t_3=-3, t_4=4
      13                                          \\[0.3em]
      -13                      
      \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p>Berdasarkan hasil perhitungan diperoleh nilai <span class="math inline">\(x\)</span> sebagai berikut:</p>
 <p><span class="math display">\[
 x_1=-1, x_2=2, x_3=0, x_4=1
@@ -1876,7 +1889,7 @@ x^{n+1}=D^{-1}\left(b-Rx^{n}\right)
 <span id="exm:jacobiexm" class="example"><strong>Contoh 6.9  </strong></span>Selesaikan sistem persamaan berikut menggunakan iterasi Jacobi!
 </div>
 
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation*}
 \begin{bmatrix}
      5 &amp; 2 &amp; 3     \\[0.3em]
      2 &amp; 7 &amp; 4     \\[0.3em]
@@ -1887,7 +1900,7 @@ x = \begin{bmatrix}
      39     \\[0.3em]
      55
 \end{bmatrix}
-\end{equation}\]</span></p>
+\end{equation*}\]</span></p>
 <p><strong>Jawab</strong>:</p>
 <p>Berdasarkan matriks <span class="math inline">\(A\)</span> (matriks koefisien), kita dapat memastikan bahwa matriks tersebut memiliki nilai dominan pada elemen diagonal utama. Sebagai contoh:</p>
 <p><span class="math display">\[
@@ -1949,7 +1962,7 @@ x = \begin{bmatrix}
      6
 \end{bmatrix}
 \]</span></p>
-<p><strong>Algoritma Dekomposisi Cholesky</strong></p>
+<p><strong>Algoritma Iterasi Jacobi</strong></p>
 <ol style="list-style-type: decimal">
 <li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span>.</li>
 <li>Hitung invers matriks <span class="math inline">\(D\)</span>, dimana nilai invernya merupakan matriks diagonal dari satu per diagonal utama matriks <span class="math inline">\(A\)</span>.</li>
@@ -1962,7 +1975,7 @@ x = \begin{bmatrix}
 <li>Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan <a href="linearaljabar.html#eq:toleransi">(6.33)</a>.</li>
 </ol>
 <p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Jacobi. Berikut sintaks yang digunakan:</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1">jacobi &lt;-<span class="st"> </span><span class="cf">function</span>(a, b, <span class="dt">tol=</span><span class="fl">1e-7</span>, <span class="dt">maxiter=</span><span class="ot">NULL</span>){</a>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1">jacobi &lt;-<span class="st"> </span><span class="cf">function</span>(a, b, <span class="dt">tol=</span><span class="fl">1e-7</span>, <span class="dt">maxiter=</span><span class="dv">100</span>){</a>
 <a class="sourceLine" id="cb491-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(b)</a>
 <a class="sourceLine" id="cb491-3" title="3">  iter &lt;-<span class="st"> </span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb491-4" title="4">  </a>
@@ -1971,25 +1984,18 @@ x = \begin{bmatrix}
 <a class="sourceLine" id="cb491-7" title="7">  x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,n)</a>
 <a class="sourceLine" id="cb491-8" title="8">  x_new &lt;-<span class="st"> </span><span class="kw">rep</span>(tol, n)</a>
 <a class="sourceLine" id="cb491-9" title="9">  </a>
-<a class="sourceLine" id="cb491-10" title="10">  <span class="cf">if</span>(<span class="kw">is.null</span>(maxiter)){</a>
-<a class="sourceLine" id="cb491-11" title="11">      <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
-<a class="sourceLine" id="cb491-12" title="12">            x &lt;-<span class="st"> </span>x_new</a>
-<a class="sourceLine" id="cb491-13" title="13">            x_new &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>R <span class="op">%*%</span><span class="st"> </span>x)</a>
-<a class="sourceLine" id="cb491-14" title="14">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb491-15" title="15">      }</a>
-<a class="sourceLine" id="cb491-16" title="16">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
-<a class="sourceLine" id="cb491-17" title="17">  }<span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb491-18" title="18">      <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
-<a class="sourceLine" id="cb491-19" title="19">            <span class="cf">if</span>(maxiter<span class="op">&gt;</span>iter){</a>
-<a class="sourceLine" id="cb491-20" title="20">              <span class="kw">warning</span>(<span class="st">&quot;iterasi maksimum tercapai&quot;</span>)</a>
-<a class="sourceLine" id="cb491-21" title="21">            }</a>
-<a class="sourceLine" id="cb491-22" title="22">            x &lt;-<span class="st"> </span>x_new</a>
-<a class="sourceLine" id="cb491-23" title="23">            x_new &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>R <span class="op">%*%</span><span class="st"> </span>x)</a>
-<a class="sourceLine" id="cb491-24" title="24">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb491-25" title="25">      }</a>
-<a class="sourceLine" id="cb491-26" title="26">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
-<a class="sourceLine" id="cb491-27" title="27">  }</a>
-<a class="sourceLine" id="cb491-28" title="28">}</a></code></pre></div>
+<a class="sourceLine" id="cb491-10" title="10">  <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
+<a class="sourceLine" id="cb491-11" title="11">            <span class="cf">if</span>(iter<span class="op">&gt;</span>maxiter){</a>
+<a class="sourceLine" id="cb491-12" title="12">              <span class="kw">warning</span>(<span class="st">&quot;iterasi maksimum tercapai&quot;</span>)</a>
+<a class="sourceLine" id="cb491-13" title="13">              <span class="cf">break</span></a>
+<a class="sourceLine" id="cb491-14" title="14">            }</a>
+<a class="sourceLine" id="cb491-15" title="15">            x &lt;-<span class="st"> </span>x_new</a>
+<a class="sourceLine" id="cb491-16" title="16">            x_new &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>R <span class="op">%*%</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb491-17" title="17">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb491-18" title="18">  }</a>
+<a class="sourceLine" id="cb491-19" title="19">  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
+<a class="sourceLine" id="cb491-20" title="20">  </a>
+<a class="sourceLine" id="cb491-21" title="21">}</a></code></pre></div>
 <p>Berikut adalah penerpan fungsi <code>jacobi()</code> tersebut:</p>
 <div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1"><span class="kw">jacobi</span>(A,b)</a></code></pre></div>
 <pre><code>## $X
@@ -2005,7 +2011,7 @@ x = \begin{bmatrix}
 <span id="exm:jacobiexm2" class="example"><strong>Contoh 6.10  </strong></span>Selesaikan sistem persamaan berikut menggunakan fungsi <code>jacobi()</code>
 </div>
 
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[
 \begin{bmatrix}
      27 &amp; 6 &amp; -1     \\[0.3em]
      6 &amp; 15 &amp; 2     \\[0.3em]
@@ -2016,7 +2022,7 @@ x = \begin{bmatrix}
      72     \\[0.3em]
      110
 \end{bmatrix}
-\end{equation}\]</span></p>
+\]</span></p>
 <p><strong>Jawab</strong>:</p>
 <p>Matriks <span class="math inline">\(A\)</span> (matriks koefisien) berdasarkan sistem persamaan linier tersebut telah memenuhi syarat dari algoritma Jacobi (nilai diagonal utama dominan dibanding nilai lainnya pada satu kolom). Penyelesaian sistem persamaan tersebut, sebagai berikut:</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">27</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">15</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">54</span>), <span class="dv">3</span>)</a>
@@ -2039,8 +2045,415 @@ x = \begin{bmatrix}
 </div>
 <div id="seideliter" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Iterasi Gauss-Seidel</h3>
+<p>Metode iterasi Gauss-Seidel melakukan dekomposisi pada matriks <span class="math inline">\(A\)</span> menjadi matriks segitiga atas <span class="math inline">\(U\)</span> dan matriks segitiga bawah <span class="math inline">\(L\)</span>. Dekomposisi ini tidak sama dengan dekomposisi LU pada Chapter <a href="linearaljabar.html#ludecomp">6.4.1</a>. Matriks <span class="math inline">\(U\)</span> pada metode Gauss-Seidel merupakan elemen (entri) matriks <span class="math inline">\(A\)</span> pada bagian atas diagonal utama, sedangkan matriks <span class="math inline">\(L\)</span> merupakan elemen diagonal utama dan bagian bawah diagonal utama matriks <span class="math inline">\(A\)</span>. Elemen selain yang penulis sebutkan pada kedua matriks tersebut akan bernilai nol. Persamaan iterasi Gauss-Seidel ditampilkan pada Persamaan <a href="linearaljabar.html#eq:gaussseidel">(6.39)</a>.</p>
+<p><span class="math display" id="eq:gaussseidel">\[\begin{equation}
+x^{n+1}=L^{-1}\left(b-Ux^{n}\right)
+ \tag{6.39}
+\end{equation}\]</span></p>
+<p>Syarat agar suatu sistem persamaan linier dapat diselesaikan menggunakan metode Gauss-Seidel adalah matriks harus memiliki nilai diagonal utama yang dominan. Maksudnya, nilai absolut diagonal utama lebih besar dari jumlah nilai absolut elemen lainnya dalam satu kolom. Jika syarat ini tidak terpenuhi maka metode ini tidak akan memperoleh penyelesaian yang konvergen.</p>
 
+<div class="example">
+<span id="exm:gaussseidelexm" class="example"><strong>Contoh 6.11  </strong></span>Selesaikan sistem persamaan pada Contoh <a href="linearaljabar.html#exm:jacobiexm2">6.10</a> menggunakan iterasi Gauss-Seidel!
 </div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Kita akan kembali menggunakan bantuan <code>R</code> untuk melakukan kalkulasi pada proses iterasi Gauss-Seidel. Kita telah melakukan pengecekan pada sistem persamaan linier pada contoh tersebut dan menghasilkan kesimpulan bahwa persamaan linier tersebut dapat diselesaikan dengan metode Gauss-Seidel. Langkah selanjutnya adalah membentuk matriks <span class="math inline">\(L\)</span> dan <span class="math inline">\(U\)</span>.</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" title="1"><span class="co"># membentuk matriks U dan L dari matriks A</span></a>
+<a class="sourceLine" id="cb498-2" title="2">(L &lt;-<span class="st"> </span>U &lt;-<span class="st"> </span>A)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    6   -1
+## [2,]    6   15    2
+## [3,]    1    1   54</code></pre>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1"><span class="co"># membentuk matriks L dari entri bagian bawah diagonal utama matriks A</span></a>
+<a class="sourceLine" id="cb500-2" title="2">L[<span class="kw">upper.tri</span>(A, <span class="dt">diag=</span><span class="ot">FALSE</span>)]&lt;-<span class="dv">0</span></a>
+<a class="sourceLine" id="cb500-3" title="3">L</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    0    0
+## [2,]    6   15    0
+## [3,]    1    1   54</code></pre>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1"><span class="co"># membentuk matriks U dari entri bagian atas diagonal utama matriks A</span></a>
+<a class="sourceLine" id="cb502-2" title="2">U[<span class="kw">lower.tri</span>(A, <span class="dt">diag=</span><span class="ot">TRUE</span>)]&lt;-<span class="dv">0</span></a>
+<a class="sourceLine" id="cb502-3" title="3">U</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    6   -1
+## [2,]    0    0    2
+## [3,]    0    0    0</code></pre>
+<p>Selanjutya lakukan invers terhadap matriks <span class="math inline">\(L\)</span> menggunakn fungsi <code>solve()</code>.</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1">(Linv &lt;-<span class="st"> </span><span class="kw">solve</span>(L))</a></code></pre></div>
+<pre><code>##               [,1]         [,2]       [,3]
+## [1,]  0.0370370370  0.000000000 0.00000000
+## [2,] -0.0148148148  0.066666667 0.00000000
+## [3,] -0.0004115226 -0.001234568 0.01851852</code></pre>
+<p>Tetapkan nilai estimasi awal dan nilai toleransi yang dikehendaki. Nilai toleransi pada proses ini ditetapkan sebesar <span class="math inline">\(10^-7\)</span>.</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1"><span class="co"># tebakan awal nilai x</span></a>
+<a class="sourceLine" id="cb506-2" title="2">(x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(b)))</a></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<p>Lakukan iterasi menggunakan Persamaan <a href="linearaljabar.html#eq:gaussseidel">(6.39)</a>.</p>
+<p><strong>Iterasi 1</strong></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">(x1 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 3.148148
+## [2,] 3.540741
+## [3,] 1.913169</code></pre>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
+<a class="sourceLine" id="cb510-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x1<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 8.602058</code></pre>
+<p><strong>Iterasi 2</strong></p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" title="1">(x2 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x1))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 2.432175
+## [2,] 3.572041
+## [3,] 1.925848</code></pre>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
+<a class="sourceLine" id="cb514-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x2<span class="op">-</span>x1)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6719939</code></pre>
+<p>Iterasi terus dilakukan sampai dengan nilai akar jumlah kuadrat lebih kecil dari nilai toleransi. Setelah iterasi ke-7 diperoleh nilai vektor <span class="math inline">\(x\)</span> sebesar:</p>
+<p><span class="math display">\[
+x = \begin{bmatrix}
+     2,425476     \\[0.3em]
+     3,573016     \\[0.3em]
+     1,925954
+\end{bmatrix}
+\]</span>
+<strong>Algoritma Iterasi Gauss-Seidel</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span>.</li>
+<li>Lakukan dekomposisi LU, dimana matriks <span class="math inline">\(L\)</span> merupakan matriks segitiga bawah dengan nilai entri diagonal utama matriks <span class="math inline">\(A\)</span> dan bagian bawah diagonalnya dan matriks <span class="math inline">\(U\)</span> merupakan matriks segitiga atas dengan entri berasal dari elemen atas diagonal utama matriks <span class="math inline">\(A\)</span>. Isi elemen lain yang tidak disebut pada kedua matriks tersebut dengan nol.</li>
+<li>Tetapkan vektor <span class="math inline">\(x\)</span> estimasi.</li>
+<li>Tetapkan nilai toleransi maksimum yang dapat diterima.</li>
+<li>Lakukan iterasi menggunakan Persamaan <a href="linearaljabar.html#eq:gaussseidel">(6.39)</a>.</li>
+<li>Hitung akar jumlah kuadrat dari vektor <span class="math inline">\(x^{n+1}\)</span> dan vektor <span class="math inline">\(x^n\)</span>.</li>
+<li>Jadikan nilai <span class="math inline">\(x^{n+1}\)</span> sebagai nilai taksiran <span class="math inline">\(x\)</span> untuk iterasi berikutnya.</li>
+<li>Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan <a href="linearaljabar.html#eq:toleransi">(6.33)</a>.</li>
+</ol>
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Gauss-Seidel. Berikut sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" title="1">gauss_seidel &lt;-<span class="st"> </span><span class="cf">function</span>(a, b, <span class="dt">tol=</span><span class="fl">1e-7</span>, <span class="dt">maxiter=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb516-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(b)</a>
+<a class="sourceLine" id="cb516-3" title="3">  iter &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb516-4" title="4">  </a>
+<a class="sourceLine" id="cb516-5" title="5">  </a>
+<a class="sourceLine" id="cb516-6" title="6">  L &lt;-<span class="st"> </span>U &lt;-<span class="st"> </span>a</a>
+<a class="sourceLine" id="cb516-7" title="7">  L[<span class="kw">upper.tri</span>(a, <span class="dt">diag=</span><span class="ot">FALSE</span>)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb516-8" title="8">  U[<span class="kw">lower.tri</span>(a, <span class="dt">diag=</span><span class="ot">TRUE</span>)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb516-9" title="9">  Linv &lt;-<span class="st"> </span><span class="kw">solve</span>(L)</a>
+<a class="sourceLine" id="cb516-10" title="10">  </a>
+<a class="sourceLine" id="cb516-11" title="11">  x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,n)</a>
+<a class="sourceLine" id="cb516-12" title="12">  x_new &lt;-<span class="st"> </span><span class="kw">rep</span>(tol, n)</a>
+<a class="sourceLine" id="cb516-13" title="13">  </a>
+<a class="sourceLine" id="cb516-14" title="14">  <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
+<a class="sourceLine" id="cb516-15" title="15">            <span class="cf">if</span>(iter<span class="op">&gt;</span>maxiter){</a>
+<a class="sourceLine" id="cb516-16" title="16">              <span class="kw">warning</span>(<span class="st">&quot;iterasi maksimum tercapai&quot;</span>)</a>
+<a class="sourceLine" id="cb516-17" title="17">              <span class="cf">break</span></a>
+<a class="sourceLine" id="cb516-18" title="18">            }</a>
+<a class="sourceLine" id="cb516-19" title="19">            x &lt;-<span class="st"> </span>x_new</a>
+<a class="sourceLine" id="cb516-20" title="20">            x_new &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb516-21" title="21">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb516-22" title="22">  }</a>
+<a class="sourceLine" id="cb516-23" title="23">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
+<a class="sourceLine" id="cb516-24" title="24">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:gaussseidelexm2" class="example"><strong>Contoh 6.12  </strong></span>Selesaikan sistem persamaan pada Contoh <a href="linearaljabar.html#exm:jacobiexm2">6.10</a> menggunakan fungsi <code>gauss_seidel()</code>!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Penyelesaiansistem persamaan linier tersebut menggunakan fungsi <code>gauss_seidel()</code> disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1"><span class="kw">gauss_seidel</span>(A,b)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 2.425476
+## [2,] 3.573016
+## [3,] 1.925954
+## 
+## $iter
+## [1] 7</code></pre>
+</div>
+</div>
+<div id="studikasus" class="section level2">
+<h2><span class="header-section-number">6.6</span> Studi Kasus</h2>
+<p>Aljabar linier banyak diaplikasikan baik dalam bidang <em>engineering</em>, fisika, sampai dengan statistika. Pada <em>sub-chapter</em> ini penulis akan menjelaskan penerapan aljabar linier pada metode kuadrat terkecil dan aliran massa dalam reaktor. Untuk penerapan lainnya pembaca dapat membaca buku lainnya terkait aljabar linier.</p>
+<div id="leastsquare" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Metode Kuadrat Terkecil</h3>
+<p>Metode kuadrat terkecil merupakan salah satu aplikasi penerapan aljabar linier yang paling populer. Intuisi dibalik metode ini adalah bagaimana kita meminimalkan jarak antara sejumlah titik dengan garis regresi. Misalkan kita menggambarkan scatterplot antara dua buah variabel. Pola yang terbentuk dari plot tersebut adalah terjadi korelasi positif antara variabel pada sumbu <span class="math inline">\(x\)</span> dan sumbu <span class="math inline">\(y\)</span>. Kita ingin menggambarkan garis regresi terbaik yang dapat menangkap seluruh pola tersebut. Garis regresi terbaik terjadi ketika jumlah kuadrat jarak antara titik observasi dan garis regresi yang terbentuk seminimal mungkin.</p>
+<p>Untuk lebih memahaminya kita akan melakukan latihan menggunakan dataset <code>trees</code> yang berisi data hasil pengukuran kayu dari pohon yang ditebang. Pada dataset ini terdapat 31 observasi dan 3 buah kolom. Keterangan dari ketiga buah kolom tersebut adalah sebagai berikut:</p>
+<ul>
+<li><code>Girth</code>: diameter pohon dalam satuan <em>inch</em>.</li>
+<li><code>Height</code>: tinggi pohon dalam satuan <em>feet</em>.</li>
+<li><code>Volume</code>: volume kayu dalam satuan <em>cubic feet</em>.</li>
+</ul>
+<p>Untuk mengecek 6 observasi pertama dan struktur data, jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1"><span class="kw">head</span>(trees)</a></code></pre></div>
+<pre><code>##   Girth Height Volume
+## 1   8.3     70   10.3
+## 2   8.6     65   10.3
+## 3   8.8     63   10.2
+## 4  10.5     72   16.4
+## 5  10.7     81   18.8
+## 6  10.8     83   19.7</code></pre>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">str</span>(trees)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    31 obs. of  3 variables:
+##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...
+##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...
+##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</code></pre>
+<p>Scatterplot matriks sangat bagus untuk mengecek korelasi antar variabel dalam dataset tersebut. Berikut adalah sintaks untuk membuatnya:</p>
+<div class="figure" style="text-align: center">
+<img src="Metode_Numerik_files/figure-html/trees,%20LUfig-1.png" alt="Scatterplot matriks dataset trees" width="90%" />
+<p class="caption">
+(#fig:trees, LUfig)Scatterplot matriks dataset trees
+</p>
+</div>
+<p>Kita ingin membuat sebuah model linier untuk memprediksi <code>Volume</code> kayu berdasarkan variabel <code>Girth</code> dan <code>Heiht</code> atau volume sebagia fungsi dari variabel <code>Girth</code> dan <code>Heiht</code>. Kita dapat menuliskan relasi antara variabel volume sebagai fungsi dari variabel <code>Girth</code> dan <code>Heiht</code> menggunakan Persamaan <a href="linearaljabar.html#eq:trees">(6.40)</a>.</p>
+<p><span class="math display" id="eq:trees">\[\begin{equation}
+Volume=\beta_{girth} Girth+\beta_{height}Height+\beta_0
+ \tag{6.40}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\beta_0\)</span> merupakan intersep persamaan regresi linier dan nilai <span class="math inline">\(\beta\)</span> lainnya merupakan koefisien dari variabel <code>Girth</code> dan <code>Heiht</code>. Variabel <code>Volume</code> disebut sebagai variabel respon, sedangkan variabel <code>Girth</code> dan <code>Heiht</code> disebut sebagai variabel prediktor.</p>
+<p>Metode kuadrat terkecil berusaha memperoleh seluruh koefisien variabel dan intersep dari persamaan regresi linier. Berdasarkan yang telah penulis jelaskan garis regresi terbaik adalah garis yang memiliki nilai kuadrat terkecil jarak antara titik observasi dan garis regresi. Dasar dari metode kuadrat terkecil merupakan persamaan yang relatif sederhana yang ditunjukkan pada Persamaan <a href="linearaljabar.html#eq:trees2">(6.41)</a>.</p>
+<p><span class="math display" id="eq:trees2">\[\begin{equation}
+A^{T}A=A^{T}b
+ \tag{6.41}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(b\)</span> merupakan vektor dari variabel respon (<code>Volume</code>) dan matrik <span class="math inline">\(A\)</span> merupakan matriks variabel prediktor (variabel <code>Girth</code> dan <code>Heiht</code>).</p>
+<p>Untuk menginputkan intercept kedalam persamaan linier kita perlu menmabhakan satu kolom di awal matriks <span class="math inline">\(A\)</span> yang berisi nilai 1. Berikut adalah sintaks yang digunakan untuk membentuk matriks <span class="math inline">\(A\)</span>:</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1"><span class="co"># membentuk matriks A</span></a>
+<a class="sourceLine" id="cb523-2" title="2">pred &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">intercept=</span><span class="dv">1</span>, <span class="dt">Girth=</span>trees<span class="op">$</span>Girth, <span class="dt">Height=</span>trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb523-3" title="3"><span class="kw">head</span>(A)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    6   -1
+## [2,]    6   15    2
+## [3,]    1    1   54</code></pre>
+<p>Langkah selanjutnya adalah membentuk matriks <span class="math inline">\(b\)</span>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1">resp&lt;-<span class="st"> </span>trees<span class="op">$</span>Volume</a>
+<a class="sourceLine" id="cb525-2" title="2"><span class="kw">head</span>(resp)</a></code></pre></div>
+<pre><code>## [1] 10.3 10.3 10.2 16.4 18.8 19.7</code></pre>
+<p>Untuk memperoleh koefisien <span class="math inline">\(\beta\)</span>, kita dapat mencarinya dengan cara menyelesaikan Persamaan <a href="linearaljabar.html#eq:trees2">(6.41)</a>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1">A &lt;-<span class="st"> </span><span class="kw">t</span>(pred) <span class="op">%*%</span><span class="st"> </span>pred</a>
+<a class="sourceLine" id="cb527-2" title="2">b &lt;-<span class="st"> </span><span class="kw">t</span>(pred) <span class="op">%*%</span><span class="st"> </span>resp</a>
+<a class="sourceLine" id="cb527-3" title="3"></a>
+<a class="sourceLine" id="cb527-4" title="4">Ab &lt;-<span class="st"> </span><span class="kw">cbind</span>(A,b)</a>
+<a class="sourceLine" id="cb527-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">gauss_jordan</span>(Ab))</a></code></pre></div>
+<pre><code>##           intercept Girth Height            
+## intercept         1     0      0 -57.9876589
+## Girth             0     1      0   4.7081605
+## Height            0     0      1   0.3392512</code></pre>
+<p>Berdasarkan hasil yang diperoleh, persamaan linier yang terbentuk disajikan pada Persamaan <a href="linearaljabar.html#eq:trees3">(6.42)</a>.</p>
+<p><span class="math display" id="eq:trees3">\[\begin{equation}
+Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
+ \tag{6.42}
+\end{equation}\]</span></p>
+<p>Pembaca juga dapat menggunakan fungsi lain untuk memperoleh nilai koefisien tersebut, seperti: <code>lu_solve()</code>dan<code>solve()</code>. untuk fungsi <code>jacobi()</code> dan <code>gauss_seidel()</code>, kita harus pastikan syarat-syarat terkait metode tersebut. Berikut adalah contoh penyelesaian menggunakan sintaks lainnya:</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="co"># metode LU</span></a>
+<a class="sourceLine" id="cb529-2" title="2"><span class="kw">lu_solve</span>(A,b)</a></code></pre></div>
+<pre><code>## $P
+##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1
+## 
+## $L
+##          [,1]     [,2] [,3]
+## [1,]  1.00000 0.000000    0
+## [2,] 13.24839 1.000000    0
+## [3,] 76.00000 1.054369    1
+## 
+## $U
+##           intercept    Girth    Height
+## intercept        31 410.7000 2356.0000
+## Girth             0 295.4374  311.5000
+## Height            0   0.0000  889.5641
+## 
+## $result
+##             [,1]
+## [1,] -57.9876589
+## [2,]   4.7081605
+## [3,]   0.3392512</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="co"># fungsi solve()</span></a>
+<a class="sourceLine" id="cb531-2" title="2"><span class="kw">solve</span>(A,b)</a></code></pre></div>
+<pre><code>##                  [,1]
+## intercept -57.9876589
+## Girth       4.7081605
+## Height      0.3392512</code></pre>
+<p><code>R</code> juga menyediakan fungsi untuk membentuk model regresi linier. Fungsi yang digunakan adalah <code>lm()</code>. Berikut sintaks yang digunakan untuk membentuk model linier menggunakan fungsi <code>lm()</code>:</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1"><span class="kw">lm</span>(Volume<span class="op">~</span>Girth<span class="op">+</span>Height, <span class="dt">data=</span>trees)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ Girth + Height, data = trees)
+## 
+## Coefficients:
+## (Intercept)        Girth       Height  
+##    -57.9877       4.7082       0.3393</code></pre>
+</div>
+<div id="reaktorkimia" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</h3>
+<p>Pada <em>sub-chapter</em> ini penulis akan memberikan penerapan aljabar linier untuk menghitung konsentrasi suatu zat atau parameter lingkungan dalam reaktor yang saling terhubung. Pada contoh kasus kali ini diasumsikan terdapat lima buah reaktor yang saling terhubung satu sama lain sesuai Gambar <a href="linearaljabar.html#fig:reaktor">6.2</a>. Debit air (<span class="math inline">\(\frac{m^{3}}{detik}\)</span>) dan konsentrasi zat pencemar (<span class="math inline">\(\frac{mg}{m^3}\)</span>) disajikan pula diagram alir tersebut. Diasumsikan kelima buah reaktor tersebut dalam kondisi <em>steady</em> dan volume reaktor diasumsikan sama. Kesetimbangan massa persatuan waktu dalam kondisi <em>steady</em> disajikan pada Persamaan <a href="linearaljabar.html#eq:steady">(6.43)</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reaktor"></span>
+<img src="images/reaktor.jpeg" alt="Aliran massa dalam reaktor." width="90%" />
+<p class="caption">
+Gambar 6.2: Aliran massa dalam reaktor.
+</p>
+</div>
+<p><span class="math display" id="eq:steady">\[\begin{equation}
+m_in=m_out
+ \tag{6.43}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:steady2">\[\begin{equation}
+Q_{in}C_{in}= Q_{out}C_{out}
+ \tag{6.44}
+\end{equation}\]</span></p>
+<p>Berdasarkan Gambar <a href="linearaljabar.html#fig:reaktor">6.2</a>, dapat dibentuk lima buah sistem persamaan linier. Persamaan linier yang terbentuk disajikan sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{matrix}
+  6c_{1}-c_{3}=50 \\
+  -3c_{1}+3c_{2}=0 \\
+  -c_{2}+9c_{3}=160 \\
+  -c_{2}-8c_{3}+11c_{4}-2c_{5}=0 \\
+  -3c_{1}-c_{2}+4c_{5}=0
+\end{matrix}
+\]</span></p>
+<p>Untuk menyelesaiakan sistem persamaan linier tersebut dan memperoleh nilai <span class="math inline">\(c\)</span> dari masing-masing reaktor, kiat perlu mengubahnya dulu kedalam bentuk matriks <span class="math inline">\(Ax=b\)</span>. Berikut adalah matriks yang terbentuk:</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+      6 &amp;  0 &amp; -1 &amp; 0  &amp; 0    \\[0.3em]
+     -3 &amp;  3 &amp; 0  &amp; 0  &amp; 0    \\[0.3em]
+      0 &amp; -1 &amp; 9  &amp; 0  &amp; 0    \\[0.3em]
+      0 &amp; -1 &amp; -8 &amp; 11 &amp; -2   \\[0.3em]
+     -3 &amp; -1 &amp; 0  &amp; 0  &amp; 4
+\end{bmatrix}
+c = \begin{bmatrix}
+     50     \\[0.3em]
+     0      \\[0.3em]
+     160    \\[0.3em]
+     0      \\[0.3em]
+     0
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Kita akan menyelesaikannya dengan menggunakan metode elminasi Gauss-Jordan, dekomposisi LU, iterasi Jacobi, dan iterasi Gauss-Seidel. Untuk dapat menyelesaikannya menggunakan metode-metode tersebut pada <code>R</code>, kita perlu membentuk matriksnya terlebih dahulu:</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1">(A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb535-2" title="2">              <span class="dv">0</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb535-3" title="3">              <span class="dv">-1</span>,<span class="dv">0</span>,<span class="dv">9</span>,<span class="op">-</span><span class="dv">8</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb535-4" title="4">              <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">11</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb535-5" title="5">              <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">nrow=</span><span class="dv">5</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    6    0   -1    0    0
+## [2,]   -3    3    0    0    0
+## [3,]    0   -1    9    0    0
+## [4,]    0   -1   -8   11   -2
+## [5,]   -3   -1    0    0    4</code></pre>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1">(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">0</span>,<span class="dv">160</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a></code></pre></div>
+<pre><code>## [1]  50   0 160   0   0</code></pre>
+<p><strong>Metode Eliminasi Gauss-Jordan</strong></p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">gauss_jordan</span>(<span class="kw">cbind</span>(A,b))</a></code></pre></div>
+<pre><code>##                       b
+## [1,] 1 0 0 0 0 11.50943
+## [2,] 0 1 0 0 0 11.50943
+## [3,] 0 0 1 0 0 19.05660
+## [4,] 0 0 0 1 0 16.99828
+## [5,] 0 0 0 0 1 11.50943</code></pre>
+<p><strong>Metode Dekomposisi LU</strong></p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="kw">lu_solve</span>(A,b)</a></code></pre></div>
+<pre><code>## $P
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    0
+## [2,]    0    1    0    0    0
+## [3,]    0    0    1    0    0
+## [4,]    0    0    0    1    0
+## [5,]    0    0    0    0    1
+## 
+## $L
+##      [,1]       [,2]       [,3] [,4] [,5]
+## [1,]  1.0  0.0000000  0.0000000    0    0
+## [2,] -0.5  1.0000000  0.0000000    0    0
+## [3,]  0.0 -0.3333333  1.0000000    0    0
+## [4,]  0.0 -0.3333333 -0.9245283    1    0
+## [5,] -0.5 -0.3333333 -0.0754717    0    1
+## 
+## $U
+##      [,1] [,2]          [,3] [,4] [,5]
+## [1,]    6    0 -1.000000e+00    0    0
+## [2,]    0    3 -5.000000e-01    0    0
+## [3,]    0    0  8.833333e+00    0    0
+## [4,]    0    0  0.000000e+00   11   -2
+## [5,]    0    0  1.110223e-16    0    4
+## 
+## $result
+## [1] 11.50943 11.50943 19.05660 16.99828 11.50943</code></pre>
+<p><strong>Metode Iterasi Jacobi</strong></p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="kw">jacobi</span>(A,b, <span class="dt">maxiter=</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 11.50943
+## [2,] 11.50943
+## [3,] 19.05660
+## [4,] 16.99828
+## [5,] 11.50943
+## 
+## $iter
+## [1] 17</code></pre>
+<p><strong>Metode Iterasi Gauss-Seidel</strong></p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" title="1"><span class="kw">gauss_seidel</span>(A,b, <span class="dt">maxiter=</span><span class="dv">200</span>)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 11.50943
+## [2,] 11.50943
+## [3,] 19.05660
+## [4,] 16.99828
+## [5,] 11.50943
+## 
+## $iter
+## [1] 7</code></pre>
+<p>Berdasarkan seluruh metode tersebut, diperoleh konsentrasi zat pencemar pada masing-masing reaktor adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{matrix}
+  c_{1}=11,50943 \frac{mg}{m^3} \\
+  c_{2}=11,50943 \frac{mg}{m^3} \\
+  c_{3}=19,05660 \frac{mg}{m^3} \\
+  c_{4}=16,99828 \frac{mg}{m^3} \\
+  c_{5}=11.50943 \frac{mg}{m^3}
+\end{matrix}
+\]</span></p>
+</div>
+</div>
+<div id="referensi-5" class="section level2">
+<h2><span class="header-section-number">6.7</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press</li>
+<li>Howard, J.P. 2017. <strong>Computational Methods for Numerical Analysis with R</strong>. CRC Press.</li>
+<li>Kreyszig, E. 2011. <strong>Advanced Engineering Mathematics, 10th Edition</strong>. John Wiley &amp; Sons.</li>
+<li>Primartha, R. 2018. <strong>Belajar Machine Learning Teori dan Praktik</strong>. Penerbit Informatika : Bandung.</li>
+<li>Sanjaya, M. 2015. <strong>Metode Numerik Berbasis Phython</strong>. Penerbit Gava Media: Yogyakarta.</li>
+<li>Suparno, S. 2008. <strong>Komputasi untuk Sains dan Teknik Edisi II</strong>. Departemen Fisika-FMIPA Universitas Indonesia.</li>
+</ol>
+</div>
+<div id="latihan" class="section level2">
+<h2><span class="header-section-number">6.8</span> Latihan</h2>
+<ol style="list-style-type: decimal">
+<li>Selesaikan sistem persamaan linier berikut menggunakan eliminasi Gauss!</li>
+</ol>
+<p><span class="math display">\[
+\begin{matrix}
+  -4x+4y=-1 \\
+  -2x+2y-3z=-3 \\
+  3x+1y-3z=-3
+\end{matrix}
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Carilah penyelesaian dari sistem persamaan linier soal no.1 menggunakan algoritma dekomposisi LU!</li>
+<li>Tunjukan 5 iterasi pertama sistem persamaan linier berikut menggunakan algoritma Jacobi dan Gauss-Seidel!</li>
+</ol>
+<p><span class="math display">\[
+\begin{matrix}
+  3x+2y-1z=-3 \\
+  -3x-3y-3z=9 \\
+  1y-1z=-1
+\end{matrix}
+\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Gunakan fungsi <code>jacobi()</code> dan <code>gauss_seidel()</code> untuk menyelesaikan sistem persamaan linier pada soal no.4 dan tentukan metode mana yang paling cepat memperoleh penyelesaian? (<strong>petunjuk</strong>: gunakan fungsi <code>system.time()</code> dan jumlah iterasi yang diperlukan untuk memperoleh hasil yang konvergen)</li>
+<li>Apakah yang terjadi jika kita menginputkan matriks segiempat <span class="math inline">\(A\)</span> kedalam fungsi <code>solve()</code> dan apa yang akan terjadi jika selanjutnya argumen pada fungsi tersebut juga menyertakan vektor <span class="math inline">\(b\)</span>?</li>
+<li>Dengan menggunakan dataset <code>mtcars</code> buatlah persamaan linier variabel <code>mpg</code> sebagai fungsi dari variabel <code>wt</code>, <code>hp</code>, dan <code>qsec</code> menggunakan algoritma dekomposisi LU?</li>
+</ol>
+
+<!-- R Commander Markdown Template -->
 </div>
 </div>
             </section>
@@ -2048,8 +2461,8 @@ x = \begin{bmatrix}
           </div>
         </div>
       </div>
-<a href="numericmethod.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="numericmethod.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="replace-with-main-title.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
