@@ -124,13 +124,13 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-12}
+    \date{2019-08-27}
 
 \usepackage{booktabs}
 \usepackage{lscape}
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}{Lemma}[chapter]
 \newtheorem{corollary}{Corollary}[chapter]
 \newtheorem{proposition}{Proposition}[chapter]
@@ -2275,7 +2275,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.075 3.075 4.075 5.075 6.075 7.075
+## [1] 0.863 1.863 2.863 3.863 4.863 5.863
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -8913,39 +8913,1248 @@ Berdasarkan seluruh metode tersebut, diperoleh konsentrasi zat pencemar pada mas
 \end{enumerate}
 
 \hypertarget{rootfinding}{%
-\chapter{Akar-Akar Persamaan}\label{rootfinding}}
+\chapter{Akar Persamaan Non-Linier}\label{rootfinding}}
 
-\hypertarget{replace-with-main-title}{%
-\chapter{Replace with Main Title}\label{replace-with-main-title}}
+Persamaan non-linier dapat diartikan sebagai persamaan yang tidak mengandung syarat seperti persamaan linier, sehingga persamaan non-linier dapat merupakan:
 
-\hypertarget{your-name}{%
-\subsection{Your Name}\label{your-name}}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Persamaan yang memiliki pangkat selain satu (misal: \(x^2\))
+\item
+  Persamaan yang mempunyai produk dua variabel (misal: \(xy\))
+\end{enumerate}
 
-\hypertarget{section}{%
-\subsection{2019-08-12}\label{section}}
+Dalam penyelesaian persamaan non-linier diperlukan akar-akar persamaan non-linier, dimana akar sebuah persamaan non-linier \(f\left(x\right)=0\) merupakan nilai \(x\) yang menyebabkan nilai \(f\left(x\right)\) sama dengan nol. Dalam hal ini dapat disimpulkan bahwa akar-akar penyelesaian persamaan non-linier merupakan titik potong antara kurva \(f\left(x\right)\) dengan sumbu \(x\). Ilustrasi penjelasan tersebut ditampilkan pada Gambar \ref{fig:root}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/root} 
+
+}
+
+\caption{Penyelesaian persamaan non-linier.}\label{fig:root}
+\end{figure}
+
+Contoh sederhana dari penentuan akar persamaan non-linier adalah penentuan akar persamaan kuadratik. Secara analitik penentuan akar persamaan kuadratik dapat dilakukan menggunakan Persamaan \eqref{eq:kuadratik}.
+
+\begin{equation}
+x_{1,2}=\frac{-b\pm\sqrt{b^2-4a}}{2a}
+  \label{eq:kuadratik}
+\end{equation}
+
+Untuk masalah yang lebih rumit, penyelesaian analitik sudah tidak mungkin dilakukan. Metode numerik dapat digunakan untuk menyelesaikan masalah yang lebih kompleks. Untuk mengetahui apakah suatu persamaan non-linier memiliki akar-akar penyelesaian atau tidak, diperlukan analisa menggunakan Teorema berikut:
+
+\BeginKnitrBlock{theorem}[root]
+\protect\hypertarget{thm:unnamed-chunk-205}{}{\label{thm:unnamed-chunk-205} \iffalse (root) \fi{} }Suatu range x={[}a,b{]} mempunyai akar bila f(a) dan f(b) berlawanan tanda atau memenuhi f(a).f(b)\textless{}0
+\EndKnitrBlock{theorem}
+
+Untuk memahami teorema tersebut perhatikan ilustrasi pada Gambar \ref{fig:Bolzano}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/Bolzano} 
+
+}
+
+\caption{Ilustrasi teorema Bolzano.}\label{fig:Bolzano}
+\end{figure}
+
+Pada Chapter \ref{rootfinding} ini, akan dilakukan sejumlah pembahasan antara lain:
+
+\begin{itemize}
+\tightlist
+\item
+  penentuan akar persamaan dengan metode tertutup
+\item
+  penentuan akar persamaan dengan metode terbuka
+\item
+  fungsi-fungsi \texttt{R} untuk mementukan akar persamaan non-linier
+\item
+  studi kasus
+\end{itemize}
+
+\hypertarget{bracketing}{%
+\section{Metode Tertutup}\label{bracketing}}
+
+Metode tertutup disebut juga metode \emph{bracketing}. Disebut sebagai metode tertutup karena dalam pencarian akar-akar persamaan non-linier dilakukan dalam suatu selang \(\left[a,b \right]\).
+
+\hypertarget{table}{%
+\subsection{Metode Tabel}\label{table}}
+
+Penyelesaian persamaan non-linier menggunakan metode tabel dilakukan dengan membagi persamaan menjadi beberapa area, dimana untuk \(x=\left[a,b \right]\) dibagi sebanyak \(N\) bagian dan pada masing-masing bagian dihitung nilai \(f\left(x \right)\) sehingga diperoleh nilai \(f\left(x \right)\) pada setian \(N\) bagian.
+
+Bila nilai \(f\left(x_k \right)=0\) atau mendekati nol, dimana \(a \le k \le b\), maka dikatakan bahwa \(x_k\) adalah penyelesaian persamaan \(f\left(x \right)\). Bila tidak ditemukan, dicari nilai \(f\left(x_k \right)\) dan \(f\left(x_{k+1} \right)\) yang berlawanan tanda. Bila tidak ditemukan, maka persamaan tersebut dapat dikatakan tidak mempunyai akar untuk rentang \(\left[a,b \right]\).
+
+Bila akar persamaan tidak ditemukan, maka ada dua kemungkinan untuk menentukan akar persamaan, yaitu:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Akar persamaan ditentukan oleh nilai mana yang lebih dekat. Bila \(f\left(x_k\right)\le f\left(x_{k+1}\right)\), maka akarnya \(x_k\). Bila \(f\left(x_{k+1}\right)\le f\left(x_{k}\right)\), maka akarnya \(x_{k+1}\).
+\item
+  Perlu dicari lagi menggunakan rentang \(x=\left[x_{k}, x_{k+1} \right]\).
+\end{enumerate}
+
+Secara grafis penyelesaian persamaan non-linier menggunakan metode table disajikan pada Gambar \ref{fig:tabelviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/tabelviz} 
+
+}
+
+\caption{Ilustrasi metode tabel.}\label{fig:tabelviz}
+\end{figure}
+
+\textbf{Algoritma Metode Tabel}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan fungsi \(f\left(x \right)\)
+\item
+  Tentukan rentang untuk \(x\) yang berupa batas bawah \(a\) dan batas atas \(b\).
+\item
+  Tentukan jumlah pembagi \(N\)
+\item
+  Hitung step pembagi
+\end{enumerate}
+
+\begin{equation}
+h=\frac{b+a}{N}
+  \label{eq:tabel1}
+\end{equation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Untuk \(i=0\) s/d \(N\), hitung:
+\end{enumerate}
+
+\begin{equation}
+x_i=a+i.h
+  \label{eq:tabel2}
+\end{equation}
+
+\begin{equation}
+y_i=f\left(x_i \right)
+  \label{eq:tabel3}
+\end{equation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Untuk \(i=0\) s/d \(N\), dimana
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Bila \(f\left(x \right)=0\), maka akarnya \(x_k\)
+\item
+  Bila \(f\left(a \right) f\left(b \right) <0\), maka:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(f\left(x_k\right)\le f\left(x_{k+1}\right)\), maka akarnya \(x_k\)
+  \item
+    Bila tida, \(x_{k+1}\) adalah penyelesaian atau dapat dikatakan penyelesaian berada diantara \(x_k\) dan \(x_{k+1}\).
+  \end{itemize}
+\end{itemize}
+
+Kita dapat membuat suatu fungsi pada \texttt{R} untuk melakukan proses iterasi pada metode Tabel. Fungsi \texttt{root\_table()} akan melakukan iterasi berdasarkan step algoritma 1 sampai 5. Berikut adalah sintaks yang digunakan:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{>}\StringTok{ }\KeywordTok{data}\NormalTok{()}
+\NormalTok{root_table <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{N=}\DecValTok{20}\NormalTok{)\{}
+\NormalTok{    h <-}\StringTok{ }\KeywordTok{abs}\NormalTok{((a}\OperatorTok{+}\NormalTok{b)}\OperatorTok{/}\NormalTok{N)}
+\NormalTok{    x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\NormalTok{a, }\DataTypeTok{to=}\NormalTok{b, }\DataTypeTok{by=}\NormalTok{h)}
+\NormalTok{    fx <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, N}\OperatorTok{+}\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(N}\OperatorTok{+}\DecValTok{1}\NormalTok{))\{}
+\NormalTok{      fx[i] <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{    \}}
+\NormalTok{    data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x, }\DataTypeTok{fx=}\NormalTok{fx)}
+    \KeywordTok{return}\NormalTok{(data)}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:tabelexmp}{}{\label{exm:tabelexmp} }Carilah akar persamaan \(f\left(x \right)=x+e^{x}\) pada rentang \(x=\left[-1,0 \right]\)?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Sebagai permulaan, jumlah pembagi yang digunakan adalah \(N=10\). Dengan menggunakan fungsi \texttt{root\_table()} diperoleh hasil yang disajikan pada Tabel \ref{tab:tabeltabel}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{>}\StringTok{ }\KeywordTok{data}\NormalTok{(df)}
+\NormalTok{tabel <-}\StringTok{ }\KeywordTok{root_table}\NormalTok{(}\DataTypeTok{f=}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{+}\KeywordTok{exp}\NormalTok{(x)\},}
+                     \DataTypeTok{a=}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{0}\NormalTok{, }\DataTypeTok{N=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[t]
+
+\caption{\label{tab:tabeltabel}Penyelesaian persamaan x+exp(x)=0}
+\centering
+\begin{tabular}{r|r}
+\hline
+x & fx\\
+\hline
+-1.0 & -0.6321206\\
+\hline
+-0.9 & -0.4934303\\
+\hline
+-0.8 & -0.3506710\\
+\hline
+-0.7 & -0.2034147\\
+\hline
+-0.6 & -0.0511884\\
+\hline
+-0.5 & 0.1065307\\
+\hline
+-0.4 & 0.2703200\\
+\hline
+-0.3 & 0.4408182\\
+\hline
+-0.2 & 0.6187308\\
+\hline
+-0.1 & 0.8048374\\
+\hline
+0.0 & 1.0000000\\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan Tabel \ref{tab:tabeltabel} diperoleh penyelesaian di antara \(-0,6\) dan \(-0,5\) dengan nilai \(f\left(x \right)\) masing-masing sebesar \(-0,0512\) dan \(-0,1065\), sehingga dapat diambil penyelesaian \(x=-0,6\). Kita dapat terus melakukan iterasi sampai memperoleh nilai \(f\left(x \right)\) \textless{} nilai toleransi dengan terus merubah rentang yang diberikan. Iterasi berikutnya dengan nilai pembagi sama dan rentang nilai \(x=\left[-0,6;-0,5\right]\) diperoleh nilai \(x=-0,57\) dan \(f\left(x \right)=0,00447\).
+
+Untuk melihat gambaran lokasi akar, kita dapat pulang mengeplotkan data menggunakan fungsi plot. Berikut adalah fungsi yang digunakan:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/tabelplot-1} 
+
+}
+
+\caption{Plot fungsi x+exp(x) pada rentang -1 sampai 0.}\label{fig:tabelplot}
+\end{figure}
+
+Untuk mengetahui lokasi akar dengan lebih jelas, kita dapat memperkecil lagi rentang nilai yang dimasukkan dalam fungsi \texttt{curve()}.
+
+Metode tabel pada dasarnya memiliki kelemahan yaitu cukup sulit untuk memdapatkan error penyelesaian yang cukup kecil, sehingga metode ini jarang sekali digunakan untuk menyelesaikan persamaan non-linier. Namun, metode ini cukup baik digunakan dalam menentukan area penyelesaian sehingga dapat dijadikan acuan metode lain yang lebih baik.
+
+\hypertarget{bisection}{%
+\subsection{Metode Biseksi}\label{bisection}}
+
+Prinsip metode bagi dua adalah mengurung akar fungsi pada interval \(x=\left[a,b \right]\) atau pada nilai \(x\) batas bawah \(a\) dan batas atas \(b\). Selanjutnya interval tersebut terus menerus dibagi 2 hingga sekecil mungkin, sehingga nilai hampiran yang dicari dapat ditentukan dengan tingkat toleransi tertentu. Untuk lebih memahami metode biseksi, perhatikan visualisasi pada Gambar \ref{fig:biseksi}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/biseksi} 
+
+}
+
+\caption{Ilustrasi metode biseksi.}\label{fig:biseksi}
+\end{figure}
+
+Metode biseksi merupakan metode yang paling mudah dan paling sederhana dibanding metode lainnya. Adapun sifat metode ini antara lain:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Konvergensi lambat
+\item
+  Caranya mudah
+\item
+  Tidak dapat digunakan untuk mencari akar imaginer
+\item
+  Hanya dapat mencari satu akar pada satu siklus.
+\end{enumerate}
+
+\textbf{Algoritma Metode Biseksi}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan fungsi \(f\left(x \right)\)
+\item
+  Tentukan rentang untuk \(x\) yang berupa batas bawah \(a\) dan batas atas \(b\).
+\item
+  Tentukan nilai toleransi \(e\) dan iterasi maksimum \(N\)
+\item
+  Hitung \(f\left(a \right)\) dan \(f\left(b \right)\)
+\item
+  Hitung:
+\end{enumerate}
+
+\begin{equation}
+x=\frac{a+b}{2}
+  \label{eq:biseksi1}
+\end{equation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Hitung \(f\left(x \right)\)
+\item
+  Bila \(f\left(x \right).f\left(a \right)<0\), maka \(b=x\) dan \(f\left(b \right)=f\left(x \right)\). Bila tidak, \(a=x\) dan \(f\left(a \right)=f\left(x \right)\)
+\item
+  Bila \(\left|b-a \right|<e\) atau iterasi maksimum maka proses dihentikan dan didapatkan akar=\(x\), dan bila tidak ulangi langkah 6.
+\item
+  Jika sudah diperoleh nilai dibawah nilai toleransi, nilai akar selanjutnya dihitung berdasarkan Persamaan \eqref{eq:biseksi1} dengan nilai \(a\) dan \(b\) merupakan nilai baru yang diperoleh dari proses iterasi.
+\end{enumerate}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun suatu fungsi pada \texttt{R} yang dapat digunakan untuk melakukan iterasi tersebut. Fungsi \texttt{root\_bisection()} merupakan fungsi yang telah penulis susun untuk melakukan iterasi menggunakan metode biseksi. Berikut adalah sintaks dari fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{root_bisection <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{0}
+\NormalTok{  fa <-}\StringTok{ }\KeywordTok{f}\NormalTok{(a)}
+\NormalTok{  fb <-}\StringTok{ }\KeywordTok{f}\NormalTok{(b)}
+  
+  \ControlFlowTok{while}\NormalTok{(}\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{    iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{(iter}\OperatorTok{>}\NormalTok{N)\{}
+      \KeywordTok{warning}\NormalTok{(}\StringTok{"iterations maximum exceeded"}\NormalTok{)}
+      \ControlFlowTok{break}
+\NormalTok{    \}}
+\NormalTok{    x <-}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{b)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{    fx <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+    \ControlFlowTok{if}\NormalTok{(fa}\OperatorTok{*}\NormalTok{fx}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{      a <-}\StringTok{ }\NormalTok{x}
+\NormalTok{      fa <-}\StringTok{ }\NormalTok{fx}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      b <-}\StringTok{ }\NormalTok{x}
+\NormalTok{      fb <-}\StringTok{ }\NormalTok{fx}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \CommentTok{# iterasi nilai x sebagai return value}
+\NormalTok{  root <-}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{b)}\OperatorTok{/}\DecValTok{2}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{function}\StringTok{`}\NormalTok{=f, }\DataTypeTok{root=}\NormalTok{root, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:biseksexmp}{}{\label{exm:biseksexmp} }Carilah akar persamaan \(f\left(x \right)=xe^{-x}+1\) pada rentang \(x=\left[-1,0 \right]\) dengan nilai toleransi sebesar \(10^-7\)?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Langkah pertama dalam penghitungan adalah menghitung nilai \(x\) menggunakan Persamaan \eqref{eq:biseksi1}.
+
+\[
+x=\frac{-1+0}{2}=-0,5
+\]
+
+Hitung nilai \(f\left(x \right)\) dan \(f\left(a \right)\).
+
+\[
+f\left(x \right)=-0,5.e^{0,5}+1=0,175639
+\]
+
+\[
+f\left(a \right)=-1.e^{1}+1=-1,71828
+\]
+
+Berdasarkan hasil perhitungan diperoleh:
+
+\[
+f\left(x \right).f\left(a \right)<0
+\]
+
+Sehingga \(b=x\) dan \(f\left(b \right)=f\left(x \right)\). Iterasi dilakukan kembali dengan menggunakan nilai \(b\) tersebut.
+
+Untuk mempersingkat waktu iterasi kita akan menggunakan fungsi \texttt{root\_bisection()} pada \texttt{R}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{root_bisection}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+               \DataTypeTok{a=}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-Warning in data(df): data set 'df' not found
+## $`function`
+## function (x) 
+## {
+##     x * exp(-x) + 1
+## }
+## <bytecode: 0x000000000885f020>
+## 
+## $root
+## [1] -0.5671433
+## 
+## $iter
+## [1] 24
 \end{verbatim}
+
+Berdasarkan hasil iterasi diperoleh akar persamaan \(x=-2.980232e-08\) dan iterasi yang diperlukan untuk memperolehnya sebanyak \(24\) iterasi.
+
+\hypertarget{regulafalsi}{%
+\subsection{Metode Regula Falsi}\label{regulafalsi}}
+
+Metode regula falsi merupakan metode yang menyerupai metode biseksi, dimana iterasi dilakukan dengan terus melakukan pembaharuan rentang untuk memperoleh akar persamaan. Hal yang membedakan metode ini dengan metode biseksi adalah pencarian akar didasarkan pada slope (kemiringan) dan selisih tinggi dari kedua titik rentang. Titik pendekatan pada metode regula-falsi disajikan pada Persamaan \eqref{eq:rf}.
+
+\begin{equation}
+x=\frac{f\left(b\right).a-f\left(a\right).b}{f\left(b\right)-f\left(a\right)}
+  \label{eq:rf}
+\end{equation}
+
+Ilustrasi dari metode regula falsi disajikan pada Gambar \ref{fig:regula}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/regula} 
+
+}
+
+\caption{Ilustrasi metode regula falsi.}\label{fig:regula}
+\end{figure}
+
+\textbf{Algoritma Metode Regula Falsi}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan fungsi \(f\left(x \right)\)
+\item
+  Tentukan rentang untuk \(x\) yang berupa batas bawah \(a\) dan batas atas \(b\).
+\item
+  Tentukan nilai toleransi \(e\) dan iterasi maksimum \(N\)
+\item
+  Hitung \(f\left(a \right)\) dan \(f\left(b \right)\)
+\item
+  Untuk iterasi \(i=1\) s/d \(N\)
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung nilai \(x\) berdasarkan Persamaan \eqref{eq:rf}
+\item
+  Hitung \(f\left(x \right)\)
+\item
+  Hitung \(error=\left|f\left(x \right) \right|\)
+\item
+  Jika \(f\left(x \right).f\left(a \right)<0\), maka \(b=x\) dan \(f\left(b \right)=f\left(x \right)\). Jika tidak, \(a=x\) dan \(f\left(a \right)=f\left(x \right)\).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Akar persamaan adalah \(x\)
+\end{enumerate}
+
+Fungsi \texttt{root\_rf()} didasarkan pada langkah-langkah di atas. Sintaks fungsi tersebut adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{>}\StringTok{ }\KeywordTok{data}\NormalTok{(AirPassengers, }\DataTypeTok{package=}\StringTok{"datasets"}\NormalTok{)}
-\OperatorTok{>}\StringTok{ }\NormalTok{AirPassengers <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(AirPassengers)}
+\NormalTok{root_rf <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  fa <-}\StringTok{ }\KeywordTok{f}\NormalTok{(a)}
+\NormalTok{  fb <-}\StringTok{ }\KeywordTok{f}\NormalTok{(b)}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{((fb}\OperatorTok{*}\NormalTok{a)}\OperatorTok{-}\NormalTok{(fa}\OperatorTok{*}\NormalTok{b))}\OperatorTok{/}\NormalTok{(fb}\OperatorTok{-}\NormalTok{fa)}
+\NormalTok{  fx <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+  
+  \ControlFlowTok{while}\NormalTok{(}\KeywordTok{abs}\NormalTok{(fx)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{    iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{(iter}\OperatorTok{>}\NormalTok{N)\{}
+      \KeywordTok{warning}\NormalTok{(}\StringTok{"iterations maximum exceeded"}\NormalTok{)}
+      \ControlFlowTok{break}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(fa}\OperatorTok{*}\NormalTok{fx}\OperatorTok{>}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{      a <-}\StringTok{ }\NormalTok{x}
+\NormalTok{      fa <-}\StringTok{ }\NormalTok{fx}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      b <-}\StringTok{ }\NormalTok{x}
+\NormalTok{      fb <-}\StringTok{ }\NormalTok{fx}
+\NormalTok{    \}}
+\NormalTok{    x <-}\StringTok{ }\NormalTok{(fb}\OperatorTok{*}\NormalTok{a}\OperatorTok{-}\NormalTok{fa}\OperatorTok{*}\NormalTok{b)}\OperatorTok{/}\NormalTok{(fb}\OperatorTok{-}\NormalTok{fa)}
+\NormalTok{    fx <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{  \}}
+  
+  \CommentTok{# iterasi nilai x sebagai return value}
+\NormalTok{  root <-}\StringTok{ }\NormalTok{x}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{function}\StringTok{`}\NormalTok{=f, }\DataTypeTok{root=}\NormalTok{root, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:rfexmp}{}{\label{exm:rfexmp} }Selesaikan persamaan non-linier pada Contoh \ref{exm:biseksexmp} menggunakan metode regula falsi pada rentang \(x=\left[-1,0 \right]\) dengan nilai toleransi sebesar \(10^-7\)?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Langkah pertama penyelesaian dilakukan dengan mencari nilai \(f\left(a \right)\) dan \(f\left(b \right)\).
+
+\[
+f\left(a \right)=-1.e^{1}+1=-1,71828
+\]
+\[
+f\left(b \right)=0.e^{0}+1=1
+\]
+Hitung nilai \(x\) dan \(f\left(x \right)\).
+
+\[
+x=\frac{\left(1.-1\right)-\left(-1,71828.0\right)}{1+1,71828}=-0.36788
+\]
+
+\[
+f\left(x \right)=-0.36788.e^{0.36788}+1=0.468536
+\]
+
+Berdasarkan hasil perhitungan diperoleh:
+
+\[
+f\left(x \right).f\left(a \right)<0
+\]
+
+Sehingga \(b=x\) dan \(f\left(b \right)=f\left(x \right)\). Iterasi dilakukan kembali dengan menggunakan nilai \(b\) tersebut.
+
+Untuk mempercepat proses iterasi, kita dapat pula menggunakan fungsi \texttt{root\_rf()} pada \texttt{R}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{root_rf}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+               \DataTypeTok{a=}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`function`
+## function (x) 
+## {
+##     x * exp(-x) + 1
+## }
+## <bytecode: 0x0000000006207a68>
+## 
+## $root
+## [1] -0.5671433
+## 
+## $iter
+## [1] 15
+\end{verbatim}
+
+Berdasarkan hasil perhitungan diperoleh nilai \(x=-0,5671433\) dan jumlah iterasi yang diperlukan adalah \(15\). Jumlah ini lebih sedikit dari jumlah iterasi yang diperlukan pada metode iterasi biseksi yang juga menunjukkan metode ini lebih cepat memperoleh persamaan dibandingkan metode biseksi.
+
+\hypertarget{openmethod}{%
+\section{Metode Terbuka}\label{openmethod}}
+
+Metode terbuka merupakan metode yang menggunakan satu atau dua tebakan awal yang tidak memerlukan rentang sejumlah nilai. Metode terbuka terdiri dari beberapa jenis yaitu metode iterasi titik tetap, metode Newton-Raphson, dan metode Secant.
+
+\hypertarget{fixpoint}{%
+\subsection{Metode Iterasi Titik Tetap}\label{fixpoint}}
+
+Metode iterasi titik tetap merupakan metode penyelesaian persamaan non-linier dengan cara menyelesaikan setiap variabel \(x\) yang ada dalam suatu persamaan dengan sebagian yang lain sehingga diperoleh \(x=g\left(x \right)\) untuk masing-masing variabel \(x\). Sebagai contoh, untuk menyelesaikan persamaan \(x+e^{x}=0\), maka persamaan tersebut perlu diubah menjadi \(x=e^x\) atau \(g\left(x \right)=e^x\). Secara grafis metode ini diilustrasikan seperti Gambar \ref{fig:fixpointiter}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/fixpointiter} 
+
+}
+
+\caption{Ilustrasi metode iterasi titik tetap.}\label{fig:fixpointiter}
+\end{figure}
+
+\textbf{Algoritma Metode Iterasi Titik Tetap}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan \(f\left(x \right)\) dan \(g\left(x \right)\)
+\item
+  Tentukan nilai toleransi \(e\) dan iterasi masimum (N)
+\item
+  Tentukan tebakan awal \(x_0\)
+\item
+  Untuk iterasi \(i=1\) s/d \(N\) atau \(f\left(x_iterasi \right)\ge e \to x_i=g\left(x_{i-1} \right)\), Hitung \(f\left(x_i \right)\)
+\item
+  Akar persamaan adalah \(x\) terakhir yang diperoleh
+\end{enumerate}
+
+FUngsi \texttt{root\_fpi()} dapat digunakan untuk melakukan iterasi dengan argumen fungsi berupa persamaan non-linier, nilai tebakan awal, nilai toleransi, dan jumlah iterasi maksimum. Berikut adalah sintaks fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{root_fpi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, x0, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  xold <-}\StringTok{ }\NormalTok{x0}
+\NormalTok{  xnew <-}\StringTok{ }\KeywordTok{f}\NormalTok{(xold)}
+  
+  \ControlFlowTok{while}\NormalTok{(}\KeywordTok{abs}\NormalTok{(xnew}\OperatorTok{-}\NormalTok{xold)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{    iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{(iter}\OperatorTok{>}\NormalTok{N)\{}
+      \KeywordTok{stop}\NormalTok{(}\StringTok{"No solutions found"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{    xold <-}\StringTok{ }\NormalTok{xnew}
+\NormalTok{    xnew <-}\StringTok{ }\KeywordTok{f}\NormalTok{(xold)}
+\NormalTok{  \}}
+  
+\NormalTok{  root <-}\StringTok{ }\NormalTok{xnew}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{function}\StringTok{`}\NormalTok{=f, }\DataTypeTok{root=}\NormalTok{root, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:fixexmp}{}{\label{exm:fixexmp} }Selesaikan persamaan non-linier pada Contoh \ref{exm:biseksexmp} menggunakan metode iterasi titik tetap?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk menyelesaikan persamaan non-linier tersebut kita perlu mentransformasi persamaan non-linier tersebut terlebih dahulu.
+
+\[
+xe^{-x}+1=0\ \to x=-\frac{1}{e^{-x}}
+\]
+
+Untuk tebakan awal digunakan nilai \(x=-1\)
+
+\[
+x_1 = -\frac{1}{e^{1}}=-2,718282
+\]
+
+Nilai \(x\) tersebut selanjutnya dijadikan nilai input pada iterasi selanjutnya:
+
+\[
+x_2 = -\frac{1}{e^{2,718282}}=-0,06598802
+\]
+
+iterasi terus dilakukan sampai diperoleh \(\left| x_{i+1}-x_i \right|\le e\).
+
+Untuk mempercepat proses iterasi kita dapat menggunakan bantuan fungsi \texttt{root\_fpi()}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{root_fpi}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)\}, }\DataTypeTok{x0=}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`function`
+## function (x) 
+## {
+##     -1/exp(-x)
+## }
+## <bytecode: 0x00000000087d6a18>
+## 
+## $root
+## [1] -0.5671433
+## 
+## $iter
+## [1] 29
+\end{verbatim}
+
+Berdasarkan hasil iterasi diperoleh nilai \(x=-0,5671433\) dengan jumlah iterasi yang diperlukan sebanyak \(29\) kali. Jumlah iterasi akan bergantung dengan nilai tebakan awal yang kita berikan. Semakin dekat nilai tersebut dengan akar, semakin cepat nilai akar diperoleh.
+
+\hypertarget{newtonraphson}{%
+\subsection{Metode Newton-Raphson}\label{newtonraphson}}
+
+Metode Newton-Raphson merupakan metode penyelesaian persamaan non-linier dengan menggunakan pendekatan satu titik awal dan mendekatinya dengan memperhatikan slope atau gradien. titik pendekatan dinyatakan pada Persamaan \eqref{eq:rootnr}.
+
+\begin{equation}
+x_{n+1}=x_n-\frac{f\left(x_n\right)}{f'\left(x_n\right)}
+  \label{eq:rootnr}
+\end{equation}
+
+Ilustrasi metode Newton-Raphson disajikan pada Gambar \ref{fig:nrviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{./images/nrviz} 
+
+}
+
+\caption{Ilustrasi metode Newton-Raphson.}\label{fig:nrviz}
+\end{figure}
+
+\textbf{Algoritma Metode Newton-Raphson}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan \(f\left(x \right)\) dan \(f'\left(x \right)\)
+\item
+  Tentukan nilai toleransi \(e\) dan iterasi masimum (N)
+\item
+  Tentukan tebakan awal \(x_0\)
+\item
+  Hitung \(f\left(x_0 \right)\) dan \(f'\left(x_0 \right)\)
+\item
+  Untuk iterasi \(i=1\) s/d \(N\) atau \(\left|f\left(x \right) \right|\ge e\), hitung \(x\) menggunakan Persamaan \eqref{eq:rootnr}
+\item
+  Akar persamaan merupakan nilai \(x_i\) terakhir yang diperoleh.
+\end{enumerate}
+
+Fungsi \texttt{root\_newton()} merupakan fungsi yang dibuat menggunakan algoritma di atas. Fungsi tersebut dituliskan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{root_newton <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, fp, x0, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{0}
+\NormalTok{  xold<-x0}
+\NormalTok{  xnew <-}\StringTok{ }\NormalTok{xold }\OperatorTok{+}\StringTok{ }\DecValTok{10}\OperatorTok{*}\NormalTok{tol}
+  
+  \ControlFlowTok{while}\NormalTok{(}\KeywordTok{abs}\NormalTok{(xnew}\OperatorTok{-}\NormalTok{xold)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{    iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{(iter}\OperatorTok{>}\NormalTok{N)\{}
+      \KeywordTok{stop}\NormalTok{(}\StringTok{"No solutions found"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{    xold<-xnew}
+\NormalTok{    xnew <-}\StringTok{ }\NormalTok{xold }\OperatorTok{-}\StringTok{ }\KeywordTok{f}\NormalTok{(xold)}\OperatorTok{/}\KeywordTok{fp}\NormalTok{(xold)  }
+\NormalTok{  \}}
+  
+\NormalTok{  root<-xnew}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{function}\StringTok{`}\NormalTok{=f, }\DataTypeTok{root=}\NormalTok{root, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:newtonraphsonexmp}{}{\label{exm:newtonraphsonexmp} }Selesaikan persamaan non-linier \(x-e^{-x}=0\) menggunakan metode Newton-Raphson?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk dapat menggunakan metode Newton-Raphson, terlebih dahulu kita perlu memperoleh turunan pertama dari persamaan tersebut.
+
+\[
+f\left(x\right)=x-e^{-x}\to f'\left(x\right)=1+e^{-x}
+\]
+
+Tebakan awal yang digunakan adalah \(x=0\).
+
+\[
+f\left(x_0\right)=0-e^{-0}=-1
+\]
+\[
+f'\left(x_0\right)=1+e^{-0}=2
+\]
+
+Hitung nilai \(x\) baru:
+
+\[
+x_1=x_0-\frac{f\left(x_0\right)}{f'\left(x_0\right)}=0-\frac{-1}{2}=0,5
+\]
+
+Untuk mempercepat proses iterasi, kita dapat menggunakan fungsi \texttt{root\_newton()}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{root_newton}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{-}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)\},}
+            \ControlFlowTok{function}\NormalTok{(x)\{}\DecValTok{1}\OperatorTok{+}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)\},}
+              \DataTypeTok{x0=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`function`
+## function (x) 
+## {
+##     x - exp(-x)
+## }
+## <bytecode: 0x000000001cae7f10>
+## 
+## $root
+## [1] 0.5671433
+## 
+## $iter
+## [1] 5
+\end{verbatim}
+
+Berdasarkan hasil iterasi diperoleh akar penyelesaian persamaan non-linier adalah \(x=0,5671433\) dengan jumlah iterasi yang diperlukan adalah \(5\) iterasi.
+
+Dalam penerapannya metode Newton-Raphson dapat mengalami kendala. Kendala yang dihadapi adalah sebagai berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  titik pendekatan tidak dapat digunakan jika merupakan titik ekstrim atau titik puncak. Hal ini disebabkan pada titik ini nilai \(f'\left(x \right)=0\). Untuk memahaminya perhatikan ilustasi yang disajikan pada Gambar \ref{fig:nrviz2}. Untuk menatasi kendala ini biasanya titik pendekatan akan digeser.
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/nrviz2} 
+
+}
+
+\caption{Ilustrasi titik pendekatan di titik puncak.}\label{fig:nrviz2}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Sulit memperoleh penyelesaian ketika titik pendekatan berada diantara 2 titik stasioner. Untuk memahami kendala ini perhatikan Gambar \ref{fig:nrviz3}. Untuk menghindarinya, penentuan titik pendekatan dapat menggunakan bantuan metode tabel.
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/nrviz3} 
+
+}
+
+\caption{Ilustrasi titik pendekatan diantara 2 titik stasioner.}\label{fig:nrviz3}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Turunan persamaan sering kali sulit untuk diperoleh (tidak dapat dikerjakan dengan metode analitik).
+\end{enumerate}
+
+\hypertarget{secant}{%
+\subsection{Metode Secant}\label{secant}}
+
+Metode Secant merupakan perbaikan dari metode regula-falsi dan Newton Raphson, dimana kemiringan dua titik dinyatakan secara diskrit dengan mengambil bentuk garis lurus yang melalui satu titik. Persamaan yang dihasilkan disajikan pada Persamaan \eqref{eq:secant}.
+
+\begin{equation}
+y-y_0=m\left(x-x_0\right)
+  \label{eq:secant}
+\end{equation}
+
+Nilai \(m\) merupakan transformasi persamaan tersebut.
+
+\begin{equation}
+m_n=\frac{f\left(x_n\right)-f\left(x_{n-1}\right)}{x_n-x_{n-1}}
+  \label{eq:secant2}
+\end{equation}
+
+Bila \(y=f\left(x\right)\) dan \(y_n\) dan \(x_n\) diketahui, maka titik ke \(n+1\) adalah:
+
+\begin{equation}
+y_{n+1}-y_n=m_n\left(x_{n+1}-x_n\right)
+  \label{eq:secant3}
+\end{equation}
+
+Bila titik \(x_{n+1}\) dianggap akar persamaan maka nilai \(y_{n+1}=0\), sehingga diperoleh:
+
+\begin{equation}
+-y_n=m_n\left(x_{n+1}-x_n\right)
+  \label{eq:secant4}
+\end{equation}
+
+\begin{equation}
+\frac{m_nx_n-y_n}{m_n}=x_{n+1}
+  \label{eq:secant5}
+\end{equation}
+
+atau
+
+\begin{equation}
+x_{n+1}=x_n-y_n\frac{1}{m_n}
+  \label{eq:secant6}
+\end{equation}
+
+\begin{equation}
+x_{n+1}=x_n-f\left(x_n\right)\frac{x_n-x_{n+1}}{f\left(x_n\right)-f\left(x_{n+1}\right)}
+  \label{eq:secant7}
+\end{equation}
+
+Berdasarkan Persamaan \eqref{eq:secant7} diketahui bahwa untuk memperoleh akar persamaan diperlukan 2 buah titik pendekatan. Dalam buku ini akan digunakan titik pendekatan kedua merupakan titik pendekatan pertama ditambah sepuluh kali nilai toleransi.
+
+\begin{equation}
+x_1=x_0+10*tol
+  \label{eq:secant8}
+\end{equation}
+
+\textbf{Algoritma Metode Secant}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Definisikan \(f\left(x \right)\) dan \(f'\left(x \right)\)
+\item
+  Tentukan nilai toleransi \(e\) dan iterasi masimum (N)
+\item
+  Tentukan tebakan awal \(x_0\) dan \(x_1\)
+\item
+  Hitung \(f\left(x_0 \right)\) dan \(f\left(x_1 \right)\)
+\item
+  Untuk iterasi \(i=1\) s/d \(N\) atau \(\left|f\left(x \right) \right|\ge e\), hitung \(x\) menggunakan Persamaan \eqref{eq:secant7}
+\item
+  Akar persamaan adalah nilai x yang terakhir.
+\end{enumerate}
+
+Fungsi \texttt{root\_secant()} merupakan fungsi yang penulis buat untuk melakukan iterasi menggunakan metode Secant. Berikut merupakan sintaks dari fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{root_secant <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, x, }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{, }\DataTypeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  iter <-}\StringTok{ }\DecValTok{0}
+  
+\NormalTok{  xold <-}\StringTok{ }\NormalTok{x}
+\NormalTok{  fxold <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{xold}\OperatorTok{+}\DecValTok{10}\OperatorTok{*}\NormalTok{tol}
+  
+  \ControlFlowTok{while}\NormalTok{(}\KeywordTok{abs}\NormalTok{(x}\OperatorTok{-}\NormalTok{xold)}\OperatorTok{>}\NormalTok{tol)\{}
+\NormalTok{    iter <-}\StringTok{ }\NormalTok{iter}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{(iter}\OperatorTok{>}\NormalTok{N)}
+      \KeywordTok{stop}\NormalTok{(}\StringTok{"No solutions found"}\NormalTok{)}
+    
+\NormalTok{    fx <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{    xnew <-}\StringTok{ }\NormalTok{x }\OperatorTok{-}\StringTok{ }\NormalTok{fx}\OperatorTok{*}\NormalTok{((x}\OperatorTok{-}\NormalTok{xold)}\OperatorTok{/}\NormalTok{(fx}\OperatorTok{-}\NormalTok{fxold))}
+\NormalTok{    xold <-}\StringTok{ }\NormalTok{x}
+\NormalTok{    fxold <-}\StringTok{ }\NormalTok{fx}
+\NormalTok{    x <-}\StringTok{ }\NormalTok{xnew}
+\NormalTok{  \}}
+  
+\NormalTok{  root<-xnew}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{function}\StringTok{`}\NormalTok{=f, }\DataTypeTok{root=}\NormalTok{root, }\DataTypeTok{iter=}\NormalTok{iter))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:secantexmp}{}{\label{exm:secantexmp} }Selesaikan persamaan non-linier pada Contoh \ref{exm:newtonraphsonexmp} menggunakan metode Secant?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk menyelesaikan persamaan tersebut digunakan nilai pendekatan awal \(x_0=0\) dan \(x_1=0+10*10^{-7}=10^{-6}\).
+
+\[
+f\left(x_0 \right)=0-e^{-0}=-1
+\]
+
+\[
+f\left(x_1 \right)=10^{-6}-e^{-10^{-6}}=-0,999998
+\]
+
+Hitung nilai \(x_2\) dan \(f\left(x_2 \right)\).
+
+\[
+x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
+\]
+
+Untuk mempercepat proses iterasi kita dapat menggunakan fungsi \texttt{root\_secant()} pada \texttt{R}. Berikut sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{root_secant}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{-}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)\}, }\DataTypeTok{x=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`function`
+## function (x) 
+## {
+##     x - exp(-x)
+## }
+## <bytecode: 0x0000000008933ae0>
+## 
+## $root
+## [1] 0.5671433
+## 
+## $iter
+## [1] 6
+\end{verbatim}
+
+Berdasarkan hasil iterasi diperoleh nilai akar penyelesaian adalah \(x=0,5671433\) dengan iterasi dilakukan sebanyak \(6\) kali.
+
+Secara umum metode Secant menawarkan sejumlah keuntungan dibanding metode lainnya. Pertama, seperti metode Newton-Raphson dan tidak seperti metode tertutup lainnya, metode ini tidak memerlukan rentang pencarian akar penyelesaian. Kedua, tidak seperti metode Newton-Raphson, metode ini tidak memerlukan pencarian turunan pertama persamaan non-linier secara analitik, dimana tidak dapat dilakukan otomasi pada setiap kasus.
+
+Adapun kerugian dari metode ini adalah berpotensi menghasilkan hasil yang tidak konvergen sama seperti metode terbuka lainnya. Selain itu, kecepatan konvergensinya lebih lambat dibanding metode Newton-Raphson.
+
+\hypertarget{uniroot}{%
+\section{\texorpdfstring{Penyelesaian Persamaan Non-Linier Menggunakan Fungsi \texttt{uniroot} dan \texttt{uniroot.all}}{Penyelesaian Persamaan Non-Linier Menggunakan Fungsi uniroot dan uniroot.all}}\label{uniroot}}
+
+Paket \texttt{base} pada \texttt{R} menyediakan fungsi \texttt{uniroot()} untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara \emph{root bracketing}, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{uniroot}\NormalTok{(f, interval, }\DataTypeTok{tol=}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\FloatTok{0.25}\NormalTok{, }
+        \DataTypeTok{maxiter=}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: persamaan non-linier
+\item
+  \textbf{interval}: vektor interval batas bawah dan atas
+\item
+  \textbf{tol}: nilai toleransi
+\item
+  \textbf{maxiter}: iterasi maksimum
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{uniroot()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{uniroot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+        \DataTypeTok{interval=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{tol=}\FloatTok{1e-7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $root
+## [1] -0.5671433
+## 
+## $f.root
+## [1] 1.532974e-08
+## 
+## $iter
+## [1] 7
+## 
+## $init.it
+## [1] NA
+## 
+## $estim.prec
+## [1] 5e-08
+\end{verbatim}
+
+Berdasarkan hasil iterasi diperoleh akar persamaan tersebut adalah \(-0,5671433\) dengan jumlah iterasi sebanyak \(7\) iterasi dan tingkat presisi sebesar \(5e-08\).
+
+Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah \texttt{uniroot.all()} dari paket \texttt{rootSolve}. Fungsi ini mengatasi kelemahan dari \texttt{uniroot()}, dimana \texttt{uniroot()} tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol \(y=0\). Untuk memahaminya perhatikan contoh berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{uniroot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}, }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{pi,}\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Bandingkan dengan sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{uniroot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}, }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{pi,}\OperatorTok{-}\NormalTok{pi}\OperatorTok{/}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $root
+## [1] -1.570796
+## 
+## $f.root
+## [1] 0
+## 
+## $iter
+## [1] 0
+## 
+## $init.it
+## [1] NA
+## 
+## $estim.prec
+## [1] 0
+\end{verbatim}
+
+Untuk menggunakan fungsi \texttt{uniroot.all()}, jalankan sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rootSolve)}
+\end{Highlighting}
+\end{Shaded}
+
+Jalankan kembali fungsi dan rentang di mana \texttt{uniroot()} tidak dapat bekerja:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{uniroot.all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}, }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{pi,}\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.570796
+\end{verbatim}
+
+\hypertarget{akar-persamaan-polinomial-menggunakan-fungsi-polyroot}{%
+\section{\texorpdfstring{Akar Persamaan Polinomial Menggunakan Fungsi \texttt{polyroot}}{Akar Persamaan Polinomial Menggunakan Fungsi polyroot}}\label{akar-persamaan-polinomial-menggunakan-fungsi-polyroot}}
+
+Fungsi \texttt{polyroot()} pada paket \texttt{base} dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub.
+
+Untuk dapat menggunakannya kita hanya perlu memasukkan vektor koefisien dari polinomial. Pengisian elemen dalam vektor dimulai dari variabel dengan pangkat tertinggi menuju variabel dengan pangkat terendah. Berikut adalah contoh bagaimana fungsi \texttt{polyroot()} digunakan untuk mencari akar polinomial \(f\left(x\right)=x^2+1\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{polyroot}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0+1i 0-1i
+\end{verbatim}
+
+Contoh lainnya adalah mencari akar polinomial \(f\left(x\right)=4x^2+5x+6\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{polyroot}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.4166667+0.7021791i -0.4166667-0.7021791i
+\end{verbatim}
+
+Pembaca dapat mencoba membuktikan hasil yang diperoleh tersebut menggunakan metode analitik.
+
+\hypertarget{studi-kasus}{%
+\section{Studi Kasus}\label{studi-kasus}}
+
+Penerapan penyelesaian sistem persamaan non-linier banyak dijumpai dalam berbagai kasus di bidang lingkungan. Pada bagian ini penulis tidak akan menjelaskan seluruhnya. Penulis hanya akan menjelaskan penerapannya pada sebuah persamaan yaitu Hukum Bernoulli.
+
+\hypertarget{persamaan-van-der-walls}{%
+\subsection{Persamaan Van Der Walls}\label{persamaan-van-der-walls}}
+
+\hypertarget{hukum-bernoulli}{%
+\subsection{Hukum Bernoulli}\label{hukum-bernoulli}}
+
+Misalkan terdapat sebuah saluran dengan penampang sesuai dengan Gambar \ref{fig:bernoulli}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/bernoulli} 
+
+}
+
+\caption{Aliran fluida pada sebuah pipa.}\label{fig:bernoulli}
+\end{figure}
+
+Berdasarkan hukum Bernoulli, maka diperoleh persamaan berikut:
+
+\begin{equation}
+\frac{Q^2}{2gb^2h_0^2}+h_0=\frac{Q^2}{2gb^2h^2}+h+H
+  \label{eq:bernoullieq}
+\end{equation}
+
+Persamaan tersebut dapat dilakukan transformasi menjadi persamaan berikut:
+
+\begin{equation}
+f\left(h\right)=h^3+\left(H-\frac{Q^2}{2gb^2h_0^2}-h_0\right)h^2+\frac{Q^2}{2gb^2}=0
+  \label{eq:bernoullieq2}
+\end{equation}
+
+Data-data terkait saluran tersebut adalah sebagai berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q=1,2\ \frac{m^3}{\det\ }\) = volume aliran fluida tiap satuan waktu
+\item
+  \(g=9,81\ \frac{m}{s^2}\) =percepatan gravitasi
+\item
+  \(b=1,8\ m\) =lebar pipa
+\item
+  \(h_0=0,6\ m\) =ketinggian air maksimum
+\item
+  \(H=0,075\ m\) =tinggi pelebaran pipa
+\item
+  \(h\) = ketinggian air
+\end{itemize}
+
+Kita dapat menggunakan pendekatan numerik untuk menentukan \(h\). Pada studi kasus ini tidak dijelaskan lokasi dimana akar penyelesaian berada, sehingga metode terbuka seperti Secant cukup sesuai untuk menyelesaikannya:
+
+Berikut adalah persamaan yang baru setelah seluruh data dimasukkan kedalam tiap variabelnya:
+
+\[
+f\left(h\right)=h^3+\left(0,075-\frac{1,2^2}{2\times9,81\times1,8^2\times0,6^2}-0,6\right)h^2+\frac{1,2^2}{2\times9,81\times1,8^2}=0
+\]
+
+Untuk penyelesaiannya penulis akan memberikan tebakan awal nilai \(h=h_0=0,6\). Berikut adalah sintaks penyelesaian menggunakan metode secant:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(h)\{}
+\NormalTok{  (h}\OperatorTok{^}\DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{((}\FloatTok{0.075}\OperatorTok{-}\NormalTok{((}\FloatTok{1.2}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\FloatTok{9.81}\OperatorTok{*}\NormalTok{(}\FloatTok{1.8}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{*}\NormalTok{(}\FloatTok{0.6}\OperatorTok{^}\DecValTok{2}\NormalTok{))))}\OperatorTok{*}\NormalTok{h}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{+}\StringTok{ }\NormalTok{(}\FloatTok{1.2}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\FloatTok{9.81}\OperatorTok{*}\NormalTok{(}\FloatTok{1.8}\OperatorTok{^}\DecValTok{2}\NormalTok{)))}
+\NormalTok{\}}
+\KeywordTok{root_secant}\NormalTok{(f, }\FloatTok{0.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`function`
+## function (h) 
+## {
+##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
+##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
+## }
+## <bytecode: 0x0000000008013738>
+## 
+## $root
+## [1] -0.2870309
+## 
+## $iter
+## [1] 26
+\end{verbatim}
+
+Berdasarkan hasil perhitungan diperoleh nilai \(h=-0,2870309\) atau ketinggian air sekitar \(0,3\ m\) dengan jumlah iterasi sebanyak \(26\) kali.
+
+Pembaca dapat mencoba menggunakan metode lain seperti metode tertutup. Untuk dapat melakukannya, pembaca perlu memperoleh rentang lokasi akar persamaan tersebut berada menggunakan metode tabel.
+
+\hypertarget{referensi-6}{%
+\section{Referensi}\label{referensi-6}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Atmika, I.K.A. 2016. \textbf{Diktat Mata Kuliah: Metode Numerik}. Jurusan Teknik Mesin Universitas Udayana.
+\item
+  Bloomfield, V.A. 2014. \textbf{Using R for Numerical Analysis in Science and Engineering}. CRC Press
+\item
+  Howard, J.P. 2017. \textbf{Computational Methods for Numerical Analysis with R}. CRC Press.
+\item
+  Jones, O. Maillardet, R. Robinson, A. 2014. \textbf{Introduction to Scientific Programming and Simulation Using R}. CRC Press
+\item
+  Kreyszig, E. 2011. \textbf{Advanced Engineering Mathematics, 10th Edition}. John Wiley \& Sons.
+\item
+  Sanjaya, M. 2015. \textbf{Metode Numerik Berbasis Phython}. Penerbit Gava Media: Yogyakarta.
+\item
+  Sudiadi dan Teguh R. 2015. \textbf{Metode Numerik}. STMIK
+\end{enumerate}
+
+\hypertarget{latihan-1}{%
+\section{Latihan}\label{latihan-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Temukan akar persamaan dari persamaan non-linier \(f\left(x\right)=x^3-2x+2\) menggunakan metode terbuka dengan \(x_0=0\) dan \(x_0=\frac{1}{2}\)!
+\item
+  Apakah kelebihan dari metode tertutup (contoh: metode biseksi) dibanding metode terbuka (contoh: Newton-Raphson)? (\textbf{catatan}: pembaca dapat pula mencari dari referensi lainnya)
+\item
+  Temukan akar persamaan dari persamaan \(f\left(x\right)=\frac{sin\left(x\right)}{x}\) dengan rentang pencarian \(x=0,5\) dan \(x=1\)!
+\item
+  Pada kondisi apakah metode Secant lebih dipilih dibanding metode Newton-Raphson?
+\item
+  Modifikasilah fungsi \texttt{root\_bisection()} dan \texttt{root\_rf()} sehingga kita tidak perlu memasukkan argumen \texttt{a} dan \texttt{b} dan hanya perlu memasukkan satu vektor \texttt{interval} kedalam fungsi tersebut! (\textbf{contoh}: \texttt{interval=c(a,b)})
+\end{enumerate}
 
 \bibliography{book.bib,packages.bib}
 

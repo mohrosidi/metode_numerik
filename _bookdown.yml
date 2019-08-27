@@ -6,5 +6,6 @@ language:
     tab: 'Tabel '
     eq: 'Persamaan '
     exm: 'Contoh '
+    thm: 'Teorema '
   ui:
     chapter_name: "Chapter "
