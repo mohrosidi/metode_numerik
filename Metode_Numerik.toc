@@ -1,0 +1,155 @@
+\contentsline {chapter}{Kata Pengantar}{7}{chapter*.2}% 
+\contentsline {chapter}{\numberline {1}Bahasa Pemrograman R}{9}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Sejarah R}{9}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Fitur dan Karakteristik R}{10}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}Kelebihan dan Kekurangan R}{11}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}RStudio}{12}{section.1.4}% 
+\contentsline {section}{\numberline {1.5}Menginstall R dan RStudio}{13}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Working Directory}{13}{section.1.6}% 
+\contentsline {subsection}{\numberline {1.6.1}Mengubah Lokasi Working Directory}{14}{subsection.1.6.1}% 
+\contentsline {subsection}{\numberline {1.6.2}Mengubah Lokasi Working Directory Default}{15}{subsection.1.6.2}% 
+\contentsline {section}{\numberline {1.7}Memasang dan Mengaktifkan Paket R}{15}{section.1.7}% 
+\contentsline {section}{\numberline {1.8}Fasilitas Help}{16}{section.1.8}% 
+\contentsline {subsection}{\numberline {1.8.1}Mencari Help dari Suatu Perintah Tertentu}{17}{subsection.1.8.1}% 
+\contentsline {subsection}{\numberline {1.8.2}General Help}{19}{subsection.1.8.2}% 
+\contentsline {subsection}{\numberline {1.8.3}Fasilitas Help Lainnya}{19}{subsection.1.8.3}% 
+\contentsline {section}{\numberline {1.9}Referensi}{20}{section.1.9}% 
+\contentsline {chapter}{\numberline {2}Kalkulasi Menggunakan R}{23}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Operator Aritmatik}{23}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Fungsi Aritmetik}{25}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Operator Relasi}{27}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Operator Logika}{28}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Memasukkan Nilai Kedalam Variabel}{30}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Tipe dan Struktur Data}{32}{section.2.6}% 
+\contentsline {section}{\numberline {2.7}Vektor}{36}{section.2.7}% 
+\contentsline {subsection}{\numberline {2.7.1}Membuat vektor}{36}{subsection.2.7.1}% 
+\contentsline {subsection}{\numberline {2.7.2}Missing Values}{37}{subsection.2.7.2}% 
+\contentsline {subsection}{\numberline {2.7.3}Subset Pada Vektor}{38}{subsection.2.7.3}% 
+\contentsline {subsection}{\numberline {2.7.4}Operasi Matematis Menggunakan Vektor}{39}{subsection.2.7.4}% 
+\contentsline {subsection}{\numberline {2.7.5}Membuat Deret Angka}{41}{subsection.2.7.5}% 
+\contentsline {subsubsection}{\numberline {2.7.5.1}\emph {Regular Sequences}}{41}{subsubsection.2.7.5.1}% 
+\contentsline {subsection}{\numberline {2.7.6}Nilai Berulang}{42}{subsection.2.7.6}% 
+\contentsline {subsection}{\numberline {2.7.7}Deret Bilangan Acak}{43}{subsection.2.7.7}% 
+\contentsline {section}{\numberline {2.8}Matriks}{45}{section.2.8}% 
+\contentsline {subsection}{\numberline {2.8.1}Membuat matriks}{45}{subsection.2.8.1}% 
+\contentsline {subsection}{\numberline {2.8.2}Subset Pada Matriks}{47}{subsection.2.8.2}% 
+\contentsline {subsection}{\numberline {2.8.3}Perhitungan Menggunakan Matriks}{49}{subsection.2.8.3}% 
+\contentsline {section}{\numberline {2.9}Referensi}{51}{section.2.9}% 
+\contentsline {chapter}{\numberline {3}Visualisasi Data}{53}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Visualisasi Data Menggunakan Fungsi plot()}{53}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Visualisasi Lainnya}{56}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Bar Plot}{57}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}Histogram dan Density Plot}{60}{subsection.3.2.2}% 
+\contentsline {subsection}{\numberline {3.2.3}Box plot}{63}{subsection.3.2.3}% 
+\contentsline {section}{\numberline {3.3}Kustomisasi Parameter Grafik}{65}{section.3.3}% 
+\contentsline {subsection}{\numberline {3.3.1}Menambahkan Judul}{66}{subsection.3.3.1}% 
+\contentsline {subsection}{\numberline {3.3.2}Menambahkan Legend}{69}{subsection.3.3.2}% 
+\contentsline {subsection}{\numberline {3.3.3}Menambahkan Teks Pada Grafik}{73}{subsection.3.3.3}% 
+\contentsline {subsection}{\numberline {3.3.4}Menambahkan Garis Pada Plot}{76}{subsection.3.3.4}% 
+\contentsline {subsection}{\numberline {3.3.5}Merubah Simbol plot dan Jenis Garis}{77}{subsection.3.3.5}% 
+\contentsline {subsection}{\numberline {3.3.6}Mengatur Axis Plot}{80}{subsection.3.3.6}% 
+\contentsline {subsection}{\numberline {3.3.7}Mengatur Warna}{84}{subsection.3.3.7}% 
+\contentsline {section}{\numberline {3.4}Plot Dua dan Tiga Dimensi}{85}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}Referensi}{86}{section.3.5}% 
+\contentsline {chapter}{\numberline {4}Pemrograman dan Fungsi}{89}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Loop}{89}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}For Loop}{90}{subsection.4.1.1}% 
+\contentsline {subsection}{\numberline {4.1.2}While Loop}{91}{subsection.4.1.2}% 
+\contentsline {subsection}{\numberline {4.1.3}Repeat Loop}{91}{subsection.4.1.3}% 
+\contentsline {subsection}{\numberline {4.1.4}Break}{92}{subsection.4.1.4}% 
+\contentsline {section}{\numberline {4.2}Loop Menggunakan Apply Family Function}{93}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Apply}{94}{subsection.4.2.1}% 
+\contentsline {subsection}{\numberline {4.2.2}lapply}{96}{subsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.2.3}sapply}{98}{subsection.4.2.3}% 
+\contentsline {subsection}{\numberline {4.2.4}vapply}{100}{subsection.4.2.4}% 
+\contentsline {subsection}{\numberline {4.2.5}tapply}{102}{subsection.4.2.5}% 
+\contentsline {section}{\numberline {4.3}Decision Making}{104}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}if statement}{104}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}if else statement}{105}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}switch statement}{105}{subsection.4.3.3}% 
+\contentsline {section}{\numberline {4.4}Fungsi}{107}{section.4.4}% 
+\contentsline {section}{\numberline {4.5}Debugging}{108}{section.4.5}% 
+\contentsline {section}{\numberline {4.6}Referensi}{110}{section.4.6}% 
+\contentsline {chapter}{\numberline {5}Pengantar Metode Numerik}{111}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Mengenal Metode Numerik}{111}{section.5.1}% 
+\contentsline {subsection}{\numberline {5.1.1}Perbedaan Antara Metode Numerik dan Analitik}{112}{subsection.5.1.1}% 
+\contentsline {subsection}{\numberline {5.1.2}Tahapan Penyelesaian Menggunakan Metode Numerik}{112}{subsection.5.1.2}% 
+\contentsline {section}{\numberline {5.2}Akurasi dan Presisi}{113}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Error Numerik}{115}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Referensi}{115}{section.5.4}% 
+\contentsline {chapter}{\numberline {6}Aljabar Linier}{117}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Vektor dan matriks}{117}{section.6.1}% 
+\contentsline {subsection}{\numberline {6.1.1}Operasi Vektor}{117}{subsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6.1.2}Operasi matriks}{119}{subsection.6.1.2}% 
+\contentsline {section}{\numberline {6.2}Operasi Baris Elementer}{121}{section.6.2}% 
+\contentsline {section}{\numberline {6.3}Eliminasi Gauss}{124}{section.6.3}% 
+\contentsline {subsection}{\numberline {6.3.1}\emph {Row Echelon Form}}{124}{subsection.6.3.1}% 
+\contentsline {subsection}{\numberline {6.3.2}Eliminasi Gauss-Jordan}{129}{subsection.6.3.2}% 
+\contentsline {subsection}{\numberline {6.3.3}Matrik Tridiagonal}{133}{subsection.6.3.3}% 
+\contentsline {subsection}{\numberline {6.3.4}Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi \texttt {solve()}}{136}{subsection.6.3.4}% 
+\contentsline {subsection}{\numberline {6.3.5}Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi 'Solve.tridiag()`}{138}{subsection.6.3.5}% 
+\contentsline {section}{\numberline {6.4}Dekomposisi Matriks}{138}{section.6.4}% 
+\contentsline {subsection}{\numberline {6.4.1}Dekomposisi LU}{139}{subsection.6.4.1}% 
+\contentsline {subsection}{\numberline {6.4.2}Dekomposisi Cholesky}{147}{subsection.6.4.2}% 
+\contentsline {subsection}{\numberline {6.4.3}Dekomposisi Lainnya}{151}{subsection.6.4.3}% 
+\contentsline {subsubsection}{\numberline {6.4.3.1}Dekomposisi QR}{152}{subsubsection.6.4.3.1}% 
+\contentsline {subsubsection}{\numberline {6.4.3.2}\emph {Singular Value Decomposition}}{153}{subsubsection.6.4.3.2}% 
+\contentsline {subsubsection}{\numberline {6.4.3.3}Dekomposisi Eigen}{153}{subsubsection.6.4.3.3}% 
+\contentsline {section}{\numberline {6.5}Metode Iterasi}{154}{section.6.5}% 
+\contentsline {subsection}{\numberline {6.5.1}Iterasi Jacobi}{155}{subsection.6.5.1}% 
+\contentsline {subsection}{\numberline {6.5.2}Iterasi Gauss-Seidel}{160}{subsection.6.5.2}% 
+\contentsline {section}{\numberline {6.6}Studi Kasus}{164}{section.6.6}% 
+\contentsline {subsection}{\numberline {6.6.1}Metode Kuadrat Terkecil}{164}{subsection.6.6.1}% 
+\contentsline {subsection}{\numberline {6.6.2}Aliran Massa Dalam Reaktor}{168}{subsection.6.6.2}% 
+\contentsline {section}{\numberline {6.7}Referensi}{172}{section.6.7}% 
+\contentsline {section}{\numberline {6.8}Latihan}{172}{section.6.8}% 
+\contentsline {chapter}{\numberline {7}Akar Persamaan Non-Linier}{175}{chapter.7}% 
+\contentsline {section}{\numberline {7.1}Metode Tertutup}{177}{section.7.1}% 
+\contentsline {subsection}{\numberline {7.1.1}Metode Tabel}{177}{subsection.7.1.1}% 
+\contentsline {subsection}{\numberline {7.1.2}Metode Biseksi}{180}{subsection.7.1.2}% 
+\contentsline {subsection}{\numberline {7.1.3}Metode Regula Falsi}{183}{subsection.7.1.3}% 
+\contentsline {section}{\numberline {7.2}Metode Terbuka}{187}{section.7.2}% 
+\contentsline {subsection}{\numberline {7.2.1}Metode Iterasi Titik Tetap}{187}{subsection.7.2.1}% 
+\contentsline {subsection}{\numberline {7.2.2}Metode Newton-Raphson}{189}{subsection.7.2.2}% 
+\contentsline {subsection}{\numberline {7.2.3}Metode Secant}{192}{subsection.7.2.3}% 
+\contentsline {section}{\numberline {7.3}Penyelesaian Persamaan Non-Linier Menggunakan Fungsi \texttt {uniroot} dan \texttt {uniroot.all}}{196}{section.7.3}% 
+\contentsline {section}{\numberline {7.4}Akar Persamaan Polinomial Menggunakan Fungsi \texttt {polyroot}}{198}{section.7.4}% 
+\contentsline {section}{\numberline {7.5}Studi Kasus}{198}{section.7.5}% 
+\contentsline {subsection}{\numberline {7.5.1}Persamaan Van Der Walls}{199}{subsection.7.5.1}% 
+\contentsline {subsection}{\numberline {7.5.2}Hukum Bernoulli}{199}{subsection.7.5.2}% 
+\contentsline {section}{\numberline {7.6}Referensi}{200}{section.7.6}% 
+\contentsline {section}{\numberline {7.7}Latihan}{201}{section.7.7}% 
+\contentsline {chapter}{\numberline {8}Interpolasi dan Ekstrapolasi}{203}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Interpolasi Polinomial}{204}{section.8.1}% 
+\contentsline {subsection}{\numberline {8.1.1}Mengevaluasi Polinomial}{204}{subsection.8.1.1}% 
+\contentsline {subsection}{\numberline {8.1.2}Interpolasi Linier}{207}{subsection.8.1.2}% 
+\contentsline {subsection}{\numberline {8.1.3}Interpolasi Polinomial Orde Tinggi}{210}{subsection.8.1.3}% 
+\contentsline {section}{\numberline {8.2}Interpolasi Piecewise}{214}{section.8.2}% 
+\contentsline {subsection}{\numberline {8.2.1}Interpolasi Linier Piecewise}{214}{subsection.8.2.1}% 
+\contentsline {subsection}{\numberline {8.2.2}Interpolasi Spline Kubik}{217}{subsection.8.2.2}% 
+\contentsline {section}{\numberline {8.3}Studi Kasus}{223}{section.8.3}% 
+\contentsline {subsection}{\numberline {8.3.1}Interpolasi Data Runtun Waktu}{223}{subsection.8.3.1}% 
+\contentsline {section}{\numberline {8.4}Referensi}{228}{section.8.4}% 
+\contentsline {section}{\numberline {8.5}Latihan}{228}{section.8.5}% 
+\contentsline {chapter}{\numberline {9}Diferensiasi dan Integrasi Numerik}{229}{chapter.9}% 
+\contentsline {section}{\numberline {9.1}Metode Beda Hingga}{229}{section.9.1}% 
+\contentsline {section}{\numberline {9.2}Diferensiasi Menggunakan Fungsi Lainnya di R}{232}{section.9.2}% 
+\contentsline {subsection}{\numberline {9.2.1}Diferensiasi Metode Titik Pusat Mengggunakan Fungsi\texttt {diff()}}{232}{subsection.9.2.1}% 
+\contentsline {subsection}{\numberline {9.2.2}Diferensiasi Menggunakan Paket \texttt {numDeriv}}{233}{subsection.9.2.2}% 
+\contentsline {subsection}{\numberline {9.2.3}DIferensiasi Menggunakan Paket \texttt {pracma}}{234}{subsection.9.2.3}% 
+\contentsline {section}{\numberline {9.3}Metode Integrasi Newton-Cotes}{237}{section.9.3}% 
+\contentsline {subsection}{\numberline {9.3.1}Metode Integral Riemann}{237}{subsection.9.3.1}% 
+\contentsline {subsection}{\numberline {9.3.2}Metode Trapezoida}{240}{subsection.9.3.2}% 
+\contentsline {subsection}{\numberline {9.3.3}Metode Simpson}{243}{subsection.9.3.3}% 
+\contentsline {subsection}{\numberline {9.3.4}Metode Simpson 3/8}{246}{subsection.9.3.4}% 
+\contentsline {section}{\numberline {9.4}Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya}{247}{section.9.4}% 
+\contentsline {section}{\numberline {9.5}Metode Kuadratur Gauss}{249}{section.9.5}% 
+\contentsline {section}{\numberline {9.6}Metode Gauss-Legendre Menggunakan Fungsi \texttt {legendre.quadrature()}}{254}{section.9.6}% 
+\contentsline {section}{\numberline {9.7}Metode Integrasi Adaptif}{255}{section.9.7}% 
+\contentsline {section}{\numberline {9.8}Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada \texttt {R}}{258}{section.9.8}% 
+\contentsline {section}{\numberline {9.9}Metode Integrasi Romberg}{260}{section.9.9}% 
+\contentsline {section}{\numberline {9.10}Metode Integrasi Romberg Menggunakan Fungsi Lainnya}{263}{section.9.10}% 
+\contentsline {section}{\numberline {9.11}Metode Integrasi Monte Carlo}{263}{section.9.11}% 
+\contentsline {section}{\numberline {9.12}Studi Kasus}{267}{section.9.12}% 
+\contentsline {subsection}{\numberline {9.12.1}Penerjung Payung}{267}{subsection.9.12.1}% 
+\contentsline {section}{\numberline {9.13}Referensi}{269}{section.9.13}% 

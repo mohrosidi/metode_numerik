@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Diferensiasi dan Integrasi Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Diferensiasi dan Integrasi Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Diferensiasi dan Integrasi Numerik | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  
+  <meta name="twitter:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2019-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="interpolation.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Metode Numerik Menggunakan R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#prosconsR"><i class="fa fa-check"></i><b>1.3</b> Kelebihan dan Kekurangan R</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#installR"><i class="fa fa-check"></i><b>1.5</b> Menginstall R dan RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#wdR"><i class="fa fa-check"></i><b>1.6</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
+<li class="chapter" data-level="1.8.3" data-path="intro.html"><a href="intro.html#othershelp"><i class="fa fa-check"></i><b>1.8.3</b> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#referensi"><i class="fa fa-check"></i><b>1.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="calculation.html"><a href="calculation.html"><i class="fa fa-check"></i><b>2</b> Kalkulasi Menggunakan R</a><ul>
+<li class="chapter" data-level="2.1" data-path="calculation.html"><a href="calculation.html#aritmetikoperator"><i class="fa fa-check"></i><b>2.1</b> Operator Aritmatik</a></li>
+<li class="chapter" data-level="2.2" data-path="calculation.html"><a href="calculation.html#aritmaticfunction"><i class="fa fa-check"></i><b>2.2</b> Fungsi Aritmetik</a></li>
+<li class="chapter" data-level="2.3" data-path="calculation.html"><a href="calculation.html#relationoperators"><i class="fa fa-check"></i><b>2.3</b> Operator Relasi</a></li>
+<li class="chapter" data-level="2.4" data-path="calculation.html"><a href="calculation.html#logicoperators"><i class="fa fa-check"></i><b>2.4</b> Operator Logika</a></li>
+<li class="chapter" data-level="2.5" data-path="calculation.html"><a href="calculation.html#assigningvar"><i class="fa fa-check"></i><b>2.5</b> Memasukkan Nilai Kedalam Variabel</a></li>
+<li class="chapter" data-level="2.6" data-path="calculation.html"><a href="calculation.html#typedata"><i class="fa fa-check"></i><b>2.6</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.7" data-path="calculation.html"><a href="calculation.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vektor</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="calculation.html"><a href="calculation.html#createvector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vektor</a></li>
+<li class="chapter" data-level="2.7.2" data-path="calculation.html"><a href="calculation.html#missingvalue"><i class="fa fa-check"></i><b>2.7.2</b> Missing Values</a></li>
+<li class="chapter" data-level="2.7.3" data-path="calculation.html"><a href="calculation.html#subsetvector"><i class="fa fa-check"></i><b>2.7.3</b> Subset Pada Vektor</a></li>
+<li class="chapter" data-level="2.7.4" data-path="calculation.html"><a href="calculation.html#vectorops"><i class="fa fa-check"></i><b>2.7.4</b> Operasi Matematis Menggunakan Vektor</a></li>
+<li class="chapter" data-level="2.7.5" data-path="calculation.html"><a href="calculation.html#seq"><i class="fa fa-check"></i><b>2.7.5</b> Membuat Deret Angka</a></li>
+<li class="chapter" data-level="2.7.6" data-path="calculation.html"><a href="calculation.html#repseq"><i class="fa fa-check"></i><b>2.7.6</b> Nilai Berulang</a></li>
+<li class="chapter" data-level="2.7.7" data-path="calculation.html"><a href="calculation.html#randnumb"><i class="fa fa-check"></i><b>2.7.7</b> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="calculation.html"><a href="calculation.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="calculation.html"><a href="calculation.html#creatematrix"><i class="fa fa-check"></i><b>2.8.1</b> Membuat matriks</a></li>
+<li class="chapter" data-level="2.8.2" data-path="calculation.html"><a href="calculation.html#subsetmatrix"><i class="fa fa-check"></i><b>2.8.2</b> Subset Pada Matriks</a></li>
+<li class="chapter" data-level="2.8.3" data-path="calculation.html"><a href="calculation.html#matrixcalculation"><i class="fa fa-check"></i><b>2.8.3</b> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="calculation.html"><a href="calculation.html#referensi-1"><i class="fa fa-check"></i><b>2.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualisasi Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#plotfunc"><i class="fa fa-check"></i><b>3.1</b> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#otherviz"><i class="fa fa-check"></i><b>3.2</b> Visualisasi Lainnya</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#barplot"><i class="fa fa-check"></i><b>3.2.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dataviz.html"><a href="dataviz.html#histogram"><i class="fa fa-check"></i><b>3.2.2</b> Histogram dan Density Plot</a></li>
+<li class="chapter" data-level="3.2.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>3.2.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#customise"><i class="fa fa-check"></i><b>3.3</b> Kustomisasi Parameter Grafik</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#addtitle"><i class="fa fa-check"></i><b>3.3.1</b> Menambahkan Judul</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#addlegend"><i class="fa fa-check"></i><b>3.3.2</b> Menambahkan Legend</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#addtext"><i class="fa fa-check"></i><b>3.3.3</b> Menambahkan Teks Pada Grafik</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#addlines"><i class="fa fa-check"></i><b>3.3.4</b> Menambahkan Garis Pada Plot</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#changepoint"><i class="fa fa-check"></i><b>3.3.5</b> Merubah Simbol plot dan Jenis Garis</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dataviz.html"><a href="dataviz.html#mengatur-axis-plot"><i class="fa fa-check"></i><b>3.3.6</b> Mengatur Axis Plot</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dataviz.html"><a href="dataviz.html#changecolor"><i class="fa fa-check"></i><b>3.3.7</b> Mengatur Warna</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#plot-dua-dan-tiga-dimensi"><i class="fa fa-check"></i><b>3.4</b> Plot Dua dan Tiga Dimensi</a></li>
+<li class="chapter" data-level="3.5" data-path="dataviz.html"><a href="dataviz.html#referensi-2"><i class="fa fa-check"></i><b>3.5</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programmingandfunction.html"><a href="programmingandfunction.html"><i class="fa fa-check"></i><b>4</b> Pemrograman dan Fungsi</a><ul>
+<li class="chapter" data-level="4.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loop"><i class="fa fa-check"></i><b>4.1</b> Loop</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#forloop"><i class="fa fa-check"></i><b>4.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="4.1.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#whileloop"><i class="fa fa-check"></i><b>4.1.2</b> While Loop</a></li>
+<li class="chapter" data-level="4.1.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#repeatloop"><i class="fa fa-check"></i><b>4.1.3</b> Repeat Loop</a></li>
+<li class="chapter" data-level="4.1.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#break"><i class="fa fa-check"></i><b>4.1.4</b> Break</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loopapply"><i class="fa fa-check"></i><b>4.2</b> Loop Menggunakan Apply Family Function</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#apply"><i class="fa fa-check"></i><b>4.2.1</b> Apply</a></li>
+<li class="chapter" data-level="4.2.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#lapply"><i class="fa fa-check"></i><b>4.2.2</b> lapply</a></li>
+<li class="chapter" data-level="4.2.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#sapply"><i class="fa fa-check"></i><b>4.2.3</b> sapply</a></li>
+<li class="chapter" data-level="4.2.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#vapply"><i class="fa fa-check"></i><b>4.2.4</b> vapply</a></li>
+<li class="chapter" data-level="4.2.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#tapply"><i class="fa fa-check"></i><b>4.2.5</b> tapply</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#dm"><i class="fa fa-check"></i><b>4.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifstatement"><i class="fa fa-check"></i><b>4.3.1</b> if statement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifelsestatement"><i class="fa fa-check"></i><b>4.3.2</b> if else statement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#switchstatement"><i class="fa fa-check"></i><b>4.3.3</b> switch statement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#fungsi"><i class="fa fa-check"></i><b>4.4</b> Fungsi</a></li>
+<li class="chapter" data-level="4.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#debugging"><i class="fa fa-check"></i><b>4.5</b> Debugging</a></li>
+<li class="chapter" data-level="4.6" data-path="programmingandfunction.html"><a href="programmingandfunction.html#referensi-3"><i class="fa fa-check"></i><b>4.6</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="numericmethod.html"><a href="numericmethod.html"><i class="fa fa-check"></i><b>5</b> Pengantar Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericmethod.html"><a href="numericmethod.html#numericmethodintro"><i class="fa fa-check"></i><b>5.1</b> Mengenal Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="numericmethod.html"><a href="numericmethod.html#diffanalitycnumeric"><i class="fa fa-check"></i><b>5.1.1</b> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li class="chapter" data-level="5.1.2" data-path="numericmethod.html"><a href="numericmethod.html#tahapan-penyelesaian-menggunakan-metode-numerik"><i class="fa fa-check"></i><b>5.1.2</b> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="numericmethod.html"><a href="numericmethod.html#acuracy"><i class="fa fa-check"></i><b>5.2</b> Akurasi dan Presisi</a></li>
+<li class="chapter" data-level="5.3" data-path="numericmethod.html"><a href="numericmethod.html#numerror"><i class="fa fa-check"></i><b>5.3</b> Error Numerik</a></li>
+<li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasivektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasimatrik"><i class="fa fa-check"></i><b>6.1.2</b> Operasi matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#rowoperation"><i class="fa fa-check"></i><b>6.2</b> Operasi Baris Elementer</a></li>
+<li class="chapter" data-level="6.3" data-path="linearaljabar.html"><a href="linearaljabar.html#gausselimination"><i class="fa fa-check"></i><b>6.3</b> Eliminasi Gauss</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linearaljabar.html"><a href="linearaljabar.html#rowechelonform"><i class="fa fa-check"></i><b>6.3.1</b> <em>Row Echelon Form</em></a></li>
+<li class="chapter" data-level="6.3.2" data-path="linearaljabar.html"><a href="linearaljabar.html#redrowechelonform"><i class="fa fa-check"></i><b>6.3.2</b> Eliminasi Gauss-Jordan</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linearaljabar.html"><a href="linearaljabar.html#matriktridiagonal"><i class="fa fa-check"></i><b>6.3.3</b> Matrik Tridiagonal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linearaljabar.html"><a href="linearaljabar.html#solvefunc"><i class="fa fa-check"></i><b>6.3.4</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="linearaljabar.html"><a href="linearaljabar.html#solvetridiagfunct"><i class="fa fa-check"></i><b>6.3.5</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisimatriks"><i class="fa fa-check"></i><b>6.4</b> Dekomposisi Matriks</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="linearaljabar.html"><a href="linearaljabar.html#ludecomp"><i class="fa fa-check"></i><b>6.4.1</b> Dekomposisi LU</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisi-cholesky"><i class="fa fa-check"></i><b>6.4.2</b> Dekomposisi Cholesky</a></li>
+<li class="chapter" data-level="6.4.3" data-path="linearaljabar.html"><a href="linearaljabar.html#othersdecomp"><i class="fa fa-check"></i><b>6.4.3</b> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="linearaljabar.html"><a href="linearaljabar.html#iteratif"><i class="fa fa-check"></i><b>6.5</b> Metode Iterasi</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="linearaljabar.html"><a href="linearaljabar.html#jacobiiter"><i class="fa fa-check"></i><b>6.5.1</b> Iterasi Jacobi</a></li>
+<li class="chapter" data-level="6.5.2" data-path="linearaljabar.html"><a href="linearaljabar.html#seideliter"><i class="fa fa-check"></i><b>6.5.2</b> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="linearaljabar.html"><a href="linearaljabar.html#studikasus"><i class="fa fa-check"></i><b>6.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#leastsquare"><i class="fa fa-check"></i><b>6.6.1</b> Metode Kuadrat Terkecil</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#reaktorkimia"><i class="fa fa-check"></i><b>6.6.2</b> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linearaljabar.html"><a href="linearaljabar.html#referensi-5"><i class="fa fa-check"></i><b>6.7</b> Referensi</a></li>
+<li class="chapter" data-level="6.8" data-path="linearaljabar.html"><a href="linearaljabar.html#latihan"><i class="fa fa-check"></i><b>6.8</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rootfinding.html"><a href="rootfinding.html"><i class="fa fa-check"></i><b>7</b> Akar Persamaan Non-Linier</a><ul>
+<li class="chapter" data-level="7.1" data-path="rootfinding.html"><a href="rootfinding.html#bracketing"><i class="fa fa-check"></i><b>7.1</b> Metode Tertutup</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="rootfinding.html"><a href="rootfinding.html#table"><i class="fa fa-check"></i><b>7.1.1</b> Metode Tabel</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rootfinding.html"><a href="rootfinding.html#bisection"><i class="fa fa-check"></i><b>7.1.2</b> Metode Biseksi</a></li>
+<li class="chapter" data-level="7.1.3" data-path="rootfinding.html"><a href="rootfinding.html#regulafalsi"><i class="fa fa-check"></i><b>7.1.3</b> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rootfinding.html"><a href="rootfinding.html#openmethod"><i class="fa fa-check"></i><b>7.2</b> Metode Terbuka</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="rootfinding.html"><a href="rootfinding.html#fixpoint"><i class="fa fa-check"></i><b>7.2.1</b> Metode Iterasi Titik Tetap</a></li>
+<li class="chapter" data-level="7.2.2" data-path="rootfinding.html"><a href="rootfinding.html#newtonraphson"><i class="fa fa-check"></i><b>7.2.2</b> Metode Newton-Raphson</a></li>
+<li class="chapter" data-level="7.2.3" data-path="rootfinding.html"><a href="rootfinding.html#secant"><i class="fa fa-check"></i><b>7.2.3</b> Metode Secant</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="rootfinding.html"><a href="rootfinding.html#uniroot"><i class="fa fa-check"></i><b>7.3</b> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li class="chapter" data-level="7.4" data-path="rootfinding.html"><a href="rootfinding.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><i class="fa fa-check"></i><b>7.4</b> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="chapter" data-level="7.5" data-path="rootfinding.html"><a href="rootfinding.html#studi-kasus"><i class="fa fa-check"></i><b>7.5</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="rootfinding.html"><a href="rootfinding.html#persamaan-van-der-walls"><i class="fa fa-check"></i><b>7.5.1</b> Persamaan Van Der Walls</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rootfinding.html"><a href="rootfinding.html#hukum-bernoulli"><i class="fa fa-check"></i><b>7.5.2</b> Hukum Bernoulli</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="rootfinding.html"><a href="rootfinding.html#referensi-6"><i class="fa fa-check"></i><b>7.6</b> Referensi</a></li>
+<li class="chapter" data-level="7.7" data-path="rootfinding.html"><a href="rootfinding.html#latihan-1"><i class="fa fa-check"></i><b>7.7</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="interpolation.html"><a href="interpolation.html"><i class="fa fa-check"></i><b>8</b> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="chapter" data-level="8.1" data-path="interpolation.html"><a href="interpolation.html#poliinterpolation"><i class="fa fa-check"></i><b>8.1</b> Interpolasi Polinomial</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="interpolation.html"><a href="interpolation.html#mengevaluasi-polinomial"><i class="fa fa-check"></i><b>8.1.1</b> Mengevaluasi Polinomial</a></li>
+<li class="chapter" data-level="8.1.2" data-path="interpolation.html"><a href="interpolation.html#lininterpol"><i class="fa fa-check"></i><b>8.1.2</b> Interpolasi Linier</a></li>
+<li class="chapter" data-level="8.1.3" data-path="interpolation.html"><a href="interpolation.html#hopoliinter"><i class="fa fa-check"></i><b>8.1.3</b> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="interpolation.html"><a href="interpolation.html#pwinter"><i class="fa fa-check"></i><b>8.2</b> Interpolasi Piecewise</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="interpolation.html"><a href="interpolation.html#pwlininter"><i class="fa fa-check"></i><b>8.2.1</b> Interpolasi Linier Piecewise</a></li>
+<li class="chapter" data-level="8.2.2" data-path="interpolation.html"><a href="interpolation.html#cubicspline"><i class="fa fa-check"></i><b>8.2.2</b> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="interpolation.html"><a href="interpolation.html#studi-kasus-1"><i class="fa fa-check"></i><b>8.3</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="interpolation.html"><a href="interpolation.html#interpolasi-data-runtun-waktu"><i class="fa fa-check"></i><b>8.3.1</b> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="interpolation.html"><a href="interpolation.html#referensi-7"><i class="fa fa-check"></i><b>8.4</b> Referensi</a></li>
+<li class="chapter" data-level="8.5" data-path="interpolation.html"><a href="interpolation.html#latihan-2"><i class="fa fa-check"></i><b>8.5</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="diffinteg.html"><a href="diffinteg.html"><i class="fa fa-check"></i><b>9</b> Diferensiasi dan Integrasi Numerik</a><ul>
+<li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
+<li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
+<li class="chapter" data-level="9.3.2" data-path="diffinteg.html"><a href="diffinteg.html#trapezoida"><i class="fa fa-check"></i><b>9.3.2</b> Metode Trapezoida</a></li>
+<li class="chapter" data-level="9.3.3" data-path="diffinteg.html"><a href="diffinteg.html#simpson"><i class="fa fa-check"></i><b>9.3.3</b> Metode Simpson</a></li>
+<li class="chapter" data-level="9.3.4" data-path="diffinteg.html"><a href="diffinteg.html#simpson38"><i class="fa fa-check"></i><b>9.3.4</b> Metode Simpson 3/8</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.4</b> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.5" data-path="diffinteg.html"><a href="diffinteg.html#kuadgauss"><i class="fa fa-check"></i><b>9.5</b> Metode Kuadratur Gauss</a></li>
+<li class="chapter" data-level="9.6" data-path="diffinteg.html"><a href="diffinteg.html#othergauss"><i class="fa fa-check"></i><b>9.6</b> Metode Gauss-Legendre Menggunakan Fungsi <code>legendre.quadrature()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="diffinteg.html"><a href="diffinteg.html#adaptifint"><i class="fa fa-check"></i><b>9.7</b> Metode Integrasi Adaptif</a></li>
+<li class="chapter" data-level="9.8" data-path="diffinteg.html"><a href="diffinteg.html#metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r"><i class="fa fa-check"></i><b>9.8</b> Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada <code>R</code></a></li>
+<li class="chapter" data-level="9.9" data-path="diffinteg.html"><a href="diffinteg.html#romberg"><i class="fa fa-check"></i><b>9.9</b> Metode Integrasi Romberg</a></li>
+<li class="chapter" data-level="9.10" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-romberg-menggunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.10</b> Metode Integrasi Romberg Menggunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.11" data-path="diffinteg.html"><a href="diffinteg.html#montecarlo"><i class="fa fa-check"></i><b>9.11</b> Metode Integrasi Monte Carlo</a></li>
+<li class="chapter" data-level="9.12" data-path="diffinteg.html"><a href="diffinteg.html#studi-kasus-2"><i class="fa fa-check"></i><b>9.12</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="9.12.1" data-path="diffinteg.html"><a href="diffinteg.html#penerjung-payung"><i class="fa fa-check"></i><b>9.12.1</b> Penerjung Payung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metode Numerik Menggunakan R Untuk Teknik Lingkungan</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="diffinteg" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Diferensiasi dan Integrasi Numerik</h1>
+<p>Pada Chapter <a href="diffinteg.html#diffinteg">9</a>, penulis akan menjabarkan mengenai metode numerik untuk melakukan diferensiasi dan integrasi pada suatu fungsi. Adapun yang akan dibahas pada <em>Chapter</em> ini antara lain:</p>
+<ul>
+<li>Metode Beda Hingga</li>
+<li>Metode Integrasi Newton-Cotes</li>
+<li>Metode Integrasi Kudratur Gauss</li>
+<li>Metode Integrasi Adaptif</li>
+<li>Metode Integrasi Romberg</li>
+<li>Metode Integrasi Monte Carlo</li>
+<li>Studi Kasus</li>
+</ul>
+<div id="finitediff" class="section level2">
+<h2><span class="header-section-number">9.1</span> Metode Beda Hingga</h2>
+<p>Diferensiasi merupakan proses mencari slope suatu garis pada titik yang diberikan. Secara umum proses diferensiasi dinyatakan melalui Persamaan <a href="diffinteg.html#eq:diff">(9.1)</a>.</p>
+<p><span class="math display" id="eq:diff">\[\begin{equation}
+f&#39;\left(x\right) \approx \frac{f\left(x+h\right)-f\left(x\right)}{h}
+  \tag{9.1}
+\end{equation}\]</span></p>
+<p>Kita dapat menyatakan secara formal proses diferensiasi sebagai limit Persamaan <a href="diffinteg.html#eq:diff">(9.1)</a> dimana <span class="math inline">\(h\)</span> mendekati nol. Jadi kita ingin membuat nilai <span class="math inline">\(h\)</span> sekecil mungkin untuk memperoleh pendekatan terbaik terhadap nilai turunan suatu fungsi. Kita membatasi nilai <span class="math inline">\(h\)</span> pada sejumlah nilai yang masuk akal untuk mencegah pembagian dengan nilai yang tidak biasa. Kita juga harus memastikan <span class="math inline">\(f\left(x\right)\)</span> dan <span class="math inline">\(f\left(x+h\right)\)</span> terpisah cukup jauh untuk mencegah <em>floating point round off error</em> mempengaruhi proses substraksi.</p>
+<p>Terdapat 3 buah metode untuk memperoleh turunan pertama suatu fungsi dengan menggunakan metode numerik, yaitu: metode selisih maju, metode selisih mundur, dan metode selisih tengah. Error pada ketiga metode numerik tersebut ditaksir menggunakan deret Taylor. Persamaan <a href="diffinteg.html#eq:diff2">(9.2)</a> dan Persamaan <a href="diffinteg.html#eq:diff3">(9.3)</a> menunjukkan persamaan untuk memperoleh turunan pertama dan taksiran error menggunakan metode selisih maju dan metode selisih mundur.</p>
+<p><span class="math display" id="eq:diff2">\[\begin{equation}
+f&#39;\left(x\right) = \frac{f\left(x+h\right)-f\left(x\right)}{h} - \frac{h}{2} f&#39;&#39;\left(c\right)
+  \tag{9.2}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:diff3">\[\begin{equation}
+f&#39;\left(x\right) = \frac{f\left(x\right)-f\left(x-h\right)}{h} - \frac{h}{2} f&#39;&#39;\left(c\right)
+  \tag{9.3}
+\end{equation}\]</span></p>
+<p>Metode nilai tengah menggunakan ukuran langkah <span class="math inline">\(h\)</span> dua kali dibandingkan dengan 2 metode lainnya. Error yang dihasilkan juga berbeda dengan kedua metode sebelumnya, dimana error dihasilkan dari pemotongan turunan ketiga pada deret Taylor. Secara umum metode selisih tengah memiliki akurasi yang lebih baik dibandingkan kedua metode sebelumnya karena metode ini mempertimbangkan dua sisi untuk memeriksa nilai <span class="math inline">\(x\)</span>. Persamaan <a href="diffinteg.html#eq:diff4">(9.4)</a> merupakan persamaan untuk memperoleh nilai turunan pertama suatu fungsi dan estimasi error menggunakan deret Taylor.</p>
+<p><span class="math display" id="eq:diff4">\[\begin{equation}
+f&#39;\left(x\right) = \frac{f\left(x+h\right)-f\left(x-h\right)}{2h} - \frac{h^2}{6} f&#39;&#39;&#39;\left(c\right)
+  \tag{9.4}
+\end{equation}\]</span></p>
+<p>Bagaimana menentukan <span class="math inline">\(h\)</span>? beberapa literatur menggunakan pendekatan <em>machine error</em> <span class="math inline">\(\epsilon\)</span> berdasarkan program yang digunakan untuk melakukan proses perhitungan. Metode selisih maju dan selisih mundur menggunakan pendekatan yang ditunjukkan pada Persamaan <a href="diffinteg.html#eq:diff5">(9.5)</a>.</p>
+<p><span class="math display" id="eq:diff5">\[\begin{equation}
+h^{\ast}=x\sqrt{\epsilon}
+  \tag{9.5}
+\end{equation}\]</span></p>
+<p>Untuk metode selisih tengah pendekatan nilai <span class="math inline">\(h\)</span> menggunakan Persamaan <a href="diffinteg.html#eq:diff6">(9.6)</a>.</p>
+<p><span class="math display" id="eq:diff6">\[\begin{equation}
+h^{\ast}=x\sqrt[3]{\epsilon}
+  \tag{9.6}
+\end{equation}\]</span></p>
+<p>Kita dapat menggunakan Persamaan <a href="diffinteg.html#eq:diff2">(9.2)</a> sampai Persamaan <a href="diffinteg.html#eq:diff4">(9.4)</a> untuk membentuk sebuah program yang digunakan untuk menghitung turunan pertama suatu fungsi. Sintaks yang digunakan adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" title="1">findiff &lt;-<span class="st"> </span><span class="cf">function</span>(f, x, h, <span class="dt">method=</span><span class="ot">NULL</span>){</a>
+<a class="sourceLine" id="cb622-2" title="2">  <span class="cf">if</span>(<span class="kw">is.null</span>(method)){</a>
+<a class="sourceLine" id="cb622-3" title="3">    <span class="kw">warning</span>(<span class="st">&quot;please select a method&quot;</span>)</a>
+<a class="sourceLine" id="cb622-4" title="4">  }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb622-5" title="5">    <span class="cf">if</span>(method <span class="op">==</span><span class="st"> &quot;forward&quot;</span>){</a>
+<a class="sourceLine" id="cb622-6" title="6">      <span class="kw">return</span>((<span class="kw">f</span>(x<span class="op">+</span>h)<span class="op">-</span><span class="kw">f</span>(x))<span class="op">/</span>h)</a>
+<a class="sourceLine" id="cb622-7" title="7">    }<span class="cf">else</span> <span class="cf">if</span>(method<span class="op">==</span><span class="st">&quot;backward&quot;</span>){</a>
+<a class="sourceLine" id="cb622-8" title="8">      <span class="kw">return</span>((<span class="kw">f</span>(x)<span class="op">-</span><span class="kw">f</span>(x<span class="op">-</span>h))<span class="op">/</span>h)</a>
+<a class="sourceLine" id="cb622-9" title="9">    }<span class="cf">else</span> <span class="cf">if</span>(method<span class="op">==</span><span class="st">&quot;central&quot;</span>){</a>
+<a class="sourceLine" id="cb622-10" title="10">      <span class="kw">return</span>((<span class="kw">f</span>(x<span class="op">+</span>h)<span class="op">-</span><span class="kw">f</span>(x<span class="op">-</span>h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h))</a>
+<a class="sourceLine" id="cb622-11" title="11">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb622-12" title="12">      <span class="kw">warning</span>(<span class="st">&quot;you can use method: forward, bacward, or central&quot;</span>)</a>
+<a class="sourceLine" id="cb622-13" title="13">    }</a>
+<a class="sourceLine" id="cb622-14" title="14">  }</a>
+<a class="sourceLine" id="cb622-15" title="15">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:diffexm" class="example"><strong>Contoh 9.1  </strong></span>Hitunglah turunan pertama persamaan berikut menggunakan metode selisih titik tengah pada x =1 dan nilai h=0,05!
+</div>
+
+<p><span class="math display">\[
+f\left(x\right)=e^{-x}\sin\left(2x\right)+1
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Untuk menghitung turunan pertama menggunakan metode selisih tengah, kita dapat menggunakan Persamaan <a href="diffinteg.html#eq:diff4">(9.4)</a>. Berikut adalah proses perhitungannya:</p>
+<p><span class="math display">\[
+f&#39;\left(1\right) = \frac{f\left(1+0.05\right)-f\left(1-0,05\right)}{2\times0.05}=--0.6390352
+\]</span></p>
+<p>Dengan menggunakan fungsi <code>findiff()</code>, hasil yang diperoleh adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" title="1"><span class="kw">findiff</span>(<span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb623-2" title="2">  <span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>, <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>,</a>
+<a class="sourceLine" id="cb623-3" title="3">  <span class="dt">method=</span><span class="st">&quot;central&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] -0.6390352</code></pre>
+<p>Kita dapat memperkecil nilai <span class="math inline">\(h\)</span> untuk memperoleh akurasi yang lebih baik berdasarkan pendekatan Persamaan <a href="diffinteg.html#eq:diff6">(9.6)</a>.</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" title="1"><span class="kw">findiff</span>(<span class="cf">function</span>(x){  <span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>}, <span class="dt">x=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb625-2" title="2">        <span class="dt">h=</span><span class="dv">1</span><span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb625-3" title="3">        <span class="dt">method=</span><span class="st">&quot;central&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] -0.6406956</code></pre>
+<p>Penyelesaian persamaan matematik dalam bidang Teknik Lingkungan pada umumnya tidak hanya melibatkan turunan pertama, pada penyelesaian persamaan difusi umumnya menggunakan turunan kedua. Persamaan <a href="diffinteg.html#eq:diff7">(9.7)</a> merupakan pendekatan numerik untuk memperoleh nilai turunan kedua suatu persamaan dengan pendekatan deret Taylor.</p>
+<p><span class="math display" id="eq:diff7">\[\begin{equation}
+f&#39;&#39;\left(x\right)=\frac{f\left(x+h\right)-2f\left(x\right)+f\left(x-h\right)}{h^2}-\frac{h^2}{12}f^{\left(4\right)}\left(c\right)
+  \tag{9.7}
+\end{equation}\]</span></p>
+<p>Fungsi <code>findiff2()</code> merupakan fungsi yang digunakan untuk menghitung turunan kedua suatu persamaan yang didasarkan pada Persamaan <a href="diffinteg.html#eq:diff7">(9.7)</a>.</p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb627-1" title="1">findiff2 &lt;-<span class="st"> </span><span class="cf">function</span>(f, x, h){</a>
+<a class="sourceLine" id="cb627-2" title="2">  <span class="kw">return</span>((<span class="kw">f</span>(x<span class="op">+</span>h)<span class="op">-</span><span class="dv">2</span><span class="op">*</span><span class="kw">f</span>(x)<span class="op">+</span><span class="kw">f</span>(x<span class="op">-</span>h))<span class="op">/</span>(h<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb627-3" title="3">}</a></code></pre></div>
+<p>Kita dapat menghitung kembali turunan kedua fungsi pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a> menggunakan fungsi <code>findiff2()</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" title="1"><span class="kw">findiff2</span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb628-2" title="2">  <span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb628-3" title="3">}, <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>)</a></code></pre></div>
+<pre><code>## [1] -0.3924205</code></pre>
+</div>
+<div id="diffother" class="section level2">
+<h2><span class="header-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</h2>
+<p>Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah paket, baik <em>base package</em> maupun yang berasal dari paket lainnya.</p>
+<div id="diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></h3>
+<p>Fungsi <code>diff()</code> pada paket <em>base</em> dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung <em>lag</em> suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen <code>lag = 2</code>. Berikut adalah contoh penerapan fungsi <code>diff()</code> untuk memperoleh turunan pertama persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb630-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>}</a>
+<a class="sourceLine" id="cb630-2" title="2">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb630-3" title="3">h &lt;-<span class="st"> </span>x<span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb630-4" title="4">xvec &lt;-<span class="st"> </span><span class="kw">seq</span>(x<span class="op">-</span>h, x<span class="op">+</span>h, h)</a>
+<a class="sourceLine" id="cb630-5" title="5"></a>
+<a class="sourceLine" id="cb630-6" title="6"><span class="co"># turunan pertama</span></a>
+<a class="sourceLine" id="cb630-7" title="7"><span class="kw">diff</span>(<span class="kw">f</span>(xvec), <span class="dt">lag=</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</a></code></pre></div>
+<pre><code>## [1] -0.6406956</code></pre>
+</div>
+<div id="diferensiasi-menggunakan-paket-numderiv" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></h3>
+<p>Paket standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah paket <code>numDeriv</code>. Pada paket tersebut terdapat fungsi <code>grad()</code> yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb632-1" title="1"><span class="kw">grad</span>(func, x, <span class="dt">method=</span><span class="st">&quot;Richardson&quot;</span>, <span class="dt">method.args=</span><span class="kw">list</span>(), ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>func</strong>: Fungsi persamaan matematik yang akan dicari turunannya.</li>
+<li><strong>x</strong>: Lokasi atau titik yang akan dicari gradiennya</li>
+<li><strong>method</strong>: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:</li>
+<li>“simple”: metode selisih maju dengan <span class="math inline">\(h = 10^{-4}\)</span></li>
+<li>“Richardson”: metode interpolasi Richardson</li>
+<li>“complex”: <em>complex-step derivative approach</em> dan dapat digunakan untuk persamaan <em>complex-differentiable</em>.</li>
+<li><strong>method.args</strong>: argumen tambahan yang digunakan bersama dengan argumen <strong>method</strong>. Jika metode yang digunakan adalah “simple”, nilai <span class="math inline">\(h\)</span> dapat dispesifikasikan pada <strong>method.args</strong> jika diinginkan nilai <span class="math inline">\(h\)</span> lainnya.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>grad()</code> untuk memperoleh turunan pertama persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb633-1" title="1">numDeriv<span class="op">::</span><span class="kw">grad</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
+<a class="sourceLine" id="cb633-2" title="2">     <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">method =</span> <span class="st">&quot;simple&quot;</span>, </a>
+<a class="sourceLine" id="cb633-3" title="3">     <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">eps=</span><span class="dv">1</span><span class="op">*</span><span class="kw">sqrt</span>(.Machine<span class="op">$</span>double.eps)))</a></code></pre></div>
+<pre><code>## [1] -0.6406956</code></pre>
+</div>
+<div id="diferensiasi-menggunakan-paket-pracma" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></h3>
+<p>Terdapat sejumlah fungsi pada paket <code>pracma</code> yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: <code>fderiv()</code>, <code>numderiv()</code>, <code>numdiff()</code>, dan <code>grad()</code>.</p>
+<p>Fungsi <code>fderiv()</code> dapat digunakan untuk melakukan diferensiasi orde pertama sampai dengan orde tinggi. Perlu dicatat bahwa diferensiasi cenderung kurang akurat jika orde diferensiasi semakin tinggi. Format yang digunakan untuk melakukan diferensiasi menggunakan fungsi <code>fderiv()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb635-1" title="1"><span class="kw">fderiv</span>(f, x, <span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">h =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb635-2" title="2">        <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;central&quot;</span>, <span class="st">&quot;forward&quot;</span>, <span class="st">&quot;backward&quot;</span>), </a>
+<a class="sourceLine" id="cb635-3" title="3">       ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: Fungsi persamaan matematik yang akan dicari turunannya.</li>
+<li><strong>x</strong>: Lokasi atau titik yang akan dicari gradiennya</li>
+<li><strong>n</strong>: Orde diferensiasi yang digunakan. Orde diferensiasi yang dapat digunakan adalah 1 sampai 8.</li>
+<li><strong>method</strong>: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:</li>
+<li>“central”: metode titik pusat</li>
+<li>“forward”: metode selisih maju</li>
+<li>“bacward”: metode selisih mundur.</li>
+<li><strong>…</strong>: argumen tambahan fungsi <strong>f</strong>.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>fderiv()</code> untuk memperoleh turunan pertama dan kedua persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb636-1" title="1"><span class="kw">library</span>(pracma)</a>
+<a class="sourceLine" id="cb636-2" title="2"><span class="co"># turunan 1</span></a>
+<a class="sourceLine" id="cb636-3" title="3"><span class="kw">fderiv</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
+<a class="sourceLine" id="cb636-4" title="4">       <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb636-5" title="5">       <span class="dt">method =</span> <span class="st">&quot;central&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] -0.6406956</code></pre>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb638-1" title="1"><span class="co"># turunan 2</span></a>
+<a class="sourceLine" id="cb638-2" title="2"><span class="kw">fderiv</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
+<a class="sourceLine" id="cb638-3" title="3">       <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb638-4" title="4">       <span class="dt">method =</span> <span class="st">&quot;central&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] -0.3911581</code></pre>
+<p>Fungsi <code>numderiv()</code> menggunakan ekstrapolasi Richardson untuk melakukan taksiran turunan suatu persamaan matematik. Berbeda dengan fungsi lainnya, fungsi <code>numderiv()</code> tidak hanya menampilkan hasil diferensiasi, fungsi ini juga menampilkan error absolut, error relatif, dan jumlah iterasi yang berlangsung. Berikut adalah format fungsi yang digunakan:</p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb640-1" title="1"><span class="kw">numderiv</span>(f, x0, <span class="dt">maxiter =</span> <span class="dv">16</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, ..., </a>
+<a class="sourceLine" id="cb640-2" title="2">         <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: Fungsi persamaan matematik yang akan dicari turunannya.</li>
+<li><strong>x0</strong>: Lokasi atau titik yang akan dicari gradiennya</li>
+<li><strong>maxiter</strong>: Iterasi maksimum yang digunakan.</li>
+<li><strong>h</strong>: <em>step size</em> yang digunakan</li>
+<li><strong>tol</strong>: toleransi error yang digunakan.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>numderiv()</code> untuk memperoleh turunan pertama persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb641-1" title="1"><span class="kw">numderiv</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
+<a class="sourceLine" id="cb641-2" title="2">       <span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## $df
+## [1] -0.6406956
+## 
+## $rel.err
+## [1] 7.63096e-11
+## 
+## $niter
+## [1] 2</code></pre>
+<p>Fungsi <code>numderiv()</code> memiliki keterbatasan dalam penggunaannya. Argumen <code>x0</code> yang digunakan haruslah angka numerik tunggal. Fungsi <code>numdiff()</code> mengatasi keterbatasan tersebut. Fungsi ini dapat menerima input berupa vektor, sehingga dapat digunakan untuk mencari nilai turunan pada sejumlah titik. Selain itu, output fungsi ini lebih sederhana, dimana hanya menampilkan hasil diferensiasinya saja. Berikut adalah format fungsi <code>numdiff()</code>:</p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb643-1" title="1"><span class="kw">numdiff</span>(f, x, <span class="dt">maxiter =</span> <span class="dv">16</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, ..., </a>
+<a class="sourceLine" id="cb643-2" title="2">         <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: Fungsi persamaan matematik yang akan dicari turunannya.</li>
+<li><strong>x</strong>: Vektor titik yang akan dicari gradiennya</li>
+<li><strong>maxiter</strong>: Iterasi maksimum yang digunakan.</li>
+<li><strong>h</strong>: <em>step size</em> yang digunakan</li>
+<li><strong>tol</strong>: toleransi error yang digunakan.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>numdiff()</code> untuk memperoleh turunan pertama persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb644-1" title="1"><span class="kw">numdiff</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
+<a class="sourceLine" id="cb644-2" title="2">       <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">h =</span> <span class="dv">1</span><span class="op">*</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## [1] -0.64069556 -0.07450001  0.10951941 -0.02345058</code></pre>
+<p>Fungsi <code>grad()</code> pada paket <code>pracma</code> berbeda dengan yang digunakan pada paket <code>numDeriv</code>. Perbedaan utama fungsi pada kedua paket tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada paket <code>pracma</code>, metode yang digunakan adalah metode titik pusat, sedangkan pada paket <code>numDeriv</code> metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan <em>complex</em>. Format fungsi <code>grad()</code> pada paket <code>pracma</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb646-1" title="1"><span class="kw">grad</span>(f, x0, <span class="dt">heps =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb646-2" title="2">     ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: Fungsi persamaan matematik yang akan dicari turunannya.</li>
+<li><strong>x0</strong>: Titik yang akan dicari gradiennya</li>
+<li><strong>heps</strong>: <em>step size</em> yang digunakan</li>
+<li><strong>…</strong>: Argumen lain yang digunakan pada fungsi <strong>f</strong>.</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>grad()</code> untuk memperoleh turunan pertama persamaan matematik pada Contoh <a href="diffinteg.html#exm:diffexm">9.1</a>:</p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb647-1" title="1"><span class="kw">grad</span>(<span class="cf">function</span>(x){<span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="op">+</span><span class="dv">1</span>}, <span class="dt">x0 =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] -0.6406956</code></pre>
+</div>
+</div>
+<div id="newtoncotes" class="section level2">
+<h2><span class="header-section-number">9.3</span> Metode Integrasi Newton-Cotes</h2>
+<p>Metode integrasi Newton-Cotes secara umum merupakan metode integrasi yang dilakukan dengan membagi area di bawah kurva suatu fungsi menjadi beberapa panel dengan terlebih dahulu menetapkan batas atas dan batas bawah interval. Integral atau luas area di bawah kurva ditentukan berdasarkan jumlah luas panel yang digunakan untuk mendekati luas area di bawah kurva.</p>
+<p>Terdapat beberapa metode yang akan penulis jelaskan pada sub-Chapter ini. Metode-metode tersebut antara lain:</p>
+<ul>
+<li>Metode integral Riemann</li>
+<li>Metode trapezoida</li>
+<li>Metode Simpson 1/3</li>
+<li>Metode Simpson 3/8</li>
+</ul>
+<div id="riemann" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Metode Integral Riemann</h3>
+<p>Metode integral Riemann dilakukan dengan membagi interval di bawah kurva suatu fungsi matematik sebanyak <span class="math inline">\(m\)</span> subinterval sama besar. Pada setiap subinterval dibentuk persegi panjang setinggi kurva pada setiap titik tengah persegi panjang tersebut. Area setiap subinterval diperoleh dengan mengalikan panjang dan lebar masing-masing persegi panjang. Jumlah masing-masing area tersebut digunakan untuk menaksir interval integral suatu fungsi dengan interval tertentu. Fungsi proses integrasi menggunakan metode titik tengah dapat dituliskan pada Persamaan <a href="diffinteg.html#eq:reimann">(9.8)</a>.</p>
+<p><span class="math display" id="eq:reimann">\[\begin{equation}
+\int_a^bf\left(x\right)dx\ \approx\sum_{i=1}^mf\left(i\ \frac{\left|b-a\right|}{m}-\frac{\left|b-a\right|}{2m}\right)\ \frac{\left|b-a\right|}{m}
+  \tag{9.8}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(b\)</span> dan <span class="math inline">\(a\)</span> masing-masing merupakan batas atas dan bawah interval kurva yang hendak dihitung integralnya.</p>
+<p>Error dari metode ini dapat diestimasi menggunakan Persamaan <a href="diffinteg.html#eq:reimann2">(9.9)</a>.</p>
+<p><span class="math display" id="eq:reimann2">\[\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{24m^2}f^{\left(2\right)}\left(\xi\right)
+  \tag{9.9}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\xi\)</span> merupakan nilai antara <span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span>.</p>
+
+<div class="example">
+<span id="exm:reimannexm" class="example"><strong>Contoh 9.2  </strong></span>Hitunglah intergral fungsi di bawah ini menggunakan metode integral Reimann dengan interval 0 sampai 1 dan jumlah panel 2 dan 4!
+</div>
+
+<p><span class="math display">\[
+\int_0^1 x^2 dx
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Fungsi pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a> dapat diselesaikan menggunakan metode analitik. Penyelesaian analitik fungsi tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx = \left[\frac{x^3}{3}\right]_{_0}^{^1}=\frac{1^3}{3}-\frac{0^3}{3}=0,333...
+\]</span></p>
+<p>Penyelesaian numerik menggunakan metode titik tengah dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik tengah kedua panel. Berdasarkan interval fungsi dapat kita tentukan titik tengah kedua panel berada pada <span class="math inline">\(x=0,25\)</span> dan <span class="math inline">\(x=0,75\)</span>. Perhitungan dilakukan seperti berikut:</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx \approx \left(f\left(0,25\right)+f\left(0,75\right)\right)\ \frac{1-0}{2}=\frac{0,25^2+0,75^2}{2}=0,3125
+\]</span>
+Untuk meningkatkan akurasi dari nilai yang dihasilkan, jumlah panel dapat ditingkatkan. Untuk jumlah panel 4, titik tengah berada pada <span class="math inline">\(x=\left\{0,125;0,375;0,625;0,875\right\}\)</span>.</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx \approx \left(f\left(0,125\right)+f\left(0,375\right)+f\left(0,625\right)+f\left(0,875\right)\right)\ \frac{1-0}{4}=0,328125
+\]</span></p>
+<p>Visualisasi proses integrasi dengan metode Riemann dapat dilihat pada Gambar <a href="diffinteg.html#fig:midpt">9.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:midpt"></span>
+<img src="images/midpt.PNG" alt="Visualisasi integral Riemann dengan 2 panel dan 4 panel (sumber:Howard, 2017)." width="90%" />
+<p class="caption">
+Gambar 9.1: Visualisasi integral Riemann dengan 2 panel dan 4 panel (sumber:Howard, 2017).
+</p>
+</div>
+<p>Berdasarkan Persamaan <a href="diffinteg.html#eq:reimann">(9.8)</a>, kita dapat mengembangkan fungsi <code>R</code> yang dapat digunakan untuk melakukan perhitungan integral Riemann. Sintaks fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb649-1" title="1">riemann &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m =</span> <span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb649-2" title="2">  n_width &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m</a>
+<a class="sourceLine" id="cb649-3" title="3">  x &lt;-<span class="st"> </span><span class="kw">seq</span>(a, b<span class="op">-</span>n_width, <span class="dt">length.out =</span> m) <span class="op">+</span><span class="st"> </span>n_width<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb649-4" title="4">  y &lt;-<span class="st"> </span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb649-5" title="5">  </a>
+<a class="sourceLine" id="cb649-6" title="6">  <span class="kw">return</span>(<span class="kw">sum</span>(y)<span class="op">*</span><span class="kw">abs</span>(b<span class="op">-</span>a)<span class="op">/</span>m)</a>
+<a class="sourceLine" id="cb649-7" title="7">}</a></code></pre></div>
+<p>Kita akan menghitung kembali fungsi pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a> dengan menggunakan jumlah panel 2, 4 dan 100. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb650-1" title="1"><span class="co"># m=2</span></a>
+<a class="sourceLine" id="cb650-2" title="2"><span class="kw">riemann</span>(<span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">m=</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3125</code></pre>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb652-1" title="1"><span class="co"># m=4</span></a>
+<a class="sourceLine" id="cb652-2" title="2"><span class="kw">riemann</span>(<span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">m=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 0.328125</code></pre>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb654-1" title="1"><span class="co"># m=100</span></a>
+<a class="sourceLine" id="cb654-2" title="2"><span class="kw">riemann</span>(<span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 0.333325</code></pre>
+<p>Berdasarkan teori yang telah dipaparkan sebelumnya, kita ketahui bahwa untuk memperoleh nilai pendekatan integral yang sebenarnya kita dapat meningkatkan jumlah panel yang digunakan. Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil, kita akan melakukan simulasi menggunakan data yang disajikan pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a> dengan memvariasikan jumlah panel yang akan digunakan. Pada simulasi yang akan dilakukan kita akan coba memvariasikan jumlah panel dari 2 hingga 100. Berikut adalah sintaks yang digunakan:</p>
+<div class="figure" style="text-align: center"><span id="fig:midpt2"></span>
+<img src="Metode_Numerik_files/figure-html/midpt2-1.png" alt="Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi Riemann." width="90%" />
+<p class="caption">
+Gambar 9.2: Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi Riemann.
+</p>
+</div>
+<p>Berdasarkan hasil simulasi dapat disimpulkan jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil kira-kira sebesar <span class="math inline">\(m=40\)</span>.</p>
+</div>
+<div id="trapezoida" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Metode Trapezoida</h3>
+<p>Pendekatan trapezoida dilakukan dengan melakukan pendekatan area dibawah kurva fungsi <span class="math inline">\(y=f\left(x\right)\)</span> dengan subinterval <span class="math inline">\(\left[x_i,x_{i+1}\right]\)</span> menggunakan trapesium. Untuk memahami pendekatan yang digunakan pembaca dapat memperhatikan Gambar <a href="diffinteg.html#fig:trapviz">9.3</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:trapviz"></span>
+<img src="images/trapviz.PNG" alt="Visualisasi integragrasi numerik menggunakan metode tapezoida (sumber: Jones et.al., 2014)." width="90%" />
+<p class="caption">
+Gambar 9.3: Visualisasi integragrasi numerik menggunakan metode tapezoida (sumber: Jones et.al., 2014).
+</p>
+</div>
+<p>Fungsi proses integrasi menggunakan metode trapezoida dapat dituliskan pada Persamaan <a href="diffinteg.html#eq:trap">(9.10)</a>.</p>
+<p><span class="math display" id="eq:trap">\[\begin{equation}
+\int_a^bf\left(x\right)dx\ = \lim\limits_{m \to \infty} \sum_{i=1}^m\frac{\left(c_{i+1}-c_i\right)\times\left(f\left(c_{i+1}\right)+f\left(c_i\right)\right)}{m}
+  \tag{9.10}
+\end{equation}\]</span></p>
+<p>dimana</p>
+<p><span class="math display">\[
+c_i=a+\frac{\left(b-a\right)}{n}i
+\]</span>
+<span class="math inline">\(n\)</span> merupakan nilai subinterval dan <span class="math inline">\(m\)</span> merupakan jumlah panel trapesium yang digunakan.</p>
+<p>Error dari metode ini dapat diestimasi menggunakan Persamaan <a href="diffinteg.html#eq:trap2">(9.11)</a>.</p>
+<p><span class="math display" id="eq:trap2">\[\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{12m^2}f^{\left(2\right)}\left(\xi\right)
+  \tag{9.11}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\xi\)</span> merupakan nilai antara <span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span>.</p>
+
+<div class="example">
+<span id="exm:trapnexm" class="example"><strong>Contoh 9.3  </strong></span>Hitung kembali nilai intergrasi persamaan pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a> menggunakan metode trapezoida dengan jumlah panel m=2!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Penyelesaian numerik menggunakan trapezoida dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik evaluasi. Berdasarkan Gambar <a href="diffinteg.html#fig:trapviz2">9.4</a>, terdapat 3 batas subinterval yaitu pada <span class="math inline">\(a\)</span>,<span class="math inline">\(\frac{\left(b-a\right)}{2}\)</span>, dan <span class="math inline">\(b\)</span>. Perhitungan intergral menggunakan ketiga titik evaluasi tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\int_0^1 x^2 dx \approx \frac{\left(0,5\right)\left(0,25+1,25\right)}{2}=0,375
+\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:trapviz2"></span>
+<img src="images/trapviz2.PNG" alt="Visualisasi integrasi metode trapezoida dengan 2 panel (sumber:Howard, 2017)." width="70%" />
+<p class="caption">
+Gambar 9.4: Visualisasi integrasi metode trapezoida dengan 2 panel (sumber:Howard, 2017).
+</p>
+</div>
+<p>Berdasarkan Persamaan <a href="diffinteg.html#eq:trap">(9.10)</a>, kita dapat mengembangkan fungsi <code>R</code> yang dapat digunakan untuk melakukan perhitungan integral metode trapezoida. Sintaks fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb656-1" title="1">trap &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb656-2" title="2">  x &lt;-<span class="st"> </span><span class="kw">seq</span>(a, b, <span class="dt">length.out =</span> m<span class="op">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb656-3" title="3">  y &lt;-<span class="st"> </span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb656-4" title="4">  </a>
+<a class="sourceLine" id="cb656-5" title="5">  p_area &lt;-<span class="st"> </span><span class="kw">sum</span>((y[<span class="dv">2</span><span class="op">:</span>(m<span class="op">+</span><span class="dv">1</span>)] <span class="op">+</span><span class="st"> </span>y[<span class="dv">1</span><span class="op">:</span>m])) </a>
+<a class="sourceLine" id="cb656-6" title="6">  p_area &lt;-<span class="st"> </span>p_area <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(b<span class="op">-</span>a)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>m)</a>
+<a class="sourceLine" id="cb656-7" title="7">  <span class="kw">return</span>(p_area)</a>
+<a class="sourceLine" id="cb656-8" title="8">}</a></code></pre></div>
+<p>Kita dapat menghitung kembali intergral persamaan pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a> menggunakan fungsi <code>trap()</code> yang telah dibuat. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb657-1" title="1"><span class="kw">trap</span>(<span class="cf">function</span>(x)x<span class="op">^</span><span class="dv">2</span>, <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">m=</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.375</code></pre>
+<p>Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil pada persamaan tersebut, kita akan kembali melakukan simulasi menggunakan variasi jumlah panel yang digunakan. Dalam simulasi variasi jumlah panel yang digunakan adalah 2 sampai 100. Berikut adalah sintaks yang digunakan:</p>
+<pre><code>## [1] 0.33335</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:trapviz3"></span>
+<img src="Metode_Numerik_files/figure-html/trapviz3-1.png" alt="Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi trapezoida." width="90%" />
+<p class="caption">
+Gambar 9.5: Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi trapezoida.
+</p>
+</div>
+<p>Berdasarkan hasil simulasi diperoleh nilai panel minimum sebesar <span class="math inline">\(m=20\)</span>. Hasil yang diperoleh tersebut menujukkan bahwa metode trapezoida lebih efisien dalam proses komputasi dibandingkan metode Riemann.</p>
+</div>
+<div id="simpson" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Metode Simpson</h3>
+<p>Metode Simpson membagi subinterval <span class="math inline">\(\left[a,b\right]\)</span> menjadi
+<span class="math inline">\(n\)</span> subinterval, dimana <span class="math inline">\(n\)</span> merupakan bilangan genap. Untuk setiap pasang subinterval, luas area di bawah fungsi <span class="math inline">\(f\left(x\right)\)</span> ditaksir menggunakan polinomial berderajat 2.</p>
+<p>Misalkan <span class="math inline">\(u&lt;v&lt;w\)</span> merupakan titik sembarang pada suatu fungsi yang akan dicari integralnya yang terpisah sejauh <span class="math inline">\(h\)</span>. Untuk <span class="math inline">\(x\in\left[u,w\right]\)</span> kita ingin menaksir <span class="math inline">\(f\left(x\right)\)</span> menggunakan parabola yang melalui titik <span class="math inline">\(\left(u, f\left(u\right)\right)\)</span>, <span class="math inline">\(\left(v, f\left(v\right)\right)\)</span>, dan <span class="math inline">\(\left(w, f\left(w\right)\right)\)</span>. Terdapat tepat 1 parabola <span class="math inline">\(p\left(x\right)\)</span> yang dapat dibentuk dari ketiga titik koordinat tersebut yang ditunjukkan melalui Persamaan <a href="diffinteg.html#eq:simp">(9.12)</a>.</p>
+<p><span class="math display" id="eq:simp">\[\begin{equation}
+p\left(x\right)=f\left(u\right)\frac{\left(x-v\right)\left(x-w\right)}{\left(u-v\right)\left(u-w\right)}+f\left(v\right)\frac{\left(x-u\right)\left(x-w\right)}{\left(v-u\right)\left(v-w\right)}+f\left(w\right)\frac{\left(x-u\right)\left(x-v\right)}{\left(w-u\right)\left(w-v\right)}
+  \tag{9.12}
+\end{equation}\]</span></p>
+<p>Sebagai taksiran luas di bawah kurva <span class="math inline">\(y=f\left(x\right)\)</span> digunakan <span class="math inline">\(\int_{w}^u p\left(x\right)dx\)</span>. Hasil integrasi kurva Persamaan <a href="diffinteg.html#eq:simp">(9.12)</a> disajikan pada Persamaan <a href="diffinteg.html#eq:simp2">(9.13)</a>.</p>
+<p><span class="math display" id="eq:simp2">\[\begin{equation}
+\int_w^up\left(x\right)dx=\frac{h}{3}\left(f\left(u\right)+4f\left(v\right)+f\left(w\right)\right)
+  \tag{9.13}
+\end{equation}\]</span></p>
+<p>Sekarang asumsikan <span class="math inline">\(n\)</span> merupakan bilangan genap, maka kita perlu menambahkan taksiran untuk subinterval <span class="math inline">\(\left[x_{2i},x_{2i+2}\right]\)</span> untuk memperoleh taksiran <span class="math inline">\(S\)</span> pada integral <span class="math inline">\(\int_{a}^b f\left(x\right)dx\)</span> yang disajikan pada Persamaan <a href="diffinteg.html#eq:simp3">(9.14)</a>.</p>
+<p><span class="math display" id="eq:simp3">\[\begin{equation}
+S\approx\frac{h}{3}\left(f_0+4\sum_{i=1,3,5.\dots}^{n-1}f_i+2\sum_{i=2,4,6,\dots}^{n-2}f_i+f_n\right)
+  \tag{9.14}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="diffinteg.html#eq:simp3">(9.14)</a> disebut sebagai kaidah Simpson 1/3 karena terdapat koefisien 1/3 pada bagian depan persamaan tersebut. Persamaan tersebut juga mudah diingat mengingat pola koefisien persamaan tersebut adalah <span class="math inline">\(1,4,2,4,2,\dots ,2,4,1\)</span>. Namun penggunaan kaidah 1/3 Simpson mengharuskan jumlah subinterval <span class="math inline">\(n\)</span> genap. Kondisi tersebut jelas berbeda dengan metode trapezoida yang tidak mensyaratkan jumlah selang.</p>
+<p>Error dari metode Simpson 1/3 dapat dihitung menggunakan Persamaan <a href="diffinteg.html#eq:simp3">(9.14)</a>.</p>
+<p><span class="math display" id="eq:simp4">\[\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{180m^4}f^{\left(4\right)}\left(\xi\right)
+  \tag{9.15}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\xi\)</span> merupakan nilai antara <span class="math inline">\(a\)</span> dan <span class="math inline">\(b\)</span>.</p>
+<hr />
+<p><strong>Algoritma Metode Simpson</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Tentukan jumlah subinterval <span class="math inline">\(n\)</span>.</li>
+<li>Hitung nilai selang subinterval <span class="math inline">\(h\)</span>, <span class="math inline">\(h=\frac{b-a}{n}\)</span>.</li>
+<li>Tentukan awal integrasi <span class="math inline">\(x_0=a\)</span> dan akhir <span class="math inline">\(x_n=b\)</span> dan hitung nilai <span class="math inline">\(f\left(a\right)\)</span> dan <span class="math inline">\(f\left(b\right)\)</span>.</li>
+<li>Untuk <span class="math inline">\(x=1,2,\dots,n-1\)</span>,</li>
+</ol>
+<ul>
+<li>jika ganjil, hitung: <span class="math inline">\(4\times f\left(x\right)\)</span></li>
+<li>jika genap, hitung: <span class="math inline">\(2\times f\left(x\right)\)</span></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan <a href="diffinteg.html#eq:simp3">(9.14)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat membentuk fungsi <code>simpson()</code> yang dapat digunakan untuk melakukan integrasi menggunakan metode Simpson 1/3. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb660-1" title="1">simpson &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb660-2" title="2">  h &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m <span class="co"># jarak selang</span></a>
+<a class="sourceLine" id="cb660-3" title="3">  x &lt;-<span class="st"> </span>a <span class="co"># awal selang</span></a>
+<a class="sourceLine" id="cb660-4" title="4">  I &lt;-<span class="st"> </span><span class="kw">f</span>(a)<span class="op">+</span><span class="kw">f</span>(b)</a>
+<a class="sourceLine" id="cb660-5" title="5">  sigma &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb660-6" title="6">  </a>
+<a class="sourceLine" id="cb660-7" title="7">  <span class="cf">if</span>(m<span class="op">%%</span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>){</a>
+<a class="sourceLine" id="cb660-8" title="8">    <span class="kw">stop</span>(<span class="st">&quot;Jumlah panel harus genap&quot;</span>)</a>
+<a class="sourceLine" id="cb660-9" title="9">  }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb660-10" title="10">    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(m<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb660-11" title="11">    x &lt;-<span class="st"> </span>x<span class="op">+</span>h</a>
+<a class="sourceLine" id="cb660-12" title="12">    <span class="cf">if</span>(i<span class="op">%%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span>){</a>
+<a class="sourceLine" id="cb660-13" title="13">      sigma &lt;-<span class="st"> </span>sigma <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb660-14" title="14">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb660-15" title="15">      sigma &lt;-<span class="st"> </span>sigma <span class="op">+</span><span class="st"> </span><span class="dv">4</span><span class="op">*</span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb660-16" title="16">      }</a>
+<a class="sourceLine" id="cb660-17" title="17">    }</a>
+<a class="sourceLine" id="cb660-18" title="18">  }</a>
+<a class="sourceLine" id="cb660-19" title="19">  </a>
+<a class="sourceLine" id="cb660-20" title="20">  <span class="kw">return</span>((h<span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>(I<span class="op">+</span>sigma))</a>
+<a class="sourceLine" id="cb660-21" title="21">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:simpexm" class="example"><strong>Contoh 9.4  </strong></span>Hitung integral persamaan di bawah ini dengan menggunakan jumlah panel m=8!
+</div>
+
+<p><span class="math display">\[
+\int_{0}^1 \frac{1}{1+x}dx
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>lebar selang <span class="math inline">\(h\)</span> dapat dihitung seperti berikut:</p>
+<p><span class="math display">\[
+h = \frac{1-0}{8}=0,125
+\]</span></p>
+<p>Integral persamaan tersebut selanjutnya dapat dihitung menggunakan Persamaan <a href="diffinteg.html#eq:simp3">(9.14)</a>:</p>
+<p><span class="math display">\[
+S\approx\frac{0,125}{3}\left(f\left(0\right)+4f\left(0,125\right)+2f\left(0,25\right)\dots+f\left(1\right)\right)\approx 0,69412
+\]</span></p>
+<p>Fungsi <code>simpson()</code> juga menghasilkan nilai yang serupa dengan perhitungan manual yang telah dilakukan. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb661-1" title="1"><span class="kw">simpson</span>(<span class="cf">function</span>(x)<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x), <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">m=</span><span class="dv">8</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6931545</code></pre>
+</div>
+<div id="simpson38" class="section level3">
+<h3><span class="header-section-number">9.3.4</span> Metode Simpson 3/8</h3>
+<p>Jika pada metode Simpson 1/3 digunakan pendekatan polinomial berderajat 2 untuk mencari luas dibawah kurva, pada metode Simpson 3/8 digunakan pendekatan polinomial berderajat 3 untuk memperoleh hasil yang lebih baik. Bentuk umum integrasi yang digunakan disajikan pada Persamaan <a href="diffinteg.html#eq:simp38">(9.16)</a>.</p>
+<p><span class="math display" id="eq:simp38">\[\begin{equation}
+\int_a^bf\left(x\right)dx\approx\frac{3h}{8}\left(f_0+3\sum_{i=1;i\ne3,6,9,\dots}^{n-1}f_i+2\sum_{i=3,6,9,\dots}^{n-3}f_i+f_n\right)
+  \tag{9.16}
+\end{equation}\]</span></p>
+<p>Error dari metode ini dapat diestimasi menggunakan Persamaan <a href="diffinteg.html#eq:simp382">(9.17)</a>.</p>
+<p><span class="math display" id="eq:simp382">\[\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{80m^4}f^{\left(5\right)}\left(\xi\right)
+  \tag{9.17}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Metode Simpson 3/8</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Tentukan jumlah subinterval <span class="math inline">\(n\)</span>.</li>
+<li>Hitung nilai selang subinterval <span class="math inline">\(h\)</span>, <span class="math inline">\(h=\frac{b-a}{n}\)</span>.</li>
+<li>Tentukan awal integrasi <span class="math inline">\(x_0=a\)</span> dan akhir <span class="math inline">\(x_n=b\)</span> dan hitung nilai <span class="math inline">\(f\left(a\right)\)</span> dan <span class="math inline">\(f\left(b\right)\)</span>.</li>
+<li>Untuk <span class="math inline">\(x=1,2,\dots,n-1\)</span>,</li>
+</ol>
+<ul>
+<li>jika bukan kelipatan 3, hitung: <span class="math inline">\(3\times f\left(x\right)\)</span></li>
+<li>jika kelipatan 3, hitung: <span class="math inline">\(2\times f\left(x\right)\)</span></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan <a href="diffinteg.html#eq:simp38">(9.16)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, fungsi <code>R</code> dapat disusun untuk melakukan komputasi metode simpson 3/8. Berikut adalah sintaks fungsi tersebut:</p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb663-1" title="1">simpson38 &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m=</span><span class="dv">90</span>){</a>
+<a class="sourceLine" id="cb663-2" title="2">  h &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m <span class="co"># jarak selang</span></a>
+<a class="sourceLine" id="cb663-3" title="3">  x &lt;-<span class="st"> </span>a <span class="co"># awal selang</span></a>
+<a class="sourceLine" id="cb663-4" title="4">  I &lt;-<span class="st"> </span><span class="kw">f</span>(a)<span class="op">+</span><span class="kw">f</span>(b)</a>
+<a class="sourceLine" id="cb663-5" title="5">  sigma &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb663-6" title="6">  </a>
+<a class="sourceLine" id="cb663-7" title="7">  <span class="cf">if</span>(m<span class="op">%%</span><span class="dv">3</span> <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>){</a>
+<a class="sourceLine" id="cb663-8" title="8">    <span class="kw">stop</span>(<span class="st">&quot;jumlah panel harus kelipatan 3&quot;</span>)</a>
+<a class="sourceLine" id="cb663-9" title="9">  }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb663-10" title="10">    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(m<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb663-11" title="11">      x &lt;-<span class="st"> </span>x<span class="op">+</span>h</a>
+<a class="sourceLine" id="cb663-12" title="12">      <span class="cf">if</span>(i<span class="op">%%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span>){</a>
+<a class="sourceLine" id="cb663-13" title="13">      sigma &lt;-<span class="st"> </span>sigma <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb663-14" title="14">      }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb663-15" title="15">      sigma &lt;-<span class="st"> </span>sigma <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb663-16" title="16">      }</a>
+<a class="sourceLine" id="cb663-17" title="17">    }</a>
+<a class="sourceLine" id="cb663-18" title="18">  }</a>
+<a class="sourceLine" id="cb663-19" title="19">  </a>
+<a class="sourceLine" id="cb663-20" title="20">  <span class="kw">return</span>((<span class="dv">3</span><span class="op">*</span>h<span class="op">/</span><span class="dv">8</span>)<span class="op">*</span>(I<span class="op">+</span>sigma))</a>
+<a class="sourceLine" id="cb663-21" title="21">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:simp38exm" class="example"><strong>Contoh 9.5  </strong></span>Hitung kembali integral persamaan yang disajikan pada Contoh <a href="diffinteg.html#exm:simpexm">9.4</a> menggunakan fungsi simpson38() yang telah dibuat sebelumnya!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Berikut adalah sintaks yang digunakan untuk melakukan proses integrasi Simpson 3/8 menggunakan fungsi <code>simpson38()</code>:</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb664-1" title="1"><span class="kw">simpson38</span>(<span class="cf">function</span>(x)<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x), <span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">m=</span><span class="dv">9</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6931573</code></pre>
+</div>
+</div>
+<div id="metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya" class="section level2">
+<h2><span class="header-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</h2>
+<p>Terdapat sejumlah paket yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada <code>R</code>. Paket <code>pracma</code> menyediakan fungsi-fungsi seperti <code>trapz()</code> dan <code>cotes()</code>.</p>
+<p>Fungsi <code>trapz()</code> merupakan fungsi yang digunakan untuk melakukan integrasi dengan pendekatan trapesium. Penggunaan fungsi tersebut untuk melakukan perhitungan integral tidak dapat dilakukan secara langsung, kita perlu membuat terlebih dahulu seri koordinat <code>x</code> dan koordinat <code>y</code>. Program selanjutnya akan melakukan interpolasi linier terhadap selang yang saling berdekatan. Luas masing-masing panel selang selanjutnya dihitung dan dijumlahkan untuk memperoleh nilai integral. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb666-1" title="1"><span class="kw">trapz</span>(x, y)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>x</strong>: vektor sumbu x.</li>
+<li><strong>y</strong>: vektor sumbu y.</li>
+</ul>
+</blockquote>
+<p>Untuk lebih memahami penerapannya berikut disajikan contoh untuk mencari integral persamaan pada Contoh <a href="diffinteg.html#exm:reimannexm">9.2</a>:</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb667-1" title="1"><span class="kw">library</span>(pracma)</a>
+<a class="sourceLine" id="cb667-2" title="2"></a>
+<a class="sourceLine" id="cb667-3" title="3">f &lt;-<span class="st"> </span><span class="cf">function</span>(x)x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb667-4" title="4">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">101</span>) <span class="co"># membuat subinterval panel sebanyak 100</span></a>
+<a class="sourceLine" id="cb667-5" title="5">y &lt;-<span class="st"> </span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb667-6" title="6"></a>
+<a class="sourceLine" id="cb667-7" title="7"><span class="kw">trapz</span>(x, y)</a></code></pre></div>
+<pre><code>## [1] 0.33335</code></pre>
+<p>Fungsi lain yang dapat digunakan untuk menghitung integral suatu fungsi menggunakan metode Newton-Cotes adalah <code>cotes()</code>. Pada fungsi tersebut kita perlu menyatakan jumlah subinterval yang digunakan dan jumlah nodes interpolasi yang digunakan. Jumlah nodes akan menentukan fungsi polinomial pendekatan yang digunakan untuk menghitung luas di bawah suatu fungsi. Jika jumlah nodes diatur menjadi dua, maka fungsi pendekatannya berupa garis linier (metode trapezoida). Jika nodes diatur menjadi 3 maka pendekatannya berupa fungsi kuadrat (metode Simpson 1/3). Secara sederhana derajat polinomial <span class="math inline">\(n\)</span> memerlukan <span class="math inline">\(n+1\)</span> nodes. Format fungsi <code>cotes()</code> disajikan sebagai berikut:</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb669-1" title="1"><span class="kw">cotes</span>(f, a, b, n, nodes, ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: fungsi yang akan dicari integralnya</li>
+<li><strong>a</strong>: batas atas.</li>
+<li><strong>b</strong>: batas bawah.</li>
+<li><strong>n</strong>: jumlah subinterval atau panel.</li>
+<li><strong>nodes</strong>: jumlah nodes yang digunakan untuk interpolasi fungsi pada tiap subinterval.</li>
+</ul>
+</blockquote>
+<p>Untuk lebih memahami penerapannya berikut adalah contoh perhitungan intergral menggunakan persamaan pada Contoh <a href="diffinteg.html#exm:simpexm">9.4</a>.</p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb670-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x)<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>x)</a>
+<a class="sourceLine" id="cb670-2" title="2">a &lt;-<span class="st"> </span><span class="dv">0</span>; b &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb670-3" title="3"></a>
+<a class="sourceLine" id="cb670-4" title="4"><span class="co"># metode trapezoida</span></a>
+<a class="sourceLine" id="cb670-5" title="5"><span class="kw">cotes</span>(f, a, b, <span class="dt">n=</span><span class="dv">8</span>, <span class="dt">nodes=</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6941219</code></pre>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb672-1" title="1"><span class="co"># metode Simpson 1/3</span></a>
+<a class="sourceLine" id="cb672-2" title="2"><span class="kw">cotes</span>(f, a, b, <span class="dt">n=</span><span class="dv">8</span>, <span class="dt">nodes=</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6931545</code></pre>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb674-1" title="1"><span class="co"># metode Simpson 3/8</span></a>
+<a class="sourceLine" id="cb674-2" title="2"><span class="kw">cotes</span>(f, a, b, <span class="dt">n=</span><span class="dv">9</span>, <span class="dt">nodes=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6931573</code></pre>
+</div>
+<div id="kuadgauss" class="section level2">
+<h2><span class="header-section-number">9.5</span> Metode Kuadratur Gauss</h2>
+<p>Metode Newton-Cotes sangat <em>powerful</em>, tetapi metode tersebut memiliki dua fitur yang kurang diinginkan. Pertama, kita harus menggunakan evaluasi fungsi sejumlah <span class="math inline">\(n +1\)</span> untuk hasil presisi dan pada polinomial berderajat <span class="math inline">\(n\)</span>. Hal tersebut mungkin tampak seperti rasio yang baik, tetapi dalam praktiknya, jumlah titik evaluasi akan sering ditingkatkan untuk memperoleh akurasi yang lebih tinggi, namun hasil yang diperoleh juga tidak presisi. Sebagai contoh pembaca dapat melakukan simulasi dengan memvariasikan jumlah penel yang digunakan untuk memperoleh nilai integral sebuah fungsi. Jika kita plotkan hasil yang kita peroleh, grafik yang muncul berupa garis yang berosilasi khusunya pada penggunaan polinomial berderajat tinggi yang menunjukkan hasil yang diperoleh menjadi kurang presisi.</p>
+<p>Kelemahan kedua, metode Newton-Cotes memerlukan fungsi terintegrasi untuk dievaluasi pada node yang berjarak sama. Ini benar terlepas dari fungsi yang digunakan. Setiap panel membutuhkan node dengan jarak yang sama di dalamnya. Ini bisa menjadi masalah dengan fungsi periodik, di mana diskontinuitas periodik dapat secara kebetulan mendarat di titik evaluasi. Jika panel Newton-Cotes dapat menyebabkan masalah, kita dapat menggunakan integrasi Gaussian untuk menyelesaikan integral.</p>
+<p>Secara umum integrasi Gauss berusaha memperoleh pendekatan luas dibawah kurva fungsi dengan memecah fungsi tersebut menjadi faktor bobot <span class="math inline">\(c\)</span> dan <span class="math inline">\(f\left(x\right)\)</span> yang merupakan polinomial pendekatannya. Integral diperoleh melalui hasil kali dari bobot dan fungsi polinomial. Jumlah bobot dan fungsi yang digunakan bergantung pada orde <span class="math inline">\(n\)</span> polinomial yang akan digunakan untuk mengestimasi integral suatu fungsi. Bentuk umum dari kaidah Gauss tersebut ditampilkan pada Persamaan <a href="diffinteg.html#eq:gauss">(9.18)</a>.</p>
+<p><span class="math display" id="eq:gauss">\[\begin{equation}
+\int_{-1}^1f\left(x\right)dt\approx c_1f\left(x_1\right)+c_2f\left(x_2\right)+\dots+c_nf\left(x_n\right)
+  \tag{9.18}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(c\)</span> merupakan faktor bobot dan <span class="math inline">\(x\)</span> merupakan titik evaluasi.</p>
+<p>Nilai faktor bobot dan nilai masing-masing titik evaluasi disajikan pada Gambar <a href="diffinteg.html#fig:gaussviz">9.6</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:gaussviz"></span>
+<img src="images/gaussviz.PNG" alt="Tabulasi faktor bobot, titik evaluasi dan galat pemotongan." width="90%" />
+<p class="caption">
+Gambar 9.6: Tabulasi faktor bobot, titik evaluasi dan galat pemotongan.
+</p>
+</div>
+<p>Fungsi yang akan dicari nilai integrannya pada umumnya tidak hanya memiliki daerah batas <span class="math inline">\(\left[-1,1\right]\)</span>, sehingga pendekatan kuadratur Gauss tidak dapat digunakan secara langsung pada fungsi yang tidak memiliki batas tersebut. Agar kuadratur Gauss tetap dapat digunakan, fungsi tersebut perlu dilakukan transformasi. Proses transformasi dituliskan pada Persamaan <a href="diffinteg.html#eq:gauss2">(9.19)</a>.</p>
+<p><span class="math display" id="eq:gauss2">\[\begin{equation}
+\int_a^bf\left(x\right)dx=\frac{b-a}{2}\int_{-1}^1f\left(\frac{a+b+\left(b-a\right)t}{2}\right)dt
+  \tag{9.19}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Kuadratur Gauss-Legendre</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Lakukan transformasi fungsi tersebut hingga diperoleh fungsi dengan selang <span class="math inline">\(\left[-1,1\right]\)</span> menggunakan Persamaan <a href="diffinteg.html#eq:gauss2">(9.19)</a>.</li>
+<li>Tentukan orde polinomial <span class="math inline">\(n\)</span> yang akan digunakan.</li>
+<li>Lakukan proses integrasi dengan mengalikan faktor bobot <span class="math inline">\(c\)</span> dengan <span class="math inline">\(f\left(x_i\right)\)</span> seperti yang ditujukkan pada Persamaan <a href="diffinteg.html#eq:gauss">(9.18)</a>.</li>
+</ol>
+<hr />
+<p>Kita dapat membangun suatu fungsi pada <code>R</code> untuk melakukan integrasi Gauss berdasarkan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb676-1" title="1">gauss_legendre &lt;-<span class="st"> </span><span class="cf">function</span>(f, n){</a>
+<a class="sourceLine" id="cb676-2" title="2">    <span class="cf">if</span>(n<span class="op">==</span><span class="dv">2</span>){</a>
+<a class="sourceLine" id="cb676-3" title="3">      c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb676-4" title="4">      x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.577350269</span>, <span class="fl">0.577350269</span>)</a>
+<a class="sourceLine" id="cb676-5" title="5">      integral &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb676-6" title="6">      </a>
+<a class="sourceLine" id="cb676-7" title="7">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb676-8" title="8">        integral &lt;-<span class="st"> </span>integral <span class="op">+</span><span class="st"> </span>c[i]<span class="op">*</span><span class="kw">f</span>(x[i])</a>
+<a class="sourceLine" id="cb676-9" title="9">      }</a>
+<a class="sourceLine" id="cb676-10" title="10">    }<span class="cf">else</span> <span class="cf">if</span>(n<span class="op">==</span><span class="dv">3</span>){</a>
+<a class="sourceLine" id="cb676-11" title="11">      c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.555555556</span>,<span class="fl">0.888888889</span>,<span class="fl">0.555555556</span>)</a>
+<a class="sourceLine" id="cb676-12" title="12">      x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.774596669</span>,<span class="dv">0</span>,<span class="fl">0.774596669</span>)</a>
+<a class="sourceLine" id="cb676-13" title="13">      integral &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb676-14" title="14">      </a>
+<a class="sourceLine" id="cb676-15" title="15">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb676-16" title="16">        integral &lt;-<span class="st"> </span>integral <span class="op">+</span><span class="st"> </span>c[i]<span class="op">*</span><span class="kw">f</span>(x[i])</a>
+<a class="sourceLine" id="cb676-17" title="17">      }</a>
+<a class="sourceLine" id="cb676-18" title="18">    }<span class="cf">else</span> <span class="cf">if</span>(n<span class="op">==</span><span class="dv">4</span>){</a>
+<a class="sourceLine" id="cb676-19" title="19">      c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.347854845</span>,<span class="fl">0.652145155</span>,<span class="fl">0.652145155</span>,</a>
+<a class="sourceLine" id="cb676-20" title="20">             <span class="fl">0.347854845</span>)</a>
+<a class="sourceLine" id="cb676-21" title="21">      x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.861136312</span>,<span class="op">-</span><span class="fl">0.339981044</span>,<span class="fl">0.339981044</span>,</a>
+<a class="sourceLine" id="cb676-22" title="22">             <span class="fl">0.861136312</span>)</a>
+<a class="sourceLine" id="cb676-23" title="23">      integral &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb676-24" title="24">      </a>
+<a class="sourceLine" id="cb676-25" title="25">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb676-26" title="26">        integral &lt;-<span class="st"> </span>integral <span class="op">+</span><span class="st"> </span>c[i]<span class="op">*</span><span class="kw">f</span>(x[i])</a>
+<a class="sourceLine" id="cb676-27" title="27">      }</a>
+<a class="sourceLine" id="cb676-28" title="28">    }<span class="cf">else</span> <span class="cf">if</span>(n<span class="op">==</span><span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb676-29" title="29">      c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.236926885</span>,<span class="fl">0.478628670</span>,<span class="fl">0.568888889</span>,</a>
+<a class="sourceLine" id="cb676-30" title="30">              <span class="fl">0.478628670</span>,<span class="fl">0.236926885</span>)</a>
+<a class="sourceLine" id="cb676-31" title="31">      x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.906179846</span>,<span class="op">-</span><span class="fl">0.538469310</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb676-32" title="32">             <span class="fl">0.538469310</span>, <span class="fl">0.906179846</span>)</a>
+<a class="sourceLine" id="cb676-33" title="33">      integral &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb676-34" title="34">      </a>
+<a class="sourceLine" id="cb676-35" title="35">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb676-36" title="36">        integral &lt;-<span class="st"> </span>integral <span class="op">+</span><span class="st"> </span>c[i]<span class="op">*</span><span class="kw">f</span>(x[i])</a>
+<a class="sourceLine" id="cb676-37" title="37">      }</a>
+<a class="sourceLine" id="cb676-38" title="38">    }<span class="cf">else</span> <span class="cf">if</span>(n<span class="op">==</span><span class="dv">6</span>){</a>
+<a class="sourceLine" id="cb676-39" title="39">      c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.171324492</span>,<span class="fl">0.360761573</span>,<span class="fl">0.467913935</span>,</a>
+<a class="sourceLine" id="cb676-40" title="40">              <span class="fl">0.467913935</span>,<span class="fl">0.360761573</span>,<span class="fl">0.171324492</span>)</a>
+<a class="sourceLine" id="cb676-41" title="41">      x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.932469514</span>,<span class="op">-</span><span class="fl">0.661209386</span>,<span class="op">-</span><span class="fl">0.238619186</span>,</a>
+<a class="sourceLine" id="cb676-42" title="42">             <span class="fl">0.238619186</span>, <span class="fl">0.661209386</span>,<span class="fl">0.932469514</span>)</a>
+<a class="sourceLine" id="cb676-43" title="43">      integral &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb676-44" title="44">      </a>
+<a class="sourceLine" id="cb676-45" title="45">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb676-46" title="46">        integral &lt;-<span class="st"> </span>integral <span class="op">+</span><span class="st"> </span>c[i]<span class="op">*</span><span class="kw">f</span>(x[i])</a>
+<a class="sourceLine" id="cb676-47" title="47">      }</a>
+<a class="sourceLine" id="cb676-48" title="48">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb676-49" title="49">      <span class="kw">stop</span>(<span class="st">&quot;n harus ditentukan&quot;</span>)</a>
+<a class="sourceLine" id="cb676-50" title="50">    }</a>
+<a class="sourceLine" id="cb676-51" title="51">    <span class="kw">return</span>(integral)</a>
+<a class="sourceLine" id="cb676-52" title="52">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:gausslanexm" class="example"><strong>Contoh 9.6  </strong></span>Hitunglah integral fungsi berikut menggunakan metode Gauss-Legendre 2 titik!
+</div>
+
+<p><span class="math display">\[
+\int_1^2 \left(x^2+1\right)dx
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Agar fungsi tersebut dapat dicari nilai integralnya menggunakan metode Gauss-Legendre, fungsi tersebut perlu ditransformasi terlebih dahulu:</p>
+<p><span class="math display">\[
+\int_1^2 \left(x^2+1\right)dx=0,5\int_{-1}^1 \left[\left(1,5+0,5t\right)^2+1\right]dt
+\]</span></p>
+<p>Jadi dalam hal ini</p>
+<p><span class="math display">\[
+f\left(t\right)=\left(1,5+0,5t\right)^2+1
+\]</span></p>
+<p>maka</p>
+<p><span class="math display">\[
+\int_1^2 \left(x^2+1\right)dx=0,5\left[1\times f\left(\frac{1}{\sqrt{3}}\right)+1\times f\left(\frac{1}{\sqrt{3}}\right)\right]\approx 3,333333333
+\]</span></p>
+<p>Kita juga dapat menggunakan fungsi <code>gauss_legendre()</code> untuk melakukan integrasi Gauss-Legendre pada dua titik. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb677-1" title="1"><span class="fl">0.5</span><span class="op">*</span><span class="kw">gauss_legendre</span>(<span class="cf">function</span>(x)((<span class="fl">1.5+0.5</span><span class="op">*</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">+</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb677-2" title="2">               <span class="dt">n=</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 3.333333</code></pre>
+</div>
+<div id="othergauss" class="section level2">
+<h2><span class="header-section-number">9.6</span> Metode Gauss-Legendre Menggunakan Fungsi <code>legendre.quadrature()</code></h2>
+<p>Fungsi <code>legendre.quadrature()</code> dari paket <code>gaussquand</code> dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb679-1" title="1"><span class="kw">legendre.quadrature</span>(functn, rule, <span class="dt">lower=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">upper=</span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb679-2" title="2">  <span class="dt">weighted =</span> <span class="ot">TRUE</span>, ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>functn</strong>: fungsi yang akan dicari integralnya</li>
+<li><strong>rule</strong>: data frame yang terdiri atas orde n aturan kuadratur legendre</li>
+<li><strong>lower</strong>: batas atas.</li>
+<li><strong>upper</strong>: batas bawah.</li>
+<li><strong>weighted</strong>: nilai boolean yang menyatakan apakah bobot fungsi disertakan dalam integran</li>
+<li><strong>…</strong>: argumen tambahan functn</li>
+</ul>
+</blockquote>
+<p>Untuk menentukan <code>rule</code> pada fungsi <code>legendre.quadrature()</code>, diperlukan fungsi lain yang tersedia pada paket <code>gaussquad</code>. Fungsi tersebut adalah <code>legendre.quadrature.rules()</code>. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" title="1"><span class="kw">legendre.quadrature.rules</span>(n,<span class="dt">normalized=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>n</strong>: orde tertinggi polinomial yang akan ditampilkan</li>
+<li><strong>normalized</strong>: nilai boolean. Jika bernilai <code>TRUE</code>, aturan digunakan untuk polinomial ortogonal.</li>
+</ul>
+</blockquote>
+<p>Untuk memahami penerapan kedua fungsi tersebut berikut disajikan contoh penerapannya:</p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb681-1" title="1"><span class="kw">library</span>(gaussquad)</a>
+<a class="sourceLine" id="cb681-2" title="2"><span class="co"># menampilkan aturan untuk orde 4</span></a>
+<a class="sourceLine" id="cb681-3" title="3"><span class="kw">legendre.quadrature.rules</span>(<span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [[1]]
+##   x w
+## 1 0 2
+## 
+## [[2]]
+##            x w
+## 1  0.5773503 1
+## 2 -0.5773503 1
+## 
+## [[3]]
+##               x         w
+## 1  7.745967e-01 0.5555556
+## 2  7.771561e-16 0.8888889
+## 3 -7.745967e-01 0.5555556
+## 
+## [[4]]
+##            x         w
+## 1  0.8611363 0.3478548
+## 2  0.3399810 0.6521452
+## 3 -0.3399810 0.6521452
+## 4 -0.8611363 0.3478548</code></pre>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" title="1"><span class="co"># mencari integral suatu fungsi dengan orde</span></a>
+<a class="sourceLine" id="cb683-2" title="2"><span class="co"># gauss-legendre sebesar 4</span></a>
+<a class="sourceLine" id="cb683-3" title="3">f &lt;-<span class="st"> </span><span class="cf">function</span>(x)x<span class="op">^</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb683-4" title="4">rule &lt;-<span class="st"> </span><span class="kw">legendre.quadrature.rules</span>(<span class="dv">4</span>)[[<span class="dv">4</span>]]</a>
+<a class="sourceLine" id="cb683-5" title="5"></a>
+<a class="sourceLine" id="cb683-6" title="6"><span class="kw">legendre.quadrature</span>(f, rule, <span class="dt">lower=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">upper=</span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 0.2857143</code></pre>
+</div>
+<div id="adaptifint" class="section level2">
+<h2><span class="header-section-number">9.7</span> Metode Integrasi Adaptif</h2>
+<p>Integrasi adaptif menyediakan pendekatan yang berbeda untuk memperoleh nilai intergral suatu fungsi. Salah satu prinsip utama dari analisis numerik adalah bahwa kita harus berkomitmen pada semacam analisis manusia terhadap suatu masalah sebelum mencoba menyelesaikannya secara algoritmik. Metode analisis numerik umumnya tidak dapat menyelesaikan semua masalah dengan sangat baik. Jadi pengetahuan terhadap masalah yang hendak diselesaikan dapat memungkinkan kita memilih metode numerik yang lebih baik sesuai dengan masalah. Misalnya, dalam konteks integrasi numerik, diskontinuitas pada titik akhir tidak akan cocok untuk solusi Newton-Cotes yang bersifat tertutup.</p>
+<p>Tentu saja, akan lebih baik jika kita bisa memprogram komputer untuk mempelajari sesuatu tentang masalah, daripada kita melakukan itu sendiri. Metode adaptif memberikan pendekatan untuk melakukan hal ini. Metode integrasi adaptif memeriksa integral yang mereka operasikan dan mengubah parameter mereka sendiri untuk meningkatkan kualitas integrasi. Algoritma adaptif yang paling sederhana memberikan pendekatan <em>brute force</em> untuk peningkatan kualitas dengan memeriksa <em>error</em> integrasi. Di sisi lain, jika kita tahu <em>error</em>-nya, secara teoritis kita bisa memperbaiki estimasi. Di situlah batas <em>error</em> pada algoritma Newton-Cotes dapat membantu.</p>
+<p>Jika kita dapat menemukan sesuatu tentang <em>error</em> tersebut, kita dapat menggunakan informasi itu untuk memperbaiki estimasi pada proses integrasi. Bayangkan kita sedang mengintegrasikan suatu fungsi, <span class="math inline">\(f \left(x\right)\)</span> pada batas <span class="math inline">\(\left[a, b\right]\)</span>. Jika kita menggunakan metode titik tengah (integral Riemann). Kita telah menetahui <em>error</em> maksimum yang mungkin terjadi pada metode tersebut melalui Persamaan <a href="diffinteg.html#eq:reimann2">(9.9)</a>. Dua pengamatan segera menjadi jelas. Terlepas dari apa fungsi <span class="math inline">\(f \left(x\right)\)</span> itu, atau turunan keduanya, dua perubahan dapat dilakukan pada integrasi untuk meningkatkan kualitasnya. Pertama, <em>error</em> adalah proporsi terhadap kubik dari panjang domain integrasi. Mengurangi panjang meningkatkan kualitas dan memotong panjang menjadi dua memberikan peningkatan kualitas delapan kali lipat. Kedua, <em>error</em> berbanding terbalik dengan jumlah panel m yang digunakan . Meningkatkan panel mengurangi <em>error</em> dan menggandakan jumlah panel yang disediakan dapat meeningkatkan kualitas empat kali lipat.</p>
+<p>Kita dapat merancang algoritma di sekitar pengamatan ini. Pertama, kita dapat memperkirakan nilai integral <span class="math inline">\(Q_1\)</span>, menggunakan aturan titik tengah 1-point. Kedua, kita bisa memperkirakannya lagi menggunakan aturan titik tengah 2-point <span class="math inline">\(Q_2\)</span>. Karena kita telah menggandakan jumlah titik dalam aturan, kita sekarang tahu bahwa perbedaan maksimum antara <span class="math inline">\(Q_1\)</span> dan <span class="math inline">\(Q\)</span>, nilai sebenarnya dari integral, tidak lebih dari 4 kali lebih besar dari perbedaan maksimum antara <span class="math inline">\(Q_2\)</span> dan <span class="math inline">\(Q\)</span>. Jika <span class="math inline">\(Q_2 −Q\)</span> kurang dari toleransi tertentu, maka perbedaan antara <span class="math inline">\(Q_1\)</span> dan <span class="math inline">\(Q_2\)</span> harus kurang dari tiga kali toleransi yang sama.</p>
+<p>Kita peeriksa perbedaan antara dua perkiraan. Jika perbedaannya lebih besar dari toleransi, kita mungkin masih berada dalam toleransi, tetapi kita belum pasti. Jadi proses membagi wilayah integrasi menjadi dua, dan menerapkan integrator adaptif untuk kedua bagian, secara terpisah, menjumlahkan hasilnya akan terus dilakukan.</p>
+<hr />
+<p><strong>Algoritma Metode Riemann Adaptif</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Tentukan jumlah subinterval <span class="math inline">\(m\)</span>.</li>
+<li>Jika <span class="math inline">\(m=1\)</span>, hitung luas area di bawah kurva dengan pendekatan metode Riemann dengan <span class="math inline">\(m=2\)</span>.</li>
+<li>Jika <span class="math inline">\(n&gt;1\)</span>,</li>
+</ol>
+<ul>
+<li>Hitung <span class="math inline">\(Q_1\)</span> dengan pendekatan metode Riemann dan <span class="math inline">\(m=1\)</span></li>
+<li>Hitung <span class="math inline">\(Q_2\)</span> dengan pendekatan metode Riemann dan <span class="math inline">\(m=2\)</span></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Jika <span class="math inline">\(Q_1-Q_2&gt;3\times\text{nilai toleransi}\)</span>,</li>
+</ol>
+<ul>
+<li>Perkecil <span class="math inline">\(m\)</span> sebanyak 1, <span class="math inline">\(m-1\)</span></li>
+<li>Perkecil <span class="math inline">\(\text{nilai toleransi}\)</span> menjadi setengahnya</li>
+<li>Bagi area integrasi menjadi dua bagian dengan menetapkan <span class="math inline">\(c\)</span> sebagai batas, sehingga terdapat dua batas yaitu: <span class="math inline">\(\left[a, c\right]\)</span> dan <span class="math inline">\(\left[c, b\right]\)</span>.</li>
+<li>Lakukan perhitungan kembali integral pada masing-masing batas tersebut menggunakan metode Riemann dan cek apakah <span class="math inline">\(Q_1-Q_2&gt;3\times\text{nilai toleransi}\)</span>.</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Jika <span class="math inline">\(Q_1-Q_2&lt;3\times\text{nilai toleransi}\)</span>, luas integral = <span class="math inline">\(Q_2\)</span>.</li>
+</ol>
+<hr />
+<p>Kita dapat membangun sebuah fungsi integral adaptif menggunakan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" title="1">riemann_adaptint &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m=</span><span class="dv">10</span>, <span class="dt">tol=</span><span class="fl">1e-8</span>){</a>
+<a class="sourceLine" id="cb685-2" title="2">  <span class="cf">if</span>(m<span class="op">&lt;</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb685-3" title="3">    <span class="kw">stop</span>(<span class="st">&quot;m harus &gt;= 1&quot;</span>)</a>
+<a class="sourceLine" id="cb685-4" title="4">  }<span class="cf">else</span> <span class="cf">if</span>(m<span class="op">==</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb685-5" title="5">    m &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-6" title="6">    n_width &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m</a>
+<a class="sourceLine" id="cb685-7" title="7">    x &lt;-<span class="st"> </span><span class="kw">seq</span>(a, b<span class="op">-</span>n_width, <span class="dt">length.out =</span> m) <span class="op">+</span><span class="st"> </span>n_width<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-8" title="8">    y &lt;-<span class="st"> </span><span class="kw">f</span>(x)</a>
+<a class="sourceLine" id="cb685-9" title="9">    area &lt;-<span class="st"> </span><span class="kw">sum</span>(y)<span class="op">*</span><span class="kw">abs</span>(b<span class="op">-</span>a)<span class="op">/</span>m</a>
+<a class="sourceLine" id="cb685-10" title="10">  }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb685-11" title="11">    </a>
+<a class="sourceLine" id="cb685-12" title="12">    m1 &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb685-13" title="13">    n_width1 &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m1</a>
+<a class="sourceLine" id="cb685-14" title="14">    x1 &lt;-<span class="st"> </span><span class="kw">seq</span>(a, b<span class="op">-</span>n_width1, <span class="dt">length.out =</span> m1) <span class="op">+</span><span class="st"> </span>n_width1<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-15" title="15">    y1 &lt;-<span class="st"> </span><span class="kw">f</span>(x1)</a>
+<a class="sourceLine" id="cb685-16" title="16">    q1 &lt;-<span class="st"> </span><span class="kw">sum</span>(y1)<span class="op">*</span><span class="kw">abs</span>(b<span class="op">-</span>a)<span class="op">/</span>m1</a>
+<a class="sourceLine" id="cb685-17" title="17">    </a>
+<a class="sourceLine" id="cb685-18" title="18">    m2 &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-19" title="19">    n_width2 &lt;-<span class="st"> </span>(b<span class="op">-</span>a)<span class="op">/</span>m2</a>
+<a class="sourceLine" id="cb685-20" title="20">    x2 &lt;-<span class="st"> </span><span class="kw">seq</span>(a, b<span class="op">-</span>n_width2, <span class="dt">length.out =</span> m2) <span class="op">+</span><span class="st"> </span>n_width2<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-21" title="21">    y2 &lt;-<span class="st"> </span><span class="kw">f</span>(x2)</a>
+<a class="sourceLine" id="cb685-22" title="22">    q2 &lt;-<span class="st"> </span><span class="kw">sum</span>(y2)<span class="op">*</span><span class="kw">abs</span>(b<span class="op">-</span>a)<span class="op">/</span>m2</a>
+<a class="sourceLine" id="cb685-23" title="23">    </a>
+<a class="sourceLine" id="cb685-24" title="24">    <span class="cf">if</span>(<span class="kw">abs</span>(q1<span class="op">-</span>q2)<span class="op">&gt;</span><span class="dv">3</span><span class="op">*</span>tol){</a>
+<a class="sourceLine" id="cb685-25" title="25">      m &lt;-<span class="st"> </span>m<span class="dv">-1</span></a>
+<a class="sourceLine" id="cb685-26" title="26">      tol &lt;-<span class="st"> </span>tol<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-27" title="27">      c &lt;-<span class="st"> </span>(a<span class="op">+</span>b)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb685-28" title="28">      lt &lt;-<span class="st"> </span><span class="kw">riemann_adaptint</span>(f, a, c, <span class="dt">m=</span>m, <span class="dt">tol=</span>tol)</a>
+<a class="sourceLine" id="cb685-29" title="29">      rt &lt;-<span class="st"> </span><span class="kw">riemann_adaptint</span>(f, c, b, <span class="dt">m=</span>m, <span class="dt">tol=</span>tol) </a>
+<a class="sourceLine" id="cb685-30" title="30">      area &lt;-<span class="st"> </span>lt<span class="op">+</span>rt</a>
+<a class="sourceLine" id="cb685-31" title="31">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb685-32" title="32">      area &lt;-<span class="st"> </span>q2</a>
+<a class="sourceLine" id="cb685-33" title="33">    }</a>
+<a class="sourceLine" id="cb685-34" title="34">  }</a>
+<a class="sourceLine" id="cb685-35" title="35">  </a>
+<a class="sourceLine" id="cb685-36" title="36">  <span class="kw">return</span>(area)</a>
+<a class="sourceLine" id="cb685-37" title="37">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:adaptexm" class="example"><strong>Contoh 9.7  </strong></span>Hitung integral fungsi di bawah ini dengan menggunakan integral Riemann adaptif dengan jumlah panel yang digunakan m=100!
+</div>
+
+<p><span class="math display">\[
+\int_{1}^{10} \sin\left(x\right)^2+\log\left(x\right)dx
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Kita akan menghitung integral dari fungsi tersebut menggunakan fungsi <code>R</code> yang telah dibuat. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" title="1"><span class="kw">riemann_adaptint</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x),</a>
+<a class="sourceLine" id="cb686-2" title="2">                 <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">10</span>, <span class="dt">m=</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1] 18.52494</code></pre>
+</div>
+<div id="metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r" class="section level2">
+<h2><span class="header-section-number">9.8</span> Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada <code>R</code></h2>
+<p>Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada <code>R</code>. Fungsi-fungsi tersebut antara lain: <code>integrate()</code> dari paket <code>base</code> dan <code>integral()</code> dari paket <code>pracma</code>.</p>
+<p>Fungsi <code>integrate()</code> merupakan fungsi yang akan melakukan integrasi numerik menggunakan metode kudratur adaptif untuk sebuah variabel dengan selang terbatas (<em>finite</em>) maupun tidak terbatas (<em>infinite</em>). Format fungsi tersebut secara umum adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" title="1"><span class="kw">integrate</span>(f, lower, upper, ..., <span class="dt">subdivisions =</span> 100L,</a>
+<a class="sourceLine" id="cb688-2" title="2">          <span class="dt">rel.tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>, </a>
+<a class="sourceLine" id="cb688-3" title="3">          <span class="dt">abs.tol =</span> rel.tol)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: fungsi yang akan dicari integralnya</li>
+<li><strong>lower</strong>: batas bawah.</li>
+<li><strong>upper</strong>: batas atas.</li>
+<li><strong>…</strong>: argumen tambahan functn</li>
+<li><strong>subdivision</strong>: jumlah subinterval atau panel yang akan digunakan.</li>
+<li><strong>rel.tol</strong>: nilai akurasi relatif yang hendak dicapai</li>
+<li><strong>abs.tol</strong>: nilai akurasi absolut yang hendak dicapai</li>
+</ul>
+</blockquote>
+<p>Contoh penerapan fungsi <code>integrate()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb689-1" title="1"><span class="kw">integrate</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x),</a>
+<a class="sourceLine" id="cb689-2" title="2">          <span class="dt">lower=</span><span class="dv">1</span>, <span class="dt">upper=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb689-3" title="3">          <span class="dt">rel.tol =</span> <span class="fl">1e-8</span>)</a></code></pre></div>
+<pre><code>## 18.52494 with absolute error &lt; 4.1e-10</code></pre>
+<p>Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi <code>integral()</code> dari paket <code>pracma</code>. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi <code>integral()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb691-1" title="1"><span class="kw">integral</span>(fun, xmin, xmax,</a>
+<a class="sourceLine" id="cb691-2" title="2">         <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;Kronrod&quot;</span>, <span class="st">&quot;Clenshaw&quot;</span>,<span class="st">&quot;Simpson&quot;</span>),</a>
+<a class="sourceLine" id="cb691-3" title="3">         <span class="dt">no_intervals =</span> <span class="dv">8</span>, <span class="dt">reltol =</span> <span class="fl">1e-8</span>, </a>
+<a class="sourceLine" id="cb691-4" title="4">         <span class="dt">abstol =</span> <span class="dv">0</span>, ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>fun</strong>: fungsi yang akan dicari integralnya</li>
+<li><strong>xmin</strong>: batas bawah.</li>
+<li><strong>xmax</strong>: batas atas.</li>
+<li><strong>method</strong>: metode imtegrasi yang digunakan.</li>
+<li><strong>…</strong>: argumen tambahan fun.</li>
+<li><strong>no_intervals</strong>: jumlah subinterval atau panel yang akan digunakan.</li>
+<li><strong>reltol</strong>: nilai akurasi relatif yang hendak dicapai</li>
+<li><strong>abstol</strong>: nilai akurasi absolut yang hendak dicapai</li>
+</ul>
+</blockquote>
+<p>Berikut merupakan contoh penerapan fungsi <code>integral()</code>:</p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" title="1">pracma<span class="op">::</span><span class="kw">integral</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x),</a>
+<a class="sourceLine" id="cb692-2" title="2">          <span class="dt">xmin=</span><span class="dv">1</span>, <span class="dt">xmax=</span><span class="dv">10</span>, <span class="dt">method=</span><span class="st">&quot;Simpson&quot;</span>,</a>
+<a class="sourceLine" id="cb692-3" title="3">          <span class="dt">reltol =</span> <span class="fl">1e-8</span>)</a></code></pre></div>
+<pre><code>## [1] 18.52494</code></pre>
+</div>
+<div id="romberg" class="section level2">
+<h2><span class="header-section-number">9.9</span> Metode Integrasi Romberg</h2>
+<p>Seperti halnya algoritma integrasi adaptif, integrasi Romberg adalah perluasan yang relatif mudah dari keluarga algoritma Newton-Cotes. Keduanya bekerja dengan menggunakan iterasi yang disempurnakan dari beberapa metode Newton-Cotes yang mendasarinya untuk memberikan perkiraan nilai integral yang lebih akurat. Tidak seperti proses komputasi fungsi <code>riemann_adapint()</code>, integrasi Romberg bukanlah pendekatan adaptif terhadap integrasi. Hal tersebut berarti metode Romberg tidak mengubah perilakunya sendiri berdasarkan perilaku fungsi yang akan diintegrasikan. Sebaliknya, kita mengeksploitasi perilaku fungsi trapesium pada batas untuk menghasilkan estimasi integral.</p>
+<p>Untuk memahami integrasi Romberg, kita harus mulai dengan implementasi rekursif dari aturan trapesium. Jika kita mulai dengan suatu fungsi, <span class="math inline">\(T\left(f, m\right)\)</span> di mana <span class="math inline">\(T\)</span> adalah fungsi trapesium, <span class="math inline">\(f\)</span> adalah fungsi yang akan diintegrasikan, dan <span class="math inline">\(m\)</span> adalah jumlah panel untuk diintegrasikan, maka,</p>
+<p><span class="math display" id="eq:romberg">\[\begin{equation}
+S\left(f, m\right)=\frac{4T\left(f, m\right)-T\left(f, m/2\right)}{3}
+  \tag{9.20}
+\end{equation}\]</span></p>
+<p>di mana <span class="math inline">\(S\)</span> adalah aturan Simpson. Kemudian, jika kita mendefinisikan <span class="math inline">\(T \left(f, 0\right) = \left(b − a\right) \left(f \left(b\right) + f \left(a\right)\right) = 2\)</span>, maka fungsi rekursif kita selesai, karena berdasarkan hubungan ini, fraksi yang diberikan dalam Persamaan <a href="diffinteg.html#eq:romberg">(9.20)</a> juga merupakan perkiraan untuk integral.</p>
+<p>Secara umum,</p>
+<p><span class="math display" id="eq:romberg2">\[\begin{equation}
+I_{j,k}=\frac{4^k I_{j,k-1}-I_{j-1,k-1}}{4^k-1}
+  \tag{9.21}
+\end{equation}\]</span></p>
+<p>di mana <span class="math inline">\(I_{0, 0}\)</span> adalah aturan trapesium satu panel dan <span class="math inline">\(I_{j, 0}\)</span> adalah aturan trapesium dengan panel <span class="math inline">\(2^j\)</span>. Dengan menggunakan fungsi-fungsi dasar ini, <span class="math inline">\(I_{j, k}\)</span> dapat ditemukan secara iteratif sebagai matriks segitiga-bawah di mana masing-masing nilai di kolom yang bukan paling kiri adalah fungsi dari nilai di sebelah kiri dan entri di atasnya.</p>
+<p>Definisi rekursif ini muncul dari ekstrapolasi Richardson. Ketika diterapkan pada algoritma trapesium, yang konvergen menuju nilai sebenarnya dari integral sebagai <span class="math inline">\(m\)</span> (jumlah panel) meningkat, hubungan dalam Persamaan <a href="diffinteg.html#eq:romberg2">(9.21)</a> muncul. Penting untuk dipahami bahwa pada batas ketika <span class="math inline">\(k\)</span> mendekati tak terhingga, nilai <span class="math inline">\(I_{j, k}\)</span> adalah nilai sejati integral. Untuk nilai yang lebih kecil dari <span class="math inline">\(k\)</span>, integral Romberg masih hanya perkiraan, meskipun hasil yang diperoleh sangat bagus.</p>
+<hr />
+<p><strong>Algoritma Metode Integrasi Romberg</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Tentukan jumlah subinterval <span class="math inline">\(m\)</span>.</li>
+<li>Bentuk matrik <span class="math inline">\(R\)</span> dengan ukuran <span class="math inline">\(m\times m\)</span> yang akan menampung hasil perhitungan.</li>
+<li>Untuk <span class="math inline">\(R_{1,1}\)</span> hitung integral fungsi menggunakan metode trapezoida dengan <span class="math inline">\(m=1\)</span>.</li>
+<li>Untuk <span class="math inline">\(j=2,\dots,m\)</span> dan <span class="math inline">\(k=1\)</span>, hitung integral dengan jumlah panel <span class="math inline">\(m=2^{j-1}\)</span></li>
+<li>Untuk <span class="math inline">\(j=2,\dots,m\)</span> dan <span class="math inline">\(k=2,\dots,m\)</span> hitung nilai perbaikan nilai integrasi menggunakan Persamaan <a href="diffinteg.html#eq:romberg2">(9.21)</a>.</li>
+<li>Solusi integrasi diperoleh pada <span class="math inline">\(R_{m,m}\)</span>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita akan menyusun suatu fungsi pada <code>R</code> untuk melakukan proses komputasi integrasi dengan metode Romberg. Berikut adalah sintaks fungsi yang dibuat:</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" title="1">romberg &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, m, <span class="dt">tab=</span><span class="ot">FALSE</span>){</a>
+<a class="sourceLine" id="cb694-2" title="2">  R &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>m, <span class="dt">ncol=</span>m)</a>
+<a class="sourceLine" id="cb694-3" title="3">  </a>
+<a class="sourceLine" id="cb694-4" title="4">  R[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">trap</span>(f, a, b, <span class="dt">m=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb694-5" title="5">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>m){</a>
+<a class="sourceLine" id="cb694-6" title="6">    R[j,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">trap</span>(f, a, b, <span class="dt">m=</span><span class="dv">2</span><span class="op">^</span>(j<span class="dv">-1</span>))</a>
+<a class="sourceLine" id="cb694-7" title="7">    <span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>j){</a>
+<a class="sourceLine" id="cb694-8" title="8">      k4 &lt;-<span class="st"> </span><span class="dv">4</span><span class="op">^</span>(k<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb694-9" title="9">      R[j,k] &lt;-<span class="st"> </span>(k4<span class="op">*</span>R[j,k<span class="dv">-1</span>]<span class="op">-</span>R[j<span class="dv">-1</span>,k<span class="dv">-1</span>])<span class="op">/</span>(k4<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb694-10" title="10">    }</a>
+<a class="sourceLine" id="cb694-11" title="11">  }</a>
+<a class="sourceLine" id="cb694-12" title="12">  </a>
+<a class="sourceLine" id="cb694-13" title="13">  <span class="cf">if</span>(tab<span class="op">==</span><span class="ot">TRUE</span>){</a>
+<a class="sourceLine" id="cb694-14" title="14">    <span class="kw">return</span>(R)</a>
+<a class="sourceLine" id="cb694-15" title="15">  }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb694-16" title="16">    <span class="kw">return</span>(R[m,m])</a>
+<a class="sourceLine" id="cb694-17" title="17">  }</a>
+<a class="sourceLine" id="cb694-18" title="18">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:rombergexm" class="example"><strong>Contoh 9.8  </strong></span>Hitung integral fungsi yang ditampilkan pada Contoh <a href="diffinteg.html#exm:adaptexm">9.7</a> dengan m=10!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Kita dapat menggunakan fungsi <code>romberg()</code> untuk melakukan proses integrasi menggunakan metode Romberg. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" title="1"><span class="co"># menampilkan matriks proses perhitungan</span></a>
+<a class="sourceLine" id="cb695-2" title="2"><span class="kw">romberg</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x),</a>
+<a class="sourceLine" id="cb695-3" title="3">        <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">10</span>, <span class="dt">m=</span><span class="dv">10</span>, <span class="dt">tab=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>##           [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]
+##  [1,] 14.87978       NA       NA       NA       NA       NA       NA
+##  [2,] 17.35130 18.17514       NA       NA       NA       NA       NA
+##  [3,] 18.18703 18.46561 18.48497       NA       NA       NA       NA
+##  [4,] 18.43393 18.51624 18.51961 18.52016       NA       NA       NA
+##  [5,] 18.50156 18.52411 18.52463 18.52471 18.52473       NA       NA
+##  [6,] 18.51905 18.52488 18.52493 18.52493 18.52493 18.52493       NA
+##  [7,] 18.52346 18.52493 18.52494 18.52494 18.52494 18.52494 18.52494
+##  [8,] 18.52457 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+##  [9,] 18.52485 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+## [10,] 18.52492 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+##           [,8]     [,9]    [,10]
+##  [1,]       NA       NA       NA
+##  [2,]       NA       NA       NA
+##  [3,]       NA       NA       NA
+##  [4,]       NA       NA       NA
+##  [5,]       NA       NA       NA
+##  [6,]       NA       NA       NA
+##  [7,]       NA       NA       NA
+##  [8,] 18.52494       NA       NA
+##  [9,] 18.52494 18.52494       NA
+## [10,] 18.52494 18.52494 18.52494</code></pre>
+<p>Berdasarkan hasil perhitungan nilai integral fungsi tersebut adalah 18.524939.</p>
+</div>
+<div id="metode-integrasi-romberg-menggunakan-fungsi-lainnya" class="section level2">
+<h2><span class="header-section-number">9.10</span> Metode Integrasi Romberg Menggunakan Fungsi Lainnya</h2>
+<p>Fungsi <code>romberg()</code> pada paket <code>pracma</code> dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb697-1" title="1"><span class="kw">romberg</span>(f, a, b, <span class="dt">maxit =</span> <span class="dv">25</span>, <span class="dt">tol =</span> <span class="fl">1e-12</span>, ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><strong>f</strong>: fungsi yang akan dicari integralnya</li>
+<li><strong>a</strong>: batas bawah.</li>
+<li><strong>b</strong>: batas atas.</li>
+<li><strong>…</strong>: argumen tambahan functn</li>
+<li><strong>maxit</strong>: jumlah iterasi maksimum.</li>
+<li><strong>tol</strong>: nilai akurasi yang hendak dicapai</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>romberg()</code>:</p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" title="1">pracma<span class="op">::</span><span class="kw">romberg</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x),</a>
+<a class="sourceLine" id="cb698-2" title="2">        <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## $value
+## [1] 18.52494
+## 
+## $iter
+## [1] 8
+## 
+## $rel.error
+## [1] 7.105427e-15</code></pre>
+</div>
+<div id="montecarlo" class="section level2">
+<h2><span class="header-section-number">9.11</span> Metode Integrasi Monte Carlo</h2>
+<p>Nama Monte Carlo berasal dari daerah di Monako, yang terkenal karena aktikvitas kasino dan perjudiannya. Jelas, permainan kasino yang baik tergantung pada keacakan, seperti juga metode Monte Carlo. Nama ini menggambarkan pentingnya keacakan dalam proses karena algoritma Monte Carlo menggunakan generator angka acak untuk membedakan input ke suatu fungsi.</p>
+<p>Angka acak harus berasal dari domain fungsi yang diharapkan. Selanjutnya, fungsi itu sendiri bersifat deterministik karena untuk diberikan dua input dari domain fungsi <span class="math inline">\(x_1\)</span> dan <span class="math inline">\(x_2\)</span>. Jika <span class="math inline">\(x_1 = x_2\)</span>, maka <span class="math inline">\(f \left(x_1\right) = f \left(x_2\right)\)</span>. Generator angka acak digunakan untuk menghasilkan sejumlah besar input dan fungsinya dijalankan pada setiap input. Akhirnya, hasil yang diperoleh dikumpulkan sesuai dengan model logika yang sesuai dengan analisis yang dilakukan.</p>
+<p>Metode Monte Carlo dapat digunakan untuk integrasi numerik dalam jumlah dimensi apa pun yang diberikan. Pendekatan mendasar metode ini adalah menempatkan beberapa titik <span class="math inline">\(m\)</span> secara acak di atas domain untuk diintegrasikan. Jika titik terletak “di bawah” garis fungsi, maka titik tersebut dianggap dalam area integrasi. Jika titiknya “di atas” garis fungsi, maka titik tersebut bukan berada diluar garis integrasi. Area di bawah perkiraan kurva adalah persentase titik di bawah garis.</p>
+<p>Beberapa algoritma Monte Carlo yang paling awal digunakan untuk menemukan area di bawah kurva atau untuk memperkirakan nilai <span class="math inline">\(\pi\)</span> sebuah hobi favorit matematikawan sejak dahulu. Satu pendekatan menciptakan seperempat lingkaran, menggunakan fungsi <span class="math inline">\(f \left(x\right) = \sqrt{1-x^2}\)</span>. Melalui domain <span class="math inline">\(\left[0, 1\right]\)</span>, ini adalah fungsi dan merupakan hasil dari penyelesaian persamaan standar untuk lingkaran, <span class="math inline">\(x^2 + y^2 = r\)</span> untuk <span class="math inline">\(y\)</span> di mana <span class="math inline">\(r = 1\)</span>.</p>
+<p>Gambar <a href="diffinteg.html#fig:monteviz">9.7</a> menunjukkan plot fungsi ini. Selain itu, 20 titik acak dipilih. Jika titik di bawah kurva dilambangkan dengan lingkaran hitam terisi dan titik-titik kurva dilambangkan dengan titik bulat kosong. Dalam contoh ini, terdapat 15 titik berada di bawah kurva, mengarah ke estimasi area luas area 0,75. Karena kurva mewakili seperempat lingkaran, estimasi untuk <span class="math inline">\(\pi\)</span> adalah 3. Meningkatkan jumlah tes titik acak meningkatkan ketepatan estimasi dan akurasi.</p>
+<div class="figure" style="text-align: center"><span id="fig:monteviz"></span>
+<img src="images/monte.PNG" alt="Visualisasi metode Monte-Carlo untuk fungsi setengah lingkaran dengan jumlah bilangan acak 20 (sumber: Jones et.al., 2014)." width="70%" />
+<p class="caption">
+Gambar 9.7: Visualisasi metode Monte-Carlo untuk fungsi setengah lingkaran dengan jumlah bilangan acak 20 (sumber: Jones et.al., 2014).
+</p>
+</div>
+<p>Bentuk umum metode Monte-Carlo disajikan pada Persamaan <a href="diffinteg.html#eq:monte">(9.22)</a>.</p>
+<p><span class="math display" id="eq:monte">\[\begin{equation}
+\int_a^bf\left(x\right)dx\approx\left(b-a\right)\frac{1}{N}\sum_{i=1}^Nf\left(x_i\right)
+  \tag{9.22}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(N\)</span> merupakan jumlah titik yang akan dievaluasi.</p>
+<hr />
+<p><strong>Algoritma Metode Monte Carlo</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan selang integrasinya <span class="math inline">\(\left[a,b\right]\)</span>.</li>
+<li>Tentukan jumlah titik acak yang akan digunakan <span class="math inline">\(N\)</span>.</li>
+<li>Lakukan produksi titik acak <span class="math inline">\(x\)</span> dengan selang <span class="math inline">\(\left[a,b\right]\)</span> sejumlah <span class="math inline">\(N\)</span></li>
+<li>Hitung <span class="math inline">\(f\left(x_i\right)\)</span></li>
+<li>Hitung estimasi area menggunakan Persamaan <a href="diffinteg.html#eq:monte">(9.22)</a></li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, fungsi <code>R</code> dapat dibangun untuk melakukan integrasi numerik menggunakan metode Monte Carlo. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" title="1">monte_int &lt;-<span class="st"> </span><span class="cf">function</span>(f, a, b, <span class="dt">m=</span><span class="fl">1e6</span>){</a>
+<a class="sourceLine" id="cb700-2" title="2">  x &lt;-<span class="st"> </span><span class="kw">runif</span>(m, <span class="dt">min=</span>a, <span class="dt">max=</span>b)</a>
+<a class="sourceLine" id="cb700-3" title="3">  </a>
+<a class="sourceLine" id="cb700-4" title="4">  <span class="kw">return</span>((b<span class="op">-</span>a)<span class="op">*</span><span class="kw">sum</span>(<span class="kw">f</span>(x))<span class="op">/</span>m)</a>
+<a class="sourceLine" id="cb700-5" title="5">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:monteexm" class="example"><strong>Contoh 9.9  </strong></span>Hitung integral fungsi yang ditampilkan pada Contoh <a href="diffinteg.html#exm:adaptexm">9.7</a> menggunakan metode Monte-Carlo dengan m=1e6!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Integrasi Monte Carlo menggunakan menggunakan fungsi <code>monte_int()</code> disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" title="1"><span class="kw">monte_int</span>(<span class="cf">function</span>(x)<span class="kw">sin</span>(x)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(x), <span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] 18.51559</code></pre>
+<p>Hasil yang diperoleh sedikit berbeda dengan yang dihasilkan oleh metode lainnya. Hal ini disebabkan oleh penggunaan bilangan acak pada proses integrasi. Selain itu, metode ini juga menghasilkan kualitas hasil yang rendah dengan tingkat komputasi yang tinggi dibandingkan dengan metode Newton-Cotes.</p>
+<p>Keunggulan metode Monte Carlo dibandingkan metode sebelumnya adalah kemampuan untuk menangani proses integrasi berganda. Berikut adalah bentuk umum proses integrasi bivariat menggunakan metode Monte Carlo:</p>
+<p><span class="math display" id="eq:monte2">\[\begin{equation}
+\int \int f\left(x,y\right)dx\approx V\frac{1}{N}\sum_{i=1}^Nf\left(x_i,y_i\right)
+  \tag{9.23}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(V\)</span> merupakan area perpotongan <span class="math inline">\(x-y\)</span> dimana fungsi <span class="math inline">\(f\left(x,y\right)\)</span> diintegrasikan.</p>
+<hr />
+<p><strong>Algoritma Metode Monte Carlo Bivariat</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan fungsi <span class="math inline">\(f\left(x\right)\)</span> dan domain integrasinya pada masing-masing sumbu <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span></li>
+<li>Tentukan jumlah titik acak yang akan digunakan <span class="math inline">\(N\)</span>.</li>
+<li>Lakukan produksi titik acak <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> masing-masing domain sumbunya sejumlah <span class="math inline">\(N\)</span></li>
+<li>Hitung <span class="math inline">\(V=\left( x_{max}-x_{min}\right) \times \left(y_{max}-y_{max}\right)\)</span></li>
+<li>Hitung estimasi volume menggunakan Persamaan <a href="diffinteg.html#eq:monte2">(9.23)</a></li>
+</ol>
+<hr />
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" title="1">monte_int2 &lt;-<span class="st"> </span><span class="cf">function</span>(f, xdom, ydom, <span class="dt">m=</span><span class="dv">1000</span>){</a>
+<a class="sourceLine" id="cb703-2" title="2">  xmin &lt;-<span class="st"> </span><span class="kw">min</span>(xdom)</a>
+<a class="sourceLine" id="cb703-3" title="3">  xmax &lt;-<span class="st"> </span><span class="kw">max</span>(xdom)</a>
+<a class="sourceLine" id="cb703-4" title="4">  ymin &lt;-<span class="st"> </span><span class="kw">min</span>(ydom)</a>
+<a class="sourceLine" id="cb703-5" title="5">  ymax &lt;-<span class="st"> </span><span class="kw">max</span>(ydom)</a>
+<a class="sourceLine" id="cb703-6" title="6">  </a>
+<a class="sourceLine" id="cb703-7" title="7">  x &lt;-<span class="st"> </span><span class="kw">runif</span>(m, <span class="dt">min=</span>xmin, <span class="dt">max=</span>xmax)</a>
+<a class="sourceLine" id="cb703-8" title="8">  y &lt;-<span class="st"> </span><span class="kw">runif</span>(m, <span class="dt">min=</span>ymin, <span class="dt">max=</span>ymax)</a>
+<a class="sourceLine" id="cb703-9" title="9">  </a>
+<a class="sourceLine" id="cb703-10" title="10">  V &lt;-<span class="st"> </span>(xmax<span class="op">-</span>xmin)<span class="op">*</span>(ymax<span class="op">-</span>ymin)</a>
+<a class="sourceLine" id="cb703-11" title="11">  </a>
+<a class="sourceLine" id="cb703-12" title="12">  <span class="kw">return</span>(V<span class="op">*</span><span class="kw">sum</span>(<span class="kw">f</span>(x,y))<span class="op">/</span>m)</a>
+<a class="sourceLine" id="cb703-13" title="13">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:monteexm2" class="example"><strong>Contoh 9.10  </strong></span>Hitung volume melalui integrasi persamaan berikut menggunakan metode Monte Carlo dengan domain x = [0,1] dan y=[0,1]!
+</div>
+
+<p><span class="math display">\[
+\int_{0}^1 \int_{0}^1 x^2y \ dy \ dx
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Berikut adalah sintaks yang digunakan untuk melakukan integrasi persamaan tersebut menggunakan metode Monte Carlo bivariat:</p>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb704-1" title="1"><span class="kw">monte_int2</span>(<span class="cf">function</span>(x,y)x<span class="op">^</span><span class="dv">2</span><span class="op">*</span>y,</a>
+<a class="sourceLine" id="cb704-2" title="2">           <span class="dt">xdom=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">ydom=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] 0.1679889</code></pre>
+<p>Karena metode Monte Carlo tidak deterministik, <em>error</em> integrasi Monte Carlo tidak dibatasi dalam pengertian yang telah kita lihat sejauh ini. Namun, kita dapat memperkirakan varians dari estimasi yang dihasilkan, yang berkurang dengan meningkatnya jumlah poin:</p>
+<p><span class="math display" id="eq:monte3">\[\begin{equation}
+\text{Var}\frac{1}{N}\sum f\left(\right)=\frac{\sigma^2}{N}
+  \tag{9.24}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\sigma^2=\text{Var}\ f\left(\right)\)</span>. Definisi ini juga digunakan untuk proses integrasi dengan dimensi yang lebih tinggi.</p>
+<p>Perlu diketahui pula bahwa metode Monte Carlo hanya dapat digunakan jika nilai terendah dari variabel bebas yang digunakan tidak negatif. Hal ini dilakukan untuk mencegah adanya pengurangan dengan nilai negatif sehingga hasil integrasi jauh lebih besar dari yang seharusnya.</p>
+</div>
+<div id="studi-kasus-2" class="section level2">
+<h2><span class="header-section-number">9.12</span> Studi Kasus</h2>
+<div id="penerjung-payung" class="section level3">
+<h3><span class="header-section-number">9.12.1</span> Penerjung Payung</h3>
+<p>Pada studi kasus kali ini, penulis akan memberikan contoh penerapan integrasi numerik dalam menganalisa jarak jatuh seorang penerjung payung yang melompat dari sebuah pesawat. Kecepatan penerjun payung dapat dituliskan ke dalam sebuah fungsi dari waktu,</p>
+<p><span class="math display" id="eq:terjun">\[\begin{equation}
+v\left(t\right)=\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)
+  \tag{9.25}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(v\)</span> adalah kecepatan penerjun payung dalam <span class="math inline">\(m/dt\)</span>, <span class="math inline">\(g\)</span> adalah percepatan gravitasi sebesar <span class="math inline">\(9,8 \ m/dt^2\)</span>, <span class="math inline">\(m\)</span> adalah massa penerjun payung sebesar <span class="math inline">\(68,1 \ kg\)</span>, dan <span class="math inline">\(c\)</span> adalah koefisien tahanan udara sebesar <span class="math inline">\(12,5\ kg/dt\)</span>.</p>
+<p>Misalkan kita ingin mengetahui seberapa jauh penerjun telah jatuh setelah waktu tertentu <span class="math inline">\(t\)</span>. Karena kecepatan merupakan turunan pertama dari fungsi jarak, maka jarak penerjun dari titik terjun <span class="math inline">\(\left(t=0\right)\)</span> adalah:</p>
+<p><span class="math display" id="eq:terjun2">\[\begin{equation}
+d=\int_{0}^{t}v\left(t\right)dt=\int_{0}^{t}\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)dt
+  \tag{9.26}
+\end{equation}\]</span></p>
+<p>Jika kita ingin mengetahui jarak yang telah ditempuh saat <span class="math inline">\(t=10\)</span>, kita dapat melakukan integrasi pada persamaan tersebut dengan domain <span class="math inline">\(t=\left[0,10\right]\)</span>. Persamaan <a href="diffinteg.html#eq:terjun2">(9.26)</a> dapat dinyatakan menjadi Persamaan <a href="diffinteg.html#eq:terjun3">(9.27)</a> dengan memasukkan semua komponen yang telah diketahui sebelumnya.</p>
+<p><span class="math display" id="eq:terjun3">\[\begin{equation}
+d=\int_{0}^{10}\frac{9,8\times 68,1}{12,5}\left(1-e^{-\left(12,5/68,1\right)^t}\right)dt
+  \tag{9.27}
+\end{equation}\]</span></p>
+<p>Kita dapat menyelesaikan Persamaan <a href="diffinteg.html#eq:terjun3">(9.27)</a> dengan menggunakan metode-metode integrasi numerik yang telah dijabarkan sebelumnya. Berikut adalah sintaks untuk masing-masing metode tersebut:</p>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x)((<span class="fl">9.8</span><span class="op">*</span><span class="fl">68.1</span>)<span class="op">/</span><span class="fl">12.5</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">exp</span>(<span class="op">-</span>(<span class="fl">12.5</span><span class="op">/</span><span class="fl">68.1</span>)<span class="op">*</span>x))</a>
+<a class="sourceLine" id="cb706-2" title="2">a &lt;-<span class="st"> </span><span class="dv">0</span>; b &lt;-<span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<p><strong>Newton-Cotes</strong></p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" title="1"><span class="co"># Metode Riemann</span></a>
+<a class="sourceLine" id="cb707-2" title="2"><span class="kw">riemann</span>(f, a, b)</a></code></pre></div>
+<pre><code>## [1] 289.4386</code></pre>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" title="1"><span class="co"># Metode Trapezoida</span></a>
+<a class="sourceLine" id="cb709-2" title="2"><span class="kw">trap</span>(f, a, b)</a></code></pre></div>
+<pre><code>## [1] 289.4283</code></pre>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" title="1"><span class="co"># Metode Simpson 1/3</span></a>
+<a class="sourceLine" id="cb711-2" title="2"><span class="kw">simpson</span>(f, a, b)</a></code></pre></div>
+<pre><code>## [1] 289.4351</code></pre>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" title="1"><span class="co"># Metode Simpson 3/8</span></a>
+<a class="sourceLine" id="cb713-2" title="2"><span class="kw">simpson38</span>(f, a, b)</a></code></pre></div>
+<pre><code>## [1] 289.4351</code></pre>
+<p><strong>Metode Adaptif</strong></p>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" title="1"><span class="kw">riemann_adaptint</span>(f, a, b, <span class="dt">m=</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## [1] 289.4351</code></pre>
+<p><strong>Metode Romberg</strong></p>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" title="1"><span class="kw">romberg</span>(f, a, b, <span class="dt">m=</span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] 289.4351</code></pre>
+<p><strong>Metode Monte Carlo</strong></p>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" title="1"><span class="kw">monte_int</span>(f, a, b)</a></code></pre></div>
+<pre><code>## [1] 289.6182</code></pre>
+</div>
+</div>
+<div id="referensi-8" class="section level2">
+<h2><span class="header-section-number">9.13</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press.</li>
+<li>Chapra, S.C. Canale, R.P. 2015. <strong>Numerical Methods For Engineers, Seventh Edition</strong>. Mc Graw Hill.</li>
+<li>Howard, J.P. 2017. <strong>Computational Methods for Numerical Analysis with R</strong>. CRC Press.</li>
+<li>Kreyszig, E. 2011. <strong>Advanced Engineering Mathematics, 10th Edition</strong>. John Wiley &amp; Sons.</li>
+<li>Sanjaya, M. 2015. <strong>Metode Numerik Berbasis Phython</strong>. Penerbit Gava Media: Yogyakarta.</li>
+<li>Suparno, S. 2008. <strong>Komputasi untuk Sains dan Teknik Edisi II</strong>. Departemen Fisika-FMIPA Universitas Indonesia.</li>
+</ol>
+<p>##Latihan</p>
+<ol style="list-style-type: decimal">
+<li>Hitung integral fungsi <span class="math inline">\(f\left(x\right)=\sin^2\left(x\right)\)</span> pada domain <span class="math inline">\(x \in \left[0,\pi\right]\)</span> !</li>
+<li>Tuliskan fungsi <code>R</code> yang dapat melakukan integrasi Riemann dengan aturan titik kiri !</li>
+<li>Buatlah sebuah fungsi <code>R</code> yang dapat melakukan integrasi adaptif menggunakan metode Simpson 1/3 !</li>
+<li>Kerjakan kembali soal 3 dengan menggunakan metode Simpson 3/8! (<strong>Note</strong>: pembaca dapat melakukan pencarian algoritma di internet dan mentrasformasikannya menjadi sintaks <code>R</code>)</li>
+<li>Fungsi <code>monte_int()</code> hanya mampu melakukan integrasi pada domain positif. Buatlah algoritma baru sehingga metode ini dapat melakukan integrasi pada domain negatif !</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interpolation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Metode_Numerik.pdf", "Metode_Numerik.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

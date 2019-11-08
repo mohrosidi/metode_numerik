@@ -1,0 +1,1372 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Diferensiasi dan Integrasi Numerik {#diffinteg}
+
+Pada Chapter \@ref(diffinteg), penulis akan menjabarkan mengenai metode numerik untuk melakukan diferensiasi dan integrasi pada suatu fungsi. Adapun yang akan dibahas pada *Chapter* ini antara lain:
+
+* Metode Beda Hingga
+* Metode Integrasi Newton-Cotes
+* Metode Integrasi Kudratur Gauss
+* Metode Integrasi Adaptif
+* Metode Integrasi Romberg
+* Metode Integrasi Monte Carlo
+* Studi Kasus
+
+## Metode Beda Hingga {#finitediff}
+
+Diferensiasi merupakan proses mencari slope suatu garis pada titik yang diberikan. Secara umum proses diferensiasi dinyatakan melalui Persamaan \@ref(eq:diff).
+
+\begin{equation}
+f'\left(x\right) \approx \frac{f\left(x+h\right)-f\left(x\right)}{h}
+  (\#eq:diff)
+\end{equation}
+
+Kita dapat menyatakan secara formal proses diferensiasi sebagai limit Persamaan \@ref(eq:diff) dimana $h$ mendekati nol. Jadi kita ingin membuat nilai $h$ sekecil mungkin untuk memperoleh pendekatan terbaik terhadap nilai turunan suatu fungsi. Kita membatasi nilai $h$ pada sejumlah nilai yang masuk akal untuk mencegah pembagian dengan nilai yang tidak biasa. Kita juga harus memastikan $f\left(x\right)$ dan $f\left(x+h\right)$ terpisah cukup jauh untuk mencegah *floating point round off error* mempengaruhi proses substraksi.
+
+Terdapat 3 buah metode untuk memperoleh turunan pertama suatu fungsi dengan menggunakan metode numerik, yaitu: metode selisih maju, metode selisih mundur, dan metode selisih tengah. Error pada ketiga metode numerik tersebut ditaksir menggunakan deret Taylor. Persamaan \@ref(eq:diff2) dan Persamaan \@ref(eq:diff3) menunjukkan persamaan untuk memperoleh turunan pertama dan taksiran error menggunakan metode selisih maju dan metode selisih mundur.
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x+h\right)-f\left(x\right)}{h} - \frac{h}{2} f''\left(c\right)
+  (\#eq:diff2)
+\end{equation}
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x\right)-f\left(x-h\right)}{h} - \frac{h}{2} f''\left(c\right)
+  (\#eq:diff3)
+\end{equation}
+
+Metode nilai tengah menggunakan ukuran langkah $h$ dua kali dibandingkan dengan 2 metode lainnya. Error yang dihasilkan juga berbeda dengan kedua metode sebelumnya, dimana error dihasilkan dari pemotongan turunan ketiga pada deret Taylor. Secara umum metode selisih tengah memiliki akurasi yang lebih baik dibandingkan kedua metode sebelumnya karena metode ini mempertimbangkan dua sisi untuk memeriksa nilai $x$. Persamaan \@ref(eq:diff4) merupakan persamaan untuk memperoleh nilai turunan pertama suatu fungsi dan estimasi error menggunakan deret Taylor.
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x+h\right)-f\left(x-h\right)}{2h} - \frac{h^2}{6} f'''\left(c\right)
+  (\#eq:diff4)
+\end{equation}
+
+Bagaimana menentukan $h$? beberapa literatur menggunakan pendekatan *machine error* $\epsilon$ berdasarkan program yang digunakan untuk melakukan proses perhitungan. Metode selisih maju dan selisih mundur menggunakan pendekatan yang ditunjukkan pada Persamaan \@ref(eq:diff5).
+
+\begin{equation}
+h^{\ast}=x\sqrt{\epsilon}
+  (\#eq:diff5)
+\end{equation}
+
+Untuk metode selisih tengah pendekatan nilai $h$ menggunakan Persamaan \@ref(eq:diff6).
+
+\begin{equation}
+h^{\ast}=x\sqrt[3]{\epsilon}
+  (\#eq:diff6)
+\end{equation}
+
+Kita dapat menggunakan Persamaan \@ref(eq:diff2) sampai Persamaan \@ref(eq:diff4) untuk membentuk sebuah program yang digunakan untuk menghitung turunan pertama suatu fungsi. Sintaks yang digunakan adalah sebagai berikut:
+
+```{r}
+findiff <- function(f, x, h, method=NULL){
+  if(is.null(method)){
+    warning("please select a method")
+  }else{
+    if(method == "forward"){
+      return((f(x+h)-f(x))/h)
+    }else if(method=="backward"){
+      return((f(x)-f(x-h))/h)
+    }else if(method=="central"){
+      return((f(x+h)-f(x-h))/(2*h))
+    }else{
+      warning("you can use method: forward, bacward, or central")
+    }
+  }
+}
+```
+
+```{example, diffexm}
+Hitunglah turunan pertama persamaan berikut menggunakan metode selisih titik tengah pada x =1 dan nilai h=0,05!
+```
+
+$$
+f\left(x\right)=e^{-x}\sin\left(2x\right)+1
+$$
+
+**Jawab**:
+
+Untuk menghitung turunan pertama menggunakan metode selisih tengah, kita dapat menggunakan Persamaan \@ref(eq:diff4). Berikut adalah proses perhitungannya:
+
+$$
+f'\left(1\right) = \frac{f\left(1+0.05\right)-f\left(1-0,05\right)}{2\times0.05}=--0.6390352
+$$
+
+Dengan menggunakan fungsi `findiff()`, hasil yang diperoleh adalah sebagai berikut:
+
+```{r}
+findiff(function(x)
+  exp(-x)*sin(2*x)+1, x=1, h=0.05,
+  method="central")
+```
+
+Kita dapat memperkecil nilai $h$ untuk memperoleh akurasi yang lebih baik berdasarkan pendekatan Persamaan \@ref(eq:diff6).
+
+```{r}
+findiff(function(x){  exp(-x)*sin(2*x)+1}, x=1,
+        h=1*.Machine$double.eps^(1/3), 
+        method="central")
+```
+
+Penyelesaian persamaan matematik dalam bidang Teknik Lingkungan pada umumnya tidak hanya melibatkan turunan pertama, pada penyelesaian persamaan difusi umumnya menggunakan turunan kedua. Persamaan \@ref(eq:diff7) merupakan pendekatan numerik untuk memperoleh nilai turunan kedua suatu persamaan dengan pendekatan deret Taylor.
+
+\begin{equation}
+f''\left(x\right)=\frac{f\left(x+h\right)-2f\left(x\right)+f\left(x-h\right)}{h^2}-\frac{h^2}{12}f^{\left(4\right)}\left(c\right)
+  (\#eq:diff7)
+\end{equation}
+
+Fungsi `findiff2()` merupakan fungsi yang digunakan untuk menghitung turunan kedua suatu persamaan yang didasarkan pada Persamaan \@ref(eq:diff7).
+
+```{r}
+findiff2 <- function(f, x, h){
+  return((f(x+h)-2*f(x)+f(x-h))/(h^2))
+}
+```
+
+Kita dapat menghitung kembali turunan kedua fungsi pada Contoh \@ref(exm:diffexm) menggunakan fungsi `findiff2()`. Berikut adalah sintaks yang digunakan:
+
+```{r}
+findiff2(function(x){
+  exp(-x)*sin(2*x)+1
+}, x=1, h=0.05)
+```
+
+## Diferensiasi Menggunakan Fungsi Lainnya di R {#diffother}
+
+Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah paket, baik *base package* maupun yang berasal dari paket lainnya.
+
+### Diferensiasi Metode Titik Pusat Mengggunakan Fungsi`diff()`
+
+Fungsi `diff()` pada paket *base* dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung *lag* suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen `lag = 2`. Berikut adalah contoh penerapan fungsi `diff()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r}
+f <- function(x){exp(-x)*sin(2*x)+1}
+x <- 1
+h <- x*.Machine$double.eps^(1/3)
+xvec <- seq(x-h, x+h, h)
+
+# turunan pertama
+diff(f(xvec), lag=2)/(2*h)
+```
+
+### Diferensiasi Menggunakan Paket `numDeriv`
+
+Paket standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah paket `numDeriv`. Pada paket tersebut terdapat fungsi `grad()` yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+grad(func, x, method="Richardson", method.args=list(), ...)
+```
+
+> **Catatan:**
+>
+> - **func**: Fungsi persamaan matematik yang akan dicari turunannya.
+> - **x**: Lokasi atau titik yang akan dicari gradiennya
+> - **method**: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:
+    + "simple": metode selisih maju dengan $h = 10^{-4}$
+    + "Richardson": metode interpolasi Richardson
+    + "complex": *complex-step derivative approach* dan dapat digunakan untuk persamaan *complex-differentiable*.
+> - **method.args**: argumen tambahan yang digunakan bersama dengan argumen **method**. Jika metode yang digunakan adalah "simple", nilai $h$ dapat dispesifikasikan pada **method.args** jika diinginkan nilai $h$ lainnya.
+
+Berikut adalah contoh penerapan fungsi `grad()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r, warning=FALSE, message=FALSE}
+numDeriv::grad(function(x){exp(-x)*sin(2*x)+1},
+     x=1, method = "simple", 
+     method.args = list(eps=1*sqrt(.Machine$double.eps)))
+```
+
+### DIferensiasi Menggunakan Paket `pracma`
+
+Terdapat sejumlah fungsi pada paket `pracma` yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: `fderiv()`, `numderiv()`, `numdiff()`, dan `grad()`.
+
+Fungsi `fderiv()` dapat digunakan untuk melakukan diferensiasi orde pertama sampai dengan orde tinggi. Perlu dicatat bahwa diferensiasi cenderung kurang akurat jika orde diferensiasi semakin tinggi. Format yang digunakan untuk melakukan diferensiasi menggunakan fungsi `fderiv()` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+fderiv(f, x, n = 1, h = 0,
+        method = c("central", "forward", "backward"), 
+       ...)
+```
+
+> **Catatan:**
+>
+> - **f**: Fungsi persamaan matematik yang akan dicari turunannya.
+> - **x**: Lokasi atau titik yang akan dicari gradiennya
+> - **n**: Orde diferensiasi yang digunakan. Orde diferensiasi yang dapat digunakan adalah 1 sampai 8.
+> - **method**: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:
+    + "central": metode titik pusat
+    + "forward": metode selisih maju
+    + "bacward": metode selisih mundur.
+> - **...**: argumen tambahan fungsi **f**.
+
+Berikut adalah contoh penerapan fungsi `fderiv()` untuk memperoleh turunan pertama dan kedua persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r}
+library(pracma)
+# turunan 1
+fderiv(function(x){exp(-x)*sin(2*x)+1},
+       x = 1, n = 1, h = 1*.Machine$double.eps^(1/3), 
+       method = "central")
+
+# turunan 2
+fderiv(function(x){exp(-x)*sin(2*x)+1},
+       x = 1, n = 2, h = 1*.Machine$double.eps^(1/3), 
+       method = "central")
+```
+
+Fungsi `numderiv()` menggunakan ekstrapolasi Richardson untuk melakukan taksiran turunan suatu persamaan matematik. Berbeda dengan fungsi lainnya, fungsi `numderiv()` tidak hanya menampilkan hasil diferensiasi, fungsi ini juga menampilkan error absolut, error relatif, dan jumlah iterasi yang berlangsung. Berikut adalah format fungsi yang digunakan:
+
+```{r, eval=FALSE}
+numderiv(f, x0, maxiter = 16, h = 1/2, ..., 
+         tol = .Machine$double.eps)
+```
+
+> **Catatan:**
+>
+> - **f**: Fungsi persamaan matematik yang akan dicari turunannya.
+> - **x0**: Lokasi atau titik yang akan dicari gradiennya
+> - **maxiter**: Iterasi maksimum yang digunakan.
+> - **h**: *step size* yang digunakan
+> - **tol**: toleransi error yang digunakan.
+
+Berikut adalah contoh penerapan fungsi `numderiv()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r}
+numderiv(function(x){exp(-x)*sin(2*x)+1},
+       x0 = 1, h = 1*.Machine$double.eps^(1/3))
+```
+
+Fungsi `numderiv()` memiliki keterbatasan dalam penggunaannya. Argumen `x0` yang digunakan haruslah angka numerik tunggal. Fungsi `numdiff()` mengatasi keterbatasan tersebut. Fungsi ini dapat menerima input berupa vektor, sehingga dapat digunakan untuk mencari nilai turunan pada sejumlah titik. Selain itu, output fungsi ini lebih sederhana, dimana hanya menampilkan hasil diferensiasinya saja. Berikut adalah format fungsi `numdiff()`:
+
+```{r, eval=FALSE}
+numdiff(f, x, maxiter = 16, h = 1/2, ..., 
+         tol = .Machine$double.eps)
+```
+
+> **Catatan:**
+>
+> - **f**: Fungsi persamaan matematik yang akan dicari turunannya.
+> - **x**: Vektor titik yang akan dicari gradiennya
+> - **maxiter**: Iterasi maksimum yang digunakan.
+> - **h**: *step size* yang digunakan
+> - **tol**: toleransi error yang digunakan.
+
+Berikut adalah contoh penerapan fungsi `numdiff()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r}
+numdiff(function(x){exp(-x)*sin(2*x)+1},
+       x = 1:4, h = 1*.Machine$double.eps^(1/3))
+```
+
+Fungsi `grad()` pada paket `pracma` berbeda dengan yang digunakan pada paket `numDeriv`. Perbedaan utama fungsi pada kedua paket tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada paket `pracma`, metode yang digunakan adalah metode titik pusat, sedangkan pada paket `numDeriv` metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan *complex*. Format fungsi `grad()` pada paket `pracma` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+grad(f, x0, heps = .Machine$double.eps^(1/3), 
+     ...)
+```
+
+> **Catatan:**
+>
+> - **f**: Fungsi persamaan matematik yang akan dicari turunannya.
+> - **x0**: Titik yang akan dicari gradiennya
+> - **heps**: *step size* yang digunakan
+> - **...**: Argumen lain yang digunakan pada fungsi **f**.
+
+Berikut adalah contoh penerapan fungsi `grad()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+
+```{r}
+grad(function(x){exp(-x)*sin(2*x)+1}, x0 = 1)
+```
+
+
+## Metode Integrasi Newton-Cotes {#newtoncotes}
+
+Metode integrasi Newton-Cotes secara umum merupakan metode integrasi yang dilakukan dengan membagi area di bawah kurva suatu fungsi menjadi beberapa panel dengan terlebih dahulu menetapkan batas atas dan batas bawah interval. Integral atau luas area di bawah kurva ditentukan berdasarkan jumlah luas panel yang digunakan untuk mendekati luas area di bawah kurva.
+
+Terdapat beberapa metode yang akan penulis jelaskan pada sub-Chapter ini. Metode-metode tersebut antara lain:
+
+* Metode integral Riemann
+* Metode trapezoida
+* Metode Simpson 1/3
+* Metode Simpson 3/8
+
+### Metode Integral Riemann {#riemann}
+
+Metode integral Riemann dilakukan dengan membagi interval di bawah kurva suatu fungsi matematik sebanyak $m$ subinterval sama besar. Pada setiap subinterval dibentuk persegi panjang setinggi kurva pada setiap titik tengah persegi panjang tersebut. Area setiap subinterval diperoleh dengan mengalikan panjang dan lebar masing-masing persegi panjang. Jumlah masing-masing area tersebut digunakan untuk menaksir interval integral suatu fungsi dengan interval tertentu. Fungsi proses integrasi menggunakan metode titik tengah dapat dituliskan pada Persamaan \@ref(eq:reimann).
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\ \approx\sum_{i=1}^mf\left(i\ \frac{\left|b-a\right|}{m}-\frac{\left|b-a\right|}{2m}\right)\ \frac{\left|b-a\right|}{m}
+  (\#eq:reimann)
+\end{equation}
+
+dimana $b$ dan $a$ masing-masing merupakan batas atas dan bawah interval kurva yang hendak dihitung integralnya.
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \@ref(eq:reimann2).
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{24m^2}f^{\left(2\right)}\left(\xi\right)
+  (\#eq:reimann2)
+\end{equation}
+
+dimana $\xi$ merupakan nilai antara $a$ dan $b$.
+
+```{example, reimannexm}
+Hitunglah intergral fungsi di bawah ini menggunakan metode integral Reimann dengan interval 0 sampai 1 dan jumlah panel 2 dan 4!
+```
+
+$$
+\int_0^1 x^2 dx
+$$
+
+**Jawab**:
+
+Fungsi pada Contoh \@ref(exm:reimannexm) dapat diselesaikan menggunakan metode analitik. Penyelesaian analitik fungsi tersebut adalah sebagai berikut:
+
+$$
+\int_0^1 x^2 dx = \left[\frac{x^3}{3}\right]_{_0}^{^1}=\frac{1^3}{3}-\frac{0^3}{3}=0,333...
+$$ 
+
+Penyelesaian numerik menggunakan metode titik tengah dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik tengah kedua panel. Berdasarkan interval fungsi dapat kita tentukan titik tengah kedua panel berada pada $x=0,25$ dan $x=0,75$. Perhitungan dilakukan seperti berikut:
+
+$$
+\int_0^1 x^2 dx \approx \left(f\left(0,25\right)+f\left(0,75\right)\right)\ \frac{1-0}{2}=\frac{0,25^2+0,75^2}{2}=0,3125
+$$
+Untuk meningkatkan akurasi dari nilai yang dihasilkan, jumlah panel dapat ditingkatkan. Untuk jumlah panel 4, titik tengah berada pada $x=\left\{0,125;0,375;0,625;0,875\right\}$.
+
+$$
+\int_0^1 x^2 dx \approx \left(f\left(0,125\right)+f\left(0,375\right)+f\left(0,625\right)+f\left(0,875\right)\right)\ \frac{1-0}{4}=0,328125
+$$
+
+Visualisasi proses integrasi dengan metode Riemann dapat dilihat pada Gambar \@ref(fig:midpt).
+
+```{r midpt,echo=FALSE, fig.cap='Visualisasi integral Riemann dengan 2 panel dan 4 panel (sumber:Howard, 2017).', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/midpt.png"
+include_graphics(img1_path)
+
+```
+
+Berdasarkan Persamaan \@ref(eq:reimann), kita dapat mengembangkan fungsi `R` yang dapat digunakan untuk melakukan perhitungan integral Riemann. Sintaks fungsi tersebut adalah sebagai berikut:
+
+```{r}
+riemann <- function(f, a, b, m = 100){
+  n_width <- (b-a)/m
+  x <- seq(a, b-n_width, length.out = m) + n_width/2
+  y <- f(x)
+  
+  return(sum(y)*abs(b-a)/m)
+}
+```
+
+Kita akan menghitung kembali fungsi pada Contoh \@ref(exm:reimannexm) dengan menggunakan jumlah panel 2, 4 dan 100. Berikut adalah sintaks yang digunakan:
+
+```{r}
+# m=2
+riemann(function(x) x^2, a=0, b=1, m=2)
+
+# m=4
+riemann(function(x) x^2, a=0, b=1, m=4)
+
+# m=100
+riemann(function(x) x^2, a=0, b=1)
+```
+
+Berdasarkan teori yang telah dipaparkan sebelumnya, kita ketahui bahwa untuk memperoleh nilai pendekatan integral yang sebenarnya kita dapat meningkatkan jumlah panel yang digunakan. Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil, kita akan melakukan simulasi menggunakan data yang disajikan pada Contoh \@ref(exm:reimannexm) dengan memvariasikan jumlah panel yang akan digunakan. Pada simulasi yang akan dilakukan kita akan coba memvariasikan jumlah panel dari 2 hingga 100. Berikut adalah sintaks yang digunakan:
+
+```{r midpt2,echo=FALSE, fig.cap='Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi Riemann.', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+m <- seq(2, 100)
+nilai_integrasi <- rep(0, length(m))
+
+for(i in 1:length(nilai_integrasi)){
+  nilai_integrasi[i]=riemann(function(x) x^2, a=0, b=1, 
+                             m=m[i])
+}
+
+plot(m, nilai_integrasi, type = "l")
+```
+
+Berdasarkan hasil simulasi dapat disimpulkan jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil kira-kira sebesar $m=40$. 
+
+### Metode Trapezoida {#trapezoida}
+
+Pendekatan trapezoida dilakukan dengan melakukan pendekatan area dibawah kurva fungsi $y=f\left(x\right)$ dengan subinterval $\left[x_i,x_{i+1}\right]$ menggunakan trapesium. Untuk memahami pendekatan yang digunakan pembaca dapat memperhatikan Gambar \@ref(fig:trapviz).
+
+```{r trapviz,echo=FALSE, fig.cap='Visualisasi integragrasi numerik menggunakan metode tapezoida (sumber: Jones et.al., 2014).', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/trapviz.png"
+include_graphics(img1_path)
+
+```
+
+Fungsi proses integrasi menggunakan metode trapezoida dapat dituliskan pada Persamaan \@ref(eq:trap). 
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\ = \lim\limits_{m \to \infty} \sum_{i=1}^m\frac{\left(c_{i+1}-c_i\right)\times\left(f\left(c_{i+1}\right)+f\left(c_i\right)\right)}{m}
+  (\#eq:trap)
+\end{equation}
+
+dimana
+
+$$
+c_i=a+\frac{\left(b-a\right)}{n}i
+$$
+$n$ merupakan nilai subinterval dan $m$ merupakan jumlah panel trapesium yang digunakan.
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \@ref(eq:trap2).
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{12m^2}f^{\left(2\right)}\left(\xi\right)
+  (\#eq:trap2)
+\end{equation}
+
+dimana $\xi$ merupakan nilai antara $a$ dan $b$.
+
+```{example, trapnexm}
+Hitung kembali nilai intergrasi persamaan pada Contoh \@ref(exm:reimannexm) menggunakan metode trapezoida dengan jumlah panel m=2!
+```
+
+**Jawab**:
+
+Penyelesaian numerik menggunakan trapezoida dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik evaluasi. Berdasarkan Gambar \@ref(fig:trapviz2), terdapat 3 batas subinterval yaitu pada $a$,$\frac{\left(b-a\right)}{2}$, dan $b$. Perhitungan intergral menggunakan ketiga titik evaluasi tersebut adalah sebagai berikut:
+
+$$
+\int_0^1 x^2 dx \approx \frac{\left(0,5\right)\left(0,25+1,25\right)}{2}=0,375
+$$
+
+```{r trapviz2,echo=FALSE, fig.cap='Visualisasi integrasi metode trapezoida dengan 2 panel (sumber:Howard, 2017).', tidy=FALSE, out.width='70%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/trapviz2.png"
+include_graphics(img1_path)
+
+```
+
+Berdasarkan Persamaan \@ref(eq:trap), kita dapat mengembangkan fungsi `R` yang dapat digunakan untuk melakukan perhitungan integral metode trapezoida. Sintaks fungsi tersebut adalah sebagai berikut:
+
+```{r}
+trap <- function(f, a, b, m=100){
+  x <- seq(a, b, length.out = m+1)
+  y <- f(x)
+  
+  p_area <- sum((y[2:(m+1)] + y[1:m])) 
+  p_area <- p_area * abs(b-a)/(2*m)
+  return(p_area)
+}
+```
+
+Kita dapat menghitung kembali intergral persamaan pada Contoh \@ref(exm:reimannexm) menggunakan fungsi `trap()` yang telah dibuat. Berikut adalah sintaks yang digunakan:
+
+```{r}
+trap(function(x)x^2, a=0, b=1, m=2)
+```
+
+Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil pada persamaan tersebut, kita akan kembali melakukan simulasi menggunakan variasi jumlah panel yang digunakan. Dalam simulasi variasi jumlah panel yang digunakan adalah 2 sampai 100. Berikut adalah sintaks yang digunakan:
+
+```{r trapviz3,echo=FALSE, fig.cap='Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi trapezoida.', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+m <- seq(2, 100)
+nilai_integrasi <- rep(0, length(m))
+
+for(i in 1:length(nilai_integrasi)){
+  nilai_integrasi[i]=trap(function(x) x^2, a=0, b=1, 
+                             m=m[i])
+}
+
+tail(nilai_integrasi,1)
+
+plot(m, nilai_integrasi, type = "l",
+     ylim = c(0.32,0.38))
+```
+
+Berdasarkan hasil simulasi diperoleh nilai panel minimum sebesar $m=20$. Hasil yang diperoleh tersebut menujukkan bahwa metode trapezoida lebih efisien dalam proses komputasi dibandingkan metode Riemann.
+
+### Metode Simpson {#simpson}
+
+Metode Simpson membagi subinterval $\left[a,b\right]$ menjadi 
+$n$ subinterval, dimana $n$ merupakan bilangan genap. Untuk setiap pasang subinterval, luas area di bawah fungsi $f\left(x\right)$ ditaksir menggunakan polinomial berderajat 2.
+
+Misalkan $u<v<w$ merupakan titik sembarang pada suatu fungsi yang akan dicari integralnya yang terpisah sejauh $h$. Untuk $x\in\left[u,w\right]$ kita ingin menaksir $f\left(x\right)$ menggunakan parabola yang melalui titik $\left(u, f\left(u\right)\right)$, $\left(v, f\left(v\right)\right)$, dan $\left(w, f\left(w\right)\right)$. Terdapat tepat 1 parabola $p\left(x\right)$ yang dapat dibentuk dari ketiga titik koordinat tersebut yang ditunjukkan melalui Persamaan \@ref(eq:simp). 
+
+\begin{equation}
+p\left(x\right)=f\left(u\right)\frac{\left(x-v\right)\left(x-w\right)}{\left(u-v\right)\left(u-w\right)}+f\left(v\right)\frac{\left(x-u\right)\left(x-w\right)}{\left(v-u\right)\left(v-w\right)}+f\left(w\right)\frac{\left(x-u\right)\left(x-v\right)}{\left(w-u\right)\left(w-v\right)}
+  (\#eq:simp)
+\end{equation}
+
+Sebagai taksiran luas di bawah kurva $y=f\left(x\right)$ digunakan $\int_{w}^u p\left(x\right)dx$. Hasil integrasi kurva Persamaan \@ref(eq:simp) disajikan pada Persamaan \@ref(eq:simp2).
+
+\begin{equation}
+\int_w^up\left(x\right)dx=\frac{h}{3}\left(f\left(u\right)+4f\left(v\right)+f\left(w\right)\right)
+  (\#eq:simp2)
+\end{equation}
+
+Sekarang asumsikan $n$ merupakan bilangan genap, maka kita perlu menambahkan taksiran untuk subinterval $\left[x_{2i},x_{2i+2}\right]$ untuk memperoleh taksiran $S$ pada integral $\int_{a}^b f\left(x\right)dx$ yang disajikan pada Persamaan \@ref(eq:simp3).
+
+\begin{equation}
+S\approx\frac{h}{3}\left(f_0+4\sum_{i=1,3,5.\dots}^{n-1}f_i+2\sum_{i=2,4,6,\dots}^{n-2}f_i+f_n\right)
+  (\#eq:simp3)
+\end{equation}
+
+Persamaan \@ref(eq:simp3) disebut sebagai kaidah Simpson 1/3 karena terdapat koefisien 1/3 pada bagian depan persamaan tersebut. Persamaan tersebut juga mudah diingat mengingat pola koefisien persamaan tersebut adalah $1,4,2,4,2,\dots ,2,4,1$. Namun penggunaan kaidah 1/3 Simpson mengharuskan jumlah subinterval $n$ genap. Kondisi tersebut jelas berbeda dengan metode trapezoida yang tidak mensyaratkan jumlah selang.
+
+Error dari metode Simpson 1/3 dapat dihitung menggunakan Persamaan \@ref(eq:simp3).
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{180m^4}f^{\left(4\right)}\left(\xi\right)
+  (\#eq:simp4)
+\end{equation}
+
+dimana $\xi$ merupakan nilai antara $a$ dan $b$.
+
+---------------------
+
+**Algoritma Metode Simpson**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Tentukan jumlah subinterval $n$.
+3. Hitung nilai selang subinterval $h$, $h=\frac{b-a}{n}$.
+4. Tentukan awal integrasi $x_0=a$ dan akhir $x_n=b$ dan hitung nilai $f\left(a\right)$ dan $f\left(b\right)$.
+5. Untuk $x=1,2,\dots,n-1$,
+
+  + jika ganjil, hitung: $4\times f\left(x\right)$
+  + jika genap, hitung: $2\times f\left(x\right)$
+
+6. Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan \@ref(eq:simp3).
+
+-----------------------
+
+Berdasarkan algoritma tersebut, kita dapat membentuk fungsi `simpson()` yang dapat digunakan untuk melakukan integrasi menggunakan metode Simpson 1/3. Berikut adalah sintaks yang digunakan:
+
+```{r}
+simpson <- function(f, a, b, m=100){
+  h <- (b-a)/m # jarak selang
+  x <- a # awal selang
+  I <- f(a)+f(b)
+  sigma <- 0
+  
+  if(m%%2 != 0){
+    stop("Jumlah panel harus genap")
+  }else{
+    for(i in 1:(m-1)){
+    x <- x+h
+    if(i%%2==0){
+      sigma <- sigma + 2*f(x)
+    }else{
+      sigma <- sigma + 4*f(x)
+      }
+    }
+  }
+  
+  return((h/3)*(I+sigma))
+}
+```
+
+```{example, simpexm}
+Hitung integral persamaan di bawah ini dengan menggunakan jumlah panel m=8!
+```
+
+$$
+\int_{0}^1 \frac{1}{1+x}dx
+$$
+
+**Jawab**:
+
+lebar selang $h$ dapat dihitung seperti berikut:
+
+$$
+h = \frac{1-0}{8}=0,125
+$$
+
+Integral persamaan tersebut selanjutnya dapat dihitung menggunakan Persamaan \@ref(eq:simp3):
+
+$$
+S\approx\frac{0,125}{3}\left(f\left(0\right)+4f\left(0,125\right)+2f\left(0,25\right)\dots+f\left(1\right)\right)\approx 0,69412
+$$
+
+Fungsi `simpson()` juga menghasilkan nilai yang serupa dengan perhitungan manual yang telah dilakukan. Berikut adalah sintaks yang digunakan:
+
+```{r}
+simpson(function(x)1/(1+x), a=0, b=1, m=8)
+```
+
+### Metode Simpson 3/8 {#simpson38}
+
+Jika pada metode Simpson 1/3 digunakan pendekatan polinomial berderajat 2 untuk mencari luas dibawah kurva, pada metode Simpson 3/8 digunakan pendekatan polinomial berderajat 3 untuk memperoleh hasil yang lebih baik. Bentuk umum integrasi yang digunakan disajikan pada Persamaan \@ref(eq:simp38).
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\approx\frac{3h}{8}\left(f_0+3\sum_{i=1;i\ne3,6,9,\dots}^{n-1}f_i+2\sum_{i=3,6,9,\dots}^{n-3}f_i+f_n\right)
+  (\#eq:simp38)
+\end{equation}
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \@ref(eq:simp382).
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{80m^4}f^{\left(5\right)}\left(\xi\right)
+  (\#eq:simp382)
+\end{equation}
+
+---------------------
+
+**Algoritma Metode Simpson 3/8**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Tentukan jumlah subinterval $n$.
+3. Hitung nilai selang subinterval $h$, $h=\frac{b-a}{n}$.
+4. Tentukan awal integrasi $x_0=a$ dan akhir $x_n=b$ dan hitung nilai $f\left(a\right)$ dan $f\left(b\right)$.
+5. Untuk $x=1,2,\dots,n-1$,
+
+  + jika bukan kelipatan 3, hitung: $3\times f\left(x\right)$
+  + jika kelipatan 3, hitung: $2\times f\left(x\right)$
+
+6. Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan \@ref(eq:simp38).
+
+-----------------------
+
+Berdasarkan algoritma tersebut, fungsi `R` dapat disusun untuk melakukan komputasi metode simpson 3/8. Berikut adalah sintaks fungsi tersebut:
+
+```{r}
+simpson38 <- function(f, a, b, m=90){
+  h <- (b-a)/m # jarak selang
+  x <- a # awal selang
+  I <- f(a)+f(b)
+  sigma <- 0
+  
+  if(m%%3 != 0){
+    stop("jumlah panel harus kelipatan 3")
+  }else{
+    for(i in 1:(m-1)){
+      x <- x+h
+      if(i%%3==0){
+      sigma <- sigma + 2*f(x)
+      }else{
+      sigma <- sigma + 3*f(x)
+      }
+    }
+  }
+  
+  return((3*h/8)*(I+sigma))
+}
+```
+
+```{example, simp38exm}
+Hitung kembali integral persamaan yang disajikan pada Contoh \@ref(exm:simpexm) menggunakan fungsi simpson38() yang telah dibuat sebelumnya!
+```
+
+**Jawab**:
+
+Berikut adalah sintaks yang digunakan untuk melakukan proses integrasi Simpson 3/8 menggunakan fungsi `simpson38()`:
+
+```{r}
+simpson38(function(x)1/(1+x), a=0, b=1, m=9)
+```
+
+## Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya
+
+Terdapat sejumlah paket yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada `R`. Paket `pracma` menyediakan fungsi-fungsi seperti `trapz()` dan `cotes()`.
+
+Fungsi `trapz()` merupakan fungsi yang digunakan untuk melakukan integrasi dengan pendekatan trapesium. Penggunaan fungsi tersebut untuk melakukan perhitungan integral tidak dapat dilakukan secara langsung, kita perlu membuat terlebih dahulu seri koordinat `x` dan koordinat `y`. Program selanjutnya akan melakukan interpolasi linier terhadap selang yang saling berdekatan. Luas masing-masing panel selang selanjutnya dihitung dan dijumlahkan untuk memperoleh nilai integral. Format fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+trapz(x, y)
+```
+
+> **Catatan:**
+>
+> - **x**: vektor sumbu x.
+> - **y**: vektor sumbu y.
+
+Untuk lebih memahami penerapannya berikut disajikan contoh untuk mencari integral persamaan pada Contoh \@ref(exm:reimannexm):
+
+```{r, warning=FALSE, message=FALSE}
+library(pracma)
+
+f <- function(x)x^2
+x <- seq(0, 1, length.out = 101) # membuat subinterval panel sebanyak 100
+y <- f(x)
+
+trapz(x, y)
+```
+
+Fungsi lain yang dapat digunakan untuk menghitung integral suatu fungsi menggunakan metode Newton-Cotes adalah `cotes()`. Pada fungsi tersebut kita perlu menyatakan jumlah subinterval yang digunakan dan jumlah nodes interpolasi yang digunakan. Jumlah nodes akan menentukan fungsi polinomial pendekatan yang digunakan untuk menghitung luas di bawah suatu fungsi. Jika jumlah nodes diatur menjadi dua, maka fungsi pendekatannya berupa garis linier (metode trapezoida). Jika nodes diatur menjadi 3 maka pendekatannya berupa fungsi kuadrat (metode Simpson 1/3). Secara sederhana derajat polinomial $n$ memerlukan $n+1$ nodes. Format fungsi `cotes()` disajikan sebagai berikut:
+
+```{r, eval=FALSE}
+cotes(f, a, b, n, nodes, ...)
+```
+
+> **Catatan:**
+>
+> - **f**: fungsi yang akan dicari integralnya
+> - **a**: batas atas.
+> - **b**: batas bawah.
+> - **n**: jumlah subinterval atau panel.
+> - **nodes**: jumlah nodes yang digunakan untuk interpolasi fungsi pada tiap subinterval.
+
+Untuk lebih memahami penerapannya berikut adalah contoh perhitungan intergral menggunakan persamaan pada Contoh \@ref(exm:simpexm).
+
+```{r}
+f <- function(x)1/(1+x)
+a <- 0; b <- 1
+
+# metode trapezoida
+cotes(f, a, b, n=8, nodes=2)
+
+# metode Simpson 1/3
+cotes(f, a, b, n=8, nodes=3)
+
+# metode Simpson 3/8
+cotes(f, a, b, n=9, nodes=4)
+
+```
+
+## Metode Kuadratur Gauss {#kuadgauss}
+
+Metode Newton-Cotes sangat *powerful*, tetapi metode tersebut memiliki dua fitur yang kurang diinginkan. Pertama, kita harus menggunakan evaluasi fungsi sejumlah $n +1$ untuk hasil presisi dan pada polinomial berderajat $n$. Hal tersebut mungkin tampak seperti rasio yang baik, tetapi dalam praktiknya, jumlah titik evaluasi akan sering ditingkatkan untuk memperoleh akurasi yang lebih tinggi, namun hasil yang diperoleh juga tidak presisi. Sebagai contoh pembaca dapat melakukan simulasi dengan memvariasikan jumlah penel yang digunakan untuk memperoleh nilai integral sebuah fungsi. Jika kita plotkan hasil yang kita peroleh, grafik yang muncul berupa garis yang berosilasi khusunya pada penggunaan polinomial berderajat tinggi yang menunjukkan hasil yang diperoleh menjadi kurang presisi. 
+
+Kelemahan kedua, metode Newton-Cotes memerlukan fungsi terintegrasi untuk dievaluasi pada node yang berjarak sama. Ini benar terlepas dari fungsi yang digunakan. Setiap panel membutuhkan node dengan jarak yang sama di dalamnya. Ini bisa menjadi masalah dengan fungsi periodik, di mana diskontinuitas periodik dapat secara kebetulan mendarat di titik evaluasi. Jika panel Newton-Cotes dapat menyebabkan masalah, kita dapat menggunakan integrasi Gaussian untuk menyelesaikan integral.
+
+Secara umum integrasi Gauss berusaha memperoleh pendekatan luas dibawah kurva fungsi dengan memecah fungsi tersebut menjadi faktor bobot $c$ dan $f\left(x\right)$ yang merupakan polinomial pendekatannya. Integral diperoleh melalui hasil kali dari bobot dan fungsi polinomial. Jumlah bobot dan fungsi yang digunakan bergantung pada orde $n$ polinomial yang akan digunakan untuk mengestimasi integral suatu fungsi. Bentuk umum dari kaidah Gauss tersebut ditampilkan pada Persamaan \@ref(eq:gauss). 
+
+\begin{equation}
+\int_{-1}^1f\left(x\right)dt\approx c_1f\left(x_1\right)+c_2f\left(x_2\right)+\dots+c_nf\left(x_n\right)
+  (\#eq:gauss)
+\end{equation}
+
+dimana $c$ merupakan faktor bobot dan $x$ merupakan titik evaluasi.
+
+Nilai faktor bobot dan nilai masing-masing titik evaluasi disajikan pada Gambar \@ref(fig:gaussviz).
+
+```{r gaussviz,echo=FALSE, fig.cap='Tabulasi faktor bobot, titik evaluasi dan galat pemotongan.', tidy=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/gaussviz.png"
+include_graphics(img1_path)
+
+```
+
+Fungsi yang akan dicari nilai integrannya pada umumnya tidak hanya memiliki daerah batas $\left[-1,1\right]$, sehingga pendekatan kuadratur Gauss tidak dapat digunakan secara langsung pada fungsi yang tidak memiliki batas tersebut. Agar kuadratur Gauss tetap dapat digunakan, fungsi tersebut perlu dilakukan transformasi. Proses transformasi dituliskan pada Persamaan \@ref(eq:gauss2). 
+
+\begin{equation}
+\int_a^bf\left(x\right)dx=\frac{b-a}{2}\int_{-1}^1f\left(\frac{a+b+\left(b-a\right)t}{2}\right)dt
+  (\#eq:gauss2)
+\end{equation}
+
+---------------------------------
+
+**Algoritma Kuadratur Gauss-Legendre**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Lakukan transformasi fungsi tersebut hingga diperoleh fungsi dengan selang $\left[-1,1\right]$ menggunakan Persamaan \@ref(eq:gauss2).
+3. Tentukan orde polinomial $n$ yang akan digunakan.
+4. Lakukan proses integrasi dengan mengalikan faktor bobot $c$ dengan $f\left(x_i\right)$ seperti yang ditujukkan pada Persamaan \@ref(eq:gauss).
+
+----------------------------------
+
+Kita dapat membangun suatu fungsi pada `R` untuk melakukan integrasi Gauss berdasarkan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:
+
+```{r}
+gauss_legendre <- function(f, n){
+    if(n==2){
+      c <- c(1,1)
+      x <- c(-0.577350269, 0.577350269)
+      integral <- 0
+      
+      for(i in 1:n){
+        integral <- integral + c[i]*f(x[i])
+      }
+    }else if(n==3){
+      c <- c(0.555555556,0.888888889,0.555555556)
+      x <- c(-0.774596669,0,0.774596669)
+      integral <- 0
+      
+      for(i in 1:n){
+        integral <- integral + c[i]*f(x[i])
+      }
+    }else if(n==4){
+      c <- c(0.347854845,0.652145155,0.652145155,
+             0.347854845)
+      x <- c(-0.861136312,-0.339981044,0.339981044,
+             0.861136312)
+      integral <- 0
+      
+      for(i in 1:n){
+        integral <- integral + c[i]*f(x[i])
+      }
+    }else if(n==5){
+      c <- c(0.236926885,0.478628670,0.568888889,
+              0.478628670,0.236926885)
+      x <- c(-0.906179846,-0.538469310,0,
+             0.538469310, 0.906179846)
+      integral <- 0
+      
+      for(i in 1:n){
+        integral <- integral + c[i]*f(x[i])
+      }
+    }else if(n==6){
+      c <- c(0.171324492,0.360761573,0.467913935,
+              0.467913935,0.360761573,0.171324492)
+      x <- c(-0.932469514,-0.661209386,-0.238619186,
+             0.238619186, 0.661209386,0.932469514)
+      integral <- 0
+      
+      for(i in 1:n){
+        integral <- integral + c[i]*f(x[i])
+      }
+    }else{
+      stop("n harus ditentukan")
+    }
+    return(integral)
+}
+```
+
+```{example, gausslanexm}
+Hitunglah integral fungsi berikut menggunakan metode Gauss-Legendre 2 titik!
+```
+
+$$
+\int_1^2 \left(x^2+1\right)dx
+$$
+
+**Jawab**:
+
+Agar fungsi tersebut dapat dicari nilai integralnya menggunakan metode Gauss-Legendre, fungsi tersebut perlu ditransformasi terlebih dahulu:
+
+$$
+\int_1^2 \left(x^2+1\right)dx=0,5\int_{-1}^1 \left[\left(1,5+0,5t\right)^2+1\right]dt
+$$
+
+Jadi dalam hal ini
+
+$$
+f\left(t\right)=\left(1,5+0,5t\right)^2+1
+$$
+
+maka
+
+$$
+\int_1^2 \left(x^2+1\right)dx=0,5\left[1\times f\left(\frac{1}{\sqrt{3}}\right)+1\times f\left(\frac{1}{\sqrt{3}}\right)\right]\approx 3,333333333
+$$
+
+Kita juga dapat menggunakan fungsi `gauss_legendre()` untuk melakukan integrasi Gauss-Legendre pada dua titik. Berikut adalah sintaks yang digunakan:
+
+```{r}
+0.5*gauss_legendre(function(x)((1.5+0.5*x)^2)+1,
+               n=2)
+
+```
+
+## Metode Gauss-Legendre Menggunakan Fungsi `legendre.quadrature()` {#othergauss}
+
+Fungsi `legendre.quadrature()` dari paket `gaussquand` dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+legendre.quadrature(functn, rule, lower=-1, upper=1, 
+  weighted = TRUE, ...)
+```
+
+> **Catatan:**
+>
+> - **functn**: fungsi yang akan dicari integralnya
+> - **rule**: data frame yang terdiri atas orde n aturan kuadratur legendre
+> - **lower**: batas atas.
+> - **upper**: batas bawah.
+> - **weighted**: nilai boolean yang menyatakan apakah bobot fungsi disertakan dalam integran
+> - **...**: argumen tambahan functn
+
+Untuk menentukan `rule` pada fungsi `legendre.quadrature()`, diperlukan fungsi lain yang tersedia pada paket `gaussquad`. Fungsi tersebut adalah `legendre.quadrature.rules()`. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+legendre.quadrature.rules(n,normalized=FALSE)
+```
+
+> **Catatan:**
+>
+> - **n**: orde tertinggi polinomial yang akan ditampilkan
+> - **normalized**: nilai boolean. Jika bernilai `TRUE`, aturan digunakan untuk polinomial ortogonal.
+
+Untuk memahami penerapan kedua fungsi tersebut berikut disajikan contoh penerapannya:
+
+```{r, warning=FALSE, message=FALSE}
+library(gaussquad)
+# menampilkan aturan untuk orde 4
+legendre.quadrature.rules(4)
+
+# mencari integral suatu fungsi dengan orde
+# gauss-legendre sebesar 4
+f <- function(x)x^6
+rule <- legendre.quadrature.rules(4)[[4]]
+
+legendre.quadrature(f, rule, lower=-1, upper=1)
+```
+
+## Metode Integrasi Adaptif {#adaptifint}
+
+Integrasi adaptif menyediakan pendekatan yang berbeda untuk memperoleh nilai intergral suatu fungsi. Salah satu prinsip utama dari analisis numerik adalah bahwa kita harus berkomitmen pada semacam analisis manusia terhadap suatu masalah sebelum mencoba menyelesaikannya secara algoritmik. Metode analisis numerik umumnya tidak dapat menyelesaikan semua masalah dengan sangat baik. Jadi pengetahuan terhadap masalah yang hendak diselesaikan dapat memungkinkan kita memilih metode numerik yang lebih baik sesuai dengan masalah. Misalnya, dalam konteks integrasi numerik, diskontinuitas pada titik akhir tidak akan cocok untuk solusi Newton-Cotes yang bersifat tertutup.
+
+Tentu saja, akan lebih baik jika kita bisa memprogram komputer untuk mempelajari sesuatu tentang masalah, daripada kita melakukan itu sendiri. Metode adaptif memberikan pendekatan untuk melakukan hal ini. Metode integrasi adaptif memeriksa integral yang mereka operasikan dan mengubah parameter mereka sendiri untuk meningkatkan kualitas integrasi. Algoritma adaptif yang paling sederhana memberikan pendekatan *brute force* untuk peningkatan kualitas dengan memeriksa *error* integrasi. Di sisi lain, jika kita tahu *error*-nya, secara teoritis kita bisa memperbaiki estimasi. Di situlah batas *error* pada algoritma Newton-Cotes dapat membantu.
+
+Jika kita dapat menemukan sesuatu tentang *error* tersebut, kita dapat menggunakan informasi itu untuk memperbaiki estimasi pada proses integrasi. Bayangkan kita sedang mengintegrasikan suatu fungsi, $f \left(x\right)$ pada batas  $\left[a, b\right]$. Jika kita menggunakan metode titik tengah (integral Riemann). Kita telah menetahui *error* maksimum yang mungkin terjadi pada metode tersebut melalui Persamaan \@ref(eq:reimann2). Dua pengamatan segera menjadi jelas. Terlepas dari apa fungsi $f \left(x\right)$ itu, atau turunan keduanya, dua perubahan dapat dilakukan pada integrasi untuk meningkatkan kualitasnya. Pertama, *error* adalah proporsi terhadap kubik dari panjang domain integrasi. Mengurangi panjang meningkatkan kualitas dan memotong panjang menjadi dua memberikan peningkatan kualitas delapan kali lipat. Kedua, *error* berbanding terbalik dengan jumlah panel m yang digunakan . Meningkatkan panel mengurangi *error* dan menggandakan jumlah panel yang disediakan dapat meeningkatkan kualitas empat kali lipat.
+
+Kita dapat merancang algoritma di sekitar pengamatan ini. Pertama, kita dapat memperkirakan nilai integral $Q_1$, menggunakan aturan titik tengah 1-point. Kedua, kita bisa memperkirakannya lagi menggunakan aturan titik tengah 2-point $Q_2$. Karena kita telah menggandakan jumlah titik dalam aturan, kita sekarang tahu bahwa perbedaan maksimum antara $Q_1$ dan $Q$, nilai sebenarnya dari integral, tidak lebih dari 4 kali lebih besar dari perbedaan maksimum antara $Q_2$ dan $Q$. Jika $Q_2 −Q$ kurang dari toleransi tertentu, maka perbedaan antara $Q_1$ dan $Q_2$ harus kurang dari tiga kali toleransi yang sama.
+
+Kita peeriksa perbedaan antara dua perkiraan. Jika perbedaannya lebih besar dari toleransi, kita mungkin masih berada dalam toleransi, tetapi kita belum pasti. Jadi proses membagi wilayah integrasi menjadi dua, dan menerapkan integrator adaptif untuk kedua bagian, secara terpisah, menjumlahkan hasilnya akan terus dilakukan.
+
+---------------------
+
+**Algoritma Metode Riemann Adaptif**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Tentukan jumlah subinterval $m$.
+3. Jika $m=1$, hitung luas area di bawah kurva dengan pendekatan metode Riemann dengan $m=2$.
+4. Jika $n>1$,
+
+  + Hitung $Q_1$ dengan pendekatan metode Riemann dan $m=1$
+  + Hitung $Q_2$ dengan pendekatan metode Riemann dan $m=2$
+
+5. Jika $Q_1-Q_2>3\times\text{nilai toleransi}$,
+
+  + Perkecil $m$ sebanyak 1, $m-1$
+  + Perkecil $\text{nilai toleransi}$ menjadi setengahnya
+  + Bagi area integrasi menjadi dua bagian dengan menetapkan $c$ sebagai batas, sehingga terdapat dua batas yaitu: $\left[a, c\right]$ dan $\left[c, b\right]$.
+  + Lakukan perhitungan kembali integral pada masing-masing batas tersebut menggunakan metode Riemann dan cek apakah $Q_1-Q_2>3\times\text{nilai toleransi}$.
+  
+6. Jika $Q_1-Q_2<3\times\text{nilai toleransi}$, luas integral = $Q_2$.
+
+-----------------------
+
+
+Kita dapat membangun sebuah fungsi integral adaptif menggunakan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:
+
+```{r}
+riemann_adaptint <- function(f, a, b, m=10, tol=1e-8){
+  if(m<1){
+    stop("m harus >= 1")
+  }else if(m==1){
+    m <- 2
+    n_width <- (b-a)/m
+    x <- seq(a, b-n_width, length.out = m) + n_width/2
+    y <- f(x)
+    area <- sum(y)*abs(b-a)/m
+  }else{
+    
+    m1 <- 1
+    n_width1 <- (b-a)/m1
+    x1 <- seq(a, b-n_width1, length.out = m1) + n_width1/2
+    y1 <- f(x1)
+    q1 <- sum(y1)*abs(b-a)/m1
+    
+    m2 <- 2
+    n_width2 <- (b-a)/m2
+    x2 <- seq(a, b-n_width2, length.out = m2) + n_width2/2
+    y2 <- f(x2)
+    q2 <- sum(y2)*abs(b-a)/m2
+    
+    if(abs(q1-q2)>3*tol){
+      m <- m-1
+      tol <- tol/2
+      c <- (a+b)/2
+      lt <- riemann_adaptint(f, a, c, m=m, tol=tol)
+      rt <- riemann_adaptint(f, c, b, m=m, tol=tol) 
+      area <- lt+rt
+    }else{
+      area <- q2
+    }
+  }
+  
+  return(area)
+}
+```
+
+```{example, adaptexm}
+Hitung integral fungsi di bawah ini dengan menggunakan integral Riemann adaptif dengan jumlah panel yang digunakan m=100!
+```
+
+$$
+\int_{1}^{10} \sin\left(x\right)^2+\log\left(x\right)dx
+$$
+
+**Jawab**:
+
+Kita akan menghitung integral dari fungsi tersebut menggunakan fungsi `R` yang telah dibuat. Berikut adalah sintaks yang digunakan:
+
+```{r}
+riemann_adaptint(function(x)sin(x)^2 + log(x),
+                 a=1, b=10, m=100)
+```
+
+## Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada `R`
+
+Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada `R`. Fungsi-fungsi tersebut antara lain: `integrate()` dari paket `base` dan `integral()` dari paket `pracma`.
+
+Fungsi `integrate()` merupakan fungsi yang akan melakukan integrasi numerik menggunakan metode kudratur adaptif untuk sebuah variabel dengan selang terbatas (*finite*) maupun tidak terbatas (*infinite*). Format fungsi tersebut secara umum adalah sebagai berikut:
+
+```{r, eval=FALSE}
+integrate(f, lower, upper, ..., subdivisions = 100L,
+          rel.tol = .Machine$double.eps^0.25, 
+          abs.tol = rel.tol)
+```
+
+> **Catatan:**
+>
+> - **f**: fungsi yang akan dicari integralnya
+> - **lower**: batas bawah.
+> - **upper**: batas atas.
+> - **...**: argumen tambahan functn
+> - **subdivision**: jumlah subinterval atau panel yang akan digunakan.
+> - **rel.tol**: nilai akurasi relatif yang hendak dicapai
+> - **abs.tol**: nilai akurasi absolut yang hendak dicapai
+
+Contoh penerapan fungsi `integrate()` adalah sebagai berikut:
+
+```{r}
+integrate(function(x)sin(x)^2 + log(x),
+          lower=1, upper=10,
+          rel.tol = 1e-8)
+```
+
+Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi `integral()` dari paket `pracma`. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi `integral()` adalah sebagai berikut:
+
+```{r, eval=FALSE}
+integral(fun, xmin, xmax,
+         method = c("Kronrod", "Clenshaw","Simpson"),
+         no_intervals = 8, reltol = 1e-8, 
+         abstol = 0, ...)
+```
+
+> **Catatan:**
+>
+> - **fun**: fungsi yang akan dicari integralnya
+> - **xmin**: batas bawah.
+> - **xmax**: batas atas.
+> - **method**: metode imtegrasi yang digunakan.
+> - **...**: argumen tambahan fun.
+> - **no_intervals**: jumlah subinterval atau panel yang akan digunakan.
+> - **reltol**: nilai akurasi relatif yang hendak dicapai
+> - **abstol**: nilai akurasi absolut yang hendak dicapai
+
+Berikut merupakan contoh penerapan fungsi `integral()`:
+
+```{r}
+pracma::integral(function(x)sin(x)^2 + log(x),
+          xmin=1, xmax=10, method="Simpson",
+          reltol = 1e-8)
+```
+
+## Metode Integrasi Romberg {#romberg}
+
+Seperti halnya algoritma integrasi adaptif, integrasi Romberg adalah perluasan yang relatif mudah dari keluarga algoritma Newton-Cotes. Keduanya bekerja dengan menggunakan iterasi yang disempurnakan dari beberapa metode Newton-Cotes yang mendasarinya untuk memberikan perkiraan nilai integral yang lebih akurat. Tidak seperti proses komputasi fungsi `riemann_adapint()`, integrasi Romberg bukanlah pendekatan adaptif terhadap integrasi. Hal tersebut berarti metode Romberg tidak mengubah perilakunya sendiri berdasarkan perilaku fungsi yang akan diintegrasikan. Sebaliknya, kita mengeksploitasi perilaku fungsi trapesium pada batas untuk menghasilkan estimasi integral.
+
+Untuk memahami integrasi Romberg, kita harus mulai dengan implementasi rekursif dari aturan trapesium. Jika kita mulai dengan suatu fungsi, $T\left(f, m\right)$ di mana $T$ adalah fungsi trapesium, $f$ adalah fungsi yang akan diintegrasikan, dan $m$ adalah jumlah panel untuk diintegrasikan, maka,
+
+\begin{equation}
+S\left(f, m\right)=\frac{4T\left(f, m\right)-T\left(f, m/2\right)}{3}
+  (\#eq:romberg)
+\end{equation}
+
+di mana $S$ adalah aturan Simpson. Kemudian, jika kita mendefinisikan $T \left(f, 0\right) = \left(b − a\right) \left(f \left(b\right) + f \left(a\right)\right) = 2$, maka fungsi rekursif kita selesai, karena berdasarkan hubungan ini, fraksi yang diberikan dalam Persamaan \@ref(eq:romberg) juga merupakan perkiraan untuk integral. 
+
+Secara umum,
+
+\begin{equation}
+I_{j,k}=\frac{4^k I_{j,k-1}-I_{j-1,k-1}}{4^k-1}
+  (\#eq:romberg2)
+\end{equation}
+
+di mana $I_{0, 0}$ adalah aturan trapesium satu panel dan $I_{j, 0}$ adalah aturan trapesium dengan panel $2^j$. Dengan menggunakan fungsi-fungsi dasar ini, $I_{j, k}$ dapat ditemukan secara iteratif sebagai matriks segitiga-bawah di mana masing-masing nilai di kolom yang bukan paling kiri adalah fungsi dari nilai di sebelah kiri dan entri di atasnya.
+
+Definisi rekursif ini muncul dari ekstrapolasi Richardson. Ketika diterapkan pada algoritma trapesium, yang konvergen menuju nilai sebenarnya dari integral sebagai $m$ (jumlah panel) meningkat, hubungan dalam Persamaan \@ref(eq:romberg2) muncul. Penting untuk dipahami bahwa pada batas ketika $k$ mendekati tak terhingga, nilai $I_{j, k}$ adalah nilai sejati integral. Untuk nilai yang lebih kecil dari $k$, integral Romberg masih hanya perkiraan, meskipun hasil yang diperoleh sangat bagus.
+
+---------------------
+
+**Algoritma Metode Integrasi Romberg**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Tentukan jumlah subinterval $m$.
+3. Bentuk matrik $R$ dengan ukuran $m\times m$ yang akan menampung hasil perhitungan.
+4. Untuk $R_{1,1}$ hitung integral fungsi menggunakan metode trapezoida dengan $m=1$.
+5. Untuk $j=2,\dots,m$ dan $k=1$, hitung integral dengan jumlah panel $m=2^{j-1}$
+6. Untuk $j=2,\dots,m$ dan $k=2,\dots,m$ hitung nilai perbaikan nilai integrasi menggunakan Persamaan \@ref(eq:romberg2).
+7. Solusi integrasi diperoleh pada $R_{m,m}$.
+
+-----------------------
+
+
+Berdasarkan algoritma tersebut, kita akan menyusun suatu fungsi pada `R` untuk melakukan proses komputasi integrasi dengan metode Romberg. Berikut adalah sintaks fungsi yang dibuat:
+
+```{r}
+romberg <- function(f, a, b, m, tab=FALSE){
+  R <- matrix(NA, nrow=m, ncol=m)
+  
+  R[1,1] <- trap(f, a, b, m=1)
+  for(j in 2:m){
+    R[j,1] <- trap(f, a, b, m=2^(j-1))
+    for(k in 2:j){
+      k4 <- 4^(k-1)
+      R[j,k] <- (k4*R[j,k-1]-R[j-1,k-1])/(k4-1)
+    }
+  }
+  
+  if(tab==TRUE){
+    return(R)
+  }else{
+    return(R[m,m])
+  }
+}
+```
+
+
+
+```{example, rombergexm}
+Hitung integral fungsi yang ditampilkan pada Contoh \@ref(exm:adaptexm) dengan m=10!
+```
+
+**Jawab**:
+
+Kita dapat menggunakan fungsi `romberg()` untuk melakukan proses integrasi menggunakan metode Romberg. Berikut adalah sintaks yang digunakan:
+
+```{r}
+# menampilkan matriks proses perhitungan
+romberg(function(x)sin(x)^2 + log(x),
+        a=1, b=10, m=10, tab=TRUE)
+```
+
+Berdasarkan hasil perhitungan nilai integral fungsi tersebut adalah `r romberg(function(x)sin(x)^2 + log(x), a=1, b=10, m=10)`.
+
+## Metode Integrasi Romberg Menggunakan Fungsi Lainnya
+
+Fungsi `romberg()` pada paket `pracma` dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+romberg(f, a, b, maxit = 25, tol = 1e-12, ...)
+```
+
+> **Catatan:**
+>
+> - **f**: fungsi yang akan dicari integralnya
+> - **a**: batas bawah.
+> - **b**: batas atas.
+> - **...**: argumen tambahan functn
+> - **maxit**: jumlah iterasi maksimum.
+> - **tol**: nilai akurasi yang hendak dicapai
+
+Berikut adalah contoh penerapan fungsi `romberg()`:
+
+```{r}
+pracma::romberg(function(x)sin(x)^2 + log(x),
+        a=1, b=10)
+```
+
+## Metode Integrasi Monte Carlo {#montecarlo}
+
+Nama Monte Carlo berasal dari daerah di Monako, yang terkenal karena aktikvitas kasino dan perjudiannya. Jelas, permainan kasino yang baik tergantung pada keacakan, seperti juga metode Monte Carlo. Nama ini menggambarkan pentingnya keacakan dalam proses karena algoritma Monte Carlo menggunakan generator angka acak untuk membedakan input ke suatu fungsi.
+
+Angka acak harus berasal dari domain fungsi yang diharapkan. Selanjutnya, fungsi itu sendiri bersifat deterministik karena untuk diberikan dua input dari domain fungsi $x_1$ dan $x_2$. Jika $x_1 = x_2$, maka $f \left(x_1\right) = f \left(x_2\right)$. Generator angka acak digunakan untuk menghasilkan sejumlah besar input dan fungsinya dijalankan pada setiap input. Akhirnya, hasil yang diperoleh dikumpulkan sesuai dengan model logika yang sesuai dengan analisis yang dilakukan.
+
+Metode Monte Carlo dapat digunakan untuk integrasi numerik dalam jumlah dimensi apa pun yang diberikan. Pendekatan mendasar metode ini adalah menempatkan beberapa titik $m$ secara acak di atas domain untuk diintegrasikan. Jika titik terletak "di bawah" garis fungsi, maka titik tersebut dianggap dalam area integrasi. Jika titiknya "di atas" garis fungsi, maka titik tersebut bukan berada diluar garis integrasi. Area di bawah perkiraan kurva adalah persentase titik di bawah garis.
+
+Beberapa algoritma Monte Carlo yang paling awal digunakan untuk menemukan area di bawah kurva atau untuk memperkirakan nilai $\pi$ sebuah hobi favorit matematikawan sejak dahulu. Satu pendekatan menciptakan seperempat lingkaran, menggunakan fungsi $f \left(x\right) = \sqrt{1-x^2}$. Melalui domain $\left[0, 1\right]$, ini adalah fungsi dan merupakan hasil dari penyelesaian persamaan standar untuk lingkaran, $x^2 + y^2 = r$ untuk $y$ di mana $r = 1$.
+
+Gambar \@ref(fig:monteviz) menunjukkan plot fungsi ini. Selain itu, 20 titik acak dipilih. Jika titik di bawah kurva dilambangkan dengan lingkaran hitam terisi dan titik-titik kurva dilambangkan dengan titik bulat kosong. Dalam contoh ini, terdapat 15 titik berada di bawah kurva, mengarah ke estimasi area luas area 0,75. Karena kurva mewakili seperempat lingkaran, estimasi untuk $\pi$ adalah 3. Meningkatkan jumlah tes titik acak meningkatkan ketepatan estimasi dan akurasi.
+
+```{r monteviz,echo=FALSE, fig.cap='Visualisasi metode Monte-Carlo untuk fungsi setengah lingkaran dengan jumlah bilangan acak 20 (sumber: Jones et.al., 2014).', tidy=FALSE, out.width='70%', fig.align='center', message=FALSE, warning=FALSE}
+library(knitr)
+img1_path <- "./images/monte.png"
+include_graphics(img1_path)
+
+```
+
+Bentuk umum metode Monte-Carlo disajikan pada Persamaan \@ref(eq:monte).
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\approx\left(b-a\right)\frac{1}{N}\sum_{i=1}^Nf\left(x_i\right)
+  (\#eq:monte)
+\end{equation}
+
+dimana $N$ merupakan jumlah titik yang akan dievaluasi.
+
+---------------------
+
+**Algoritma Metode Monte Carlo**
+
+1. Tentukan fungsi $f\left(x\right)$ dan selang integrasinya $\left[a,b\right]$.
+2. Tentukan jumlah titik acak yang akan digunakan $N$.
+3. Lakukan produksi titik acak $x$ dengan selang $\left[a,b\right]$ sejumlah $N$
+4. Hitung $f\left(x_i\right)$
+5. Hitung estimasi area menggunakan Persamaan \@ref(eq:monte)
+
+-----------------------
+
+
+Berdasarkan algoritma tersebut, fungsi `R` dapat dibangun untuk melakukan integrasi numerik menggunakan metode Monte Carlo. Berikut adalah sintaks yang digunakan:
+
+```{r}
+monte_int <- function(f, a, b, m=1e6){
+  x <- runif(m, min=a, max=b)
+  
+  return((b-a)*sum(f(x))/m)
+}
+```
+
+```{example, monteexm}
+Hitung integral fungsi yang ditampilkan pada Contoh \@ref(exm:adaptexm) menggunakan metode Monte-Carlo dengan m=1e6!
+```
+
+**Jawab**:
+
+Integrasi Monte Carlo menggunakan menggunakan fungsi `monte_int()` disajikan pada sintaks berikut:
+
+```{r}
+monte_int(function(x)sin(x)^2 + log(x), a=1, b=10)
+```
+
+Hasil yang diperoleh sedikit berbeda dengan yang dihasilkan oleh metode lainnya. Hal ini disebabkan oleh penggunaan bilangan acak pada proses integrasi. Selain itu, metode ini juga menghasilkan kualitas hasil yang rendah dengan tingkat komputasi yang tinggi dibandingkan dengan metode Newton-Cotes.
+
+Keunggulan metode Monte Carlo dibandingkan metode sebelumnya adalah kemampuan untuk menangani proses integrasi berganda. Berikut adalah bentuk umum proses integrasi bivariat menggunakan metode Monte Carlo:
+
+\begin{equation}
+\int \int f\left(x,y\right)dx\approx V\frac{1}{N}\sum_{i=1}^Nf\left(x_i,y_i\right)
+  (\#eq:monte2)
+\end{equation}
+
+dimana $V$ merupakan area perpotongan $x-y$ dimana fungsi $f\left(x,y\right)$ diintegrasikan. 
+
+---------------------
+
+**Algoritma Metode Monte Carlo Bivariat**
+
+1. Tentukan fungsi $f\left(x\right)$ dan domain integrasinya pada masing-masing sumbu $x$ dan $y$
+2. Tentukan jumlah titik acak yang akan digunakan $N$.
+3. Lakukan produksi titik acak $x$ dan $y$ masing-masing domain sumbunya sejumlah $N$
+4. Hitung $V=\left( x_{max}-x_{min}\right) \times \left(y_{max}-y_{max}\right)$
+5. Hitung estimasi volume menggunakan Persamaan \@ref(eq:monte2)
+
+-----------------------
+
+```{r}
+monte_int2 <- function(f, xdom, ydom, m=1000){
+  xmin <- min(xdom)
+  xmax <- max(xdom)
+  ymin <- min(ydom)
+  ymax <- max(ydom)
+  
+  x <- runif(m, min=xmin, max=xmax)
+  y <- runif(m, min=ymin, max=ymax)
+  
+  V <- (xmax-xmin)*(ymax-ymin)
+  
+  return(V*sum(f(x,y))/m)
+}
+```
+
+```{example, monteexm2}
+Hitung volume melalui integrasi persamaan berikut menggunakan metode Monte Carlo dengan domain x = [0,1] dan y=[0,1]!
+```
+
+$$
+\int_{0}^1 \int_{0}^1 x^2y \ dy \ dx
+$$
+
+**Jawab**:
+
+Berikut adalah sintaks yang digunakan untuk melakukan integrasi persamaan tersebut menggunakan metode Monte Carlo bivariat:
+
+```{r}
+monte_int2(function(x,y)x^2*y,
+           xdom=c(0,1), ydom=c(0,1))
+```
+
+Karena metode Monte Carlo tidak deterministik, *error* integrasi Monte Carlo tidak dibatasi dalam pengertian yang telah kita lihat sejauh ini. Namun, kita dapat memperkirakan varians dari estimasi yang dihasilkan, yang berkurang dengan meningkatnya jumlah poin:
+
+\begin{equation}
+\text{Var}\frac{1}{N}\sum f\left(\right)=\frac{\sigma^2}{N}
+  (\#eq:monte3)
+\end{equation}
+
+dimana $\sigma^2=\text{Var}\ f\left(\right)$. Definisi ini juga digunakan untuk proses integrasi dengan dimensi yang lebih tinggi.
+
+Perlu diketahui pula bahwa metode Monte Carlo hanya dapat digunakan jika nilai terendah dari variabel bebas yang digunakan tidak negatif. Hal ini dilakukan untuk mencegah adanya pengurangan dengan nilai negatif sehingga hasil integrasi jauh lebih besar dari yang seharusnya.
+
+## Studi Kasus
+
+### Penerjung Payung
+
+Pada studi kasus kali ini, penulis akan memberikan contoh penerapan integrasi numerik dalam menganalisa  jarak jatuh seorang penerjung payung yang melompat dari sebuah pesawat. Kecepatan penerjun payung dapat dituliskan ke dalam sebuah fungsi dari waktu,
+
+\begin{equation}
+v\left(t\right)=\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)
+  (\#eq:terjun)
+\end{equation}
+
+dimana $v$ adalah kecepatan penerjun payung dalam $m/dt$, $g$ adalah percepatan gravitasi sebesar $9,8 \ m/dt^2$, $m$ adalah massa penerjun payung sebesar $68,1 \ kg$, dan $c$ adalah koefisien tahanan udara sebesar $12,5\ kg/dt$.
+
+Misalkan kita ingin mengetahui seberapa jauh penerjun telah jatuh setelah waktu tertentu $t$. Karena kecepatan merupakan turunan pertama dari fungsi jarak, maka jarak penerjun dari titik terjun $\left(t=0\right)$ adalah:
+
+\begin{equation}
+d=\int_{0}^{t}v\left(t\right)dt=\int_{0}^{t}\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)dt
+  (\#eq:terjun2)
+\end{equation}
+
+Jika kita ingin mengetahui jarak yang telah ditempuh saat $t=10$, kita dapat melakukan integrasi pada persamaan tersebut dengan domain $t=\left[0,10\right]$. Persamaan \@ref(eq:terjun2) dapat dinyatakan menjadi Persamaan \@ref(eq:terjun3) dengan memasukkan semua komponen yang telah diketahui sebelumnya.
+
+\begin{equation}
+d=\int_{0}^{10}\frac{9,8\times 68,1}{12,5}\left(1-e^{-\left(12,5/68,1\right)^t}\right)dt
+  (\#eq:terjun3)
+\end{equation}
+
+Kita dapat menyelesaikan Persamaan \@ref(eq:terjun3) dengan menggunakan metode-metode integrasi numerik yang telah dijabarkan sebelumnya. Berikut adalah sintaks untuk masing-masing metode tersebut:
+
+```{r}
+f <- function(x)((9.8*68.1)/12.5)*(1-exp(-(12.5/68.1)*x))
+a <- 0; b <- 10
+```
+
+
+**Newton-Cotes**
+
+```{r}
+# Metode Riemann
+riemann(f, a, b)
+
+# Metode Trapezoida
+trap(f, a, b)
+
+# Metode Simpson 1/3
+simpson(f, a, b)
+
+# Metode Simpson 3/8
+simpson38(f, a, b)
+
+```
+
+**Metode Adaptif**
+
+```{r}
+riemann_adaptint(f, a, b, m=100)
+```
+
+**Metode Romberg**
+
+```{r}
+romberg(f, a, b, m=10)
+```
+
+**Metode Monte Carlo**
+
+```{r}
+monte_int(f, a, b)
+```
+
+## Referensi
+
+1. Bloomfield, V.A. 2014. **Using R for Numerical Analysis in Science and Engineering**. CRC Press.
+2. Chapra, S.C. Canale, R.P. 2015. **Numerical Methods For Engineers, Seventh Edition**. Mc Graw Hill. 
+3. Howard, J.P. 2017. **Computational Methods for Numerical Analysis with R**. CRC Press.
+4. Kreyszig, E. 2011. **Advanced Engineering Mathematics, 10th Edition**. John Wiley & Sons.
+5. Sanjaya, M. 2015. **Metode Numerik Berbasis Phython**. Penerbit Gava Media: Yogyakarta.
+6. Suparno, S. 2008. **Komputasi untuk Sains dan Teknik Edisi II**. Departemen Fisika-FMIPA Universitas Indonesia. 
+
+
+##Latihan
+
+1. Hitung integral fungsi $f\left(x\right)=\sin^2\left(x\right)$ pada domain $x \in \left[0,\pi\right]$ !
+2. Tuliskan fungsi `R` yang dapat melakukan integrasi Riemann dengan aturan titik kiri !
+3. Buatlah sebuah fungsi `R` yang dapat melakukan integrasi adaptif menggunakan metode Simpson 1/3 !
+4. Kerjakan kembali soal 3 dengan menggunakan metode Simpson 3/8! (**Note**: pembaca dapat melakukan pencarian algoritma di internet dan mentrasformasikannya menjadi sintaks `R`)
+5. Fungsi `monte_int()` hanya mampu melakukan integrasi pada domain positif. Buatlah algoritma baru sehingga metode ini dapat melakukan integrasi pada domain negatif !

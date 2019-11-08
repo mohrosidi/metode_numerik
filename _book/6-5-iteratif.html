@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.5 Metode Iterasi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+
+
+<meta name="author" content="Mohammad Rosidi" />
+
+<meta name="date" content="2019-11-05" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan">
+
+<title>6.5 Metode Iterasi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#kata-pengantar">Kata Pengantar</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Bahasa Pemrograman R</a><ul>
+<li><a href="1-1-sejarahR.html#sejarahR"><span class="toc-section-number">1.1</span> Sejarah R</a></li>
+<li><a href="1-2-fiturR.html#fiturR"><span class="toc-section-number">1.2</span> Fitur dan Karakteristik R</a></li>
+<li><a href="1-3-prosconsR.html#prosconsR"><span class="toc-section-number">1.3</span> Kelebihan dan Kekurangan R</a></li>
+<li><a href="1-4-rstudio.html#rstudio"><span class="toc-section-number">1.4</span> RStudio</a></li>
+<li><a href="1-5-installR.html#installR"><span class="toc-section-number">1.5</span> Menginstall R dan RStudio</a></li>
+<li class="has-sub"><a href="1-6-wdR.html#wdR"><span class="toc-section-number">1.6</span> Working Directory</a><ul>
+<li><a href="1-6-wdR.html#changewdR"><span class="toc-section-number">1.6.1</span> Mengubah Lokasi Working Directory</a></li>
+<li><a href="1-6-wdR.html#defaultwdR"><span class="toc-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li><a href="1-7-installlibraryR.html#installlibraryR"><span class="toc-section-number">1.7</span> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="has-sub"><a href="1-8-helpR.html#helpR"><span class="toc-section-number">1.8</span> Fasilitas Help</a><ul>
+<li><a href="1-8-helpR.html#searchhelp"><span class="toc-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li><a href="1-8-helpR.html#generalhelp"><span class="toc-section-number">1.8.2</span> General Help</a></li>
+<li><a href="1-8-helpR.html#othershelp"><span class="toc-section-number">1.8.3</span> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li><a href="1-9-referensi.html#referensi"><span class="toc-section-number">1.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-calculation.html#calculation"><span class="toc-section-number">2</span> Kalkulasi Menggunakan R</a><ul>
+<li><a href="2-1-aritmetikoperator.html#aritmetikoperator"><span class="toc-section-number">2.1</span> Operator Aritmatik</a></li>
+<li><a href="2-2-aritmaticfunction.html#aritmaticfunction"><span class="toc-section-number">2.2</span> Fungsi Aritmetik</a></li>
+<li><a href="2-3-relationoperators.html#relationoperators"><span class="toc-section-number">2.3</span> Operator Relasi</a></li>
+<li><a href="2-4-logicoperators.html#logicoperators"><span class="toc-section-number">2.4</span> Operator Logika</a></li>
+<li><a href="2-5-assigningvar.html#assigningvar"><span class="toc-section-number">2.5</span> Memasukkan Nilai Kedalam Variabel</a></li>
+<li><a href="2-6-typedata.html#typedata"><span class="toc-section-number">2.6</span> Tipe dan Struktur Data</a></li>
+<li class="has-sub"><a href="2-7-vector.html#vector"><span class="toc-section-number">2.7</span> Vektor</a><ul>
+<li><a href="2-7-vector.html#createvector"><span class="toc-section-number">2.7.1</span> Membuat vektor</a></li>
+<li><a href="2-7-vector.html#missingvalue"><span class="toc-section-number">2.7.2</span> Missing Values</a></li>
+<li><a href="2-7-vector.html#subsetvector"><span class="toc-section-number">2.7.3</span> Subset Pada Vektor</a></li>
+<li><a href="2-7-vector.html#vectorops"><span class="toc-section-number">2.7.4</span> Operasi Matematis Menggunakan Vektor</a></li>
+<li><a href="2-7-vector.html#seq"><span class="toc-section-number">2.7.5</span> Membuat Deret Angka</a></li>
+<li><a href="2-7-vector.html#repseq"><span class="toc-section-number">2.7.6</span> Nilai Berulang</a></li>
+<li><a href="2-7-vector.html#randnumb"><span class="toc-section-number">2.7.7</span> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-8-matriks.html#matriks"><span class="toc-section-number">2.8</span> Matriks</a><ul>
+<li><a href="2-8-matriks.html#creatematrix"><span class="toc-section-number">2.8.1</span> Membuat matriks</a></li>
+<li><a href="2-8-matriks.html#subsetmatrix"><span class="toc-section-number">2.8.2</span> Subset Pada Matriks</a></li>
+<li><a href="2-8-matriks.html#matrixcalculation"><span class="toc-section-number">2.8.3</span> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li><a href="2-9-referensi-1.html#referensi-1"><span class="toc-section-number">2.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-dataviz.html#dataviz"><span class="toc-section-number">3</span> Visualisasi Data</a><ul>
+<li><a href="3-1-plotfunc.html#plotfunc"><span class="toc-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="has-sub"><a href="3-2-otherviz.html#otherviz"><span class="toc-section-number">3.2</span> Visualisasi Lainnya</a><ul>
+<li><a href="3-2-otherviz.html#barplot"><span class="toc-section-number">3.2.1</span> Bar Plot</a></li>
+<li><a href="3-2-otherviz.html#histogram"><span class="toc-section-number">3.2.2</span> Histogram dan Density Plot</a></li>
+<li><a href="3-2-otherviz.html#boxplot"><span class="toc-section-number">3.2.3</span> Box plot</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-customise.html#customise"><span class="toc-section-number">3.3</span> Kustomisasi Parameter Grafik</a><ul>
+<li><a href="3-3-customise.html#addtitle"><span class="toc-section-number">3.3.1</span> Menambahkan Judul</a></li>
+<li><a href="3-3-customise.html#addlegend"><span class="toc-section-number">3.3.2</span> Menambahkan Legend</a></li>
+<li><a href="3-3-customise.html#addtext"><span class="toc-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</a></li>
+<li><a href="3-3-customise.html#addlines"><span class="toc-section-number">3.3.4</span> Menambahkan Garis Pada Plot</a></li>
+<li><a href="3-3-customise.html#changepoint"><span class="toc-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</a></li>
+<li><a href="3-3-customise.html#mengatur-axis-plot"><span class="toc-section-number">3.3.6</span> Mengatur Axis Plot</a></li>
+<li><a href="3-3-customise.html#changecolor"><span class="toc-section-number">3.3.7</span> Mengatur Warna</a></li>
+</ul></li>
+<li><a href="3-4-plot-dua-dan-tiga-dimensi.html#plot-dua-dan-tiga-dimensi"><span class="toc-section-number">3.4</span> Plot Dua dan Tiga Dimensi</a></li>
+<li><a href="3-5-referensi-2.html#referensi-2"><span class="toc-section-number">3.5</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-programmingandfunction.html#programmingandfunction"><span class="toc-section-number">4</span> Pemrograman dan Fungsi</a><ul>
+<li class="has-sub"><a href="4-1-loop.html#loop"><span class="toc-section-number">4.1</span> Loop</a><ul>
+<li><a href="4-1-loop.html#forloop"><span class="toc-section-number">4.1.1</span> For Loop</a></li>
+<li><a href="4-1-loop.html#whileloop"><span class="toc-section-number">4.1.2</span> While Loop</a></li>
+<li><a href="4-1-loop.html#repeatloop"><span class="toc-section-number">4.1.3</span> Repeat Loop</a></li>
+<li><a href="4-1-loop.html#break"><span class="toc-section-number">4.1.4</span> Break</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-2-loopapply.html#loopapply"><span class="toc-section-number">4.2</span> Loop Menggunakan Apply Family Function</a><ul>
+<li><a href="4-2-loopapply.html#apply"><span class="toc-section-number">4.2.1</span> Apply</a></li>
+<li><a href="4-2-loopapply.html#lapply"><span class="toc-section-number">4.2.2</span> lapply</a></li>
+<li><a href="4-2-loopapply.html#sapply"><span class="toc-section-number">4.2.3</span> sapply</a></li>
+<li><a href="4-2-loopapply.html#vapply"><span class="toc-section-number">4.2.4</span> vapply</a></li>
+<li><a href="4-2-loopapply.html#tapply"><span class="toc-section-number">4.2.5</span> tapply</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-dm.html#dm"><span class="toc-section-number">4.3</span> Decision Making</a><ul>
+<li><a href="4-3-dm.html#ifstatement"><span class="toc-section-number">4.3.1</span> if statement</a></li>
+<li><a href="4-3-dm.html#ifelsestatement"><span class="toc-section-number">4.3.2</span> if else statement</a></li>
+<li><a href="4-3-dm.html#switchstatement"><span class="toc-section-number">4.3.3</span> switch statement</a></li>
+</ul></li>
+<li><a href="4-4-fungsi.html#fungsi"><span class="toc-section-number">4.4</span> Fungsi</a></li>
+<li><a href="4-5-debugging.html#debugging"><span class="toc-section-number">4.5</span> Debugging</a></li>
+<li><a href="4-6-referensi-3.html#referensi-3"><span class="toc-section-number">4.6</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-numericmethod.html#numericmethod"><span class="toc-section-number">5</span> Pengantar Metode Numerik</a><ul>
+<li class="has-sub"><a href="5-1-numericmethodintro.html#numericmethodintro"><span class="toc-section-number">5.1</span> Mengenal Metode Numerik</a><ul>
+<li><a href="5-1-numericmethodintro.html#diffanalitycnumeric"><span class="toc-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li><a href="5-1-numericmethodintro.html#tahapan-penyelesaian-menggunakan-metode-numerik"><span class="toc-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li><a href="5-2-acuracy.html#acuracy"><span class="toc-section-number">5.2</span> Akurasi dan Presisi</a></li>
+<li><a href="5-3-numerror.html#numerror"><span class="toc-section-number">5.3</span> Error Numerik</a></li>
+<li><a href="5-4-referensi-4.html#referensi-4"><span class="toc-section-number">5.4</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-linearaljabar.html#linearaljabar"><span class="toc-section-number">6</span> Aljabar Linier</a><ul>
+<li class="has-sub"><a href="6-1-vecmat.html#vecmat"><span class="toc-section-number">6.1</span> Vektor dan matriks</a><ul>
+<li><a href="6-1-vecmat.html#operasivektor"><span class="toc-section-number">6.1.1</span> Operasi Vektor</a></li>
+<li><a href="6-1-vecmat.html#operasimatrik"><span class="toc-section-number">6.1.2</span> Operasi matriks</a></li>
+</ul></li>
+<li><a href="6-2-rowoperation.html#rowoperation"><span class="toc-section-number">6.2</span> Operasi Baris Elementer</a></li>
+<li class="has-sub"><a href="6-3-gausselimination.html#gausselimination"><span class="toc-section-number">6.3</span> Eliminasi Gauss</a><ul>
+<li><a href="6-3-gausselimination.html#rowechelonform"><span class="toc-section-number">6.3.1</span> <em>Row Echelon Form</em></a></li>
+<li><a href="6-3-gausselimination.html#redrowechelonform"><span class="toc-section-number">6.3.2</span> Eliminasi Gauss-Jordan</a></li>
+<li><a href="6-3-gausselimination.html#matriktridiagonal"><span class="toc-section-number">6.3.3</span> Matrik Tridiagonal</a></li>
+<li><a href="6-3-gausselimination.html#solvefunc"><span class="toc-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li><a href="6-3-gausselimination.html#solvetridiagfunct"><span class="toc-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-4-dekomposisimatriks.html#dekomposisimatriks"><span class="toc-section-number">6.4</span> Dekomposisi Matriks</a><ul>
+<li><a href="6-4-dekomposisimatriks.html#ludecomp"><span class="toc-section-number">6.4.1</span> Dekomposisi LU</a></li>
+<li><a href="6-4-dekomposisimatriks.html#dekomposisi-cholesky"><span class="toc-section-number">6.4.2</span> Dekomposisi Cholesky</a></li>
+<li><a href="6-4-dekomposisimatriks.html#othersdecomp"><span class="toc-section-number">6.4.3</span> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-5-iteratif.html#iteratif"><span class="toc-section-number">6.5</span> Metode Iterasi</a><ul>
+<li><a href="6-5-iteratif.html#jacobiiter"><span class="toc-section-number">6.5.1</span> Iterasi Jacobi</a></li>
+<li><a href="6-5-iteratif.html#seideliter"><span class="toc-section-number">6.5.2</span> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-6-studikasus.html#studikasus"><span class="toc-section-number">6.6</span> Studi Kasus</a><ul>
+<li><a href="6-6-studikasus.html#leastsquare"><span class="toc-section-number">6.6.1</span> Metode Kuadrat Terkecil</a></li>
+<li><a href="6-6-studikasus.html#reaktorkimia"><span class="toc-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li><a href="6-7-referensi-5.html#referensi-5"><span class="toc-section-number">6.7</span> Referensi</a></li>
+<li><a href="6-8-latihan.html#latihan"><span class="toc-section-number">6.8</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-rootfinding.html#rootfinding"><span class="toc-section-number">7</span> Akar Persamaan Non-Linier</a><ul>
+<li class="has-sub"><a href="7-1-bracketing.html#bracketing"><span class="toc-section-number">7.1</span> Metode Tertutup</a><ul>
+<li><a href="7-1-bracketing.html#table"><span class="toc-section-number">7.1.1</span> Metode Tabel</a></li>
+<li><a href="7-1-bracketing.html#bisection"><span class="toc-section-number">7.1.2</span> Metode Biseksi</a></li>
+<li><a href="7-1-bracketing.html#regulafalsi"><span class="toc-section-number">7.1.3</span> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-2-openmethod.html#openmethod"><span class="toc-section-number">7.2</span> Metode Terbuka</a><ul>
+<li><a href="7-2-openmethod.html#fixpoint"><span class="toc-section-number">7.2.1</span> Metode Iterasi Titik Tetap</a></li>
+<li><a href="7-2-openmethod.html#newtonraphson"><span class="toc-section-number">7.2.2</span> Metode Newton-Raphson</a></li>
+<li><a href="7-2-openmethod.html#secant"><span class="toc-section-number">7.2.3</span> Metode Secant</a></li>
+</ul></li>
+<li><a href="7-3-uniroot.html#uniroot"><span class="toc-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li><a href="7-4-akar-persamaan-polinomial-menggunakan-fungsi-polyroot.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><span class="toc-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="has-sub"><a href="7-5-studi-kasus.html#studi-kasus"><span class="toc-section-number">7.5</span> Studi Kasus</a><ul>
+<li><a href="7-5-studi-kasus.html#persamaan-van-der-walls"><span class="toc-section-number">7.5.1</span> Persamaan Van Der Walls</a></li>
+<li><a href="7-5-studi-kasus.html#hukum-bernoulli"><span class="toc-section-number">7.5.2</span> Hukum Bernoulli</a></li>
+</ul></li>
+<li><a href="7-6-referensi-6.html#referensi-6"><span class="toc-section-number">7.6</span> Referensi</a></li>
+<li><a href="7-7-latihan-1.html#latihan-1"><span class="toc-section-number">7.7</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-interpolation.html#interpolation"><span class="toc-section-number">8</span> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="has-sub"><a href="8-1-poliinterpolation.html#poliinterpolation"><span class="toc-section-number">8.1</span> Interpolasi Polinomial</a><ul>
+<li><a href="8-1-poliinterpolation.html#mengevaluasi-polinomial"><span class="toc-section-number">8.1.1</span> Mengevaluasi Polinomial</a></li>
+<li><a href="8-1-poliinterpolation.html#lininterpol"><span class="toc-section-number">8.1.2</span> Interpolasi Linier</a></li>
+<li><a href="8-1-poliinterpolation.html#hopoliinter"><span class="toc-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-2-pwinter.html#pwinter"><span class="toc-section-number">8.2</span> Interpolasi Piecewise</a><ul>
+<li><a href="8-2-pwinter.html#pwlininter"><span class="toc-section-number">8.2.1</span> Interpolasi Linier Piecewise</a></li>
+<li><a href="8-2-pwinter.html#cubicspline"><span class="toc-section-number">8.2.2</span> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-3-studi-kasus-1.html#studi-kasus-1"><span class="toc-section-number">8.3</span> Studi Kasus</a><ul>
+<li><a href="8-3-studi-kasus-1.html#interpolasi-data-runtun-waktu"><span class="toc-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li><a href="8-4-referensi-7.html#referensi-7"><span class="toc-section-number">8.4</span> Referensi</a></li>
+<li><a href="8-5-latihan-2.html#latihan-2"><span class="toc-section-number">8.5</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-diffinteg.html#diffinteg"><span class="toc-section-number">9</span> Diferensiasi dan Integrasi Numerik</a><ul>
+<li><a href="9-1-finitediff.html#finitediff"><span class="toc-section-number">9.1</span> Metode Beda Hingga</a></li>
+<li class="has-sub"><a href="9-2-diffother.html#diffother"><span class="toc-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li><a href="9-2-diffother.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><span class="toc-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-numderiv"><span class="toc-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-pracma"><span class="toc-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="9-3-newtoncotes.html#newtoncotes"><span class="toc-section-number">9.3</span> Metode Integrasi Newton-Cotes</a><ul>
+<li><a href="9-3-newtoncotes.html#riemann"><span class="toc-section-number">9.3.1</span> Metode Integral Riemann</a></li>
+<li><a href="9-3-newtoncotes.html#trapezoida"><span class="toc-section-number">9.3.2</span> Metode Trapezoida</a></li>
+<li><a href="9-3-newtoncotes.html#simpson"><span class="toc-section-number">9.3.3</span> Metode Simpson</a></li>
+<li><a href="9-3-newtoncotes.html#simpson38"><span class="toc-section-number">9.3.4</span> Metode Simpson 3/8</a></li>
+</ul></li>
+<li><a href="9-4-metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><span class="toc-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="iteratif" class="section level2">
+<h2><span class="header-section-number">6.5</span> Metode Iterasi</h2>
+<p>Pada Chapter <a href="6-5-iteratif.html#iteratif">6.5</a> kita akan membahas penyelesaian persamaan linier dengan menggunakan metode iterasi. Terdapat dua metode iterasi yang akan dibahas yaitu iterasi Jacobi dan Gauss-Seidel.</p>
+<p>Metode iterasi dimulai dengan estimasi nilai akhir. Setelah menerapkan beberapa perlakuan pada nilai estimasi, hasil perlakuan selanjutnya menjadi nilai estimasi untuk iterasi berikutnya. Proses tersebut akan berlangsung secara terus-menerus hingga ambang batas dipenuhi. Nilai ambang batas dapat berupa jumlah iterasi maksimum atau selisih antara nilai estimasi baru dan estimasi semula lebih kecil dari suatu nilai toleransi yang ditetapkan.</p>
+<p>Jumlah kuadrat merupakan metode yang sering digunakan untuk mengecek apakah selisih nilai estimasi baru terhadap estimasi lama lebih kecil dari nilai toleransi yang ditetapkan. Persamaan <a href="6-5-iteratif.html#eq:toleransi">(6.33)</a> menampilkan hubungan antara jumlah kuadrat dan nilai toleransi pada proses iterasi.</p>
+<p><span class="math display" id="eq:toleransi">\[\begin{equation}
+\sqrt{\sum_{i=1}^n\left(x_i^{n+1}-x_i^{n}\right)^2}&lt;t_0
+ \tag{6.33}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(x^{n}\)</span> merupakan iterasi ke-<span class="math inline">\(n\)</span> dari algoritma dan <span class="math inline">\(t_0\)</span> merupakan nilai toleransi maksimum yang diterima.</p>
+<div id="jacobiiter" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Iterasi Jacobi</h3>
+<p>Untuk menyelesaikan matriks menggunakan metode iterasi, kita dapat mulai dengan premis terdapat matriks <span class="math inline">\(A\)</span> dan vektor <span class="math inline">\(x\)</span> dan b, sehingga <span class="math inline">\(Ax = b\)</span>. Dengan menggunakan metode Jacobi, pertama-tama kita dapat amati bahwa terdapat matriks <span class="math inline">\(R\)</span> dan <span class="math inline">\(D\)</span> yang memiliki hubungan <span class="math inline">\(A = R + D\)</span>. Berdasarkan kedua hubungan tersebut, dapat diturunkan operasi matriks melalui persamaan berikut:</p>
+<p><span class="math display" id="eq:jacobi">\[\begin{equation}
+Ax=b
+ \tag{6.34}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:jacobi2">\[\begin{equation}
+Rx+Dx=b
+ \tag{6.35}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:jacobi3">\[\begin{equation}
+Dx=b-Rx
+ \tag{6.36}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:jacobi4">\[\begin{equation}
+x=D^{-1}\left(b-Rx\right)
+ \tag{6.37}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="6-5-iteratif.html#eq:jacobi4">(6.37)</a> merupakan persamaan yang dapat kita gunakan untuk memperoleh nilai <span class="math inline">\(x\)</span>. Jika kita menulis kembali persamaan tersebut, maka kita akan memperoleh persamaan yang digunakan sebagai acuan iterasi Jacobi.</p>
+<p><span class="math display" id="eq:jacobi5">\[\begin{equation}
+x^{n+1}=D^{-1}\left(b-Rx^{n}\right)
+ \tag{6.38}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(D\)</span> merupakan matriks diagonal dengan nilai elemen diagonal berupa diagonal utama matriks <span class="math inline">\(A\)</span>. Invers dari matriks <span class="math inline">\(D\)</span> secara sederhana sebagai matriks diagonal sama dengan satu dibagi dengan elemen diagonal utama matriks <span class="math inline">\(A\)</span>. Matriks <span class="math inline">\(R\)</span> identik dengan matriks <span class="math inline">\(A\)</span>. Namun, diagonal utamanya bernilai nol. Suatu iterasi dikatakan konvergen jika jumlah kuadrat dari vektor <span class="math inline">\(x^{\left(n+1\right)}\)</span> dan vektor <span class="math inline">\(x^{\left(n\right)}\)</span> semakin mengecil.</p>
+<p>Suatu persamaan linier yang hendak diselesaikan dengan menggunakan metode iterasi Jacobi harus memenuhi syarat nilai elemen diagonal utama matriks harus lebih dominan. Maksudnya adalah nilai absolut diagonal utama matriks harus lebih besar dari jumlah nilai absolut elemen matriks lainnya pada satu kolom.</p>
+
+<div class="example">
+<span id="exm:jacobiexm" class="example"><strong>Contoh 6.9  </strong></span>Selesaikan sistem persamaan berikut menggunakan iterasi Jacobi!
+</div>
+
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     5 &amp; 2 &amp; 3     \\[0.3em]
+     2 &amp; 7 &amp; 4     \\[0.3em]
+     1 &amp; 3 &amp; 8
+\end{bmatrix}
+x = \begin{bmatrix}
+     40     \\[0.3em]
+     39     \\[0.3em]
+     55
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Berdasarkan matriks <span class="math inline">\(A\)</span> (matriks koefisien), kita dapat memastikan bahwa matriks tersebut memiliki nilai dominan pada elemen diagonal utama. Sebagai contoh:</p>
+<p><span class="math display">\[
+\left|5\right|&gt;\left|2\right|+\left|1\right|\ \ \ \left(kolom\ 1\right)
+\]</span></p>
+<p><span class="math display">\[
+\left|7\right|&gt;\left|2\right|+\left|3\right|\ \ \ \left(kolom\ 2\right)
+\]</span>
+Untuk mempermudah proses iterasi, kita akan menggunakan bantuan <code>R</code> untuk melakukan komputasi. Langkah pertama yang perlu dilakukan adalah menyiapkan matriks <span class="math inline">\(A\)</span>, vektor <span class="math inline">\(b\)</span>, dan vektor <span class="math inline">\(x\)</span> (nilai taksiran awal).</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1">(A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>), <span class="dv">3</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    2    3
+## [2,]    2    7    4
+## [3,]    1    3    8</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" title="1">(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">39</span>,<span class="dv">55</span>))</a></code></pre></div>
+<pre><code>## [1] 40 39 55</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1">(x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">3</span>))</a></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<p>Langkah selanjutnya adalah memperoleh invers matriks <span class="math inline">\(D\)</span>.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" title="1">(Dinv &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">diag</span>(A)))</a></code></pre></div>
+<pre><code>##      [,1]      [,2]  [,3]
+## [1,]  0.2 0.0000000 0.000
+## [2,]  0.0 0.1428571 0.000
+## [3,]  0.0 0.0000000 0.125</code></pre>
+<p>Persiapan terakhir sebelum iterasi dilakukan adalah menyiapkan matriks <span class="math inline">\(R\)</span>.</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1">(R&lt;-A<span class="op">-</span><span class="kw">diag</span>(<span class="kw">diag</span>(A)))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    2    3
+## [2,]    2    0    4
+## [3,]    1    3    0</code></pre>
+<p>Iterasi selanjutnya dilakukan menggunakan Persamaan <a href="6-5-iteratif.html#eq:jacobi5">(6.38)</a>.</p>
+<p><strong>iterasi 1</strong></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1">(x1 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 8.000000
+## [2,] 5.571429
+## [3,] 6.875000</code></pre>
+<p><strong>iterasi 2</strong></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1">(x2 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x1))</a></code></pre></div>
+<pre><code>##            [,1]
+## [1,]  1.6464286
+## [2,] -0.6428571
+## [3,]  3.7857143</code></pre>
+<p><strong>iterasi 3</strong></p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1">(x3 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x2))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 5.985714
+## [2,] 2.937755
+## [3,] 6.910268</code></pre>
+<p>Selama proses iterasi,jumlah akar jumlah kuadrat dihitung. Sebagai contoh berikut disajikan akar jumlah kuadrat pada iterasi ke-3:</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" title="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x3<span class="op">-</span>x2)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 11.04445</code></pre>
+<p>Selama proses iterasi nilai tersebut terus mengecil. Iterasi dihantikan jika nilai akar jumlah kuadrat tersebut lebih kecil dari nilai toleransi. Pada contoh ini digunakan nilai toleransi <span class="math inline">\(10^{-7}\)</span>.</p>
+<p>Proses iterasi berlangsung sampai dengan iterasi ke-62 dengan nilai <span class="math inline">\(x\)</span> akhir sebagai berikut:</p>
+<p><span class="math display">\[
+x = \begin{bmatrix}
+     4     \\[0.3em]
+     1     \\[0.3em]
+     6
+\end{bmatrix}
+\]</span></p>
+<hr />
+<p><strong>Algoritma Iterasi Jacobi</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span>.</li>
+<li>Hitung invers matriks <span class="math inline">\(D\)</span>, dimana nilai invernya merupakan matriks diagonal dari satu per diagonal utama matriks <span class="math inline">\(A\)</span>.</li>
+<li>Hitung matriks <span class="math inline">\(R\)</span>, dimana <span class="math inline">\(R\)</span> merupakan selisih matriks <span class="math inline">\(A\)</span> dikurangi dengan matriks diagonal dengan entri dari diagonal utama matriks <span class="math inline">\(A\)</span>.</li>
+<li>Tetapkan vektor <span class="math inline">\(x\)</span> estimasi.</li>
+<li>Tetapkan nilai toleransi maksimum yang dapat diterima.</li>
+<li>Lakukan iterasi menggunakan Persamaan <a href="6-5-iteratif.html#eq:jacobi5">(6.38)</a>.</li>
+<li>Hitung akar jumlah kuadrat dari vektor <span class="math inline">\(x^{n+1}\)</span> dan vektor <span class="math inline">\(x^n\)</span>.</li>
+<li>Jadikan nilai <span class="math inline">\(x^{n+1}\)</span> sebagai nilai taksiran <span class="math inline">\(x\)</span> untuk iterasi berikutnya.</li>
+<li>Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan <a href="6-5-iteratif.html#eq:toleransi">(6.33)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Jacobi. Berikut sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1">jacobi &lt;-<span class="st"> </span><span class="cf">function</span>(a, b, <span class="dt">tol=</span><span class="fl">1e-7</span>, <span class="dt">maxiter=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb489-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(b)</a>
+<a class="sourceLine" id="cb489-3" title="3">  iter &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb489-4" title="4">  </a>
+<a class="sourceLine" id="cb489-5" title="5">  Dinv &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">diag</span>(a))</a>
+<a class="sourceLine" id="cb489-6" title="6">  R &lt;-<span class="st"> </span>a<span class="op">-</span><span class="kw">diag</span>(<span class="kw">diag</span>(a))</a>
+<a class="sourceLine" id="cb489-7" title="7">  x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,n)</a>
+<a class="sourceLine" id="cb489-8" title="8">  x_new &lt;-<span class="st"> </span><span class="kw">rep</span>(tol, n)</a>
+<a class="sourceLine" id="cb489-9" title="9">  </a>
+<a class="sourceLine" id="cb489-10" title="10">  <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
+<a class="sourceLine" id="cb489-11" title="11">            <span class="cf">if</span>(iter<span class="op">&gt;</span>maxiter){</a>
+<a class="sourceLine" id="cb489-12" title="12">              <span class="kw">warning</span>(<span class="st">&quot;iterasi maksimum tercapai&quot;</span>)</a>
+<a class="sourceLine" id="cb489-13" title="13">              <span class="cf">break</span></a>
+<a class="sourceLine" id="cb489-14" title="14">            }</a>
+<a class="sourceLine" id="cb489-15" title="15">            x &lt;-<span class="st"> </span>x_new</a>
+<a class="sourceLine" id="cb489-16" title="16">            x_new &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>R <span class="op">%*%</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb489-17" title="17">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb489-18" title="18">  }</a>
+<a class="sourceLine" id="cb489-19" title="19">  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
+<a class="sourceLine" id="cb489-20" title="20">  </a>
+<a class="sourceLine" id="cb489-21" title="21">}</a></code></pre></div>
+<p>Berikut adalah penerpan fungsi <code>jacobi()</code> tersebut:</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" title="1"><span class="kw">jacobi</span>(A,b)</a></code></pre></div>
+<pre><code>## $X
+##      [,1]
+## [1,]    4
+## [2,]    1
+## [3,]    6
+## 
+## $iter
+## [1] 62</code></pre>
+
+<div class="example">
+<span id="exm:jacobiexm2" class="example"><strong>Contoh 6.10  </strong></span>Selesaikan sistem persamaan berikut menggunakan fungsi <code>jacobi()</code>
+</div>
+
+<p><span class="math display">\[
+\begin{bmatrix}
+     27 &amp; 6 &amp; -1     \\[0.3em]
+     6 &amp; 15 &amp; 2     \\[0.3em]
+     1 &amp; 1 &amp; 54
+\end{bmatrix}
+x = \begin{bmatrix}
+     85     \\[0.3em]
+     72     \\[0.3em]
+     110
+\end{bmatrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Matriks <span class="math inline">\(A\)</span> (matriks koefisien) berdasarkan sistem persamaan linier tersebut telah memenuhi syarat dari algoritma Jacobi (nilai diagonal utama dominan dibanding nilai lainnya pada satu kolom). Penyelesaian sistem persamaan tersebut, sebagai berikut:</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">27</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">15</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">54</span>), <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb492-2" title="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">85</span>,<span class="dv">72</span>,<span class="dv">110</span>)</a>
+<a class="sourceLine" id="cb492-3" title="3"></a>
+<a class="sourceLine" id="cb492-4" title="4"><span class="kw">jacobi</span>(A,b)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 2.425476
+## [2,] 3.573016
+## [3,] 1.925954
+## 
+## $iter
+## [1] 17</code></pre>
+<p>Nilai vektor <span class="math inline">\(x\)</span> sesungguhnya dapat diperoleh menggunakan fungsi <code>solve()</code>.</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1"><span class="kw">solve</span>(A,b)</a></code></pre></div>
+<pre><code>## [1] 2.425476 3.573016 1.925954</code></pre>
+<p>Berdasarkan hasil perhitungan, vektor <span class="math inline">\(x\)</span> hasil iterasi memiliki nilai identik dengan nilai penyelesaian yang sebenarnya.</p>
+<p>Perlu diperhatikan dalam penggunaan fungsi <code>jacobi()</code> syarat utama matriks haruslah terpenuhi, seperti: nilai diagonal matriks <span class="math inline">\(A\)</span> lebih besar dari nilai elemen lainnya pada satu kolom. Selain itu, nilai diagonal matriks <span class="math inline">\(D\)</span> tidak boleh sama dengan nol agar inver matriks <span class="math inline">\(D\)</span> dapat diperoleh. Jika syarat-syarat tersebut terpenuhi, maka metode Jacobi dapat diterapkan. Jika tidak terpenuhi, maka penyelesaian yang konvergen mungkin masih dapat diperoleh meskipun penulis tidak dapat menjamin hal tersebut dapat terjadi.</p>
+</div>
+<div id="seideliter" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Iterasi Gauss-Seidel</h3>
+<p>Metode iterasi Gauss-Seidel melakukan dekomposisi pada matriks <span class="math inline">\(A\)</span> menjadi matriks segitiga atas <span class="math inline">\(U\)</span> dan matriks segitiga bawah <span class="math inline">\(L\)</span>. Dekomposisi ini tidak sama dengan dekomposisi LU pada Chapter <a href="6-4-dekomposisimatriks.html#ludecomp">6.4.1</a>. Matriks <span class="math inline">\(U\)</span> pada metode Gauss-Seidel merupakan elemen (entri) matriks <span class="math inline">\(A\)</span> pada bagian atas diagonal utama, sedangkan matriks <span class="math inline">\(L\)</span> merupakan elemen diagonal utama dan bagian bawah diagonal utama matriks <span class="math inline">\(A\)</span>. Elemen selain yang penulis sebutkan pada kedua matriks tersebut akan bernilai nol. Persamaan iterasi Gauss-Seidel ditampilkan pada Persamaan <a href="6-5-iteratif.html#eq:gaussseidel">(6.39)</a>.</p>
+<p><span class="math display" id="eq:gaussseidel">\[\begin{equation}
+x^{n+1}=L^{-1}\left(b-Ux^{n}\right)
+ \tag{6.39}
+\end{equation}\]</span></p>
+<p>Syarat agar suatu sistem persamaan linier dapat diselesaikan menggunakan metode Gauss-Seidel adalah matriks harus memiliki nilai diagonal utama yang dominan. Maksudnya, nilai absolut diagonal utama lebih besar dari jumlah nilai absolut elemen lainnya dalam satu kolom. Jika syarat ini tidak terpenuhi maka metode ini tidak akan memperoleh penyelesaian yang konvergen.</p>
+
+<div class="example">
+<span id="exm:gaussseidelexm" class="example"><strong>Contoh 6.11  </strong></span>Selesaikan sistem persamaan pada Contoh <a href="6-5-iteratif.html#exm:jacobiexm2">6.10</a> menggunakan iterasi Gauss-Seidel!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Kita akan kembali menggunakan bantuan <code>R</code> untuk melakukan kalkulasi pada proses iterasi Gauss-Seidel. Kita telah melakukan pengecekan pada sistem persamaan linier pada contoh tersebut dan menghasilkan kesimpulan bahwa persamaan linier tersebut dapat diselesaikan dengan metode Gauss-Seidel. Langkah selanjutnya adalah membentuk matriks <span class="math inline">\(L\)</span> dan <span class="math inline">\(U\)</span>.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" title="1"><span class="co"># membentuk matriks U dan L dari matriks A</span></a>
+<a class="sourceLine" id="cb496-2" title="2">(L &lt;-<span class="st"> </span>U &lt;-<span class="st"> </span>A)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    6   -1
+## [2,]    6   15    2
+## [3,]    1    1   54</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" title="1"><span class="co"># membentuk matriks L dari entri bagian bawah diagonal utama matriks A</span></a>
+<a class="sourceLine" id="cb498-2" title="2">L[<span class="kw">upper.tri</span>(A, <span class="dt">diag=</span><span class="ot">FALSE</span>)]&lt;-<span class="dv">0</span></a>
+<a class="sourceLine" id="cb498-3" title="3">L</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    0    0
+## [2,]    6   15    0
+## [3,]    1    1   54</code></pre>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1"><span class="co"># membentuk matriks U dari entri bagian atas diagonal utama matriks A</span></a>
+<a class="sourceLine" id="cb500-2" title="2">U[<span class="kw">lower.tri</span>(A, <span class="dt">diag=</span><span class="ot">TRUE</span>)]&lt;-<span class="dv">0</span></a>
+<a class="sourceLine" id="cb500-3" title="3">U</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    6   -1
+## [2,]    0    0    2
+## [3,]    0    0    0</code></pre>
+<p>Selanjutya lakukan invers terhadap matriks <span class="math inline">\(L\)</span> menggunakn fungsi <code>solve()</code>.</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1">(Linv &lt;-<span class="st"> </span><span class="kw">solve</span>(L))</a></code></pre></div>
+<pre><code>##               [,1]         [,2]       [,3]
+## [1,]  0.0370370370  0.000000000 0.00000000
+## [2,] -0.0148148148  0.066666667 0.00000000
+## [3,] -0.0004115226 -0.001234568 0.01851852</code></pre>
+<p>Tetapkan nilai estimasi awal dan nilai toleransi yang dikehendaki. Nilai toleransi pada proses ini ditetapkan sebesar <span class="math inline">\(10^-7\)</span>.</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1"><span class="co"># tebakan awal nilai x</span></a>
+<a class="sourceLine" id="cb504-2" title="2">(x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(b)))</a></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<p>Lakukan iterasi menggunakan Persamaan <a href="6-5-iteratif.html#eq:gaussseidel">(6.39)</a>.</p>
+<p><strong>Iterasi 1</strong></p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1">(x1 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 3.148148
+## [2,] 3.540741
+## [3,] 1.913169</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
+<a class="sourceLine" id="cb508-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x1<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 8.602058</code></pre>
+<p><strong>Iterasi 2</strong></p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1">(x2 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x1))</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 2.432175
+## [2,] 3.572041
+## [3,] 1.925848</code></pre>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
+<a class="sourceLine" id="cb512-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x2<span class="op">-</span>x1)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6719939</code></pre>
+<p>Iterasi terus dilakukan sampai dengan nilai akar jumlah kuadrat lebih kecil dari nilai toleransi. Setelah iterasi ke-7 diperoleh nilai vektor <span class="math inline">\(x\)</span> sebesar:</p>
+<p><span class="math display">\[
+x = \begin{bmatrix}
+     2,425476     \\[0.3em]
+     3,573016     \\[0.3em]
+     1,925954
+\end{bmatrix}
+\]</span></p>
+<hr />
+<p><strong>Algoritma Iterasi Gauss-Seidel</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span>.</li>
+<li>Lakukan dekomposisi LU, dimana matriks <span class="math inline">\(L\)</span> merupakan matriks segitiga bawah dengan nilai entri diagonal utama matriks <span class="math inline">\(A\)</span> dan bagian bawah diagonalnya dan matriks <span class="math inline">\(U\)</span> merupakan matriks segitiga atas dengan entri berasal dari elemen atas diagonal utama matriks <span class="math inline">\(A\)</span>. Isi elemen lain yang tidak disebut pada kedua matriks tersebut dengan nol.</li>
+<li>Tetapkan vektor <span class="math inline">\(x\)</span> estimasi.</li>
+<li>Tetapkan nilai toleransi maksimum yang dapat diterima.</li>
+<li>Lakukan iterasi menggunakan Persamaan <a href="6-5-iteratif.html#eq:gaussseidel">(6.39)</a>.</li>
+<li>Hitung akar jumlah kuadrat dari vektor <span class="math inline">\(x^{n+1}\)</span> dan vektor <span class="math inline">\(x^n\)</span>.</li>
+<li>Jadikan nilai <span class="math inline">\(x^{n+1}\)</span> sebagai nilai taksiran <span class="math inline">\(x\)</span> untuk iterasi berikutnya.</li>
+<li>Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan <a href="6-5-iteratif.html#eq:toleransi">(6.33)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Gauss-Seidel. Berikut sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" title="1">gauss_seidel &lt;-<span class="st"> </span><span class="cf">function</span>(a, b, <span class="dt">tol=</span><span class="fl">1e-7</span>, <span class="dt">maxiter=</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb514-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(b)</a>
+<a class="sourceLine" id="cb514-3" title="3">  iter &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb514-4" title="4">  </a>
+<a class="sourceLine" id="cb514-5" title="5">  </a>
+<a class="sourceLine" id="cb514-6" title="6">  L &lt;-<span class="st"> </span>U &lt;-<span class="st"> </span>a</a>
+<a class="sourceLine" id="cb514-7" title="7">  L[<span class="kw">upper.tri</span>(a, <span class="dt">diag=</span><span class="ot">FALSE</span>)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb514-8" title="8">  U[<span class="kw">lower.tri</span>(a, <span class="dt">diag=</span><span class="ot">TRUE</span>)] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb514-9" title="9">  Linv &lt;-<span class="st"> </span><span class="kw">solve</span>(L)</a>
+<a class="sourceLine" id="cb514-10" title="10">  </a>
+<a class="sourceLine" id="cb514-11" title="11">  x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,n)</a>
+<a class="sourceLine" id="cb514-12" title="12">  x_new &lt;-<span class="st"> </span><span class="kw">rep</span>(tol, n)</a>
+<a class="sourceLine" id="cb514-13" title="13">  </a>
+<a class="sourceLine" id="cb514-14" title="14">  <span class="cf">while</span>(<span class="kw">sqrt</span>(<span class="kw">sum</span>(x_new<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)<span class="op">&gt;</span>tol){</a>
+<a class="sourceLine" id="cb514-15" title="15">            <span class="cf">if</span>(iter<span class="op">&gt;</span>maxiter){</a>
+<a class="sourceLine" id="cb514-16" title="16">              <span class="kw">warning</span>(<span class="st">&quot;iterasi maksimum tercapai&quot;</span>)</a>
+<a class="sourceLine" id="cb514-17" title="17">              <span class="cf">break</span></a>
+<a class="sourceLine" id="cb514-18" title="18">            }</a>
+<a class="sourceLine" id="cb514-19" title="19">            x &lt;-<span class="st"> </span>x_new</a>
+<a class="sourceLine" id="cb514-20" title="20">            x_new &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x)</a>
+<a class="sourceLine" id="cb514-21" title="21">            iter &lt;-<span class="st"> </span>iter<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb514-22" title="22">  }</a>
+<a class="sourceLine" id="cb514-23" title="23">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">X =</span> x_new, <span class="dt">iter=</span>iter))</a>
+<a class="sourceLine" id="cb514-24" title="24">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:gaussseidelexm2" class="example"><strong>Contoh 6.12  </strong></span>Selesaikan sistem persamaan pada Contoh <a href="6-5-iteratif.html#exm:jacobiexm2">6.10</a> menggunakan fungsi <code>gauss_seidel()</code>!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Penyelesaiansistem persamaan linier tersebut menggunakan fungsi <code>gauss_seidel()</code> disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1"><span class="kw">gauss_seidel</span>(A,b)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 2.425476
+## [2,] 3.573016
+## [3,] 1.925954
+## 
+## $iter
+## [1] 7</code></pre>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="6-4-dekomposisimatriks.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-6-studikasus.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

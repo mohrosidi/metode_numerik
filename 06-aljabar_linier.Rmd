@@ -480,30 +480,26 @@ Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah sela
 
 Setelah diperoleh matriks *row echelon form* selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan \@ref(eq:refsolution).
 
-$$
+\begin{equation*}
 \begin{matrix}
   x_3=\frac{-6}{-2}=3 \\
   x_2=\frac{1}{1}\left(-4-\left(2\right)3\right)=2 \\
   x_1=\frac{1}{1}\left(6-2-3\right)=1
 \end{matrix}
-$$
+\end{equation*}
 
+-------------------------------------
 
-**Algoritma _Row Echelon Form_**
+**Algoritma Row Echelon Form**
+
 
 1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$
 2. Buat *augmented matrix* $\left[A|B\right]$ namakan dengan $A$
-3. Untuk baris ke-$i$ dimana $i=1$ s/d $n$, perhatikan apakah nilai $a_{i,j}$ sama dengan nol. 
-
-* **Bila iya**, lakukan *row swapping* antara baris ke-$i$ dan baris ke-$i+k\leq n$, dimana $a_{i+k,j}$ tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
-* **Bila tidak**, lanjutkan.
-
-4. Untuk baris ke-$j$, dimana $j=i+1$ s/d $n$, lakukan operasi baris elementer:
-
-* Hitung $c=\frac{a_{j,i}}{a_{i,i}}$
-* untuk kolom $k$, dimana $k=1$ s/d $n+1$, hitung $a_{j,k}=a_{j,k}-c.a_{i,k}$
-
+3. Untuk baris ke-$i$ dimana $i=1$ s/d $n$, perhatikan apakah nilai $a_{i,j}$ sama dengan nol. **a)** **Bila iya**, lakukan *row swapping* antara baris ke-$i$ dan baris ke-$i+k\leq n$, dimana $a_{i+k,j}$ tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian, **b)** **Bila tidak**, lanjutkan.
+4. Untuk baris ke-$j$, dimana $j=i+1$ s/d $n$, lakukan operasi baris elementer:**a)** Hitung $c=\frac{a_{j,i}}{a_{i,i}}$, **b)** untuk kolom $k$, dimana $k=1$ s/d $n+1$, hitung $a_{j,k}=a_{j,k}-c.a_{i,k}$.
 5. Hitung akar, untuk $i=n$ s/d 1 (bergerak dari baris pertama) menggunakan Persamaan \@ref(eq:refsolution). 
+
+--------------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada `R` untuk menyelesaikan sistem persamaan linier menggunakan matriks *row echelon form*. Fungsi yang akan dibentuk hanya sampai pada algoritma ke-4. Proses substitusi akan dilakukan secara manual. Berikut adalah sintaks yang digunakan:
 
@@ -715,6 +711,8 @@ $$
 x_1=2\ dan\ x_2=1
 $$
 
+-------------
+
 **Algoritma Metode Eliminasi Gauss-Jordan**
 
 1. Masukkan matriks $A$ dan vektor $B$ beserta ukurannya $n$
@@ -734,6 +732,8 @@ $$
   * Hitung $a_{j.k}=a_{j.k}-c.a_{i.k}$
 
 5. Penyelesaian untuk $i=n$ s/d 1 disajikan pada Persamaan \@ref(eq:gaussjordansolution).
+
+----------------
 
 Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan `R`. Fungsi tersebut adalah sebagai berikut:
 
@@ -878,6 +878,8 @@ Pada beberapa *textbook*, diagonal matriks sering dilambangkan dengan $l$(diagon
   (\#eq:matrikstridiagonal2)
 \end{equation}
 
+-------------
+
 **Algoritma Penyelesaian Matrik Tridiagonal**
 
 1. Bentuk sistem persamaan linier menjadi matriks pada Persamaan \@ref(eq:matrikstridiagonal2).
@@ -902,6 +904,8 @@ Pada beberapa *textbook*, diagonal matriks sering dilambangkan dengan $l$(diagon
   + Hitung $x_n=b_i-u_i\times x_{i+1}$
 
 * Hitung $x_n=b_n$
+
+----------------------
 
 Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada `R`. Fungsi penyelesaian matriks tridiagonal disajikan sebagai berikut:
 
@@ -1304,6 +1308,8 @@ $$
 x_1=-1, x_2=2, x_3=0, x_4=1
 $$
 
+-------------------
+
 **Algoritma Dekomposisi LU**
 
 1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$
@@ -1323,6 +1329,8 @@ $$
 8. Untuk elemen di bawah diagonal isikan dengan faktor pengali operasi baris elementer matriks $U$.
 9. Lakukan proses *forward substitution* menggunakan Persamaan \@ref(eq:LUdecomp6) untuk memperoleh nilai vektor $t$.
 10. Lakukan *backward substituion* menggunakan Persamaan \@ref(eq:refsolution).
+
+----------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun algoritma faktorisasi LU menggunakan `R`. Berikut adalah sintaks yang digunakan:
 
@@ -1448,17 +1456,17 @@ Untuk dapat menggunakannya kita hanya perlu menginputkan matriks kedalam fungsi 
 
 ```{r}
 # membuat matriks a 
-a <- Matrix(round(rnorm(9),2), nrow=3)
+a <- Matrix::Matrix(round(rnorm(9),2), nrow=3)
 
 # dekomposisi
-lum <- lu(a)
+lum <- Matrix::lu(a)
 lum
 ```
 
 Untuk menampilkan hasil dekomposisi, jalankan fungsi `expand()`.
 
 ```{r}
-decomp <- expand(lum)
+decomp <- Matrix::expand(lum)
 decomp
 ```
 
@@ -1517,7 +1525,7 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
   (\#eq:cholesky5)
 \end{equation}
 
-
+----------------------------
 
 **Algoritma Dekomposisi Cholesky**
 
@@ -1529,6 +1537,8 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 
 * Hitung vektor $t$ menggunakan Persamaan \@ref(eq:LUdecomp4).
 * Hitung vektor $x$ menggunakan Persamaan \@ref(eq:LUdecomp3), dimana matriks $U=L^T$.
+
+--------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada `R` untuk melakukan dekomposisi Cholesky. Fungsi tersebut disajikan pada sintaks berikut:
 
@@ -1810,6 +1820,8 @@ x = \begin{bmatrix}
 \end{bmatrix}
 $$
 
+--------------------------------------
+
 **Algoritma Iterasi Jacobi**
 
 1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$.
@@ -1821,6 +1833,8 @@ $$
 7. Hitung akar jumlah kuadrat dari vektor $x^{n+1}$ dan vektor $x^n$.
 8. Jadikan nilai $x^{n+1}$ sebagai nilai taksiran $x$ untuk iterasi berikutnya.
 9. Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \@ref(eq:toleransi).
+
+-------------------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Jacobi. Berikut sintaks yang digunakan:
 
@@ -1977,6 +1991,9 @@ x = \begin{bmatrix}
      1,925954
 \end{bmatrix}
 $$
+
+----------------------------------------------
+
 **Algoritma Iterasi Gauss-Seidel**
 
 1. Masukkan matriks $A$, dan vektor $B$ beserta ukurannya $n$.
@@ -1987,6 +2004,8 @@ $$
 7. Hitung akar jumlah kuadrat dari vektor $x^{n+1}$ dan vektor $x^n$.
 8. Jadikan nilai $x^{n+1}$ sebagai nilai taksiran $x$ untuk iterasi berikutnya.
 9. Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \@ref(eq:toleransi).
+
+----------------------------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Gauss-Seidel. Berikut sintaks yang digunakan:
 

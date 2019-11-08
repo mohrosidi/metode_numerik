@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.6 Studi Kasus | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+
+
+<meta name="author" content="Mohammad Rosidi" />
+
+<meta name="date" content="2019-11-05" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan">
+
+<title>6.6 Studi Kasus | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#kata-pengantar">Kata Pengantar</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Bahasa Pemrograman R</a><ul>
+<li><a href="1-1-sejarahR.html#sejarahR"><span class="toc-section-number">1.1</span> Sejarah R</a></li>
+<li><a href="1-2-fiturR.html#fiturR"><span class="toc-section-number">1.2</span> Fitur dan Karakteristik R</a></li>
+<li><a href="1-3-prosconsR.html#prosconsR"><span class="toc-section-number">1.3</span> Kelebihan dan Kekurangan R</a></li>
+<li><a href="1-4-rstudio.html#rstudio"><span class="toc-section-number">1.4</span> RStudio</a></li>
+<li><a href="1-5-installR.html#installR"><span class="toc-section-number">1.5</span> Menginstall R dan RStudio</a></li>
+<li class="has-sub"><a href="1-6-wdR.html#wdR"><span class="toc-section-number">1.6</span> Working Directory</a><ul>
+<li><a href="1-6-wdR.html#changewdR"><span class="toc-section-number">1.6.1</span> Mengubah Lokasi Working Directory</a></li>
+<li><a href="1-6-wdR.html#defaultwdR"><span class="toc-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li><a href="1-7-installlibraryR.html#installlibraryR"><span class="toc-section-number">1.7</span> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="has-sub"><a href="1-8-helpR.html#helpR"><span class="toc-section-number">1.8</span> Fasilitas Help</a><ul>
+<li><a href="1-8-helpR.html#searchhelp"><span class="toc-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li><a href="1-8-helpR.html#generalhelp"><span class="toc-section-number">1.8.2</span> General Help</a></li>
+<li><a href="1-8-helpR.html#othershelp"><span class="toc-section-number">1.8.3</span> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li><a href="1-9-referensi.html#referensi"><span class="toc-section-number">1.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-calculation.html#calculation"><span class="toc-section-number">2</span> Kalkulasi Menggunakan R</a><ul>
+<li><a href="2-1-aritmetikoperator.html#aritmetikoperator"><span class="toc-section-number">2.1</span> Operator Aritmatik</a></li>
+<li><a href="2-2-aritmaticfunction.html#aritmaticfunction"><span class="toc-section-number">2.2</span> Fungsi Aritmetik</a></li>
+<li><a href="2-3-relationoperators.html#relationoperators"><span class="toc-section-number">2.3</span> Operator Relasi</a></li>
+<li><a href="2-4-logicoperators.html#logicoperators"><span class="toc-section-number">2.4</span> Operator Logika</a></li>
+<li><a href="2-5-assigningvar.html#assigningvar"><span class="toc-section-number">2.5</span> Memasukkan Nilai Kedalam Variabel</a></li>
+<li><a href="2-6-typedata.html#typedata"><span class="toc-section-number">2.6</span> Tipe dan Struktur Data</a></li>
+<li class="has-sub"><a href="2-7-vector.html#vector"><span class="toc-section-number">2.7</span> Vektor</a><ul>
+<li><a href="2-7-vector.html#createvector"><span class="toc-section-number">2.7.1</span> Membuat vektor</a></li>
+<li><a href="2-7-vector.html#missingvalue"><span class="toc-section-number">2.7.2</span> Missing Values</a></li>
+<li><a href="2-7-vector.html#subsetvector"><span class="toc-section-number">2.7.3</span> Subset Pada Vektor</a></li>
+<li><a href="2-7-vector.html#vectorops"><span class="toc-section-number">2.7.4</span> Operasi Matematis Menggunakan Vektor</a></li>
+<li><a href="2-7-vector.html#seq"><span class="toc-section-number">2.7.5</span> Membuat Deret Angka</a></li>
+<li><a href="2-7-vector.html#repseq"><span class="toc-section-number">2.7.6</span> Nilai Berulang</a></li>
+<li><a href="2-7-vector.html#randnumb"><span class="toc-section-number">2.7.7</span> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-8-matriks.html#matriks"><span class="toc-section-number">2.8</span> Matriks</a><ul>
+<li><a href="2-8-matriks.html#creatematrix"><span class="toc-section-number">2.8.1</span> Membuat matriks</a></li>
+<li><a href="2-8-matriks.html#subsetmatrix"><span class="toc-section-number">2.8.2</span> Subset Pada Matriks</a></li>
+<li><a href="2-8-matriks.html#matrixcalculation"><span class="toc-section-number">2.8.3</span> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li><a href="2-9-referensi-1.html#referensi-1"><span class="toc-section-number">2.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-dataviz.html#dataviz"><span class="toc-section-number">3</span> Visualisasi Data</a><ul>
+<li><a href="3-1-plotfunc.html#plotfunc"><span class="toc-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="has-sub"><a href="3-2-otherviz.html#otherviz"><span class="toc-section-number">3.2</span> Visualisasi Lainnya</a><ul>
+<li><a href="3-2-otherviz.html#barplot"><span class="toc-section-number">3.2.1</span> Bar Plot</a></li>
+<li><a href="3-2-otherviz.html#histogram"><span class="toc-section-number">3.2.2</span> Histogram dan Density Plot</a></li>
+<li><a href="3-2-otherviz.html#boxplot"><span class="toc-section-number">3.2.3</span> Box plot</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-customise.html#customise"><span class="toc-section-number">3.3</span> Kustomisasi Parameter Grafik</a><ul>
+<li><a href="3-3-customise.html#addtitle"><span class="toc-section-number">3.3.1</span> Menambahkan Judul</a></li>
+<li><a href="3-3-customise.html#addlegend"><span class="toc-section-number">3.3.2</span> Menambahkan Legend</a></li>
+<li><a href="3-3-customise.html#addtext"><span class="toc-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</a></li>
+<li><a href="3-3-customise.html#addlines"><span class="toc-section-number">3.3.4</span> Menambahkan Garis Pada Plot</a></li>
+<li><a href="3-3-customise.html#changepoint"><span class="toc-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</a></li>
+<li><a href="3-3-customise.html#mengatur-axis-plot"><span class="toc-section-number">3.3.6</span> Mengatur Axis Plot</a></li>
+<li><a href="3-3-customise.html#changecolor"><span class="toc-section-number">3.3.7</span> Mengatur Warna</a></li>
+</ul></li>
+<li><a href="3-4-plot-dua-dan-tiga-dimensi.html#plot-dua-dan-tiga-dimensi"><span class="toc-section-number">3.4</span> Plot Dua dan Tiga Dimensi</a></li>
+<li><a href="3-5-referensi-2.html#referensi-2"><span class="toc-section-number">3.5</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-programmingandfunction.html#programmingandfunction"><span class="toc-section-number">4</span> Pemrograman dan Fungsi</a><ul>
+<li class="has-sub"><a href="4-1-loop.html#loop"><span class="toc-section-number">4.1</span> Loop</a><ul>
+<li><a href="4-1-loop.html#forloop"><span class="toc-section-number">4.1.1</span> For Loop</a></li>
+<li><a href="4-1-loop.html#whileloop"><span class="toc-section-number">4.1.2</span> While Loop</a></li>
+<li><a href="4-1-loop.html#repeatloop"><span class="toc-section-number">4.1.3</span> Repeat Loop</a></li>
+<li><a href="4-1-loop.html#break"><span class="toc-section-number">4.1.4</span> Break</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-2-loopapply.html#loopapply"><span class="toc-section-number">4.2</span> Loop Menggunakan Apply Family Function</a><ul>
+<li><a href="4-2-loopapply.html#apply"><span class="toc-section-number">4.2.1</span> Apply</a></li>
+<li><a href="4-2-loopapply.html#lapply"><span class="toc-section-number">4.2.2</span> lapply</a></li>
+<li><a href="4-2-loopapply.html#sapply"><span class="toc-section-number">4.2.3</span> sapply</a></li>
+<li><a href="4-2-loopapply.html#vapply"><span class="toc-section-number">4.2.4</span> vapply</a></li>
+<li><a href="4-2-loopapply.html#tapply"><span class="toc-section-number">4.2.5</span> tapply</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-dm.html#dm"><span class="toc-section-number">4.3</span> Decision Making</a><ul>
+<li><a href="4-3-dm.html#ifstatement"><span class="toc-section-number">4.3.1</span> if statement</a></li>
+<li><a href="4-3-dm.html#ifelsestatement"><span class="toc-section-number">4.3.2</span> if else statement</a></li>
+<li><a href="4-3-dm.html#switchstatement"><span class="toc-section-number">4.3.3</span> switch statement</a></li>
+</ul></li>
+<li><a href="4-4-fungsi.html#fungsi"><span class="toc-section-number">4.4</span> Fungsi</a></li>
+<li><a href="4-5-debugging.html#debugging"><span class="toc-section-number">4.5</span> Debugging</a></li>
+<li><a href="4-6-referensi-3.html#referensi-3"><span class="toc-section-number">4.6</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-numericmethod.html#numericmethod"><span class="toc-section-number">5</span> Pengantar Metode Numerik</a><ul>
+<li class="has-sub"><a href="5-1-numericmethodintro.html#numericmethodintro"><span class="toc-section-number">5.1</span> Mengenal Metode Numerik</a><ul>
+<li><a href="5-1-numericmethodintro.html#diffanalitycnumeric"><span class="toc-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li><a href="5-1-numericmethodintro.html#tahapan-penyelesaian-menggunakan-metode-numerik"><span class="toc-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li><a href="5-2-acuracy.html#acuracy"><span class="toc-section-number">5.2</span> Akurasi dan Presisi</a></li>
+<li><a href="5-3-numerror.html#numerror"><span class="toc-section-number">5.3</span> Error Numerik</a></li>
+<li><a href="5-4-referensi-4.html#referensi-4"><span class="toc-section-number">5.4</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-linearaljabar.html#linearaljabar"><span class="toc-section-number">6</span> Aljabar Linier</a><ul>
+<li class="has-sub"><a href="6-1-vecmat.html#vecmat"><span class="toc-section-number">6.1</span> Vektor dan matriks</a><ul>
+<li><a href="6-1-vecmat.html#operasivektor"><span class="toc-section-number">6.1.1</span> Operasi Vektor</a></li>
+<li><a href="6-1-vecmat.html#operasimatrik"><span class="toc-section-number">6.1.2</span> Operasi matriks</a></li>
+</ul></li>
+<li><a href="6-2-rowoperation.html#rowoperation"><span class="toc-section-number">6.2</span> Operasi Baris Elementer</a></li>
+<li class="has-sub"><a href="6-3-gausselimination.html#gausselimination"><span class="toc-section-number">6.3</span> Eliminasi Gauss</a><ul>
+<li><a href="6-3-gausselimination.html#rowechelonform"><span class="toc-section-number">6.3.1</span> <em>Row Echelon Form</em></a></li>
+<li><a href="6-3-gausselimination.html#redrowechelonform"><span class="toc-section-number">6.3.2</span> Eliminasi Gauss-Jordan</a></li>
+<li><a href="6-3-gausselimination.html#matriktridiagonal"><span class="toc-section-number">6.3.3</span> Matrik Tridiagonal</a></li>
+<li><a href="6-3-gausselimination.html#solvefunc"><span class="toc-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li><a href="6-3-gausselimination.html#solvetridiagfunct"><span class="toc-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-4-dekomposisimatriks.html#dekomposisimatriks"><span class="toc-section-number">6.4</span> Dekomposisi Matriks</a><ul>
+<li><a href="6-4-dekomposisimatriks.html#ludecomp"><span class="toc-section-number">6.4.1</span> Dekomposisi LU</a></li>
+<li><a href="6-4-dekomposisimatriks.html#dekomposisi-cholesky"><span class="toc-section-number">6.4.2</span> Dekomposisi Cholesky</a></li>
+<li><a href="6-4-dekomposisimatriks.html#othersdecomp"><span class="toc-section-number">6.4.3</span> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-5-iteratif.html#iteratif"><span class="toc-section-number">6.5</span> Metode Iterasi</a><ul>
+<li><a href="6-5-iteratif.html#jacobiiter"><span class="toc-section-number">6.5.1</span> Iterasi Jacobi</a></li>
+<li><a href="6-5-iteratif.html#seideliter"><span class="toc-section-number">6.5.2</span> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-6-studikasus.html#studikasus"><span class="toc-section-number">6.6</span> Studi Kasus</a><ul>
+<li><a href="6-6-studikasus.html#leastsquare"><span class="toc-section-number">6.6.1</span> Metode Kuadrat Terkecil</a></li>
+<li><a href="6-6-studikasus.html#reaktorkimia"><span class="toc-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li><a href="6-7-referensi-5.html#referensi-5"><span class="toc-section-number">6.7</span> Referensi</a></li>
+<li><a href="6-8-latihan.html#latihan"><span class="toc-section-number">6.8</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-rootfinding.html#rootfinding"><span class="toc-section-number">7</span> Akar Persamaan Non-Linier</a><ul>
+<li class="has-sub"><a href="7-1-bracketing.html#bracketing"><span class="toc-section-number">7.1</span> Metode Tertutup</a><ul>
+<li><a href="7-1-bracketing.html#table"><span class="toc-section-number">7.1.1</span> Metode Tabel</a></li>
+<li><a href="7-1-bracketing.html#bisection"><span class="toc-section-number">7.1.2</span> Metode Biseksi</a></li>
+<li><a href="7-1-bracketing.html#regulafalsi"><span class="toc-section-number">7.1.3</span> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-2-openmethod.html#openmethod"><span class="toc-section-number">7.2</span> Metode Terbuka</a><ul>
+<li><a href="7-2-openmethod.html#fixpoint"><span class="toc-section-number">7.2.1</span> Metode Iterasi Titik Tetap</a></li>
+<li><a href="7-2-openmethod.html#newtonraphson"><span class="toc-section-number">7.2.2</span> Metode Newton-Raphson</a></li>
+<li><a href="7-2-openmethod.html#secant"><span class="toc-section-number">7.2.3</span> Metode Secant</a></li>
+</ul></li>
+<li><a href="7-3-uniroot.html#uniroot"><span class="toc-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li><a href="7-4-akar-persamaan-polinomial-menggunakan-fungsi-polyroot.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><span class="toc-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="has-sub"><a href="7-5-studi-kasus.html#studi-kasus"><span class="toc-section-number">7.5</span> Studi Kasus</a><ul>
+<li><a href="7-5-studi-kasus.html#persamaan-van-der-walls"><span class="toc-section-number">7.5.1</span> Persamaan Van Der Walls</a></li>
+<li><a href="7-5-studi-kasus.html#hukum-bernoulli"><span class="toc-section-number">7.5.2</span> Hukum Bernoulli</a></li>
+</ul></li>
+<li><a href="7-6-referensi-6.html#referensi-6"><span class="toc-section-number">7.6</span> Referensi</a></li>
+<li><a href="7-7-latihan-1.html#latihan-1"><span class="toc-section-number">7.7</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-interpolation.html#interpolation"><span class="toc-section-number">8</span> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="has-sub"><a href="8-1-poliinterpolation.html#poliinterpolation"><span class="toc-section-number">8.1</span> Interpolasi Polinomial</a><ul>
+<li><a href="8-1-poliinterpolation.html#mengevaluasi-polinomial"><span class="toc-section-number">8.1.1</span> Mengevaluasi Polinomial</a></li>
+<li><a href="8-1-poliinterpolation.html#lininterpol"><span class="toc-section-number">8.1.2</span> Interpolasi Linier</a></li>
+<li><a href="8-1-poliinterpolation.html#hopoliinter"><span class="toc-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-2-pwinter.html#pwinter"><span class="toc-section-number">8.2</span> Interpolasi Piecewise</a><ul>
+<li><a href="8-2-pwinter.html#pwlininter"><span class="toc-section-number">8.2.1</span> Interpolasi Linier Piecewise</a></li>
+<li><a href="8-2-pwinter.html#cubicspline"><span class="toc-section-number">8.2.2</span> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-3-studi-kasus-1.html#studi-kasus-1"><span class="toc-section-number">8.3</span> Studi Kasus</a><ul>
+<li><a href="8-3-studi-kasus-1.html#interpolasi-data-runtun-waktu"><span class="toc-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li><a href="8-4-referensi-7.html#referensi-7"><span class="toc-section-number">8.4</span> Referensi</a></li>
+<li><a href="8-5-latihan-2.html#latihan-2"><span class="toc-section-number">8.5</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-diffinteg.html#diffinteg"><span class="toc-section-number">9</span> Diferensiasi dan Integrasi Numerik</a><ul>
+<li><a href="9-1-finitediff.html#finitediff"><span class="toc-section-number">9.1</span> Metode Beda Hingga</a></li>
+<li class="has-sub"><a href="9-2-diffother.html#diffother"><span class="toc-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li><a href="9-2-diffother.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><span class="toc-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-numderiv"><span class="toc-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-pracma"><span class="toc-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="9-3-newtoncotes.html#newtoncotes"><span class="toc-section-number">9.3</span> Metode Integrasi Newton-Cotes</a><ul>
+<li><a href="9-3-newtoncotes.html#riemann"><span class="toc-section-number">9.3.1</span> Metode Integral Riemann</a></li>
+<li><a href="9-3-newtoncotes.html#trapezoida"><span class="toc-section-number">9.3.2</span> Metode Trapezoida</a></li>
+<li><a href="9-3-newtoncotes.html#simpson"><span class="toc-section-number">9.3.3</span> Metode Simpson</a></li>
+<li><a href="9-3-newtoncotes.html#simpson38"><span class="toc-section-number">9.3.4</span> Metode Simpson 3/8</a></li>
+</ul></li>
+<li><a href="9-4-metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><span class="toc-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="studikasus" class="section level2">
+<h2><span class="header-section-number">6.6</span> Studi Kasus</h2>
+<p>Aljabar linier banyak diaplikasikan baik dalam bidang <em>engineering</em>, fisika, sampai dengan statistika. Pada <em>sub-chapter</em> ini penulis akan menjelaskan penerapan aljabar linier pada metode kuadrat terkecil dan aliran massa dalam reaktor. Untuk penerapan lainnya pembaca dapat membaca buku lainnya terkait aljabar linier.</p>
+<div id="leastsquare" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Metode Kuadrat Terkecil</h3>
+<p>Metode kuadrat terkecil merupakan salah satu aplikasi penerapan aljabar linier yang paling populer. Intuisi dibalik metode ini adalah bagaimana kita meminimalkan jarak antara sejumlah titik dengan garis regresi. Misalkan kita menggambarkan scatterplot antara dua buah variabel. Pola yang terbentuk dari plot tersebut adalah terjadi korelasi positif antara variabel pada sumbu <span class="math inline">\(x\)</span> dan sumbu <span class="math inline">\(y\)</span>. Kita ingin menggambarkan garis regresi terbaik yang dapat menangkap seluruh pola tersebut. Garis regresi terbaik terjadi ketika jumlah kuadrat jarak antara titik observasi dan garis regresi yang terbentuk seminimal mungkin.</p>
+<p>Untuk lebih memahaminya kita akan melakukan latihan menggunakan dataset <code>trees</code> yang berisi data hasil pengukuran kayu dari pohon yang ditebang. Pada dataset ini terdapat 31 observasi dan 3 buah kolom. Keterangan dari ketiga buah kolom tersebut adalah sebagai berikut:</p>
+<ul>
+<li><code>Girth</code>: diameter pohon dalam satuan <em>inch</em>.</li>
+<li><code>Height</code>: tinggi pohon dalam satuan <em>feet</em>.</li>
+<li><code>Volume</code>: volume kayu dalam satuan <em>cubic feet</em>.</li>
+</ul>
+<p>Untuk mengecek 6 observasi pertama dan struktur data, jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1"><span class="kw">head</span>(trees)</a></code></pre></div>
+<pre><code>##   Girth Height Volume
+## 1   8.3     70   10.3
+## 2   8.6     65   10.3
+## 3   8.8     63   10.2
+## 4  10.5     72   16.4
+## 5  10.7     81   18.8
+## 6  10.8     83   19.7</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1"><span class="kw">str</span>(trees)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    31 obs. of  3 variables:
+##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...
+##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...
+##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</code></pre>
+<p>Scatterplot matriks sangat bagus untuk mengecek korelasi antar variabel dalam dataset tersebut. Berikut adalah sintaks untuk membuatnya:</p>
+<div class="figure" style="text-align: center">
+<img src="Metode_Numerik_files/figure-html/trees,%20LUfig-1.png" alt="Scatterplot matriks dataset trees" width="90%" />
+<p class="caption">
+(#fig:trees, LUfig)Scatterplot matriks dataset trees
+</p>
+</div>
+<p>Kita ingin membuat sebuah model linier untuk memprediksi <code>Volume</code> kayu berdasarkan variabel <code>Girth</code> dan <code>Heiht</code> atau volume sebagia fungsi dari variabel <code>Girth</code> dan <code>Heiht</code>. Kita dapat menuliskan relasi antara variabel volume sebagai fungsi dari variabel <code>Girth</code> dan <code>Heiht</code> menggunakan Persamaan <a href="6-6-studikasus.html#eq:trees">(6.40)</a>.</p>
+<p><span class="math display" id="eq:trees">\[\begin{equation}
+Volume=\beta_{girth} Girth+\beta_{height}Height+\beta_0
+ \tag{6.40}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(\beta_0\)</span> merupakan intersep persamaan regresi linier dan nilai <span class="math inline">\(\beta\)</span> lainnya merupakan koefisien dari variabel <code>Girth</code> dan <code>Heiht</code>. Variabel <code>Volume</code> disebut sebagai variabel respon, sedangkan variabel <code>Girth</code> dan <code>Heiht</code> disebut sebagai variabel prediktor.</p>
+<p>Metode kuadrat terkecil berusaha memperoleh seluruh koefisien variabel dan intersep dari persamaan regresi linier. Berdasarkan yang telah penulis jelaskan garis regresi terbaik adalah garis yang memiliki nilai kuadrat terkecil jarak antara titik observasi dan garis regresi. Dasar dari metode kuadrat terkecil merupakan persamaan yang relatif sederhana yang ditunjukkan pada Persamaan <a href="6-6-studikasus.html#eq:trees2">(6.41)</a>.</p>
+<p><span class="math display" id="eq:trees2">\[\begin{equation}
+A^{T}A=A^{T}b
+ \tag{6.41}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(b\)</span> merupakan vektor dari variabel respon (<code>Volume</code>) dan matrik <span class="math inline">\(A\)</span> merupakan matriks variabel prediktor (variabel <code>Girth</code> dan <code>Heiht</code>).</p>
+<p>Untuk menginputkan intercept kedalam persamaan linier kita perlu menmabhakan satu kolom di awal matriks <span class="math inline">\(A\)</span> yang berisi nilai 1. Berikut adalah sintaks yang digunakan untuk membentuk matriks <span class="math inline">\(A\)</span>:</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="co"># membentuk matriks A</span></a>
+<a class="sourceLine" id="cb521-2" title="2">pred &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">intercept=</span><span class="dv">1</span>, <span class="dt">Girth=</span>trees<span class="op">$</span>Girth, <span class="dt">Height=</span>trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb521-3" title="3"><span class="kw">head</span>(A)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   27    6   -1
+## [2,]    6   15    2
+## [3,]    1    1   54</code></pre>
+<p>Langkah selanjutnya adalah membentuk matriks <span class="math inline">\(b\)</span>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1">resp&lt;-<span class="st"> </span>trees<span class="op">$</span>Volume</a>
+<a class="sourceLine" id="cb523-2" title="2"><span class="kw">head</span>(resp)</a></code></pre></div>
+<pre><code>## [1] 10.3 10.3 10.2 16.4 18.8 19.7</code></pre>
+<p>Untuk memperoleh koefisien <span class="math inline">\(\beta\)</span>, kita dapat mencarinya dengan cara menyelesaikan Persamaan <a href="6-6-studikasus.html#eq:trees2">(6.41)</a>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1">A &lt;-<span class="st"> </span><span class="kw">t</span>(pred) <span class="op">%*%</span><span class="st"> </span>pred</a>
+<a class="sourceLine" id="cb525-2" title="2">b &lt;-<span class="st"> </span><span class="kw">t</span>(pred) <span class="op">%*%</span><span class="st"> </span>resp</a>
+<a class="sourceLine" id="cb525-3" title="3"></a>
+<a class="sourceLine" id="cb525-4" title="4">Ab &lt;-<span class="st"> </span><span class="kw">cbind</span>(A,b)</a>
+<a class="sourceLine" id="cb525-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">gauss_jordan</span>(Ab))</a></code></pre></div>
+<pre><code>##           intercept Girth Height            
+## intercept         1     0      0 -57.9876589
+## Girth             0     1      0   4.7081605
+## Height            0     0      1   0.3392512</code></pre>
+<p>Berdasarkan hasil yang diperoleh, persamaan linier yang terbentuk disajikan pada Persamaan <a href="6-6-studikasus.html#eq:trees3">(6.42)</a>.</p>
+<p><span class="math display" id="eq:trees3">\[\begin{equation}
+Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
+ \tag{6.42}
+\end{equation}\]</span></p>
+<p>Pembaca juga dapat menggunakan fungsi lain untuk memperoleh nilai koefisien tersebut, seperti: <code>lu_solve()</code>dan<code>solve()</code>. untuk fungsi <code>jacobi()</code> dan <code>gauss_seidel()</code>, kita harus pastikan syarat-syarat terkait metode tersebut. Berikut adalah contoh penyelesaian menggunakan sintaks lainnya:</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1"><span class="co"># metode LU</span></a>
+<a class="sourceLine" id="cb527-2" title="2"><span class="kw">lu_solve</span>(A,b)</a></code></pre></div>
+<pre><code>## $P
+##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1
+## 
+## $L
+##          [,1]     [,2] [,3]
+## [1,]  1.00000 0.000000    0
+## [2,] 13.24839 1.000000    0
+## [3,] 76.00000 1.054369    1
+## 
+## $U
+##           intercept    Girth    Height
+## intercept        31 410.7000 2356.0000
+## Girth             0 295.4374  311.5000
+## Height            0   0.0000  889.5641
+## 
+## $result
+##             [,1]
+## [1,] -57.9876589
+## [2,]   4.7081605
+## [3,]   0.3392512</code></pre>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="co"># fungsi solve()</span></a>
+<a class="sourceLine" id="cb529-2" title="2"><span class="kw">solve</span>(A,b)</a></code></pre></div>
+<pre><code>##                  [,1]
+## intercept -57.9876589
+## Girth       4.7081605
+## Height      0.3392512</code></pre>
+<p><code>R</code> juga menyediakan fungsi untuk membentuk model regresi linier. Fungsi yang digunakan adalah <code>lm()</code>. Berikut sintaks yang digunakan untuk membentuk model linier menggunakan fungsi <code>lm()</code>:</p>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="kw">lm</span>(Volume<span class="op">~</span>Girth<span class="op">+</span>Height, <span class="dt">data=</span>trees)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Volume ~ Girth + Height, data = trees)
+## 
+## Coefficients:
+## (Intercept)        Girth       Height  
+##    -57.9877       4.7082       0.3393</code></pre>
+</div>
+<div id="reaktorkimia" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</h3>
+<p>Pada <em>sub-chapter</em> ini penulis akan memberikan penerapan aljabar linier untuk menghitung konsentrasi suatu zat atau parameter lingkungan dalam reaktor yang saling terhubung. Pada contoh kasus kali ini diasumsikan terdapat lima buah reaktor yang saling terhubung satu sama lain sesuai Gambar <a href="6-6-studikasus.html#fig:reaktor">6.2</a>. Debit air (<span class="math inline">\(\frac{m^{3}}{detik}\)</span>) dan konsentrasi zat pencemar (<span class="math inline">\(\frac{mg}{m^3}\)</span>) disajikan pula diagram alir tersebut. Diasumsikan kelima buah reaktor tersebut dalam kondisi <em>steady</em> dan volume reaktor diasumsikan sama. Kesetimbangan massa persatuan waktu dalam kondisi <em>steady</em> disajikan pada Persamaan <a href="6-6-studikasus.html#eq:steady">(6.43)</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reaktor"></span>
+<img src="images/reaktor.jpeg" alt="Aliran massa dalam reaktor." width="90%" />
+<p class="caption">
+Gambar 6.2: Aliran massa dalam reaktor.
+</p>
+</div>
+<p><span class="math display" id="eq:steady">\[\begin{equation}
+m_in=m_out
+ \tag{6.43}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:steady2">\[\begin{equation}
+Q_{in}C_{in}= Q_{out}C_{out}
+ \tag{6.44}
+\end{equation}\]</span></p>
+<p>Berdasarkan Gambar <a href="6-6-studikasus.html#fig:reaktor">6.2</a>, dapat dibentuk lima buah sistem persamaan linier. Persamaan linier yang terbentuk disajikan sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{matrix}
+  6c_{1}-c_{3}=50 \\
+  -3c_{1}+3c_{2}=0 \\
+  -c_{2}+9c_{3}=160 \\
+  -c_{2}-8c_{3}+11c_{4}-2c_{5}=0 \\
+  -3c_{1}-c_{2}+4c_{5}=0
+\end{matrix}
+\]</span></p>
+<p>Untuk menyelesaiakan sistem persamaan linier tersebut dan memperoleh nilai <span class="math inline">\(c\)</span> dari masing-masing reaktor, kiat perlu mengubahnya dulu kedalam bentuk matriks <span class="math inline">\(Ax=b\)</span>. Berikut adalah matriks yang terbentuk:</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+      6 &amp;  0 &amp; -1 &amp; 0  &amp; 0    \\[0.3em]
+     -3 &amp;  3 &amp; 0  &amp; 0  &amp; 0    \\[0.3em]
+      0 &amp; -1 &amp; 9  &amp; 0  &amp; 0    \\[0.3em]
+      0 &amp; -1 &amp; -8 &amp; 11 &amp; -2   \\[0.3em]
+     -3 &amp; -1 &amp; 0  &amp; 0  &amp; 4
+\end{bmatrix}
+c = \begin{bmatrix}
+     50     \\[0.3em]
+     0      \\[0.3em]
+     160    \\[0.3em]
+     0      \\[0.3em]
+     0
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Kita akan menyelesaikannya dengan menggunakan metode elminasi Gauss-Jordan, dekomposisi LU, iterasi Jacobi, dan iterasi Gauss-Seidel. Untuk dapat menyelesaikannya menggunakan metode-metode tersebut pada <code>R</code>, kita perlu membentuk matriksnya terlebih dahulu:</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1">(A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb533-2" title="2">              <span class="dv">0</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb533-3" title="3">              <span class="dv">-1</span>,<span class="dv">0</span>,<span class="dv">9</span>,<span class="op">-</span><span class="dv">8</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb533-4" title="4">              <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">11</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb533-5" title="5">              <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">nrow=</span><span class="dv">5</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    6    0   -1    0    0
+## [2,]   -3    3    0    0    0
+## [3,]    0   -1    9    0    0
+## [4,]    0   -1   -8   11   -2
+## [5,]   -3   -1    0    0    4</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1">(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">0</span>,<span class="dv">160</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a></code></pre></div>
+<pre><code>## [1]  50   0 160   0   0</code></pre>
+<p><strong>Metode Eliminasi Gauss-Jordan</strong></p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1"><span class="kw">gauss_jordan</span>(<span class="kw">cbind</span>(A,b))</a></code></pre></div>
+<pre><code>##                       b
+## [1,] 1 0 0 0 0 11.50943
+## [2,] 0 1 0 0 0 11.50943
+## [3,] 0 0 1 0 0 19.05660
+## [4,] 0 0 0 1 0 16.99828
+## [5,] 0 0 0 0 1 11.50943</code></pre>
+<p><strong>Metode Dekomposisi LU</strong></p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">lu_solve</span>(A,b)</a></code></pre></div>
+<pre><code>## $P
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    0
+## [2,]    0    1    0    0    0
+## [3,]    0    0    1    0    0
+## [4,]    0    0    0    1    0
+## [5,]    0    0    0    0    1
+## 
+## $L
+##      [,1]       [,2]       [,3] [,4] [,5]
+## [1,]  1.0  0.0000000  0.0000000    0    0
+## [2,] -0.5  1.0000000  0.0000000    0    0
+## [3,]  0.0 -0.3333333  1.0000000    0    0
+## [4,]  0.0 -0.3333333 -0.9245283    1    0
+## [5,] -0.5 -0.3333333 -0.0754717    0    1
+## 
+## $U
+##      [,1] [,2]          [,3] [,4] [,5]
+## [1,]    6    0 -1.000000e+00    0    0
+## [2,]    0    3 -5.000000e-01    0    0
+## [3,]    0    0  8.833333e+00    0    0
+## [4,]    0    0  0.000000e+00   11   -2
+## [5,]    0    0  1.110223e-16    0    4
+## 
+## $result
+## [1] 11.50943 11.50943 19.05660 16.99828 11.50943</code></pre>
+<p><strong>Metode Iterasi Jacobi</strong></p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="kw">jacobi</span>(A,b, <span class="dt">maxiter=</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 11.50943
+## [2,] 11.50943
+## [3,] 19.05660
+## [4,] 16.99828
+## [5,] 11.50943
+## 
+## $iter
+## [1] 17</code></pre>
+<p><strong>Metode Iterasi Gauss-Seidel</strong></p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="kw">gauss_seidel</span>(A,b, <span class="dt">maxiter=</span><span class="dv">200</span>)</a></code></pre></div>
+<pre><code>## $X
+##          [,1]
+## [1,] 11.50943
+## [2,] 11.50943
+## [3,] 19.05660
+## [4,] 16.99828
+## [5,] 11.50943
+## 
+## $iter
+## [1] 7</code></pre>
+<p>Berdasarkan seluruh metode tersebut, diperoleh konsentrasi zat pencemar pada masing-masing reaktor adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{matrix}
+  c_{1}=11,50943 \frac{mg}{m^3} \\
+  c_{2}=11,50943 \frac{mg}{m^3} \\
+  c_{3}=19,05660 \frac{mg}{m^3} \\
+  c_{4}=16,99828 \frac{mg}{m^3} \\
+  c_{5}=11.50943 \frac{mg}{m^3}
+\end{matrix}
+\]</span></p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="6-5-iteratif.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-7-referensi-5.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

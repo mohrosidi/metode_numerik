@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.4 Dekomposisi Matriks | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+
+
+<meta name="author" content="Mohammad Rosidi" />
+
+<meta name="date" content="2019-11-05" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan">
+
+<title>6.4 Dekomposisi Matriks | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#kata-pengantar">Kata Pengantar</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Bahasa Pemrograman R</a><ul>
+<li><a href="1-1-sejarahR.html#sejarahR"><span class="toc-section-number">1.1</span> Sejarah R</a></li>
+<li><a href="1-2-fiturR.html#fiturR"><span class="toc-section-number">1.2</span> Fitur dan Karakteristik R</a></li>
+<li><a href="1-3-prosconsR.html#prosconsR"><span class="toc-section-number">1.3</span> Kelebihan dan Kekurangan R</a></li>
+<li><a href="1-4-rstudio.html#rstudio"><span class="toc-section-number">1.4</span> RStudio</a></li>
+<li><a href="1-5-installR.html#installR"><span class="toc-section-number">1.5</span> Menginstall R dan RStudio</a></li>
+<li class="has-sub"><a href="1-6-wdR.html#wdR"><span class="toc-section-number">1.6</span> Working Directory</a><ul>
+<li><a href="1-6-wdR.html#changewdR"><span class="toc-section-number">1.6.1</span> Mengubah Lokasi Working Directory</a></li>
+<li><a href="1-6-wdR.html#defaultwdR"><span class="toc-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li><a href="1-7-installlibraryR.html#installlibraryR"><span class="toc-section-number">1.7</span> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="has-sub"><a href="1-8-helpR.html#helpR"><span class="toc-section-number">1.8</span> Fasilitas Help</a><ul>
+<li><a href="1-8-helpR.html#searchhelp"><span class="toc-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li><a href="1-8-helpR.html#generalhelp"><span class="toc-section-number">1.8.2</span> General Help</a></li>
+<li><a href="1-8-helpR.html#othershelp"><span class="toc-section-number">1.8.3</span> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li><a href="1-9-referensi.html#referensi"><span class="toc-section-number">1.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-calculation.html#calculation"><span class="toc-section-number">2</span> Kalkulasi Menggunakan R</a><ul>
+<li><a href="2-1-aritmetikoperator.html#aritmetikoperator"><span class="toc-section-number">2.1</span> Operator Aritmatik</a></li>
+<li><a href="2-2-aritmaticfunction.html#aritmaticfunction"><span class="toc-section-number">2.2</span> Fungsi Aritmetik</a></li>
+<li><a href="2-3-relationoperators.html#relationoperators"><span class="toc-section-number">2.3</span> Operator Relasi</a></li>
+<li><a href="2-4-logicoperators.html#logicoperators"><span class="toc-section-number">2.4</span> Operator Logika</a></li>
+<li><a href="2-5-assigningvar.html#assigningvar"><span class="toc-section-number">2.5</span> Memasukkan Nilai Kedalam Variabel</a></li>
+<li><a href="2-6-typedata.html#typedata"><span class="toc-section-number">2.6</span> Tipe dan Struktur Data</a></li>
+<li class="has-sub"><a href="2-7-vector.html#vector"><span class="toc-section-number">2.7</span> Vektor</a><ul>
+<li><a href="2-7-vector.html#createvector"><span class="toc-section-number">2.7.1</span> Membuat vektor</a></li>
+<li><a href="2-7-vector.html#missingvalue"><span class="toc-section-number">2.7.2</span> Missing Values</a></li>
+<li><a href="2-7-vector.html#subsetvector"><span class="toc-section-number">2.7.3</span> Subset Pada Vektor</a></li>
+<li><a href="2-7-vector.html#vectorops"><span class="toc-section-number">2.7.4</span> Operasi Matematis Menggunakan Vektor</a></li>
+<li><a href="2-7-vector.html#seq"><span class="toc-section-number">2.7.5</span> Membuat Deret Angka</a></li>
+<li><a href="2-7-vector.html#repseq"><span class="toc-section-number">2.7.6</span> Nilai Berulang</a></li>
+<li><a href="2-7-vector.html#randnumb"><span class="toc-section-number">2.7.7</span> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-8-matriks.html#matriks"><span class="toc-section-number">2.8</span> Matriks</a><ul>
+<li><a href="2-8-matriks.html#creatematrix"><span class="toc-section-number">2.8.1</span> Membuat matriks</a></li>
+<li><a href="2-8-matriks.html#subsetmatrix"><span class="toc-section-number">2.8.2</span> Subset Pada Matriks</a></li>
+<li><a href="2-8-matriks.html#matrixcalculation"><span class="toc-section-number">2.8.3</span> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li><a href="2-9-referensi-1.html#referensi-1"><span class="toc-section-number">2.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-dataviz.html#dataviz"><span class="toc-section-number">3</span> Visualisasi Data</a><ul>
+<li><a href="3-1-plotfunc.html#plotfunc"><span class="toc-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="has-sub"><a href="3-2-otherviz.html#otherviz"><span class="toc-section-number">3.2</span> Visualisasi Lainnya</a><ul>
+<li><a href="3-2-otherviz.html#barplot"><span class="toc-section-number">3.2.1</span> Bar Plot</a></li>
+<li><a href="3-2-otherviz.html#histogram"><span class="toc-section-number">3.2.2</span> Histogram dan Density Plot</a></li>
+<li><a href="3-2-otherviz.html#boxplot"><span class="toc-section-number">3.2.3</span> Box plot</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-customise.html#customise"><span class="toc-section-number">3.3</span> Kustomisasi Parameter Grafik</a><ul>
+<li><a href="3-3-customise.html#addtitle"><span class="toc-section-number">3.3.1</span> Menambahkan Judul</a></li>
+<li><a href="3-3-customise.html#addlegend"><span class="toc-section-number">3.3.2</span> Menambahkan Legend</a></li>
+<li><a href="3-3-customise.html#addtext"><span class="toc-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</a></li>
+<li><a href="3-3-customise.html#addlines"><span class="toc-section-number">3.3.4</span> Menambahkan Garis Pada Plot</a></li>
+<li><a href="3-3-customise.html#changepoint"><span class="toc-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</a></li>
+<li><a href="3-3-customise.html#mengatur-axis-plot"><span class="toc-section-number">3.3.6</span> Mengatur Axis Plot</a></li>
+<li><a href="3-3-customise.html#changecolor"><span class="toc-section-number">3.3.7</span> Mengatur Warna</a></li>
+</ul></li>
+<li><a href="3-4-plot-dua-dan-tiga-dimensi.html#plot-dua-dan-tiga-dimensi"><span class="toc-section-number">3.4</span> Plot Dua dan Tiga Dimensi</a></li>
+<li><a href="3-5-referensi-2.html#referensi-2"><span class="toc-section-number">3.5</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-programmingandfunction.html#programmingandfunction"><span class="toc-section-number">4</span> Pemrograman dan Fungsi</a><ul>
+<li class="has-sub"><a href="4-1-loop.html#loop"><span class="toc-section-number">4.1</span> Loop</a><ul>
+<li><a href="4-1-loop.html#forloop"><span class="toc-section-number">4.1.1</span> For Loop</a></li>
+<li><a href="4-1-loop.html#whileloop"><span class="toc-section-number">4.1.2</span> While Loop</a></li>
+<li><a href="4-1-loop.html#repeatloop"><span class="toc-section-number">4.1.3</span> Repeat Loop</a></li>
+<li><a href="4-1-loop.html#break"><span class="toc-section-number">4.1.4</span> Break</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-2-loopapply.html#loopapply"><span class="toc-section-number">4.2</span> Loop Menggunakan Apply Family Function</a><ul>
+<li><a href="4-2-loopapply.html#apply"><span class="toc-section-number">4.2.1</span> Apply</a></li>
+<li><a href="4-2-loopapply.html#lapply"><span class="toc-section-number">4.2.2</span> lapply</a></li>
+<li><a href="4-2-loopapply.html#sapply"><span class="toc-section-number">4.2.3</span> sapply</a></li>
+<li><a href="4-2-loopapply.html#vapply"><span class="toc-section-number">4.2.4</span> vapply</a></li>
+<li><a href="4-2-loopapply.html#tapply"><span class="toc-section-number">4.2.5</span> tapply</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-dm.html#dm"><span class="toc-section-number">4.3</span> Decision Making</a><ul>
+<li><a href="4-3-dm.html#ifstatement"><span class="toc-section-number">4.3.1</span> if statement</a></li>
+<li><a href="4-3-dm.html#ifelsestatement"><span class="toc-section-number">4.3.2</span> if else statement</a></li>
+<li><a href="4-3-dm.html#switchstatement"><span class="toc-section-number">4.3.3</span> switch statement</a></li>
+</ul></li>
+<li><a href="4-4-fungsi.html#fungsi"><span class="toc-section-number">4.4</span> Fungsi</a></li>
+<li><a href="4-5-debugging.html#debugging"><span class="toc-section-number">4.5</span> Debugging</a></li>
+<li><a href="4-6-referensi-3.html#referensi-3"><span class="toc-section-number">4.6</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-numericmethod.html#numericmethod"><span class="toc-section-number">5</span> Pengantar Metode Numerik</a><ul>
+<li class="has-sub"><a href="5-1-numericmethodintro.html#numericmethodintro"><span class="toc-section-number">5.1</span> Mengenal Metode Numerik</a><ul>
+<li><a href="5-1-numericmethodintro.html#diffanalitycnumeric"><span class="toc-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li><a href="5-1-numericmethodintro.html#tahapan-penyelesaian-menggunakan-metode-numerik"><span class="toc-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li><a href="5-2-acuracy.html#acuracy"><span class="toc-section-number">5.2</span> Akurasi dan Presisi</a></li>
+<li><a href="5-3-numerror.html#numerror"><span class="toc-section-number">5.3</span> Error Numerik</a></li>
+<li><a href="5-4-referensi-4.html#referensi-4"><span class="toc-section-number">5.4</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-linearaljabar.html#linearaljabar"><span class="toc-section-number">6</span> Aljabar Linier</a><ul>
+<li class="has-sub"><a href="6-1-vecmat.html#vecmat"><span class="toc-section-number">6.1</span> Vektor dan matriks</a><ul>
+<li><a href="6-1-vecmat.html#operasivektor"><span class="toc-section-number">6.1.1</span> Operasi Vektor</a></li>
+<li><a href="6-1-vecmat.html#operasimatrik"><span class="toc-section-number">6.1.2</span> Operasi matriks</a></li>
+</ul></li>
+<li><a href="6-2-rowoperation.html#rowoperation"><span class="toc-section-number">6.2</span> Operasi Baris Elementer</a></li>
+<li class="has-sub"><a href="6-3-gausselimination.html#gausselimination"><span class="toc-section-number">6.3</span> Eliminasi Gauss</a><ul>
+<li><a href="6-3-gausselimination.html#rowechelonform"><span class="toc-section-number">6.3.1</span> <em>Row Echelon Form</em></a></li>
+<li><a href="6-3-gausselimination.html#redrowechelonform"><span class="toc-section-number">6.3.2</span> Eliminasi Gauss-Jordan</a></li>
+<li><a href="6-3-gausselimination.html#matriktridiagonal"><span class="toc-section-number">6.3.3</span> Matrik Tridiagonal</a></li>
+<li><a href="6-3-gausselimination.html#solvefunc"><span class="toc-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li><a href="6-3-gausselimination.html#solvetridiagfunct"><span class="toc-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-4-dekomposisimatriks.html#dekomposisimatriks"><span class="toc-section-number">6.4</span> Dekomposisi Matriks</a><ul>
+<li><a href="6-4-dekomposisimatriks.html#ludecomp"><span class="toc-section-number">6.4.1</span> Dekomposisi LU</a></li>
+<li><a href="6-4-dekomposisimatriks.html#dekomposisi-cholesky"><span class="toc-section-number">6.4.2</span> Dekomposisi Cholesky</a></li>
+<li><a href="6-4-dekomposisimatriks.html#othersdecomp"><span class="toc-section-number">6.4.3</span> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-5-iteratif.html#iteratif"><span class="toc-section-number">6.5</span> Metode Iterasi</a><ul>
+<li><a href="6-5-iteratif.html#jacobiiter"><span class="toc-section-number">6.5.1</span> Iterasi Jacobi</a></li>
+<li><a href="6-5-iteratif.html#seideliter"><span class="toc-section-number">6.5.2</span> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-6-studikasus.html#studikasus"><span class="toc-section-number">6.6</span> Studi Kasus</a><ul>
+<li><a href="6-6-studikasus.html#leastsquare"><span class="toc-section-number">6.6.1</span> Metode Kuadrat Terkecil</a></li>
+<li><a href="6-6-studikasus.html#reaktorkimia"><span class="toc-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li><a href="6-7-referensi-5.html#referensi-5"><span class="toc-section-number">6.7</span> Referensi</a></li>
+<li><a href="6-8-latihan.html#latihan"><span class="toc-section-number">6.8</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-rootfinding.html#rootfinding"><span class="toc-section-number">7</span> Akar Persamaan Non-Linier</a><ul>
+<li class="has-sub"><a href="7-1-bracketing.html#bracketing"><span class="toc-section-number">7.1</span> Metode Tertutup</a><ul>
+<li><a href="7-1-bracketing.html#table"><span class="toc-section-number">7.1.1</span> Metode Tabel</a></li>
+<li><a href="7-1-bracketing.html#bisection"><span class="toc-section-number">7.1.2</span> Metode Biseksi</a></li>
+<li><a href="7-1-bracketing.html#regulafalsi"><span class="toc-section-number">7.1.3</span> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-2-openmethod.html#openmethod"><span class="toc-section-number">7.2</span> Metode Terbuka</a><ul>
+<li><a href="7-2-openmethod.html#fixpoint"><span class="toc-section-number">7.2.1</span> Metode Iterasi Titik Tetap</a></li>
+<li><a href="7-2-openmethod.html#newtonraphson"><span class="toc-section-number">7.2.2</span> Metode Newton-Raphson</a></li>
+<li><a href="7-2-openmethod.html#secant"><span class="toc-section-number">7.2.3</span> Metode Secant</a></li>
+</ul></li>
+<li><a href="7-3-uniroot.html#uniroot"><span class="toc-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li><a href="7-4-akar-persamaan-polinomial-menggunakan-fungsi-polyroot.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><span class="toc-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="has-sub"><a href="7-5-studi-kasus.html#studi-kasus"><span class="toc-section-number">7.5</span> Studi Kasus</a><ul>
+<li><a href="7-5-studi-kasus.html#persamaan-van-der-walls"><span class="toc-section-number">7.5.1</span> Persamaan Van Der Walls</a></li>
+<li><a href="7-5-studi-kasus.html#hukum-bernoulli"><span class="toc-section-number">7.5.2</span> Hukum Bernoulli</a></li>
+</ul></li>
+<li><a href="7-6-referensi-6.html#referensi-6"><span class="toc-section-number">7.6</span> Referensi</a></li>
+<li><a href="7-7-latihan-1.html#latihan-1"><span class="toc-section-number">7.7</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-interpolation.html#interpolation"><span class="toc-section-number">8</span> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="has-sub"><a href="8-1-poliinterpolation.html#poliinterpolation"><span class="toc-section-number">8.1</span> Interpolasi Polinomial</a><ul>
+<li><a href="8-1-poliinterpolation.html#mengevaluasi-polinomial"><span class="toc-section-number">8.1.1</span> Mengevaluasi Polinomial</a></li>
+<li><a href="8-1-poliinterpolation.html#lininterpol"><span class="toc-section-number">8.1.2</span> Interpolasi Linier</a></li>
+<li><a href="8-1-poliinterpolation.html#hopoliinter"><span class="toc-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-2-pwinter.html#pwinter"><span class="toc-section-number">8.2</span> Interpolasi Piecewise</a><ul>
+<li><a href="8-2-pwinter.html#pwlininter"><span class="toc-section-number">8.2.1</span> Interpolasi Linier Piecewise</a></li>
+<li><a href="8-2-pwinter.html#cubicspline"><span class="toc-section-number">8.2.2</span> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-3-studi-kasus-1.html#studi-kasus-1"><span class="toc-section-number">8.3</span> Studi Kasus</a><ul>
+<li><a href="8-3-studi-kasus-1.html#interpolasi-data-runtun-waktu"><span class="toc-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li><a href="8-4-referensi-7.html#referensi-7"><span class="toc-section-number">8.4</span> Referensi</a></li>
+<li><a href="8-5-latihan-2.html#latihan-2"><span class="toc-section-number">8.5</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-diffinteg.html#diffinteg"><span class="toc-section-number">9</span> Diferensiasi dan Integrasi Numerik</a><ul>
+<li><a href="9-1-finitediff.html#finitediff"><span class="toc-section-number">9.1</span> Metode Beda Hingga</a></li>
+<li class="has-sub"><a href="9-2-diffother.html#diffother"><span class="toc-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li><a href="9-2-diffother.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><span class="toc-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-numderiv"><span class="toc-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-pracma"><span class="toc-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="9-3-newtoncotes.html#newtoncotes"><span class="toc-section-number">9.3</span> Metode Integrasi Newton-Cotes</a><ul>
+<li><a href="9-3-newtoncotes.html#riemann"><span class="toc-section-number">9.3.1</span> Metode Integral Riemann</a></li>
+<li><a href="9-3-newtoncotes.html#trapezoida"><span class="toc-section-number">9.3.2</span> Metode Trapezoida</a></li>
+<li><a href="9-3-newtoncotes.html#simpson"><span class="toc-section-number">9.3.3</span> Metode Simpson</a></li>
+<li><a href="9-3-newtoncotes.html#simpson38"><span class="toc-section-number">9.3.4</span> Metode Simpson 3/8</a></li>
+</ul></li>
+<li><a href="9-4-metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><span class="toc-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="dekomposisimatriks" class="section level2">
+<h2><span class="header-section-number">6.4</span> Dekomposisi Matriks</h2>
+<p>Seringkali kita diminta untuk memperoleh nilai penyelesaian suatu persamaan linier <span class="math inline">\(Ax=B\)</span>, dimana nilai vektor <span class="math inline">\(B\)</span> yang selalu berubah-ubah. Penggunaan metode eliminasi Gauss mengharuskan untuk menyelesaikan sistem persamaan linier <span class="math inline">\(Ax=B\)</span> secara terpisah untuk setiap perubahan vektor <span class="math inline">\(B\)</span>. Untuk menghindari pekerjaan eliminasi yang selalu berulang-ulang, faktorisasi menjadi suatu hal yang dapat dilakukan untuk mempersingkat prosesnya. Faktorisasi atau dekomposisi matriks merupakan suatu algoritma untuk memecah matriks <span class="math inline">\(A\)</span>, hasil pemecahan ini selanjutnya digunakan untuk memperoleh penyelesaian sistem persamaan linier melalui perkalian antara vektor <span class="math inline">\(B\)</span> dan hasil faktorisasi matriks <span class="math inline">\(A\)</span>.</p>
+<div id="ludecomp" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Dekomposisi LU</h3>
+<p>Misalkan kita memiliki persamaan linier seperti yang ditunjukkan oleh Persamaan <a href="6-3-gausselimination.html#eq:matrikpl2">(6.12)</a>. Pada metode dekomposisi LU, matriks <span class="math inline">\(A\)</span> difaktorkan menjadi matriks <span class="math inline">\(L\)</span> dan matriks <span class="math inline">\(U\)</span>, dimana ukuran kedua matriks tersebut harus sama dengan ukuran matriks <span class="math inline">\(A\)</span> atau dapat kita tuliskan bahwa hasil perkalian kedua matriks tersebut akan menghasilkan matriks <span class="math inline">\(A\)</span>.</p>
+<p><span class="math display" id="eq:LUdecomp">\[\begin{equation}
+A=LU
+ \tag{6.22}
+\end{equation}\]</span></p>
+<p>Sehingga Persamaan <a href="6-3-gausselimination.html#eq:matrikpl2">(6.12)</a> akan menjadi Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp2">(6.23)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp2">\[\begin{equation}
+LUx=b
+ \tag{6.23}
+\end{equation}\]</span></p>
+<p>Langkah penyelesaian sistem persamaan linier, diawali dengan menghadirkan vektor <span class="math inline">\(t\)</span> yang ditunjukkan pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp3">(6.24)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp3">\[\begin{equation}
+Ux=t
+ \tag{6.24}
+\end{equation}\]</span></p>
+<p>Langkah pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp3">(6.24)</a> tidak dimaksudkan untuk menghitung vektor <span class="math inline">\(t\)</span>, melainkan untuk menghitung vektor <span class="math inline">\(x\)</span>. Vektor <span class="math inline">\(t\)</span> diperoleh dengan menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp4">(6.25)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp4">\[\begin{equation}
+Lx=t
+ \tag{6.25}
+\end{equation}\]</span></p>
+<p>Kita dapat menyelesaikan sistem persamaan yang ditunjukkan pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp3">(6.24)</a> dan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp4">(6.25)</a> menggunakan berbagai algoritma penyelesaian yang telah dibahas sebelumnya. Namun, karena matriks <span class="math inline">\(L\)</span> merupakan matriks segitiga bawah dengan nilai nol berada pada bagian atas diagonal utama, penyelesaian <span class="math inline">\(t\)</span> mengambil langkah yang lebih sedikit. Kondisi ini sama dengan kondisi penyelesaian matriks tridiagonal, dimana kita memanfaatkan sejumlah jalan pintas penyelesaiaannya guna mempercepat komputasi. Matriks segitia bawah <span class="math inline">\(L\)</span> akan berupa matriks persegi dengan ukuran <span class="math inline">\(m\)</span>, di mana <span class="math inline">\(m\)</span> merupakan jumlah baris matriks <span class="math inline">\(A\)</span>. Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp4">(6.25)</a> dalam bentuk matriks akan terlihat seperti Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp5">(6.26)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp5">\[\begin{equation}
+Lt=
+\begin{bmatrix}
+     1       &amp; 0       &amp; 0 &amp;\cdots&amp; 0           \\[0.3em]
+     l_{2,1} &amp; 1       &amp; 0 &amp;\cdots&amp; 0           \\[0.3em]
+     l_{3,1} &amp; l_{3,2} &amp; 1 &amp;\cdots&amp; 0           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     l_{m,1} &amp; l_{m,2} &amp; l_{m,3} &amp;\cdots&amp; 1
+     \end{bmatrix}
+\begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     t_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \tag{6.26}
+\end{equation}\]</span></p>
+<p>Berdasarkan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp5">(6.26)</a>, diketahui nilai <span class="math inline">\(t_1=b_1\)</span>. Nilai ini selanjutnya dapat digunakan untuk melakukan proses substitusi guna memperoleh seluruh nilai vektor <span class="math inline">\(t\)</span>. Proses ini disebut sebagai <em>foward substitution</em>. Proses substitusi dapat dituliskan menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp6">(6.27)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp6">\[\begin{equation}
+t_i=b_i-\sum_{j=1}^{i-1}l_{i,j}t_i
+  \tag{6.27}
+\end{equation}\]</span></p>
+<p>Seteleh nilai vektor <span class="math inline">\(t\)</span> dihitung, kita dapat menghitung nilai <span class="math inline">\(x\)</span> pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp7">(6.28)</a>.</p>
+<p><span class="math display" id="eq:LUdecomp7">\[\begin{equation}
+Ux=
+\begin{bmatrix}
+     u_{1,1} &amp; u_{1,2} &amp; u_{1,3} &amp;\cdots&amp; u_{1,n}           \\[0.3em]
+     0       &amp; u_{2,2} &amp; u_{2,3} &amp;\cdots&amp; u_{2,n}           \\[0.3em]
+     0       &amp; 0       &amp; u_{3,3} &amp;\cdots&amp; u_{3,n}           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     0       &amp; 0      &amp; 0        &amp;\cdots&amp; u_{m,n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     t_n                                       
+     \end{bmatrix}
+  \tag{6.28}
+\end{equation}\]</span></p>
+<p>Jika diperhatikan, kita dapat mengetahui mengetahui nilai <span class="math inline">\(x_n=\frac{t_n}{u_{m,n}}\)</span>. Nilai tersebut selanjutnya dapat digunakan untuk melakukan proses susbtitusi pada nilai lainnya. Proses substitusi ini disebut sebagai <em>backward substitution</em>. Proses dekomposisi atau faktorisasi LU digambarkan pada Gambar <a href="6-4-dekomposisimatriks.html#fig:LUfig">6.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:LUfig"></span>
+<img src="images/LU.PNG" alt="Tahapan dekomposisi LU." width="90%" />
+<p class="caption">
+Gambar 6.1: Tahapan dekomposisi LU.
+</p>
+</div>
+<p>Dekomposisi LU didasarkan pada operasi baris elementer. Pertama, kita perlu menemukan matriks segitiga atas yang sesuai dengan matriks <span class="math inline">\(A\)</span>. Solusi untuk melakukan dekomposisi bisa jadi tak terhingga, namun solusi yang paling sederhana adalah mengubah matriks <span class="math inline">\(A\)</span> menjadi matriks <em>row echelon form</em>. Kedua, <span class="math inline">\(L\)</span> harus menjadi matriks segitiga bawah yang mereduksi ke-<span class="math inline">\(l\)</span> dengan mengikuti operasi baris yang sama yag menghasilkan <span class="math inline">\(U\)</span>. Kita dapat menggunakan algoritma Doolittle untuk menghasilkan <span class="math inline">\(L\)</span>, di mana nilai setiap entri dalam matriks segitiga bawah merupakan pengali yang digunakan untuk menghilangkan entri yang sesuai untuk setiap proses <em>row replacement</em>.</p>
+<p>Pada praktiknya, proses eliminasi Gauss untuk memperoleh matriks <span class="math inline">\(U\)</span> kadang menghasilkan nol di kolom pivotnya. Kondisi tersebut mengharuskan kita untuk melakukan proses <em>row swapping</em> atau pertukaran baris (biasanya dengan baris bawahnya) untuk pivot bukan nol. Jika proses tersebut berhasil dilakukan bisa jadi matriks <span class="math inline">\(A\)</span> mungkin setara dengan matriks LU, tetapi tidak sama dalam hal urutan nilai pada tiap barisnya. Agar kita dapat memperoleh hasil yang sama (matriks A sama dengan matriks LU), diperlukan matriks ketiga, <span class="math inline">\(P\)</span>. Matriks ini merupakan matriks identitas dengan ukuran sama dengan matriks <span class="math inline">\(A\)</span>. Jika pertukaran baris dilakukan selama proses pembentukan matriks <span class="math inline">\(U\)</span>, maka pertukaran baris yang sama juga akan diimplemenntasikan pada matriks <span class="math inline">\(P\)</span>. oleh karena itu, dalam praktiknya matriks <span class="math inline">\(A=PLU\)</span> dan perkalian dengan matriks <span class="math inline">\(P\)</span> berfungsi untuk mengembalikan urutan baris.</p>
+
+<div class="example">
+<span id="exm:LUexmp" class="example"><strong>Contoh 6.6  </strong></span>Selesaikan sistem persamaan linier berikut menggunakan faktorisasi LU
+</div>
+
+<p><span class="math display">\[
+\begin{matrix}
+  x_1+x_2+3x_4=4 \\
+  2x_1+x_2-x_3+x_4=1 \\
+  3x_1-x_2-x_3+2x_4=-3 \\
+  -x_1-2x_2+3x_3-x_4=4
+\end{matrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Nayatakan sistem persamaan tersebut ke dalam bentuk matriks <span class="math inline">\(Ax=b\)</span>.</p>
+<p><span class="math display">\[\begin{equation*}
+Ux=
+\begin{bmatrix}
+     1       &amp; 1       &amp; 0       &amp; 3           \\[0.3em]
+     2       &amp; 1       &amp; -1      &amp; 1           \\[0.3em]
+     3       &amp; -1      &amp; -1      &amp; 2           \\[0.3em]
+     -1      &amp; 2       &amp; 3       &amp; -1           
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     x_4                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     1                                          \\[0.3em]
+     -3                                          \\[0.3em]
+     4                                       
+     \end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Lakukan operasi baris elementer pada matriks <span class="math inline">\(A\)</span> untuk memperoleh matriks <span class="math inline">\(U\)</span>. Urutan operasi baris elementer yang dilakukan adalah sebagai berikut:</p>
+<ul>
+<li><span class="math inline">\(\left(B_2-2B_1\right)\to B_2 \to l_{2,1}=2\)</span>,</li>
+<li><span class="math inline">\(\left(B_3-3B_1\right)\to B_3 \to l_{3,1}=3\)</span>,</li>
+<li><span class="math inline">\(\left(B_4+B_1\right)\to B_4 \to l_{4,1}=-1\)</span>,</li>
+<li><span class="math inline">\(\left(B_3-4B_2\right)\to B_3\to l_{3,2}=4\)</span>,</li>
+<li><span class="math inline">\(\left(B_4+3B_2\right)\to B_4 \to l_{4,2}=-3\)</span>,</li>
+<li><span class="math inline">\(l_{4,3}=0\)</span></li>
+</ul>
+<p>Simpan pengali tiap tahapan pada masing-masing elemen matriks <span class="math inline">\(L\)</span>. Hasil operasi tersebut akan menghasilkan matriks triangular <span class="math inline">\(U\)</span>.</p>
+<p><span class="math display">\[
+U=
+\begin{bmatrix}
+     1       &amp; 1       &amp; 0       &amp; 3           \\[0.3em]
+     0       &amp; -1      &amp; -1      &amp; -5          \\[0.3em]
+     0       &amp; 0       &amp; 3       &amp; 13          \\[0.3em]
+     0       &amp; 0       &amp; 0       &amp; -13           
+\end{bmatrix}
+\]</span></p>
+<p>Untuk matriks <span class="math inline">\(L\)</span> sebagai berikut:</p>
+<p><span class="math display">\[
+L=
+\begin{bmatrix}
+     1         &amp; 0       &amp; 0       &amp; 0           \\[0.3em]
+     2         &amp; 1       &amp; 0       &amp; 0           \\[0.3em]
+     3         &amp; 4       &amp; 1       &amp; 0           \\[0.3em]
+     -1        &amp; -3      &amp; 0       &amp; 1           
+\end{bmatrix}
+\]</span></p>
+<p>Karena pada proses operasi baris elementer tidak terdapat operasi pertukaran baris, maka matriks <span class="math inline">\(P\)</span> tidak mengalami perubahan:</p>
+<p><span class="math display">\[
+P=
+\begin{bmatrix}
+     1         &amp; 0       &amp; 0       &amp; 0           \\[0.3em]
+     0         &amp; 1       &amp; 0       &amp; 0           \\[0.3em]
+     0         &amp; 0       &amp; 1       &amp; 0           \\[0.3em]
+     0         &amp; 0       &amp; 0       &amp; 1           
+     \end{bmatrix}
+\]</span></p>
+<p>Lakukan operasi <em>forward substitution</em> menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp5">(6.26)</a>.</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+      1         &amp; 0       &amp; 0       &amp; 0           \\[0.3em]
+      2         &amp; 1       &amp; 0       &amp; 0           \\[0.3em]
+      3         &amp; 4       &amp; 1       &amp; 0           \\[0.3em]
+      -1        &amp; -3      &amp; 0       &amp; 1
+     \end{bmatrix}
+\begin{bmatrix}
+     t_1                                          \\[0.3em]
+     t_2                                          \\[0.3em]
+     t_3                                          \\[0.3em]
+     t_4                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     1                                          \\[0.3em]
+     -3                                          \\[0.3em]
+     4                                       
+     \end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Berdasarkan hasil perhitungan diperoleh nilai vektor <span class="math inline">\(t\)</span>.</p>
+<p><span class="math display">\[
+t_1=4, t_2=1, t_3=-3, t_4=4
+\]</span></p>
+<p>Operasi terakhir yang perlu dilakukan untuk memperoleh nilai <span class="math inline">\(x\)</span> adalah dengan melakukan <em>backward substitution</em> menggunakan nilai vektor <span class="math inline">\(t\)</span> yang telah dihitung.</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1       &amp; 1       &amp; 0       &amp; 3           \\[0.3em]
+     0       &amp; -1      &amp; -1      &amp; -5          \\[0.3em]
+     0       &amp; 0       &amp; 3       &amp; 13          \\[0.3em]
+     0       &amp; 0       &amp; 0       &amp; -13
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     x_4                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     4                                          \\[0.3em]
+     7                                          \\[0.3em]
+     13                                          \\[0.3em]
+     -13                      
+     \end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Berdasarkan hasil perhitungan diperoleh nilai <span class="math inline">\(x\)</span> sebagai berikut:</p>
+<p><span class="math display">\[
+x_1=-1, x_2=2, x_3=0, x_4=1
+\]</span></p>
+<hr />
+<p><strong>Algoritma Dekomposisi LU</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span></li>
+<li>Lakukan langkah poin ke-4 s/d poin 5 untuk meperoleh matriks <span class="math inline">\(U\)</span>.</li>
+<li>Untuk baris ke-<span class="math inline">\(i\)</span> di mana <span class="math inline">\(i=1\)</span> s/d <span class="math inline">\(n\)</span>, perhatikan apakah nilai <span class="math inline">\(a_{i,j}\)</span> sama dengan nol.</li>
+</ol>
+<ul>
+<li><strong>Bila iya</strong>, lakukan <em>row swapping</em> antara baris ke-<span class="math inline">\(i\)</span> dan baris ke-<span class="math inline">\(i+k\leq n\)</span>, dimana <span class="math inline">\(a_{i+k,j}\)</span> tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.</li>
+<li><strong>Bila tidak</strong>, lanjutkan.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Untuk baris ke-<span class="math inline">\(j\)</span>, dimana <span class="math inline">\(j=i+1\)</span> s/d <span class="math inline">\(n\)</span>, lakukan operasi baris elementer:</li>
+</ol>
+<ul>
+<li>Hitung <span class="math inline">\(c=\frac{a_{j,i}}{a_{i,i}}\)</span></li>
+<li>untuk kolom <span class="math inline">\(k\)</span>, dimana <span class="math inline">\(k=1\)</span> s/d <span class="math inline">\(n+1\)</span>, hitung <span class="math inline">\(a_{j,k}=a_{j,k}-c_i.a_{i,k}\)</span></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Lakukan langkah poin ke-7 s/d poin 9 untuk memperoleh matriks <span class="math inline">\(L\)</span></li>
+<li>Untuk diagonal matriks <span class="math inline">\(L\)</span> isikan dengan nilai 1 dan elemen di atas diagonal dengan nilai nol.</li>
+<li>Untuk elemen di bawah diagonal isikan dengan faktor pengali operasi baris elementer matriks <span class="math inline">\(U\)</span>.</li>
+<li>Lakukan proses <em>forward substitution</em> menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp6">(6.27)</a> untuk memperoleh nilai vektor <span class="math inline">\(t\)</span>.</li>
+<li>Lakukan <em>backward substituion</em> menggunakan Persamaan <a href="6-3-gausselimination.html#eq:refsolution">(6.16)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun algoritma faktorisasi LU menggunakan <code>R</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1">lu_solve &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b=</span><span class="ot">NULL</span>){</a>
+<a class="sourceLine" id="cb438-2" title="2">    m &lt;-<span class="st"> </span><span class="kw">nrow</span>(a)</a>
+<a class="sourceLine" id="cb438-3" title="3">    n &lt;-<span class="st"> </span><span class="kw">ncol</span>(a)</a>
+<a class="sourceLine" id="cb438-4" title="4">    piv &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb438-5" title="5"></a>
+<a class="sourceLine" id="cb438-6" title="6"><span class="co"># membentuk matriks identitas P dan L</span></a>
+<a class="sourceLine" id="cb438-7" title="7">    P &lt;-<span class="st"> </span>L &lt;-<span class="st"> </span><span class="kw">diag</span>(n)</a>
+<a class="sourceLine" id="cb438-8" title="8"></a>
+<a class="sourceLine" id="cb438-9" title="9"><span class="co"># cek elemen diagonal utama apakah bernilai nol</span></a>
+<a class="sourceLine" id="cb438-10" title="10">    <span class="cf">for</span>(row_curr <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</a>
+<a class="sourceLine" id="cb438-11" title="11">        <span class="cf">if</span>(piv <span class="op">&lt;=</span><span class="st"> </span>n){</a>
+<a class="sourceLine" id="cb438-12" title="12">            i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb438-13" title="13">            <span class="cf">while</span>(a[i, piv] <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>i <span class="op">&lt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb438-14" title="14">                i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb438-15" title="15">                <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb438-16" title="16">                    i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb438-17" title="17">                    piv &lt;-<span class="st"> </span>piv <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb438-18" title="18">                    <span class="cf">if</span>(piv <span class="op">&gt;</span><span class="st"> </span>n)</a>
+<a class="sourceLine" id="cb438-19" title="19">                        <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">P =</span> P, <span class="dt">L =</span> L, <span class="dt">U =</span> a))</a>
+<a class="sourceLine" id="cb438-20" title="20">                }</a>
+<a class="sourceLine" id="cb438-21" title="21">            }</a>
+<a class="sourceLine" id="cb438-22" title="22">            </a>
+<a class="sourceLine" id="cb438-23" title="23"><span class="co"># jika elemen diagonal utama bernilai nol,lakukan row swapping</span></a>
+<a class="sourceLine" id="cb438-24" title="24">            <span class="cf">if</span>(i <span class="op">!=</span><span class="st"> </span>row_curr){</a>
+<a class="sourceLine" id="cb438-25" title="25">                a &lt;-<span class="st"> </span><span class="kw">swap_row</span>(a, i, row_curr)</a>
+<a class="sourceLine" id="cb438-26" title="26">                P &lt;-<span class="st"> </span><span class="kw">swap_row</span>(P, i, row_curr)</a>
+<a class="sourceLine" id="cb438-27" title="27">            }</a>
+<a class="sourceLine" id="cb438-28" title="28">            </a>
+<a class="sourceLine" id="cb438-29" title="29">  <span class="co"># pembentukan matriks L dan U</span></a>
+<a class="sourceLine" id="cb438-30" title="30">            <span class="cf">for</span>(j <span class="cf">in</span> row_curr<span class="op">:</span>m)</a>
+<a class="sourceLine" id="cb438-31" title="31">                <span class="cf">if</span>(j <span class="op">!=</span><span class="st"> </span>row_curr){</a>
+<a class="sourceLine" id="cb438-32" title="32">                    k &lt;-<span class="st"> </span>a[j, piv]<span class="op">/</span>a[row_curr, piv]</a>
+<a class="sourceLine" id="cb438-33" title="33">                    </a>
+<a class="sourceLine" id="cb438-34" title="34">  <span class="co"># matriks U</span></a>
+<a class="sourceLine" id="cb438-35" title="35">                    a &lt;-<span class="st"> </span><span class="kw">replace_row</span>(a, row_curr, j, <span class="op">-</span>k)</a>
+<a class="sourceLine" id="cb438-36" title="36">                    </a>
+<a class="sourceLine" id="cb438-37" title="37">  <span class="co"># pengisian elemen matriks L</span></a>
+<a class="sourceLine" id="cb438-38" title="38">                    L[j, piv] &lt;-<span class="st"> </span>k</a>
+<a class="sourceLine" id="cb438-39" title="39">                }</a>
+<a class="sourceLine" id="cb438-40" title="40">            piv &lt;-<span class="st"> </span>piv <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb438-41" title="41">        }</a>
+<a class="sourceLine" id="cb438-42" title="42">    }</a>
+<a class="sourceLine" id="cb438-43" title="43">    </a>
+<a class="sourceLine" id="cb438-44" title="44"><span class="co"># penyelesaian persamaan linier</span></a>
+<a class="sourceLine" id="cb438-45" title="45">    <span class="cf">if</span>(<span class="kw">is.null</span>(b)){</a>
+<a class="sourceLine" id="cb438-46" title="46">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">P =</span> P, <span class="dt">L =</span> L, <span class="dt">U =</span> a))</a>
+<a class="sourceLine" id="cb438-47" title="47">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb438-48" title="48">      </a>
+<a class="sourceLine" id="cb438-49" title="49">      <span class="co"># forward substitution</span></a>
+<a class="sourceLine" id="cb438-50" title="50">      t &lt;-<span class="st"> </span><span class="kw">forwardsolve</span>(L, b)</a>
+<a class="sourceLine" id="cb438-51" title="51">      </a>
+<a class="sourceLine" id="cb438-52" title="52">      <span class="co"># backward substitution</span></a>
+<a class="sourceLine" id="cb438-53" title="53">      x &lt;-<span class="st"> </span><span class="kw">backsolve</span>(a, t)</a>
+<a class="sourceLine" id="cb438-54" title="54">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">P =</span> P, <span class="dt">L =</span> L, <span class="dt">U =</span> a, <span class="dt">result=</span>x))</a>
+<a class="sourceLine" id="cb438-55" title="55">     }</a>
+<a class="sourceLine" id="cb438-56" title="56">}</a></code></pre></div>
+<p>Kita dapat menyelesaikan sistem persamaan linier pada Contoh <a href="6-4-dekomposisimatriks.html#exm:LUexmp">6.6</a> menggunakan fungsi yang telah kita buat.</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1"><span class="co"># membuat matriks a dan vektor b</span></a>
+<a class="sourceLine" id="cb439-2" title="2">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb439-3" title="3">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb439-4" title="4">            <span class="dt">nrow=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb439-5" title="5">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb439-6" title="6"></a>
+<a class="sourceLine" id="cb439-7" title="7"><span class="co"># penyelesaian</span></a>
+<a class="sourceLine" id="cb439-8" title="8">decomp&lt;-<span class="kw">lu_solve</span>(a,b)</a></code></pre></div>
+<p>Untuk membentuk kembali matriks <span class="math inline">\(A\)</span>, kita dapat mengalikan matriks <span class="math inline">\(L\)</span>, <span class="math inline">\(U\)</span>, dan <span class="math inline">\(P\)</span>.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1">decomp<span class="op">$</span>L<span class="op">%*%</span>decomp<span class="op">$</span>U<span class="op">%*%</span>decomp<span class="op">$</span>P</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    0    3
+## [2,]    2    1   -1    1
+## [3,]    3   -1   -1    2
+## [4,]   -1    2    3   -1</code></pre>
+
+<div class="example">
+<span id="exm:LUexmp2" class="example"><strong>Contoh 6.7  </strong></span>Lakukan dekomposisi LU pada matriks berikut dan lakukan pengecekan apakah perkalian hasil dekomposisi matriks akan menghasilkan matriks semula!
+</div>
+
+<p><span class="math display">\[
+\begin{bmatrix}
+     0         &amp; 1       &amp; -1                  \\[0.3em]
+     1         &amp; 5       &amp; 9                   \\[0.3em]
+     7         &amp; -1      &amp; -5                  
+\end{bmatrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Lakukan proses dekomposisi menggunakan fungsi <code>lu_solve()</code>.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1"><span class="co"># membentuk matriks a</span></a>
+<a class="sourceLine" id="cb442-2" title="2">(A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">-1</span>, <span class="dv">-2</span>, <span class="dv">9</span>, <span class="dv">-5</span>), <span class="dv">3</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    1   -2
+## [2,]    1    5    9
+## [3,]    7   -1   -5</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="co"># dekomposisi lu</span></a>
+<a class="sourceLine" id="cb444-2" title="2">decomp&lt;-<span class="kw">lu_solve</span>(A)</a></code></pre></div>
+<p>Lakukan pengecekan apakah matriks hasil dekomposisi akan menghasilkan matriks <span class="math inline">\(A\)</span>.</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1">decomp<span class="op">$</span>P <span class="op">%*%</span><span class="st"> </span>decomp<span class="op">$</span>L <span class="op">%*%</span><span class="st"> </span>decomp<span class="op">$</span>U</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    1   -2
+## [2,]    1    5    9
+## [3,]    7   -1   -5</code></pre>
+<p>Fungsi <code>lu()</code> pada paket <code>Matrix</code> dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan paket <code>Matrix</code>.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;Matrix&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1"><span class="kw">library</span>(Matrix)</a></code></pre></div>
+<p>Untuk dapat menggunakannya kita hanya perlu menginputkan matriks kedalam fungsi tersebut. Berikut adalah contoh penerapannya:</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1"><span class="co"># membuat matriks a </span></a>
+<a class="sourceLine" id="cb449-2" title="2">a &lt;-<span class="st"> </span>Matrix<span class="op">::</span><span class="kw">Matrix</span>(<span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">9</span>),<span class="dv">2</span>), <span class="dt">nrow=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb449-3" title="3"></a>
+<a class="sourceLine" id="cb449-4" title="4"><span class="co"># dekomposisi</span></a>
+<a class="sourceLine" id="cb449-5" title="5">lum &lt;-<span class="st"> </span>Matrix<span class="op">::</span><span class="kw">lu</span>(a)</a>
+<a class="sourceLine" id="cb449-6" title="6">lum</a></code></pre></div>
+<pre><code>## &#39;MatrixFactorization&#39; of Formal class &#39;denseLU&#39; [package &quot;Matrix&quot;] with 4 slots
+##   ..@ x       : num [1:9] -0.95 0.705 0.589 0.53 -0.604 ...
+##   ..@ perm    : int [1:3] 2 3 3
+##   ..@ Dimnames:List of 2
+##   .. ..$ : NULL
+##   .. ..$ : NULL
+##   ..@ Dim     : int [1:2] 3 3</code></pre>
+<p>Untuk menampilkan hasil dekomposisi, jalankan fungsi <code>expand()</code>.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" title="1">decomp &lt;-<span class="st"> </span>Matrix<span class="op">::</span><span class="kw">expand</span>(lum)</a>
+<a class="sourceLine" id="cb451-2" title="2">decomp</a></code></pre></div>
+<pre><code>## $L
+## 3 x 3 Matrix of class &quot;dtrMatrix&quot; (unitriangular)
+##      [,1]       [,2]       [,3]      
+## [1,]  1.0000000          .          .
+## [2,]  0.7052632  1.0000000          .
+## [3,]  0.5894737 -0.2278591  1.0000000
+## 
+## $U
+## 3 x 3 Matrix of class &quot;dtrMatrix&quot;
+##      [,1]       [,2]       [,3]      
+## [1,] -0.9500000  0.5300000  1.7600000
+## [2,]          . -0.6037895 -0.7512632
+## [3,]          .          .  0.1913441
+## 
+## $P
+## 3 x 3 sparse Matrix of class &quot;pMatrix&quot;
+##           
+## [1,] . . |
+## [2,] | . .
+## [3,] . | .</code></pre>
+</div>
+<div id="dekomposisi-cholesky" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Dekomposisi Cholesky</h3>
+<p>Dekomposisi Cholesky memberikan faktorisasi matriks alternatif sehingga <span class="math inline">\(A = LL^T\)</span>, di mana <span class="math inline">\(L^T\)</span> merupakan transpose konjugat dari matriks <span class="math inline">\(L\)</span>. Dalam kasus ini, penulis hanya bekerja dengan matriks rill dengan nilai rill dan bagian imajiner nol. Jadi untuk tujuan <em>sub-chapter</em> ini, matriks <span class="math inline">\(L^T\)</span> hanyalah transpose dari matriks <span class="math inline">\(L\)</span>.</p>
+<p>Seperti dekomposisi LU, dekomposisi Cholesky dapat digunakan untuk menyelesaikan sistem persamaan linier. Kelebihannya, Menemukan dekomposisi Cholesky jauh lebih cepat daripada dekomposisi LU. Namun, dekomposisi ini hanya terbatas pada matriks tertentu saja. Dekomposisi Cholesky hanya dapat digunakan pada matriks definit positif dan simetris. Matriks simeteris merupakan matriks yang nilai di atas dan di bawah diagonalnya simetris atau sama; secara matematis, untuk semua <span class="math inline">\(i\)</span> dan <span class="math inline">\(j\)</span> pada matriks <span class="math inline">\(A\)</span>, <span class="math inline">\(a_{i;j}=a_{j;i}\)</span>. Definit positif berarti bahwa setiap entri pivot (nilai elemen diagonal utama) selelu bernilai positif. Selain itu, untuk matriks definit positif, hubungan <span class="math inline">\(xAx&gt;0\)</span> untuk semua vektor, <span class="math inline">\(x\)</span>.</p>
+<p>Karena <span class="math inline">\(L^∗\)</span> transpose dari matriks <span class="math inline">\(L\)</span>, maka <span class="math inline">\(l^{T}_{i,j} = l_{j,i}\)</span> untuk semua nilai <span class="math inline">\(i\)</span> dan <span class="math inline">\(j\)</span>. Tanpa kendala (<em>constraint</em>) ini, dekomposisi Cholesky akan mirip dekomposisi LU. Tetapi dengan kendala ini, nilai elemen matriks <span class="math inline">\(L\)</span> dan <span class="math inline">\(L^T\)</span> harus dipilih dengan cermat sehingga hubungan <span class="math inline">\(A = LL^T\)</span> berlaku. Bentuk dekomposisi Cholesky disajikan pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky">(6.29)</a>.</p>
+<p><span class="math display" id="eq:cholesky">\[\begin{equation}
+\begin{bmatrix}
+     a_{1,1} &amp; a_{1,2} &amp; a_{1,3} &amp;\cdots&amp; a_{1,m}           \\[0.3em]
+     a_{2,1} &amp; a_{2,2} &amp; a_{2,3} &amp;\cdots&amp; a_{2,m}           \\[0.3em]
+     a_{3,1} &amp; a_{3,2} &amp; a_{3,3} &amp;\cdots&amp; a_{3,m}           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     a_{m,1} &amp; a_{m,2} &amp; a_{m,3} &amp;\cdots&amp; a_{m,m}
+     \end{bmatrix}
+=
+\begin{bmatrix}
+     l_{1,1} &amp; 0       &amp; 0       &amp;\cdots&amp; 0           \\[0.3em]
+     l_{2,1} &amp; l_{2,2} &amp; 0       &amp;\cdots&amp; 0           \\[0.3em]
+     l_{3,1} &amp; l_{3,2} &amp; l_{3,3} &amp;\cdots&amp; 0           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     l_{m,1} &amp; l_{m,2} &amp; l_{m,3} &amp;\cdots&amp; l_{m,m}
+     \end{bmatrix}
+\begin{bmatrix}
+     l_{1,1} &amp; l_{1,2} &amp; l_{1,3} &amp;\cdots&amp; l_{1,m}           \\[0.3em]
+     0       &amp; l_{2,2} &amp; l_{2,3} &amp;\cdots&amp; l_{2,m}           \\[0.3em]
+     0       &amp; 0       &amp; l_{3,3} &amp;\cdots&amp; l_{3,m}           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     0       &amp; 0       &amp; 0       &amp;\cdots&amp; l_{m,m}
+     \end{bmatrix}
+  \tag{6.29}
+\end{equation}\]</span></p>
+<p>Untuk setiap elemen matriks <span class="math inline">\(A\)</span> memiliki hubungan yang dituliskan pada Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky2">(6.30)</a>.</p>
+<p><span class="math display" id="eq:cholesky2">\[\begin{equation}
+a_{i,j}=\sum_{k=1}^mL_{i,k}L_{k,j}
+  \tag{6.30}
+\end{equation}\]</span></p>
+<p>Berdasarkan Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky">(6.29)</a>, sejumlah nilai elemen <span class="math inline">\(L_{i,k}\)</span> dan <span class="math inline">\(L_{k,j}\)</span> adalah nol. Nilai tiap elemen diagonal utama yang tidak bernilai nol dihitung menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky3">(6.31)</a>.</p>
+<p><span class="math display" id="eq:cholesky3">\[\begin{equation}
+l_{i,i}=\sqrt{\left(a_{i,i}-\sum_{k=1}^{i-1}l_{i,k}^2\right)}
+  \tag{6.31}
+\end{equation}\]</span></p>
+<p>Elemen diagonal dihitung menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky5">(6.32)</a></p>
+<p><span class="math display" id="eq:cholesky5">\[\begin{equation}
+l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
+  \tag{6.32}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Dekomposisi Cholesky</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span>.</li>
+<li>Untuk elemen matriks <span class="math inline">\(L\)</span>, hitung menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky5">(6.32)</a>.</li>
+<li>Untuk nilai diagonal utama matriks <span class="math inline">\(L\)</span>, hitung menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:cholesky3">(6.31)</a>.</li>
+<li>Untuk memperoleh matriks <span class="math inline">\(L^T\)</span>, lakukan transpose pada matriks <span class="math inline">\(L\)</span>.</li>
+<li>Untuk memperoleh nilai <span class="math inline">\(x\)</span>,</li>
+</ol>
+<ul>
+<li>Hitung vektor <span class="math inline">\(t\)</span> menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp4">(6.25)</a>.</li>
+<li>Hitung vektor <span class="math inline">\(x\)</span> menggunakan Persamaan <a href="6-4-dekomposisimatriks.html#eq:LUdecomp3">(6.24)</a>, dimana matriks <span class="math inline">\(U=L^T\)</span>.</li>
+</ul>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada <code>R</code> untuk melakukan dekomposisi Cholesky. Fungsi tersebut disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1">cholesky_solve &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b=</span><span class="ot">NULL</span>){</a>
+<a class="sourceLine" id="cb453-2" title="2">    m &lt;-<span class="st"> </span><span class="kw">nrow</span>(a)</a>
+<a class="sourceLine" id="cb453-3" title="3">   </a>
+<a class="sourceLine" id="cb453-4" title="4"><span class="co"># membentuk matriks L dengan elemen nol</span></a>
+<a class="sourceLine" id="cb453-5" title="5">    L =<span class="st"> </span><span class="kw">diag</span>(<span class="dv">0</span>,m)</a>
+<a class="sourceLine" id="cb453-6" title="6"></a>
+<a class="sourceLine" id="cb453-7" title="7"><span class="co"># Perhitungan elemen matriks L</span></a>
+<a class="sourceLine" id="cb453-8" title="8">    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</a>
+<a class="sourceLine" id="cb453-9" title="9">        <span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>i){</a>
+<a class="sourceLine" id="cb453-10" title="10">            p_sum &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb453-11" title="11">            <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>k)</a>
+<a class="sourceLine" id="cb453-12" title="12">                p_sum &lt;-<span class="st"> </span>p_sum <span class="op">+</span><span class="st"> </span>L[j,i]<span class="op">*</span>L[j,k]</a>
+<a class="sourceLine" id="cb453-13" title="13">                </a>
+<a class="sourceLine" id="cb453-14" title="14"><span class="co"># Pehitungan elemen diagonal utama</span></a>
+<a class="sourceLine" id="cb453-15" title="15">            <span class="cf">if</span>(i<span class="op">==</span>k)</a>
+<a class="sourceLine" id="cb453-16" title="16">                L[k,i]&lt;-<span class="kw">sqrt</span>(a[i,i]<span class="op">-</span>p_sum)</a>
+<a class="sourceLine" id="cb453-17" title="17">            <span class="cf">else</span></a>
+<a class="sourceLine" id="cb453-18" title="18">                L[k,i]&lt;-(a[k,i]<span class="op">-</span>p_sum)<span class="op">/</span>L[k,k]</a>
+<a class="sourceLine" id="cb453-19" title="19">        }</a>
+<a class="sourceLine" id="cb453-20" title="20">    }</a>
+<a class="sourceLine" id="cb453-21" title="21">    </a>
+<a class="sourceLine" id="cb453-22" title="22"><span class="co"># Perhitungan elemn matriks L*</span></a>
+<a class="sourceLine" id="cb453-23" title="23">    tL &lt;-<span class="st"> </span><span class="kw">t</span>(L)</a>
+<a class="sourceLine" id="cb453-24" title="24">    </a>
+<a class="sourceLine" id="cb453-25" title="25"><span class="co"># penyelesaian persamaan linier</span></a>
+<a class="sourceLine" id="cb453-26" title="26">    <span class="cf">if</span>(<span class="kw">is.null</span>(b)){</a>
+<a class="sourceLine" id="cb453-27" title="27">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">L =</span> L, <span class="dt">tL =</span> tL, <span class="dt">a =</span> a))</a>
+<a class="sourceLine" id="cb453-28" title="28">    }<span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb453-29" title="29">      </a>
+<a class="sourceLine" id="cb453-30" title="30">      <span class="co"># forward substitution</span></a>
+<a class="sourceLine" id="cb453-31" title="31">      t &lt;-<span class="st"> </span><span class="kw">forwardsolve</span>(L, b)</a>
+<a class="sourceLine" id="cb453-32" title="32">      </a>
+<a class="sourceLine" id="cb453-33" title="33">      <span class="co"># backward substitution</span></a>
+<a class="sourceLine" id="cb453-34" title="34">      x &lt;-<span class="st"> </span><span class="kw">backsolve</span>(tL, t)</a>
+<a class="sourceLine" id="cb453-35" title="35">      <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">L =</span> L, <span class="dt">tL =</span> tL, <span class="dt">a =</span> a, <span class="dt">result=</span>x))</a>
+<a class="sourceLine" id="cb453-36" title="36">     }</a>
+<a class="sourceLine" id="cb453-37" title="37">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:cholexm2" class="example"><strong>Contoh 6.8  </strong></span>Dengan menggunakan fungsi <code>cholesky_solve()</code>, lakukan dekomposisi pada matriks berikut! Lakukan pengecekan pada hasil dekomposisi apakah hasil kali matriks dekomposisi akan menghasilkan matriks semula!
+</div>
+
+<p><span class="math display">\[
+\begin{bmatrix}
+     9         &amp; -3       &amp; 6                  \\[0.3em]
+     -3         &amp; 17       &amp; -10                   \\[0.3em]
+     6         &amp; -10      &amp; 12                  
+\end{bmatrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Dekomposisi Cholesky menggunakan fungsi <code>cholesky_solve()</code>, disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" title="1">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">9</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">6</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">17</span>,<span class="op">-</span><span class="dv">10</span>,<span class="dv">6</span>,<span class="op">-</span><span class="dv">10</span>,<span class="dv">12</span>),<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb454-2" title="2"></a>
+<a class="sourceLine" id="cb454-3" title="3"><span class="co"># dekomposisi Cholesky</span></a>
+<a class="sourceLine" id="cb454-4" title="4">(decomp&lt;-<span class="kw">cholesky_solve</span>(a))</a></code></pre></div>
+<pre><code>## $L
+##      [,1] [,2] [,3]
+## [1,]    3   -1    2
+## [2,]    0    4   -2
+## [3,]    0    0    2
+## 
+## $tL
+##      [,1] [,2] [,3]
+## [1,]    3    0    0
+## [2,]   -1    4    0
+## [3,]    2   -2    2
+## 
+## $a
+##      [,1] [,2] [,3]
+## [1,]    9   -3    6
+## [2,]   -3   17  -10
+## [3,]    6  -10   12</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="co"># mengecek hasil dekomposisi</span></a>
+<a class="sourceLine" id="cb456-2" title="2">decomp<span class="op">$</span>tL <span class="op">%*%</span><span class="st"> </span>decomp<span class="op">$</span>L</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    9   -3    6
+## [2,]   -3   17  -10
+## [3,]    6  -10   12</code></pre>
+<p>Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi <code>chol()</code> pada paket <code>Matrix</code>. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh <a href="6-4-dekomposisimatriks.html#exm:cholexm2">6.8</a>.</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">chol</span>(a)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3   -1    2
+## [2,]    0    4   -2
+## [3,]    0    0    2</code></pre>
+<blockquote>
+<p><strong>Penting!!!</strong></p>
+<p>Fungsi <code>chol()</code> hanya menampilkan matriks <span class="math inline">\(L^T\)</span>. Untuk menampilkan matriks <span class="math inline">\(L\)</span>, kita perlu melakukan transpose</p>
+</blockquote>
+</div>
+<div id="othersdecomp" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> Dekomposisi Lainnya</h3>
+<p>Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada <em>sub-chapter</em> ini antara lain: QR, <em>singular value decomposition</em> (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada paket <code>base</code>.</p>
+<div id="qrdecomp" class="section level4">
+<h4><span class="header-section-number">6.4.3.1</span> Dekomposisi QR</h4>
+<p>Dekomposisi QR merupakan dekomposisi yang penting dalam menyelesaikan sistem persamaan linier. Dekomposisi ini juga berperan penting untuk menghitung koefisien regresi dan pengaplikasian algoritma Newton-Raphson.</p>
+<p>Untuk memperoleh informasi terkait dekomposisi ini, pembaca dapat mengetikkan sintaks berikut pada <code>R</code>:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1">?qr</a></code></pre></div>
+<p>Berikut merupakan contoh penerapan fungsi <code>qr()</code> untuk menyelesaikan sistem persamaan linier:</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1"><span class="co"># membuat matriks A dan B</span></a>
+<a class="sourceLine" id="cb461-2" title="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb461-3" title="3">A &lt;-<span class="st"> </span><span class="kw">matrix</span>((<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)<span class="op">+</span><span class="kw">rnorm</span>(<span class="dv">12</span>), <span class="dt">nrow=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb461-4" title="4">b &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb461-5" title="5"></a>
+<a class="sourceLine" id="cb461-6" title="6"><span class="co"># dekomposisi matriks A</span></a>
+<a class="sourceLine" id="cb461-7" title="7"><span class="kw">qr</span>(A)</a></code></pre></div>
+<pre><code>## $qr
+##            [,1]        [,2]       [,3]
+## [1,] -6.3777985 -12.1257372 -19.850120
+## [2,]  0.2774974  -6.3105459  -7.939245
+## [3,]  0.7147777  -0.6461294   2.351193
+## [4,]  0.6382310  -0.5653624   0.276672
+## 
+## $rank
+## [1] 3
+## 
+## $qraux
+## [1] 1.068915 1.512720 1.960964
+## 
+## $pivot
+## [1] 1 2 3
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;qr&quot;</code></pre>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" title="1"><span class="co"># memperoleh penyelesaian SPL</span></a>
+<a class="sourceLine" id="cb463-2" title="2"><span class="kw">qr.solve</span>(A,b)</a></code></pre></div>
+<pre><code>## [1]  0.3045952 -0.1111081  0.3236862</code></pre>
+</div>
+<div id="svddecomp" class="section level4">
+<h4><span class="header-section-number">6.4.3.2</span> <em>Singular Value Decomposition</em></h4>
+<p><em>Singular value decomposition</em> (SVD) merupakan algoritma faktorisasi matriks yang mendekomposisi matriks segiempat menjadi matriks <span class="math inline">\(UDV_H\)</span>, dimana <span class="math inline">\(D\)</span> merupakan mmatriks diagonal non negatif, <span class="math inline">\(U\)</span> dan <span class="math inline">\(V\)</span> merupakan matriks <em>unitary</em>, dan <span class="math inline">\(V_H\)</span> merupakan matriks tanspose konjugat dari matriks <span class="math inline">\(V\)</span>. Algoritma ini banyak digunakan dalam analisis <em>principal component</em>.</p>
+<p>Pada <code>R</code>, SVD dapat dilakukan menggunakan fungsi <code>svd()</code> dari paket <code>base</code>. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1">?svd</a></code></pre></div>
+<p>Berikut adalah contoh penerapan fungsi <code>svd()</code>:</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1"><span class="co"># dekomposisi matriks A</span></a>
+<a class="sourceLine" id="cb466-2" title="2"><span class="kw">svd</span>(A)</a></code></pre></div>
+<pre><code>## $d
+## [1] 26.094305  2.727495  1.329585
+## 
+## $u
+##            [,1]       [,2]       [,3]
+## [1,] -0.3684647 -0.5661362  0.6650563
+## [2,] -0.4706958 -0.5703414 -0.6113237
+## [3,] -0.5740273  0.4324050 -0.2589679
+## [4,] -0.5596176  0.4089332  0.3419343
+## 
+## $v
+##            [,1]        [,2]       [,3]
+## [1,] -0.2257101  0.87169376 -0.4349769
+## [2,] -0.5201583 -0.48536069 -0.7027520
+## [3,] -0.8237052  0.06763865  0.5629696</code></pre>
+</div>
+<div id="eigendecomp" class="section level4">
+<h4><span class="header-section-number">6.4.3.3</span> Dekomposisi Eigen</h4>
+<p>Proses umum yang digunakan untuk menemukan nilai eigen dan vektor eigen suatu matriks segiempat dapat dilihat sebagai proses dari dekomposisi eigen. Proses ini akan mendekomposisi matriks menjadi <span class="math inline">\(VDV^{-1}\)</span>, dimana <span class="math inline">\(D\)</span> merupakan matriks diagonal yang terbentuk dari nilai eigen, dan <span class="math inline">\(V\)</span> merupakan vektor eigen. Proses dekomposisi ini akan berguna bagi pembaca yang ingin mempelajari <em>principal component analysis</em>.</p>
+<p>Fungsi <code>eigen()</code> pada paket <code>base</code> dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" title="1">?eigen</a></code></pre></div>
+<p>Berikut adalah contoh sintaks untuk melakukan dekomposisi eigen:</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">nrow=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb469-2" title="2"></a>
+<a class="sourceLine" id="cb469-3" title="3"><span class="co"># dekomposisi matriks A</span></a>
+<a class="sourceLine" id="cb469-4" title="4"><span class="kw">eigen</span>(A)</a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 3.4142136 2.0000000 0.5857864
+## 
+## $vectors
+##            [,1]          [,2]      [,3]
+## [1,] -0.5000000 -7.071068e-01 0.5000000
+## [2,]  0.7071068  1.099065e-15 0.7071068
+## [3,] -0.5000000  7.071068e-01 0.5000000</code></pre>
+</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="6-3-gausselimination.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-5-iteratif.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

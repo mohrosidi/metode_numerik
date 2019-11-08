@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.2 Visualisasi Lainnya | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+
+
+<meta name="author" content="Mohammad Rosidi" />
+
+<meta name="date" content="2019-11-05" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan">
+
+<title>3.2 Visualisasi Lainnya | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#kata-pengantar">Kata Pengantar</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Bahasa Pemrograman R</a><ul>
+<li><a href="1-1-sejarahR.html#sejarahR"><span class="toc-section-number">1.1</span> Sejarah R</a></li>
+<li><a href="1-2-fiturR.html#fiturR"><span class="toc-section-number">1.2</span> Fitur dan Karakteristik R</a></li>
+<li><a href="1-3-prosconsR.html#prosconsR"><span class="toc-section-number">1.3</span> Kelebihan dan Kekurangan R</a></li>
+<li><a href="1-4-rstudio.html#rstudio"><span class="toc-section-number">1.4</span> RStudio</a></li>
+<li><a href="1-5-installR.html#installR"><span class="toc-section-number">1.5</span> Menginstall R dan RStudio</a></li>
+<li class="has-sub"><a href="1-6-wdR.html#wdR"><span class="toc-section-number">1.6</span> Working Directory</a><ul>
+<li><a href="1-6-wdR.html#changewdR"><span class="toc-section-number">1.6.1</span> Mengubah Lokasi Working Directory</a></li>
+<li><a href="1-6-wdR.html#defaultwdR"><span class="toc-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li><a href="1-7-installlibraryR.html#installlibraryR"><span class="toc-section-number">1.7</span> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="has-sub"><a href="1-8-helpR.html#helpR"><span class="toc-section-number">1.8</span> Fasilitas Help</a><ul>
+<li><a href="1-8-helpR.html#searchhelp"><span class="toc-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li><a href="1-8-helpR.html#generalhelp"><span class="toc-section-number">1.8.2</span> General Help</a></li>
+<li><a href="1-8-helpR.html#othershelp"><span class="toc-section-number">1.8.3</span> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li><a href="1-9-referensi.html#referensi"><span class="toc-section-number">1.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-calculation.html#calculation"><span class="toc-section-number">2</span> Kalkulasi Menggunakan R</a><ul>
+<li><a href="2-1-aritmetikoperator.html#aritmetikoperator"><span class="toc-section-number">2.1</span> Operator Aritmatik</a></li>
+<li><a href="2-2-aritmaticfunction.html#aritmaticfunction"><span class="toc-section-number">2.2</span> Fungsi Aritmetik</a></li>
+<li><a href="2-3-relationoperators.html#relationoperators"><span class="toc-section-number">2.3</span> Operator Relasi</a></li>
+<li><a href="2-4-logicoperators.html#logicoperators"><span class="toc-section-number">2.4</span> Operator Logika</a></li>
+<li><a href="2-5-assigningvar.html#assigningvar"><span class="toc-section-number">2.5</span> Memasukkan Nilai Kedalam Variabel</a></li>
+<li><a href="2-6-typedata.html#typedata"><span class="toc-section-number">2.6</span> Tipe dan Struktur Data</a></li>
+<li class="has-sub"><a href="2-7-vector.html#vector"><span class="toc-section-number">2.7</span> Vektor</a><ul>
+<li><a href="2-7-vector.html#createvector"><span class="toc-section-number">2.7.1</span> Membuat vektor</a></li>
+<li><a href="2-7-vector.html#missingvalue"><span class="toc-section-number">2.7.2</span> Missing Values</a></li>
+<li><a href="2-7-vector.html#subsetvector"><span class="toc-section-number">2.7.3</span> Subset Pada Vektor</a></li>
+<li><a href="2-7-vector.html#vectorops"><span class="toc-section-number">2.7.4</span> Operasi Matematis Menggunakan Vektor</a></li>
+<li><a href="2-7-vector.html#seq"><span class="toc-section-number">2.7.5</span> Membuat Deret Angka</a></li>
+<li><a href="2-7-vector.html#repseq"><span class="toc-section-number">2.7.6</span> Nilai Berulang</a></li>
+<li><a href="2-7-vector.html#randnumb"><span class="toc-section-number">2.7.7</span> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-8-matriks.html#matriks"><span class="toc-section-number">2.8</span> Matriks</a><ul>
+<li><a href="2-8-matriks.html#creatematrix"><span class="toc-section-number">2.8.1</span> Membuat matriks</a></li>
+<li><a href="2-8-matriks.html#subsetmatrix"><span class="toc-section-number">2.8.2</span> Subset Pada Matriks</a></li>
+<li><a href="2-8-matriks.html#matrixcalculation"><span class="toc-section-number">2.8.3</span> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li><a href="2-9-referensi-1.html#referensi-1"><span class="toc-section-number">2.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-dataviz.html#dataviz"><span class="toc-section-number">3</span> Visualisasi Data</a><ul>
+<li><a href="3-1-plotfunc.html#plotfunc"><span class="toc-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="has-sub"><a href="3-2-otherviz.html#otherviz"><span class="toc-section-number">3.2</span> Visualisasi Lainnya</a><ul>
+<li><a href="3-2-otherviz.html#barplot"><span class="toc-section-number">3.2.1</span> Bar Plot</a></li>
+<li><a href="3-2-otherviz.html#histogram"><span class="toc-section-number">3.2.2</span> Histogram dan Density Plot</a></li>
+<li><a href="3-2-otherviz.html#boxplot"><span class="toc-section-number">3.2.3</span> Box plot</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-customise.html#customise"><span class="toc-section-number">3.3</span> Kustomisasi Parameter Grafik</a><ul>
+<li><a href="3-3-customise.html#addtitle"><span class="toc-section-number">3.3.1</span> Menambahkan Judul</a></li>
+<li><a href="3-3-customise.html#addlegend"><span class="toc-section-number">3.3.2</span> Menambahkan Legend</a></li>
+<li><a href="3-3-customise.html#addtext"><span class="toc-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</a></li>
+<li><a href="3-3-customise.html#addlines"><span class="toc-section-number">3.3.4</span> Menambahkan Garis Pada Plot</a></li>
+<li><a href="3-3-customise.html#changepoint"><span class="toc-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</a></li>
+<li><a href="3-3-customise.html#mengatur-axis-plot"><span class="toc-section-number">3.3.6</span> Mengatur Axis Plot</a></li>
+<li><a href="3-3-customise.html#changecolor"><span class="toc-section-number">3.3.7</span> Mengatur Warna</a></li>
+</ul></li>
+<li><a href="3-4-plot-dua-dan-tiga-dimensi.html#plot-dua-dan-tiga-dimensi"><span class="toc-section-number">3.4</span> Plot Dua dan Tiga Dimensi</a></li>
+<li><a href="3-5-referensi-2.html#referensi-2"><span class="toc-section-number">3.5</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-programmingandfunction.html#programmingandfunction"><span class="toc-section-number">4</span> Pemrograman dan Fungsi</a><ul>
+<li class="has-sub"><a href="4-1-loop.html#loop"><span class="toc-section-number">4.1</span> Loop</a><ul>
+<li><a href="4-1-loop.html#forloop"><span class="toc-section-number">4.1.1</span> For Loop</a></li>
+<li><a href="4-1-loop.html#whileloop"><span class="toc-section-number">4.1.2</span> While Loop</a></li>
+<li><a href="4-1-loop.html#repeatloop"><span class="toc-section-number">4.1.3</span> Repeat Loop</a></li>
+<li><a href="4-1-loop.html#break"><span class="toc-section-number">4.1.4</span> Break</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-2-loopapply.html#loopapply"><span class="toc-section-number">4.2</span> Loop Menggunakan Apply Family Function</a><ul>
+<li><a href="4-2-loopapply.html#apply"><span class="toc-section-number">4.2.1</span> Apply</a></li>
+<li><a href="4-2-loopapply.html#lapply"><span class="toc-section-number">4.2.2</span> lapply</a></li>
+<li><a href="4-2-loopapply.html#sapply"><span class="toc-section-number">4.2.3</span> sapply</a></li>
+<li><a href="4-2-loopapply.html#vapply"><span class="toc-section-number">4.2.4</span> vapply</a></li>
+<li><a href="4-2-loopapply.html#tapply"><span class="toc-section-number">4.2.5</span> tapply</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-dm.html#dm"><span class="toc-section-number">4.3</span> Decision Making</a><ul>
+<li><a href="4-3-dm.html#ifstatement"><span class="toc-section-number">4.3.1</span> if statement</a></li>
+<li><a href="4-3-dm.html#ifelsestatement"><span class="toc-section-number">4.3.2</span> if else statement</a></li>
+<li><a href="4-3-dm.html#switchstatement"><span class="toc-section-number">4.3.3</span> switch statement</a></li>
+</ul></li>
+<li><a href="4-4-fungsi.html#fungsi"><span class="toc-section-number">4.4</span> Fungsi</a></li>
+<li><a href="4-5-debugging.html#debugging"><span class="toc-section-number">4.5</span> Debugging</a></li>
+<li><a href="4-6-referensi-3.html#referensi-3"><span class="toc-section-number">4.6</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-numericmethod.html#numericmethod"><span class="toc-section-number">5</span> Pengantar Metode Numerik</a><ul>
+<li class="has-sub"><a href="5-1-numericmethodintro.html#numericmethodintro"><span class="toc-section-number">5.1</span> Mengenal Metode Numerik</a><ul>
+<li><a href="5-1-numericmethodintro.html#diffanalitycnumeric"><span class="toc-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li><a href="5-1-numericmethodintro.html#tahapan-penyelesaian-menggunakan-metode-numerik"><span class="toc-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li><a href="5-2-acuracy.html#acuracy"><span class="toc-section-number">5.2</span> Akurasi dan Presisi</a></li>
+<li><a href="5-3-numerror.html#numerror"><span class="toc-section-number">5.3</span> Error Numerik</a></li>
+<li><a href="5-4-referensi-4.html#referensi-4"><span class="toc-section-number">5.4</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-linearaljabar.html#linearaljabar"><span class="toc-section-number">6</span> Aljabar Linier</a><ul>
+<li class="has-sub"><a href="6-1-vecmat.html#vecmat"><span class="toc-section-number">6.1</span> Vektor dan matriks</a><ul>
+<li><a href="6-1-vecmat.html#operasivektor"><span class="toc-section-number">6.1.1</span> Operasi Vektor</a></li>
+<li><a href="6-1-vecmat.html#operasimatrik"><span class="toc-section-number">6.1.2</span> Operasi matriks</a></li>
+</ul></li>
+<li><a href="6-2-rowoperation.html#rowoperation"><span class="toc-section-number">6.2</span> Operasi Baris Elementer</a></li>
+<li class="has-sub"><a href="6-3-gausselimination.html#gausselimination"><span class="toc-section-number">6.3</span> Eliminasi Gauss</a><ul>
+<li><a href="6-3-gausselimination.html#rowechelonform"><span class="toc-section-number">6.3.1</span> <em>Row Echelon Form</em></a></li>
+<li><a href="6-3-gausselimination.html#redrowechelonform"><span class="toc-section-number">6.3.2</span> Eliminasi Gauss-Jordan</a></li>
+<li><a href="6-3-gausselimination.html#matriktridiagonal"><span class="toc-section-number">6.3.3</span> Matrik Tridiagonal</a></li>
+<li><a href="6-3-gausselimination.html#solvefunc"><span class="toc-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li><a href="6-3-gausselimination.html#solvetridiagfunct"><span class="toc-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-4-dekomposisimatriks.html#dekomposisimatriks"><span class="toc-section-number">6.4</span> Dekomposisi Matriks</a><ul>
+<li><a href="6-4-dekomposisimatriks.html#ludecomp"><span class="toc-section-number">6.4.1</span> Dekomposisi LU</a></li>
+<li><a href="6-4-dekomposisimatriks.html#dekomposisi-cholesky"><span class="toc-section-number">6.4.2</span> Dekomposisi Cholesky</a></li>
+<li><a href="6-4-dekomposisimatriks.html#othersdecomp"><span class="toc-section-number">6.4.3</span> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-5-iteratif.html#iteratif"><span class="toc-section-number">6.5</span> Metode Iterasi</a><ul>
+<li><a href="6-5-iteratif.html#jacobiiter"><span class="toc-section-number">6.5.1</span> Iterasi Jacobi</a></li>
+<li><a href="6-5-iteratif.html#seideliter"><span class="toc-section-number">6.5.2</span> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-6-studikasus.html#studikasus"><span class="toc-section-number">6.6</span> Studi Kasus</a><ul>
+<li><a href="6-6-studikasus.html#leastsquare"><span class="toc-section-number">6.6.1</span> Metode Kuadrat Terkecil</a></li>
+<li><a href="6-6-studikasus.html#reaktorkimia"><span class="toc-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li><a href="6-7-referensi-5.html#referensi-5"><span class="toc-section-number">6.7</span> Referensi</a></li>
+<li><a href="6-8-latihan.html#latihan"><span class="toc-section-number">6.8</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-rootfinding.html#rootfinding"><span class="toc-section-number">7</span> Akar Persamaan Non-Linier</a><ul>
+<li class="has-sub"><a href="7-1-bracketing.html#bracketing"><span class="toc-section-number">7.1</span> Metode Tertutup</a><ul>
+<li><a href="7-1-bracketing.html#table"><span class="toc-section-number">7.1.1</span> Metode Tabel</a></li>
+<li><a href="7-1-bracketing.html#bisection"><span class="toc-section-number">7.1.2</span> Metode Biseksi</a></li>
+<li><a href="7-1-bracketing.html#regulafalsi"><span class="toc-section-number">7.1.3</span> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-2-openmethod.html#openmethod"><span class="toc-section-number">7.2</span> Metode Terbuka</a><ul>
+<li><a href="7-2-openmethod.html#fixpoint"><span class="toc-section-number">7.2.1</span> Metode Iterasi Titik Tetap</a></li>
+<li><a href="7-2-openmethod.html#newtonraphson"><span class="toc-section-number">7.2.2</span> Metode Newton-Raphson</a></li>
+<li><a href="7-2-openmethod.html#secant"><span class="toc-section-number">7.2.3</span> Metode Secant</a></li>
+</ul></li>
+<li><a href="7-3-uniroot.html#uniroot"><span class="toc-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li><a href="7-4-akar-persamaan-polinomial-menggunakan-fungsi-polyroot.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><span class="toc-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="has-sub"><a href="7-5-studi-kasus.html#studi-kasus"><span class="toc-section-number">7.5</span> Studi Kasus</a><ul>
+<li><a href="7-5-studi-kasus.html#persamaan-van-der-walls"><span class="toc-section-number">7.5.1</span> Persamaan Van Der Walls</a></li>
+<li><a href="7-5-studi-kasus.html#hukum-bernoulli"><span class="toc-section-number">7.5.2</span> Hukum Bernoulli</a></li>
+</ul></li>
+<li><a href="7-6-referensi-6.html#referensi-6"><span class="toc-section-number">7.6</span> Referensi</a></li>
+<li><a href="7-7-latihan-1.html#latihan-1"><span class="toc-section-number">7.7</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-interpolation.html#interpolation"><span class="toc-section-number">8</span> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="has-sub"><a href="8-1-poliinterpolation.html#poliinterpolation"><span class="toc-section-number">8.1</span> Interpolasi Polinomial</a><ul>
+<li><a href="8-1-poliinterpolation.html#mengevaluasi-polinomial"><span class="toc-section-number">8.1.1</span> Mengevaluasi Polinomial</a></li>
+<li><a href="8-1-poliinterpolation.html#lininterpol"><span class="toc-section-number">8.1.2</span> Interpolasi Linier</a></li>
+<li><a href="8-1-poliinterpolation.html#hopoliinter"><span class="toc-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-2-pwinter.html#pwinter"><span class="toc-section-number">8.2</span> Interpolasi Piecewise</a><ul>
+<li><a href="8-2-pwinter.html#pwlininter"><span class="toc-section-number">8.2.1</span> Interpolasi Linier Piecewise</a></li>
+<li><a href="8-2-pwinter.html#cubicspline"><span class="toc-section-number">8.2.2</span> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-3-studi-kasus-1.html#studi-kasus-1"><span class="toc-section-number">8.3</span> Studi Kasus</a><ul>
+<li><a href="8-3-studi-kasus-1.html#interpolasi-data-runtun-waktu"><span class="toc-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li><a href="8-4-referensi-7.html#referensi-7"><span class="toc-section-number">8.4</span> Referensi</a></li>
+<li><a href="8-5-latihan-2.html#latihan-2"><span class="toc-section-number">8.5</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-diffinteg.html#diffinteg"><span class="toc-section-number">9</span> Diferensiasi dan Integrasi Numerik</a><ul>
+<li><a href="9-1-finitediff.html#finitediff"><span class="toc-section-number">9.1</span> Metode Beda Hingga</a></li>
+<li class="has-sub"><a href="9-2-diffother.html#diffother"><span class="toc-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li><a href="9-2-diffother.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><span class="toc-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-numderiv"><span class="toc-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-pracma"><span class="toc-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="9-3-newtoncotes.html#newtoncotes"><span class="toc-section-number">9.3</span> Metode Integrasi Newton-Cotes</a><ul>
+<li><a href="9-3-newtoncotes.html#riemann"><span class="toc-section-number">9.3.1</span> Metode Integral Riemann</a></li>
+<li><a href="9-3-newtoncotes.html#trapezoida"><span class="toc-section-number">9.3.2</span> Metode Trapezoida</a></li>
+<li><a href="9-3-newtoncotes.html#simpson"><span class="toc-section-number">9.3.3</span> Metode Simpson</a></li>
+<li><a href="9-3-newtoncotes.html#simpson38"><span class="toc-section-number">9.3.4</span> Metode Simpson 3/8</a></li>
+</ul></li>
+<li><a href="9-4-metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><span class="toc-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="otherviz" class="section level2">
+<h2><span class="header-section-number">3.2</span> Visualisasi Lainnya</h2>
+<p>Visualisasi lainnya yang sering digunakan antara lain: histogram, density plot, bar plot, dan box plot.</p>
+<div id="barplot" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Bar Plot</h3>
+<p>Barplot pada <code>R</code> dapat dibuat menggunakan fungsi <code>barplot()</code>. Untuk lebih memahaminya berikut disajikan contoh barplot menggunakan dataset <code>VADeaths</code>. Untuk memuatnya jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1">VADeaths</a></code></pre></div>
+<pre><code>##       Rural Male Rural Female Urban Male Urban Female
+## 50-54       11.7          8.7       15.4          8.4
+## 55-59       18.1         11.7       24.3         13.6
+## 60-64       26.9         20.3       37.0         19.3
+## 65-69       41.0         30.9       54.6         35.1
+## 70-74       66.0         54.3       71.1         50.0</code></pre>
+<p>Contoh bar plot untuk variabel <code>Rural Male</code> disajikan pada Gambar <a href="3-2-otherviz.html#fig:barplot">3.4</a>:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb241-2" title="2"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>], <span class="dt">main=</span><span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb241-3" title="3"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>], <span class="dt">main=</span><span class="st">&quot;b&quot;</span>, <span class="dt">horiz=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot"></span>
+<img src="Metode_Numerik_files/figure-html/barplot-1.png" alt="a. bar plot vertikal; b. bar plot horizontal" width="70%" />
+<p class="caption">
+Gambar 3.4: a. bar plot vertikal; b. bar plot horizontal
+</p>
+</div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p>Kita dapat mengubah warna pada masing-masing bar, baik outline bar maupun box pada bar. Selain itu kita juga dapat mengubah nama grup yang telah dihasilkan sebelumnya. Berikut sintaks untuk melakukannya dan output yang dihasilkan pada Gambar <a href="3-2-otherviz.html#fig:barplot2">3.5</a>:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">barplot</span>(VADeaths[, <span class="st">&quot;Rural Male&quot;</span>],</a>
+<a class="sourceLine" id="cb243-2" title="2">        <span class="co"># ubah warna ouline menjadi steelblue</span></a>
+<a class="sourceLine" id="cb243-3" title="3">        <span class="dt">border=</span><span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb243-4" title="4">        <span class="co"># ubah wana box</span></a>
+<a class="sourceLine" id="cb243-5" title="5">        <span class="dt">col=</span> <span class="kw">c</span>(<span class="st">&quot;grey&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>),</a>
+<a class="sourceLine" id="cb243-6" title="6">        <span class="co"># ubah nama grup dari A sampai E</span></a>
+<a class="sourceLine" id="cb243-7" title="7">        <span class="dt">names.arg =</span> LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],</a>
+<a class="sourceLine" id="cb243-8" title="8">        <span class="co"># ubah orientasi menajadi horizontal</span></a>
+<a class="sourceLine" id="cb243-9" title="9">        <span class="dt">horiz=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot2"></span>
+<img src="Metode_Numerik_files/figure-html/barplot2-1.png" alt="Kustomisasi bar plot" width="70%" />
+<p class="caption">
+Gambar 3.5: Kustomisasi bar plot
+</p>
+</div>
+<p>Untuk bar plot dengan <em>multiple group</em>, tersedia dua pengaturan posisi yaitu <em>stacked bar plot</em>(menunjukkan proporsi penyusun pada masing-masing grup) dan <em>grouped bar plot</em>(melihat perbedaan individual pada masing-masing grup). Pada Gambar <a href="3-2-otherviz.html#fig:barplot3">3.6</a> dan Gambar <a href="3-2-otherviz.html#fig:barplot4">3.7</a> , disajikan kedua jenis bar plot tersebut.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="co"># staked</span></a>
+<a class="sourceLine" id="cb244-2" title="2"><span class="kw">barplot</span>(VADeaths,</a>
+<a class="sourceLine" id="cb244-3" title="3">         <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;mistyrose&quot;</span>, <span class="st">&quot;lightcyan&quot;</span>, </a>
+<a class="sourceLine" id="cb244-4" title="4">                 <span class="st">&quot;lavender&quot;</span>, <span class="st">&quot;cornsilk&quot;</span>),</a>
+<a class="sourceLine" id="cb244-5" title="5">        <span class="dt">legend =</span> <span class="kw">rownames</span>(VADeaths))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot3"></span>
+<img src="Metode_Numerik_files/figure-html/barplot3-1.png" alt="Stacked bar plot" width="70%" />
+<p class="caption">
+Gambar 3.6: Stacked bar plot
+</p>
+</div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="co"># grouped</span></a>
+<a class="sourceLine" id="cb245-2" title="2"><span class="kw">barplot</span>(VADeaths,</a>
+<a class="sourceLine" id="cb245-3" title="3">         <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;mistyrose&quot;</span>, <span class="st">&quot;lightcyan&quot;</span>, </a>
+<a class="sourceLine" id="cb245-4" title="4">                 <span class="st">&quot;lavender&quot;</span>, <span class="st">&quot;cornsilk&quot;</span>),</a>
+<a class="sourceLine" id="cb245-5" title="5">        <span class="dt">legend =</span> <span class="kw">rownames</span>(VADeaths), <span class="dt">beside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:barplot4"></span>
+<img src="Metode_Numerik_files/figure-html/barplot4-1.png" alt="Grouped bar plot" width="70%" />
+<p class="caption">
+Gambar 3.7: Grouped bar plot
+</p>
+</div>
+</div>
+<div id="histogram" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Histogram dan Density Plot</h3>
+<p>Fungsi <code>hist()</code> dapat digunakan untuk membuat histogram pada <code>R</code>. Secara sederhana fungsi tersebut didefinisikan sebagai berikut:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">hist</span>(x, <span class="dt">breaks=</span><span class="st">&quot;Sturges&quot;</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan: </strong></p>
+<ul>
+<li><strong>x</strong>: vektor numerik</li>
+<li><strong>breaks</strong>: <em>breakpoints</em> antar sel histogram.</li>
+</ul>
+</blockquote>
+<p>Pada dataset <code>trees</code> akan dibuat histogram variabel <code>Height</code>. Untuk melakukannya jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">hist</span>(trees<span class="op">$</span>Height)</a></code></pre></div>
+<p>Output yang dihasilkan disajikan pada Gambar <a href="3-2-otherviz.html#fig:hist">3.8</a>:</p>
+<div class="figure" style="text-align: center"><span id="fig:hist"></span>
+<img src="Metode_Numerik_files/figure-html/hist-1.png" alt="Histogram" width="70%" />
+<p class="caption">
+Gambar 3.8: Histogram
+</p>
+</div>
+<p>Density plot pada <code>R</code> dapat dibuat menggunakan fungsi <code>density()</code>. Berbeda dengan fungsi <code>hist()</code>, fungsi ini tidak langsung menghasilkan grafik densitas. Fungsi <code>density()</code> hanya menghitung kernel densitas pada data. Densitas yang telah dihitung selanjutnya diplotkan menggunakan fungsi <code>plot()</code>. Berikut adalah sintaks dan output yang dihasilkan pada Gambar <a href="3-2-otherviz.html#fig:dens">3.9</a>:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="co"># menghitung kernel density</span></a>
+<a class="sourceLine" id="cb248-2" title="2">dens &lt;-<span class="st"> </span><span class="kw">density</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb248-3" title="3"></a>
+<a class="sourceLine" id="cb248-4" title="4"><span class="co"># plot densitas dengan outline merah</span></a>
+<a class="sourceLine" id="cb248-5" title="5"><span class="kw">plot</span>(dens,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:dens"></span>
+<img src="Metode_Numerik_files/figure-html/dens-1.png" alt="Density plot" width="70%" />
+<p class="caption">
+Gambar 3.9: Density plot
+</p>
+</div>
+<p>Kita juga dapat menambahkan grafik densitas pada histogram sehingga mempermudah pembacaan pada histogram. Untuk melakukannya kita perlu mengubah kernel histigram dari frekuensi menjadi density dengan menambahkan argumen <code>freq=FALSE</code> pada fungsi <code>hist()</code>. Selanjutnya tambahkan fungsi <code>polygon()</code> untuk memplotkan grafik densitas. Berikut adalah sintak dan output yang dihasilkan pada Gambar <a href="3-2-otherviz.html#fig:denshist">3.10</a>:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="co"># menghitung kernel density</span></a>
+<a class="sourceLine" id="cb249-2" title="2">dens &lt;-<span class="st"> </span><span class="kw">density</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb249-3" title="3"></a>
+<a class="sourceLine" id="cb249-4" title="4"><span class="co"># histogram</span></a>
+<a class="sourceLine" id="cb249-5" title="5"><span class="kw">hist</span>(trees<span class="op">$</span>Height, <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">col=</span><span class="st">&quot;steelblue&quot;</span>)</a>
+<a class="sourceLine" id="cb249-6" title="6"></a>
+<a class="sourceLine" id="cb249-7" title="7"><span class="co"># tambahkan density plot</span></a>
+<a class="sourceLine" id="cb249-8" title="8"><span class="kw">polygon</span>(dens, <span class="dt">border=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:denshist"></span>
+<img src="Metode_Numerik_files/figure-html/denshist-1.png" alt="Density plot dan histogram" width="70%" />
+<p class="caption">
+Gambar 3.10: Density plot dan histogram
+</p>
+</div>
+</div>
+<div id="boxplot" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Box plot</h3>
+<p>Box plot pada <code>R</code> dapat dibuat menggunakan fungsi <code>boxplot()</code>. Berikut adalah sintaks untuk membuat boxplot variabel <code>Sepal.Lenght</code> pada dataset <code>iris</code> dan output yang dihasilkan pada Gambar <a href="3-2-otherviz.html#fig:boxplot">3.11</a>:</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot-1.png" alt="Boxplot variabel Sepal.Length" width="70%" />
+<p class="caption">
+Gambar 3.11: Boxplot variabel Sepal.Length
+</p>
+</div>
+<p>Boxplot juga dapat dibuat berdasarkan variabel factor. Hal ini berguna untuk melihat perbedaan ditribusi data pada masing-masing grup. Pada sintaks berikut dibuat boxplot berdasarkan variabel <code>Species</code>. Output yang dihasilkan disajikan pada Gambar <a href="3-2-otherviz.html#fig:boxplot2">3.12</a>:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length<span class="op">~</span>iris<span class="op">$</span>Species)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot2"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot2-1.png" alt="Boxplot berdasarkan variabel species" width="70%" />
+<p class="caption">
+Gambar 3.12: Boxplot berdasarkan variabel species
+</p>
+</div>
+<p>Kita juga dapat mengubah warna outline dan box pada boxplot. Berikut adalah contoh sintaks yang digunakan untuk melakukannya dan output yang dihasilkan disajikan pada Gambar <a href="3-2-otherviz.html#fig:boxplot3">3.13</a>:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length<span class="op">~</span>iris<span class="op">$</span>Species,</a>
+<a class="sourceLine" id="cb252-2" title="2">        <span class="co"># ubah warna outline menjadi steelblue</span></a>
+<a class="sourceLine" id="cb252-3" title="3">        <span class="dt">border =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb252-4" title="4">        <span class="co"># ubah warna box berdasarkan grup</span></a>
+<a class="sourceLine" id="cb252-5" title="5">        <span class="dt">col=</span> <span class="kw">c</span>(<span class="st">&quot;#999999&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>, <span class="st">&quot;#56B4E9&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot3"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot3-1.png" alt="Boxplot dengan warna berdasarkan spesies" width="70%" />
+<p class="caption">
+Gambar 3.13: Boxplot dengan warna berdasarkan spesies
+</p>
+</div>
+<p>Kita juga dapat membuat boxplot pada <em>multiple group</em>. Data yang digunakan untuk contoh tersebut adalah dataset <code>ToothGrowth</code>. Berikut adalah sintaks untuk memuat dataset tersebut:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="co"># ubah variable dose menjadi factor</span></a>
+<a class="sourceLine" id="cb253-2" title="2">ToothGrowth<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw">as.factor</span>(ToothGrowth<span class="op">$</span>dose)</a>
+<a class="sourceLine" id="cb253-3" title="3"></a>
+<a class="sourceLine" id="cb253-4" title="4"><span class="co"># print</span></a>
+<a class="sourceLine" id="cb253-5" title="5"><span class="kw">head</span>(ToothGrowth)</a></code></pre></div>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5</code></pre>
+<p>Contoh sintaks dan output boxplot <em>multiple group</em> disajikan pada Gambar <a href="3-2-otherviz.html#fig:boxplot4">3.14</a>:</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>supp<span class="op">*</span>dose, <span class="dt">data =</span> ToothGrowth,</a>
+<a class="sourceLine" id="cb255-2" title="2">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;steelblue&quot;</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot4"></span>
+<img src="Metode_Numerik_files/figure-html/boxplot4-1.png" alt="Boxplot multiple group" width="70%" />
+<p class="caption">
+Gambar 3.14: Boxplot multiple group
+</p>
+</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="3-1-plotfunc.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-3-customise.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

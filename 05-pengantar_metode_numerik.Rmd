@@ -50,7 +50,6 @@ Seberapa sederhana model yang akan kita buat? tergantung pada permasalahan apa y
 * Formulasi Numerik
 
 Setelah model matematika sederhana diperoleh, tahap selanjutnya adalah memformulasikan model matematika secara numerik. Tahapan ini terdiri atas:
-
     + menentukan metode numerik yang akan dipakai bersama-sama dengan analisis galat (error) awal.
     + menyusun algoritma dari metode numerik yang dipilih.
 

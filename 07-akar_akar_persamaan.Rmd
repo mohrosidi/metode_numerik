@@ -73,6 +73,8 @@ include_graphics(img1_path)
 
 ```
 
+-------------------------------------
+
 **Algoritma Metode Tabel**
 
 1. Definisikan fungsi $f\left(x \right)$
@@ -104,6 +106,8 @@ y_i=f\left(x_i \right)
     
     +  $f\left(x_k\right)\le f\left(x_{k+1}\right)$, maka akarnya $x_k$
     + Bila tida, $x_{k+1}$ adalah penyelesaian atau dapat dikatakan penyelesaian berada diantara $x_k$ dan $x_{k+1}$.
+
+-----------------------------------------
 
 Kita dapat membuat suatu fungsi pada `R` untuk melakukan proses iterasi pada metode Tabel. Fungsi `root_table()` akan melakukan iterasi berdasarkan step algoritma 1 sampai 5. Berikut adalah sintaks yang digunakan:
 
@@ -171,6 +175,8 @@ Metode biseksi merupakan metode yang paling mudah dan paling sederhana dibanding
 3. Tidak dapat digunakan untuk mencari akar imaginer
 4. Hanya dapat mencari satu akar pada satu siklus.
 
+----------------------------
+
 **Algoritma Metode Biseksi**
 
 1. Definisikan fungsi $f\left(x \right)$
@@ -188,6 +194,8 @@ x=\frac{a+b}{2}
 7. Bila $f\left(x \right).f\left(a \right)<0$, maka $b=x$ dan $f\left(b \right)=f\left(x \right)$. Bila tidak, $a=x$ dan $f\left(a \right)=f\left(x \right)$
 8. Bila $\left|b-a \right|<e$ atau iterasi maksimum maka proses dihentikan dan didapatkan akar=$x$, dan bila tidak ulangi langkah 6.
 9. Jika sudah diperoleh nilai dibawah nilai toleransi, nilai akar selanjutnya dihitung berdasarkan Persamaan \@ref(eq:biseksi1) dengan nilai $a$ dan $b$ merupakan nilai baru yang diperoleh dari proses iterasi.
+
+---------------------------
 
 Berdasarkan algoritma tersebut, kita dapat menyusun suatu fungsi pada `R` yang dapat digunakan untuk melakukan iterasi tersebut. Fungsi `root_bisection()` merupakan fungsi yang telah penulis susun untuk melakukan iterasi menggunakan metode biseksi. Berikut adalah sintaks dari fungsi tersebut:
 
@@ -277,6 +285,8 @@ include_graphics(img1_path)
 
 ```
 
+---------------------------------------
+
 **Algoritma Metode Regula Falsi**
 
 1. Definisikan fungsi $f\left(x \right)$
@@ -291,6 +301,8 @@ include_graphics(img1_path)
   + Jika $f\left(x \right).f\left(a \right)<0$, maka $b=x$ dan $f\left(b \right)=f\left(x \right)$. Jika tidak, $a=x$ dan $f\left(a \right)=f\left(x \right)$.
 
 6. Akar persamaan adalah $x$
+
+-----------------------------------------
 
 Fungsi `root_rf()` didasarkan pada langkah-langkah di atas. Sintaks fungsi tersebut adalah sebagai berikut:
 
@@ -381,6 +393,8 @@ include_graphics(img1_path)
 
 ```
 
+--------------------------------------------
+
 **Algoritma Metode Iterasi Titik Tetap**
 
 1. Definisikan $f\left(x \right)$ dan $g\left(x \right)$
@@ -388,6 +402,8 @@ include_graphics(img1_path)
 3. Tentukan tebakan awal $x_0$
 4. Untuk iterasi $i=1$ s/d $N$ atau $f\left(x_iterasi \right)\ge e \to x_i=g\left(x_{i-1} \right)$, Hitung $f\left(x_i \right)$
 5. Akar persamaan adalah $x$ terakhir yang diperoleh
+
+--------------------------------------------
 
 FUngsi `root_fpi()` dapat digunakan untuk melakukan iterasi dengan argumen fungsi berupa persamaan non-linier, nilai tebakan awal, nilai toleransi, dan jumlah iterasi maksimum. Berikut adalah sintaks fungsi tersebut:
 
@@ -463,6 +479,7 @@ include_graphics(img1_path)
 
 ```
 
+------------------------------------------------------
 
 **Algoritma Metode Newton-Raphson**
 
@@ -472,6 +489,8 @@ include_graphics(img1_path)
 4. Hitung $f\left(x_0 \right)$ dan $f'\left(x_0 \right)$
 5. Untuk iterasi $i=1$ s/d $N$ atau $\left|f\left(x \right) \right|\ge e$, hitung $x$ menggunakan Persamaan \@ref(eq:rootnr)
 6. Akar persamaan merupakan nilai $x_i$ terakhir yang diperoleh.
+
+----------------------------------------------------
 
 Fungsi `root_newton()` merupakan fungsi yang dibuat menggunakan algoritma di atas. Fungsi tersebut dituliskan pada sintaks berikut:
 
@@ -608,6 +627,8 @@ x_1=x_0+10*tol
   (\#eq:secant8)
 \end{equation}
 
+--------------------------------
+
 **Algoritma Metode Secant**
 
 1. Definisikan $f\left(x \right)$ dan $f'\left(x \right)$
@@ -616,6 +637,8 @@ x_1=x_0+10*tol
 4. Hitung $f\left(x_0 \right)$ dan $f\left(x_1 \right)$
 5. Untuk iterasi $i=1$ s/d $N$ atau $\left|f\left(x \right) \right|\ge e$, hitung $x$ menggunakan Persamaan \@ref(eq:secant7)
 6. Akar persamaan adalah nilai x yang terakhir.
+
+--------------------------------
 
 Fungsi `root_secant()` merupakan fungsi yang penulis buat untuk melakukan iterasi menggunakan metode Secant. Berikut merupakan sintaks dari fungsi tersebut:
 

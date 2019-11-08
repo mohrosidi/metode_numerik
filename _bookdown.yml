@@ -9,3 +9,4 @@ language:
     thm: 'Teorema '
   ui:
     chapter_name: "Chapter "
+documentclass: krantz

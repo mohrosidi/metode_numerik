@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-27}
+    \date{2019-11-08}
 
 \usepackage{booktabs}
 \usepackage{lscape}
@@ -598,8 +598,10 @@ Selain yang telah penulis sebutkan sebelumnya. Kita juga dapat memanfaatkan fasi
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "elNamed"        "elNamed<-"      "median"         "median.default"
-## [5] "medpolish"      "runmed"
+##  [1] "elNamed"            "elNamed<-"          "geo_median"        
+##  [4] "median"             "median.default"     "median.zoo"        
+##  [7] "medpolish"          "rollmedian"         "rollmedian.default"
+## [10] "rollmedianr"        "runmed"
 \end{verbatim}
 
 \emph{List} yang dihasilkan berupa fungsi-fungsi yang memiliki elemen kata ``med''. Berdasarkan pencaria tersebut penulis dapat mencoba menggunakan fungsi ``median'' untuk menghitung median.
@@ -2275,7 +2277,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.863 1.863 2.863 3.863 4.863 5.863
+## [1] 1.334 2.334 3.334 4.334 5.334 6.334
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -5422,11 +5424,8 @@ Seberapa sederhana model yang akan kita buat? tergantung pada permasalahan apa y
 \end{itemize}
 
 Setelah model matematika sederhana diperoleh, tahap selanjutnya adalah memformulasikan model matematika secara numerik. Tahapan ini terdiri atas:
-
-\begin{verbatim}
 + menentukan metode numerik yang akan dipakai bersama-sama dengan analisis galat (error) awal.
 + menyusun algoritma dari metode numerik yang dipilih.
-\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -6163,15 +6162,17 @@ Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah sela
 
 Setelah diperoleh matriks \emph{row echelon form} selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan \eqref{eq:refsolution}.
 
-\[
+\begin{equation*}
 \begin{matrix}
   x_3=\frac{-6}{-2}=3 \\
   x_2=\frac{1}{1}\left(-4-\left(2\right)3\right)=2 \\
   x_1=\frac{1}{1}\left(6-2-3\right)=1
 \end{matrix}
-\]
+\end{equation*}
 
-\textbf{Algoritma \emph{Row Echelon Form}}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Row Echelon Form}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6181,40 +6182,14 @@ Setelah diperoleh matriks \emph{row echelon form} selanjutnya penyelesaian persa
 \item
   Buat \emph{augmented matrix} \(\left[A|B\right]\) namakan dengan \(A\)
 \item
-  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i,j}\) sama dengan nol.
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
+  Untuk baris ke-\(i\) dimana \(i=1\) s/d \(n\), perhatikan apakah nilai \(a_{i,j}\) sama dengan nol. \textbf{a)} \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{i+k,j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian, \textbf{b)} \textbf{Bila tidak}, lanjutkan.
 \item
-  \textbf{Bila iya}, lakukan \emph{row swapping} antara baris ke-\(i\) dan baris ke-\(i+k\leq n\), dimana \(a_{i+k,j}\) tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.
-\item
-  \textbf{Bila tidak}, lanjutkan.
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Untuk baris ke-\(j\), dimana \(j=i+1\) s/d \(n\), lakukan operasi baris elementer:
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  Hitung \(c=\frac{a_{j,i}}{a_{i,i}}\)
-\item
-  untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j,k}=a_{j,k}-c.a_{i,k}\)
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{4}
-\tightlist
+  Untuk baris ke-\(j\), dimana \(j=i+1\) s/d \(n\), lakukan operasi baris elementer:\textbf{a)} Hitung \(c=\frac{a_{j,i}}{a_{i,i}}\), \textbf{b)} untuk kolom \(k\), dimana \(k=1\) s/d \(n+1\), hitung \(a_{j,k}=a_{j,k}-c.a_{i,k}\).
 \item
   Hitung akar, untuk \(i=n\) s/d 1 (bergerak dari baris pertama) menggunakan Persamaan \eqref{eq:refsolution}.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk menyelesaikan sistem persamaan linier menggunakan matriks \emph{row echelon form}. Fungsi yang akan dibentuk hanya sampai pada algoritma ke-4. Proses substitusi akan dilakukan secara manual. Berikut adalah sintaks yang digunakan:
 
@@ -6468,6 +6443,8 @@ Penyelesaian persamaan linier tersebut adalah sebagai berikut:
 x_1=2\ dan\ x_2=1
 \]
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Eliminasi Gauss-Jordan}
 
 \begin{enumerate}
@@ -6519,6 +6496,8 @@ x_1=2\ dan\ x_2=1
 \item
   Penyelesaian untuk \(i=n\) s/d 1 disajikan pada Persamaan \eqref{eq:gaussjordansolution}.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan \texttt{R}. Fungsi tersebut adalah sebagai berikut:
 
@@ -6703,6 +6682,8 @@ Pada beberapa \emph{textbook}, diagonal matriks sering dilambangkan dengan \(l\)
   \label{eq:matrikstridiagonal2}
 \end{equation}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Penyelesaian Matrik Tridiagonal}
 
 \begin{enumerate}
@@ -6759,6 +6740,8 @@ Pada beberapa \emph{textbook}, diagonal matriks sering dilambangkan dengan \(l\)
 \item
   Hitung \(x_n=b_n\)
 \end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada \texttt{R}. Fungsi penyelesaian matriks tridiagonal disajikan sebagai berikut:
 
@@ -7253,6 +7236,8 @@ Berdasarkan hasil perhitungan diperoleh nilai \(x\) sebagai berikut:
 x_1=-1, x_2=2, x_3=0, x_4=1
 \]
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Dekomposisi LU}
 
 \begin{enumerate}
@@ -7305,6 +7290,8 @@ x_1=-1, x_2=2, x_3=0, x_4=1
 \item
   Lakukan \emph{backward substituion} menggunakan Persamaan \eqref{eq:refsolution}.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun algoritma faktorisasi LU menggunakan \texttt{R}. Berikut adalah sintaks yang digunakan:
 
@@ -7471,10 +7458,10 @@ Untuk dapat menggunakannya kita hanya perlu menginputkan matriks kedalam fungsi 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# membuat matriks a }
-\NormalTok{a <-}\StringTok{ }\KeywordTok{Matrix}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{),}\DecValTok{2}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
+\NormalTok{a <-}\StringTok{ }\NormalTok{Matrix}\OperatorTok{::}\KeywordTok{Matrix}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{),}\DecValTok{2}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{)}
 
 \CommentTok{# dekomposisi}
-\NormalTok{lum <-}\StringTok{ }\KeywordTok{lu}\NormalTok{(a)}
+\NormalTok{lum <-}\StringTok{ }\NormalTok{Matrix}\OperatorTok{::}\KeywordTok{lu}\NormalTok{(a)}
 \NormalTok{lum}
 \end{Highlighting}
 \end{Shaded}
@@ -7493,7 +7480,7 @@ Untuk menampilkan hasil dekomposisi, jalankan fungsi \texttt{expand()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{decomp <-}\StringTok{ }\KeywordTok{expand}\NormalTok{(lum)}
+\NormalTok{decomp <-}\StringTok{ }\NormalTok{Matrix}\OperatorTok{::}\KeywordTok{expand}\NormalTok{(lum)}
 \NormalTok{decomp}
 \end{Highlighting}
 \end{Shaded}
@@ -7577,6 +7564,8 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
   \label{eq:cholesky5}
 \end{equation}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Dekomposisi Cholesky}
 
 \begin{enumerate}
@@ -7601,6 +7590,8 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 \item
   Hitung vektor \(x\) menggunakan Persamaan \eqref{eq:LUdecomp3}, dimana matriks \(U=L^T\).
 \end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk melakukan dekomposisi Cholesky. Fungsi tersebut disajikan pada sintaks berikut:
 
@@ -8082,6 +8073,8 @@ x = \begin{bmatrix}
 \end{bmatrix}
 \]
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Iterasi Jacobi}
 
 \begin{enumerate}
@@ -8106,6 +8099,8 @@ x = \begin{bmatrix}
 \item
   Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \eqref{eq:toleransi}.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Jacobi. Berikut sintaks yang digunakan:
 
@@ -8366,6 +8361,9 @@ x = \begin{bmatrix}
      1,925954
 \end{bmatrix}
 \]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Iterasi Gauss-Seidel}
 
 \begin{enumerate}
@@ -8388,6 +8386,8 @@ x = \begin{bmatrix}
 \item
   Hentikan proses iterasi jika telah memenuhi syarat yang ditampilkan pada Persamaan \eqref{eq:toleransi}.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun fungsi sebuah fungsi untuk melakukan iterasi Gauss-Seidel. Berikut sintaks yang digunakan:
 
@@ -9009,6 +9009,8 @@ Secara grafis penyelesaian persamaan non-linier menggunakan metode table disajik
 \caption{Ilustrasi metode tabel.}\label{fig:tabelviz}
 \end{figure}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Tabel}
 
 \begin{enumerate}
@@ -9069,6 +9071,8 @@ y_i=f\left(x_i \right)
     Bila tida, \(x_{k+1}\) adalah penyelesaian atau dapat dikatakan penyelesaian berada diantara \(x_k\) dan \(x_{k+1}\).
   \end{itemize}
 \end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Kita dapat membuat suatu fungsi pada \texttt{R} untuk melakukan proses iterasi pada metode Tabel. Fungsi \texttt{root\_table()} akan melakukan iterasi berdasarkan step algoritma 1 sampai 5. Berikut adalah sintaks yang digunakan:
 
@@ -9181,6 +9185,8 @@ Metode biseksi merupakan metode yang paling mudah dan paling sederhana dibanding
   Hanya dapat mencari satu akar pada satu siklus.
 \end{enumerate}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Biseksi}
 
 \begin{enumerate}
@@ -9216,6 +9222,8 @@ x=\frac{a+b}{2}
 \item
   Jika sudah diperoleh nilai dibawah nilai toleransi, nilai akar selanjutnya dihitung berdasarkan Persamaan \eqref{eq:biseksi1} dengan nilai \(a\) dan \(b\) merupakan nilai baru yang diperoleh dari proses iterasi.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Berdasarkan algoritma tersebut, kita dapat menyusun suatu fungsi pada \texttt{R} yang dapat digunakan untuk melakukan iterasi tersebut. Fungsi \texttt{root\_bisection()} merupakan fungsi yang telah penulis susun untuk melakukan iterasi menggunakan metode biseksi. Berikut adalah sintaks dari fungsi tersebut:
 
@@ -9295,7 +9303,7 @@ Untuk mempersingkat waktu iterasi kita akan menggunakan fungsi \texttt{root\_bis
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x000000000885f020>
+## <bytecode: 0x000000000624fef0>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9326,6 +9334,8 @@ Ilustrasi dari metode regula falsi disajikan pada Gambar \ref{fig:regula}.
 
 \caption{Ilustrasi metode regula falsi.}\label{fig:regula}
 \end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \textbf{Algoritma Metode Regula Falsi}
 
@@ -9363,6 +9373,8 @@ Ilustrasi dari metode regula falsi disajikan pada Gambar \ref{fig:regula}.
 \item
   Akar persamaan adalah \(x\)
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Fungsi \texttt{root\_rf()} didasarkan pada langkah-langkah di atas. Sintaks fungsi tersebut adalah sebagai berikut:
 
@@ -9446,7 +9458,7 @@ Untuk mempercepat proses iterasi, kita dapat pula menggunakan fungsi \texttt{roo
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x0000000006207a68>
+## <bytecode: 0x0000000006eab630>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9476,6 +9488,8 @@ Metode iterasi titik tetap merupakan metode penyelesaian persamaan non-linier de
 \caption{Ilustrasi metode iterasi titik tetap.}\label{fig:fixpointiter}
 \end{figure}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Iterasi Titik Tetap}
 
 \begin{enumerate}
@@ -9492,6 +9506,8 @@ Metode iterasi titik tetap merupakan metode penyelesaian persamaan non-linier de
 \item
   Akar persamaan adalah \(x\) terakhir yang diperoleh
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 FUngsi \texttt{root\_fpi()} dapat digunakan untuk melakukan iterasi dengan argumen fungsi berupa persamaan non-linier, nilai tebakan awal, nilai toleransi, dan jumlah iterasi maksimum. Berikut adalah sintaks fungsi tersebut:
 
@@ -9557,7 +9573,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan bantuan fungsi \texttt{r
 ## {
 ##     -1/exp(-x)
 ## }
-## <bytecode: 0x00000000087d6a18>
+## <bytecode: 0x000000001e227fa0>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9589,6 +9605,8 @@ Ilustrasi metode Newton-Raphson disajikan pada Gambar \ref{fig:nrviz}.
 \caption{Ilustrasi metode Newton-Raphson.}\label{fig:nrviz}
 \end{figure}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Newton-Raphson}
 
 \begin{enumerate}
@@ -9607,6 +9625,8 @@ Ilustrasi metode Newton-Raphson disajikan pada Gambar \ref{fig:nrviz}.
 \item
   Akar persamaan merupakan nilai \(x_i\) terakhir yang diperoleh.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Fungsi \texttt{root\_newton()} merupakan fungsi yang dibuat menggunakan algoritma di atas. Fungsi tersebut dituliskan pada sintaks berikut:
 
@@ -9675,7 +9695,7 @@ Untuk mempercepat proses iterasi, kita dapat menggunakan fungsi \texttt{root\_ne
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x000000001cae7f10>
+## <bytecode: 0x000000001c088c28>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -9784,6 +9804,8 @@ x_1=x_0+10*tol
   \label{eq:secant8}
 \end{equation}
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \textbf{Algoritma Metode Secant}
 
 \begin{enumerate}
@@ -9802,6 +9824,8 @@ x_1=x_0+10*tol
 \item
   Akar persamaan adalah nilai x yang terakhir.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Fungsi \texttt{root\_secant()} merupakan fungsi yang penulis buat untuk melakukan iterasi menggunakan metode Secant. Berikut merupakan sintaks dari fungsi tersebut:
 
@@ -9868,7 +9892,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan fungsi \texttt{root\_sec
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x0000000008933ae0>
+## <bytecode: 0x0000000004e655b8>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -10103,7 +10127,7 @@ Untuk penyelesaiannya penulis akan memberikan tebakan awal nilai \(h=h_0=0,6\). 
 ##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
 ##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
 ## }
-## <bytecode: 0x0000000008013738>
+## <bytecode: 0x0000000006f51c48>
 ## 
 ## $root
 ## [1] -0.2870309
@@ -10154,6 +10178,3094 @@ Pembaca dapat mencoba menggunakan metode lain seperti metode tertutup. Untuk dap
   Pada kondisi apakah metode Secant lebih dipilih dibanding metode Newton-Raphson?
 \item
   Modifikasilah fungsi \texttt{root\_bisection()} dan \texttt{root\_rf()} sehingga kita tidak perlu memasukkan argumen \texttt{a} dan \texttt{b} dan hanya perlu memasukkan satu vektor \texttt{interval} kedalam fungsi tersebut! (\textbf{contoh}: \texttt{interval=c(a,b)})
+\end{enumerate}
+
+\hypertarget{interpolation}{%
+\chapter{Interpolasi dan Ekstrapolasi}\label{interpolation}}
+
+Pada dunia nyata, data sering kali tidak tersaji secara lengkap. Seringkali terdapat nilai data yang hilang (\emph{missing value}). Terdapat banyak penyebab dari kondisi tersebut, baik akibat kesalahan manusianya maupun keterbatasan kemampuan alat ukur.
+
+Kondisi lain yang muncul dari data yang kita miliki adalah adanya \emph{outlier} atau nilai yang berbeda jauh dengan mayoritas data yang kita miliki. Nilai tersebut akan menentukan hasil analisis atau uji statistik yang kita lakukan, terlebih lagi jika uji statistik yang kita lakukan menggunakan metode parametrik.
+
+Terdapat banyak cara untuk menangani kondisi-kondisi tersebut. Sejumlah peneliti memilih untuk menghapus data tersebut. Hal ini dapat dilakukan jika jumlah data yang kita miliki cukup besar. Bagaimana jika data yang kita miliki sedikit dan pengukuran ulang cukup mahal atau cukup sulit dilakukan?. Salah satu cara yang dapat dilakukan adalah dengan melakukan interpolasi terhadap data.
+
+Interpolasi dan ekstrapolasi adalah proses ``menebak'' nilai data dengan memperhatikan data lain yang kita miliki. Interpolasi merupakan teknik untuk mencari nilai suatu variabel yang hilang pada rentang data yang diketahui, sedangkan ektrapolasi merupakan teknik menemukan nilai suatu variabel diluar rentang data yang telah diketahui. Data lain yang kita miliki seringkali memiliki sejumlah pola. Pola yang terbentuk dapat berupa polinomial atau mengelompok. Tiap pola akan memiliki metode pendekatan yang berbeda-beda. Terdapat kemungkinan tak terbatas dari pola data tersebut. Penilaian profesional atau ahli diperlukan untuk menentukan metode mana yang sesuai berdasarkan riwayat penelitian atau pekerjaan yang pernah dilakukan sebelumnya.
+
+Pada Chapter \ref{interpolation} penulis akan menjelaskan teknik-teknik interpolasi yang dapat kita lakukan. Adapun yang akan dibahas pada \emph{Chapter} ini adalah sebagai berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  Teknik interpolasi polinomial
+\item
+  Teknik interpolasi piecewise
+\item
+  Studi kasus penerapan teknik interpolasi
+\end{itemize}
+
+\hypertarget{poliinterpolation}{%
+\section{Interpolasi Polinomial}\label{poliinterpolation}}
+
+Interpolasi polinomial merupakan teknik interpolasi dengan mengasumsikan pola data yang kita miliki mengikuti pola polinomial baik berderajat satu (linier) maupun berderajat tinggi. Interpolasi dengan metode ini dilakukan dengan terlebih dahulu membentuk persamaan polinomial. Persamaan polinomial yang terbentuk selanjutnya digunakan untuk melakukan interpolasi dari nilai yang diketahui atau ekstrapolasi (prediksi) dari nilai diluar rentang data yang diketahui.
+
+Pada Chapter \ref{poliinterpolation} pembahasan akan dibagi menjadi 3 bagian. Bagian pertama kita akan mengulang kembali teknik evaluasi polinomial, sedangkan dua bagian selanjutnya akan membahas teknik interpolasi linier dan polinomial orde tinggi dengan menjadikan pembahasan bagian pertama sebagai dasar pada dua bagian berikutnya.
+
+\hypertarget{mengevaluasi-polinomial}{%
+\subsection{Mengevaluasi Polinomial}\label{mengevaluasi-polinomial}}
+
+Pada \emph{Chapter} ini pembaca akan mempelajari teknik untuk melakukan substitusi nilai \(x\) pada persamaan polinomial untuk memperoleh nilai \(y\). Terdapat berbagai pendekatan dalam melakukan proses tersebut, mulai dari metode naive maupun metode Horner. Kedua metode akan menghasilkan hasil yang sama namun dengan proses komputasi yang berbeda. Metode naive cenderung lambat dalam proses komputasi karena jumlah proses yang dilakukan dalam sekali proses lebih banyak dari pada metode Horner.
+
+Untuk memahami metode-metode evaluasi polinomial yang telah disebutkan tersebut, secara umum persamaan polinomial disajikan pada Persamaan \eqref{eq:evalpoly}.
+
+\begin{equation}
+f\left(x\right)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+  \label{eq:evalpoly}
+\end{equation}
+
+dimana \(a\) merupakan koefisien polinomial, \(x\) merupakan variabel, dan \(n\) merupakan indeks dan pangkat polinomial.
+
+Pada metode naive kita melakukan evaluasi polinomial sama dengan cara kita melakukan evaluasi polinomial saat kita SMA. Nilai \(x\) akan disubstitusikan pada masing-masing elemen persamaan polinomial. Masing-masing elemen polinomial selanjutnya dijumkahkan untuk menghitung \(y\).
+
+Pada \texttt{R} kita dapat menuliskan sebuah fungsi untuk melakukan evaluasi polinomial menggunakan metode naive tersebut. Pada fungsi tersebut, koefisien polinomial akan disimpan kedalam sebuah vektor dengan urutan pengisian mulai dari koefisien dengan pangkat \(x\) terendah ke tertinggi.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{naive_poly <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, coeff)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n)}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(coeff))\{}
+\NormalTok{    y <-}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{coeff[i]}\OperatorTok{*}\NormalTok{(x}\OperatorTok{^}\NormalTok{(i}\DecValTok{-1}\NormalTok{))}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:polievalexmp}{}{\label{exm:polievalexmp} }Hitung nilai \(y\) pada persamaan \(f\left(x\right)=x^4+3x^3-15x^2-19x+30\), jika diketahui nilai \(x\) adalah -1, 0, dan 1!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk dapat menghitung nilai \(y\) menggunakan fungsi \texttt{naive\_poly()} pada persamaan tersebut dengan nilai \(x\) yang diketahui, kita perlu merubah koefisien persamaan tersebut dan nilai \(x\) yang diketahui menjadi vektor:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{coeff <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{30}\NormalTok{,}\OperatorTok{-}\DecValTok{19}\NormalTok{,}\OperatorTok{-}\DecValTok{15}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Masukkan vektor-vektor yang telah terbentuk tersebut kedalam fungsi \texttt{naive\_poly()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{naive_poly}\NormalTok{(x, coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32 30  0
+\end{verbatim}
+
+Berdasarkan hasil perhitungan diperoleh nilai \(y\) masing-masing sebesar 32, 30, dan 0. Pembaca dapat mengeceknya sendiri hasil perhitungan tersebut menggunakan cara manual.
+
+Kita dapat meningkatkan efisiensi proses perhitungan pada fungsi \texttt{naive\_poly()} tersebut. Sebagai contoh, setiap kali kita melakukan loop untuk menghitung nilai \(y\) pada polinomial, kita dapat memperoleh eksponensial dari \(x\). Namun untuk setiap koefisien \(a_i\), nilai eksponensial yang terkait \(x_i\) merupakan seri produk.
+
+\begin{equation}
+x^i=\prod_{j=0}^ix
+  \label{eq:evalpoly2}
+\end{equation}
+
+Untuk \(x^i\), terdapat sebanyak \(i\) koefisien \(x\) dikalikan bersamaan. Namun, untuk setiap \(x^{i-1}\) terdapat lebih sedikit 1 perkalian dibanding koefisien \(x\) dengan pangkat yang lebih besar dan seterusnya.
+
+Berdasarkan ilustrasi tersebut, kita dapat membentuk fungsi \texttt{better\_poly()} sebagai perbaikan dari fungsi \texttt{naive\_poly()}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{better_poly <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, coeff)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n)}
+\NormalTok{  cached_x <-}\StringTok{ }\DecValTok{1}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(coeff))\{}
+\NormalTok{    y <-}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{coeff[i]}\OperatorTok{*}\NormalTok{cached_x}
+\NormalTok{    cached_x <-}\StringTok{ }\NormalTok{cached_x }\OperatorTok{*}\StringTok{ }\NormalTok{x}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:polievalexmp2}{}{\label{exm:polievalexmp2} }Hitung nilai \(y\) pada persamaan yang disajikan pada Contoh \ref{exm:polievalexmp} menggunakan nilai \(x\) yang telah diketahui pada soal tersebut menggunakan fungsi \texttt{better\_poly()}?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{better_poly}\NormalTok{(x, coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32 30  0
+\end{verbatim}
+
+Sejauh ini kita telah membentuk 2 fungsi yaitu \texttt{naive\_poly()} dan \texttt{better\_poly()}. Kedua fungsi tersebut memiliki perbedaan proses menghitung yang mempengaruhi efisiensinya masing-masing. Sebagai contoh jika diberikan polinomial berderajat 10, fungsi \texttt{naive\_poly()} akan mengejakan perkalian dalam proses \emph{loop} sebanyak 55 kali, sedangkan fungsi \texttt{better\_poly()} akan melakukannya sebanyak 20 kali (\(2n\) perkalian).
+
+Metode lain yang lebih efisien dalam melakukan evaluasi polinomial adalah metode Horner. Metode ini oleh William Horner pada abad ke-18. Dalam metode Horner, bentuk polinomial pada Persamaan \eqref{eq:evalpoly} akan ditransformasi menjadi Persamaan \eqref{eq:evalpoly3}.
+
+\begin{equation}
+\begin{split}
+f\left(x\right)&=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\\
+&= a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n\\
+&= a_0+x\left(a_1+\cdots+a_{n-1}x^{n-2}+a_nx^{n-1}\right)\\
+&= a_0+x\left(a_1+\cdots+x\left(a_{n-1}+x\left(a_n\right)\right)\cdots\right)
+\end{split}
+  \label{eq:evalpoly3}
+\end{equation}
+
+Berdasarkan Persamaan \eqref{eq:evalpoly3}, jika kita melakukan perhitungan pada persamaan polinomial berderajat 10, kita dapat mereduksi perhitungan menjadi 10 perkalian dan 10 penjumlahan. Jumlah tersebut sangat kecil dibandingkan kedua metode sebelumnya dan dapat dikatakan lebih efisien dibandingkan metode lainnya.
+
+FUngsi \texttt{horner\_poly()} merupakan fungsi yang dibentuk bedasarkan Persamaan \eqref{eq:evalpoly3}. Sintaks fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{horner_poly <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, coeff)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n)}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{length}\NormalTok{(coeff)}\OperatorTok{:}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{    y <-}\StringTok{ }\NormalTok{coeff[i] }\OperatorTok{+}\StringTok{ }\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{y}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:polievalexmp3}{}{\label{exm:polievalexmp3} }Kerjakan kembali Contoh \ref{exm:polievalexmp2} fungsi \texttt{horner\_poly()}?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{horner_poly}\NormalTok{(x, coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32 30  0
+\end{verbatim}
+
+\hypertarget{lininterpol}{%
+\subsection{Interpolasi Linier}\label{lininterpol}}
+
+Misalkan kita memiliki 3 buah data dengan dua buah variabel kita misalkan variabel \(x\) dan variabel \(y\). Pada salah satu data terdapat data yang hilang pada. Agar ketiga data tersebut tetap dapat digunakan dalam iterasi diperlukan interpolasi untuk ``menebak'' nilai dari data yang hilang.
+
+Berdasarkan pengukuran yang sebelumnya pernah dilakukan diketahui bahwa pola data yang terbentuk variabel \(x\) dan \(y\) divisualisasikan menggunakan scatterplot adalah pola linier. Berdasarkan hal tersebut interpolasi dilakukan dengan menggunakan metode linier.
+
+Interpolasi linier dilakukan dengan terlebih dahulu membentuk fungsi linier. Dengan kata lain kita perlu mencari nilai slope \(m\) dan \emph{intercept} \(b\). Nilai \(m\) dihitung sebagai rasio selisih jarak dua titik pada sumbu \(y\) dan sumbu \(x\) yang dapat dituliskan melalui Persamaan \eqref{eq:lineinter}.
+
+\begin{equation}
+m=\frac{y_2-y_1}{x_2-x_1}
+  \label{eq:lineinter}
+\end{equation}
+
+Nilai \emph{intercept} (titik potong pada sumbu \(y\)) dihitung menggunakan Persamaan \eqref{eq:lineinter2}.
+
+\begin{equation}
+b=y_2-mx_2
+  \label{eq:lineinter2}
+\end{equation}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Interpolasi Linier}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan dua buah titik \(\left(x,y\right)\) sebagai dasar pembentukan persaman linier.
+\item
+  Hitung \(m\) menggunakan Persamaan \eqref{eq:lineinter}
+\item
+  Hitung \(b\) menggunakan Persamaan \eqref{eq:lineinter2}
+\item
+  Definiskan fungsi linier berdasarkan nilai \(m\) dan \(b\)
+\item
+  Hitung \(y\) dengan cara substitusi nilai \(x\) pada persamaan linier untuk melakukan interpolasi atau ekstrapolasi nilai \(y\) yang ingin dicari.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Algoritma poin 1 sampai 4 tersebut, kita dapat membentuk fungsi pembentuk persamaan linier dari 2 titik yang diketahui. Fungsi tersebut disajikan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{linear_inter <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+\NormalTok{  m <-}\StringTok{ }\NormalTok{(y[}\DecValTok{2}\NormalTok{]}\OperatorTok{-}\NormalTok{y[}\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\StringTok{ }\NormalTok{(x[}\DecValTok{2}\NormalTok{]}\OperatorTok{-}\NormalTok{x[}\DecValTok{1}\NormalTok{])}
+\NormalTok{  b <-}\StringTok{ }\NormalTok{y[}\DecValTok{2}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{m}\OperatorTok{*}\NormalTok{x[}\DecValTok{2}\NormalTok{]}
+  
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(b, m))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:linterpexmp}{}{\label{exm:linterpexmp} }Diketahui koordinat 2 buah titik yaitu (0,-1) dan (2,3). Jika diketahui titik ketiga memiliki koordinat sumbu \(x\) sebesar 1. Lakukan interpolasi untuk menentukan koordinat sumbu \(y\) titik ketiga tersebut!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Berdasarkan data-data yang terdapat pada soal terserbut, kita dapat menghitung nilai \(m\) dan \(b\). Nilai \(m\) dapat dihitung sebagai berikut:
+
+\[
+m=\frac{-1-3}{0-2}=2
+\]
+
+Dengan menggunakan nilai \(m\) tersebut kita dapat menghitung nilai \(b\).
+
+\[
+b=3-2*3=-1
+\]
+
+Berdasarkan hasil perhitungan diperoleh persamaan linier yang terbentuk adalah sebagai berikut:
+
+\[
+y=2x-1
+\]
+
+Berdasarkan persamaan linier tersebut nilai \(y\) dapat dihitung.
+
+\[
+y=2*1-1=1
+\]
+
+Kita dapat pula membentuk persamaan linier menggunakan fungsi \texttt{linear\_inter()}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\NormalTok{(coeff <-}\StringTok{ }\KeywordTok{linear_inter}\NormalTok{(x,y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1  2
+\end{verbatim}
+
+Setelah diperoleh koefisien persamaan linier berdasarkan dua titik tersebut, kita akan menggunakan fungsi \texttt{horner\_poly()} untuk memperoleh nilai \(y\). Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{horner_poly}\NormalTok{(}\DecValTok{1}\NormalTok{, coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+Hasil interpolasi yang diperoleh dapat dikatakan sesuai dengan lokasi kedua titik data yang ditunjukkan pada Gambar \ref{fig:linviz}. Berdasarkan hal tersebut, kita dapat yakin bahwa hasil interpolasi yang telah kita lakukan telah sesuai.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/linviz} 
+
+}
+
+\caption{Interpolasi linier dua titik 
+(Sumber:Howard, 2017).}\label{fig:linviz}
+\end{figure}
+
+Metode interpolasi linier dapat dibilang merupakan metode interpolasi yang sangat sederhana. Disamping kemudahannya, metode ini memiliki potensi error numerik jika jarak antara kedua titik cukup berdekatan terlebih lagi jika selisih penyebut (\(x_2-x_1\)) sangat kecil sehingga akan menghasilkan nilai \(y\) yang sangat besar.
+
+Disamping adanya potensi error numerik tersebut, metode ini menjadi dasar bagi metode interpolasi lain yang lebih kompleks. Metode selanjutnya merupakan pengembangan dari metode interpolasi ini.
+
+\hypertarget{hopoliinter}{%
+\subsection{Interpolasi Polinomial Orde Tinggi}\label{hopoliinter}}
+
+Dengan menggunakan dua titik, kita dapat membentuk garis lurus (linier) yang tepat pada dua titik tersebut. Masalah timbul jika selisih nilai \(x\) kedua titik tersebut sangat kecil atau kedua titik tersebut memiliki nilai \(x\) yang sama. Hal ini akan menyebabkan slope yang dihasilkan menjadi tidak terhingga atau garis yang terbentuk adalah garis vertikal tegak lurus.
+
+Bagaimana jika terdapat tiga buah titik? apakah kita masih bisa menggunakan interpolasi linie?. Ya, asalkan ketiga titik tersebut membentuk pola linier atau terletak pada satu garis yang sama. Pada kenyatannya kondisi tersebut jarang terjadi, sehingga pendekatan menggunakan polinomial orde lebih tinggi diperlukan. Persamaan kuadratik (polinomial orde dua) dapat digunakan untuk membentuk persamaan polinomial pada ketiga titik tersebut, sehingga iterasi dapat dilakukan. Untuk 4 buah titik data, polinomial orde tiga dapat digunakan untuk melakukan interpolasi. Secara umum berdasarkan penjelasan tersebut, untuk \(n\) titik data interpolasi dapat dilakukan menggunakan persamaan polinomial orde \(n-1\).
+
+Diberikan set data berpasangan yang telah diurutkan \(\left(x_i,y_i\right)\), fungsi interpolasi harus memenuhi persyaratan berikut:
+
+\begin{equation}
+p\left(x_i\right)=y_i
+  \label{eq:hointereq}
+\end{equation}
+
+Untuk setiap \(i\). Sebagai tambahan, fungsi interpolasi berupa fungsi polinomial dengan bentuk umum sebagai berikut:
+
+\begin{equation}
+y_i=\beta_nx_i^n+\beta_{n-1}x_i^{n-1}+\cdots+\beta_1x_i+\beta_0
+  \label{eq:hointereq2}
+\end{equation}
+
+Persamaan \eqref{eq:hointereq2} dapat dituliskan kedalam bentuk matriks yang ditampilkan pada Persamaan \eqref{eq:hointereq3}.
+
+\begin{equation}
+\begin{bmatrix}
+     x_1^n   & x_1^{n-1} & \cdots & x_1  & 1            \\[0.3em]
+     x_2^n   & x_2^{n-1} & \cdots & x_2  & 1           \\[0.3em]
+     \vdots  & \vdots    & \vdots &\ddots& \vdots            \\[0.3em]
+     x_n^n   & x_n^{n-1} & \cdots & x_n  & 1
+     \end{bmatrix}
+\begin{bmatrix}
+     \beta_n                                          \\[0.3em]
+     \beta_{n-1}                                      \\[0.3em]
+     \vdots                                           \\[0.3em]
+     \beta_0                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     y_1                                          \\[0.3em]
+     y_2                                          \\[0.3em]
+     \vdots                                       \\[0.3em]
+     y_n                                       
+     \end{bmatrix}
+  \label{eq:hointereq3}
+\end{equation}
+
+Persamaan matrik tersebut dapat dituliskan sebagai \(X\beta = y\). Untuk menyelesaikan persamaan tersebut (memperoleh nilai \(\beta\)), pembaca dapat membaca kembali Chapter \ref{linearaljabar}. Matriks \(X\) disebut sebagai matriks Vandemonde dan matriks tersebut mengandung sejumlah nilai \(x\) dengan pangkat sampai dengan \(n\).
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Interpolasi Polinomial Orde Tinggi}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan set titik berpasangan \(\left(x,y\right)\) yang telah diurutkan.
+\item
+  Bentuk matriks Vandermonde sesuai dengan Persamaan \eqref{eq:hointereq3}.
+\item
+  Definiskan persamaan matriks \(X\beta=y\)
+\item
+  Selesaikan persamaan matriks pada poin 3 untuk memperoleh nilai \(\beta\)
+\item
+  Definisikan persamaan polinomial berdasarkan koefisien \(\beta\) yang diperoleh
+\item
+  Lakukan substitusi \(x\) persamaan polinomial pada poin 5 untuk memperoleh nilai \(y\)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma poin 1 sampai 5, kita dapat membentuk suatu fungsi untuk membentuk persamaan polinomial berdasarkan Persamaan \eqref{eq:hointereq3}. Berikut adalah sintaks fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly_inter <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(x) }\OperatorTok{!=}\StringTok{ }\KeywordTok{length}\NormalTok{(y))}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"Lenght of x and y vectors must be the same"}\NormalTok{)}
+  
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}\OperatorTok{-}\DecValTok{1}
+\NormalTok{  vandermonde <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{length}\NormalTok{(x))}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{    xi <-}\StringTok{ }\NormalTok{x}\OperatorTok{^}\NormalTok{i}
+\NormalTok{    vandermonde <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(vandermonde, xi)}
+\NormalTok{  \}}
+\NormalTok{  beta <-}\StringTok{ }\KeywordTok{solve}\NormalTok{(vandermonde, y)}
+  
+  \KeywordTok{names}\NormalTok{(beta) <-}\StringTok{ }\OtherTok{NULL}
+  \KeywordTok{return}\NormalTok{(beta)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:hopoliexmp}{}{\label{exm:hopoliexmp} }Diketahui koordinat 3 buah titik yaitu (-1,-2), (1,2) dan (0,1). Jika diketahui titik keempat memiliki koordinat sumbu \(x\) sebesar -2. Lakukan interpolasi untuk menentukan koordinat sumbu \(y\) titik keempat tersebut!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk menyelesaiakn contoh soal tersebut, kita perlu terlebih dahulu membentuk matriks sesuai dengan Persamaan \eqref{eq:hointereq3}. Berdasarkan soal tersebut, terdapat tiga buah titik data yang diketahui, sehingga polinomial yang hendak dibentuk selanjutnya adalah polinomial berderajat 2.
+
+\begin{equation*}
+\begin{bmatrix}
+     -1^2   & -1^{1}  & 1            \\[0.3em]
+     1^2    & 1^{1}   & 1            \\[0.3em]
+     0^2    & 0^{1}   & 1
+     \end{bmatrix}
+\begin{bmatrix}
+     \beta_2                                          \\[0.3em]
+     \beta_1                                          \\[0.3em]
+     \beta_0                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     -2                                          \\[0.3em]
+     2                                           \\[0.3em]
+     1                                       
+     \end{bmatrix}
+\end{equation*}
+
+Setelah matriks tersebut terbentuk, pembaca dapat menyelesaikannya menggunakan berbagai metode yang telah penulis jelaskan pada Chapter \ref{linearaljabar} untuk memperoleh nilai \(\beta\).
+
+Untuk menyelesaikan contoh soal tersebut pada \texttt{R}, kiat perlu membentuk matriks \(x\) dan \(y\) terlebih dahulu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{-1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Koefisien persamaan polinomial dihitung menggunakan fungsi \texttt{poly\_inter()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(coeff <-}\StringTok{ }\KeywordTok{poly_inter}\NormalTok{(x, y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1  2  1
+\end{verbatim}
+
+Berdasarkan hasil perhitungan, diperoleh nilai \(\beta\). Nilai tersebut selanjutnya digunakan untuk membentuk persamaan polinomial. Berikut merupakan persamaan polinomial yang terbentuk:
+
+\[
+f\left(x\right)=1x^2+2x-1
+\]
+
+Fungsi \texttt{horner\_poly()} selanjutnya digunakan untuk mengevaluasi polinomial tersebut. Berikut adalah hasil substitusi \(x\) pada persamaan tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{horner_poly}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1
+\end{verbatim}
+
+Hasil yang diperoleh terlihat cukup sesuai jika kita perhatikan visualisasi ketiga titik tersebut pada Gambar \ref{fig:hopoliviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/hopoliviz} 
+
+}
+
+\caption{Interpolasi kuadratik tiga titik 
+(Sumber:Howard, 2017).}\label{fig:hopoliviz}
+\end{figure}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:hopoliexmp2}{}{\label{exm:hopoliexmp2} }Dengan menggunakan data pada Contoh \ref{exm:linterpexmp}, lakukan proses perhitungan untuk membentuk persamaan polinomial menggunakan fungsi \texttt{poly\_inter()}
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Berdasarkan data pada Contoh \ref{exm:linterpexmp}, polinomial yang terbentuk merupakan polinomial derajat 1 (linier). Berikut adalah nilai koefisien yang dihasilkan dari perhitungan menggunakan fungsi \texttt{poly\_inter()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{-1}\NormalTok{)}
+\KeywordTok{poly_inter}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1  2
+\end{verbatim}
+
+Meskipun proses perhitungan menggunakan fungsi \texttt{poly\_inter()} lebih rumit dibandingkan dengan fungsi \texttt{linear\_poly()}, hasil perhitungan keduanya menggunakan data pada Contoh \ref{exm:linterpexmp} menghasilkan hasil yang sama.
+
+\hypertarget{pwinter}{%
+\section{Interpolasi Piecewise}\label{pwinter}}
+
+Interpolasi dengan polinomial sering memberikan hasil yang tidak dapat diterima. Interpolasi polinomial yang dihasilkan dari sejumlah besar data titik biasanya berderajat tinggi. Polinomial berderajat tinggi pada umumnya bersifat osilatif (grafiknya naik turun secara cepat). Akibatnya, perubahan data pada interval kecil dapat menyebabkan fluktuasi besar pada keseluruhan interval. Karena alasan ini, biasanya interpolasi hanya menggunakan polinomial berderajat rendah.
+
+Interpolasi piecewise menawarkan alternatif lain. Pada interpolasi piecewise, pada titik yang berbeda sepanjang kurva, nilai fungsi lebih mungkin lebih baik didekati menggunakan dua atau lebih interpolasi. Pada metode ini kita akan membuat fungsi interpolasi ditiap antara dua titik observasi.
+
+Pada sub-Chapter ini akan dijelaskan 2 buah metode interpolasi piecewise, yaitu: interpolasi linier piecewise dan interpolasi kubik spline. Interpolasi pertama dilakukan menggunakan persamaan linier, sehingga kurva yang terbentuk bukan merupakan kurva kontinu. Interpolasi selanjutnya dilakukan menggunakan persamaan polinomial berderajat tinggi sehingga kurva yang dihasilkan lebih halus (tidak ada sudut siku pada setiap titik).
+
+\hypertarget{pwlininter}{%
+\subsection{Interpolasi Linier Piecewise}\label{pwlininter}}
+
+Interpolasi linier piecewise merupakan interpolasi yang menggunakan pendekatan interpolasi linier. Fungsi linier akan dibentuk pada setiap dua titik observasi. Untuk lebih memahaminya perhatikan kembali Gambar \ref{fig:hopoliviz}. Pada gambar tersebut sebelumnya kita telah membentuk persamaan kudratik untuk menghubungkan titik-titik tersebut. Dibanding menggunakan persamaan polinomial seperti kuadratik tersebut, interpolasi piecewise akan menghubungkan tiap dua titik observasi tersebut dengan garis lurus.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Interpolasi Linier Piecewise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan set titik berpasangan \(\left(x,y\right)\) yang telah diurutkan berdasarkan nilai sumbu \(x\).
+\item
+  Hitung \(m\) pada setiap dua titik berdekatan menggunakan Persamaan \eqref{eq:lineinter}
+\item
+  Hitung \(b\) pada setiap dua titik berdekatan menggunakan Persamaan \eqref{eq:lineinter2}
+\item
+  Definiskan fungsi linier berdasarkan nilai \(m\) dan \(b\)
+\item
+  Hitung \(y\) dengan cara substitusi nilai \(x\) pada persamaan linier untuk melakukan interpolasi nilai \(y\) yang ingin dicari.
+\item
+  Untuk melakukan ekstrapolasi dengan titik observasi diluar rentang titik diketahui, gunakan persamaan linier yang berada pada bagian ujung terdekat dengan nilai \(x\) yang hendak dicari nilai \(y\)-nya.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada \texttt{R} untuk membentuk persamaan linier piecewise. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwise_linterp <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}\OperatorTok{-}\DecValTok{1}
+  
+\NormalTok{  y <-}\StringTok{ }\NormalTok{y[}\KeywordTok{order}\NormalTok{(x)]}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{x[}\KeywordTok{order}\NormalTok{(x)]}
+  
+\NormalTok{  m_vec <-}\StringTok{ }\NormalTok{b_vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{    m <-}\StringTok{ }\NormalTok{(y[i}\OperatorTok{+}\DecValTok{1}\NormalTok{]}\OperatorTok{-}\NormalTok{y[i]) }\OperatorTok{/}\StringTok{ }\NormalTok{(x[i}\OperatorTok{+}\DecValTok{1}\NormalTok{]}\OperatorTok{-}\NormalTok{x[i])}
+\NormalTok{    b <-}\StringTok{ }\NormalTok{y[i}\OperatorTok{+}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{m}\OperatorTok{*}\NormalTok{x[i}\OperatorTok{+}\DecValTok{1}\NormalTok{]}
+\NormalTok{    m_vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(m_vec, m)}
+\NormalTok{    b_vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(b_vec, b)}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{b =}\NormalTok{ b_vec, }\DataTypeTok{m =}\NormalTok{ m_vec))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:pwiselinexm}{}{\label{exm:pwiselinexm} }Tentukan persamaan-persamaan linier yang dihasilkan dari titik observasi yang ditampilkan pada Contoh \ref{exm:hopoliexmp}?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk menentukan persamaan-persamaan linier yang menghubungkan setiap titik, kita akan menggunakan fungsi \texttt{pwise\_linterp()} yang telah kita buat. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{-2}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{-1}\NormalTok{)}
+
+\KeywordTok{pwise_linterp}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $b
+## [1] -3 -1 -1
+## 
+## $m
+## [1] -1  1  3
+\end{verbatim}
+
+Jika persamaan-persamaan yang terbentuk tersebut divisualisasikan akan terlihat seperti pada Gambar \ref{fig:pwiselinviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/pwiselinviz} 
+
+}
+
+\caption{Interpolasi linier piecewise empat titik 
+(Sumber:Howard, 2017).}\label{fig:pwiselinviz}
+\end{figure}
+
+\texttt{R} juga menyediakan fungsi untuk melakukan interpolasi linier piecewise. Fungsi \texttt{approxfun()} dapat digunakan untuk melakukan interpolasi tersebut. Fungsi \texttt{approxfun()} hanya memerlukan dua input yaitu vektor \(x\) dan vektor \(x\). Untuk lebih memahaminya, kita akan menggunakan kembali data yang disajikan pada Contoh \ref{exm:hopoliexmp} untuk membuat fungsi linier piecewise. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{approxfun}\NormalTok{(x, y)}
+
+\CommentTok{# tentukan nilai y jika x= 0}
+\KeywordTok{f}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# tentukan nilai y jika x = 0.5}
+\KeywordTok{f}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5
+\end{verbatim}
+
+\hypertarget{cubicspline}{%
+\subsection{Interpolasi Spline Kubik}\label{cubicspline}}
+
+Jika menggunakan interpolasi polinomial berderajat satu (sebuah garis) lebih dari beberapa interval merupakan peningkatan dari satu baris interpolasi, dan jika menggunakan polinomial berderajat tinggi juga merupakan peningkatan dari satu garis interpolasi tunggal, maka dapat disimpulkan bahwa penggunaan polinomial berderajat tinggi pada selang beberapa interval juga akan menjadi peningkatan dalam proses interpolasi. Dalam beberapa kasus, hal tersebut benar, tetapi kita masih menghadapi sudut tajam di mana masing-masing kurva interpolasi tergabung (interpolasi linier piecewise). Sudut tajam ini mencegah diferensiasi dan pada prakteknya tidak dapat digunakan untuk memodelkan beberapa fungsi di dunia nyata, seperti \emph{roller coaster span}.
+
+Interpolasi spline kubik memecahkan masalah ini. Interpolasi ini akan memberikan kurva tergabung yang halus. Hal tersebut juga membuat spline terintegrasi. Karena setiap bagian individu diwakili oleh kurva kubik (polinomial derajat 3), maka masing-masing bagian individu juga dapat dianalisis sebagai kurva kubik. Dengan asumsi ada \(n\) titik data untuk interpolasi, kita akan mendefinisikan \(S_i\) sebagai fungsi polinomial kubik yang mewakili kurva pada domain \(\left[x_i; x_{i + 1}\right]\). Kemudian untuk \(n\) titik observasi, ada \(n - 1\) interpolasi polinomial kubik.
+
+Bentuk umum seri polinomial dituliskan pada Persamaan \eqref{eq:pwisequb}.
+
+\begin{equation}
+S_i=d_i\left(x-x_i\right)^3+c_i\left(x-x_i\right)^2+b_i\left(x-x_i\right)+a_i
+  \label{eq:pwisequb}
+\end{equation}
+
+Ini mengarah ke 4 nilai yang tidak diketahui tidak diketahui, yaitu: \(a_i\), \(b_i\), \(c_i\), dan \(d_i\) pada setiap Persamaan \eqref{eq:pwisequb}. Oleh karena itu, ada \(4 \left(n - 1\right) = 4n - 4\) nilai yang tidak diketahui. Karena kita ingin spline membentuk garis kontinu dan dapat didiferensiasi, ada satu set persamaan yang menentukan spline kubik:
+
+\begin{equation}
+S_i\left(x_i\right)=y_i,\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-1
+  \label{eq:pwisequb2}
+\end{equation}
+
+\begin{equation}
+S_i\left(x_{i+1}\right)=y_{i+1},\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-1
+  \label{eq:pwisequb3}
+\end{equation}
+
+\begin{equation}
+S_i'\left(x_{i+1}\right)=S'_{i+1}\left(x_i\right),\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-2
+  \label{eq:pwisequb4}
+\end{equation}
+
+\begin{equation}
+S_i''\left(x_{i+1}\right)=S''_{i+1}\left(x_i\right),\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-2
+  \label{eq:pwisequb5}
+\end{equation}
+
+Persamaan \eqref{eq:pwisequb2} dan \eqref{eq:pwisequb3} sudah cukup jelas. Persyaratan ini memastikan bahwa jika kita mengevaluasi spline di salah satu node internal, hasil yang akan kita peroleh merupakan jawaban yang telah ditentukan, yaitu spline yang dievaluasi pada \(x_i\) untuk beberapa \(i\) adalah \(y_i\), dan setiap komponen spline bergabung dengan rapi. Persamaan \eqref{eq:pwisequb4} memastikan bahwa kita memiliki turunan pertama yang berkelanjutan di setiap simpul internal. Ini mencegah terbentuknya sudut tajam pada tiap node. Persamaan \eqref{eq:pwisequb5} memastikan turunan kedua juga kontinu, dimana kondisi ini menguntungkan karena itu berarti turunan pertama itu sendiri dapat didiferensiasi juga.
+
+Kondisi ini menyebabkan ada \(4n − 6\) kondisi yang harus kita penuhi. Jika \(4n − 4\) kita yang tidak diketahui dipecahkan sebagai sebuah matriks, dan akhirnya matriks tersebut akan terpecahkan, matriks akan menjadi kurang ditentukan. Kita dapat menyelesaikan kondisi tersebut dengan memasukkan dua ketentuan tambahan. Dengan splines kubik, secara normal adalah menentukan akhir di kedua ujung untuk mencapai dua kondisi tambahan. Untuk contoh ini, dua kondisi yang akan kita tambahkan adalah \(S_i''\left(x_{i}\right)= 0\) dan \(S_i''\left(x_{n}\right)= 0\). Kedua kondisi ini memastikan bahwa pada titik akhir, turunan pertamanya linier dan oleh karena itu fungsi spline berlanjut ke arah yang sudah berjalan. Interpolasi spline kubik ini disebut juga sebagai ``natural spline''.
+
+Awalnya, kita dapat melihat bahwa setiap polinomial kubik \(S_i\) digeser ke kanan oleh unit \(x_i\) atau bergeser ke kiri jika \(x_i\) negatif. Pada \(x_i\) nilai fungsi adalah \(a_i\) yang berarti \(a_i = y_i\) untuk setiap nilai \(i\). Menyelesaikan sisa koefisien yang ada akan lebih kompleks, tetapi sekarang \(3n\) tidak diketahui dengan \(3n\) kondisi. Derivasi penuh tersedia dari berbagai sumber, tetapi secara garis besar dari Persamaan \eqref{eq:pwisequb4} kita mendapatkan \(S_i'\left(x_{i+1}\right)=S'_{i+1}\), kemudian \(S'_{i + 1} - S'_i \left(x\right) = 0\), dan kita dapat mensubstitusi Persamaan \eqref{eq:pwisequb} ke dalam kedua komponen, pemecahan untuk \(d_i\) dalam hal ini \(x_i\), \(y_i\), dan \(c_i\). Proses yang sama dapat direplikasi dengan Persamaan \eqref{eq:pwisequb5} dan \(b_i\). Hasilnya adalah matriks tridiagonal, seperti yang ada pada Chapter \ref{matriktridiagonal}, yang dapat dipecahkan untuk menemukan koefisien. Terdapat sebuah matriks, A, sedemikian rupa sehingga,
+
+\begin{equation}
+AC=V
+  \label{eq:pwisequb6}
+\end{equation}
+
+dimana \(A\) merupakan matriks tridiagonal. Pada matriks tridiagonal ini \(\left(u_1,u_2,\dots,u_{n-1}\right)\) merupakan vektor \(U\), dan vektor \(M\), \(L\), dan \(V\) ditentukan dengan cara serupa. Matriks ini sedemikian rupa,
+
+\begin{equation}
+u_i=l_i=x_{i+1}-x_i
+  \label{eq:pwisequb7}
+\end{equation}
+
+kecuali pada \(u_0=l_n\). Lebih jauh, diagonal utama \(D\) ditentukan menggunakan Persamaan \eqref{eq:pwisequb8}.
+
+\begin{equation}
+m_i=2\left(x_{i+1}-x_i+x_i-x_{i-1}\right)
+  \label{eq:pwisequb8}
+\end{equation}
+
+kecuali pada \(d_0=d_n=1\). Akhirnya vektor \(V\) ditentukan dengan Persamaan \eqref{eq:pwisequb9}.
+
+\begin{equation}
+v_i=3\left(\frac{y_{i+1}-y_i}{x_{i+1}-x_i}-\frac{y_i-y_{i-1}}{x_i-x_{i-1}}\right)
+  \label{eq:pwisequb9}
+\end{equation}
+
+kecuali pada \(v_0=v_n=0\). Sehingga,
+
+\begin{equation}
+\begin{bmatrix}
+     m_{1} & u_{1} & 0      &     0  & 0             \\[0.3em]
+     l_{1} & m_{2} & u_{2}  & 0      & 0             \\[0.3em]
+     0     & l_{2} & \ddots & \ddots & 0             \\[0.3em]
+     0     & 0     & \ddots & \ddots & u_{n-1}       \\[0.3em]
+     0     & 0     & 0      &l_{n-1} & m_{n}
+     \end{bmatrix}
+C
+= \begin{bmatrix}
+     v_1                                          \\[0.3em]
+     v_2                                          \\[0.3em]
+     \vdots                                       \\[0.3em]
+     \vdots                                       \\[0.3em]
+     v_n                                       
+     \end{bmatrix}
+  \label{eq:pwisequb10}
+\end{equation}
+
+Penyelesaian Persamaan \eqref{eq:pwisequb10} akan menghasilkan vektor koefisien \(c\), sehingga koefisien \(b\) dapat dihitung menggunakan Persamaan \eqref{eq:pwisequb11}.
+
+\begin{equation}
+b_i=\frac{y_{i+1}-y_i}{x_{i+1}-x_i}-\frac{x_{i+1}-x_i}{3}\left(2c_i+c_{i+1}\right)
+  \label{eq:pwisequb11}
+\end{equation}
+
+Dengan menggunakan vektor \(C\) yang sudah diketahui, koefisien \(d\) dapat dihitung menggunakan Persamaan \eqref{eq:pwisequb12}.
+
+\begin{equation}
+d_i=\frac{c_{i+1}-c_i}{3\left(x_{i+1}-x_i\right)}
+  \label{eq:pwisequb12}
+\end{equation}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Interpolasi Spline Kubik}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan set titik berpasangan \(\left(x,y\right)\).
+\item
+  Tentukan koefisien \(a_i\) menggunakan Persamaan \eqref{eq:pwisequb2}, dimana \(a_i = y_i\).
+\item
+  Hitung elemen diagonal bawah (\(l_i\)) dan elemen diagonal atas (\(u_i\)) matriks tridiagonal menggunakan Persamaan \eqref{eq:pwisequb7}, dimana \(u_0=l_n=0\).
+\item
+  Hitung elemen diagonal utama (\(m_i\)) menggunakan Persamaan \eqref{eq:pwisequb8}, dimana \(d_0=d_n=1\).
+\item
+  Hitung elemen vektor \(V\) menggunakan Persamaan \eqref{eq:pwisequb9}, dimana \(v_0=v_n=0\).
+\item
+  Susunlah elemen \(l_i\), \(u_i\), dan \(m_i\) menjadi matriks tridiagonal \(A\).
+\item
+  Deifinisikan persamaan linier seperti pada Persamaan \eqref{eq:pwisequb6}
+\item
+  Selesaikan sistem persamaan linier pada Persamaan \eqref{eq:pwisequb6} sehingga diperoleh vektor \(C\) yang merupakan kumpulan koefisien \(c\).
+\item
+  Hitung koefisien \(b_i\) menggunakan Persamaan \eqref{eq:pwisequb11}
+\item
+  Hitung koefisien \(d_i\) menggunakan Persamaan \eqref{eq:pwisequb12}.
+\item
+  Bentuk seri persamaan polinomial menggunakan elemen koefisien \(a\), \(b\), \(c\), dan \(d\) yang telah dihitung.
+\item
+  Untuk melakukan ekstrapolasi dengan titik observasi diluar rentang titik diketahui, gunakan persamaan polinomial yang berada pada bagian ujung terdekat dengan nilai \(x\) yang hendak dicari nilai \(y\)-nya.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, kita dapat menyusun suatu fungsi pada \texttt{R} untuk mencari seri persamaan polinomial derajat tiga. Fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cubic_spline <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{  d_vec <-}\StringTok{ }\NormalTok{b_vec <-}\StringTok{ }\NormalTok{a_vec <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+\NormalTok{  vec <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n)}
+\NormalTok{  delta_x <-}\StringTok{ }\NormalTok{delta_y <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+  
+  \CommentTok{## Menghitung nilai selisih dan vektor A}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(n}\DecValTok{-1}\NormalTok{))\{}
+\NormalTok{    a_vec[i] <-}\StringTok{ }\NormalTok{y[i]}
+\NormalTok{    delta_x[i] <-}\StringTok{ }\NormalTok{x[i}\OperatorTok{+}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{x[i]}
+\NormalTok{    delta_y[i] <-}\StringTok{ }\NormalTok{y[i}\OperatorTok{+}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{y[i]}
+\NormalTok{  \}}
+  
+  \CommentTok{## Menyusun matriks tridiagona}
+\NormalTok{  Au <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, delta_x[}\DecValTok{2}\OperatorTok{:}\NormalTok{(n}\DecValTok{-1}\NormalTok{)])}
+\NormalTok{  Am <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\OperatorTok{*}\NormalTok{(delta_x[}\DecValTok{1}\OperatorTok{:}\NormalTok{(n}\DecValTok{-2}\NormalTok{)]}\OperatorTok{+}\NormalTok{delta_x[}\DecValTok{2}\OperatorTok{:}\NormalTok{(n}\DecValTok{-1}\NormalTok{)]), }\DecValTok{1}\NormalTok{)}
+\NormalTok{  Al <-}\StringTok{ }\KeywordTok{c}\NormalTok{(delta_x[}\DecValTok{1}\OperatorTok{:}\NormalTok{(n}\DecValTok{-2}\NormalTok{)], }\DecValTok{0}\NormalTok{)}
+  
+\NormalTok{  vec[}\DecValTok{0}\NormalTok{] <-}\StringTok{ }\NormalTok{vec[n] <-}\StringTok{ }\DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{(n}\DecValTok{-1}\NormalTok{))}
+\NormalTok{    vec[i] <-}\StringTok{ }\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{(delta_y[i]}\OperatorTok{/}\NormalTok{delta_x[i] }\OperatorTok{-}\StringTok{ }
+\StringTok{                   }\NormalTok{delta_y[i}\DecValTok{-1}\NormalTok{]}\OperatorTok{/}\NormalTok{delta_x[i}\DecValTok{-1}\NormalTok{])}
+  
+  \CommentTok{## penyelesaian tridiagonal matriks}
+\NormalTok{  nm <-}\StringTok{ }\KeywordTok{length}\NormalTok{(Am)}
+\NormalTok{  Al <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{ , Al)}
+  
+  \CommentTok{### forward sweep}
+\NormalTok{  Au[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{Au[}\DecValTok{1}\NormalTok{] }\OperatorTok{/}\StringTok{ }\NormalTok{Am[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  vec[}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{vec[}\DecValTok{1}\NormalTok{] }\OperatorTok{/}\StringTok{ }\NormalTok{Am[}\DecValTok{1}\NormalTok{]}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{(n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))\{}
+\NormalTok{      Au[i] <-}\StringTok{ }\NormalTok{Au[i] }\OperatorTok{/}\StringTok{ }\NormalTok{(Am[i] }\OperatorTok{-}\StringTok{ }\NormalTok{Al[i] }\OperatorTok{*}\StringTok{ }\NormalTok{Au[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\NormalTok{      vec[i] <-}\StringTok{ }\NormalTok{(vec[i] }\OperatorTok{-}\StringTok{ }\NormalTok{Al[i] }\OperatorTok{*}\StringTok{ }\NormalTok{vec[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{]) }\OperatorTok{/}
+\StringTok{                }\NormalTok{(Am[i] }\OperatorTok{-}\StringTok{ }\NormalTok{Al[i] }\OperatorTok{*}\StringTok{ }\NormalTok{Au[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\NormalTok{  \}}
+\NormalTok{  vec[n] <-}\StringTok{ }\NormalTok{(vec[n] }\OperatorTok{-}\StringTok{ }\NormalTok{Al[n] }\OperatorTok{*}\StringTok{ }\NormalTok{vec[n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}\OperatorTok{/}
+\StringTok{            }\NormalTok{(Am[n] }\OperatorTok{-}\StringTok{ }\NormalTok{Al[n] }\OperatorTok{*}\StringTok{ }\NormalTok{Au[n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{### backward sweep}
+\NormalTok{  c_vec <-}\StringTok{ }\KeywordTok{rep.int}\NormalTok{ (}\DecValTok{0}\NormalTok{, n)}
+\NormalTok{  c_vec[n] <-}\StringTok{ }\NormalTok{vec[n]}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ (n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{:}\DecValTok{1}\NormalTok{)}
+\NormalTok{      c_vec[i] <-}\StringTok{ }\NormalTok{vec[i] }\OperatorTok{-}\StringTok{ }\NormalTok{Au[i] }\OperatorTok{*}\StringTok{ }\NormalTok{c_vec[i }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{]}
+  
+ \CommentTok{## Hitung vektor B dan D dari vektor C}
+ \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(n}\DecValTok{-1}\NormalTok{))\{}
+\NormalTok{   b_vec[i] <-}\StringTok{ }\NormalTok{(delta_y[i]}\OperatorTok{/}\NormalTok{delta_x[i])}\OperatorTok{-}
+\StringTok{               }\NormalTok{(delta_x[i]}\OperatorTok{/}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{c_vec[i]}\OperatorTok{+}\NormalTok{c_vec[i}\OperatorTok{+}\DecValTok{1}\NormalTok{])}
+\NormalTok{   d_vec[i] <-}\StringTok{ }\NormalTok{(c_vec[i}\OperatorTok{+}\DecValTok{1}\NormalTok{]}\OperatorTok{-}\NormalTok{c_vec[i]) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{3}\OperatorTok{*}\NormalTok{delta_x[i])}
+\NormalTok{ \}}
+  
+ \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =}\NormalTok{ a_vec, }\DataTypeTok{b =}\NormalTok{ b_vec, }\DataTypeTok{c =}\NormalTok{ c_vec[}\OperatorTok{-}\NormalTok{n], }\DataTypeTok{d =}\NormalTok{ d_vec))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:cubicsplineexm}{}{\label{exm:cubicsplineexm} }Tentukan persamaan-persamaan spline kubik yang dihasilkan dari titik observasi yang ditampilkan pada Contoh \ref{exm:hopoliexmp}?
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Untuk menentukan persamaan-persamaan linier yang menghubungkan setiap titik, kita akan menggunakan fungsi \texttt{cubic\_spline()} yang telah kita buat. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{cubic_spline}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] -1 -2 -1
+## 
+## $b
+## [1] -1.4 -0.2  2.2
+## 
+## $c
+## [1] 0.0 1.2 1.2
+## 
+## $d
+## [1]  0.4  0.0 -0.4
+\end{verbatim}
+
+Sebagai contoh untuk domain \(\left[0,1\right]\), persamaan spline kubiknya adalah \(-0,4x^3+1,2x^2+2,2x-1\). Jika persamaan-persamaan yang terbentuk tersebut divisualisasikan akan terlihat seperti pada Gambar \ref{fig:cubicsplineviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{./images/cubicsplineviz} 
+
+}
+
+\caption{Interpolasi spline kubik empat titik 
+(Sumber:Howard, 2017).}\label{fig:cubicsplineviz}
+\end{figure}
+
+Pada \texttt{R} juga terdapat fungsi \texttt{splinefun()} untuk melakukan interpolasi spline. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{splinefun}\NormalTok{(x, }\DataTypeTok{y =} \OtherTok{NULL}\NormalTok{,}
+          \DataTypeTok{method =} \KeywordTok{c}\NormalTok{(}\StringTok{"fmm"}\NormalTok{, }\StringTok{"periodic"}\NormalTok{, }\StringTok{"natural"}\NormalTok{, }\StringTok{"monoH.FC"}\NormalTok{, }\StringTok{"hyman"}\NormalTok{),}
+          \DataTypeTok{ties =}\NormalTok{ mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x,y} : vektor titik yang akan dilakukan interpolasi
+\item
+  \texttt{method} : spesifikasi jenis spline yang digunakan. Nilai yang mungkin antara lain: \texttt{"fmm"}, \texttt{"natural"}, \texttt{"periodic"}, \texttt{"monoH.FC"} dan \texttt{"hyman"}.
+\item
+  \texttt{ties} : metode untuk menangani nilai imbang pada titik yang akan diinterpolasi.
+\end{itemize}
+\end{quote}
+
+Untuk melakukan interpolasi spline kubik, metode yang digunakan adalah \texttt{"natural"}. Berikut adalah contoh interpolasi menggunakan kembali data pada Contoh \ref{exm:hopoliexmp}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spline <-}\StringTok{ }\KeywordTok{splinefun}\NormalTok{(x, y, }\DataTypeTok{method=}\StringTok{"natural"}\NormalTok{)}
+
+\CommentTok{# uji dengan nilai x yang sama}
+\KeywordTok{spline}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1 -2 -1  2
+\end{verbatim}
+
+FUngsi \texttt{splinefun()} menghasilkan nilai yang sama persis dengan proses interpolasi yang telah kita lakukan.
+
+\hypertarget{studi-kasus-1}{%
+\section{Studi Kasus}\label{studi-kasus-1}}
+
+Pada studi kasus kali ini, kita akan membahas teknik mengisi nilai yang hilang pada data runtun waktu. Terdapat banyak teknik untuk yang dapat digunakan untuk mengisi data yang hilang. Salah satu teknik yang dapat digunakan adalah dengan melakukan interpolasi.
+
+\hypertarget{interpolasi-data-runtun-waktu}{%
+\subsection{Interpolasi Data Runtun Waktu}\label{interpolasi-data-runtun-waktu}}
+
+Pengisian data hilang pada data runtun waktu (\emph{time series}) dapat dilakukan dengan berbagai cara sesuai dengan situasi yang dihadapi. Pengisian dapat menggunakan nilai rata-rata jika data memiliki pola \emph{white noise}, observasi terakhir atau observasi dimasa mendatang, dan interpolasi linier.
+
+Data yang digunakan pada contoh kasus kali ini adalah data \texttt{airquality}. Dataset tersebut merupakan data kualitas udara bulan Mei sampai September 1973 yang ada di New York. Berikut adalah ringkasan data \texttt{airquality} tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA's   :37       NA's   :7                                       
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0  
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    153 obs. of  6 variables:
+##  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+##  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+##  $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+##  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+##  $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+Pada contoh kasus kali ini kita akan mencoba melakukan pengisian data hilang pada data \texttt{Solar.R} pada dataset \texttt{airquality}. Langkah pertama yang perlu dilakukan adalah membuat objek data runtun waktu pada data tersebut.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Solar <-}\StringTok{ }\KeywordTok{ts}\NormalTok{(airquality[,}\StringTok{"Solar.R"}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Visualisasi data tersebut disajikan pada Gambar \ref{fig:timeviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/timeviz-1} 
+
+}
+
+\caption{Visualisasi variabel radiasi matahari pada dataset airquality.}\label{fig:timeviz}
+\end{figure}
+
+Berdasarkan visualisasi tersebut terdapat garis yang terputus yang menunjukkan data yang hilang. Agar garis tersebut dapat tersambung, kita perlu melakukan pengisian nilai yang hilang pada data tersebut. Berikut adalah sintaks yang digunakan untuk melakukan pengisian nilai hilang tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(xts)}
+\CommentTok{# metode nilai rata-rata}
+\NormalTok{Solar_mean <-}\StringTok{ }\KeywordTok{na.fill}\NormalTok{(Solar, }\DataTypeTok{fill=}\KeywordTok{mean}\NormalTok{(Solar, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{# metode last observation carried forward}
+\NormalTok{Solar_locf <-}\StringTok{ }\KeywordTok{na.locf}\NormalTok{(Solar)}
+
+\CommentTok{# metode next observation caried backward}
+\NormalTok{Solar_nocb <-}\StringTok{ }\KeywordTok{na.locf}\NormalTok{(Solar, }\DataTypeTok{fromLast =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# metode interpolasi linier}
+\NormalTok{Solar_linterp <-}\StringTok{ }\KeywordTok{na.approx}\NormalTok{(Solar)}
+\end{Highlighting}
+\end{Shaded}
+
+Berikut adalah visualisasi menggunakan metode nilai rata-rata:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/timeviz2-1} 
+
+}
+
+\caption{Visualisasi data radiasi matahari menggunakan metode nilai rata-rata.}\label{fig:timeviz2}
+\end{figure}
+
+Secara berturut-turut berikut adalah visualisasi dari metode locf, nocb, dan interpolasi linier:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/timeviz3-1} 
+
+}
+
+\caption{Visualisasi data radiasi matahari menggunakan metode locf.}\label{fig:timeviz3}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/timeviz4-1} 
+
+}
+
+\caption{Visualisasi data radiasi matahari menggunakan metode nocb.}\label{fig:timeviz4}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/timeviz5-1} 
+
+}
+
+\caption{Visualisasi data radiasi matahari menggunakan metode interpolasi linier.}\label{fig:timeviz5}
+\end{figure}
+
+Pemilihan metode interpolasi mana yang sesuai akan berbeda pada setiap situasi dan jenis data yang akan dilakukan interpolasi. Interpolasi data runtun waktu pada bidang lingkungan umumnya menggunakan metode interpolasi nilai rata-rata dan linier dan tidak menutup kemungkinan interpolasi dengan metode lain yang telah dijelaskan pada buku ini dapat pula digunakan.
+
+Pada situasi dimana data membentuk pola \emph{white noises} (pola acak disekitar nilai rata-rata dan memiliki varians yang konstan) seperti yang ditunjukkan variabel \texttt{Solar.R}, interpolaasi dengan nilai rata-rata cukup sesuai untuk digunakan untuk mengisi nilai hilang (\emph{missing value}) pada data runtun waktu tersebut.
+
+\hypertarget{referensi-7}{%
+\section{Referensi}\label{referensi-7}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Howard, J.P. 2017. \textbf{Computational Methods for Numerical Analysis with R}. CRC Press.
+\item
+  Kreyszig, E. 2011. \textbf{Advanced Engineering Mathematics, 10th Edition}. John Wiley \& Sons.
+\item
+  Suparno, S. 2008. \textbf{Komputasi untuk Sains dan Teknik Edisi II}. Departemen Fisika-FMIPA Universitas Indonesia.
+\end{enumerate}
+
+\hypertarget{latihan-2}{%
+\section{Latihan}\label{latihan-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Diberikan data titik (3,5), (0,-2), dan (4,1). Tentukan persamaan polinomial untuk melakukan interpolasi pada ketiga titik tersebut!
+\item
+  Jika diberikan 13 titik observasi, apakah saudara cenderung akan menggunakan interpolasi polinomial atau spline? jelaskan alasan saudara?
+\item
+  Bentuklah kembali fungsi \texttt{poly\_inter()} dengan menambahkan metode evaluasi polinomial ke dalam fungsi tersebut!
+\item
+  Pada Latihan No.1, bentuklah persamaan spline kubik menggunakan titik observasi tersebut!
+\end{enumerate}
+
+\hypertarget{diffinteg}{%
+\chapter{Diferensiasi dan Integrasi Numerik}\label{diffinteg}}
+
+Pada Chapter \ref{diffinteg}, penulis akan menjabarkan mengenai metode numerik untuk melakukan diferensiasi dan integrasi pada suatu fungsi. Adapun yang akan dibahas pada \emph{Chapter} ini antara lain:
+
+\begin{itemize}
+\tightlist
+\item
+  Metode Beda Hingga
+\item
+  Metode Integrasi Newton-Cotes
+\item
+  Metode Integrasi Kudratur Gauss
+\item
+  Metode Integrasi Adaptif
+\item
+  Metode Integrasi Romberg
+\item
+  Metode Integrasi Monte Carlo
+\item
+  Studi Kasus
+\end{itemize}
+
+\hypertarget{finitediff}{%
+\section{Metode Beda Hingga}\label{finitediff}}
+
+Diferensiasi merupakan proses mencari slope suatu garis pada titik yang diberikan. Secara umum proses diferensiasi dinyatakan melalui Persamaan \eqref{eq:diff}.
+
+\begin{equation}
+f'\left(x\right) \approx \frac{f\left(x+h\right)-f\left(x\right)}{h}
+  \label{eq:diff}
+\end{equation}
+
+Kita dapat menyatakan secara formal proses diferensiasi sebagai limit Persamaan \eqref{eq:diff} dimana \(h\) mendekati nol. Jadi kita ingin membuat nilai \(h\) sekecil mungkin untuk memperoleh pendekatan terbaik terhadap nilai turunan suatu fungsi. Kita membatasi nilai \(h\) pada sejumlah nilai yang masuk akal untuk mencegah pembagian dengan nilai yang tidak biasa. Kita juga harus memastikan \(f\left(x\right)\) dan \(f\left(x+h\right)\) terpisah cukup jauh untuk mencegah \emph{floating point round off error} mempengaruhi proses substraksi.
+
+Terdapat 3 buah metode untuk memperoleh turunan pertama suatu fungsi dengan menggunakan metode numerik, yaitu: metode selisih maju, metode selisih mundur, dan metode selisih tengah. Error pada ketiga metode numerik tersebut ditaksir menggunakan deret Taylor. Persamaan \eqref{eq:diff2} dan Persamaan \eqref{eq:diff3} menunjukkan persamaan untuk memperoleh turunan pertama dan taksiran error menggunakan metode selisih maju dan metode selisih mundur.
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x+h\right)-f\left(x\right)}{h} - \frac{h}{2} f''\left(c\right)
+  \label{eq:diff2}
+\end{equation}
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x\right)-f\left(x-h\right)}{h} - \frac{h}{2} f''\left(c\right)
+  \label{eq:diff3}
+\end{equation}
+
+Metode nilai tengah menggunakan ukuran langkah \(h\) dua kali dibandingkan dengan 2 metode lainnya. Error yang dihasilkan juga berbeda dengan kedua metode sebelumnya, dimana error dihasilkan dari pemotongan turunan ketiga pada deret Taylor. Secara umum metode selisih tengah memiliki akurasi yang lebih baik dibandingkan kedua metode sebelumnya karena metode ini mempertimbangkan dua sisi untuk memeriksa nilai \(x\). Persamaan \eqref{eq:diff4} merupakan persamaan untuk memperoleh nilai turunan pertama suatu fungsi dan estimasi error menggunakan deret Taylor.
+
+\begin{equation}
+f'\left(x\right) = \frac{f\left(x+h\right)-f\left(x-h\right)}{2h} - \frac{h^2}{6} f'''\left(c\right)
+  \label{eq:diff4}
+\end{equation}
+
+Bagaimana menentukan \(h\)? beberapa literatur menggunakan pendekatan \emph{machine error} \(\epsilon\) berdasarkan program yang digunakan untuk melakukan proses perhitungan. Metode selisih maju dan selisih mundur menggunakan pendekatan yang ditunjukkan pada Persamaan \eqref{eq:diff5}.
+
+\begin{equation}
+h^{\ast}=x\sqrt{\epsilon}
+  \label{eq:diff5}
+\end{equation}
+
+Untuk metode selisih tengah pendekatan nilai \(h\) menggunakan Persamaan \eqref{eq:diff6}.
+
+\begin{equation}
+h^{\ast}=x\sqrt[3]{\epsilon}
+  \label{eq:diff6}
+\end{equation}
+
+Kita dapat menggunakan Persamaan \eqref{eq:diff2} sampai Persamaan \eqref{eq:diff4} untuk membentuk sebuah program yang digunakan untuk menghitung turunan pertama suatu fungsi. Sintaks yang digunakan adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{findiff <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, x, h, }\DataTypeTok{method=}\OtherTok{NULL}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(method))\{}
+    \KeywordTok{warning}\NormalTok{(}\StringTok{"please select a method"}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{(method }\OperatorTok{==}\StringTok{ "forward"}\NormalTok{)\{}
+      \KeywordTok{return}\NormalTok{((}\KeywordTok{f}\NormalTok{(x}\OperatorTok{+}\NormalTok{h)}\OperatorTok{-}\KeywordTok{f}\NormalTok{(x))}\OperatorTok{/}\NormalTok{h)}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(method}\OperatorTok{==}\StringTok{"backward"}\NormalTok{)\{}
+      \KeywordTok{return}\NormalTok{((}\KeywordTok{f}\NormalTok{(x)}\OperatorTok{-}\KeywordTok{f}\NormalTok{(x}\OperatorTok{-}\NormalTok{h))}\OperatorTok{/}\NormalTok{h)}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(method}\OperatorTok{==}\StringTok{"central"}\NormalTok{)\{}
+      \KeywordTok{return}\NormalTok{((}\KeywordTok{f}\NormalTok{(x}\OperatorTok{+}\NormalTok{h)}\OperatorTok{-}\KeywordTok{f}\NormalTok{(x}\OperatorTok{-}\NormalTok{h))}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{h))}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      \KeywordTok{warning}\NormalTok{(}\StringTok{"you can use method: forward, bacward, or central"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:diffexm}{}{\label{exm:diffexm} }Hitunglah turunan pertama persamaan berikut menggunakan metode selisih titik tengah pada x =1 dan nilai h=0,05!
+\EndKnitrBlock{example}
+
+\[
+f\left(x\right)=e^{-x}\sin\left(2x\right)+1
+\]
+
+\textbf{Jawab}:
+
+Untuk menghitung turunan pertama menggunakan metode selisih tengah, kita dapat menggunakan Persamaan \eqref{eq:diff4}. Berikut adalah proses perhitungannya:
+
+\[
+f'\left(1\right) = \frac{f\left(1+0.05\right)-f\left(1-0,05\right)}{2\times0.05}=--0.6390352
+\]
+
+Dengan menggunakan fungsi \texttt{findiff()}, hasil yang diperoleh adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{findiff}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}
+  \KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{, }\DataTypeTok{x=}\DecValTok{1}\NormalTok{, }\DataTypeTok{h=}\FloatTok{0.05}\NormalTok{,}
+  \DataTypeTok{method=}\StringTok{"central"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6390352
+\end{verbatim}
+
+Kita dapat memperkecil nilai \(h\) untuk memperoleh akurasi yang lebih baik berdasarkan pendekatan Persamaan \eqref{eq:diff6}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{findiff}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{  }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}, }\DataTypeTok{x=}\DecValTok{1}\NormalTok{,}
+        \DataTypeTok{h=}\DecValTok{1}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{), }
+        \DataTypeTok{method=}\StringTok{"central"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6406956
+\end{verbatim}
+
+Penyelesaian persamaan matematik dalam bidang Teknik Lingkungan pada umumnya tidak hanya melibatkan turunan pertama, pada penyelesaian persamaan difusi umumnya menggunakan turunan kedua. Persamaan \eqref{eq:diff7} merupakan pendekatan numerik untuk memperoleh nilai turunan kedua suatu persamaan dengan pendekatan deret Taylor.
+
+\begin{equation}
+f''\left(x\right)=\frac{f\left(x+h\right)-2f\left(x\right)+f\left(x-h\right)}{h^2}-\frac{h^2}{12}f^{\left(4\right)}\left(c\right)
+  \label{eq:diff7}
+\end{equation}
+
+Fungsi \texttt{findiff2()} merupakan fungsi yang digunakan untuk menghitung turunan kedua suatu persamaan yang didasarkan pada Persamaan \eqref{eq:diff7}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{findiff2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, x, h)\{}
+  \KeywordTok{return}\NormalTok{((}\KeywordTok{f}\NormalTok{(x}\OperatorTok{+}\NormalTok{h)}\OperatorTok{-}\DecValTok{2}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x)}\OperatorTok{+}\KeywordTok{f}\NormalTok{(x}\OperatorTok{-}\NormalTok{h))}\OperatorTok{/}\NormalTok{(h}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Kita dapat menghitung kembali turunan kedua fungsi pada Contoh \ref{exm:diffexm} menggunakan fungsi \texttt{findiff2()}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{findiff2}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}
+  \KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}
+\NormalTok{\}, }\DataTypeTok{x=}\DecValTok{1}\NormalTok{, }\DataTypeTok{h=}\FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.3924205
+\end{verbatim}
+
+\hypertarget{diffother}{%
+\section{Diferensiasi Menggunakan Fungsi Lainnya di R}\label{diffother}}
+
+Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah paket, baik \emph{base package} maupun yang berasal dari paket lainnya.
+
+\hypertarget{diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff}{%
+\subsection{\texorpdfstring{Diferensiasi Metode Titik Pusat Mengggunakan Fungsi\texttt{diff()}}{Diferensiasi Metode Titik Pusat Mengggunakan Fungsidiff()}}\label{diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff}}
+
+Fungsi \texttt{diff()} pada paket \emph{base} dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung \emph{lag} suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen \texttt{lag\ =\ 2}. Berikut adalah contoh penerapan fungsi \texttt{diff()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\NormalTok{h <-}\StringTok{ }\NormalTok{x}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\NormalTok{xvec <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(x}\OperatorTok{-}\NormalTok{h, x}\OperatorTok{+}\NormalTok{h, h)}
+
+\CommentTok{# turunan pertama}
+\KeywordTok{diff}\NormalTok{(}\KeywordTok{f}\NormalTok{(xvec), }\DataTypeTok{lag=}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{h)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6406956
+\end{verbatim}
+
+\hypertarget{diferensiasi-menggunakan-paket-numderiv}{%
+\subsection{\texorpdfstring{Diferensiasi Menggunakan Paket \texttt{numDeriv}}{Diferensiasi Menggunakan Paket numDeriv}}\label{diferensiasi-menggunakan-paket-numderiv}}
+
+Paket standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah paket \texttt{numDeriv}. Pada paket tersebut terdapat fungsi \texttt{grad()} yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grad}\NormalTok{(func, x, }\DataTypeTok{method=}\StringTok{"Richardson"}\NormalTok{, }\DataTypeTok{method.args=}\KeywordTok{list}\NormalTok{(), ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{func}: Fungsi persamaan matematik yang akan dicari turunannya.
+\item
+  \textbf{x}: Lokasi atau titik yang akan dicari gradiennya
+\item
+  \textbf{method}: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:
+\item
+  ``simple'': metode selisih maju dengan \(h = 10^{-4}\)
+\item
+  ``Richardson'': metode interpolasi Richardson
+\item
+  ``complex'': \emph{complex-step derivative approach} dan dapat digunakan untuk persamaan \emph{complex-differentiable}.
+\item
+  \textbf{method.args}: argumen tambahan yang digunakan bersama dengan argumen \textbf{method}. Jika metode yang digunakan adalah ``simple'', nilai \(h\) dapat dispesifikasikan pada \textbf{method.args} jika diinginkan nilai \(h\) lainnya.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{grad()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numDeriv}\OperatorTok{::}\KeywordTok{grad}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+     \DataTypeTok{x=}\DecValTok{1}\NormalTok{, }\DataTypeTok{method =} \StringTok{"simple"}\NormalTok{, }
+     \DataTypeTok{method.args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{eps=}\DecValTok{1}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(.Machine}\OperatorTok{$}\NormalTok{double.eps)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6406956
+\end{verbatim}
+
+\hypertarget{diferensiasi-menggunakan-paket-pracma}{%
+\subsection{\texorpdfstring{DIferensiasi Menggunakan Paket \texttt{pracma}}{DIferensiasi Menggunakan Paket pracma}}\label{diferensiasi-menggunakan-paket-pracma}}
+
+Terdapat sejumlah fungsi pada paket \texttt{pracma} yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: \texttt{fderiv()}, \texttt{numderiv()}, \texttt{numdiff()}, dan \texttt{grad()}.
+
+Fungsi \texttt{fderiv()} dapat digunakan untuk melakukan diferensiasi orde pertama sampai dengan orde tinggi. Perlu dicatat bahwa diferensiasi cenderung kurang akurat jika orde diferensiasi semakin tinggi. Format yang digunakan untuk melakukan diferensiasi menggunakan fungsi \texttt{fderiv()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fderiv}\NormalTok{(f, x, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{h =} \DecValTok{0}\NormalTok{,}
+        \DataTypeTok{method =} \KeywordTok{c}\NormalTok{(}\StringTok{"central"}\NormalTok{, }\StringTok{"forward"}\NormalTok{, }\StringTok{"backward"}\NormalTok{), }
+\NormalTok{       ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: Fungsi persamaan matematik yang akan dicari turunannya.
+\item
+  \textbf{x}: Lokasi atau titik yang akan dicari gradiennya
+\item
+  \textbf{n}: Orde diferensiasi yang digunakan. Orde diferensiasi yang dapat digunakan adalah 1 sampai 8.
+\item
+  \textbf{method}: Metode estimasi yang digunakan. Metode yang dapat digunakan antara lain:
+\item
+  ``central'': metode titik pusat
+\item
+  ``forward'': metode selisih maju
+\item
+  ``bacward'': metode selisih mundur.
+\item
+  \textbf{\ldots{}}: argumen tambahan fungsi \textbf{f}.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{fderiv()} untuk memperoleh turunan pertama dan kedua persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pracma)}
+\CommentTok{# turunan 1}
+\KeywordTok{fderiv}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+       \DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{), }
+       \DataTypeTok{method =} \StringTok{"central"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6406956
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# turunan 2}
+\KeywordTok{fderiv}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+       \DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{n =} \DecValTok{2}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{), }
+       \DataTypeTok{method =} \StringTok{"central"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.3911581
+\end{verbatim}
+
+Fungsi \texttt{numderiv()} menggunakan ekstrapolasi Richardson untuk melakukan taksiran turunan suatu persamaan matematik. Berbeda dengan fungsi lainnya, fungsi \texttt{numderiv()} tidak hanya menampilkan hasil diferensiasi, fungsi ini juga menampilkan error absolut, error relatif, dan jumlah iterasi yang berlangsung. Berikut adalah format fungsi yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{numderiv}\NormalTok{(f, x0, }\DataTypeTok{maxiter =} \DecValTok{16}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{, ..., }
+         \DataTypeTok{tol =}\NormalTok{ .Machine}\OperatorTok{$}\NormalTok{double.eps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: Fungsi persamaan matematik yang akan dicari turunannya.
+\item
+  \textbf{x0}: Lokasi atau titik yang akan dicari gradiennya
+\item
+  \textbf{maxiter}: Iterasi maksimum yang digunakan.
+\item
+  \textbf{h}: \emph{step size} yang digunakan
+\item
+  \textbf{tol}: toleransi error yang digunakan.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{numderiv()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{numderiv}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+       \DataTypeTok{x0 =} \DecValTok{1}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $df
+## [1] -0.6406956
+## 
+## $rel.err
+## [1] 7.63096e-11
+## 
+## $niter
+## [1] 2
+\end{verbatim}
+
+Fungsi \texttt{numderiv()} memiliki keterbatasan dalam penggunaannya. Argumen \texttt{x0} yang digunakan haruslah angka numerik tunggal. Fungsi \texttt{numdiff()} mengatasi keterbatasan tersebut. Fungsi ini dapat menerima input berupa vektor, sehingga dapat digunakan untuk mencari nilai turunan pada sejumlah titik. Selain itu, output fungsi ini lebih sederhana, dimana hanya menampilkan hasil diferensiasinya saja. Berikut adalah format fungsi \texttt{numdiff()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{numdiff}\NormalTok{(f, x, }\DataTypeTok{maxiter =} \DecValTok{16}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{, ..., }
+         \DataTypeTok{tol =}\NormalTok{ .Machine}\OperatorTok{$}\NormalTok{double.eps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: Fungsi persamaan matematik yang akan dicari turunannya.
+\item
+  \textbf{x}: Vektor titik yang akan dicari gradiennya
+\item
+  \textbf{maxiter}: Iterasi maksimum yang digunakan.
+\item
+  \textbf{h}: \emph{step size} yang digunakan
+\item
+  \textbf{tol}: toleransi error yang digunakan.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{numdiff()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{numdiff}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\},}
+       \DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{h =} \DecValTok{1}\OperatorTok{*}\NormalTok{.Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.64069556 -0.07450001  0.10951941 -0.02345058
+\end{verbatim}
+
+Fungsi \texttt{grad()} pada paket \texttt{pracma} berbeda dengan yang digunakan pada paket \texttt{numDeriv}. Perbedaan utama fungsi pada kedua paket tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada paket \texttt{pracma}, metode yang digunakan adalah metode titik pusat, sedangkan pada paket \texttt{numDeriv} metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan \emph{complex}. Format fungsi \texttt{grad()} pada paket \texttt{pracma} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grad}\NormalTok{(f, x0, }\DataTypeTok{heps =}\NormalTok{ .Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{), }
+\NormalTok{     ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: Fungsi persamaan matematik yang akan dicari turunannya.
+\item
+  \textbf{x0}: Titik yang akan dicari gradiennya
+\item
+  \textbf{heps}: \emph{step size} yang digunakan
+\item
+  \textbf{\ldots{}}: Argumen lain yang digunakan pada fungsi \textbf{f}.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{grad()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grad}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{x)}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\OperatorTok{+}\DecValTok{1}\NormalTok{\}, }\DataTypeTok{x0 =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6406956
+\end{verbatim}
+
+\hypertarget{newtoncotes}{%
+\section{Metode Integrasi Newton-Cotes}\label{newtoncotes}}
+
+Metode integrasi Newton-Cotes secara umum merupakan metode integrasi yang dilakukan dengan membagi area di bawah kurva suatu fungsi menjadi beberapa panel dengan terlebih dahulu menetapkan batas atas dan batas bawah interval. Integral atau luas area di bawah kurva ditentukan berdasarkan jumlah luas panel yang digunakan untuk mendekati luas area di bawah kurva.
+
+Terdapat beberapa metode yang akan penulis jelaskan pada sub-Chapter ini. Metode-metode tersebut antara lain:
+
+\begin{itemize}
+\tightlist
+\item
+  Metode integral Riemann
+\item
+  Metode trapezoida
+\item
+  Metode Simpson 1/3
+\item
+  Metode Simpson 3/8
+\end{itemize}
+
+\hypertarget{riemann}{%
+\subsection{Metode Integral Riemann}\label{riemann}}
+
+Metode integral Riemann dilakukan dengan membagi interval di bawah kurva suatu fungsi matematik sebanyak \(m\) subinterval sama besar. Pada setiap subinterval dibentuk persegi panjang setinggi kurva pada setiap titik tengah persegi panjang tersebut. Area setiap subinterval diperoleh dengan mengalikan panjang dan lebar masing-masing persegi panjang. Jumlah masing-masing area tersebut digunakan untuk menaksir interval integral suatu fungsi dengan interval tertentu. Fungsi proses integrasi menggunakan metode titik tengah dapat dituliskan pada Persamaan \eqref{eq:reimann}.
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\ \approx\sum_{i=1}^mf\left(i\ \frac{\left|b-a\right|}{m}-\frac{\left|b-a\right|}{2m}\right)\ \frac{\left|b-a\right|}{m}
+  \label{eq:reimann}
+\end{equation}
+
+dimana \(b\) dan \(a\) masing-masing merupakan batas atas dan bawah interval kurva yang hendak dihitung integralnya.
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \eqref{eq:reimann2}.
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{24m^2}f^{\left(2\right)}\left(\xi\right)
+  \label{eq:reimann2}
+\end{equation}
+
+dimana \(\xi\) merupakan nilai antara \(a\) dan \(b\).
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:reimannexm}{}{\label{exm:reimannexm} }Hitunglah intergral fungsi di bawah ini menggunakan metode integral Reimann dengan interval 0 sampai 1 dan jumlah panel 2 dan 4!
+\EndKnitrBlock{example}
+
+\[
+\int_0^1 x^2 dx
+\]
+
+\textbf{Jawab}:
+
+Fungsi pada Contoh \ref{exm:reimannexm} dapat diselesaikan menggunakan metode analitik. Penyelesaian analitik fungsi tersebut adalah sebagai berikut:
+
+\[
+\int_0^1 x^2 dx = \left[\frac{x^3}{3}\right]_{_0}^{^1}=\frac{1^3}{3}-\frac{0^3}{3}=0,333...
+\]
+
+Penyelesaian numerik menggunakan metode titik tengah dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik tengah kedua panel. Berdasarkan interval fungsi dapat kita tentukan titik tengah kedua panel berada pada \(x=0,25\) dan \(x=0,75\). Perhitungan dilakukan seperti berikut:
+
+\[
+\int_0^1 x^2 dx \approx \left(f\left(0,25\right)+f\left(0,75\right)\right)\ \frac{1-0}{2}=\frac{0,25^2+0,75^2}{2}=0,3125
+\]
+Untuk meningkatkan akurasi dari nilai yang dihasilkan, jumlah panel dapat ditingkatkan. Untuk jumlah panel 4, titik tengah berada pada \(x=\left\{0,125;0,375;0,625;0,875\right\}\).
+
+\[
+\int_0^1 x^2 dx \approx \left(f\left(0,125\right)+f\left(0,375\right)+f\left(0,625\right)+f\left(0,875\right)\right)\ \frac{1-0}{4}=0,328125
+\]
+
+Visualisasi proses integrasi dengan metode Riemann dapat dilihat pada Gambar \ref{fig:midpt}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/midpt} 
+
+}
+
+\caption{Visualisasi integral Riemann dengan 2 panel dan 4 panel (sumber:Howard, 2017).}\label{fig:midpt}
+\end{figure}
+
+Berdasarkan Persamaan \eqref{eq:reimann}, kita dapat mengembangkan fungsi \texttt{R} yang dapat digunakan untuk melakukan perhitungan integral Riemann. Sintaks fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{riemann <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m =} \DecValTok{100}\NormalTok{)\{}
+\NormalTok{  n_width <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(a, b}\OperatorTok{-}\NormalTok{n_width, }\DataTypeTok{length.out =}\NormalTok{ m) }\OperatorTok{+}\StringTok{ }\NormalTok{n_width}\OperatorTok{/}\DecValTok{2}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+  
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{sum}\NormalTok{(y)}\OperatorTok{*}\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Kita akan menghitung kembali fungsi pada Contoh \ref{exm:reimannexm} dengan menggunakan jumlah panel 2, 4 dan 100. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# m=2}
+\KeywordTok{riemann}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) x}\OperatorTok{^}\DecValTok{2}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{, }\DataTypeTok{m=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3125
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# m=4}
+\KeywordTok{riemann}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) x}\OperatorTok{^}\DecValTok{2}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{, }\DataTypeTok{m=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.328125
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# m=100}
+\KeywordTok{riemann}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) x}\OperatorTok{^}\DecValTok{2}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.333325
+\end{verbatim}
+
+Berdasarkan teori yang telah dipaparkan sebelumnya, kita ketahui bahwa untuk memperoleh nilai pendekatan integral yang sebenarnya kita dapat meningkatkan jumlah panel yang digunakan. Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil, kita akan melakukan simulasi menggunakan data yang disajikan pada Contoh \ref{exm:reimannexm} dengan memvariasikan jumlah panel yang akan digunakan. Pada simulasi yang akan dilakukan kita akan coba memvariasikan jumlah panel dari 2 hingga 100. Berikut adalah sintaks yang digunakan:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{Metode_Numerik_files/figure-latex/midpt2-1} 
+
+}
+
+\caption{Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi Riemann.}\label{fig:midpt2}
+\end{figure}
+
+Berdasarkan hasil simulasi dapat disimpulkan jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil kira-kira sebesar \(m=40\).
+
+\hypertarget{trapezoida}{%
+\subsection{Metode Trapezoida}\label{trapezoida}}
+
+Pendekatan trapezoida dilakukan dengan melakukan pendekatan area dibawah kurva fungsi \(y=f\left(x\right)\) dengan subinterval \(\left[x_i,x_{i+1}\right]\) menggunakan trapesium. Untuk memahami pendekatan yang digunakan pembaca dapat memperhatikan Gambar \ref{fig:trapviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/trapviz} 
+
+}
+
+\caption{Visualisasi integragrasi numerik menggunakan metode tapezoida (sumber: Jones et.al., 2014).}\label{fig:trapviz}
+\end{figure}
+
+Fungsi proses integrasi menggunakan metode trapezoida dapat dituliskan pada Persamaan \eqref{eq:trap}.
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\ = \lim\limits_{m \to \infty} \sum_{i=1}^m\frac{\left(c_{i+1}-c_i\right)\times\left(f\left(c_{i+1}\right)+f\left(c_i\right)\right)}{m}
+  \label{eq:trap}
+\end{equation}
+
+dimana
+
+\[
+c_i=a+\frac{\left(b-a\right)}{n}i
+\]
+\(n\) merupakan nilai subinterval dan \(m\) merupakan jumlah panel trapesium yang digunakan.
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \eqref{eq:trap2}.
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^3}{12m^2}f^{\left(2\right)}\left(\xi\right)
+  \label{eq:trap2}
+\end{equation}
+
+dimana \(\xi\) merupakan nilai antara \(a\) dan \(b\).
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:trapnexm}{}{\label{exm:trapnexm} }Hitung kembali nilai intergrasi persamaan pada Contoh \ref{exm:reimannexm} menggunakan metode trapezoida dengan jumlah panel m=2!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Penyelesaian numerik menggunakan trapezoida dengan jumlah panel 2 dapat dilakukan dengan menentukan lokasi titik evaluasi. Berdasarkan Gambar \ref{fig:trapviz2}, terdapat 3 batas subinterval yaitu pada \(a\),\(\frac{\left(b-a\right)}{2}\), dan \(b\). Perhitungan intergral menggunakan ketiga titik evaluasi tersebut adalah sebagai berikut:
+
+\[
+\int_0^1 x^2 dx \approx \frac{\left(0,5\right)\left(0,25+1,25\right)}{2}=0,375
+\]
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/trapviz2} 
+
+}
+
+\caption{Visualisasi integrasi metode trapezoida dengan 2 panel (sumber:Howard, 2017).}\label{fig:trapviz2}
+\end{figure}
+
+Berdasarkan Persamaan \eqref{eq:trap}, kita dapat mengembangkan fungsi \texttt{R} yang dapat digunakan untuk melakukan perhitungan integral metode trapezoida. Sintaks fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trap <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(a, b, }\DataTypeTok{length.out =}\NormalTok{ m}\OperatorTok{+}\DecValTok{1}\NormalTok{)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+  
+\NormalTok{  p_area <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((y[}\DecValTok{2}\OperatorTok{:}\NormalTok{(m}\OperatorTok{+}\DecValTok{1}\NormalTok{)] }\OperatorTok{+}\StringTok{ }\NormalTok{y[}\DecValTok{1}\OperatorTok{:}\NormalTok{m])) }
+\NormalTok{  p_area <-}\StringTok{ }\NormalTok{p_area }\OperatorTok{*}\StringTok{ }\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{m)}
+  \KeywordTok{return}\NormalTok{(p_area)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Kita dapat menghitung kembali intergral persamaan pada Contoh \ref{exm:reimannexm} menggunakan fungsi \texttt{trap()} yang telah dibuat. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{trap}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)x}\OperatorTok{^}\DecValTok{2}\NormalTok{, }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{, }\DataTypeTok{m=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.375
+\end{verbatim}
+
+Untuk mengetahui jumlah panel minimum yang diperlukan untuk memperoleh hasil integrasi yang stabil pada persamaan tersebut, kita akan kembali melakukan simulasi menggunakan variasi jumlah panel yang digunakan. Dalam simulasi variasi jumlah panel yang digunakan adalah 2 sampai 100. Berikut adalah sintaks yang digunakan:
+
+\begin{verbatim}
+## [1] 0.33335
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{Metode_Numerik_files/figure-latex/trapviz3-1} 
+
+}
+
+\caption{Visualisasi simulasi pemilihan jumlah panel minimum metode integrasi trapezoida.}\label{fig:trapviz3}
+\end{figure}
+
+Berdasarkan hasil simulasi diperoleh nilai panel minimum sebesar \(m=20\). Hasil yang diperoleh tersebut menujukkan bahwa metode trapezoida lebih efisien dalam proses komputasi dibandingkan metode Riemann.
+
+\hypertarget{simpson}{%
+\subsection{Metode Simpson}\label{simpson}}
+
+Metode Simpson membagi subinterval \(\left[a,b\right]\) menjadi
+\(n\) subinterval, dimana \(n\) merupakan bilangan genap. Untuk setiap pasang subinterval, luas area di bawah fungsi \(f\left(x\right)\) ditaksir menggunakan polinomial berderajat 2.
+
+Misalkan \(u<v<w\) merupakan titik sembarang pada suatu fungsi yang akan dicari integralnya yang terpisah sejauh \(h\). Untuk \(x\in\left[u,w\right]\) kita ingin menaksir \(f\left(x\right)\) menggunakan parabola yang melalui titik \(\left(u, f\left(u\right)\right)\), \(\left(v, f\left(v\right)\right)\), dan \(\left(w, f\left(w\right)\right)\). Terdapat tepat 1 parabola \(p\left(x\right)\) yang dapat dibentuk dari ketiga titik koordinat tersebut yang ditunjukkan melalui Persamaan \eqref{eq:simp}.
+
+\begin{equation}
+p\left(x\right)=f\left(u\right)\frac{\left(x-v\right)\left(x-w\right)}{\left(u-v\right)\left(u-w\right)}+f\left(v\right)\frac{\left(x-u\right)\left(x-w\right)}{\left(v-u\right)\left(v-w\right)}+f\left(w\right)\frac{\left(x-u\right)\left(x-v\right)}{\left(w-u\right)\left(w-v\right)}
+  \label{eq:simp}
+\end{equation}
+
+Sebagai taksiran luas di bawah kurva \(y=f\left(x\right)\) digunakan \(\int_{w}^u p\left(x\right)dx\). Hasil integrasi kurva Persamaan \eqref{eq:simp} disajikan pada Persamaan \eqref{eq:simp2}.
+
+\begin{equation}
+\int_w^up\left(x\right)dx=\frac{h}{3}\left(f\left(u\right)+4f\left(v\right)+f\left(w\right)\right)
+  \label{eq:simp2}
+\end{equation}
+
+Sekarang asumsikan \(n\) merupakan bilangan genap, maka kita perlu menambahkan taksiran untuk subinterval \(\left[x_{2i},x_{2i+2}\right]\) untuk memperoleh taksiran \(S\) pada integral \(\int_{a}^b f\left(x\right)dx\) yang disajikan pada Persamaan \eqref{eq:simp3}.
+
+\begin{equation}
+S\approx\frac{h}{3}\left(f_0+4\sum_{i=1,3,5.\dots}^{n-1}f_i+2\sum_{i=2,4,6,\dots}^{n-2}f_i+f_n\right)
+  \label{eq:simp3}
+\end{equation}
+
+Persamaan \eqref{eq:simp3} disebut sebagai kaidah Simpson 1/3 karena terdapat koefisien 1/3 pada bagian depan persamaan tersebut. Persamaan tersebut juga mudah diingat mengingat pola koefisien persamaan tersebut adalah \(1,4,2,4,2,\dots ,2,4,1\). Namun penggunaan kaidah 1/3 Simpson mengharuskan jumlah subinterval \(n\) genap. Kondisi tersebut jelas berbeda dengan metode trapezoida yang tidak mensyaratkan jumlah selang.
+
+Error dari metode Simpson 1/3 dapat dihitung menggunakan Persamaan \eqref{eq:simp3}.
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{180m^4}f^{\left(4\right)}\left(\xi\right)
+  \label{eq:simp4}
+\end{equation}
+
+dimana \(\xi\) merupakan nilai antara \(a\) dan \(b\).
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Simpson}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Tentukan jumlah subinterval \(n\).
+\item
+  Hitung nilai selang subinterval \(h\), \(h=\frac{b-a}{n}\).
+\item
+  Tentukan awal integrasi \(x_0=a\) dan akhir \(x_n=b\) dan hitung nilai \(f\left(a\right)\) dan \(f\left(b\right)\).
+\item
+  Untuk \(x=1,2,\dots,n-1\),
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  jika ganjil, hitung: \(4\times f\left(x\right)\)
+\item
+  jika genap, hitung: \(2\times f\left(x\right)\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan \eqref{eq:simp3}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, kita dapat membentuk fungsi \texttt{simpson()} yang dapat digunakan untuk melakukan integrasi menggunakan metode Simpson 1/3. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simpson <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  h <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m }\CommentTok{# jarak selang}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{a }\CommentTok{# awal selang}
+\NormalTok{  I <-}\StringTok{ }\KeywordTok{f}\NormalTok{(a)}\OperatorTok{+}\KeywordTok{f}\NormalTok{(b)}
+\NormalTok{  sigma <-}\StringTok{ }\DecValTok{0}
+  
+  \ControlFlowTok{if}\NormalTok{(m}\OperatorTok{%%}\DecValTok{2} \OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"Jumlah panel harus genap"}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(m}\DecValTok{-1}\NormalTok{))\{}
+\NormalTok{    x <-}\StringTok{ }\NormalTok{x}\OperatorTok{+}\NormalTok{h}
+    \ControlFlowTok{if}\NormalTok{(i}\OperatorTok{%%}\DecValTok{2}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{      sigma <-}\StringTok{ }\NormalTok{sigma }\OperatorTok{+}\StringTok{ }\DecValTok{2}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      sigma <-}\StringTok{ }\NormalTok{sigma }\OperatorTok{+}\StringTok{ }\DecValTok{4}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{      \}}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{((h}\OperatorTok{/}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\NormalTok{(I}\OperatorTok{+}\NormalTok{sigma))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:simpexm}{}{\label{exm:simpexm} }Hitung integral persamaan di bawah ini dengan menggunakan jumlah panel m=8!
+\EndKnitrBlock{example}
+
+\[
+\int_{0}^1 \frac{1}{1+x}dx
+\]
+
+\textbf{Jawab}:
+
+lebar selang \(h\) dapat dihitung seperti berikut:
+
+\[
+h = \frac{1-0}{8}=0,125
+\]
+
+Integral persamaan tersebut selanjutnya dapat dihitung menggunakan Persamaan \eqref{eq:simp3}:
+
+\[
+S\approx\frac{0,125}{3}\left(f\left(0\right)+4f\left(0,125\right)+2f\left(0,25\right)\dots+f\left(1\right)\right)\approx 0,69412
+\]
+
+Fungsi \texttt{simpson()} juga menghasilkan nilai yang serupa dengan perhitungan manual yang telah dilakukan. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{simpson}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{x), }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{, }\DataTypeTok{m=}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931545
+\end{verbatim}
+
+\hypertarget{simpson38}{%
+\subsection{Metode Simpson 3/8}\label{simpson38}}
+
+Jika pada metode Simpson 1/3 digunakan pendekatan polinomial berderajat 2 untuk mencari luas dibawah kurva, pada metode Simpson 3/8 digunakan pendekatan polinomial berderajat 3 untuk memperoleh hasil yang lebih baik. Bentuk umum integrasi yang digunakan disajikan pada Persamaan \eqref{eq:simp38}.
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\approx\frac{3h}{8}\left(f_0+3\sum_{i=1;i\ne3,6,9,\dots}^{n-1}f_i+2\sum_{i=3,6,9,\dots}^{n-3}f_i+f_n\right)
+  \label{eq:simp38}
+\end{equation}
+
+Error dari metode ini dapat diestimasi menggunakan Persamaan \eqref{eq:simp382}.
+
+\begin{equation}
+\int_a^bh\left(x\right)dx=-\ \frac{\left(b-a\right)^5}{80m^4}f^{\left(5\right)}\left(\xi\right)
+  \label{eq:simp382}
+\end{equation}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Simpson 3/8}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Tentukan jumlah subinterval \(n\).
+\item
+  Hitung nilai selang subinterval \(h\), \(h=\frac{b-a}{n}\).
+\item
+  Tentukan awal integrasi \(x_0=a\) dan akhir \(x_n=b\) dan hitung nilai \(f\left(a\right)\) dan \(f\left(b\right)\).
+\item
+  Untuk \(x=1,2,\dots,n-1\),
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  jika bukan kelipatan 3, hitung: \(3\times f\left(x\right)\)
+\item
+  jika kelipatan 3, hitung: \(2\times f\left(x\right)\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Jumlahkan nilai-nilai taksiran tersebut menggunakan Persamaan \eqref{eq:simp38}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, fungsi \texttt{R} dapat disusun untuk melakukan komputasi metode simpson 3/8. Berikut adalah sintaks fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simpson38 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{90}\NormalTok{)\{}
+\NormalTok{  h <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m }\CommentTok{# jarak selang}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{a }\CommentTok{# awal selang}
+\NormalTok{  I <-}\StringTok{ }\KeywordTok{f}\NormalTok{(a)}\OperatorTok{+}\KeywordTok{f}\NormalTok{(b)}
+\NormalTok{  sigma <-}\StringTok{ }\DecValTok{0}
+  
+  \ControlFlowTok{if}\NormalTok{(m}\OperatorTok{%%}\DecValTok{3} \OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"jumlah panel harus kelipatan 3"}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(m}\DecValTok{-1}\NormalTok{))\{}
+\NormalTok{      x <-}\StringTok{ }\NormalTok{x}\OperatorTok{+}\NormalTok{h}
+      \ControlFlowTok{if}\NormalTok{(i}\OperatorTok{%%}\DecValTok{3}\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{      sigma <-}\StringTok{ }\NormalTok{sigma }\OperatorTok{+}\StringTok{ }\DecValTok{2}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{      \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      sigma <-}\StringTok{ }\NormalTok{sigma }\OperatorTok{+}\StringTok{ }\DecValTok{3}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{      \}}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{((}\DecValTok{3}\OperatorTok{*}\NormalTok{h}\OperatorTok{/}\DecValTok{8}\NormalTok{)}\OperatorTok{*}\NormalTok{(I}\OperatorTok{+}\NormalTok{sigma))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:simp38exm}{}{\label{exm:simp38exm} }Hitung kembali integral persamaan yang disajikan pada Contoh \ref{exm:simpexm} menggunakan fungsi simpson38() yang telah dibuat sebelumnya!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Berikut adalah sintaks yang digunakan untuk melakukan proses integrasi Simpson 3/8 menggunakan fungsi \texttt{simpson38()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{simpson38}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{x), }\DataTypeTok{a=}\DecValTok{0}\NormalTok{, }\DataTypeTok{b=}\DecValTok{1}\NormalTok{, }\DataTypeTok{m=}\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931573
+\end{verbatim}
+
+\hypertarget{metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya}{%
+\section{Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya}\label{metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya}}
+
+Terdapat sejumlah paket yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada \texttt{R}. Paket \texttt{pracma} menyediakan fungsi-fungsi seperti \texttt{trapz()} dan \texttt{cotes()}.
+
+Fungsi \texttt{trapz()} merupakan fungsi yang digunakan untuk melakukan integrasi dengan pendekatan trapesium. Penggunaan fungsi tersebut untuk melakukan perhitungan integral tidak dapat dilakukan secara langsung, kita perlu membuat terlebih dahulu seri koordinat \texttt{x} dan koordinat \texttt{y}. Program selanjutnya akan melakukan interpolasi linier terhadap selang yang saling berdekatan. Luas masing-masing panel selang selanjutnya dihitung dan dijumlahkan untuk memperoleh nilai integral. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{trapz}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{x}: vektor sumbu x.
+\item
+  \textbf{y}: vektor sumbu y.
+\end{itemize}
+\end{quote}
+
+Untuk lebih memahami penerapannya berikut disajikan contoh untuk mencari integral persamaan pada Contoh \ref{exm:reimannexm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pracma)}
+
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)x}\OperatorTok{^}\DecValTok{2}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{101}\NormalTok{) }\CommentTok{# membuat subinterval panel sebanyak 100}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+
+\KeywordTok{trapz}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.33335
+\end{verbatim}
+
+Fungsi lain yang dapat digunakan untuk menghitung integral suatu fungsi menggunakan metode Newton-Cotes adalah \texttt{cotes()}. Pada fungsi tersebut kita perlu menyatakan jumlah subinterval yang digunakan dan jumlah nodes interpolasi yang digunakan. Jumlah nodes akan menentukan fungsi polinomial pendekatan yang digunakan untuk menghitung luas di bawah suatu fungsi. Jika jumlah nodes diatur menjadi dua, maka fungsi pendekatannya berupa garis linier (metode trapezoida). Jika nodes diatur menjadi 3 maka pendekatannya berupa fungsi kuadrat (metode Simpson 1/3). Secara sederhana derajat polinomial \(n\) memerlukan \(n+1\) nodes. Format fungsi \texttt{cotes()} disajikan sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cotes}\NormalTok{(f, a, b, n, nodes, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: fungsi yang akan dicari integralnya
+\item
+  \textbf{a}: batas atas.
+\item
+  \textbf{b}: batas bawah.
+\item
+  \textbf{n}: jumlah subinterval atau panel.
+\item
+  \textbf{nodes}: jumlah nodes yang digunakan untuk interpolasi fungsi pada tiap subinterval.
+\end{itemize}
+\end{quote}
+
+Untuk lebih memahami penerapannya berikut adalah contoh perhitungan intergral menggunakan persamaan pada Contoh \ref{exm:simpexm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{x)}
+\NormalTok{a <-}\StringTok{ }\DecValTok{0}\NormalTok{; b <-}\StringTok{ }\DecValTok{1}
+
+\CommentTok{# metode trapezoida}
+\KeywordTok{cotes}\NormalTok{(f, a, b, }\DataTypeTok{n=}\DecValTok{8}\NormalTok{, }\DataTypeTok{nodes=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6941219
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# metode Simpson 1/3}
+\KeywordTok{cotes}\NormalTok{(f, a, b, }\DataTypeTok{n=}\DecValTok{8}\NormalTok{, }\DataTypeTok{nodes=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931545
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# metode Simpson 3/8}
+\KeywordTok{cotes}\NormalTok{(f, a, b, }\DataTypeTok{n=}\DecValTok{9}\NormalTok{, }\DataTypeTok{nodes=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931573
+\end{verbatim}
+
+\hypertarget{kuadgauss}{%
+\section{Metode Kuadratur Gauss}\label{kuadgauss}}
+
+Metode Newton-Cotes sangat \emph{powerful}, tetapi metode tersebut memiliki dua fitur yang kurang diinginkan. Pertama, kita harus menggunakan evaluasi fungsi sejumlah \(n +1\) untuk hasil presisi dan pada polinomial berderajat \(n\). Hal tersebut mungkin tampak seperti rasio yang baik, tetapi dalam praktiknya, jumlah titik evaluasi akan sering ditingkatkan untuk memperoleh akurasi yang lebih tinggi, namun hasil yang diperoleh juga tidak presisi. Sebagai contoh pembaca dapat melakukan simulasi dengan memvariasikan jumlah penel yang digunakan untuk memperoleh nilai integral sebuah fungsi. Jika kita plotkan hasil yang kita peroleh, grafik yang muncul berupa garis yang berosilasi khusunya pada penggunaan polinomial berderajat tinggi yang menunjukkan hasil yang diperoleh menjadi kurang presisi.
+
+Kelemahan kedua, metode Newton-Cotes memerlukan fungsi terintegrasi untuk dievaluasi pada node yang berjarak sama. Ini benar terlepas dari fungsi yang digunakan. Setiap panel membutuhkan node dengan jarak yang sama di dalamnya. Ini bisa menjadi masalah dengan fungsi periodik, di mana diskontinuitas periodik dapat secara kebetulan mendarat di titik evaluasi. Jika panel Newton-Cotes dapat menyebabkan masalah, kita dapat menggunakan integrasi Gaussian untuk menyelesaikan integral.
+
+Secara umum integrasi Gauss berusaha memperoleh pendekatan luas dibawah kurva fungsi dengan memecah fungsi tersebut menjadi faktor bobot \(c\) dan \(f\left(x\right)\) yang merupakan polinomial pendekatannya. Integral diperoleh melalui hasil kali dari bobot dan fungsi polinomial. Jumlah bobot dan fungsi yang digunakan bergantung pada orde \(n\) polinomial yang akan digunakan untuk mengestimasi integral suatu fungsi. Bentuk umum dari kaidah Gauss tersebut ditampilkan pada Persamaan \eqref{eq:gauss}.
+
+\begin{equation}
+\int_{-1}^1f\left(x\right)dt\approx c_1f\left(x_1\right)+c_2f\left(x_2\right)+\dots+c_nf\left(x_n\right)
+  \label{eq:gauss}
+\end{equation}
+
+dimana \(c\) merupakan faktor bobot dan \(x\) merupakan titik evaluasi.
+
+Nilai faktor bobot dan nilai masing-masing titik evaluasi disajikan pada Gambar \ref{fig:gaussviz}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{./images/gaussviz} 
+
+}
+
+\caption{Tabulasi faktor bobot, titik evaluasi dan galat pemotongan.}\label{fig:gaussviz}
+\end{figure}
+
+Fungsi yang akan dicari nilai integrannya pada umumnya tidak hanya memiliki daerah batas \(\left[-1,1\right]\), sehingga pendekatan kuadratur Gauss tidak dapat digunakan secara langsung pada fungsi yang tidak memiliki batas tersebut. Agar kuadratur Gauss tetap dapat digunakan, fungsi tersebut perlu dilakukan transformasi. Proses transformasi dituliskan pada Persamaan \eqref{eq:gauss2}.
+
+\begin{equation}
+\int_a^bf\left(x\right)dx=\frac{b-a}{2}\int_{-1}^1f\left(\frac{a+b+\left(b-a\right)t}{2}\right)dt
+  \label{eq:gauss2}
+\end{equation}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Kuadratur Gauss-Legendre}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Lakukan transformasi fungsi tersebut hingga diperoleh fungsi dengan selang \(\left[-1,1\right]\) menggunakan Persamaan \eqref{eq:gauss2}.
+\item
+  Tentukan orde polinomial \(n\) yang akan digunakan.
+\item
+  Lakukan proses integrasi dengan mengalikan faktor bobot \(c\) dengan \(f\left(x_i\right)\) seperti yang ditujukkan pada Persamaan \eqref{eq:gauss}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Kita dapat membangun suatu fungsi pada \texttt{R} untuk melakukan integrasi Gauss berdasarkan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gauss_legendre <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, n)\{}
+    \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{      c <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.577350269}\NormalTok{, }\FloatTok{0.577350269}\NormalTok{)}
+\NormalTok{      integral <-}\StringTok{ }\DecValTok{0}
+      
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{        integral <-}\StringTok{ }\NormalTok{integral }\OperatorTok{+}\StringTok{ }\NormalTok{c[i]}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{      \}}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{3}\NormalTok{)\{}
+\NormalTok{      c <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.555555556}\NormalTok{,}\FloatTok{0.888888889}\NormalTok{,}\FloatTok{0.555555556}\NormalTok{)}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.774596669}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.774596669}\NormalTok{)}
+\NormalTok{      integral <-}\StringTok{ }\DecValTok{0}
+      
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{        integral <-}\StringTok{ }\NormalTok{integral }\OperatorTok{+}\StringTok{ }\NormalTok{c[i]}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{      \}}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{4}\NormalTok{)\{}
+\NormalTok{      c <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.347854845}\NormalTok{,}\FloatTok{0.652145155}\NormalTok{,}\FloatTok{0.652145155}\NormalTok{,}
+             \FloatTok{0.347854845}\NormalTok{)}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.861136312}\NormalTok{,}\OperatorTok{-}\FloatTok{0.339981044}\NormalTok{,}\FloatTok{0.339981044}\NormalTok{,}
+             \FloatTok{0.861136312}\NormalTok{)}
+\NormalTok{      integral <-}\StringTok{ }\DecValTok{0}
+      
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{        integral <-}\StringTok{ }\NormalTok{integral }\OperatorTok{+}\StringTok{ }\NormalTok{c[i]}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{      \}}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{5}\NormalTok{)\{}
+\NormalTok{      c <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.236926885}\NormalTok{,}\FloatTok{0.478628670}\NormalTok{,}\FloatTok{0.568888889}\NormalTok{,}
+              \FloatTok{0.478628670}\NormalTok{,}\FloatTok{0.236926885}\NormalTok{)}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.906179846}\NormalTok{,}\OperatorTok{-}\FloatTok{0.538469310}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+             \FloatTok{0.538469310}\NormalTok{, }\FloatTok{0.906179846}\NormalTok{)}
+\NormalTok{      integral <-}\StringTok{ }\DecValTok{0}
+      
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{        integral <-}\StringTok{ }\NormalTok{integral }\OperatorTok{+}\StringTok{ }\NormalTok{c[i]}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{      \}}
+\NormalTok{    \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{6}\NormalTok{)\{}
+\NormalTok{      c <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.171324492}\NormalTok{,}\FloatTok{0.360761573}\NormalTok{,}\FloatTok{0.467913935}\NormalTok{,}
+              \FloatTok{0.467913935}\NormalTok{,}\FloatTok{0.360761573}\NormalTok{,}\FloatTok{0.171324492}\NormalTok{)}
+\NormalTok{      x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.932469514}\NormalTok{,}\OperatorTok{-}\FloatTok{0.661209386}\NormalTok{,}\OperatorTok{-}\FloatTok{0.238619186}\NormalTok{,}
+             \FloatTok{0.238619186}\NormalTok{, }\FloatTok{0.661209386}\NormalTok{,}\FloatTok{0.932469514}\NormalTok{)}
+\NormalTok{      integral <-}\StringTok{ }\DecValTok{0}
+      
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{        integral <-}\StringTok{ }\NormalTok{integral }\OperatorTok{+}\StringTok{ }\NormalTok{c[i]}\OperatorTok{*}\KeywordTok{f}\NormalTok{(x[i])}
+\NormalTok{      \}}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      \KeywordTok{stop}\NormalTok{(}\StringTok{"n harus ditentukan"}\NormalTok{)}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{(integral)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:gausslanexm}{}{\label{exm:gausslanexm} }Hitunglah integral fungsi berikut menggunakan metode Gauss-Legendre 2 titik!
+\EndKnitrBlock{example}
+
+\[
+\int_1^2 \left(x^2+1\right)dx
+\]
+
+\textbf{Jawab}:
+
+Agar fungsi tersebut dapat dicari nilai integralnya menggunakan metode Gauss-Legendre, fungsi tersebut perlu ditransformasi terlebih dahulu:
+
+\[
+\int_1^2 \left(x^2+1\right)dx=0,5\int_{-1}^1 \left[\left(1,5+0,5t\right)^2+1\right]dt
+\]
+
+Jadi dalam hal ini
+
+\[
+f\left(t\right)=\left(1,5+0,5t\right)^2+1
+\]
+
+maka
+
+\[
+\int_1^2 \left(x^2+1\right)dx=0,5\left[1\times f\left(\frac{1}{\sqrt{3}}\right)+1\times f\left(\frac{1}{\sqrt{3}}\right)\right]\approx 3,333333333
+\]
+
+Kita juga dapat menggunakan fungsi \texttt{gauss\_legendre()} untuk melakukan integrasi Gauss-Legendre pada dua titik. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{0.5}\OperatorTok{*}\KeywordTok{gauss_legendre}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)((}\FloatTok{1.5+0.5}\OperatorTok{*}\NormalTok{x)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}
+               \DataTypeTok{n=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.333333
+\end{verbatim}
+
+\hypertarget{othergauss}{%
+\section{\texorpdfstring{Metode Gauss-Legendre Menggunakan Fungsi \texttt{legendre.quadrature()}}{Metode Gauss-Legendre Menggunakan Fungsi legendre.quadrature()}}\label{othergauss}}
+
+Fungsi \texttt{legendre.quadrature()} dari paket \texttt{gaussquand} dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{legendre.quadrature}\NormalTok{(functn, rule, }\DataTypeTok{lower=}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{upper=}\DecValTok{1}\NormalTok{, }
+  \DataTypeTok{weighted =} \OtherTok{TRUE}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{functn}: fungsi yang akan dicari integralnya
+\item
+  \textbf{rule}: data frame yang terdiri atas orde n aturan kuadratur legendre
+\item
+  \textbf{lower}: batas atas.
+\item
+  \textbf{upper}: batas bawah.
+\item
+  \textbf{weighted}: nilai boolean yang menyatakan apakah bobot fungsi disertakan dalam integran
+\item
+  \textbf{\ldots{}}: argumen tambahan functn
+\end{itemize}
+\end{quote}
+
+Untuk menentukan \texttt{rule} pada fungsi \texttt{legendre.quadrature()}, diperlukan fungsi lain yang tersedia pada paket \texttt{gaussquad}. Fungsi tersebut adalah \texttt{legendre.quadrature.rules()}. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{legendre.quadrature.rules}\NormalTok{(n,}\DataTypeTok{normalized=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{n}: orde tertinggi polinomial yang akan ditampilkan
+\item
+  \textbf{normalized}: nilai boolean. Jika bernilai \texttt{TRUE}, aturan digunakan untuk polinomial ortogonal.
+\end{itemize}
+\end{quote}
+
+Untuk memahami penerapan kedua fungsi tersebut berikut disajikan contoh penerapannya:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(gaussquad)}
+\CommentTok{# menampilkan aturan untuk orde 4}
+\KeywordTok{legendre.quadrature.rules}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##   x w
+## 1 0 2
+## 
+## [[2]]
+##            x w
+## 1  0.5773503 1
+## 2 -0.5773503 1
+## 
+## [[3]]
+##               x         w
+## 1  7.745967e-01 0.5555556
+## 2  7.771561e-16 0.8888889
+## 3 -7.745967e-01 0.5555556
+## 
+## [[4]]
+##            x         w
+## 1  0.8611363 0.3478548
+## 2  0.3399810 0.6521452
+## 3 -0.3399810 0.6521452
+## 4 -0.8611363 0.3478548
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# mencari integral suatu fungsi dengan orde}
+\CommentTok{# gauss-legendre sebesar 4}
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)x}\OperatorTok{^}\DecValTok{6}
+\NormalTok{rule <-}\StringTok{ }\KeywordTok{legendre.quadrature.rules}\NormalTok{(}\DecValTok{4}\NormalTok{)[[}\DecValTok{4}\NormalTok{]]}
+
+\KeywordTok{legendre.quadrature}\NormalTok{(f, rule, }\DataTypeTok{lower=}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{upper=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2857143
+\end{verbatim}
+
+\hypertarget{adaptifint}{%
+\section{Metode Integrasi Adaptif}\label{adaptifint}}
+
+Integrasi adaptif menyediakan pendekatan yang berbeda untuk memperoleh nilai intergral suatu fungsi. Salah satu prinsip utama dari analisis numerik adalah bahwa kita harus berkomitmen pada semacam analisis manusia terhadap suatu masalah sebelum mencoba menyelesaikannya secara algoritmik. Metode analisis numerik umumnya tidak dapat menyelesaikan semua masalah dengan sangat baik. Jadi pengetahuan terhadap masalah yang hendak diselesaikan dapat memungkinkan kita memilih metode numerik yang lebih baik sesuai dengan masalah. Misalnya, dalam konteks integrasi numerik, diskontinuitas pada titik akhir tidak akan cocok untuk solusi Newton-Cotes yang bersifat tertutup.
+
+Tentu saja, akan lebih baik jika kita bisa memprogram komputer untuk mempelajari sesuatu tentang masalah, daripada kita melakukan itu sendiri. Metode adaptif memberikan pendekatan untuk melakukan hal ini. Metode integrasi adaptif memeriksa integral yang mereka operasikan dan mengubah parameter mereka sendiri untuk meningkatkan kualitas integrasi. Algoritma adaptif yang paling sederhana memberikan pendekatan \emph{brute force} untuk peningkatan kualitas dengan memeriksa \emph{error} integrasi. Di sisi lain, jika kita tahu \emph{error}-nya, secara teoritis kita bisa memperbaiki estimasi. Di situlah batas \emph{error} pada algoritma Newton-Cotes dapat membantu.
+
+Jika kita dapat menemukan sesuatu tentang \emph{error} tersebut, kita dapat menggunakan informasi itu untuk memperbaiki estimasi pada proses integrasi. Bayangkan kita sedang mengintegrasikan suatu fungsi, \(f \left(x\right)\) pada batas \(\left[a, b\right]\). Jika kita menggunakan metode titik tengah (integral Riemann). Kita telah menetahui \emph{error} maksimum yang mungkin terjadi pada metode tersebut melalui Persamaan \eqref{eq:reimann2}. Dua pengamatan segera menjadi jelas. Terlepas dari apa fungsi \(f \left(x\right)\) itu, atau turunan keduanya, dua perubahan dapat dilakukan pada integrasi untuk meningkatkan kualitasnya. Pertama, \emph{error} adalah proporsi terhadap kubik dari panjang domain integrasi. Mengurangi panjang meningkatkan kualitas dan memotong panjang menjadi dua memberikan peningkatan kualitas delapan kali lipat. Kedua, \emph{error} berbanding terbalik dengan jumlah panel m yang digunakan . Meningkatkan panel mengurangi \emph{error} dan menggandakan jumlah panel yang disediakan dapat meeningkatkan kualitas empat kali lipat.
+
+Kita dapat merancang algoritma di sekitar pengamatan ini. Pertama, kita dapat memperkirakan nilai integral \(Q_1\), menggunakan aturan titik tengah 1-point. Kedua, kita bisa memperkirakannya lagi menggunakan aturan titik tengah 2-point \(Q_2\). Karena kita telah menggandakan jumlah titik dalam aturan, kita sekarang tahu bahwa perbedaan maksimum antara \(Q_1\) dan \(Q\), nilai sebenarnya dari integral, tidak lebih dari 4 kali lebih besar dari perbedaan maksimum antara \(Q_2\) dan \(Q\). Jika \(Q_2 −Q\) kurang dari toleransi tertentu, maka perbedaan antara \(Q_1\) dan \(Q_2\) harus kurang dari tiga kali toleransi yang sama.
+
+Kita peeriksa perbedaan antara dua perkiraan. Jika perbedaannya lebih besar dari toleransi, kita mungkin masih berada dalam toleransi, tetapi kita belum pasti. Jadi proses membagi wilayah integrasi menjadi dua, dan menerapkan integrator adaptif untuk kedua bagian, secara terpisah, menjumlahkan hasilnya akan terus dilakukan.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Riemann Adaptif}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Tentukan jumlah subinterval \(m\).
+\item
+  Jika \(m=1\), hitung luas area di bawah kurva dengan pendekatan metode Riemann dengan \(m=2\).
+\item
+  Jika \(n>1\),
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Hitung \(Q_1\) dengan pendekatan metode Riemann dan \(m=1\)
+\item
+  Hitung \(Q_2\) dengan pendekatan metode Riemann dan \(m=2\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Jika \(Q_1-Q_2>3\times\text{nilai toleransi}\),
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Perkecil \(m\) sebanyak 1, \(m-1\)
+\item
+  Perkecil \(\text{nilai toleransi}\) menjadi setengahnya
+\item
+  Bagi area integrasi menjadi dua bagian dengan menetapkan \(c\) sebagai batas, sehingga terdapat dua batas yaitu: \(\left[a, c\right]\) dan \(\left[c, b\right]\).
+\item
+  Lakukan perhitungan kembali integral pada masing-masing batas tersebut menggunakan metode Riemann dan cek apakah \(Q_1-Q_2>3\times\text{nilai toleransi}\).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Jika \(Q_1-Q_2<3\times\text{nilai toleransi}\), luas integral = \(Q_2\).
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Kita dapat membangun sebuah fungsi integral adaptif menggunakan algoritma tersebut. Sintaks fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{riemann_adaptint <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{10}\NormalTok{, }\DataTypeTok{tol=}\FloatTok{1e-8}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(m}\OperatorTok{<}\DecValTok{1}\NormalTok{)\{}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"m harus >= 1"}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(m}\OperatorTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{    m <-}\StringTok{ }\DecValTok{2}
+\NormalTok{    n_width <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m}
+\NormalTok{    x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(a, b}\OperatorTok{-}\NormalTok{n_width, }\DataTypeTok{length.out =}\NormalTok{ m) }\OperatorTok{+}\StringTok{ }\NormalTok{n_width}\OperatorTok{/}\DecValTok{2}
+\NormalTok{    y <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x)}
+\NormalTok{    area <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(y)}\OperatorTok{*}\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    
+\NormalTok{    m1 <-}\StringTok{ }\DecValTok{1}
+\NormalTok{    n_width1 <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m1}
+\NormalTok{    x1 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(a, b}\OperatorTok{-}\NormalTok{n_width1, }\DataTypeTok{length.out =}\NormalTok{ m1) }\OperatorTok{+}\StringTok{ }\NormalTok{n_width1}\OperatorTok{/}\DecValTok{2}
+\NormalTok{    y1 <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x1)}
+\NormalTok{    q1 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(y1)}\OperatorTok{*}\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m1}
+    
+\NormalTok{    m2 <-}\StringTok{ }\DecValTok{2}
+\NormalTok{    n_width2 <-}\StringTok{ }\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m2}
+\NormalTok{    x2 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(a, b}\OperatorTok{-}\NormalTok{n_width2, }\DataTypeTok{length.out =}\NormalTok{ m2) }\OperatorTok{+}\StringTok{ }\NormalTok{n_width2}\OperatorTok{/}\DecValTok{2}
+\NormalTok{    y2 <-}\StringTok{ }\KeywordTok{f}\NormalTok{(x2)}
+\NormalTok{    q2 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(y2)}\OperatorTok{*}\KeywordTok{abs}\NormalTok{(b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{/}\NormalTok{m2}
+    
+    \ControlFlowTok{if}\NormalTok{(}\KeywordTok{abs}\NormalTok{(q1}\OperatorTok{-}\NormalTok{q2)}\OperatorTok{>}\DecValTok{3}\OperatorTok{*}\NormalTok{tol)\{}
+\NormalTok{      m <-}\StringTok{ }\NormalTok{m}\DecValTok{-1}
+\NormalTok{      tol <-}\StringTok{ }\NormalTok{tol}\OperatorTok{/}\DecValTok{2}
+\NormalTok{      c <-}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{b)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{      lt <-}\StringTok{ }\KeywordTok{riemann_adaptint}\NormalTok{(f, a, c, }\DataTypeTok{m=}\NormalTok{m, }\DataTypeTok{tol=}\NormalTok{tol)}
+\NormalTok{      rt <-}\StringTok{ }\KeywordTok{riemann_adaptint}\NormalTok{(f, c, b, }\DataTypeTok{m=}\NormalTok{m, }\DataTypeTok{tol=}\NormalTok{tol) }
+\NormalTok{      area <-}\StringTok{ }\NormalTok{lt}\OperatorTok{+}\NormalTok{rt}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      area <-}\StringTok{ }\NormalTok{q2}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \KeywordTok{return}\NormalTok{(area)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:adaptexm}{}{\label{exm:adaptexm} }Hitung integral fungsi di bawah ini dengan menggunakan integral Riemann adaptif dengan jumlah panel yang digunakan m=100!
+\EndKnitrBlock{example}
+
+\[
+\int_{1}^{10} \sin\left(x\right)^2+\log\left(x\right)dx
+\]
+
+\textbf{Jawab}:
+
+Kita akan menghitung integral dari fungsi tersebut menggunakan fungsi \texttt{R} yang telah dibuat. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{riemann_adaptint}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x),}
+                 \DataTypeTok{a=}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{, }\DataTypeTok{m=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.52494
+\end{verbatim}
+
+\hypertarget{metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r}{%
+\section{\texorpdfstring{Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada \texttt{R}}{Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada R}}\label{metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r}}
+
+Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada \texttt{R}. Fungsi-fungsi tersebut antara lain: \texttt{integrate()} dari paket \texttt{base} dan \texttt{integral()} dari paket \texttt{pracma}.
+
+Fungsi \texttt{integrate()} merupakan fungsi yang akan melakukan integrasi numerik menggunakan metode kudratur adaptif untuk sebuah variabel dengan selang terbatas (\emph{finite}) maupun tidak terbatas (\emph{infinite}). Format fungsi tersebut secara umum adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(f, lower, upper, ..., }\DataTypeTok{subdivisions =}\NormalTok{ 100L,}
+          \DataTypeTok{rel.tol =}\NormalTok{ .Machine}\OperatorTok{$}\NormalTok{double.eps}\OperatorTok{^}\FloatTok{0.25}\NormalTok{, }
+          \DataTypeTok{abs.tol =}\NormalTok{ rel.tol)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: fungsi yang akan dicari integralnya
+\item
+  \textbf{lower}: batas bawah.
+\item
+  \textbf{upper}: batas atas.
+\item
+  \textbf{\ldots{}}: argumen tambahan functn
+\item
+  \textbf{subdivision}: jumlah subinterval atau panel yang akan digunakan.
+\item
+  \textbf{rel.tol}: nilai akurasi relatif yang hendak dicapai
+\item
+  \textbf{abs.tol}: nilai akurasi absolut yang hendak dicapai
+\end{itemize}
+\end{quote}
+
+Contoh penerapan fungsi \texttt{integrate()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x),}
+          \DataTypeTok{lower=}\DecValTok{1}\NormalTok{, }\DataTypeTok{upper=}\DecValTok{10}\NormalTok{,}
+          \DataTypeTok{rel.tol =} \FloatTok{1e-8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 18.52494 with absolute error < 4.1e-10
+\end{verbatim}
+
+Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi \texttt{integral()} dari paket \texttt{pracma}. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi \texttt{integral()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integral}\NormalTok{(fun, xmin, xmax,}
+         \DataTypeTok{method =} \KeywordTok{c}\NormalTok{(}\StringTok{"Kronrod"}\NormalTok{, }\StringTok{"Clenshaw"}\NormalTok{,}\StringTok{"Simpson"}\NormalTok{),}
+         \DataTypeTok{no_intervals =} \DecValTok{8}\NormalTok{, }\DataTypeTok{reltol =} \FloatTok{1e-8}\NormalTok{, }
+         \DataTypeTok{abstol =} \DecValTok{0}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{fun}: fungsi yang akan dicari integralnya
+\item
+  \textbf{xmin}: batas bawah.
+\item
+  \textbf{xmax}: batas atas.
+\item
+  \textbf{method}: metode imtegrasi yang digunakan.
+\item
+  \textbf{\ldots{}}: argumen tambahan fun.
+\item
+  \textbf{no\_intervals}: jumlah subinterval atau panel yang akan digunakan.
+\item
+  \textbf{reltol}: nilai akurasi relatif yang hendak dicapai
+\item
+  \textbf{abstol}: nilai akurasi absolut yang hendak dicapai
+\end{itemize}
+\end{quote}
+
+Berikut merupakan contoh penerapan fungsi \texttt{integral()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pracma}\OperatorTok{::}\KeywordTok{integral}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x),}
+          \DataTypeTok{xmin=}\DecValTok{1}\NormalTok{, }\DataTypeTok{xmax=}\DecValTok{10}\NormalTok{, }\DataTypeTok{method=}\StringTok{"Simpson"}\NormalTok{,}
+          \DataTypeTok{reltol =} \FloatTok{1e-8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.52494
+\end{verbatim}
+
+\hypertarget{romberg}{%
+\section{Metode Integrasi Romberg}\label{romberg}}
+
+Seperti halnya algoritma integrasi adaptif, integrasi Romberg adalah perluasan yang relatif mudah dari keluarga algoritma Newton-Cotes. Keduanya bekerja dengan menggunakan iterasi yang disempurnakan dari beberapa metode Newton-Cotes yang mendasarinya untuk memberikan perkiraan nilai integral yang lebih akurat. Tidak seperti proses komputasi fungsi \texttt{riemann\_adapint()}, integrasi Romberg bukanlah pendekatan adaptif terhadap integrasi. Hal tersebut berarti metode Romberg tidak mengubah perilakunya sendiri berdasarkan perilaku fungsi yang akan diintegrasikan. Sebaliknya, kita mengeksploitasi perilaku fungsi trapesium pada batas untuk menghasilkan estimasi integral.
+
+Untuk memahami integrasi Romberg, kita harus mulai dengan implementasi rekursif dari aturan trapesium. Jika kita mulai dengan suatu fungsi, \(T\left(f, m\right)\) di mana \(T\) adalah fungsi trapesium, \(f\) adalah fungsi yang akan diintegrasikan, dan \(m\) adalah jumlah panel untuk diintegrasikan, maka,
+
+\begin{equation}
+S\left(f, m\right)=\frac{4T\left(f, m\right)-T\left(f, m/2\right)}{3}
+  \label{eq:romberg}
+\end{equation}
+
+di mana \(S\) adalah aturan Simpson. Kemudian, jika kita mendefinisikan \(T \left(f, 0\right) = \left(b − a\right) \left(f \left(b\right) + f \left(a\right)\right) = 2\), maka fungsi rekursif kita selesai, karena berdasarkan hubungan ini, fraksi yang diberikan dalam Persamaan \eqref{eq:romberg} juga merupakan perkiraan untuk integral.
+
+Secara umum,
+
+\begin{equation}
+I_{j,k}=\frac{4^k I_{j,k-1}-I_{j-1,k-1}}{4^k-1}
+  \label{eq:romberg2}
+\end{equation}
+
+di mana \(I_{0, 0}\) adalah aturan trapesium satu panel dan \(I_{j, 0}\) adalah aturan trapesium dengan panel \(2^j\). Dengan menggunakan fungsi-fungsi dasar ini, \(I_{j, k}\) dapat ditemukan secara iteratif sebagai matriks segitiga-bawah di mana masing-masing nilai di kolom yang bukan paling kiri adalah fungsi dari nilai di sebelah kiri dan entri di atasnya.
+
+Definisi rekursif ini muncul dari ekstrapolasi Richardson. Ketika diterapkan pada algoritma trapesium, yang konvergen menuju nilai sebenarnya dari integral sebagai \(m\) (jumlah panel) meningkat, hubungan dalam Persamaan \eqref{eq:romberg2} muncul. Penting untuk dipahami bahwa pada batas ketika \(k\) mendekati tak terhingga, nilai \(I_{j, k}\) adalah nilai sejati integral. Untuk nilai yang lebih kecil dari \(k\), integral Romberg masih hanya perkiraan, meskipun hasil yang diperoleh sangat bagus.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Integrasi Romberg}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Tentukan jumlah subinterval \(m\).
+\item
+  Bentuk matrik \(R\) dengan ukuran \(m\times m\) yang akan menampung hasil perhitungan.
+\item
+  Untuk \(R_{1,1}\) hitung integral fungsi menggunakan metode trapezoida dengan \(m=1\).
+\item
+  Untuk \(j=2,\dots,m\) dan \(k=1\), hitung integral dengan jumlah panel \(m=2^{j-1}\)
+\item
+  Untuk \(j=2,\dots,m\) dan \(k=2,\dots,m\) hitung nilai perbaikan nilai integrasi menggunakan Persamaan \eqref{eq:romberg2}.
+\item
+  Solusi integrasi diperoleh pada \(R_{m,m}\).
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, kita akan menyusun suatu fungsi pada \texttt{R} untuk melakukan proses komputasi integrasi dengan metode Romberg. Berikut adalah sintaks fungsi yang dibuat:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{romberg <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, m, }\DataTypeTok{tab=}\OtherTok{FALSE}\NormalTok{)\{}
+\NormalTok{  R <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{nrow=}\NormalTok{m, }\DataTypeTok{ncol=}\NormalTok{m)}
+  
+\NormalTok{  R[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{trap}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{1}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{m)\{}
+\NormalTok{    R[j,}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{trap}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{2}\OperatorTok{^}\NormalTok{(j}\DecValTok{-1}\NormalTok{))}
+    \ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{j)\{}
+\NormalTok{      k4 <-}\StringTok{ }\DecValTok{4}\OperatorTok{^}\NormalTok{(k}\DecValTok{-1}\NormalTok{)}
+\NormalTok{      R[j,k] <-}\StringTok{ }\NormalTok{(k4}\OperatorTok{*}\NormalTok{R[j,k}\DecValTok{-1}\NormalTok{]}\OperatorTok{-}\NormalTok{R[j}\DecValTok{-1}\NormalTok{,k}\DecValTok{-1}\NormalTok{])}\OperatorTok{/}\NormalTok{(k4}\DecValTok{-1}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{(tab}\OperatorTok{==}\OtherTok{TRUE}\NormalTok{)\{}
+    \KeywordTok{return}\NormalTok{(R)}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \KeywordTok{return}\NormalTok{(R[m,m])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:rombergexm}{}{\label{exm:rombergexm} }Hitung integral fungsi yang ditampilkan pada Contoh \ref{exm:adaptexm} dengan m=10!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Kita dapat menggunakan fungsi \texttt{romberg()} untuk melakukan proses integrasi menggunakan metode Romberg. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# menampilkan matriks proses perhitungan}
+\KeywordTok{romberg}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x),}
+        \DataTypeTok{a=}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{, }\DataTypeTok{m=}\DecValTok{10}\NormalTok{, }\DataTypeTok{tab=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]
+##  [1,] 14.87978       NA       NA       NA       NA       NA       NA
+##  [2,] 17.35130 18.17514       NA       NA       NA       NA       NA
+##  [3,] 18.18703 18.46561 18.48497       NA       NA       NA       NA
+##  [4,] 18.43393 18.51624 18.51961 18.52016       NA       NA       NA
+##  [5,] 18.50156 18.52411 18.52463 18.52471 18.52473       NA       NA
+##  [6,] 18.51905 18.52488 18.52493 18.52493 18.52493 18.52493       NA
+##  [7,] 18.52346 18.52493 18.52494 18.52494 18.52494 18.52494 18.52494
+##  [8,] 18.52457 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+##  [9,] 18.52485 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+## [10,] 18.52492 18.52494 18.52494 18.52494 18.52494 18.52494 18.52494
+##           [,8]     [,9]    [,10]
+##  [1,]       NA       NA       NA
+##  [2,]       NA       NA       NA
+##  [3,]       NA       NA       NA
+##  [4,]       NA       NA       NA
+##  [5,]       NA       NA       NA
+##  [6,]       NA       NA       NA
+##  [7,]       NA       NA       NA
+##  [8,] 18.52494       NA       NA
+##  [9,] 18.52494 18.52494       NA
+## [10,] 18.52494 18.52494 18.52494
+\end{verbatim}
+
+Berdasarkan hasil perhitungan nilai integral fungsi tersebut adalah 18.524939.
+
+\hypertarget{metode-integrasi-romberg-menggunakan-fungsi-lainnya}{%
+\section{Metode Integrasi Romberg Menggunakan Fungsi Lainnya}\label{metode-integrasi-romberg-menggunakan-fungsi-lainnya}}
+
+Fungsi \texttt{romberg()} pada paket \texttt{pracma} dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{romberg}\NormalTok{(f, a, b, }\DataTypeTok{maxit =} \DecValTok{25}\NormalTok{, }\DataTypeTok{tol =} \FloatTok{1e-12}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{f}: fungsi yang akan dicari integralnya
+\item
+  \textbf{a}: batas bawah.
+\item
+  \textbf{b}: batas atas.
+\item
+  \textbf{\ldots{}}: argumen tambahan functn
+\item
+  \textbf{maxit}: jumlah iterasi maksimum.
+\item
+  \textbf{tol}: nilai akurasi yang hendak dicapai
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi \texttt{romberg()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pracma}\OperatorTok{::}\KeywordTok{romberg}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x),}
+        \DataTypeTok{a=}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $value
+## [1] 18.52494
+## 
+## $iter
+## [1] 8
+## 
+## $rel.error
+## [1] 7.105427e-15
+\end{verbatim}
+
+\hypertarget{montecarlo}{%
+\section{Metode Integrasi Monte Carlo}\label{montecarlo}}
+
+Nama Monte Carlo berasal dari daerah di Monako, yang terkenal karena aktikvitas kasino dan perjudiannya. Jelas, permainan kasino yang baik tergantung pada keacakan, seperti juga metode Monte Carlo. Nama ini menggambarkan pentingnya keacakan dalam proses karena algoritma Monte Carlo menggunakan generator angka acak untuk membedakan input ke suatu fungsi.
+
+Angka acak harus berasal dari domain fungsi yang diharapkan. Selanjutnya, fungsi itu sendiri bersifat deterministik karena untuk diberikan dua input dari domain fungsi \(x_1\) dan \(x_2\). Jika \(x_1 = x_2\), maka \(f \left(x_1\right) = f \left(x_2\right)\). Generator angka acak digunakan untuk menghasilkan sejumlah besar input dan fungsinya dijalankan pada setiap input. Akhirnya, hasil yang diperoleh dikumpulkan sesuai dengan model logika yang sesuai dengan analisis yang dilakukan.
+
+Metode Monte Carlo dapat digunakan untuk integrasi numerik dalam jumlah dimensi apa pun yang diberikan. Pendekatan mendasar metode ini adalah menempatkan beberapa titik \(m\) secara acak di atas domain untuk diintegrasikan. Jika titik terletak ``di bawah'' garis fungsi, maka titik tersebut dianggap dalam area integrasi. Jika titiknya ``di atas'' garis fungsi, maka titik tersebut bukan berada diluar garis integrasi. Area di bawah perkiraan kurva adalah persentase titik di bawah garis.
+
+Beberapa algoritma Monte Carlo yang paling awal digunakan untuk menemukan area di bawah kurva atau untuk memperkirakan nilai \(\pi\) sebuah hobi favorit matematikawan sejak dahulu. Satu pendekatan menciptakan seperempat lingkaran, menggunakan fungsi \(f \left(x\right) = \sqrt{1-x^2}\). Melalui domain \(\left[0, 1\right]\), ini adalah fungsi dan merupakan hasil dari penyelesaian persamaan standar untuk lingkaran, \(x^2 + y^2 = r\) untuk \(y\) di mana \(r = 1\).
+
+Gambar \ref{fig:monteviz} menunjukkan plot fungsi ini. Selain itu, 20 titik acak dipilih. Jika titik di bawah kurva dilambangkan dengan lingkaran hitam terisi dan titik-titik kurva dilambangkan dengan titik bulat kosong. Dalam contoh ini, terdapat 15 titik berada di bawah kurva, mengarah ke estimasi area luas area 0,75. Karena kurva mewakili seperempat lingkaran, estimasi untuk \(\pi\) adalah 3. Meningkatkan jumlah tes titik acak meningkatkan ketepatan estimasi dan akurasi.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{./images/monte} 
+
+}
+
+\caption{Visualisasi metode Monte-Carlo untuk fungsi setengah lingkaran dengan jumlah bilangan acak 20 (sumber: Jones et.al., 2014).}\label{fig:monteviz}
+\end{figure}
+
+Bentuk umum metode Monte-Carlo disajikan pada Persamaan \eqref{eq:monte}.
+
+\begin{equation}
+\int_a^bf\left(x\right)dx\approx\left(b-a\right)\frac{1}{N}\sum_{i=1}^Nf\left(x_i\right)
+  \label{eq:monte}
+\end{equation}
+
+dimana \(N\) merupakan jumlah titik yang akan dievaluasi.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Monte Carlo}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan selang integrasinya \(\left[a,b\right]\).
+\item
+  Tentukan jumlah titik acak yang akan digunakan \(N\).
+\item
+  Lakukan produksi titik acak \(x\) dengan selang \(\left[a,b\right]\) sejumlah \(N\)
+\item
+  Hitung \(f\left(x_i\right)\)
+\item
+  Hitung estimasi area menggunakan Persamaan \eqref{eq:monte}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Berdasarkan algoritma tersebut, fungsi \texttt{R} dapat dibangun untuk melakukan integrasi numerik menggunakan metode Monte Carlo. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{monte_int <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, a, b, }\DataTypeTok{m=}\FloatTok{1e6}\NormalTok{)\{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(m, }\DataTypeTok{min=}\NormalTok{a, }\DataTypeTok{max=}\NormalTok{b)}
+  
+  \KeywordTok{return}\NormalTok{((b}\OperatorTok{-}\NormalTok{a)}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(}\KeywordTok{f}\NormalTok{(x))}\OperatorTok{/}\NormalTok{m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:monteexm}{}{\label{exm:monteexm} }Hitung integral fungsi yang ditampilkan pada Contoh \ref{exm:adaptexm} menggunakan metode Monte-Carlo dengan m=1e6!
+\EndKnitrBlock{example}
+
+\textbf{Jawab}:
+
+Integrasi Monte Carlo menggunakan menggunakan fungsi \texttt{monte\_int()} disajikan pada sintaks berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{monte_int}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)}\KeywordTok{sin}\NormalTok{(x)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{log}\NormalTok{(x), }\DataTypeTok{a=}\DecValTok{1}\NormalTok{, }\DataTypeTok{b=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.51559
+\end{verbatim}
+
+Hasil yang diperoleh sedikit berbeda dengan yang dihasilkan oleh metode lainnya. Hal ini disebabkan oleh penggunaan bilangan acak pada proses integrasi. Selain itu, metode ini juga menghasilkan kualitas hasil yang rendah dengan tingkat komputasi yang tinggi dibandingkan dengan metode Newton-Cotes.
+
+Keunggulan metode Monte Carlo dibandingkan metode sebelumnya adalah kemampuan untuk menangani proses integrasi berganda. Berikut adalah bentuk umum proses integrasi bivariat menggunakan metode Monte Carlo:
+
+\begin{equation}
+\int \int f\left(x,y\right)dx\approx V\frac{1}{N}\sum_{i=1}^Nf\left(x_i,y_i\right)
+  \label{eq:monte2}
+\end{equation}
+
+dimana \(V\) merupakan area perpotongan \(x-y\) dimana fungsi \(f\left(x,y\right)\) diintegrasikan.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Algoritma Metode Monte Carlo Bivariat}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tentukan fungsi \(f\left(x\right)\) dan domain integrasinya pada masing-masing sumbu \(x\) dan \(y\)
+\item
+  Tentukan jumlah titik acak yang akan digunakan \(N\).
+\item
+  Lakukan produksi titik acak \(x\) dan \(y\) masing-masing domain sumbunya sejumlah \(N\)
+\item
+  Hitung \(V=\left( x_{max}-x_{min}\right) \times \left(y_{max}-y_{max}\right)\)
+\item
+  Hitung estimasi volume menggunakan Persamaan \eqref{eq:monte2}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{monte_int2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, xdom, ydom, }\DataTypeTok{m=}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  xmin <-}\StringTok{ }\KeywordTok{min}\NormalTok{(xdom)}
+\NormalTok{  xmax <-}\StringTok{ }\KeywordTok{max}\NormalTok{(xdom)}
+\NormalTok{  ymin <-}\StringTok{ }\KeywordTok{min}\NormalTok{(ydom)}
+\NormalTok{  ymax <-}\StringTok{ }\KeywordTok{max}\NormalTok{(ydom)}
+  
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(m, }\DataTypeTok{min=}\NormalTok{xmin, }\DataTypeTok{max=}\NormalTok{xmax)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(m, }\DataTypeTok{min=}\NormalTok{ymin, }\DataTypeTok{max=}\NormalTok{ymax)}
+  
+\NormalTok{  V <-}\StringTok{ }\NormalTok{(xmax}\OperatorTok{-}\NormalTok{xmin)}\OperatorTok{*}\NormalTok{(ymax}\OperatorTok{-}\NormalTok{ymin)}
+  
+  \KeywordTok{return}\NormalTok{(V}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(}\KeywordTok{f}\NormalTok{(x,y))}\OperatorTok{/}\NormalTok{m)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{example}
+\protect\hypertarget{exm:monteexm2}{}{\label{exm:monteexm2} }Hitung volume melalui integrasi persamaan berikut menggunakan metode Monte Carlo dengan domain x = {[}0,1{]} dan y={[}0,1{]}!
+\EndKnitrBlock{example}
+
+\[
+\int_{0}^1 \int_{0}^1 x^2y \ dy \ dx
+\]
+
+\textbf{Jawab}:
+
+Berikut adalah sintaks yang digunakan untuk melakukan integrasi persamaan tersebut menggunakan metode Monte Carlo bivariat:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{monte_int2}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x,y)x}\OperatorTok{^}\DecValTok{2}\OperatorTok{*}\NormalTok{y,}
+           \DataTypeTok{xdom=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{ydom=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1679889
+\end{verbatim}
+
+Karena metode Monte Carlo tidak deterministik, \emph{error} integrasi Monte Carlo tidak dibatasi dalam pengertian yang telah kita lihat sejauh ini. Namun, kita dapat memperkirakan varians dari estimasi yang dihasilkan, yang berkurang dengan meningkatnya jumlah poin:
+
+\begin{equation}
+\text{Var}\frac{1}{N}\sum f\left(\right)=\frac{\sigma^2}{N}
+  \label{eq:monte3}
+\end{equation}
+
+dimana \(\sigma^2=\text{Var}\ f\left(\right)\). Definisi ini juga digunakan untuk proses integrasi dengan dimensi yang lebih tinggi.
+
+Perlu diketahui pula bahwa metode Monte Carlo hanya dapat digunakan jika nilai terendah dari variabel bebas yang digunakan tidak negatif. Hal ini dilakukan untuk mencegah adanya pengurangan dengan nilai negatif sehingga hasil integrasi jauh lebih besar dari yang seharusnya.
+
+\hypertarget{studi-kasus-2}{%
+\section{Studi Kasus}\label{studi-kasus-2}}
+
+\hypertarget{penerjung-payung}{%
+\subsection{Penerjung Payung}\label{penerjung-payung}}
+
+Pada studi kasus kali ini, penulis akan memberikan contoh penerapan integrasi numerik dalam menganalisa jarak jatuh seorang penerjung payung yang melompat dari sebuah pesawat. Kecepatan penerjun payung dapat dituliskan ke dalam sebuah fungsi dari waktu,
+
+\begin{equation}
+v\left(t\right)=\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)
+  \label{eq:terjun}
+\end{equation}
+
+dimana \(v\) adalah kecepatan penerjun payung dalam \(m/dt\), \(g\) adalah percepatan gravitasi sebesar \(9,8 \ m/dt^2\), \(m\) adalah massa penerjun payung sebesar \(68,1 \ kg\), dan \(c\) adalah koefisien tahanan udara sebesar \(12,5\ kg/dt\).
+
+Misalkan kita ingin mengetahui seberapa jauh penerjun telah jatuh setelah waktu tertentu \(t\). Karena kecepatan merupakan turunan pertama dari fungsi jarak, maka jarak penerjun dari titik terjun \(\left(t=0\right)\) adalah:
+
+\begin{equation}
+d=\int_{0}^{t}v\left(t\right)dt=\int_{0}^{t}\frac{gm}{c}\left(1-e^{-\left(c/m\right)t}\right)dt
+  \label{eq:terjun2}
+\end{equation}
+
+Jika kita ingin mengetahui jarak yang telah ditempuh saat \(t=10\), kita dapat melakukan integrasi pada persamaan tersebut dengan domain \(t=\left[0,10\right]\). Persamaan \eqref{eq:terjun2} dapat dinyatakan menjadi Persamaan \eqref{eq:terjun3} dengan memasukkan semua komponen yang telah diketahui sebelumnya.
+
+\begin{equation}
+d=\int_{0}^{10}\frac{9,8\times 68,1}{12,5}\left(1-e^{-\left(12,5/68,1\right)^t}\right)dt
+  \label{eq:terjun3}
+\end{equation}
+
+Kita dapat menyelesaikan Persamaan \eqref{eq:terjun3} dengan menggunakan metode-metode integrasi numerik yang telah dijabarkan sebelumnya. Berikut adalah sintaks untuk masing-masing metode tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)((}\FloatTok{9.8}\OperatorTok{*}\FloatTok{68.1}\NormalTok{)}\OperatorTok{/}\FloatTok{12.5}\NormalTok{)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{(}\FloatTok{12.5}\OperatorTok{/}\FloatTok{68.1}\NormalTok{)}\OperatorTok{*}\NormalTok{x))}
+\NormalTok{a <-}\StringTok{ }\DecValTok{0}\NormalTok{; b <-}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Newton-Cotes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Metode Riemann}
+\KeywordTok{riemann}\NormalTok{(f, a, b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4386
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Metode Trapezoida}
+\KeywordTok{trap}\NormalTok{(f, a, b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4283
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Metode Simpson 1/3}
+\KeywordTok{simpson}\NormalTok{(f, a, b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4351
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Metode Simpson 3/8}
+\KeywordTok{simpson38}\NormalTok{(f, a, b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4351
+\end{verbatim}
+
+\textbf{Metode Adaptif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{riemann_adaptint}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4351
+\end{verbatim}
+
+\textbf{Metode Romberg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{romberg}\NormalTok{(f, a, b, }\DataTypeTok{m=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.4351
+\end{verbatim}
+
+\textbf{Metode Monte Carlo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{monte_int}\NormalTok{(f, a, b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 289.6182
+\end{verbatim}
+
+\hypertarget{referensi-8}{%
+\section{Referensi}\label{referensi-8}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Bloomfield, V.A. 2014. \textbf{Using R for Numerical Analysis in Science and Engineering}. CRC Press.
+\item
+  Chapra, S.C. Canale, R.P. 2015. \textbf{Numerical Methods For Engineers, Seventh Edition}. Mc Graw Hill.
+\item
+  Howard, J.P. 2017. \textbf{Computational Methods for Numerical Analysis with R}. CRC Press.
+\item
+  Kreyszig, E. 2011. \textbf{Advanced Engineering Mathematics, 10th Edition}. John Wiley \& Sons.
+\item
+  Sanjaya, M. 2015. \textbf{Metode Numerik Berbasis Phython}. Penerbit Gava Media: Yogyakarta.
+\item
+  Suparno, S. 2008. \textbf{Komputasi untuk Sains dan Teknik Edisi II}. Departemen Fisika-FMIPA Universitas Indonesia.
+\end{enumerate}
+
+\#\#Latihan
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hitung integral fungsi \(f\left(x\right)=\sin^2\left(x\right)\) pada domain \(x \in \left[0,\pi\right]\) !
+\item
+  Tuliskan fungsi \texttt{R} yang dapat melakukan integrasi Riemann dengan aturan titik kiri !
+\item
+  Buatlah sebuah fungsi \texttt{R} yang dapat melakukan integrasi adaptif menggunakan metode Simpson 1/3 !
+\item
+  Kerjakan kembali soal 3 dengan menggunakan metode Simpson 3/8! (\textbf{Note}: pembaca dapat melakukan pencarian algoritma di internet dan mentrasformasikannya menjadi sintaks \texttt{R})
+\item
+  Fungsi \texttt{monte\_int()} hanya mampu melakukan integrasi pada domain positif. Buatlah algoritma baru sehingga metode ini dapat melakukan integrasi pada domain negatif !
 \end{enumerate}
 
 \bibliography{book.bib,packages.bib}

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.3 Eliminasi Gauss | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+
+
+<meta name="author" content="Mohammad Rosidi" />
+
+<meta name="date" content="2019-11-05" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan">
+
+<title>6.3 Eliminasi Gauss | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#kata-pengantar">Kata Pengantar</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Bahasa Pemrograman R</a><ul>
+<li><a href="1-1-sejarahR.html#sejarahR"><span class="toc-section-number">1.1</span> Sejarah R</a></li>
+<li><a href="1-2-fiturR.html#fiturR"><span class="toc-section-number">1.2</span> Fitur dan Karakteristik R</a></li>
+<li><a href="1-3-prosconsR.html#prosconsR"><span class="toc-section-number">1.3</span> Kelebihan dan Kekurangan R</a></li>
+<li><a href="1-4-rstudio.html#rstudio"><span class="toc-section-number">1.4</span> RStudio</a></li>
+<li><a href="1-5-installR.html#installR"><span class="toc-section-number">1.5</span> Menginstall R dan RStudio</a></li>
+<li class="has-sub"><a href="1-6-wdR.html#wdR"><span class="toc-section-number">1.6</span> Working Directory</a><ul>
+<li><a href="1-6-wdR.html#changewdR"><span class="toc-section-number">1.6.1</span> Mengubah Lokasi Working Directory</a></li>
+<li><a href="1-6-wdR.html#defaultwdR"><span class="toc-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li><a href="1-7-installlibraryR.html#installlibraryR"><span class="toc-section-number">1.7</span> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="has-sub"><a href="1-8-helpR.html#helpR"><span class="toc-section-number">1.8</span> Fasilitas Help</a><ul>
+<li><a href="1-8-helpR.html#searchhelp"><span class="toc-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li><a href="1-8-helpR.html#generalhelp"><span class="toc-section-number">1.8.2</span> General Help</a></li>
+<li><a href="1-8-helpR.html#othershelp"><span class="toc-section-number">1.8.3</span> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li><a href="1-9-referensi.html#referensi"><span class="toc-section-number">1.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-calculation.html#calculation"><span class="toc-section-number">2</span> Kalkulasi Menggunakan R</a><ul>
+<li><a href="2-1-aritmetikoperator.html#aritmetikoperator"><span class="toc-section-number">2.1</span> Operator Aritmatik</a></li>
+<li><a href="2-2-aritmaticfunction.html#aritmaticfunction"><span class="toc-section-number">2.2</span> Fungsi Aritmetik</a></li>
+<li><a href="2-3-relationoperators.html#relationoperators"><span class="toc-section-number">2.3</span> Operator Relasi</a></li>
+<li><a href="2-4-logicoperators.html#logicoperators"><span class="toc-section-number">2.4</span> Operator Logika</a></li>
+<li><a href="2-5-assigningvar.html#assigningvar"><span class="toc-section-number">2.5</span> Memasukkan Nilai Kedalam Variabel</a></li>
+<li><a href="2-6-typedata.html#typedata"><span class="toc-section-number">2.6</span> Tipe dan Struktur Data</a></li>
+<li class="has-sub"><a href="2-7-vector.html#vector"><span class="toc-section-number">2.7</span> Vektor</a><ul>
+<li><a href="2-7-vector.html#createvector"><span class="toc-section-number">2.7.1</span> Membuat vektor</a></li>
+<li><a href="2-7-vector.html#missingvalue"><span class="toc-section-number">2.7.2</span> Missing Values</a></li>
+<li><a href="2-7-vector.html#subsetvector"><span class="toc-section-number">2.7.3</span> Subset Pada Vektor</a></li>
+<li><a href="2-7-vector.html#vectorops"><span class="toc-section-number">2.7.4</span> Operasi Matematis Menggunakan Vektor</a></li>
+<li><a href="2-7-vector.html#seq"><span class="toc-section-number">2.7.5</span> Membuat Deret Angka</a></li>
+<li><a href="2-7-vector.html#repseq"><span class="toc-section-number">2.7.6</span> Nilai Berulang</a></li>
+<li><a href="2-7-vector.html#randnumb"><span class="toc-section-number">2.7.7</span> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-8-matriks.html#matriks"><span class="toc-section-number">2.8</span> Matriks</a><ul>
+<li><a href="2-8-matriks.html#creatematrix"><span class="toc-section-number">2.8.1</span> Membuat matriks</a></li>
+<li><a href="2-8-matriks.html#subsetmatrix"><span class="toc-section-number">2.8.2</span> Subset Pada Matriks</a></li>
+<li><a href="2-8-matriks.html#matrixcalculation"><span class="toc-section-number">2.8.3</span> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li><a href="2-9-referensi-1.html#referensi-1"><span class="toc-section-number">2.9</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-dataviz.html#dataviz"><span class="toc-section-number">3</span> Visualisasi Data</a><ul>
+<li><a href="3-1-plotfunc.html#plotfunc"><span class="toc-section-number">3.1</span> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="has-sub"><a href="3-2-otherviz.html#otherviz"><span class="toc-section-number">3.2</span> Visualisasi Lainnya</a><ul>
+<li><a href="3-2-otherviz.html#barplot"><span class="toc-section-number">3.2.1</span> Bar Plot</a></li>
+<li><a href="3-2-otherviz.html#histogram"><span class="toc-section-number">3.2.2</span> Histogram dan Density Plot</a></li>
+<li><a href="3-2-otherviz.html#boxplot"><span class="toc-section-number">3.2.3</span> Box plot</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-customise.html#customise"><span class="toc-section-number">3.3</span> Kustomisasi Parameter Grafik</a><ul>
+<li><a href="3-3-customise.html#addtitle"><span class="toc-section-number">3.3.1</span> Menambahkan Judul</a></li>
+<li><a href="3-3-customise.html#addlegend"><span class="toc-section-number">3.3.2</span> Menambahkan Legend</a></li>
+<li><a href="3-3-customise.html#addtext"><span class="toc-section-number">3.3.3</span> Menambahkan Teks Pada Grafik</a></li>
+<li><a href="3-3-customise.html#addlines"><span class="toc-section-number">3.3.4</span> Menambahkan Garis Pada Plot</a></li>
+<li><a href="3-3-customise.html#changepoint"><span class="toc-section-number">3.3.5</span> Merubah Simbol plot dan Jenis Garis</a></li>
+<li><a href="3-3-customise.html#mengatur-axis-plot"><span class="toc-section-number">3.3.6</span> Mengatur Axis Plot</a></li>
+<li><a href="3-3-customise.html#changecolor"><span class="toc-section-number">3.3.7</span> Mengatur Warna</a></li>
+</ul></li>
+<li><a href="3-4-plot-dua-dan-tiga-dimensi.html#plot-dua-dan-tiga-dimensi"><span class="toc-section-number">3.4</span> Plot Dua dan Tiga Dimensi</a></li>
+<li><a href="3-5-referensi-2.html#referensi-2"><span class="toc-section-number">3.5</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-programmingandfunction.html#programmingandfunction"><span class="toc-section-number">4</span> Pemrograman dan Fungsi</a><ul>
+<li class="has-sub"><a href="4-1-loop.html#loop"><span class="toc-section-number">4.1</span> Loop</a><ul>
+<li><a href="4-1-loop.html#forloop"><span class="toc-section-number">4.1.1</span> For Loop</a></li>
+<li><a href="4-1-loop.html#whileloop"><span class="toc-section-number">4.1.2</span> While Loop</a></li>
+<li><a href="4-1-loop.html#repeatloop"><span class="toc-section-number">4.1.3</span> Repeat Loop</a></li>
+<li><a href="4-1-loop.html#break"><span class="toc-section-number">4.1.4</span> Break</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-2-loopapply.html#loopapply"><span class="toc-section-number">4.2</span> Loop Menggunakan Apply Family Function</a><ul>
+<li><a href="4-2-loopapply.html#apply"><span class="toc-section-number">4.2.1</span> Apply</a></li>
+<li><a href="4-2-loopapply.html#lapply"><span class="toc-section-number">4.2.2</span> lapply</a></li>
+<li><a href="4-2-loopapply.html#sapply"><span class="toc-section-number">4.2.3</span> sapply</a></li>
+<li><a href="4-2-loopapply.html#vapply"><span class="toc-section-number">4.2.4</span> vapply</a></li>
+<li><a href="4-2-loopapply.html#tapply"><span class="toc-section-number">4.2.5</span> tapply</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-3-dm.html#dm"><span class="toc-section-number">4.3</span> Decision Making</a><ul>
+<li><a href="4-3-dm.html#ifstatement"><span class="toc-section-number">4.3.1</span> if statement</a></li>
+<li><a href="4-3-dm.html#ifelsestatement"><span class="toc-section-number">4.3.2</span> if else statement</a></li>
+<li><a href="4-3-dm.html#switchstatement"><span class="toc-section-number">4.3.3</span> switch statement</a></li>
+</ul></li>
+<li><a href="4-4-fungsi.html#fungsi"><span class="toc-section-number">4.4</span> Fungsi</a></li>
+<li><a href="4-5-debugging.html#debugging"><span class="toc-section-number">4.5</span> Debugging</a></li>
+<li><a href="4-6-referensi-3.html#referensi-3"><span class="toc-section-number">4.6</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-numericmethod.html#numericmethod"><span class="toc-section-number">5</span> Pengantar Metode Numerik</a><ul>
+<li class="has-sub"><a href="5-1-numericmethodintro.html#numericmethodintro"><span class="toc-section-number">5.1</span> Mengenal Metode Numerik</a><ul>
+<li><a href="5-1-numericmethodintro.html#diffanalitycnumeric"><span class="toc-section-number">5.1.1</span> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li><a href="5-1-numericmethodintro.html#tahapan-penyelesaian-menggunakan-metode-numerik"><span class="toc-section-number">5.1.2</span> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li><a href="5-2-acuracy.html#acuracy"><span class="toc-section-number">5.2</span> Akurasi dan Presisi</a></li>
+<li><a href="5-3-numerror.html#numerror"><span class="toc-section-number">5.3</span> Error Numerik</a></li>
+<li><a href="5-4-referensi-4.html#referensi-4"><span class="toc-section-number">5.4</span> Referensi</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-linearaljabar.html#linearaljabar"><span class="toc-section-number">6</span> Aljabar Linier</a><ul>
+<li class="has-sub"><a href="6-1-vecmat.html#vecmat"><span class="toc-section-number">6.1</span> Vektor dan matriks</a><ul>
+<li><a href="6-1-vecmat.html#operasivektor"><span class="toc-section-number">6.1.1</span> Operasi Vektor</a></li>
+<li><a href="6-1-vecmat.html#operasimatrik"><span class="toc-section-number">6.1.2</span> Operasi matriks</a></li>
+</ul></li>
+<li><a href="6-2-rowoperation.html#rowoperation"><span class="toc-section-number">6.2</span> Operasi Baris Elementer</a></li>
+<li class="has-sub"><a href="6-3-gausselimination.html#gausselimination"><span class="toc-section-number">6.3</span> Eliminasi Gauss</a><ul>
+<li><a href="6-3-gausselimination.html#rowechelonform"><span class="toc-section-number">6.3.1</span> <em>Row Echelon Form</em></a></li>
+<li><a href="6-3-gausselimination.html#redrowechelonform"><span class="toc-section-number">6.3.2</span> Eliminasi Gauss-Jordan</a></li>
+<li><a href="6-3-gausselimination.html#matriktridiagonal"><span class="toc-section-number">6.3.3</span> Matrik Tridiagonal</a></li>
+<li><a href="6-3-gausselimination.html#solvefunc"><span class="toc-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li><a href="6-3-gausselimination.html#solvetridiagfunct"><span class="toc-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-4-dekomposisimatriks.html#dekomposisimatriks"><span class="toc-section-number">6.4</span> Dekomposisi Matriks</a><ul>
+<li><a href="6-4-dekomposisimatriks.html#ludecomp"><span class="toc-section-number">6.4.1</span> Dekomposisi LU</a></li>
+<li><a href="6-4-dekomposisimatriks.html#dekomposisi-cholesky"><span class="toc-section-number">6.4.2</span> Dekomposisi Cholesky</a></li>
+<li><a href="6-4-dekomposisimatriks.html#othersdecomp"><span class="toc-section-number">6.4.3</span> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-5-iteratif.html#iteratif"><span class="toc-section-number">6.5</span> Metode Iterasi</a><ul>
+<li><a href="6-5-iteratif.html#jacobiiter"><span class="toc-section-number">6.5.1</span> Iterasi Jacobi</a></li>
+<li><a href="6-5-iteratif.html#seideliter"><span class="toc-section-number">6.5.2</span> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-6-studikasus.html#studikasus"><span class="toc-section-number">6.6</span> Studi Kasus</a><ul>
+<li><a href="6-6-studikasus.html#leastsquare"><span class="toc-section-number">6.6.1</span> Metode Kuadrat Terkecil</a></li>
+<li><a href="6-6-studikasus.html#reaktorkimia"><span class="toc-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li><a href="6-7-referensi-5.html#referensi-5"><span class="toc-section-number">6.7</span> Referensi</a></li>
+<li><a href="6-8-latihan.html#latihan"><span class="toc-section-number">6.8</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-rootfinding.html#rootfinding"><span class="toc-section-number">7</span> Akar Persamaan Non-Linier</a><ul>
+<li class="has-sub"><a href="7-1-bracketing.html#bracketing"><span class="toc-section-number">7.1</span> Metode Tertutup</a><ul>
+<li><a href="7-1-bracketing.html#table"><span class="toc-section-number">7.1.1</span> Metode Tabel</a></li>
+<li><a href="7-1-bracketing.html#bisection"><span class="toc-section-number">7.1.2</span> Metode Biseksi</a></li>
+<li><a href="7-1-bracketing.html#regulafalsi"><span class="toc-section-number">7.1.3</span> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-2-openmethod.html#openmethod"><span class="toc-section-number">7.2</span> Metode Terbuka</a><ul>
+<li><a href="7-2-openmethod.html#fixpoint"><span class="toc-section-number">7.2.1</span> Metode Iterasi Titik Tetap</a></li>
+<li><a href="7-2-openmethod.html#newtonraphson"><span class="toc-section-number">7.2.2</span> Metode Newton-Raphson</a></li>
+<li><a href="7-2-openmethod.html#secant"><span class="toc-section-number">7.2.3</span> Metode Secant</a></li>
+</ul></li>
+<li><a href="7-3-uniroot.html#uniroot"><span class="toc-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li><a href="7-4-akar-persamaan-polinomial-menggunakan-fungsi-polyroot.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><span class="toc-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="has-sub"><a href="7-5-studi-kasus.html#studi-kasus"><span class="toc-section-number">7.5</span> Studi Kasus</a><ul>
+<li><a href="7-5-studi-kasus.html#persamaan-van-der-walls"><span class="toc-section-number">7.5.1</span> Persamaan Van Der Walls</a></li>
+<li><a href="7-5-studi-kasus.html#hukum-bernoulli"><span class="toc-section-number">7.5.2</span> Hukum Bernoulli</a></li>
+</ul></li>
+<li><a href="7-6-referensi-6.html#referensi-6"><span class="toc-section-number">7.6</span> Referensi</a></li>
+<li><a href="7-7-latihan-1.html#latihan-1"><span class="toc-section-number">7.7</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-interpolation.html#interpolation"><span class="toc-section-number">8</span> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="has-sub"><a href="8-1-poliinterpolation.html#poliinterpolation"><span class="toc-section-number">8.1</span> Interpolasi Polinomial</a><ul>
+<li><a href="8-1-poliinterpolation.html#mengevaluasi-polinomial"><span class="toc-section-number">8.1.1</span> Mengevaluasi Polinomial</a></li>
+<li><a href="8-1-poliinterpolation.html#lininterpol"><span class="toc-section-number">8.1.2</span> Interpolasi Linier</a></li>
+<li><a href="8-1-poliinterpolation.html#hopoliinter"><span class="toc-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-2-pwinter.html#pwinter"><span class="toc-section-number">8.2</span> Interpolasi Piecewise</a><ul>
+<li><a href="8-2-pwinter.html#pwlininter"><span class="toc-section-number">8.2.1</span> Interpolasi Linier Piecewise</a></li>
+<li><a href="8-2-pwinter.html#cubicspline"><span class="toc-section-number">8.2.2</span> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-3-studi-kasus-1.html#studi-kasus-1"><span class="toc-section-number">8.3</span> Studi Kasus</a><ul>
+<li><a href="8-3-studi-kasus-1.html#interpolasi-data-runtun-waktu"><span class="toc-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li><a href="8-4-referensi-7.html#referensi-7"><span class="toc-section-number">8.4</span> Referensi</a></li>
+<li><a href="8-5-latihan-2.html#latihan-2"><span class="toc-section-number">8.5</span> Latihan</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-diffinteg.html#diffinteg"><span class="toc-section-number">9</span> Diferensiasi dan Integrasi Numerik</a><ul>
+<li><a href="9-1-finitediff.html#finitediff"><span class="toc-section-number">9.1</span> Metode Beda Hingga</a></li>
+<li class="has-sub"><a href="9-2-diffother.html#diffother"><span class="toc-section-number">9.2</span> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li><a href="9-2-diffother.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><span class="toc-section-number">9.2.1</span> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-numderiv"><span class="toc-section-number">9.2.2</span> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li><a href="9-2-diffother.html#diferensiasi-menggunakan-paket-pracma"><span class="toc-section-number">9.2.3</span> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="9-3-newtoncotes.html#newtoncotes"><span class="toc-section-number">9.3</span> Metode Integrasi Newton-Cotes</a><ul>
+<li><a href="9-3-newtoncotes.html#riemann"><span class="toc-section-number">9.3.1</span> Metode Integral Riemann</a></li>
+<li><a href="9-3-newtoncotes.html#trapezoida"><span class="toc-section-number">9.3.2</span> Metode Trapezoida</a></li>
+<li><a href="9-3-newtoncotes.html#simpson"><span class="toc-section-number">9.3.3</span> Metode Simpson</a></li>
+<li><a href="9-3-newtoncotes.html#simpson38"><span class="toc-section-number">9.3.4</span> Metode Simpson 3/8</a></li>
+</ul></li>
+<li><a href="9-4-metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><span class="toc-section-number">9.4</span> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="gausselimination" class="section level2">
+<h2><span class="header-section-number">6.3</span> Eliminasi Gauss</h2>
+<p>Pada <em>sub-chapter</em> ini kita akan menggunakan operasi baris elementer yang telah dijelaskan pada Chapter <a href="2-5-assigningvar.html#assigningvar">2.5</a>. Terdapat dua topik yang akan dibahas pada <em>sub-chapter</em> ini, yaitu: <em>row echelon form</em> termasuk <em>reduced row echelon form</em> dan matriks tridiagonal.</p>
+<p>Eliminasi Gauss merupakan sebuah cara untuk mencari penyelesaian sistem persamaan linier. Ide dasar dari eliminasi Gauss adalah melakukan operasi matematika pada baris matriks (lihat Chapter <a href="2-5-assigningvar.html#assigningvar">2.5</a>) dan melanjutkannya sampai hanya tersisa satu variabel saja. Kita dapat melakukan lebih dari satu operasi baris elementer pada proses elmininasi ini (contoh: mengalikan sebuah baris dengan konstanta dan menjumlahkan hasilnya pada baris lain).</p>
+<div id="rowechelonform" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> <em>Row Echelon Form</em></h3>
+<p>Sebuah matriks merupakan <em>row echelon form</em> jika matriks tersebut memenuhi beberapa kondisi:</p>
+<ol style="list-style-type: decimal">
+<li>Angka bukan nol pertama dari kiri (<em>leading coefficient</em>) selalu di sebelah kanan angka bukan nol pertama pada baris di atasnya.</li>
+<li>Baris yang terdiri dari semua nol ada di bagian bawah matriks.</li>
+</ol>
+<p>Misalkan terdapat persamaan linier seperti yang ditunjukkan pada Persamaan <a href="6-3-gausselimination.html#eq:spl">(6.10)</a>.</p>
+<p><span class="math display" id="eq:spl">\[\begin{equation}
+\begin{matrix}
+  a_{1.1}x_1+a_{1.2}x_2+a_{1.3}x_3+\cdots+a_{1.n}x_n=b_1 \\
+  a_{2.1}x_1+a_{2.2}x_2+a_{2.3}x_3+\cdots+a_{2.n}x_n=b_2 \\
+  a_{3.1}x_1+a_{3.2}x_2+a_{3.3}x_3+\cdots+a_{3.n}x_n=b_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  a_{m.1}x_1+a_{m.2}x_2+a_{m.3}x_3+\cdots+a_{m.n}x_n=b_n
+ \end{matrix}
+  \tag{6.10}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(a_{i.j}\)</span> untuk <span class="math inline">\(i=1\)</span> sampai dengan <span class="math inline">\(m\)</span> dan <span class="math inline">\(j=1\)</span> sampai dengan <span class="math inline">\(n\)</span> merupakan koefisien persamaan linier. <span class="math inline">\(x_i\)</span> untuk <span class="math inline">\(i=1\)</span> sampai dengan <span class="math inline">\(n\)</span> merupakan variabel bebas pada sistem persamaan linier.</p>
+<p>Persamaan linier pada Persamaan <a href="6-3-gausselimination.html#eq:spl">(6.10)</a> dapat dinyatakan ke dalam bentuk matriks pada Persamaan <a href="6-3-gausselimination.html#eq:matrikpl">(6.11)</a>.</p>
+<p><span class="math display" id="eq:matrikpl">\[\begin{equation}
+\begin{bmatrix}
+     a_{1.1} &amp; a_{1.2} &amp; a_{1.3} &amp;\cdots&amp; a_{1.n}           \\[0.3em]
+     a_{2.1} &amp; a_{2.2} &amp; a_{2.3} &amp;\cdots&amp; a_{2.n}           \\[0.3em]
+     a_{3.1} &amp; a_{3.2} &amp; a_{3.3} &amp;\cdots&amp; a_{3.n}           \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     a_{m.1} &amp; a_{m.2} &amp; a_{m.3} &amp;\cdots&amp; a_{m.n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \tag{6.11}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:matrikpl2">\[\begin{equation}
+AX=B
+  \tag{6.12}
+\end{equation}\]</span></p>
+<p>dimana:</p>
+<ul>
+<li>matriks A merupakan matriks koefisien / Jacobian</li>
+<li>vaktor X merupakan vaktor variabel</li>
+<li>vektor B merupakan vektor konstanta</li>
+</ul>
+<p>matriks pada Persamaan <a href="6-3-gausselimination.html#eq:matrikpl">(6.11)</a> dapat diubah menjadi <em>augmented matrix</em>, yaitu: perluasan matriks A dengan menambahkan vektor B pada kolom terakhirnya.</p>
+<p><span class="math display" id="eq:augmatrik">\[\begin{equation}
+\begin{bmatrix}
+     a_{1.1} &amp; a_{1.2} &amp; a_{1.3} &amp;\cdots&amp; a_{1.n} &amp; b_1     \\[0.3em]
+     a_{2.1} &amp; a_{2.2} &amp; a_{2.3} &amp;\cdots&amp; a_{2.n} &amp; b_2     \\[0.3em]
+     a_{3.1} &amp; a_{3.2} &amp; a_{3.3} &amp;\cdots&amp; a_{3.n} &amp; b_3     \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots &amp;\ddots&amp; \vdots            \\[0.3em]
+     a_{m.1} &amp; a_{m.2} &amp; a_{m.3} &amp;\cdots&amp; a_{m.n} &amp; b_n
+     \end{bmatrix}
+  \tag{6.13}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:augmatrik2">\[\begin{equation}
+A=\left[A|B\right]
+  \tag{6.14}
+\end{equation}\]</span></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-133" class="theorem"><strong>Teorema 6.1  (spltheorem)  </strong></span>Suatu sistem persamaan linier mempunyai penyelesaian tunggal bila memenuhi syarat-syarat sebagai berikut:
+</div>
+
+<ul>
+<li>ukuran persamaan linier simultan bujursangkar (jumlah persamaan sama dengan jumlah variabel bebas).</li>
+<li>sistem persamaan linier <em>non-homogen</em> di mana minimal ada satu nilai vektor konstanta <span class="math inline">\(B\)</span> tidak nol atau terdapat <span class="math inline">\(b_{n}\neq 0\)</span>.</li>
+<li>Determinan dari matriks koefisiensistem persamaan linier tidak sama dengan nol.</li>
+</ul>
+<p>Untuk memperoleh penyelesaian sistem persamaan linier, Persamaan <a href="6-3-gausselimination.html#eq:augmatrik">(6.13)</a> perlu dilakukan operasi baris elementer. Hasil operasi baris dasar akan menghasilkan matriks <em>row echelon form</em> yang disajikan pada Persamaan <a href="6-3-gausselimination.html#eq:refeq">(6.15)</a>.</p>
+<p><span class="math display" id="eq:refeq">\[\begin{equation}
+\begin{bmatrix}
+     a_{1.1} &amp; a_{1.2} &amp; a_{1.3} &amp;\cdots&amp; a_{1.n} &amp; b_1     \\[0.3em]
+     a_{2.1} &amp; a_{2.2} &amp; a_{2.3} &amp;\cdots&amp; a_{2.n} &amp; b_2     \\[0.3em]
+     a_{3.1} &amp; a_{3.2} &amp; a_{3.3} &amp;\cdots&amp; a_{3.n} &amp; b_3     \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots &amp;\ddots&amp; \vdots             \\[0.3em]
+     a_{m.1} &amp; a_{m.2} &amp; a_{m.3} &amp;\cdots&amp; a_{m.n} &amp; b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     c_{1.1} &amp; c_{1.2} &amp; c_{1.3} &amp;\cdots&amp; c_{1.n} &amp; d_1     \\[0.3em]
+     0       &amp; c_{2.2} &amp; c_{2.3} &amp;\cdots&amp; c_{2.n} &amp; d_2     \\[0.3em]
+     0       &amp; 0       &amp; c_{3.3} &amp;\cdots&amp; c_{3.n} &amp; d_3     \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots &amp;\ddots&amp; \vdots             \\[0.3em]
+     0       &amp; 0       &amp; 0      &amp;\cdots&amp; c_{m.n} &amp; d_n
+     \end{bmatrix}
+  \tag{6.15}
+\end{equation}\]</span></p>
+<p>Sehingga penyelesaian sistem persamaan linier dapat diperoleh menggunakan Persamaan <a href="6-3-gausselimination.html#eq:refsolution">(6.16)</a>.</p>
+<p><span class="math display" id="eq:refsolution">\[\begin{equation}
+\begin{matrix}
+  x_n=\frac{d_n}{c_{m.n}} \\
+  x_{n-1}=\frac{1}{C_{m-1.n-1}}\left(d_{n-1}-c_{m-1.n}x_n\right) \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_2=\frac{1}{c_{2.2}}\left(d_2-c_{2.3}x_3-c_{2.4}x_4-\dots-c_{2.n}x_n\right) \\
+  x_1=\frac{1}{c_{1.1}}\left(d_1-c_{1.2}x_2-c_{1.3}x_3-\dots-c_{1.n}x_n\right)
+   \end{matrix}
+  \tag{6.16}
+\end{equation}\]</span></p>
+
+<div class="example">
+<span id="exm:refexm" class="example"><strong>Contoh 6.1  </strong></span>Selesaikan sistem persamaan berikut:
+</div>
+
+<p><span class="math display">\[
+\begin{matrix}
+  x_1+x_2+x_3=6 \\
+  x_1+2x_2-x_3=2 \\
+  2x_1+x_2+2x_3=10 \\
+\end{matrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p><em>Augmented matrix</em> sistem persamaan linier tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+     1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
+     1 &amp; 2 &amp; -1 &amp; 2     \\[0.3em]
+     2 &amp; 1 &amp; 2 &amp; 10
+\end{bmatrix}
+\]</span></p>
+<p>Operasi baris elementer selanjutnya dilakukan pada matriks tersebut. Pada langkah pertama, baris ke-2 dikurangkan dengan baris ke-1 (<span class="math inline">\(B_2-B_1\)</span>) dan baris ke-3 dikurangkan oleh dua kali baris ke-1 (<span class="math inline">\(B_3-2B_1\)</span>).</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
+     1 &amp; 2 &amp; -1 &amp; 2     \\[0.3em]
+     2 &amp; 1 &amp; 2 &amp; 10
+\end{bmatrix}
+\begin{matrix}
+  B_2-B_1 \\
+  \implies \\
+  B_3-2B_1
+\end{matrix}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
+     0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
+     0 &amp; -1 &amp; 0 &amp; -2
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Hasil dari langkah pertama tersebut, selanjutnya menjadi input dari langkah selanjutnya. Pada langkah selanjutnya operasi baris elementer kembali dilanjutkan. Baris ke-3 dikurangkan denganbaris ke-2 (<span class="math inline">\(B_3-B_2\)</span>).</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
+     0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
+     0 &amp; -1 &amp; 0 &amp; -2
+\end{bmatrix}
+\begin{matrix}
+  B_3-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 1 &amp; 6     \\[0.3em]
+     0 &amp; 1 &amp; -2 &amp; -4     \\[0.3em]
+     0 &amp; 0 &amp; -2 &amp; -6
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Setelah diperoleh matriks <em>row echelon form</em> selanjutnya penyelesaian persamaan dapat dikerjakan menggunakan Persamaan <a href="6-3-gausselimination.html#eq:refsolution">(6.16)</a>.</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{matrix}
+  x_3=\frac{-6}{-2}=3 \\
+  x_2=\frac{1}{1}\left(-4-\left(2\right)3\right)=2 \\
+  x_1=\frac{1}{1}\left(6-2-3\right)=1
+\end{matrix}
+\end{equation*}\]</span></p>
+<hr />
+<p><strong>Algoritma Row Echelon Form</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span>, dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span></li>
+<li>Buat <em>augmented matrix</em> <span class="math inline">\(\left[A|B\right]\)</span> namakan dengan <span class="math inline">\(A\)</span></li>
+<li>Untuk baris ke-<span class="math inline">\(i\)</span> dimana <span class="math inline">\(i=1\)</span> s/d <span class="math inline">\(n\)</span>, perhatikan apakah nilai <span class="math inline">\(a_{i,j}\)</span> sama dengan nol. <strong>a)</strong> <strong>Bila iya</strong>, lakukan <em>row swapping</em> antara baris ke-<span class="math inline">\(i\)</span> dan baris ke-<span class="math inline">\(i+k\leq n\)</span>, dimana <span class="math inline">\(a_{i+k,j}\)</span> tidak sama dengan nol. Bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian, <strong>b)</strong> <strong>Bila tidak</strong>, lanjutkan.</li>
+<li>Untuk baris ke-<span class="math inline">\(j\)</span>, dimana <span class="math inline">\(j=i+1\)</span> s/d <span class="math inline">\(n\)</span>, lakukan operasi baris elementer:<strong>a)</strong> Hitung <span class="math inline">\(c=\frac{a_{j,i}}{a_{i,i}}\)</span>, <strong>b)</strong> untuk kolom <span class="math inline">\(k\)</span>, dimana <span class="math inline">\(k=1\)</span> s/d <span class="math inline">\(n+1\)</span>, hitung <span class="math inline">\(a_{j,k}=a_{j,k}-c.a_{i,k}\)</span>.</li>
+<li>Hitung akar, untuk <span class="math inline">\(i=n\)</span> s/d 1 (bergerak dari baris pertama) menggunakan Persamaan <a href="6-3-gausselimination.html#eq:refsolution">(6.16)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada <code>R</code> untuk menyelesaikan sistem persamaan linier menggunakan matriks <em>row echelon form</em>. Fungsi yang akan dibentuk hanya sampai pada algoritma ke-4. Proses substitusi akan dilakukan secara manual. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" title="1">ref_matrix &lt;-<span class="st"> </span><span class="cf">function</span>(a){</a>
+<a class="sourceLine" id="cb402-2" title="2">  m &lt;-<span class="st"> </span><span class="kw">nrow</span>(a)</a>
+<a class="sourceLine" id="cb402-3" title="3">  n &lt;-<span class="st"> </span><span class="kw">ncol</span>(a)</a>
+<a class="sourceLine" id="cb402-4" title="4">  piv &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb402-5" title="5">  </a>
+<a class="sourceLine" id="cb402-6" title="6"><span class="co"># cek elemen diagonal apakah bernilai nol</span></a>
+<a class="sourceLine" id="cb402-7" title="7">  <span class="cf">for</span>(row_curr <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</a>
+<a class="sourceLine" id="cb402-8" title="8">    <span class="cf">if</span>(piv <span class="op">&lt;=</span><span class="st"> </span>n){</a>
+<a class="sourceLine" id="cb402-9" title="9">      i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb402-10" title="10">      <span class="cf">while</span>(a[i, piv] <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>i <span class="op">&lt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb402-11" title="11">        i &lt;-<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb402-12" title="12">        <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb402-13" title="13">          i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb402-14" title="14">          piv &lt;-<span class="st"> </span>piv<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb402-15" title="15">          <span class="cf">if</span>(piv <span class="op">&gt;</span><span class="st"> </span>n)</a>
+<a class="sourceLine" id="cb402-16" title="16">            <span class="kw">return</span>(a)</a>
+<a class="sourceLine" id="cb402-17" title="17">        }</a>
+<a class="sourceLine" id="cb402-18" title="18">      }</a>
+<a class="sourceLine" id="cb402-19" title="19">      </a>
+<a class="sourceLine" id="cb402-20" title="20"><span class="co"># jika diagonal bernilai nol, lakukan row swapping</span></a>
+<a class="sourceLine" id="cb402-21" title="21">    <span class="cf">if</span>(i <span class="op">!=</span><span class="st"> </span>row_curr)</a>
+<a class="sourceLine" id="cb402-22" title="22">      a &lt;-<span class="st"> </span><span class="kw">swap_row</span>(a, i, row_curr)</a>
+<a class="sourceLine" id="cb402-23" title="23">    </a>
+<a class="sourceLine" id="cb402-24" title="24"><span class="co"># proses triangulasi untuk membentuk matriks segitiga atas</span></a>
+<a class="sourceLine" id="cb402-25" title="25">    <span class="cf">for</span>(j <span class="cf">in</span> row_curr<span class="op">:</span>m)</a>
+<a class="sourceLine" id="cb402-26" title="26">      <span class="cf">if</span>(j <span class="op">!=</span><span class="st"> </span>row_curr){</a>
+<a class="sourceLine" id="cb402-27" title="27">        c &lt;-<span class="st"> </span>a[j, piv]<span class="op">/</span>a[row_curr, piv]</a>
+<a class="sourceLine" id="cb402-28" title="28">        a &lt;-<span class="st"> </span><span class="kw">replace_row</span>(a, row_curr, j, <span class="op">-</span>c)</a>
+<a class="sourceLine" id="cb402-29" title="29">      }</a>
+<a class="sourceLine" id="cb402-30" title="30">    piv &lt;-<span class="st"> </span>piv<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb402-31" title="31">    }</a>
+<a class="sourceLine" id="cb402-32" title="32">  }</a>
+<a class="sourceLine" id="cb402-33" title="33">  <span class="kw">return</span>(a)</a>
+<a class="sourceLine" id="cb402-34" title="34">}</a></code></pre></div>
+<p>Dengan menggunakan fungsi <code>ref_matrix()</code>, kita dapat membentuk matriks <em>row echelon form</em> pada Contoh <a href="6-3-gausselimination.html#exm:refexm">6.1</a>.</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1">am &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb403-2" title="2">        <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb403-3" title="3">        <span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb403-4" title="4">        <span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb403-5" title="5">(m &lt;-<span class="st"> </span><span class="kw">matrix</span>(am, <span class="dt">nrow=</span><span class="dv">3</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    1    6
+## [2,]    1    2   -1    2
+## [3,]    2    1    2   10</code></pre>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">ref_matrix</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    1    6
+## [2,]    0    1   -2   -4
+## [3,]    0    0   -2   -6</code></pre>
+<p>matriks yang diperoleh selanjutnya dapat diselesaikan menggunakan Persamaan <a href="6-3-gausselimination.html#eq:refsolution">(6.16)</a>.</p>
+
+<div class="example">
+<span id="exm:refexm2" class="example"><strong>Contoh 6.2  </strong></span>Dengan menggunakan fungsi <code>ref_matrix()</code>, buatlah matriks <em>row echelon form</em> dari sistem persamaan linier berikut:
+</div>
+
+<p><span class="math display">\[
+\begin{matrix}
+  2x_1+x_2-x_3=1 \\
+  3x_1+2x_2-2x_3=1 \\
+  x_1-5x_2+4x_3=3 \\
+\end{matrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p><em>Augmented matrix</em> dari sistem persamaan tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+     2 &amp; 1 &amp; -1 &amp; 1     \\[0.3em]
+     3 &amp; 2 &amp; -2 &amp; 1     \\[0.3em]
+     1 &amp; -5 &amp; 4 &amp; 3
+\end{bmatrix}
+\]</span></p>
+<p>Penyelesaian matriks tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1">(m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb407-2" title="2">              <span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb407-3" title="3">              <span class="dv">-1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb407-4" title="4">              <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">3</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2    1   -1    1
+## [2,]    3    2   -2    1
+## [3,]    1   -5    4    3</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1"><span class="kw">ref_matrix</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2  1.0 -1.0  1.0
+## [2,]    0  0.5 -0.5 -0.5
+## [3,]    0  0.0 -1.0 -3.0</code></pre>
+<p>Proses lebih lanjut akan menghasilkan penyelesaian sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{matrix}
+     x_1=1     \\[0.3em]
+     x_2=2     \\[0.3em]
+     x_3=3
+\end{matrix}
+\]</span></p>
+</div>
+<div id="redrowechelonform" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Eliminasi Gauss-Jordan</h3>
+<p>Berbeda dengan metode eliminasi Gauss yang telah dijelaskan pada Chapter <a href="6-3-gausselimination.html#rowechelonform">6.3.1</a>, metode eliminasi Gauss-Jordan membentuk matriks menjadi bentuk <em>reduced row echelon form</em>. Metode ini merupakan pengembangan metode eliminasi Gauss, dimana matriks sebelah kiri <em>augmented matrix</em> diubah menjadi matriks diagonal (lihat Persamaan <a href="6-3-gausselimination.html#eq:gaussjordan">(6.17)</a>).</p>
+<p><span class="math display" id="eq:gaussjordan">\[\begin{equation}
+\begin{bmatrix}
+     a_{1,1} &amp; a_{1,2} &amp; a_{1,3} &amp;\cdots&amp; a_{1,n} &amp; b_1     \\[0.3em]
+     a_{2,1} &amp; a_{2,2} &amp; a_{2,3} &amp;\cdots&amp; a_{2,n} &amp; b_2     \\[0.3em]
+     a_{3,1} &amp; a_{3,2} &amp; a_{3,3} &amp;\cdots&amp; a_{3,n} &amp; b_3     \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots &amp;\ddots&amp; \vdots             \\[0.3em]
+     a_{m,1} &amp; a_{m,2} &amp; a_{m,3} &amp;\cdots&amp; a_{m,n} &amp; b_n
+     \end{bmatrix}
+\implies
+\begin{bmatrix}
+     1       &amp; 0       &amp; 0       &amp;\cdots&amp; 0       &amp; d_1     \\[0.3em]
+     0       &amp; 1       &amp; 0       &amp;\cdots&amp; 0       &amp; d_2     \\[0.3em]
+     0       &amp; 0       &amp; 1       &amp;\cdots&amp; 0       &amp; d_3     \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots &amp;\ddots&amp; \vdots             \\[0.3em]
+     0       &amp; 0       &amp; 0      &amp;\cdots&amp; 1        &amp; d_n
+     \end{bmatrix}
+  \tag{6.17}
+\end{equation}\]</span></p>
+<p>Sehingga penyelesaian persamaan linier tersebut adalah nilai <span class="math inline">\(d_1,d_2,d3,\dots,d_n\)</span> dan atau:</p>
+<p><span class="math display" id="eq:gaussjordansolution">\[\begin{equation}
+\begin{matrix}
+  x_1=d_1 \\
+  x_2=d_2 \\
+  x_3=d_3 \\
+  \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots       \\
+  x_n=d_n
+   \end{matrix}
+  \tag{6.18}
+\end{equation}\]</span></p>
+
+<div class="example">
+<span id="exm:gaussjordanexm" class="example"><strong>Contoh 6.3  </strong></span>Selesaikan sistem persamaan berikut:
+</div>
+
+<p><span class="math display">\[
+\begin{matrix}
+  x_1+x_2=3 \\
+  2x_1+4x_2=8 \\
+\end{matrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p><em>Augmented matrix</em> dari persamaan linier tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     2 &amp; 4 &amp; 8
+\end{bmatrix}
+\]</span></p>
+<p>Operasi baris elementer selanjutnya dilakukan pada matriks tersebut.</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     2 &amp; 4 &amp; 8
+\end{bmatrix}
+\begin{matrix}
+  B_2-2B_1 \\
+  \implies 
+\end{matrix}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     0 &amp; 2 &amp; 2
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     0 &amp; 2 &amp; 2
+\end{bmatrix}
+\begin{matrix}
+  \frac{B_2}{2} \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     0 &amp; 1 &amp; 1
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     1 &amp; 1 &amp; 3     \\[0.3em]
+     0 &amp; 1 &amp; 1
+\end{bmatrix}
+\begin{matrix}
+  B_1-B_2 \\
+  \implies
+\end{matrix}
+\begin{bmatrix}
+     1 &amp; 0 &amp; 2     \\[0.3em]
+     0 &amp; 1 &amp; 1
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Penyelesaian persamaan linier tersebut adalah sebagai berikut:</p>
+<p><span class="math display">\[
+x_1=2\ dan\ x_2=1
+\]</span></p>
+<hr />
+<p><strong>Algoritma Metode Eliminasi Gauss-Jordan</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masukkan matriks <span class="math inline">\(A\)</span> dan vektor <span class="math inline">\(B\)</span> beserta ukurannya <span class="math inline">\(n\)</span></li>
+<li>Buat <em>augmented matrix</em> <span class="math inline">\(\left[A|B\right]\)</span> namakan dengan <span class="math inline">\(A\)</span></li>
+<li>Untuk baris ke-<span class="math inline">\(i\)</span> dimana <span class="math inline">\(i=1\)</span> s/d <span class="math inline">\(n\)</span></li>
+</ol>
+<ul>
+<li><p>Perhatikan apakah nilai <span class="math inline">\(a_{i.i}\)</span> sama dengan nol:</p>
+<ul>
+<li><strong>Bila ya</strong>: pertukakan baris ke-<span class="math inline">\(i\)</span> dan baris ke-<span class="math inline">\(i+k\le n\)</span>, dimana <span class="math inline">\(a_{i+k.i}\)</span> tidak sama dengan nol, bila tidak ada berarti perhitungan tidak bisa dilanjutkan dan proses dihentikan dengan tanpa penyelesaian.</li>
+<li><strong>Bila tidak</strong>: lanjutkan</li>
+</ul></li>
+<li><p>Jadikan nilai diagonalnya menjadi satu dengan cara untuk setiap kolom <span class="math inline">\(k\)</span> dimana <span class="math inline">\(k=1\)</span> s/d <span class="math inline">\(n+1\)</span>, hitung <span class="math inline">\(a_{i.k}=\frac{a_{i.k}}{a_{i.i}}\)</span></p></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Untuk baris ke-<span class="math inline">\(j\)</span>, dimana <span class="math inline">\(j=i+1\)</span> s/d <span class="math inline">\(n\)</span>. Lakukan operasi baris elementer untuk kolom <span class="math inline">\(k\)</span> dimana <span class="math inline">\(k=1\)</span> s/d <span class="math inline">\(n\)</span>.</li>
+</ol>
+<ul>
+<li>Hitung <span class="math inline">\(c=a_{j.i}\)</span></li>
+<li>Hitung <span class="math inline">\(a_{j.k}=a_{j.k}-c.a_{i.k}\)</span></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Penyelesaian untuk <span class="math inline">\(i=n\)</span> s/d 1 disajikan pada Persamaan <a href="6-3-gausselimination.html#eq:gaussjordansolution">(6.18)</a>.</li>
+</ol>
+<hr />
+<p>Dari algoritma tersebut, kita dapat membangun sebuah fungsi menggunakan <code>R</code>. Fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">gauss_jordan &lt;-<span class="st"> </span><span class="cf">function</span> (a){</a>
+<a class="sourceLine" id="cb411-2" title="2">    m &lt;-<span class="st"> </span><span class="kw">nrow</span> (a)</a>
+<a class="sourceLine" id="cb411-3" title="3">    n &lt;-<span class="st"> </span><span class="kw">ncol</span> (a)</a>
+<a class="sourceLine" id="cb411-4" title="4">    piv &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb411-5" title="5">    </a>
+<a class="sourceLine" id="cb411-6" title="6"><span class="co"># cek elemen diagonal utama apakah bernilai nol</span></a>
+<a class="sourceLine" id="cb411-7" title="7">    <span class="cf">for</span>(row_curr <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</a>
+<a class="sourceLine" id="cb411-8" title="8">        <span class="cf">if</span>(piv <span class="op">&lt;=</span><span class="st"> </span>n){</a>
+<a class="sourceLine" id="cb411-9" title="9">            i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb411-10" title="10">            <span class="cf">while</span>(a[i, piv] <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>i <span class="op">&lt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb411-11" title="11">                i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb411-12" title="12">                <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb411-13" title="13">                    i &lt;-<span class="st"> </span>row_curr</a>
+<a class="sourceLine" id="cb411-14" title="14">                    piv &lt;-<span class="st"> </span>piv <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb411-15" title="15">                    <span class="cf">if</span>(piv <span class="op">&gt;</span><span class="st"> </span>n)</a>
+<a class="sourceLine" id="cb411-16" title="16">                        <span class="kw">return</span> (a)</a>
+<a class="sourceLine" id="cb411-17" title="17">                }</a>
+<a class="sourceLine" id="cb411-18" title="18">            }</a>
+<a class="sourceLine" id="cb411-19" title="19"></a>
+<a class="sourceLine" id="cb411-20" title="20"><span class="co"># jika diagonal utama bernilai nol,lakukan row swapping</span></a>
+<a class="sourceLine" id="cb411-21" title="21">            <span class="cf">if</span>(i <span class="op">!=</span><span class="st"> </span>row_curr)</a>
+<a class="sourceLine" id="cb411-22" title="22">                a &lt;-<span class="st"> </span><span class="kw">swap_row</span>(a, i, row_curr)</a>
+<a class="sourceLine" id="cb411-23" title="23">            </a>
+<a class="sourceLine" id="cb411-24" title="24"><span class="co"># proses pembentukan matriks reduced row echelon form</span></a>
+<a class="sourceLine" id="cb411-25" title="25">            piv_val &lt;-<span class="st"> </span>a[row_curr , piv]</a>
+<a class="sourceLine" id="cb411-26" title="26">            a &lt;-<span class="st"> </span><span class="kw">scale_row</span> (a, row_curr , <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>piv_val)</a>
+<a class="sourceLine" id="cb411-27" title="27">            <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="st"> </span>m){</a>
+<a class="sourceLine" id="cb411-28" title="28">                <span class="cf">if</span>(j <span class="op">!=</span><span class="st"> </span>row_curr){</a>
+<a class="sourceLine" id="cb411-29" title="29">                    k &lt;-<span class="st"> </span>a[j, piv]<span class="op">/</span>a[row_curr, piv]</a>
+<a class="sourceLine" id="cb411-30" title="30">                    a &lt;-<span class="st"> </span><span class="kw">replace_row</span> (a, row_curr, j, <span class="op">-</span>k)</a>
+<a class="sourceLine" id="cb411-31" title="31">                }</a>
+<a class="sourceLine" id="cb411-32" title="32">            }</a>
+<a class="sourceLine" id="cb411-33" title="33">            piv &lt;-<span class="st"> </span>piv <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb411-34" title="34">        }</a>
+<a class="sourceLine" id="cb411-35" title="35">    }</a>
+<a class="sourceLine" id="cb411-36" title="36">    <span class="kw">return</span> (a)</a>
+<a class="sourceLine" id="cb411-37" title="37">}</a></code></pre></div>
+<p>Dengan menggunakan fungsi <code>gauss_jordan()</code>, sistem persamaan linier pada Contoh <a href="6-3-gausselimination.html#exm:gaussjordanexm">6.3</a>:</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" title="1">(m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">8</span>), <span class="dt">nrow=</span><span class="dv">2</span>))</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    1    3
+## [2,]    2    4    8</code></pre>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" title="1"><span class="kw">gauss_jordan</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    2
+## [2,]    0    1    1</code></pre>
+
+<div class="example">
+<span id="exm:gaussjordanexm2" class="example"><strong>Contoh 6.4  </strong></span>Dengan menggunakan fungsi <code>gauss_jordan()</code>, carilah penyelesaian sistem persamaan linier pada Contoh <a href="6-3-gausselimination.html#exm:refexm">6.1</a> dan Contoh <a href="6-3-gausselimination.html#exm:refexm2">6.2</a>:
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk Contoh <a href="6-3-gausselimination.html#exm:refexm">6.1</a>:</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" title="1">am &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb416-2" title="2">        <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb416-3" title="3">        <span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb416-4" title="4">        <span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb416-5" title="5">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(am, <span class="dt">nrow=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb416-6" title="6"></a>
+<a class="sourceLine" id="cb416-7" title="7"><span class="kw">gauss_jordan</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    1
+## [2,]    0    1    0    2
+## [3,]    0    0    1    3</code></pre>
+<p>Untuk Contoh <a href="6-3-gausselimination.html#exm:refexm2">6.2</a>:</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb418-2" title="2">              <span class="dv">-1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb418-3" title="3">            <span class="dt">nrow=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb418-4" title="4"><span class="kw">gauss_jordan</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    1
+## [2,]    0    1    0    2
+## [3,]    0    0    1    3</code></pre>
+</div>
+<div id="matriktridiagonal" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Matrik Tridiagonal</h3>
+<p>Metode eliminasi Gauss merupakan metode yang sederhana untuk digunakan khususnya jika semua koefisien bukan nol berkumpul pada diagonal utama dan beberapa diagonal sekitarnya. Suatu sistem yang bersifat demikian disebut sebagai <em>banded</em> dan banyaknya diagonal yang memuat koefisien bukan nol disebut sebagai <em>bandwidth</em>. Contoh khusus yang sering dijumpai adalah matriks tridiagonal yang memiliki <em>bandwidth</em> tiga.</p>
+<p>Proses eliminasi untuk matriks tridiagonal bersifat trivial karena dengan membentuk sebuah subdiagonal tambahan, proses substitusi mundur segera dapat dilakukan. Bentuk matriks tridiagonal disajikan pada Persamaan <a href="6-3-gausselimination.html#eq:matrikstridiagonal">(6.19)</a>.</p>
+<p><span class="math display" id="eq:matrikstridiagonal">\[\begin{equation}
+\begin{bmatrix}
+     a_{1,1} &amp; a_{1,2} &amp; 0       &amp;\cdots&amp; 0                 \\[0.3em]
+     a_{2,1} &amp; a_{2,2} &amp; a_{2,3} &amp;\cdots&amp; 0             \\[0.3em]
+     0       &amp; a_{3,2} &amp; a_{3,3} &amp;\cdots&amp; 0             \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     0       &amp; 0       &amp; 0       &amp;\cdots&amp; a_{m,n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \tag{6.19}
+\end{equation}\]</span></p>
+<p>Penyelesaian persamaan tersebut disajikan pada Persamaan <a href="6-3-gausselimination.html#eq:solusimatrikstridiagonal">(6.20)</a>.</p>
+<p><span class="math display" id="eq:solusimatrikstridiagonal">\[\begin{equation}
+x_n=\frac{b_n}{a_{m.n}};\ x_i=\frac{b_i-a_{i,j+1}x_{i+1}}{a_{i,j}}
+  \tag{6.20}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(i=n-1,n-2,\dots,1\)</span>.</p>
+<p>Pada beberapa <em>textbook</em>, diagonal matriks sering dilambangkan dengan <span class="math inline">\(l\)</span>(diagonal bawah), <span class="math inline">\(d\)</span>(diagonal tengah), dan <span class="math inline">\(u\)</span> (diagonal atas). Bentuk matriksnya disajikan pada Persamaan <a href="6-3-gausselimination.html#eq:matrikstridiagonal2">(6.21)</a>.</p>
+<p><span class="math display" id="eq:matrikstridiagonal2">\[\begin{equation}
+\begin{bmatrix}
+     d_{1} &amp; u_{2} &amp; 0       &amp;\cdots&amp; 0                 \\[0.3em]
+     l_{2} &amp; d_{2} &amp; u_{3} &amp;\cdots&amp; 0             \\[0.3em]
+     0       &amp; l_{3} &amp; d_{3} &amp;\cdots&amp; 0             \\[0.3em]
+     \vdots  &amp; \vdots  &amp; \vdots  &amp;\ddots&amp; \vdots            \\[0.3em]
+     0       &amp; 0       &amp; 0       &amp;\cdots&amp; d_{n}
+     \end{bmatrix}
+\begin{bmatrix}
+     x_1                                          \\[0.3em]
+     x_2                                          \\[0.3em]
+     x_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     x_n                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     b_1                                          \\[0.3em]
+     b_2                                          \\[0.3em]
+     b_3                                          \\[0.3em]
+     \cdots                                       \\[0.3em]
+     b_n                                       
+     \end{bmatrix}
+  \tag{6.21}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Penyelesaian Matrik Tridiagonal</strong></p>
+<ol style="list-style-type: decimal">
+<li>Bentuk sistem persamaan linier menjadi matriks pada Persamaan <a href="6-3-gausselimination.html#eq:matrikstridiagonal2">(6.21)</a>.</li>
+<li>Lakukan <em>foward sweep</em>. Setiap elemen diagonal <span class="math inline">\(l\)</span> dieliminasi menggunakan reduksi baris.</li>
+</ol>
+<ul>
+<li><p>Untuk <span class="math inline">\(i=1\)</span></p>
+<ul>
+<li>Hitung <span class="math inline">\(u_1=\frac{u_1}{d_1}\)</span></li>
+<li>Hitung <span class="math inline">\(b_1=\frac{b_1}{d_1}\)</span></li>
+</ul></li>
+<li><p>Untuk <span class="math inline">\(i=2\)</span> s/d <span class="math inline">\(n-1\)</span></p>
+<ul>
+<li>Hitung <span class="math inline">\(u_i=\frac{u_i}{d_i-l_i\times u_{i-1}}\)</span></li>
+<li>Hitung <span class="math inline">\(b_i=\frac{b_i-l_i\times u_{i-1}}{d_i-l_i\times u_{i-1}}\)</span></li>
+</ul></li>
+<li><p>Hitung <span class="math inline">\(b_n=\frac{b_n-l_n\times u_{n-1}}{d_n-l_n\times u_{n-1}}\)</span></p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Lakukan <em>backward sweep</em>. Setiap elemen diagonal <span class="math inline">\(u\)</span> dilakukan eliminasi.</li>
+</ol>
+<ul>
+<li><p>Untuk <span class="math inline">\(i=n-1\)</span> s/d <span class="math inline">\(1\)</span></p>
+<ul>
+<li>Hitung <span class="math inline">\(x_n=b_i-u_i\times x_{i+1}\)</span></li>
+</ul></li>
+<li><p>Hitung <span class="math inline">\(x_n=b_n\)</span></p></li>
+</ul>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada <code>R</code>. Fungsi penyelesaian matriks tridiagonal disajikan sebagai berikut:</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1">tridiagmatrix &lt;-<span class="st"> </span><span class="cf">function</span> (L, D, U, b){</a>
+<a class="sourceLine" id="cb420-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span> (D)</a>
+<a class="sourceLine" id="cb420-3" title="3">  L &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span> , L)</a>
+<a class="sourceLine" id="cb420-4" title="4">  </a>
+<a class="sourceLine" id="cb420-5" title="5">  <span class="co">## forward sweep</span></a>
+<a class="sourceLine" id="cb420-6" title="6">  U[<span class="dv">1</span>] &lt;-<span class="st"> </span>U[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>D[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb420-7" title="7">  b[<span class="dv">1</span>] &lt;-<span class="st"> </span>b[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>D[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb420-8" title="8">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)){</a>
+<a class="sourceLine" id="cb420-9" title="9">      U[i] &lt;-<span class="st"> </span>U[i] <span class="op">/</span><span class="st"> </span>(D[i] <span class="op">-</span><span class="st"> </span>L[i] <span class="op">*</span><span class="st"> </span>U[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb420-10" title="10">      b[i] &lt;-<span class="st"> </span>(b[i] <span class="op">-</span><span class="st"> </span>L[i] <span class="op">*</span><span class="st"> </span>b[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]) <span class="op">/</span></a>
+<a class="sourceLine" id="cb420-11" title="11"><span class="st">      </span>(D[i] <span class="op">-</span><span class="st"> </span>L[i] <span class="op">*</span><span class="st"> </span>U[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb420-12" title="12">  }</a>
+<a class="sourceLine" id="cb420-13" title="13">  b[n] &lt;-<span class="st"> </span>(b[n] <span class="op">-</span><span class="st"> </span>L[n] <span class="op">*</span><span class="st"> </span>b[n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])<span class="op">/</span>(D[n] <span class="op">-</span><span class="st"> </span>L[n] <span class="op">*</span><span class="st"> </span>U[n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb420-14" title="14">  </a>
+<a class="sourceLine" id="cb420-15" title="15">  <span class="co">## backward sweep</span></a>
+<a class="sourceLine" id="cb420-16" title="16">  x &lt;-<span class="st"> </span><span class="kw">rep.int</span> (<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb420-17" title="17">  x[n] &lt;-<span class="st"> </span>b[n]</a>
+<a class="sourceLine" id="cb420-18" title="18">  <span class="cf">for</span>(i <span class="cf">in</span> (n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb420-19" title="19">      x[i] &lt;-<span class="st"> </span>b[i] <span class="op">-</span><span class="st"> </span>U[i] <span class="op">*</span><span class="st"> </span>x[i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb420-20" title="20">  <span class="kw">return</span> (x)</a>
+<a class="sourceLine" id="cb420-21" title="21">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:tridiagexm" class="example"><strong>Contoh 6.5  </strong></span>Selesaikan sistem persamaan berikut menggunakan fungsi <code>tridiagmatrix()</code> dan fungsi <code>gauss_jordan()</code>!
+</div>
+
+<p><span class="math display">\[
+\begin{matrix}
+  3x_1+4x_2=20 \\
+  4x_1+5x_2-2x_3=28 \\
+  2x_2+5x_3-3x_4=18 \\
+  3x_3+5x_4=18
+\end{matrix}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Langkah pertama untuk menyelesaikannya, kita harus merubah persamaan tersebut kedalam bentuk matriks</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     3 &amp; 4 &amp; 0  &amp; 0     \\[0.3em]
+     4 &amp; 5 &amp; 2 &amp; 0     \\[0.3em]
+     0 &amp; 2 &amp; 5 &amp; 3     \\[0.3em]
+     0 &amp; 0 &amp; 3 &amp; 5
+\end{bmatrix}
+x = \begin{bmatrix}
+     20     \\[0.3em]
+     28     \\[0.3em]
+     18     \\[0.3em]
+     18
+\end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Untuk menyelesaikan persamaan tersebut menggunakan fungsi <code>tridiagmatrix()</code>, kita perlu membentuk vektor diagonal <span class="math inline">\(l\)</span>, <span class="math inline">\(d\)</span>, <span class="math inline">\(u\)</span>, dan <span class="math inline">\(b\)</span>.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">l &lt;-<span class="st"> </span>u &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>); d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb421-2" title="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">18</span>)</a></code></pre></div>
+<p>Setelah terbentuk, vektor tersebut dapat langsung dimasukkan ke dalam fungsi <code>tridiagmatrix()</code>.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">tridiagmatrix</span>(<span class="dt">L=</span>l, <span class="dt">D=</span>d, <span class="dt">U=</span>u, <span class="dt">b=</span>b)</a></code></pre></div>
+<pre><code>## [1] 4 2 1 3</code></pre>
+<p>Untuk menyelesaikannya menggunakan fungsi <code>gauss_jordan()</code>, kita perlu membentuk <em>augmented matrix</em>-nya terlebih dahulu.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb424-2" title="2">              <span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb424-3" title="3">              <span class="dv">20</span>,<span class="dv">28</span>,<span class="dv">18</span>,<span class="dv">18</span>), <span class="dt">nrow=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb424-4" title="4"><span class="kw">gauss_jordan</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    4
+## [2,]    0    1    0    0    2
+## [3,]    0    0    1    0    1
+## [4,]    0    0    0    1    3</code></pre>
+</div>
+<div id="solvefunc" class="section level3">
+<h3><span class="header-section-number">6.3.4</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></h3>
+<p><code>R</code> menyediakan fungsi bawaan <code>solve()</code> untuk menyelesaiakan sistem persamaan linier. Format fungsi <code>solve()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">solve</span>(a,b)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan</strong>:</p>
+<ul>
+<li><strong>a</strong>: matriks koefisien atau matriks segiempat</li>
+<li><strong>b</strong>: vektor konstanta</li>
+</ul>
+</blockquote>
+<p>Berikut adalah contoh penerapan fungsi <code>solve()</code> pada sistem persamaan linier yang disajikan pada Contoh <a href="6-3-gausselimination.html#exm:refexm2">6.2</a>:</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="co"># memecah matriks m menjadi matriks koefisien dan vektor konstanta</span></a>
+<a class="sourceLine" id="cb427-2" title="2">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">5</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">nrow=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb427-3" title="3">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb427-4" title="4"></a>
+<a class="sourceLine" id="cb427-5" title="5"><span class="kw">solve</span>(a,b)</a></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<p>Jika kita hanya memasukkan matriks persegi, maka output yang akan dihasilkan adalah invers dari matriks yang kita masukkan.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="kw">solve</span>(a)</a></code></pre></div>
+<pre><code>##      [,1] [,2]          [,3]
+## [1,]    2   -1  7.401487e-17
+## [2,]   14   -9 -1.000000e+00
+## [3,]   17  -11 -1.000000e+00</code></pre>
+<p>Jika kita mengalikan invers dengan matriks semula, maka akan dihasilkan output berupa matriks identitas.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1">a<span class="op">%*%</span><span class="kw">solve</span>(a)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1</code></pre>
+</div>
+<div id="solvetridiagfunct" class="section level3">
+<h3><span class="header-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</h3>
+<p>Penyelesaian matriks tridiagonal selain menggunakan fungsi <code>solve()</code>, juga dapat menggunakan fungsi <code>Solve.tridiag()</code> dari paket <code>limSolve</code>. Untuk menginstall dan mengaktifkan paket tersebut, jalankan sintaks berikut:</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;limSolve&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">library</span>(limSolve)</a></code></pre></div>
+<p>Fungsi <code>Solve.tridiag()</code> memiliki format sebagai berikut:</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1"><span class="kw">Solve.tridiag</span> ( diam1, dia, diap1, <span class="dt">B=</span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dt">times=</span><span class="kw">length</span>(dia)))</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan</strong>:</p>
+<ul>
+<li><strong>diam1</strong>: vektor bukan nol di bawah diagonal matriks</li>
+<li><strong>dia</strong>: vektor bukan nol pada diagonal matriks</li>
+<li><strong>diap1</strong>: vektor bukan nol di atas diagonal matriks</li>
+<li><strong>B</strong>: vektor konstanta</li>
+</ul>
+</blockquote>
+<p>Untuk memahami penerapannya, kita akan menggunakan kembali matriks yang ada pada Contoh <a href="6-3-gausselimination.html#exm:tridiagexm">6.5</a>.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1">l &lt;-<span class="st"> </span>u &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>); d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb436-2" title="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb436-3" title="3"><span class="kw">Solve.tridiag</span>(<span class="dt">diam1=</span>l, <span class="dt">dia=</span>d, <span class="dt">diap1=</span>u, <span class="dt">B=</span>b)</a></code></pre></div>
+<pre><code>##      [,1]
+## [1,]    4
+## [2,]    2
+## [3,]    1
+## [4,]    3</code></pre>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="6-2-rowoperation.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-4-dekomposisimatriks.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

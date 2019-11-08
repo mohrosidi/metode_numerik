@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Interpolasi dan Ekstrapolasi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <meta name="description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Interpolasi dan Ekstrapolasi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Interpolasi dan Ekstrapolasi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  
+  <meta name="twitter:description" content="Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan" />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2019-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rootfinding.html">
+<link rel="next" href="diffinteg.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Metode Numerik Menggunakan R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#prosconsR"><i class="fa fa-check"></i><b>1.3</b> Kelebihan dan Kekurangan R</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#installR"><i class="fa fa-check"></i><b>1.5</b> Menginstall R dan RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#wdR"><i class="fa fa-check"></i><b>1.6</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
+<li class="chapter" data-level="1.8.3" data-path="intro.html"><a href="intro.html#othershelp"><i class="fa fa-check"></i><b>1.8.3</b> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#referensi"><i class="fa fa-check"></i><b>1.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="calculation.html"><a href="calculation.html"><i class="fa fa-check"></i><b>2</b> Kalkulasi Menggunakan R</a><ul>
+<li class="chapter" data-level="2.1" data-path="calculation.html"><a href="calculation.html#aritmetikoperator"><i class="fa fa-check"></i><b>2.1</b> Operator Aritmatik</a></li>
+<li class="chapter" data-level="2.2" data-path="calculation.html"><a href="calculation.html#aritmaticfunction"><i class="fa fa-check"></i><b>2.2</b> Fungsi Aritmetik</a></li>
+<li class="chapter" data-level="2.3" data-path="calculation.html"><a href="calculation.html#relationoperators"><i class="fa fa-check"></i><b>2.3</b> Operator Relasi</a></li>
+<li class="chapter" data-level="2.4" data-path="calculation.html"><a href="calculation.html#logicoperators"><i class="fa fa-check"></i><b>2.4</b> Operator Logika</a></li>
+<li class="chapter" data-level="2.5" data-path="calculation.html"><a href="calculation.html#assigningvar"><i class="fa fa-check"></i><b>2.5</b> Memasukkan Nilai Kedalam Variabel</a></li>
+<li class="chapter" data-level="2.6" data-path="calculation.html"><a href="calculation.html#typedata"><i class="fa fa-check"></i><b>2.6</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.7" data-path="calculation.html"><a href="calculation.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vektor</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="calculation.html"><a href="calculation.html#createvector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vektor</a></li>
+<li class="chapter" data-level="2.7.2" data-path="calculation.html"><a href="calculation.html#missingvalue"><i class="fa fa-check"></i><b>2.7.2</b> Missing Values</a></li>
+<li class="chapter" data-level="2.7.3" data-path="calculation.html"><a href="calculation.html#subsetvector"><i class="fa fa-check"></i><b>2.7.3</b> Subset Pada Vektor</a></li>
+<li class="chapter" data-level="2.7.4" data-path="calculation.html"><a href="calculation.html#vectorops"><i class="fa fa-check"></i><b>2.7.4</b> Operasi Matematis Menggunakan Vektor</a></li>
+<li class="chapter" data-level="2.7.5" data-path="calculation.html"><a href="calculation.html#seq"><i class="fa fa-check"></i><b>2.7.5</b> Membuat Deret Angka</a></li>
+<li class="chapter" data-level="2.7.6" data-path="calculation.html"><a href="calculation.html#repseq"><i class="fa fa-check"></i><b>2.7.6</b> Nilai Berulang</a></li>
+<li class="chapter" data-level="2.7.7" data-path="calculation.html"><a href="calculation.html#randnumb"><i class="fa fa-check"></i><b>2.7.7</b> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="calculation.html"><a href="calculation.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="calculation.html"><a href="calculation.html#creatematrix"><i class="fa fa-check"></i><b>2.8.1</b> Membuat matriks</a></li>
+<li class="chapter" data-level="2.8.2" data-path="calculation.html"><a href="calculation.html#subsetmatrix"><i class="fa fa-check"></i><b>2.8.2</b> Subset Pada Matriks</a></li>
+<li class="chapter" data-level="2.8.3" data-path="calculation.html"><a href="calculation.html#matrixcalculation"><i class="fa fa-check"></i><b>2.8.3</b> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="calculation.html"><a href="calculation.html#referensi-1"><i class="fa fa-check"></i><b>2.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualisasi Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#plotfunc"><i class="fa fa-check"></i><b>3.1</b> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#otherviz"><i class="fa fa-check"></i><b>3.2</b> Visualisasi Lainnya</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#barplot"><i class="fa fa-check"></i><b>3.2.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dataviz.html"><a href="dataviz.html#histogram"><i class="fa fa-check"></i><b>3.2.2</b> Histogram dan Density Plot</a></li>
+<li class="chapter" data-level="3.2.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>3.2.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#customise"><i class="fa fa-check"></i><b>3.3</b> Kustomisasi Parameter Grafik</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#addtitle"><i class="fa fa-check"></i><b>3.3.1</b> Menambahkan Judul</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#addlegend"><i class="fa fa-check"></i><b>3.3.2</b> Menambahkan Legend</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#addtext"><i class="fa fa-check"></i><b>3.3.3</b> Menambahkan Teks Pada Grafik</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#addlines"><i class="fa fa-check"></i><b>3.3.4</b> Menambahkan Garis Pada Plot</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#changepoint"><i class="fa fa-check"></i><b>3.3.5</b> Merubah Simbol plot dan Jenis Garis</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dataviz.html"><a href="dataviz.html#mengatur-axis-plot"><i class="fa fa-check"></i><b>3.3.6</b> Mengatur Axis Plot</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dataviz.html"><a href="dataviz.html#changecolor"><i class="fa fa-check"></i><b>3.3.7</b> Mengatur Warna</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#plot-dua-dan-tiga-dimensi"><i class="fa fa-check"></i><b>3.4</b> Plot Dua dan Tiga Dimensi</a></li>
+<li class="chapter" data-level="3.5" data-path="dataviz.html"><a href="dataviz.html#referensi-2"><i class="fa fa-check"></i><b>3.5</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programmingandfunction.html"><a href="programmingandfunction.html"><i class="fa fa-check"></i><b>4</b> Pemrograman dan Fungsi</a><ul>
+<li class="chapter" data-level="4.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loop"><i class="fa fa-check"></i><b>4.1</b> Loop</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#forloop"><i class="fa fa-check"></i><b>4.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="4.1.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#whileloop"><i class="fa fa-check"></i><b>4.1.2</b> While Loop</a></li>
+<li class="chapter" data-level="4.1.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#repeatloop"><i class="fa fa-check"></i><b>4.1.3</b> Repeat Loop</a></li>
+<li class="chapter" data-level="4.1.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#break"><i class="fa fa-check"></i><b>4.1.4</b> Break</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loopapply"><i class="fa fa-check"></i><b>4.2</b> Loop Menggunakan Apply Family Function</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#apply"><i class="fa fa-check"></i><b>4.2.1</b> Apply</a></li>
+<li class="chapter" data-level="4.2.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#lapply"><i class="fa fa-check"></i><b>4.2.2</b> lapply</a></li>
+<li class="chapter" data-level="4.2.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#sapply"><i class="fa fa-check"></i><b>4.2.3</b> sapply</a></li>
+<li class="chapter" data-level="4.2.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#vapply"><i class="fa fa-check"></i><b>4.2.4</b> vapply</a></li>
+<li class="chapter" data-level="4.2.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#tapply"><i class="fa fa-check"></i><b>4.2.5</b> tapply</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#dm"><i class="fa fa-check"></i><b>4.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifstatement"><i class="fa fa-check"></i><b>4.3.1</b> if statement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifelsestatement"><i class="fa fa-check"></i><b>4.3.2</b> if else statement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#switchstatement"><i class="fa fa-check"></i><b>4.3.3</b> switch statement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#fungsi"><i class="fa fa-check"></i><b>4.4</b> Fungsi</a></li>
+<li class="chapter" data-level="4.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#debugging"><i class="fa fa-check"></i><b>4.5</b> Debugging</a></li>
+<li class="chapter" data-level="4.6" data-path="programmingandfunction.html"><a href="programmingandfunction.html#referensi-3"><i class="fa fa-check"></i><b>4.6</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="numericmethod.html"><a href="numericmethod.html"><i class="fa fa-check"></i><b>5</b> Pengantar Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericmethod.html"><a href="numericmethod.html#numericmethodintro"><i class="fa fa-check"></i><b>5.1</b> Mengenal Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="numericmethod.html"><a href="numericmethod.html#diffanalitycnumeric"><i class="fa fa-check"></i><b>5.1.1</b> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li class="chapter" data-level="5.1.2" data-path="numericmethod.html"><a href="numericmethod.html#tahapan-penyelesaian-menggunakan-metode-numerik"><i class="fa fa-check"></i><b>5.1.2</b> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="numericmethod.html"><a href="numericmethod.html#acuracy"><i class="fa fa-check"></i><b>5.2</b> Akurasi dan Presisi</a></li>
+<li class="chapter" data-level="5.3" data-path="numericmethod.html"><a href="numericmethod.html#numerror"><i class="fa fa-check"></i><b>5.3</b> Error Numerik</a></li>
+<li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasivektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasimatrik"><i class="fa fa-check"></i><b>6.1.2</b> Operasi matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#rowoperation"><i class="fa fa-check"></i><b>6.2</b> Operasi Baris Elementer</a></li>
+<li class="chapter" data-level="6.3" data-path="linearaljabar.html"><a href="linearaljabar.html#gausselimination"><i class="fa fa-check"></i><b>6.3</b> Eliminasi Gauss</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linearaljabar.html"><a href="linearaljabar.html#rowechelonform"><i class="fa fa-check"></i><b>6.3.1</b> <em>Row Echelon Form</em></a></li>
+<li class="chapter" data-level="6.3.2" data-path="linearaljabar.html"><a href="linearaljabar.html#redrowechelonform"><i class="fa fa-check"></i><b>6.3.2</b> Eliminasi Gauss-Jordan</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linearaljabar.html"><a href="linearaljabar.html#matriktridiagonal"><i class="fa fa-check"></i><b>6.3.3</b> Matrik Tridiagonal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linearaljabar.html"><a href="linearaljabar.html#solvefunc"><i class="fa fa-check"></i><b>6.3.4</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="linearaljabar.html"><a href="linearaljabar.html#solvetridiagfunct"><i class="fa fa-check"></i><b>6.3.5</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisimatriks"><i class="fa fa-check"></i><b>6.4</b> Dekomposisi Matriks</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="linearaljabar.html"><a href="linearaljabar.html#ludecomp"><i class="fa fa-check"></i><b>6.4.1</b> Dekomposisi LU</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisi-cholesky"><i class="fa fa-check"></i><b>6.4.2</b> Dekomposisi Cholesky</a></li>
+<li class="chapter" data-level="6.4.3" data-path="linearaljabar.html"><a href="linearaljabar.html#othersdecomp"><i class="fa fa-check"></i><b>6.4.3</b> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="linearaljabar.html"><a href="linearaljabar.html#iteratif"><i class="fa fa-check"></i><b>6.5</b> Metode Iterasi</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="linearaljabar.html"><a href="linearaljabar.html#jacobiiter"><i class="fa fa-check"></i><b>6.5.1</b> Iterasi Jacobi</a></li>
+<li class="chapter" data-level="6.5.2" data-path="linearaljabar.html"><a href="linearaljabar.html#seideliter"><i class="fa fa-check"></i><b>6.5.2</b> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="linearaljabar.html"><a href="linearaljabar.html#studikasus"><i class="fa fa-check"></i><b>6.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#leastsquare"><i class="fa fa-check"></i><b>6.6.1</b> Metode Kuadrat Terkecil</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#reaktorkimia"><i class="fa fa-check"></i><b>6.6.2</b> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linearaljabar.html"><a href="linearaljabar.html#referensi-5"><i class="fa fa-check"></i><b>6.7</b> Referensi</a></li>
+<li class="chapter" data-level="6.8" data-path="linearaljabar.html"><a href="linearaljabar.html#latihan"><i class="fa fa-check"></i><b>6.8</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rootfinding.html"><a href="rootfinding.html"><i class="fa fa-check"></i><b>7</b> Akar Persamaan Non-Linier</a><ul>
+<li class="chapter" data-level="7.1" data-path="rootfinding.html"><a href="rootfinding.html#bracketing"><i class="fa fa-check"></i><b>7.1</b> Metode Tertutup</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="rootfinding.html"><a href="rootfinding.html#table"><i class="fa fa-check"></i><b>7.1.1</b> Metode Tabel</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rootfinding.html"><a href="rootfinding.html#bisection"><i class="fa fa-check"></i><b>7.1.2</b> Metode Biseksi</a></li>
+<li class="chapter" data-level="7.1.3" data-path="rootfinding.html"><a href="rootfinding.html#regulafalsi"><i class="fa fa-check"></i><b>7.1.3</b> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rootfinding.html"><a href="rootfinding.html#openmethod"><i class="fa fa-check"></i><b>7.2</b> Metode Terbuka</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="rootfinding.html"><a href="rootfinding.html#fixpoint"><i class="fa fa-check"></i><b>7.2.1</b> Metode Iterasi Titik Tetap</a></li>
+<li class="chapter" data-level="7.2.2" data-path="rootfinding.html"><a href="rootfinding.html#newtonraphson"><i class="fa fa-check"></i><b>7.2.2</b> Metode Newton-Raphson</a></li>
+<li class="chapter" data-level="7.2.3" data-path="rootfinding.html"><a href="rootfinding.html#secant"><i class="fa fa-check"></i><b>7.2.3</b> Metode Secant</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="rootfinding.html"><a href="rootfinding.html#uniroot"><i class="fa fa-check"></i><b>7.3</b> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li class="chapter" data-level="7.4" data-path="rootfinding.html"><a href="rootfinding.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><i class="fa fa-check"></i><b>7.4</b> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="chapter" data-level="7.5" data-path="rootfinding.html"><a href="rootfinding.html#studi-kasus"><i class="fa fa-check"></i><b>7.5</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="rootfinding.html"><a href="rootfinding.html#persamaan-van-der-walls"><i class="fa fa-check"></i><b>7.5.1</b> Persamaan Van Der Walls</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rootfinding.html"><a href="rootfinding.html#hukum-bernoulli"><i class="fa fa-check"></i><b>7.5.2</b> Hukum Bernoulli</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="rootfinding.html"><a href="rootfinding.html#referensi-6"><i class="fa fa-check"></i><b>7.6</b> Referensi</a></li>
+<li class="chapter" data-level="7.7" data-path="rootfinding.html"><a href="rootfinding.html#latihan-1"><i class="fa fa-check"></i><b>7.7</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="interpolation.html"><a href="interpolation.html"><i class="fa fa-check"></i><b>8</b> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="chapter" data-level="8.1" data-path="interpolation.html"><a href="interpolation.html#poliinterpolation"><i class="fa fa-check"></i><b>8.1</b> Interpolasi Polinomial</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="interpolation.html"><a href="interpolation.html#mengevaluasi-polinomial"><i class="fa fa-check"></i><b>8.1.1</b> Mengevaluasi Polinomial</a></li>
+<li class="chapter" data-level="8.1.2" data-path="interpolation.html"><a href="interpolation.html#lininterpol"><i class="fa fa-check"></i><b>8.1.2</b> Interpolasi Linier</a></li>
+<li class="chapter" data-level="8.1.3" data-path="interpolation.html"><a href="interpolation.html#hopoliinter"><i class="fa fa-check"></i><b>8.1.3</b> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="interpolation.html"><a href="interpolation.html#pwinter"><i class="fa fa-check"></i><b>8.2</b> Interpolasi Piecewise</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="interpolation.html"><a href="interpolation.html#pwlininter"><i class="fa fa-check"></i><b>8.2.1</b> Interpolasi Linier Piecewise</a></li>
+<li class="chapter" data-level="8.2.2" data-path="interpolation.html"><a href="interpolation.html#cubicspline"><i class="fa fa-check"></i><b>8.2.2</b> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="interpolation.html"><a href="interpolation.html#studi-kasus-1"><i class="fa fa-check"></i><b>8.3</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="interpolation.html"><a href="interpolation.html#interpolasi-data-runtun-waktu"><i class="fa fa-check"></i><b>8.3.1</b> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="interpolation.html"><a href="interpolation.html#referensi-7"><i class="fa fa-check"></i><b>8.4</b> Referensi</a></li>
+<li class="chapter" data-level="8.5" data-path="interpolation.html"><a href="interpolation.html#latihan-2"><i class="fa fa-check"></i><b>8.5</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="diffinteg.html"><a href="diffinteg.html"><i class="fa fa-check"></i><b>9</b> Diferensiasi dan Integrasi Numerik</a><ul>
+<li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
+<li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
+<li class="chapter" data-level="9.3.2" data-path="diffinteg.html"><a href="diffinteg.html#trapezoida"><i class="fa fa-check"></i><b>9.3.2</b> Metode Trapezoida</a></li>
+<li class="chapter" data-level="9.3.3" data-path="diffinteg.html"><a href="diffinteg.html#simpson"><i class="fa fa-check"></i><b>9.3.3</b> Metode Simpson</a></li>
+<li class="chapter" data-level="9.3.4" data-path="diffinteg.html"><a href="diffinteg.html#simpson38"><i class="fa fa-check"></i><b>9.3.4</b> Metode Simpson 3/8</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.4</b> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.5" data-path="diffinteg.html"><a href="diffinteg.html#kuadgauss"><i class="fa fa-check"></i><b>9.5</b> Metode Kuadratur Gauss</a></li>
+<li class="chapter" data-level="9.6" data-path="diffinteg.html"><a href="diffinteg.html#othergauss"><i class="fa fa-check"></i><b>9.6</b> Metode Gauss-Legendre Menggunakan Fungsi <code>legendre.quadrature()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="diffinteg.html"><a href="diffinteg.html#adaptifint"><i class="fa fa-check"></i><b>9.7</b> Metode Integrasi Adaptif</a></li>
+<li class="chapter" data-level="9.8" data-path="diffinteg.html"><a href="diffinteg.html#metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r"><i class="fa fa-check"></i><b>9.8</b> Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada <code>R</code></a></li>
+<li class="chapter" data-level="9.9" data-path="diffinteg.html"><a href="diffinteg.html#romberg"><i class="fa fa-check"></i><b>9.9</b> Metode Integrasi Romberg</a></li>
+<li class="chapter" data-level="9.10" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-romberg-menggunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.10</b> Metode Integrasi Romberg Menggunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.11" data-path="diffinteg.html"><a href="diffinteg.html#montecarlo"><i class="fa fa-check"></i><b>9.11</b> Metode Integrasi Monte Carlo</a></li>
+<li class="chapter" data-level="9.12" data-path="diffinteg.html"><a href="diffinteg.html#studi-kasus-2"><i class="fa fa-check"></i><b>9.12</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="9.12.1" data-path="diffinteg.html"><a href="diffinteg.html#penerjung-payung"><i class="fa fa-check"></i><b>9.12.1</b> Penerjung Payung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metode Numerik Menggunakan R Untuk Teknik Lingkungan</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="interpolation" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Interpolasi dan Ekstrapolasi</h1>
+<p>Pada dunia nyata, data sering kali tidak tersaji secara lengkap. Seringkali terdapat nilai data yang hilang (<em>missing value</em>). Terdapat banyak penyebab dari kondisi tersebut, baik akibat kesalahan manusianya maupun keterbatasan kemampuan alat ukur.</p>
+<p>Kondisi lain yang muncul dari data yang kita miliki adalah adanya <em>outlier</em> atau nilai yang berbeda jauh dengan mayoritas data yang kita miliki. Nilai tersebut akan menentukan hasil analisis atau uji statistik yang kita lakukan, terlebih lagi jika uji statistik yang kita lakukan menggunakan metode parametrik.</p>
+<p>Terdapat banyak cara untuk menangani kondisi-kondisi tersebut. Sejumlah peneliti memilih untuk menghapus data tersebut. Hal ini dapat dilakukan jika jumlah data yang kita miliki cukup besar. Bagaimana jika data yang kita miliki sedikit dan pengukuran ulang cukup mahal atau cukup sulit dilakukan?. Salah satu cara yang dapat dilakukan adalah dengan melakukan interpolasi terhadap data.</p>
+<p>Interpolasi dan ekstrapolasi adalah proses “menebak” nilai data dengan memperhatikan data lain yang kita miliki. Interpolasi merupakan teknik untuk mencari nilai suatu variabel yang hilang pada rentang data yang diketahui, sedangkan ektrapolasi merupakan teknik menemukan nilai suatu variabel diluar rentang data yang telah diketahui. Data lain yang kita miliki seringkali memiliki sejumlah pola. Pola yang terbentuk dapat berupa polinomial atau mengelompok. Tiap pola akan memiliki metode pendekatan yang berbeda-beda. Terdapat kemungkinan tak terbatas dari pola data tersebut. Penilaian profesional atau ahli diperlukan untuk menentukan metode mana yang sesuai berdasarkan riwayat penelitian atau pekerjaan yang pernah dilakukan sebelumnya.</p>
+<p>Pada Chapter <a href="interpolation.html#interpolation">8</a> penulis akan menjelaskan teknik-teknik interpolasi yang dapat kita lakukan. Adapun yang akan dibahas pada <em>Chapter</em> ini adalah sebagai berikut:</p>
+<ul>
+<li>Teknik interpolasi polinomial</li>
+<li>Teknik interpolasi piecewise</li>
+<li>Studi kasus penerapan teknik interpolasi</li>
+</ul>
+<div id="poliinterpolation" class="section level2">
+<h2><span class="header-section-number">8.1</span> Interpolasi Polinomial</h2>
+<p>Interpolasi polinomial merupakan teknik interpolasi dengan mengasumsikan pola data yang kita miliki mengikuti pola polinomial baik berderajat satu (linier) maupun berderajat tinggi. Interpolasi dengan metode ini dilakukan dengan terlebih dahulu membentuk persamaan polinomial. Persamaan polinomial yang terbentuk selanjutnya digunakan untuk melakukan interpolasi dari nilai yang diketahui atau ekstrapolasi (prediksi) dari nilai diluar rentang data yang diketahui.</p>
+<p>Pada Chapter <a href="interpolation.html#poliinterpolation">8.1</a> pembahasan akan dibagi menjadi 3 bagian. Bagian pertama kita akan mengulang kembali teknik evaluasi polinomial, sedangkan dua bagian selanjutnya akan membahas teknik interpolasi linier dan polinomial orde tinggi dengan menjadikan pembahasan bagian pertama sebagai dasar pada dua bagian berikutnya.</p>
+<div id="mengevaluasi-polinomial" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Mengevaluasi Polinomial</h3>
+<p>Pada <em>Chapter</em> ini pembaca akan mempelajari teknik untuk melakukan substitusi nilai <span class="math inline">\(x\)</span> pada persamaan polinomial untuk memperoleh nilai <span class="math inline">\(y\)</span>. Terdapat berbagai pendekatan dalam melakukan proses tersebut, mulai dari metode naive maupun metode Horner. Kedua metode akan menghasilkan hasil yang sama namun dengan proses komputasi yang berbeda. Metode naive cenderung lambat dalam proses komputasi karena jumlah proses yang dilakukan dalam sekali proses lebih banyak dari pada metode Horner.</p>
+<p>Untuk memahami metode-metode evaluasi polinomial yang telah disebutkan tersebut, secara umum persamaan polinomial disajikan pada Persamaan <a href="interpolation.html#eq:evalpoly">(8.1)</a>.</p>
+<p><span class="math display" id="eq:evalpoly">\[\begin{equation}
+f\left(x\right)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
+  \tag{8.1}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(a\)</span> merupakan koefisien polinomial, <span class="math inline">\(x\)</span> merupakan variabel, dan <span class="math inline">\(n\)</span> merupakan indeks dan pangkat polinomial.</p>
+<p>Pada metode naive kita melakukan evaluasi polinomial sama dengan cara kita melakukan evaluasi polinomial saat kita SMA. Nilai <span class="math inline">\(x\)</span> akan disubstitusikan pada masing-masing elemen persamaan polinomial. Masing-masing elemen polinomial selanjutnya dijumkahkan untuk menghitung <span class="math inline">\(y\)</span>.</p>
+<p>Pada <code>R</code> kita dapat menuliskan sebuah fungsi untuk melakukan evaluasi polinomial menggunakan metode naive tersebut. Pada fungsi tersebut, koefisien polinomial akan disimpan kedalam sebuah vektor dengan urutan pengisian mulai dari koefisien dengan pangkat <span class="math inline">\(x\)</span> terendah ke tertinggi.</p>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb578-1" title="1">naive_poly &lt;-<span class="st"> </span><span class="cf">function</span>(x, coeff){</a>
+<a class="sourceLine" id="cb578-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb578-3" title="3">  y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb578-4" title="4">  </a>
+<a class="sourceLine" id="cb578-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(coeff)){</a>
+<a class="sourceLine" id="cb578-6" title="6">    y &lt;-<span class="st"> </span>y <span class="op">+</span><span class="st"> </span>coeff[i]<span class="op">*</span>(x<span class="op">^</span>(i<span class="dv">-1</span>))</a>
+<a class="sourceLine" id="cb578-7" title="7">  }</a>
+<a class="sourceLine" id="cb578-8" title="8">  </a>
+<a class="sourceLine" id="cb578-9" title="9">  <span class="kw">return</span>(y)</a>
+<a class="sourceLine" id="cb578-10" title="10">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:polievalexmp" class="example"><strong>Contoh 8.1  </strong></span>Hitung nilai <span class="math inline">\(y\)</span> pada persamaan <span class="math inline">\(f\left(x\right)=x^4+3x^3-15x^2-19x+30\)</span>, jika diketahui nilai <span class="math inline">\(x\)</span> adalah -1, 0, dan 1!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk dapat menghitung nilai <span class="math inline">\(y\)</span> menggunakan fungsi <code>naive_poly()</code> pada persamaan tersebut dengan nilai <span class="math inline">\(x\)</span> yang diketahui, kita perlu merubah koefisien persamaan tersebut dan nilai <span class="math inline">\(x\)</span> yang diketahui menjadi vektor:</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb579-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb579-2" title="2">coeff &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>,<span class="op">-</span><span class="dv">19</span>,<span class="op">-</span><span class="dv">15</span>,<span class="dv">3</span>,<span class="dv">1</span>)</a></code></pre></div>
+<p>Masukkan vektor-vektor yang telah terbentuk tersebut kedalam fungsi <code>naive_poly()</code>.</p>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" title="1"><span class="kw">naive_poly</span>(x, coeff)</a></code></pre></div>
+<pre><code>## [1] 32 30  0</code></pre>
+<p>Berdasarkan hasil perhitungan diperoleh nilai <span class="math inline">\(y\)</span> masing-masing sebesar 32, 30, dan 0. Pembaca dapat mengeceknya sendiri hasil perhitungan tersebut menggunakan cara manual.</p>
+<p>Kita dapat meningkatkan efisiensi proses perhitungan pada fungsi <code>naive_poly()</code> tersebut. Sebagai contoh, setiap kali kita melakukan loop untuk menghitung nilai <span class="math inline">\(y\)</span> pada polinomial, kita dapat memperoleh eksponensial dari <span class="math inline">\(x\)</span>. Namun untuk setiap koefisien <span class="math inline">\(a_i\)</span>, nilai eksponensial yang terkait <span class="math inline">\(x_i\)</span> merupakan seri produk.</p>
+<p><span class="math display" id="eq:evalpoly2">\[\begin{equation}
+x^i=\prod_{j=0}^ix
+  \tag{8.2}
+\end{equation}\]</span></p>
+<p>Untuk <span class="math inline">\(x^i\)</span>, terdapat sebanyak <span class="math inline">\(i\)</span> koefisien <span class="math inline">\(x\)</span> dikalikan bersamaan. Namun, untuk setiap <span class="math inline">\(x^{i-1}\)</span> terdapat lebih sedikit 1 perkalian dibanding koefisien <span class="math inline">\(x\)</span> dengan pangkat yang lebih besar dan seterusnya.</p>
+<p>Berdasarkan ilustrasi tersebut, kita dapat membentuk fungsi <code>better_poly()</code> sebagai perbaikan dari fungsi <code>naive_poly()</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" title="1">better_poly &lt;-<span class="st"> </span><span class="cf">function</span>(x, coeff){</a>
+<a class="sourceLine" id="cb582-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb582-3" title="3">  y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb582-4" title="4">  cached_x &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb582-5" title="5">  </a>
+<a class="sourceLine" id="cb582-6" title="6">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(coeff)){</a>
+<a class="sourceLine" id="cb582-7" title="7">    y &lt;-<span class="st"> </span>y <span class="op">+</span><span class="st"> </span>coeff[i]<span class="op">*</span>cached_x</a>
+<a class="sourceLine" id="cb582-8" title="8">    cached_x &lt;-<span class="st"> </span>cached_x <span class="op">*</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb582-9" title="9">  }</a>
+<a class="sourceLine" id="cb582-10" title="10">  <span class="kw">return</span>(y)</a>
+<a class="sourceLine" id="cb582-11" title="11">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:polievalexmp2" class="example"><strong>Contoh 8.2  </strong></span>Hitung nilai <span class="math inline">\(y\)</span> pada persamaan yang disajikan pada Contoh <a href="interpolation.html#exm:polievalexmp">8.1</a> menggunakan nilai <span class="math inline">\(x\)</span> yang telah diketahui pada soal tersebut menggunakan fungsi <code>better_poly()</code>?
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb583-1" title="1"><span class="kw">better_poly</span>(x, coeff)</a></code></pre></div>
+<pre><code>## [1] 32 30  0</code></pre>
+<p>Sejauh ini kita telah membentuk 2 fungsi yaitu <code>naive_poly()</code> dan <code>better_poly()</code>. Kedua fungsi tersebut memiliki perbedaan proses menghitung yang mempengaruhi efisiensinya masing-masing. Sebagai contoh jika diberikan polinomial berderajat 10, fungsi <code>naive_poly()</code> akan mengejakan perkalian dalam proses <em>loop</em> sebanyak 55 kali, sedangkan fungsi <code>better_poly()</code> akan melakukannya sebanyak 20 kali (<span class="math inline">\(2n\)</span> perkalian).</p>
+<p>Metode lain yang lebih efisien dalam melakukan evaluasi polinomial adalah metode Horner. Metode ini oleh William Horner pada abad ke-18. Dalam metode Horner, bentuk polinomial pada Persamaan <a href="interpolation.html#eq:evalpoly">(8.1)</a> akan ditransformasi menjadi Persamaan <a href="interpolation.html#eq:evalpoly3">(8.3)</a>.</p>
+<p><span class="math display" id="eq:evalpoly3">\[\begin{equation}
+\begin{split}
+f\left(x\right)&amp;=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\\
+&amp;= a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n\\
+&amp;= a_0+x\left(a_1+\cdots+a_{n-1}x^{n-2}+a_nx^{n-1}\right)\\
+&amp;= a_0+x\left(a_1+\cdots+x\left(a_{n-1}+x\left(a_n\right)\right)\cdots\right)
+\end{split}
+  \tag{8.3}
+\end{equation}\]</span></p>
+<p>Berdasarkan Persamaan <a href="interpolation.html#eq:evalpoly3">(8.3)</a>, jika kita melakukan perhitungan pada persamaan polinomial berderajat 10, kita dapat mereduksi perhitungan menjadi 10 perkalian dan 10 penjumlahan. Jumlah tersebut sangat kecil dibandingkan kedua metode sebelumnya dan dapat dikatakan lebih efisien dibandingkan metode lainnya.</p>
+<p>FUngsi <code>horner_poly()</code> merupakan fungsi yang dibentuk bedasarkan Persamaan <a href="interpolation.html#eq:evalpoly3">(8.3)</a>. Sintaks fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb585-1" title="1">horner_poly &lt;-<span class="st"> </span><span class="cf">function</span>(x, coeff){</a>
+<a class="sourceLine" id="cb585-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb585-3" title="3">  y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb585-4" title="4">  </a>
+<a class="sourceLine" id="cb585-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">length</span>(coeff)<span class="op">:</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb585-6" title="6">    y &lt;-<span class="st"> </span>coeff[i] <span class="op">+</span><span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb585-7" title="7">  }</a>
+<a class="sourceLine" id="cb585-8" title="8">  <span class="kw">return</span>(y)</a>
+<a class="sourceLine" id="cb585-9" title="9">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:polievalexmp3" class="example"><strong>Contoh 8.3  </strong></span>Kerjakan kembali Contoh <a href="interpolation.html#exm:polievalexmp2">8.2</a> fungsi <code>horner_poly()</code>?
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" title="1"><span class="kw">horner_poly</span>(x, coeff)</a></code></pre></div>
+<pre><code>## [1] 32 30  0</code></pre>
+</div>
+<div id="lininterpol" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Interpolasi Linier</h3>
+<p>Misalkan kita memiliki 3 buah data dengan dua buah variabel kita misalkan variabel <span class="math inline">\(x\)</span> dan variabel <span class="math inline">\(y\)</span>. Pada salah satu data terdapat data yang hilang pada. Agar ketiga data tersebut tetap dapat digunakan dalam iterasi diperlukan interpolasi untuk “menebak” nilai dari data yang hilang.</p>
+<p>Berdasarkan pengukuran yang sebelumnya pernah dilakukan diketahui bahwa pola data yang terbentuk variabel <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> divisualisasikan menggunakan scatterplot adalah pola linier. Berdasarkan hal tersebut interpolasi dilakukan dengan menggunakan metode linier.</p>
+<p>Interpolasi linier dilakukan dengan terlebih dahulu membentuk fungsi linier. Dengan kata lain kita perlu mencari nilai slope <span class="math inline">\(m\)</span> dan <em>intercept</em> <span class="math inline">\(b\)</span>. Nilai <span class="math inline">\(m\)</span> dihitung sebagai rasio selisih jarak dua titik pada sumbu <span class="math inline">\(y\)</span> dan sumbu <span class="math inline">\(x\)</span> yang dapat dituliskan melalui Persamaan <a href="interpolation.html#eq:lineinter">(8.4)</a>.</p>
+<p><span class="math display" id="eq:lineinter">\[\begin{equation}
+m=\frac{y_2-y_1}{x_2-x_1}
+  \tag{8.4}
+\end{equation}\]</span></p>
+<p>Nilai <em>intercept</em> (titik potong pada sumbu <span class="math inline">\(y\)</span>) dihitung menggunakan Persamaan <a href="interpolation.html#eq:lineinter2">(8.5)</a>.</p>
+<p><span class="math display" id="eq:lineinter2">\[\begin{equation}
+b=y_2-mx_2
+  \tag{8.5}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Interpolasi Linier</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan dua buah titik <span class="math inline">\(\left(x,y\right)\)</span> sebagai dasar pembentukan persaman linier.</li>
+<li>Hitung <span class="math inline">\(m\)</span> menggunakan Persamaan <a href="interpolation.html#eq:lineinter">(8.4)</a></li>
+<li>Hitung <span class="math inline">\(b\)</span> menggunakan Persamaan <a href="interpolation.html#eq:lineinter2">(8.5)</a></li>
+<li>Definiskan fungsi linier berdasarkan nilai <span class="math inline">\(m\)</span> dan <span class="math inline">\(b\)</span></li>
+<li>Hitung <span class="math inline">\(y\)</span> dengan cara substitusi nilai <span class="math inline">\(x\)</span> pada persamaan linier untuk melakukan interpolasi atau ekstrapolasi nilai <span class="math inline">\(y\)</span> yang ingin dicari.</li>
+</ol>
+<hr />
+<p>Algoritma poin 1 sampai 4 tersebut, kita dapat membentuk fungsi pembentuk persamaan linier dari 2 titik yang diketahui. Fungsi tersebut disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" title="1">linear_inter &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb588-2" title="2">  m &lt;-<span class="st"> </span>(y[<span class="dv">2</span>]<span class="op">-</span>y[<span class="dv">1</span>]) <span class="op">/</span><span class="st"> </span>(x[<span class="dv">2</span>]<span class="op">-</span>x[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb588-3" title="3">  b &lt;-<span class="st"> </span>y[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>m<span class="op">*</span>x[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb588-4" title="4">  </a>
+<a class="sourceLine" id="cb588-5" title="5">  <span class="kw">return</span>(<span class="kw">c</span>(b, m))</a>
+<a class="sourceLine" id="cb588-6" title="6">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:linterpexmp" class="example"><strong>Contoh 8.4  </strong></span>Diketahui koordinat 2 buah titik yaitu (0,-1) dan (2,3). Jika diketahui titik ketiga memiliki koordinat sumbu <span class="math inline">\(x\)</span> sebesar 1. Lakukan interpolasi untuk menentukan koordinat sumbu <span class="math inline">\(y\)</span> titik ketiga tersebut!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Berdasarkan data-data yang terdapat pada soal terserbut, kita dapat menghitung nilai <span class="math inline">\(m\)</span> dan <span class="math inline">\(b\)</span>. Nilai <span class="math inline">\(m\)</span> dapat dihitung sebagai berikut:</p>
+<p><span class="math display">\[
+m=\frac{-1-3}{0-2}=2
+\]</span></p>
+<p>Dengan menggunakan nilai <span class="math inline">\(m\)</span> tersebut kita dapat menghitung nilai <span class="math inline">\(b\)</span>.</p>
+<p><span class="math display">\[
+b=3-2*3=-1
+\]</span></p>
+<p>Berdasarkan hasil perhitungan diperoleh persamaan linier yang terbentuk adalah sebagai berikut:</p>
+<p><span class="math display">\[
+y=2x-1
+\]</span></p>
+<p>Berdasarkan persamaan linier tersebut nilai <span class="math inline">\(y\)</span> dapat dihitung.</p>
+<p><span class="math display">\[
+y=2*1-1=1
+\]</span></p>
+<p>Kita dapat pula membentuk persamaan linier menggunakan fungsi <code>linear_inter()</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb589-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb589-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb589-3" title="3"></a>
+<a class="sourceLine" id="cb589-4" title="4">(coeff &lt;-<span class="st"> </span><span class="kw">linear_inter</span>(x,y))</a></code></pre></div>
+<pre><code>## [1] -1  2</code></pre>
+<p>Setelah diperoleh koefisien persamaan linier berdasarkan dua titik tersebut, kita akan menggunakan fungsi <code>horner_poly()</code> untuk memperoleh nilai <span class="math inline">\(y\)</span>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb591-1" title="1"><span class="kw">horner_poly</span>(<span class="dv">1</span>, coeff)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Hasil interpolasi yang diperoleh dapat dikatakan sesuai dengan lokasi kedua titik data yang ditunjukkan pada Gambar <a href="interpolation.html#fig:linviz">8.1</a>. Berdasarkan hal tersebut, kita dapat yakin bahwa hasil interpolasi yang telah kita lakukan telah sesuai.</p>
+<div class="figure" style="text-align: center"><span id="fig:linviz"></span>
+<img src="images/linviz.PNG" alt="Interpolasi linier dua titik 
+(Sumber:Howard, 2017)." width="80%" />
+<p class="caption">
+Gambar 8.1: Interpolasi linier dua titik
+(Sumber:Howard, 2017).
+</p>
+</div>
+<p>Metode interpolasi linier dapat dibilang merupakan metode interpolasi yang sangat sederhana. Disamping kemudahannya, metode ini memiliki potensi error numerik jika jarak antara kedua titik cukup berdekatan terlebih lagi jika selisih penyebut (<span class="math inline">\(x_2-x_1\)</span>) sangat kecil sehingga akan menghasilkan nilai <span class="math inline">\(y\)</span> yang sangat besar.</p>
+<p>Disamping adanya potensi error numerik tersebut, metode ini menjadi dasar bagi metode interpolasi lain yang lebih kompleks. Metode selanjutnya merupakan pengembangan dari metode interpolasi ini.</p>
+</div>
+<div id="hopoliinter" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> Interpolasi Polinomial Orde Tinggi</h3>
+<p>Dengan menggunakan dua titik, kita dapat membentuk garis lurus (linier) yang tepat pada dua titik tersebut. Masalah timbul jika selisih nilai <span class="math inline">\(x\)</span> kedua titik tersebut sangat kecil atau kedua titik tersebut memiliki nilai <span class="math inline">\(x\)</span> yang sama. Hal ini akan menyebabkan slope yang dihasilkan menjadi tidak terhingga atau garis yang terbentuk adalah garis vertikal tegak lurus.</p>
+<p>Bagaimana jika terdapat tiga buah titik? apakah kita masih bisa menggunakan interpolasi linie?. Ya, asalkan ketiga titik tersebut membentuk pola linier atau terletak pada satu garis yang sama. Pada kenyatannya kondisi tersebut jarang terjadi, sehingga pendekatan menggunakan polinomial orde lebih tinggi diperlukan. Persamaan kuadratik (polinomial orde dua) dapat digunakan untuk membentuk persamaan polinomial pada ketiga titik tersebut, sehingga iterasi dapat dilakukan. Untuk 4 buah titik data, polinomial orde tiga dapat digunakan untuk melakukan interpolasi. Secara umum berdasarkan penjelasan tersebut, untuk <span class="math inline">\(n\)</span> titik data interpolasi dapat dilakukan menggunakan persamaan polinomial orde <span class="math inline">\(n-1\)</span>.</p>
+<p>Diberikan set data berpasangan yang telah diurutkan <span class="math inline">\(\left(x_i,y_i\right)\)</span>, fungsi interpolasi harus memenuhi persyaratan berikut:</p>
+<p><span class="math display" id="eq:hointereq">\[\begin{equation}
+p\left(x_i\right)=y_i
+  \tag{8.6}
+\end{equation}\]</span></p>
+<p>Untuk setiap <span class="math inline">\(i\)</span>. Sebagai tambahan, fungsi interpolasi berupa fungsi polinomial dengan bentuk umum sebagai berikut:</p>
+<p><span class="math display" id="eq:hointereq2">\[\begin{equation}
+y_i=\beta_nx_i^n+\beta_{n-1}x_i^{n-1}+\cdots+\beta_1x_i+\beta_0
+  \tag{8.7}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="interpolation.html#eq:hointereq2">(8.7)</a> dapat dituliskan kedalam bentuk matriks yang ditampilkan pada Persamaan <a href="interpolation.html#eq:hointereq3">(8.8)</a>.</p>
+<p><span class="math display" id="eq:hointereq3">\[\begin{equation}
+\begin{bmatrix}
+     x_1^n   &amp; x_1^{n-1} &amp; \cdots &amp; x_1  &amp; 1            \\[0.3em]
+     x_2^n   &amp; x_2^{n-1} &amp; \cdots &amp; x_2  &amp; 1           \\[0.3em]
+     \vdots  &amp; \vdots    &amp; \vdots &amp;\ddots&amp; \vdots            \\[0.3em]
+     x_n^n   &amp; x_n^{n-1} &amp; \cdots &amp; x_n  &amp; 1
+     \end{bmatrix}
+\begin{bmatrix}
+     \beta_n                                          \\[0.3em]
+     \beta_{n-1}                                      \\[0.3em]
+     \vdots                                           \\[0.3em]
+     \beta_0                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     y_1                                          \\[0.3em]
+     y_2                                          \\[0.3em]
+     \vdots                                       \\[0.3em]
+     y_n                                       
+     \end{bmatrix}
+  \tag{8.8}
+\end{equation}\]</span></p>
+<p>Persamaan matrik tersebut dapat dituliskan sebagai <span class="math inline">\(X\beta = y\)</span>. Untuk menyelesaikan persamaan tersebut (memperoleh nilai <span class="math inline">\(\beta\)</span>), pembaca dapat membaca kembali Chapter <a href="linearaljabar.html#linearaljabar">6</a>. Matriks <span class="math inline">\(X\)</span> disebut sebagai matriks Vandemonde dan matriks tersebut mengandung sejumlah nilai <span class="math inline">\(x\)</span> dengan pangkat sampai dengan <span class="math inline">\(n\)</span>.</p>
+<hr />
+<p><strong>Algoritma Interpolasi Polinomial Orde Tinggi</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan set titik berpasangan <span class="math inline">\(\left(x,y\right)\)</span> yang telah diurutkan.</li>
+<li>Bentuk matriks Vandermonde sesuai dengan Persamaan <a href="interpolation.html#eq:hointereq3">(8.8)</a>.</li>
+<li>Definiskan persamaan matriks <span class="math inline">\(X\beta=y\)</span></li>
+<li>Selesaikan persamaan matriks pada poin 3 untuk memperoleh nilai <span class="math inline">\(\beta\)</span></li>
+<li>Definisikan persamaan polinomial berdasarkan koefisien <span class="math inline">\(\beta\)</span> yang diperoleh</li>
+<li>Lakukan substitusi <span class="math inline">\(x\)</span> persamaan polinomial pada poin 5 untuk memperoleh nilai <span class="math inline">\(y\)</span></li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma poin 1 sampai 5, kita dapat membentuk suatu fungsi untuk membentuk persamaan polinomial berdasarkan Persamaan <a href="interpolation.html#eq:hointereq3">(8.8)</a>. Berikut adalah sintaks fungsi tersebut:</p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb593-1" title="1">poly_inter &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb593-2" title="2">  <span class="cf">if</span>(<span class="kw">length</span>(x) <span class="op">!=</span><span class="st"> </span><span class="kw">length</span>(y))</a>
+<a class="sourceLine" id="cb593-3" title="3">    <span class="kw">stop</span>(<span class="st">&quot;Lenght of x and y vectors must be the same&quot;</span>)</a>
+<a class="sourceLine" id="cb593-4" title="4">  </a>
+<a class="sourceLine" id="cb593-5" title="5">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb593-6" title="6">  vandermonde &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(x))</a>
+<a class="sourceLine" id="cb593-7" title="7">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb593-8" title="8">    xi &lt;-<span class="st"> </span>x<span class="op">^</span>i</a>
+<a class="sourceLine" id="cb593-9" title="9">    vandermonde &lt;-<span class="st"> </span><span class="kw">cbind</span>(vandermonde, xi)</a>
+<a class="sourceLine" id="cb593-10" title="10">  }</a>
+<a class="sourceLine" id="cb593-11" title="11">  beta &lt;-<span class="st"> </span><span class="kw">solve</span>(vandermonde, y)</a>
+<a class="sourceLine" id="cb593-12" title="12">  </a>
+<a class="sourceLine" id="cb593-13" title="13">  <span class="kw">names</span>(beta) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb593-14" title="14">  <span class="kw">return</span>(beta)</a>
+<a class="sourceLine" id="cb593-15" title="15">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:hopoliexmp" class="example"><strong>Contoh 8.5  </strong></span>Diketahui koordinat 3 buah titik yaitu (-1,-2), (1,2) dan (0,1). Jika diketahui titik keempat memiliki koordinat sumbu <span class="math inline">\(x\)</span> sebesar -2. Lakukan interpolasi untuk menentukan koordinat sumbu <span class="math inline">\(y\)</span> titik keempat tersebut!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk menyelesaiakn contoh soal tersebut, kita perlu terlebih dahulu membentuk matriks sesuai dengan Persamaan <a href="interpolation.html#eq:hointereq3">(8.8)</a>. Berdasarkan soal tersebut, terdapat tiga buah titik data yang diketahui, sehingga polinomial yang hendak dibentuk selanjutnya adalah polinomial berderajat 2.</p>
+<p><span class="math display">\[\begin{equation*}
+\begin{bmatrix}
+     -1^2   &amp; -1^{1}  &amp; 1            \\[0.3em]
+     1^2    &amp; 1^{1}   &amp; 1            \\[0.3em]
+     0^2    &amp; 0^{1}   &amp; 1
+     \end{bmatrix}
+\begin{bmatrix}
+     \beta_2                                          \\[0.3em]
+     \beta_1                                          \\[0.3em]
+     \beta_0                                       
+     \end{bmatrix}
+= \begin{bmatrix}
+     -2                                          \\[0.3em]
+     2                                           \\[0.3em]
+     1                                       
+     \end{bmatrix}
+\end{equation*}\]</span></p>
+<p>Setelah matriks tersebut terbentuk, pembaca dapat menyelesaikannya menggunakan berbagai metode yang telah penulis jelaskan pada Chapter <a href="linearaljabar.html#linearaljabar">6</a> untuk memperoleh nilai <span class="math inline">\(\beta\)</span>.</p>
+<p>Untuk menyelesaikan contoh soal tersebut pada <code>R</code>, kiat perlu membentuk matriks <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> terlebih dahulu.</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb594-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-1</span>)</a></code></pre></div>
+<p>Koefisien persamaan polinomial dihitung menggunakan fungsi <code>poly_inter()</code>.</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" title="1">(coeff &lt;-<span class="st"> </span><span class="kw">poly_inter</span>(x, y))</a></code></pre></div>
+<pre><code>## [1] -1  2  1</code></pre>
+<p>Berdasarkan hasil perhitungan, diperoleh nilai <span class="math inline">\(\beta\)</span>. Nilai tersebut selanjutnya digunakan untuk membentuk persamaan polinomial. Berikut merupakan persamaan polinomial yang terbentuk:</p>
+<p><span class="math display">\[
+f\left(x\right)=1x^2+2x-1
+\]</span></p>
+<p>Fungsi <code>horner_poly()</code> selanjutnya digunakan untuk mengevaluasi polinomial tersebut. Berikut adalah hasil substitusi <span class="math inline">\(x\)</span> pada persamaan tersebut:</p>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb597-1" title="1"><span class="kw">horner_poly</span>(<span class="op">-</span><span class="dv">2</span>, coeff)</a></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<p>Hasil yang diperoleh terlihat cukup sesuai jika kita perhatikan visualisasi ketiga titik tersebut pada Gambar <a href="interpolation.html#fig:hopoliviz">8.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:hopoliviz"></span>
+<img src="images/hopoliviz.png" alt="Interpolasi kuadratik tiga titik 
+(Sumber:Howard, 2017)." width="80%" />
+<p class="caption">
+Gambar 8.2: Interpolasi kuadratik tiga titik
+(Sumber:Howard, 2017).
+</p>
+</div>
+
+<div class="example">
+<span id="exm:hopoliexmp2" class="example"><strong>Contoh 8.6  </strong></span>Dengan menggunakan data pada Contoh <a href="interpolation.html#exm:linterpexmp">8.4</a>, lakukan proses perhitungan untuk membentuk persamaan polinomial menggunakan fungsi <code>poly_inter()</code>
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Berdasarkan data pada Contoh <a href="interpolation.html#exm:linterpexmp">8.4</a>, polinomial yang terbentuk merupakan polinomial derajat 1 (linier). Berikut adalah nilai koefisien yang dihasilkan dari perhitungan menggunakan fungsi <code>poly_inter()</code>.</p>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb599-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb599-3" title="3"><span class="kw">poly_inter</span>(x, y)</a></code></pre></div>
+<pre><code>## [1] -1  2</code></pre>
+<p>Meskipun proses perhitungan menggunakan fungsi <code>poly_inter()</code> lebih rumit dibandingkan dengan fungsi <code>linear_poly()</code>, hasil perhitungan keduanya menggunakan data pada Contoh <a href="interpolation.html#exm:linterpexmp">8.4</a> menghasilkan hasil yang sama.</p>
+</div>
+</div>
+<div id="pwinter" class="section level2">
+<h2><span class="header-section-number">8.2</span> Interpolasi Piecewise</h2>
+<p>Interpolasi dengan polinomial sering memberikan hasil yang tidak dapat diterima. Interpolasi polinomial yang dihasilkan dari sejumlah besar data titik biasanya berderajat tinggi. Polinomial berderajat tinggi pada umumnya bersifat osilatif (grafiknya naik turun secara cepat). Akibatnya, perubahan data pada interval kecil dapat menyebabkan fluktuasi besar pada keseluruhan interval. Karena alasan ini, biasanya interpolasi hanya menggunakan polinomial berderajat rendah.</p>
+<p>Interpolasi piecewise menawarkan alternatif lain. Pada interpolasi piecewise, pada titik yang berbeda sepanjang kurva, nilai fungsi lebih mungkin lebih baik didekati menggunakan dua atau lebih interpolasi. Pada metode ini kita akan membuat fungsi interpolasi ditiap antara dua titik observasi.</p>
+<p>Pada sub-Chapter ini akan dijelaskan 2 buah metode interpolasi piecewise, yaitu: interpolasi linier piecewise dan interpolasi kubik spline. Interpolasi pertama dilakukan menggunakan persamaan linier, sehingga kurva yang terbentuk bukan merupakan kurva kontinu. Interpolasi selanjutnya dilakukan menggunakan persamaan polinomial berderajat tinggi sehingga kurva yang dihasilkan lebih halus (tidak ada sudut siku pada setiap titik).</p>
+<div id="pwlininter" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Interpolasi Linier Piecewise</h3>
+<p>Interpolasi linier piecewise merupakan interpolasi yang menggunakan pendekatan interpolasi linier. Fungsi linier akan dibentuk pada setiap dua titik observasi. Untuk lebih memahaminya perhatikan kembali Gambar <a href="interpolation.html#fig:hopoliviz">8.2</a>. Pada gambar tersebut sebelumnya kita telah membentuk persamaan kudratik untuk menghubungkan titik-titik tersebut. Dibanding menggunakan persamaan polinomial seperti kuadratik tersebut, interpolasi piecewise akan menghubungkan tiap dua titik observasi tersebut dengan garis lurus.</p>
+<hr />
+<p><strong>Algoritma Interpolasi Linier Piecewise</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan set titik berpasangan <span class="math inline">\(\left(x,y\right)\)</span> yang telah diurutkan berdasarkan nilai sumbu <span class="math inline">\(x\)</span>.</li>
+<li>Hitung <span class="math inline">\(m\)</span> pada setiap dua titik berdekatan menggunakan Persamaan <a href="interpolation.html#eq:lineinter">(8.4)</a></li>
+<li>Hitung <span class="math inline">\(b\)</span> pada setiap dua titik berdekatan menggunakan Persamaan <a href="interpolation.html#eq:lineinter2">(8.5)</a></li>
+<li>Definiskan fungsi linier berdasarkan nilai <span class="math inline">\(m\)</span> dan <span class="math inline">\(b\)</span></li>
+<li>Hitung <span class="math inline">\(y\)</span> dengan cara substitusi nilai <span class="math inline">\(x\)</span> pada persamaan linier untuk melakukan interpolasi nilai <span class="math inline">\(y\)</span> yang ingin dicari.</li>
+<li>Untuk melakukan ekstrapolasi dengan titik observasi diluar rentang titik diketahui, gunakan persamaan linier yang berada pada bagian ujung terdekat dengan nilai <span class="math inline">\(x\)</span> yang hendak dicari nilai <span class="math inline">\(y\)</span>-nya.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun fungsi pada <code>R</code> untuk membentuk persamaan linier piecewise. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" title="1">pwise_linterp &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb601-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb601-3" title="3">  </a>
+<a class="sourceLine" id="cb601-4" title="4">  y &lt;-<span class="st"> </span>y[<span class="kw">order</span>(x)]</a>
+<a class="sourceLine" id="cb601-5" title="5">  x &lt;-<span class="st"> </span>x[<span class="kw">order</span>(x)]</a>
+<a class="sourceLine" id="cb601-6" title="6">  </a>
+<a class="sourceLine" id="cb601-7" title="7">  m_vec &lt;-<span class="st"> </span>b_vec &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb601-8" title="8">  </a>
+<a class="sourceLine" id="cb601-9" title="9">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb601-10" title="10">    m &lt;-<span class="st"> </span>(y[i<span class="op">+</span><span class="dv">1</span>]<span class="op">-</span>y[i]) <span class="op">/</span><span class="st"> </span>(x[i<span class="op">+</span><span class="dv">1</span>]<span class="op">-</span>x[i])</a>
+<a class="sourceLine" id="cb601-11" title="11">    b &lt;-<span class="st"> </span>y[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>m<span class="op">*</span>x[i<span class="op">+</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb601-12" title="12">    m_vec &lt;-<span class="st"> </span><span class="kw">c</span>(m_vec, m)</a>
+<a class="sourceLine" id="cb601-13" title="13">    b_vec &lt;-<span class="st"> </span><span class="kw">c</span>(b_vec, b)</a>
+<a class="sourceLine" id="cb601-14" title="14">  }</a>
+<a class="sourceLine" id="cb601-15" title="15">  </a>
+<a class="sourceLine" id="cb601-16" title="16">  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">b =</span> b_vec, <span class="dt">m =</span> m_vec))</a>
+<a class="sourceLine" id="cb601-17" title="17">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:pwiselinexm" class="example"><strong>Contoh 8.7  </strong></span>Tentukan persamaan-persamaan linier yang dihasilkan dari titik observasi yang ditampilkan pada Contoh <a href="interpolation.html#exm:hopoliexmp">8.5</a>?
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk menentukan persamaan-persamaan linier yang menghubungkan setiap titik, kita akan menggunakan fungsi <code>pwise_linterp()</code> yang telah kita buat. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">-2</span>)</a>
+<a class="sourceLine" id="cb602-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb602-3" title="3"></a>
+<a class="sourceLine" id="cb602-4" title="4"><span class="kw">pwise_linterp</span>(x, y)</a></code></pre></div>
+<pre><code>## $b
+## [1] -3 -1 -1
+## 
+## $m
+## [1] -1  1  3</code></pre>
+<p>Jika persamaan-persamaan yang terbentuk tersebut divisualisasikan akan terlihat seperti pada Gambar <a href="interpolation.html#fig:pwiselinviz">8.3</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:pwiselinviz"></span>
+<img src="images/pwiselinviz.png" alt="Interpolasi linier piecewise empat titik 
+(Sumber:Howard, 2017)." width="80%" />
+<p class="caption">
+Gambar 8.3: Interpolasi linier piecewise empat titik
+(Sumber:Howard, 2017).
+</p>
+</div>
+<p><code>R</code> juga menyediakan fungsi untuk melakukan interpolasi linier piecewise. Fungsi <code>approxfun()</code> dapat digunakan untuk melakukan interpolasi tersebut. Fungsi <code>approxfun()</code> hanya memerlukan dua input yaitu vektor <span class="math inline">\(x\)</span> dan vektor <span class="math inline">\(x\)</span>. Untuk lebih memahaminya, kita akan menggunakan kembali data yang disajikan pada Contoh <a href="interpolation.html#exm:hopoliexmp">8.5</a> untuk membuat fungsi linier piecewise. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb604-1" title="1">f &lt;-<span class="st"> </span><span class="kw">approxfun</span>(x, y)</a>
+<a class="sourceLine" id="cb604-2" title="2"></a>
+<a class="sourceLine" id="cb604-3" title="3"><span class="co"># tentukan nilai y jika x= 0</span></a>
+<a class="sourceLine" id="cb604-4" title="4"><span class="kw">f</span>(<span class="dv">0</span>)</a></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb606-1" title="1"><span class="co"># tentukan nilai y jika x = 0.5</span></a>
+<a class="sourceLine" id="cb606-2" title="2"><span class="kw">f</span>(<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+</div>
+<div id="cubicspline" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Interpolasi Spline Kubik</h3>
+<p>Jika menggunakan interpolasi polinomial berderajat satu (sebuah garis) lebih dari beberapa interval merupakan peningkatan dari satu baris interpolasi, dan jika menggunakan polinomial berderajat tinggi juga merupakan peningkatan dari satu garis interpolasi tunggal, maka dapat disimpulkan bahwa penggunaan polinomial berderajat tinggi pada selang beberapa interval juga akan menjadi peningkatan dalam proses interpolasi. Dalam beberapa kasus, hal tersebut benar, tetapi kita masih menghadapi sudut tajam di mana masing-masing kurva interpolasi tergabung (interpolasi linier piecewise). Sudut tajam ini mencegah diferensiasi dan pada prakteknya tidak dapat digunakan untuk memodelkan beberapa fungsi di dunia nyata, seperti <em>roller coaster span</em>.</p>
+<p>Interpolasi spline kubik memecahkan masalah ini. Interpolasi ini akan memberikan kurva tergabung yang halus. Hal tersebut juga membuat spline terintegrasi. Karena setiap bagian individu diwakili oleh kurva kubik (polinomial derajat 3), maka masing-masing bagian individu juga dapat dianalisis sebagai kurva kubik. Dengan asumsi ada <span class="math inline">\(n\)</span> titik data untuk interpolasi, kita akan mendefinisikan <span class="math inline">\(S_i\)</span> sebagai fungsi polinomial kubik yang mewakili kurva pada domain <span class="math inline">\(\left[x_i; x_{i + 1}\right]\)</span>. Kemudian untuk <span class="math inline">\(n\)</span> titik observasi, ada <span class="math inline">\(n - 1\)</span> interpolasi polinomial kubik.</p>
+<p>Bentuk umum seri polinomial dituliskan pada Persamaan <a href="interpolation.html#eq:pwisequb">(8.9)</a>.</p>
+<p><span class="math display" id="eq:pwisequb">\[\begin{equation}
+S_i=d_i\left(x-x_i\right)^3+c_i\left(x-x_i\right)^2+b_i\left(x-x_i\right)+a_i
+  \tag{8.9}
+\end{equation}\]</span></p>
+<p>Ini mengarah ke 4 nilai yang tidak diketahui tidak diketahui, yaitu: <span class="math inline">\(a_i\)</span>, <span class="math inline">\(b_i\)</span>, <span class="math inline">\(c_i\)</span>, dan <span class="math inline">\(d_i\)</span> pada setiap Persamaan <a href="interpolation.html#eq:pwisequb">(8.9)</a>. Oleh karena itu, ada <span class="math inline">\(4 \left(n - 1\right) = 4n - 4\)</span> nilai yang tidak diketahui. Karena kita ingin spline membentuk garis kontinu dan dapat didiferensiasi, ada satu set persamaan yang menentukan spline kubik:</p>
+<p><span class="math display" id="eq:pwisequb2">\[\begin{equation}
+S_i\left(x_i\right)=y_i,\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-1
+  \tag{8.10}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:pwisequb3">\[\begin{equation}
+S_i\left(x_{i+1}\right)=y_{i+1},\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-1
+  \tag{8.11}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:pwisequb4">\[\begin{equation}
+S_i&#39;\left(x_{i+1}\right)=S&#39;_{i+1}\left(x_i\right),\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-2
+  \tag{8.12}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:pwisequb5">\[\begin{equation}
+S_i&#39;&#39;\left(x_{i+1}\right)=S&#39;&#39;_{i+1}\left(x_i\right),\ \ \ \ \ \ \ \ \ \ i=1,\dots\dots,n-2
+  \tag{8.13}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="interpolation.html#eq:pwisequb2">(8.10)</a> dan <a href="interpolation.html#eq:pwisequb3">(8.11)</a> sudah cukup jelas. Persyaratan ini memastikan bahwa jika kita mengevaluasi spline di salah satu node internal, hasil yang akan kita peroleh merupakan jawaban yang telah ditentukan, yaitu spline yang dievaluasi pada <span class="math inline">\(x_i\)</span> untuk beberapa <span class="math inline">\(i\)</span> adalah <span class="math inline">\(y_i\)</span>, dan setiap komponen spline bergabung dengan rapi. Persamaan <a href="interpolation.html#eq:pwisequb4">(8.12)</a> memastikan bahwa kita memiliki turunan pertama yang berkelanjutan di setiap simpul internal. Ini mencegah terbentuknya sudut tajam pada tiap node. Persamaan <a href="interpolation.html#eq:pwisequb5">(8.13)</a> memastikan turunan kedua juga kontinu, dimana kondisi ini menguntungkan karena itu berarti turunan pertama itu sendiri dapat didiferensiasi juga.</p>
+<p>Kondisi ini menyebabkan ada <span class="math inline">\(4n − 6\)</span> kondisi yang harus kita penuhi. Jika <span class="math inline">\(4n − 4\)</span> kita yang tidak diketahui dipecahkan sebagai sebuah matriks, dan akhirnya matriks tersebut akan terpecahkan, matriks akan menjadi kurang ditentukan. Kita dapat menyelesaikan kondisi tersebut dengan memasukkan dua ketentuan tambahan. Dengan splines kubik, secara normal adalah menentukan akhir di kedua ujung untuk mencapai dua kondisi tambahan. Untuk contoh ini, dua kondisi yang akan kita tambahkan adalah <span class="math inline">\(S_i&#39;&#39;\left(x_{i}\right)= 0\)</span> dan <span class="math inline">\(S_i&#39;&#39;\left(x_{n}\right)= 0\)</span>. Kedua kondisi ini memastikan bahwa pada titik akhir, turunan pertamanya linier dan oleh karena itu fungsi spline berlanjut ke arah yang sudah berjalan. Interpolasi spline kubik ini disebut juga sebagai “natural spline”.</p>
+<p>Awalnya, kita dapat melihat bahwa setiap polinomial kubik <span class="math inline">\(S_i\)</span> digeser ke kanan oleh unit <span class="math inline">\(x_i\)</span> atau bergeser ke kiri jika <span class="math inline">\(x_i\)</span> negatif. Pada <span class="math inline">\(x_i\)</span> nilai fungsi adalah <span class="math inline">\(a_i\)</span> yang berarti <span class="math inline">\(a_i = y_i\)</span> untuk setiap nilai <span class="math inline">\(i\)</span>. Menyelesaikan sisa koefisien yang ada akan lebih kompleks, tetapi sekarang <span class="math inline">\(3n\)</span> tidak diketahui dengan <span class="math inline">\(3n\)</span> kondisi. Derivasi penuh tersedia dari berbagai sumber, tetapi secara garis besar dari Persamaan <a href="interpolation.html#eq:pwisequb4">(8.12)</a> kita mendapatkan <span class="math inline">\(S_i&#39;\left(x_{i+1}\right)=S&#39;_{i+1}\)</span>, kemudian <span class="math inline">\(S&#39;_{i + 1} - S&#39;_i \left(x\right) = 0\)</span>, dan kita dapat mensubstitusi Persamaan <a href="interpolation.html#eq:pwisequb">(8.9)</a> ke dalam kedua komponen, pemecahan untuk <span class="math inline">\(d_i\)</span> dalam hal ini <span class="math inline">\(x_i\)</span>, <span class="math inline">\(y_i\)</span>, dan <span class="math inline">\(c_i\)</span>. Proses yang sama dapat direplikasi dengan Persamaan <a href="interpolation.html#eq:pwisequb5">(8.13)</a> dan <span class="math inline">\(b_i\)</span>. Hasilnya adalah matriks tridiagonal, seperti yang ada pada Chapter <a href="linearaljabar.html#matriktridiagonal">6.3.3</a>, yang dapat dipecahkan untuk menemukan koefisien. Terdapat sebuah matriks, A, sedemikian rupa sehingga,</p>
+<p><span class="math display" id="eq:pwisequb6">\[\begin{equation}
+AC=V
+  \tag{8.14}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(A\)</span> merupakan matriks tridiagonal. Pada matriks tridiagonal ini <span class="math inline">\(\left(u_1,u_2,\dots,u_{n-1}\right)\)</span> merupakan vektor <span class="math inline">\(U\)</span>, dan vektor <span class="math inline">\(M\)</span>, <span class="math inline">\(L\)</span>, dan <span class="math inline">\(V\)</span> ditentukan dengan cara serupa. Matriks ini sedemikian rupa,</p>
+<p><span class="math display" id="eq:pwisequb7">\[\begin{equation}
+u_i=l_i=x_{i+1}-x_i
+  \tag{8.15}
+\end{equation}\]</span></p>
+<p>kecuali pada <span class="math inline">\(u_0=l_n\)</span>. Lebih jauh, diagonal utama <span class="math inline">\(D\)</span> ditentukan menggunakan Persamaan <a href="interpolation.html#eq:pwisequb8">(8.16)</a>.</p>
+<p><span class="math display" id="eq:pwisequb8">\[\begin{equation}
+m_i=2\left(x_{i+1}-x_i+x_i-x_{i-1}\right)
+  \tag{8.16}
+\end{equation}\]</span></p>
+<p>kecuali pada <span class="math inline">\(d_0=d_n=1\)</span>. Akhirnya vektor <span class="math inline">\(V\)</span> ditentukan dengan Persamaan <a href="interpolation.html#eq:pwisequb9">(8.17)</a>.</p>
+<p><span class="math display" id="eq:pwisequb9">\[\begin{equation}
+v_i=3\left(\frac{y_{i+1}-y_i}{x_{i+1}-x_i}-\frac{y_i-y_{i-1}}{x_i-x_{i-1}}\right)
+  \tag{8.17}
+\end{equation}\]</span></p>
+<p>kecuali pada <span class="math inline">\(v_0=v_n=0\)</span>. Sehingga,</p>
+<p><span class="math display" id="eq:pwisequb10">\[\begin{equation}
+\begin{bmatrix}
+     m_{1} &amp; u_{1} &amp; 0      &amp;     0  &amp; 0             \\[0.3em]
+     l_{1} &amp; m_{2} &amp; u_{2}  &amp; 0      &amp; 0             \\[0.3em]
+     0     &amp; l_{2} &amp; \ddots &amp; \ddots &amp; 0             \\[0.3em]
+     0     &amp; 0     &amp; \ddots &amp; \ddots &amp; u_{n-1}       \\[0.3em]
+     0     &amp; 0     &amp; 0      &amp;l_{n-1} &amp; m_{n}
+     \end{bmatrix}
+C
+= \begin{bmatrix}
+     v_1                                          \\[0.3em]
+     v_2                                          \\[0.3em]
+     \vdots                                       \\[0.3em]
+     \vdots                                       \\[0.3em]
+     v_n                                       
+     \end{bmatrix}
+  \tag{8.18}
+\end{equation}\]</span></p>
+<p>Penyelesaian Persamaan <a href="interpolation.html#eq:pwisequb10">(8.18)</a> akan menghasilkan vektor koefisien <span class="math inline">\(c\)</span>, sehingga koefisien <span class="math inline">\(b\)</span> dapat dihitung menggunakan Persamaan <a href="interpolation.html#eq:pwisequb11">(8.19)</a>.</p>
+<p><span class="math display" id="eq:pwisequb11">\[\begin{equation}
+b_i=\frac{y_{i+1}-y_i}{x_{i+1}-x_i}-\frac{x_{i+1}-x_i}{3}\left(2c_i+c_{i+1}\right)
+  \tag{8.19}
+\end{equation}\]</span></p>
+<p>Dengan menggunakan vektor <span class="math inline">\(C\)</span> yang sudah diketahui, koefisien <span class="math inline">\(d\)</span> dapat dihitung menggunakan Persamaan <a href="interpolation.html#eq:pwisequb12">(8.20)</a>.</p>
+<p><span class="math display" id="eq:pwisequb12">\[\begin{equation}
+d_i=\frac{c_{i+1}-c_i}{3\left(x_{i+1}-x_i\right)}
+  \tag{8.20}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Interpolasi Spline Kubik</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan set titik berpasangan <span class="math inline">\(\left(x,y\right)\)</span>.</li>
+<li>Tentukan koefisien <span class="math inline">\(a_i\)</span> menggunakan Persamaan <a href="interpolation.html#eq:pwisequb2">(8.10)</a>, dimana <span class="math inline">\(a_i = y_i\)</span>.</li>
+<li>Hitung elemen diagonal bawah (<span class="math inline">\(l_i\)</span>) dan elemen diagonal atas (<span class="math inline">\(u_i\)</span>) matriks tridiagonal menggunakan Persamaan <a href="interpolation.html#eq:pwisequb7">(8.15)</a>, dimana <span class="math inline">\(u_0=l_n=0\)</span>.</li>
+<li>Hitung elemen diagonal utama (<span class="math inline">\(m_i\)</span>) menggunakan Persamaan <a href="interpolation.html#eq:pwisequb8">(8.16)</a>, dimana <span class="math inline">\(d_0=d_n=1\)</span>.</li>
+<li>Hitung elemen vektor <span class="math inline">\(V\)</span> menggunakan Persamaan <a href="interpolation.html#eq:pwisequb9">(8.17)</a>, dimana <span class="math inline">\(v_0=v_n=0\)</span>.</li>
+<li>Susunlah elemen <span class="math inline">\(l_i\)</span>, <span class="math inline">\(u_i\)</span>, dan <span class="math inline">\(m_i\)</span> menjadi matriks tridiagonal <span class="math inline">\(A\)</span>.</li>
+<li>Deifinisikan persamaan linier seperti pada Persamaan <a href="interpolation.html#eq:pwisequb6">(8.14)</a></li>
+<li>Selesaikan sistem persamaan linier pada Persamaan <a href="interpolation.html#eq:pwisequb6">(8.14)</a> sehingga diperoleh vektor <span class="math inline">\(C\)</span> yang merupakan kumpulan koefisien <span class="math inline">\(c\)</span>.</li>
+<li>Hitung koefisien <span class="math inline">\(b_i\)</span> menggunakan Persamaan <a href="interpolation.html#eq:pwisequb11">(8.19)</a></li>
+<li>Hitung koefisien <span class="math inline">\(d_i\)</span> menggunakan Persamaan <a href="interpolation.html#eq:pwisequb12">(8.20)</a>.</li>
+<li>Bentuk seri persamaan polinomial menggunakan elemen koefisien <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, dan <span class="math inline">\(d\)</span> yang telah dihitung.</li>
+<li>Untuk melakukan ekstrapolasi dengan titik observasi diluar rentang titik diketahui, gunakan persamaan polinomial yang berada pada bagian ujung terdekat dengan nilai <span class="math inline">\(x\)</span> yang hendak dicari nilai <span class="math inline">\(y\)</span>-nya.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat menyusun suatu fungsi pada <code>R</code> untuk mencari seri persamaan polinomial derajat tiga. Fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" title="1">cubic_spline &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb608-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb608-3" title="3">  d_vec &lt;-<span class="st"> </span>b_vec &lt;-<span class="st"> </span>a_vec &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb608-4" title="4">  vec &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb608-5" title="5">  delta_x &lt;-<span class="st"> </span>delta_y &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, n<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb608-6" title="6">  </a>
+<a class="sourceLine" id="cb608-7" title="7">  <span class="co">## Menghitung nilai selisih dan vektor A</span></a>
+<a class="sourceLine" id="cb608-8" title="8">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(n<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb608-9" title="9">    a_vec[i] &lt;-<span class="st"> </span>y[i]</a>
+<a class="sourceLine" id="cb608-10" title="10">    delta_x[i] &lt;-<span class="st"> </span>x[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>x[i]</a>
+<a class="sourceLine" id="cb608-11" title="11">    delta_y[i] &lt;-<span class="st"> </span>y[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>y[i]</a>
+<a class="sourceLine" id="cb608-12" title="12">  }</a>
+<a class="sourceLine" id="cb608-13" title="13">  </a>
+<a class="sourceLine" id="cb608-14" title="14">  <span class="co">## Menyusun matriks tridiagona</span></a>
+<a class="sourceLine" id="cb608-15" title="15">  Au &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, delta_x[<span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>)])</a>
+<a class="sourceLine" id="cb608-16" title="16">  Am &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="op">*</span>(delta_x[<span class="dv">1</span><span class="op">:</span>(n<span class="dv">-2</span>)]<span class="op">+</span>delta_x[<span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>)]), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb608-17" title="17">  Al &lt;-<span class="st"> </span><span class="kw">c</span>(delta_x[<span class="dv">1</span><span class="op">:</span>(n<span class="dv">-2</span>)], <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb608-18" title="18">  </a>
+<a class="sourceLine" id="cb608-19" title="19">  vec[<span class="dv">0</span>] &lt;-<span class="st"> </span>vec[n] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb608-20" title="20">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>))</a>
+<a class="sourceLine" id="cb608-21" title="21">    vec[i] &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>(delta_y[i]<span class="op">/</span>delta_x[i] <span class="op">-</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb608-22" title="22"><span class="st">                   </span>delta_y[i<span class="dv">-1</span>]<span class="op">/</span>delta_x[i<span class="dv">-1</span>])</a>
+<a class="sourceLine" id="cb608-23" title="23">  </a>
+<a class="sourceLine" id="cb608-24" title="24">  <span class="co">## penyelesaian tridiagonal matriks</span></a>
+<a class="sourceLine" id="cb608-25" title="25">  nm &lt;-<span class="st"> </span><span class="kw">length</span>(Am)</a>
+<a class="sourceLine" id="cb608-26" title="26">  Al &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span> , Al)</a>
+<a class="sourceLine" id="cb608-27" title="27">  </a>
+<a class="sourceLine" id="cb608-28" title="28">  <span class="co">### forward sweep</span></a>
+<a class="sourceLine" id="cb608-29" title="29">  Au[<span class="dv">1</span>] &lt;-<span class="st"> </span>Au[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>Am[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb608-30" title="30">  vec[<span class="dv">1</span>] &lt;-<span class="st"> </span>vec[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>Am[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb608-31" title="31">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)){</a>
+<a class="sourceLine" id="cb608-32" title="32">      Au[i] &lt;-<span class="st"> </span>Au[i] <span class="op">/</span><span class="st"> </span>(Am[i] <span class="op">-</span><span class="st"> </span>Al[i] <span class="op">*</span><span class="st"> </span>Au[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb608-33" title="33">      vec[i] &lt;-<span class="st"> </span>(vec[i] <span class="op">-</span><span class="st"> </span>Al[i] <span class="op">*</span><span class="st"> </span>vec[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]) <span class="op">/</span></a>
+<a class="sourceLine" id="cb608-34" title="34"><span class="st">                </span>(Am[i] <span class="op">-</span><span class="st"> </span>Al[i] <span class="op">*</span><span class="st"> </span>Au[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb608-35" title="35">  }</a>
+<a class="sourceLine" id="cb608-36" title="36">  vec[n] &lt;-<span class="st"> </span>(vec[n] <span class="op">-</span><span class="st"> </span>Al[n] <span class="op">*</span><span class="st"> </span>vec[n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])<span class="op">/</span></a>
+<a class="sourceLine" id="cb608-37" title="37"><span class="st">            </span>(Am[n] <span class="op">-</span><span class="st"> </span>Al[n] <span class="op">*</span><span class="st"> </span>Au[n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb608-38" title="38">  </a>
+<a class="sourceLine" id="cb608-39" title="39">  <span class="co">### backward sweep</span></a>
+<a class="sourceLine" id="cb608-40" title="40">  c_vec &lt;-<span class="st"> </span><span class="kw">rep.int</span> (<span class="dv">0</span>, n)</a>
+<a class="sourceLine" id="cb608-41" title="41">  c_vec[n] &lt;-<span class="st"> </span>vec[n]</a>
+<a class="sourceLine" id="cb608-42" title="42">  <span class="cf">for</span>(i <span class="cf">in</span> (n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb608-43" title="43">      c_vec[i] &lt;-<span class="st"> </span>vec[i] <span class="op">-</span><span class="st"> </span>Au[i] <span class="op">*</span><span class="st"> </span>c_vec[i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb608-44" title="44">  </a>
+<a class="sourceLine" id="cb608-45" title="45"> <span class="co">## Hitung vektor B dan D dari vektor C</span></a>
+<a class="sourceLine" id="cb608-46" title="46"> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(n<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb608-47" title="47">   b_vec[i] &lt;-<span class="st"> </span>(delta_y[i]<span class="op">/</span>delta_x[i])<span class="op">-</span></a>
+<a class="sourceLine" id="cb608-48" title="48"><span class="st">               </span>(delta_x[i]<span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>(<span class="dv">2</span><span class="op">*</span>c_vec[i]<span class="op">+</span>c_vec[i<span class="op">+</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb608-49" title="49">   d_vec[i] &lt;-<span class="st"> </span>(c_vec[i<span class="op">+</span><span class="dv">1</span>]<span class="op">-</span>c_vec[i]) <span class="op">/</span><span class="st"> </span>(<span class="dv">3</span><span class="op">*</span>delta_x[i])</a>
+<a class="sourceLine" id="cb608-50" title="50"> }</a>
+<a class="sourceLine" id="cb608-51" title="51">  </a>
+<a class="sourceLine" id="cb608-52" title="52"> <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">a =</span> a_vec, <span class="dt">b =</span> b_vec, <span class="dt">c =</span> c_vec[<span class="op">-</span>n], <span class="dt">d =</span> d_vec))</a>
+<a class="sourceLine" id="cb608-53" title="53">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:cubicsplineexm" class="example"><strong>Contoh 8.8  </strong></span>Tentukan persamaan-persamaan spline kubik yang dihasilkan dari titik observasi yang ditampilkan pada Contoh <a href="interpolation.html#exm:hopoliexmp">8.5</a>?
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk menentukan persamaan-persamaan linier yang menghubungkan setiap titik, kita akan menggunakan fungsi <code>cubic_spline()</code> yang telah kita buat. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb609-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb609-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">-2</span>, <span class="dv">-1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb609-3" title="3"></a>
+<a class="sourceLine" id="cb609-4" title="4"><span class="kw">cubic_spline</span>(x, y)</a></code></pre></div>
+<pre><code>## $a
+## [1] -1 -2 -1
+## 
+## $b
+## [1] -1.4 -0.2  2.2
+## 
+## $c
+## [1] 0.0 1.2 1.2
+## 
+## $d
+## [1]  0.4  0.0 -0.4</code></pre>
+<p>Sebagai contoh untuk domain <span class="math inline">\(\left[0,1\right]\)</span>, persamaan spline kubiknya adalah <span class="math inline">\(-0,4x^3+1,2x^2+2,2x-1\)</span>. Jika persamaan-persamaan yang terbentuk tersebut divisualisasikan akan terlihat seperti pada Gambar <a href="interpolation.html#fig:cubicsplineviz">8.4</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:cubicsplineviz"></span>
+<img src="images/cubicsplineviz.png" alt="Interpolasi spline kubik empat titik 
+(Sumber:Howard, 2017)." width="80%" />
+<p class="caption">
+Gambar 8.4: Interpolasi spline kubik empat titik
+(Sumber:Howard, 2017).
+</p>
+</div>
+<p>Pada <code>R</code> juga terdapat fungsi <code>splinefun()</code> untuk melakukan interpolasi spline. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb611-1" title="1"><span class="kw">splinefun</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb611-2" title="2">          <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;fmm&quot;</span>, <span class="st">&quot;periodic&quot;</span>, <span class="st">&quot;natural&quot;</span>, <span class="st">&quot;monoH.FC&quot;</span>, <span class="st">&quot;hyman&quot;</span>),</a>
+<a class="sourceLine" id="cb611-3" title="3">          <span class="dt">ties =</span> mean)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x,y</code> : vektor titik yang akan dilakukan interpolasi</li>
+<li><code>method</code> : spesifikasi jenis spline yang digunakan. Nilai yang mungkin antara lain: <code>"fmm"</code>, <code>"natural"</code>, <code>"periodic"</code>, <code>"monoH.FC"</code> dan <code>"hyman"</code>.</li>
+<li><code>ties</code> : metode untuk menangani nilai imbang pada titik yang akan diinterpolasi.</li>
+</ul>
+</blockquote>
+<p>Untuk melakukan interpolasi spline kubik, metode yang digunakan adalah <code>"natural"</code>. Berikut adalah contoh interpolasi menggunakan kembali data pada Contoh <a href="interpolation.html#exm:hopoliexmp">8.5</a>:</p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb612-1" title="1">spline &lt;-<span class="st"> </span><span class="kw">splinefun</span>(x, y, <span class="dt">method=</span><span class="st">&quot;natural&quot;</span>)</a>
+<a class="sourceLine" id="cb612-2" title="2"></a>
+<a class="sourceLine" id="cb612-3" title="3"><span class="co"># uji dengan nilai x yang sama</span></a>
+<a class="sourceLine" id="cb612-4" title="4"><span class="kw">spline</span>(x)</a></code></pre></div>
+<pre><code>## [1] -1 -2 -1  2</code></pre>
+<p>FUngsi <code>splinefun()</code> menghasilkan nilai yang sama persis dengan proses interpolasi yang telah kita lakukan.</p>
+</div>
+</div>
+<div id="studi-kasus-1" class="section level2">
+<h2><span class="header-section-number">8.3</span> Studi Kasus</h2>
+<p>Pada studi kasus kali ini, kita akan membahas teknik mengisi nilai yang hilang pada data runtun waktu. Terdapat banyak teknik untuk yang dapat digunakan untuk mengisi data yang hilang. Salah satu teknik yang dapat digunakan adalah dengan melakukan interpolasi.</p>
+<div id="interpolasi-data-runtun-waktu" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Interpolasi Data Runtun Waktu</h3>
+<p>Pengisian data hilang pada data runtun waktu (<em>time series</em>) dapat dilakukan dengan berbagai cara sesuai dengan situasi yang dihadapi. Pengisian dapat menggunakan nilai rata-rata jika data memiliki pola <em>white noise</em>, observasi terakhir atau observasi dimasa mendatang, dan interpolasi linier.</p>
+<p>Data yang digunakan pada contoh kasus kali ini adalah data <code>airquality</code>. Dataset tersebut merupakan data kualitas udara bulan Mei sampai September 1973 yang ada di New York. Berikut adalah ringkasan data <code>airquality</code> tersebut:</p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" title="1"><span class="kw">summary</span>(airquality)</a></code></pre></div>
+<pre><code>##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA&#39;s   :37       NA&#39;s   :7                                       
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0  
+## </code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" title="1"><span class="kw">str</span>(airquality)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    153 obs. of  6 variables:
+##  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+##  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+##  $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+##  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+##  $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" title="1"><span class="kw">head</span>(airquality)</a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre>
+<p>Pada contoh kasus kali ini kita akan mencoba melakukan pengisian data hilang pada data <code>Solar.R</code> pada dataset <code>airquality</code>. Langkah pertama yang perlu dilakukan adalah membuat objek data runtun waktu pada data tersebut.</p>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" title="1">Solar &lt;-<span class="st"> </span><span class="kw">ts</span>(airquality[,<span class="st">&quot;Solar.R&quot;</span>])</a></code></pre></div>
+<p>Visualisasi data tersebut disajikan pada Gambar <a href="interpolation.html#fig:timeviz">8.5</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:timeviz"></span>
+<img src="Metode_Numerik_files/figure-html/timeviz-1.png" alt="Visualisasi variabel radiasi matahari pada dataset airquality." width="80%" />
+<p class="caption">
+Gambar 8.5: Visualisasi variabel radiasi matahari pada dataset airquality.
+</p>
+</div>
+<p>Berdasarkan visualisasi tersebut terdapat garis yang terputus yang menunjukkan data yang hilang. Agar garis tersebut dapat tersambung, kita perlu melakukan pengisian nilai yang hilang pada data tersebut. Berikut adalah sintaks yang digunakan untuk melakukan pengisian nilai hilang tersebut:</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" title="1"><span class="kw">library</span>(xts)</a>
+<a class="sourceLine" id="cb621-2" title="2"><span class="co"># metode nilai rata-rata</span></a>
+<a class="sourceLine" id="cb621-3" title="3">Solar_mean &lt;-<span class="st"> </span><span class="kw">na.fill</span>(Solar, <span class="dt">fill=</span><span class="kw">mean</span>(Solar, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb621-4" title="4"></a>
+<a class="sourceLine" id="cb621-5" title="5"><span class="co"># metode last observation carried forward</span></a>
+<a class="sourceLine" id="cb621-6" title="6">Solar_locf &lt;-<span class="st"> </span><span class="kw">na.locf</span>(Solar)</a>
+<a class="sourceLine" id="cb621-7" title="7"></a>
+<a class="sourceLine" id="cb621-8" title="8"><span class="co"># metode next observation caried backward</span></a>
+<a class="sourceLine" id="cb621-9" title="9">Solar_nocb &lt;-<span class="st"> </span><span class="kw">na.locf</span>(Solar, <span class="dt">fromLast =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb621-10" title="10"></a>
+<a class="sourceLine" id="cb621-11" title="11"><span class="co"># metode interpolasi linier</span></a>
+<a class="sourceLine" id="cb621-12" title="12">Solar_linterp &lt;-<span class="st"> </span><span class="kw">na.approx</span>(Solar)</a></code></pre></div>
+<p>Berikut adalah visualisasi menggunakan metode nilai rata-rata:</p>
+<div class="figure" style="text-align: center"><span id="fig:timeviz2"></span>
+<img src="Metode_Numerik_files/figure-html/timeviz2-1.png" alt="Visualisasi data radiasi matahari menggunakan metode nilai rata-rata." width="80%" />
+<p class="caption">
+Gambar 8.6: Visualisasi data radiasi matahari menggunakan metode nilai rata-rata.
+</p>
+</div>
+<p>Secara berturut-turut berikut adalah visualisasi dari metode locf, nocb, dan interpolasi linier:</p>
+<div class="figure" style="text-align: center"><span id="fig:timeviz3"></span>
+<img src="Metode_Numerik_files/figure-html/timeviz3-1.png" alt="Visualisasi data radiasi matahari menggunakan metode locf." width="80%" />
+<p class="caption">
+Gambar 8.7: Visualisasi data radiasi matahari menggunakan metode locf.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:timeviz4"></span>
+<img src="Metode_Numerik_files/figure-html/timeviz4-1.png" alt="Visualisasi data radiasi matahari menggunakan metode nocb." width="80%" />
+<p class="caption">
+Gambar 8.8: Visualisasi data radiasi matahari menggunakan metode nocb.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:timeviz5"></span>
+<img src="Metode_Numerik_files/figure-html/timeviz5-1.png" alt="Visualisasi data radiasi matahari menggunakan metode interpolasi linier." width="80%" />
+<p class="caption">
+Gambar 8.9: Visualisasi data radiasi matahari menggunakan metode interpolasi linier.
+</p>
+</div>
+<p>Pemilihan metode interpolasi mana yang sesuai akan berbeda pada setiap situasi dan jenis data yang akan dilakukan interpolasi. Interpolasi data runtun waktu pada bidang lingkungan umumnya menggunakan metode interpolasi nilai rata-rata dan linier dan tidak menutup kemungkinan interpolasi dengan metode lain yang telah dijelaskan pada buku ini dapat pula digunakan.</p>
+<p>Pada situasi dimana data membentuk pola <em>white noises</em> (pola acak disekitar nilai rata-rata dan memiliki varians yang konstan) seperti yang ditunjukkan variabel <code>Solar.R</code>, interpolaasi dengan nilai rata-rata cukup sesuai untuk digunakan untuk mengisi nilai hilang (<em>missing value</em>) pada data runtun waktu tersebut.</p>
+</div>
+</div>
+<div id="referensi-7" class="section level2">
+<h2><span class="header-section-number">8.4</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Howard, J.P. 2017. <strong>Computational Methods for Numerical Analysis with R</strong>. CRC Press.</li>
+<li>Kreyszig, E. 2011. <strong>Advanced Engineering Mathematics, 10th Edition</strong>. John Wiley &amp; Sons.</li>
+<li>Suparno, S. 2008. <strong>Komputasi untuk Sains dan Teknik Edisi II</strong>. Departemen Fisika-FMIPA Universitas Indonesia.</li>
+</ol>
+</div>
+<div id="latihan-2" class="section level2">
+<h2><span class="header-section-number">8.5</span> Latihan</h2>
+<ol style="list-style-type: decimal">
+<li>Diberikan data titik (3,5), (0,-2), dan (4,1). Tentukan persamaan polinomial untuk melakukan interpolasi pada ketiga titik tersebut!</li>
+<li>Jika diberikan 13 titik observasi, apakah saudara cenderung akan menggunakan interpolasi polinomial atau spline? jelaskan alasan saudara?</li>
+<li>Bentuklah kembali fungsi <code>poly_inter()</code> dengan menambahkan metode evaluasi polinomial ke dalam fungsi tersebut!</li>
+<li>Pada Latihan No.1, bentuklah persamaan spline kubik menggunakan titik observasi tersebut!</li>
+</ol>
+
+<style>
+body{
+text-align: justify}
+</style>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rootfinding.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diffinteg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Metode_Numerik.pdf", "Metode_Numerik.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
