@@ -7,7 +7,8 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Komputasi metide numerik menggunakan R dengan contoh kasus di bidang lingkungan"
+github-repo: mohrosidi/metode_numerik
+description: "Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa"
 ---
 
 # Kata Pengantar{-}

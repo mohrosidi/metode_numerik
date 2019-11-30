@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Bahasa Pemrograman R | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <title>Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
   <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Bahasa Pemrograman R | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:title" content="Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Bahasa Pemrograman R | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta name="twitter:title" content="Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
   <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="calculation.html">
+<link rel="prev" href="diffinteg.html">
+<link rel="next" href="dataanalysis.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -343,269 +343,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Bahasa Pemrograman R</h1>
-<p>Dewasa ini tersedia banyak sekali <em>software</em> yang dapat digunakan untuk membantu kita dalam melakukan analisa data. <em>software</em> yang digunakan dapat berupa <em>software</em> berbayar atau gratis.</p>
-<p><code>R</code> merupakan merupakan salah satu <em>software</em> gratis yang sangat populer di Indonesia. Kemudahan penggunaan serta banyaknya besarnya dukungan komunitas membuat <code>R</code> menjadi salah satu bahasa pemrograman paling populer di dunia.</p>
-<p><em>Library</em> yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat <code>R</code> banyak digunakan oleh para analis data.</p>
-<p>Pada <em>chapter</em> ini penulis akan memperkenalkan kepada pembaca mengenai bahasa pemrograman <code>R</code>. Mulai dari sejarah, cara instalasi sampai dengan bagaimana kita memanfaatkan fitur dasar bantuan untuk menggali lebih jauh tentang fungsi-fungsi <code>R</code></p>
-<div id="sejarahR" class="section level2">
-<h2><span class="header-section-number">1.1</span> Sejarah R</h2>
-<p><code>R</code> Merupakan bahasa yang digunakan dalam komputasi <strong>statistik</strong> yang pertama kali dikembangkan oleh <strong>Ross Ihaka</strong> dan <strong>Robert Gentlement</strong> di University of Auckland New Zealand yang merupakan akronim dari nama depan kedua pembuatnya. Sebelum <code>R</code> dikenal ada <code>S</code> yang dikembangkan oleh <strong>John Chambers</strong> dan rekan-rekan dari <strong>Bell Laboratories</strong> yang memiliki fungsi yang sama untuk komputasi statistik. Hal yang membedakan antara keduanya adalah <code>R</code> merupakan sistem komputasi yang bersifat gratis.Logo <code>R</code> dapat dilihat pada Gambar <a href="intro.html#fig:Logo">1.1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:Logo"></span>
-<img src="images/r-icon.png" alt="Logo R." width="40%" />
-<p class="caption">
-Gambar 1.1: Logo R.
-</p>
-</div>
-<p><code>R</code> dapat dibilang merupakan aplikasi sistem <strong>statistik</strong> yang kaya. Hal ini disebabkan banyak sekali <em>library</em> yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti <em>linear regression</em>, <em>clustering</em>, <em>statistical test</em>, dll. Selain itu, <code>R</code> juga dapat ditambahkan <em>library</em>-<em>library</em> lain yang dapat meningkatkan fiturnya.</p>
-<p>Sebagai sebuah bahasa pemrograman yang banyak digunakan untuk keperluan analisa data, <code>R</code> dapat dioperasikan pada berbagai sistem operasi pada komputer. Adapun sistem operasi yang didukung antara lain: <code>UNIX</code>, <code>Linux</code>, <code>Windows</code>, dan <code>MacOS</code>.</p>
-</div>
-<div id="fiturR" class="section level2">
-<h2><span class="header-section-number">1.2</span> Fitur dan Karakteristik R</h2>
-<p><code>R</code> memiliki karakteristik yang berbeda dengan bahasa pemrograman lain seperti <code>C++</code>,<code>python</code>, dll. <code>R</code> memiliki aturan/sintaks yang berbeda dengan bahasa pemrograman yang lain yang membuatnya memiliki ciri khas tersendiri dibanding bahasa pemrograman yang lain.</p>
-<p>Beberapa ciri dan fitur pada <code>R</code> antara lain:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Bahasa <code>R</code> bersifat case sensitif</strong>. maksudnya adalah dalam proses input <code>R</code> huruf besar dan kecil sangat diperhatikan. Sebagai contoh kita ingin melihat apakah objek A dan B pada sintaks berikut:</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">A &lt;-<span class="st"> &quot;Andi&quot;</span></a>
-<a class="sourceLine" id="cb1-2" title="2">B &lt;-<span class="st"> &quot;andi&quot;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># cek kedua objek A dan B</span></a>
-<a class="sourceLine" id="cb1-5" title="5">A <span class="op">==</span><span class="st"> </span>B</a></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Kesimpulan : Kedua objek berbeda</span></a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Segala sesuatu yang ada pada program <code>R</code> akan diangap sebagai objek</strong>. konsep objek ini sama dengan bahasa pemrograma berbasis objek yang lain seperti <code>Java</code>, <code>C++</code>, <code>python</code>, dll.Perbedaannya adalah bahasa <code>R</code> relatif lebih sederhana dibandingkan bahasa pemrograman berbasis obejk yang lain.</li>
-<li><strong>interpreted language atau script</strong>. Bahasa <code>R</code> memungkinkan pengguna untuk melakukan kerja pada <code>R</code> tanpa perlu kompilasi kode program menjadi bahasa mesin.</li>
-<li>Mendukung proses <strong>loop</strong>, <strong>decision making</strong>, dan menyediakan berbagai jenis <strong>operstor</strong> (aritmatika, logika, dll).</li>
-<li><strong>Mendukung export dan import berbagai format file</strong>, seperti:TXT, CSV, XLS, dll.</li>
-<li><strong>Mudah ditingkatkan melalui penambahan fungsi atau <em>library</em></strong>. Penambahan <em>library</em> dapat dilakukan secara online melalui <a href="https://cran.r-project.org/">CRAN</a> atau melalui sumber seperti <a href="https://github.com/">github</a>.</li>
-<li><strong>Menyedikan berbagai fungsi untuk keperluan visualisasi data</strong>. Visualisasi data pada <code>R</code> dapat menggunakan <em>library</em> bawaan atau <em>library</em> lain seperti <code>ggplo2</code>,<code>ggvis</code>, dll.</li>
-</ol>
-</div>
-<div id="prosconsR" class="section level2">
-<h2><span class="header-section-number">1.3</span> Kelebihan dan Kekurangan R</h2>
-<p>Selain karena <code>R</code> dapat digunakan secara gratis terdapat <strong>kelebihan</strong> lain yang ditawarkan, antara lain:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Protability</strong>. Penggunaan software dapat digunakan kapanpun tanpa terikat oleh masa berakhirnya lisensi.</li>
-<li><strong>Multiplatform</strong>. <code>R</code> bersifat <em>Multiplatform Operating Systems</em>, dimana <em>software</em> <code>R</code> lebih kompatibel dibanding <em>software</em> statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena <code>R</code> baik pada sistem operasi seperti <code>windows</code> akan sama pengoperasiannya dengan yang ada di <code>Linux</code> (<em>library</em> yang digunakan sama).</li>
-<li><strong>General</strong> dan <strong>Cutting-edge</strong>. Berbagai metode statistik baik metode klasik maupun baru telah diprogram kedalam <code>R</code>. Dengan demikian <em>software</em> ini dapat digunakan untuk analisis statistika dengan pendekatan klasik dan pendekatan modern.</li>
-<li><strong>Programable</strong>. Pengguna dapat memprogram metode baru atau mengembangakan modifikasi dari analisis statistika yang telah ada pada sistem <code>R</code>.</li>
-<li><strong>Berbasis analisis matriks</strong>. Bahasa <code>R</code> sangat baik digunakan untuk <em>programming</em> dengan basis matriks.</li>
-<li>Fasiltas grafik yang lengkap.</li>
-</ol>
-<p>Adapun kekurangan dari <code>R</code> antara lain:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Point and Click GUI</strong>. Interaksi utama dengan <code>R</code> bersifat <em>CLI</em> (<em>Command Line Interface</em>), walaupun saat ini telah dikembangkan <em>library</em> yang memungkinkan kita berinteraksi dengan <code>R</code> menggunakan <em>GUI</em> (<em>Graphical User Interface</em>) sederhana menggunakan <em>library</em> <code>R-Commander</code> yang memiliki fungsi yang terbatas. <code>R- Commander</code> sendiri merupakan <em>GUI</em> yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas <em>library</em> ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.</li>
-<li><strong>Missing statistical function</strong>. Meskipun analisis statistika dalam <code>R</code> sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam <code>R</code>. Namun karena <code>R</code> merupakan <em>lingua franca</em> untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk <em>library</em> hanya masalah waktu saja.</li>
-</ol>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">1.4</span> RStudio</h2>
-<p>Aplikasi <code>R</code> pada dasarnya berbasis teks atau <em>command line</em> sehingga pengguna harus mengetikkan perintah-perintah tertentu dan harus hapal perintah-perintahnya. Setidaknya jika kita ingin melakukan kegiatan analisa data menggunakan <code>R</code> kita harus selalu siap dengan perintah-perintah yang hendak digunakan sehingga buku manual menjadi sesuatu yang wajib adasaat berkeja dengan <code>R</code>.</p>
-<p>Kondisi ini sering kali membingunkan bagi pengguna pemula maupun pengguna mahir yang sudah terbiasa dengan aplikasi statistik lain seperti SAS, SPSS, Minitab, dll. Alasan itulah yang menyebabkan pengembang <code>R</code> membuat berbagai <em>frontend</em> untuk <code>R</code> yang berguna untuk memudahkan dalam pengoperasian <code>R</code>.</p>
-<p><code>RStudio</code> merupakan salah satu bentuk <em>frontend</em> <code>R</code> yang cukup populer dan nyaman digunakan. Selain nyaman digunakan, <code>RStudio</code> memungkinkan kita melakukan penulisan laporan menggunakan <code>Rmarkdown</code> atau <code>RNotebook</code> serta membuat berbagai bentuk project seperti shyni, dll. Pada <code>R</code> studio juga memungkinkan kita mengatur <em>working directory</em> tanpa perlu mengetikkan sintaks pada Commander, yang diperlukan hanya memilihnya di menu <code>RStudio</code>. Selain itu, kita juga dapat meng-import file berisikan data tanpa perlu mengetikkan pada Commander dengan cara memilih pada menu <code>Environment</code>.</p>
-</div>
-<div id="installR" class="section level2">
-<h2><span class="header-section-number">1.5</span> Menginstall R dan RStudio</h2>
-<p>Pada tutorial ini hanya akan dijelaskan bagaimana menginstal <code>R</code> dan <code>RStudio</code> pada sistem operasi <code>windows</code>. Sebelum memulai menginstal sebaiknya pembaca mengunduh terlebih dahulu <em>installer</em> <a href="https://cran.r-project.org/bin/windows/base/">R</a> dan <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>.</p>
-<ol style="list-style-type: decimal">
-<li>Jalankan proses pemasangan dengan meng-klik <em>installer</em> aplikasi <code>R</code> dan <code>RStudio</code>.</li>
-<li>Ikuti langkah proses pemasangan aplikasi yang ditampilkan dengan klik <code>OK</code> atau <code>Next</code>.</li>
-<li>Apabila pemasangan telah dilakukan, jalankan aplikasi yang telah terpasang untuk menguji jika aplikasi telah berjalan dengan baik.</li>
-</ol>
-<p>Jendela aplikasi yang telah terpasang ditampilkan pada Gambar <a href="intro.html#fig:jendela-R">1.2</a> dan Gambar <a href="intro.html#fig:jendela-RStudio">1.3</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:jendela-R"></span>
-<img src="images/jendela_r.png" alt="Jendela R." width="80%" />
-<p class="caption">
-Gambar 1.2: Jendela R.
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:jendela-RStudio"></span>
-<img src="images/jendela_rstudio.png" alt="Jendela RStudio." width="80%" />
-<p class="caption">
-Gambar 1.3: Jendela RStudio.
-</p>
-</div>
-<blockquote>
-<p><strong>Tips:</strong> Sebaiknya install <code>R</code> terlebih dahulu sebelum <code>RStudio</code></p>
-</blockquote>
-</div>
-<div id="wdR" class="section level2">
-<h2><span class="header-section-number">1.6</span> Working Directory</h2>
-<p>Setiap pengguna akan bekerja pada tempat khusus yang disebut sebagai <em>working directory</em>. <em>working directory</em> merupakan sebuah folder dimana <code>R</code> akan membaca dan menyimpan file kerja kita. Pada pengguna <code>windows</code>, <em>working directory</em> secara default pada saat pertama kali menginstall <code>R</code> terletak pada folder <code>c:\\Document</code>.</p>
-<div id="changewdR" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Mengubah Lokasi Working Directory</h3>
-<p>Kita dapat mengubah lokasi <em>working directory</em> berdasarkan lokasi yang kita inginkan, misalnya letak data yang akan kita olah tidak ada pada folder default atau kita ingin pekerjaan kita terkait <code>R</code> dapat berlangsung pada satu folder khusus.</p>
-<p>Berikut adalah cara mengubah <em>working directory</em> pada <code>R</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Buatlah folder pada drive (kita bisa membuat folder pada selain drive c) dan namai dengan nama yang kalian inginkan. Pada tutorial ini penulis menggunakan nama folder <code>R</code>.</li>
-<li>Jika pengguna menggunakan <code>RStudio</code>, pada menu <code>RStudio</code> pilih <strong>Session &gt; Set Working Directory &gt; Chooses Directory</strong>. Proses tersebut ditampilkan pada Gambar <a href="intro.html#fig:working">1.4</a></li>
-<li>Pilih folder yang telah dibuat pada step 1 sebagai *working directory.</li>
-</ol>
-<blockquote>
-<p><strong>Penting:</strong> Data atau file yang hendak dibaca selama proses kerja pada <code>R</code> harus selalu diletakkan pada working directory. Jika tidak maka data atau file tidak akan terbaca.</p>
-</blockquote>
-<p>Untuk mengecek apakah proses perubahan telah terjadi, kita dapat mengeceknya dengan menjalankan perintah berikut untuk melihat lokasi <em>working directory</em> kita yang baru.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:working"></span>
-<img src="images/working.png" alt="Mengubah working directory." width="80%" />
-<p class="caption">
-Gambar 1.4: Mengubah working directory.
-</p>
-</div>
-<p>Selain itu kita dapat mengubah <em>working directory</em> menggunakan perintah berikut:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Ubah working directori pada folder R</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">setwd</span>(<span class="st">&quot;/Documents/R&quot;</span>)</a></code></pre></div>
-<blockquote>
-<p><strong>Peringatan !!!</strong></p>
-<p>Pada proses pengisian lokasi folder pastikan pemisah pada lokasi folder menggunakan tanda “/” bukan ""</p>
-</blockquote>
-</div>
-<div id="defaultwdR" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> Mengubah Lokasi Working Directory Default</h3>
-<p>Pada proses yang telah penulis jelaskan sebelumnya. Proses perubahan <em>working directory</em> hanya berlaku pada saat pekerjaan tersebut dilakukan. Setelah pekerjaan selesai dan kita menjalankan kembali <code>R</code> maka <em>working directory</em> akan kembali secara default pada working directory lama.</p>
-<p>Untuk membuat lokasi default <em>working directory</em> pindah, kita dapat melakukannya dengan memilih pada menu: <strong>Tools &gt; Global options &gt; pada “General” klik pada “Browse” dan pilih lokasi working directory yang diinginkan</strong>. Proses tersebut ditampilkan pada Gambar <a href="intro.html#fig:default">1.5</a></p>
-<div class="figure" style="text-align: center"><span id="fig:default"></span>
-<img src="images/default.png" alt="Merubah working directory melalui Global options." width="80%" />
-<p class="caption">
-Gambar 1.5: Merubah working directory melalui Global options.
-</p>
-</div>
-</div>
-</div>
-<div id="installlibraryR" class="section level2">
-<h2><span class="header-section-number">1.7</span> Memasang dan Mengaktifkan <em>Library</em> R</h2>
-<p><code>R</code> dapat ditingkatkan fungsionalitasnya melalui <em>library</em>-<em>library</em> yang tersedia secara luas. <em>Library</em>-<em>library</em> ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: <code>tidyverse</code> untuk <em>data science</em>, <code>pracma</code> untuk analisis diferensial, dll.</p>
-<p>Untuk menginstall <em>library</em> yang kita inginkan, kita dapat menggunakan fungsi <code>install.packages()</code>. Berikut adalah contoh bagaimana cara menginstall <em>library</em> <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
-<p><em>Library</em> yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada <em>library</em> tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi <code>library()</code>. Berikut adalah contoh sintaks untuk mengaktifkan <em>library</em> <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<p>Bagaimana ingin menggunakan fungsi pada <em>library</em> namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi <code>library()</code>? Untuk melakukannya kita perlu mengetikkan nama <em>library</em> dikuti oleh tanda “::” diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi <code>read_csv()</code> dari <em>library</em> <code>readr</code> (salah satu <em>library</em> yang terdapat pada kumpulan <em>library</em> <code>tidyverse</code>) untuk membaca file <code>contoh.csv</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;contoh.csv&quot;</span>)</a></code></pre></div>
-</div>
-<div id="helpR" class="section level2">
-<h2><span class="header-section-number">1.8</span> Fasilitas Help</h2>
-<p>Agar dapat menggunakan <code>R</code> dengan secara lebih baik, pengetahuan untuk mengakses fasilitas <em>help</em> in cukup penting untuk disampaikan. Adapun cara yang dapat digunakan adalah sebagai berikut.</p>
-<div id="searchhelp" class="section level3">
-<h3><span class="header-section-number">1.8.1</span> Mencari Help dari Suatu Perintah Tertentu</h3>
-<p>Untuk memperoleh bantuan terkait suatu perintah tertentu kita dapat menggunakan fungsi <code>help()</code>. Secara umum format yang digunakan adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">help</span>(nama_perintah)</a></code></pre></div>
-<p>atau dapat juga menggunakan tanda tanya (?) pada awal <code>nama_perintah</code> seperti berikut:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">?nama_perintah</a></code></pre></div>
-<p>Misalkan kita kebingungan terkait bagaimana cara menuliskan perintah untuk menghitung rata-rata suatu vektor. Kita dapat mengetikkan perintah berikut untuk mengakses fasilitas <em>help</em>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">help</span>(mean)</a>
-<a class="sourceLine" id="cb11-2" title="2"></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="co">#atau</span></a>
-<a class="sourceLine" id="cb11-4" title="4">?mean</a></code></pre></div>
-<p>Perintah tersebut akan memunculkan hasil berupa dokumentasi yang ditampilkan pada Gambar <a href="intro.html#fig:meandoc">1.6</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:meandoc"></span>
-<img src="images/meandoc.PNG" alt="Jendela help dokumentasi fungsi mean()." width="50%" />
-<p class="caption">
-Gambar 1.6: Jendela help dokumentasi fungsi mean().
-</p>
-</div>
-<p>Keterangan pada jendela pada Gambar <a href="intro.html#fig:meandoc">1.6</a> adalah sebagia berikut:</p>
-<ol style="list-style-type: decimal">
-<li>Pada bagian jendela kiri atas jendela <em>help</em>, diberikan keterangan nama dari perintah yang sedang ditampilkan.</li>
-<li>Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama <em>library</em> yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama <em>library</em> ditunjukkan pada teks <code>mean {base}</code> yang menunjukkan perintah <code>mean()</code> pada <em>library</em> (<em>library</em>) <em>base</em> (<em>library</em> bawaan <code>R</code>).</li>
-<li>Setiap jendela <em>help</em> dari suatu perintah tertentu selanjutnya akan memuat bagian-bagian berikut:</li>
-</ol>
-<ul>
-<li><em>Title</em></li>
-<li><em>Description</em> : deskripsi singkat tentang perintah.</li>
-<li><em>Usage</em> : menampilkan sintaks perintah untuk penggunaan perintah tersebut.</li>
-<li><em>Arguments</em> : keterangan mengenai <em>argument/input</em>yang diperlukan pada perintah tersebut.</li>
-<li><em>Details</em> : keterangan lebih lengkap lengkap tentang perintah tersebut.</li>
-<li><em>Value</em> : keterangan tentang <em>output</em> suatu perintah dapat diperoleh pada bagian ini.</li>
-<li><em>Author(s)</em> : memberikan keterangan tentang <em>Author</em> dari perintah tersebut.</li>
-<li><em>References</em> : seringkali referensi yang dapat digunakan untuk memperoleh keterangan lebih lanjut terhadap suatu perintah ditampilkan pada bagian ini.</li>
-<li><em>See also</em>: bagian ini berisikan daftar perintah/fungsi yang berhubungan erat dengan perintah tersebut.</li>
-<li><em>Example</em> : berisikan contoh-contoh penggunaan perintah tersebut.</li>
-</ul>
-<p>Kita juga dapat melihat contoh penggunaan dari perintah tersebut. Untuk melakukannya kita dapat menggunakan fungsi <code>example()</code>. Fungsi tersebut akan menampilkan contoh kode penerapan dari fungsi yang kita inginkan. Secara sederhana fungsi tersebut dapat dituliskan sebagai berikut:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">example</span>(nama_perintah)</a></code></pre></div>
-<p>Untuk mengetahui contoh kode fungsi <code>mean()</code>, ketikkan sintaks berikut:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">example</span>(mean)</a></code></pre></div>
-<pre><code>## 
-## mean&gt; x &lt;- c(0:10, 50)
-## 
-## mean&gt; xm &lt;- mean(x)
-## 
-## mean&gt; c(xm, mean(x, trim = 0.10))
-## [1] 8.75 5.50</code></pre>
-<p>kita juga dapat mencoba kode yang dihasilkan pada console <code>R</code>. Berikut adalah contoh penerapannya:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Menghitung rata-rata bilangan 1 sampai 10 dan 50</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="co"># membuat vektor</span></a>
-<a class="sourceLine" id="cb15-3" title="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb15-4" title="4"></a>
-<a class="sourceLine" id="cb15-5" title="5"><span class="co"># Print</span></a>
-<a class="sourceLine" id="cb15-6" title="6">x</a></code></pre></div>
-<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10 50</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># mean</span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">mean</span>(x)</a></code></pre></div>
-<pre><code>## [1] 8.75</code></pre>
-<p>Pembaca dapat mencoba melakukanya sendiri dengan mengganti nilai yang telah ada serta mencoba contoh kode yang lain.</p>
-</div>
-<div id="generalhelp" class="section level3">
-<h3><span class="header-section-number">1.8.2</span> General Help</h3>
-<p>Kita juga dapat membaca beberapa dokumen manual yang ada pada <code>R</code>. Untuk melakukannya jalankan perintah berikut:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">help.start</span>()</a></code></pre></div>
-<p>Output yang dihasilkan berupa link pada sejumlah dokumen yang dapat kita klik. Tampilan halaman yang dihasilkan disajikan pada Gambar <a href="intro.html#fig:generalhelp">1.7</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:generalhelp"></span>
-<img src="images/generalhelp.png" alt="Jendela general help dokumentasi fungsi mean()." width="50%" />
-<p class="caption">
-Gambar 1.7: Jendela general help dokumentasi fungsi mean().
-</p>
-</div>
-</div>
-<div id="othershelp" class="section level3">
-<h3><span class="header-section-number">1.8.3</span> Fasilitas Help Lainnya</h3>
-<p>Selain yang telah penulis sebutkan sebelumnya. Kita juga dapat memanfaatkan fasilitas <em>help</em> lainnya melalui fungsi <code>apropos()</code> dan <code>help.search()</code>.</p>
-<p><code>apropos ()</code>: mengembalikan daftar objek, berisi pola yang pembaca cari, dengan pencocokan sebagian. Ini berguna ketika pembaca tidak ingat persis nama fungsi yang akan digunakan. Berikut adalah contoh ketika penulis ingin mengetahui fungsi yang digunakan untuk menghitung median.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">apropos</span>(<span class="st">&quot;med&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;elNamed&quot;        &quot;elNamed&lt;-&quot;      &quot;median&quot;         &quot;median.default&quot;
-## [5] &quot;medpolish&quot;      &quot;runmed&quot;</code></pre>
-<p><em>List</em> yang dihasilkan berupa fungsi-fungsi yang memiliki elemen kata “med”. Berdasarkan pencaria tersebut penulis dapat mencoba menggunakan fungsi “median” untuk menghitung median.</p>
-<p><code>help.search ()</code> (sebagai alternatif ??): mencari dokumentasi yang cocok dengan karakter yang diberikan dengan cara yang berbeda. Ini mengembalikan daftar fungsi yang mengandung istilah yang pembaca cari dengan deskripsi singkat dari fungsi.</p>
-<p>Berikut adalah contoh penerapan dari fungsi tersebut:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">help.search</span>(<span class="st">&quot;mean&quot;</span>)</a>
-<a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="co"># atau</span></a>
-<a class="sourceLine" id="cb22-4" title="4">??mean</a></code></pre></div>
-<p><em>Output</em> yang dihasilkan akan tampak seperti pada Gambar <a href="intro.html#fig:helpsearch">1.8</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:helpsearch"></span>
-<img src="images/helpsearch.png" alt="Jendela help search dokumentasi fungsi mean()." width="50%" />
-<p class="caption">
-Gambar 1.8: Jendela help search dokumentasi fungsi mean().
-</p>
-</div>
-</div>
-</div>
-<div id="referensi" class="section level2">
-<h2><span class="header-section-number">1.9</span> Referensi</h2>
-<ol style="list-style-type: decimal">
-<li>Primartha, R. 2018. <strong>Belajar Machine Learning Teori dan Praktik</strong>. Penerbit Informatika : Bandung</li>
-<li>Rosadi,D. 2016. <strong>Analisis Statistika dengan R</strong>. Gadjah Mada University Press: Yogyakarta</li>
-<li>STHDA. Running RStudio and Setting Up Your Working Directory - Easy R Programming .<a href="http://www.sthda.com/english/wiki/running-rstudio-and-setting-up-your-working-directory-easy-r-programming#set-your-working-directory" class="uri">http://www.sthda.com/english/wiki/running-rstudio-and-setting-up-your-working-directory-easy-r-programming#set-your-working-directory</a></li>
-<li>STDHA. <strong>Getting Help With Functions In R Programming</strong>. <a href="http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming" class="uri">http://www.sthda.com/english/wiki/getting-help-with-functions-in-r-programming</a> .</li>
-<li>Venables, W.N. Smith D.M. and R Core Team. 2018. <strong>An Introduction to R</strong>. R Manuals.</li>
-</ol>
+<div id="diffeq" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Persamaan Diferensial</h1>
+<p>Chapter ini dalam proses pembuatan</p>
 
 <style>
 body{
 text-align: justify}
 </style>
 </div>
-</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="calculation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="diffinteg.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dataanalysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

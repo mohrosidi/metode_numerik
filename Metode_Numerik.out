@@ -6,7 +6,7 @@
 \BOOKMARK [1][-]{section.1.4}{RStudio}{chapter.1}% 6
 \BOOKMARK [1][-]{section.1.5}{Menginstall\040R\040dan\040RStudio}{chapter.1}% 7
 \BOOKMARK [1][-]{section.1.6}{Working\040Directory}{chapter.1}% 8
-\BOOKMARK [1][-]{section.1.7}{Memasang\040dan\040Mengaktifkan\040Paket\040R}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.7}{Memasang\040dan\040Mengaktifkan\040Library\040R}{chapter.1}% 9
 \BOOKMARK [1][-]{section.1.8}{Fasilitas\040Help}{chapter.1}% 10
 \BOOKMARK [1][-]{section.1.9}{Referensi}{chapter.1}% 11
 \BOOKMARK [0][-]{chapter.2}{Kalkulasi\040Menggunakan\040R}{}% 12
@@ -74,3 +74,13 @@
 \BOOKMARK [1][-]{section.9.11}{Metode\040Integrasi\040Monte\040Carlo}{chapter.9}% 74
 \BOOKMARK [1][-]{section.9.12}{Studi\040Kasus}{chapter.9}% 75
 \BOOKMARK [1][-]{section.9.13}{Referensi}{chapter.9}% 76
+\BOOKMARK [1][-]{section.9.14}{Latihan}{chapter.9}% 77
+\BOOKMARK [0][-]{chapter.10}{Persamaan\040Diferensial}{}% 78
+\BOOKMARK [0][-]{chapter.11}{Analisis\040Data}{}% 79
+\BOOKMARK [1][-]{section.11.1}{Import\040Data}{chapter.11}% 80
+\BOOKMARK [1][-]{section.11.2}{Membaca\040Data\040Dari\040Library}{chapter.11}% 81
+\BOOKMARK [1][-]{section.11.3}{Ringkasan\040Data}{chapter.11}% 82
+\BOOKMARK [1][-]{section.11.4}{Uji\040Normalitas\040Data\040Tunggal}{chapter.11}% 83
+\BOOKMARK [1][-]{section.11.5}{Uji\040Rata-Rata\040Satu\040dan\040Dua\040Sampel}{chapter.11}% 84
+\BOOKMARK [1][-]{section.11.6}{Korelasi\040Antar\040Variabel}{chapter.11}% 85
+\BOOKMARK [1][-]{section.11.7}{Analisis\040Varians}{chapter.11}% 86

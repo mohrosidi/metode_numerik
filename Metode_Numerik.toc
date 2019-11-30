@@ -8,7 +8,7 @@
 \contentsline {section}{\numberline {1.6}Working Directory}{13}{section.1.6}% 
 \contentsline {subsection}{\numberline {1.6.1}Mengubah Lokasi Working Directory}{14}{subsection.1.6.1}% 
 \contentsline {subsection}{\numberline {1.6.2}Mengubah Lokasi Working Directory Default}{15}{subsection.1.6.2}% 
-\contentsline {section}{\numberline {1.7}Memasang dan Mengaktifkan Paket R}{15}{section.1.7}% 
+\contentsline {section}{\numberline {1.7}Memasang dan Mengaktifkan \emph {Library} R}{15}{section.1.7}% 
 \contentsline {section}{\numberline {1.8}Fasilitas Help}{16}{section.1.8}% 
 \contentsline {subsection}{\numberline {1.8.1}Mencari Help dari Suatu Perintah Tertentu}{17}{subsection.1.8.1}% 
 \contentsline {subsection}{\numberline {1.8.2}General Help}{19}{subsection.1.8.2}% 
@@ -135,8 +135,8 @@
 \contentsline {section}{\numberline {9.1}Metode Beda Hingga}{229}{section.9.1}% 
 \contentsline {section}{\numberline {9.2}Diferensiasi Menggunakan Fungsi Lainnya di R}{232}{section.9.2}% 
 \contentsline {subsection}{\numberline {9.2.1}Diferensiasi Metode Titik Pusat Mengggunakan Fungsi\texttt {diff()}}{232}{subsection.9.2.1}% 
-\contentsline {subsection}{\numberline {9.2.2}Diferensiasi Menggunakan Paket \texttt {numDeriv}}{233}{subsection.9.2.2}% 
-\contentsline {subsection}{\numberline {9.2.3}DIferensiasi Menggunakan Paket \texttt {pracma}}{234}{subsection.9.2.3}% 
+\contentsline {subsection}{\numberline {9.2.2}Diferensiasi Menggunakan \emph {Library} \texttt {numDeriv}}{233}{subsection.9.2.2}% 
+\contentsline {subsection}{\numberline {9.2.3}DIferensiasi Menggunakan \emph {Library} \texttt {pracma}}{234}{subsection.9.2.3}% 
 \contentsline {section}{\numberline {9.3}Metode Integrasi Newton-Cotes}{237}{section.9.3}% 
 \contentsline {subsection}{\numberline {9.3.1}Metode Integral Riemann}{237}{subsection.9.3.1}% 
 \contentsline {subsection}{\numberline {9.3.2}Metode Trapezoida}{240}{subsection.9.3.2}% 
@@ -153,3 +153,13 @@
 \contentsline {section}{\numberline {9.12}Studi Kasus}{267}{section.9.12}% 
 \contentsline {subsection}{\numberline {9.12.1}Penerjung Payung}{267}{subsection.9.12.1}% 
 \contentsline {section}{\numberline {9.13}Referensi}{269}{section.9.13}% 
+\contentsline {section}{\numberline {9.14}Latihan}{269}{section.9.14}% 
+\contentsline {chapter}{\numberline {10}Persamaan Diferensial}{271}{chapter.10}% 
+\contentsline {chapter}{\numberline {11}Analisis Data}{273}{chapter.11}% 
+\contentsline {section}{\numberline {11.1}Import Data}{273}{section.11.1}% 
+\contentsline {section}{\numberline {11.2}Membaca Data Dari \emph {Library}}{274}{section.11.2}% 
+\contentsline {section}{\numberline {11.3}Ringkasan Data}{275}{section.11.3}% 
+\contentsline {section}{\numberline {11.4}Uji Normalitas Data Tunggal}{278}{section.11.4}% 
+\contentsline {section}{\numberline {11.5}Uji Rata-Rata Satu dan Dua Sampel}{279}{section.11.5}% 
+\contentsline {section}{\numberline {11.6}Korelasi Antar Variabel}{281}{section.11.6}% 
+\contentsline {section}{\numberline {11.7}Analisis Varians}{283}{section.11.7}% 

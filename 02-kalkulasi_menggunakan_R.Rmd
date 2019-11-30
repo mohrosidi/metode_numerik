@@ -116,7 +116,7 @@ Berikut adalah salah satu contoh penggunaannya:
 cos(pi)
 ```
 
-Pada paket `pracma` fungsi-fungsi trigonometri dapat ditambah lagi. Fungsi-fungsi tersebut antara lain:
+Pada *library* `pracma` fungsi-fungsi trigonometri dapat ditambah lagi. Fungsi-fungsi tersebut antara lain:
 
 ```{r, eval=FALSE}
 cot(x) # cotan x
@@ -141,7 +141,7 @@ asinh(x)
 atanh(x)
 ```
 
-Fungsi tersebut dapat ditambah lagi dari paket `pracma`. Fungsi-fungsi yang tersedia antara lain:
+Fungsi tersebut dapat ditambah lagi dari *library* `pracma`. Fungsi-fungsi yang tersedia antara lain:
 
 ```{r, eval=FALSE}
 coth(x)

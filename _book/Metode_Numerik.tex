@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-11-08}
+    \date{2019-11-30}
 
 \usepackage{booktabs}
 \usepackage{lscape}
@@ -163,7 +163,7 @@ Dewasa ini tersedia banyak sekali \emph{software} yang dapat digunakan untuk mem
 
 \texttt{R} merupakan merupakan salah satu \emph{software} gratis yang sangat populer di Indonesia. Kemudahan penggunaan serta banyaknya besarnya dukungan komunitas membuat \texttt{R} menjadi salah satu bahasa pemrograman paling populer di dunia.
 
-Paket yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat \texttt{R} banyak digunakan oleh para analis data.
+\emph{Library} yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat \texttt{R} banyak digunakan oleh para analis data.
 
 Pada \emph{chapter} ini penulis akan memperkenalkan kepada pembaca mengenai bahasa pemrograman \texttt{R}. Mulai dari sejarah, cara instalasi sampai dengan bagaimana kita memanfaatkan fitur dasar bantuan untuk menggali lebih jauh tentang fungsi-fungsi \texttt{R}
 
@@ -181,7 +181,7 @@ Pada \emph{chapter} ini penulis akan memperkenalkan kepada pembaca mengenai baha
 \caption{Logo R.}\label{fig:Logo}
 \end{figure}
 
-\texttt{R} dapat dibilang merupakan aplikasi sistem \textbf{statistik} yang kaya. Hal ini disebabkan banyak sekali paket yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti \emph{linear regression}, \emph{clustering}, \emph{statistical test}, dll. Selain itu, \texttt{R} juga dapat ditambahkan paket-paket lain yang dapat meningkatkan fiturnya.
+\texttt{R} dapat dibilang merupakan aplikasi sistem \textbf{statistik} yang kaya. Hal ini disebabkan banyak sekali \emph{library} yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti \emph{linear regression}, \emph{clustering}, \emph{statistical test}, dll. Selain itu, \texttt{R} juga dapat ditambahkan \emph{library}-\emph{library} lain yang dapat meningkatkan fiturnya.
 
 Sebagai sebuah bahasa pemrograman yang banyak digunakan untuk keperluan analisa data, \texttt{R} dapat dioperasikan pada berbagai sistem operasi pada komputer. Adapun sistem operasi yang didukung antara lain: \texttt{UNIX}, \texttt{Linux}, \texttt{Windows}, dan \texttt{MacOS}.
 
@@ -232,9 +232,9 @@ Beberapa ciri dan fitur pada \texttt{R} antara lain:
 \item
   \textbf{Mendukung export dan import berbagai format file}, seperti:TXT, CSV, XLS, dll.
 \item
-  \textbf{Mudah ditingkatkan melalui penambahan fungsi atau paket}. Penambahan paket dapat dilakukan secara online melalui \href{https://cran.r-project.org/}{CRAN} atau melalui sumber seperti \href{https://github.com/}{github}.
+  \textbf{Mudah ditingkatkan melalui penambahan fungsi atau \emph{library}}. Penambahan \emph{library} dapat dilakukan secara online melalui \href{https://cran.r-project.org/}{CRAN} atau melalui sumber seperti \href{https://github.com/}{github}.
 \item
-  \textbf{Menyedikan berbagai fungsi untuk keperluan visualisasi data}. Visualisasi data pada \texttt{R} dapat menggunakan paket bawaan atau paket lain seperti \texttt{ggplo2},\texttt{ggvis}, dll.
+  \textbf{Menyedikan berbagai fungsi untuk keperluan visualisasi data}. Visualisasi data pada \texttt{R} dapat menggunakan \emph{library} bawaan atau \emph{library} lain seperti \texttt{ggplo2},\texttt{ggvis}, dll.
 \end{enumerate}
 
 \hypertarget{prosconsR}{%
@@ -248,7 +248,7 @@ Selain karena \texttt{R} dapat digunakan secara gratis terdapat \textbf{kelebiha
 \item
   \textbf{Protability}. Penggunaan software dapat digunakan kapanpun tanpa terikat oleh masa berakhirnya lisensi.
 \item
-  \textbf{Multiplatform}. \texttt{R} bersifat \emph{Multiplatform Operating Systems}, dimana \emph{software} \texttt{R} lebih kompatibel dibanding \emph{software} statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena \texttt{R} baik pada sistem operasi seperti \texttt{windows} akan sama pengoperasiannya dengan yang ada di \texttt{Linux} (paket yang digunakan sama).
+  \textbf{Multiplatform}. \texttt{R} bersifat \emph{Multiplatform Operating Systems}, dimana \emph{software} \texttt{R} lebih kompatibel dibanding \emph{software} statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena \texttt{R} baik pada sistem operasi seperti \texttt{windows} akan sama pengoperasiannya dengan yang ada di \texttt{Linux} (\emph{library} yang digunakan sama).
 \item
   \textbf{General} dan \textbf{Cutting-edge}. Berbagai metode statistik baik metode klasik maupun baru telah diprogram kedalam \texttt{R}. Dengan demikian \emph{software} ini dapat digunakan untuk analisis statistika dengan pendekatan klasik dan pendekatan modern.
 \item
@@ -265,9 +265,9 @@ Adapun kekurangan dari \texttt{R} antara lain:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Point and Click GUI}. Interaksi utama dengan \texttt{R} bersifat \emph{CLI} (\emph{Command Line Interface}), walaupun saat ini telah dikembangkan paket yang memungkinkan kita berinteraksi dengan \texttt{R} menggunakan \emph{GUI} (\emph{Graphical User Interface}) sederhana menggunakan paket \texttt{R-Commander} yang memiliki fungsi yang terbatas. \texttt{R-\ Commander} sendiri merupakan \emph{GUI} yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas paket ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.
+  \textbf{Point and Click GUI}. Interaksi utama dengan \texttt{R} bersifat \emph{CLI} (\emph{Command Line Interface}), walaupun saat ini telah dikembangkan \emph{library} yang memungkinkan kita berinteraksi dengan \texttt{R} menggunakan \emph{GUI} (\emph{Graphical User Interface}) sederhana menggunakan \emph{library} \texttt{R-Commander} yang memiliki fungsi yang terbatas. \texttt{R-\ Commander} sendiri merupakan \emph{GUI} yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas \emph{library} ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.
 \item
-  \textbf{Missing statistical function}. Meskipun analisis statistika dalam \texttt{R} sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam \texttt{R}. Namun karena \texttt{R} merupakan \emph{lingua franca} untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk paket hanya masalah waktu saja.
+  \textbf{Missing statistical function}. Meskipun analisis statistika dalam \texttt{R} sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam \texttt{R}. Namun karena \texttt{R} merupakan \emph{lingua franca} untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk \emph{library} hanya masalah waktu saja.
 \end{enumerate}
 
 \hypertarget{rstudio}{%
@@ -395,11 +395,11 @@ Untuk membuat lokasi default \emph{working directory} pindah, kita dapat melakuk
 \end{figure}
 
 \hypertarget{installlibraryR}{%
-\section{Memasang dan Mengaktifkan Paket R}\label{installlibraryR}}
+\section{\texorpdfstring{Memasang dan Mengaktifkan \emph{Library} R}{Memasang dan Mengaktifkan Library R}}\label{installlibraryR}}
 
-\texttt{R} dapat ditingkatkan fungsionalitasnya melalui paket-paket yang tersedia secara luas. Paket-paket ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: \texttt{tidyverse} untuk \emph{data science}, \texttt{pracma} untuk analisis diferensial, dll.
+\texttt{R} dapat ditingkatkan fungsionalitasnya melalui \emph{library}-\emph{library} yang tersedia secara luas. \emph{Library}-\emph{library} ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: \texttt{tidyverse} untuk \emph{data science}, \texttt{pracma} untuk analisis diferensial, dll.
 
-Untuk menginstall paket yang kita inginkan, kita dapat menggunakan fungsi \texttt{install.packages()}. Berikut adalah contoh bagaimana cara menginstall paket \texttt{tidyverse}:
+Untuk menginstall \emph{library} yang kita inginkan, kita dapat menggunakan fungsi \texttt{install.packages()}. Berikut adalah contoh bagaimana cara menginstall \emph{library} \texttt{tidyverse}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -407,7 +407,7 @@ Untuk menginstall paket yang kita inginkan, kita dapat menggunakan fungsi \textt
 \end{Highlighting}
 \end{Shaded}
 
-Paket yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada paket tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi \texttt{library()}. Berikut adalah contoh sintaks untuk mengaktifkan paket \texttt{tidyverse}:
+\emph{Library} yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada \emph{library} tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi \texttt{library()}. Berikut adalah contoh sintaks untuk mengaktifkan \emph{library} \texttt{tidyverse}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -415,7 +415,7 @@ Paket yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fun
 \end{Highlighting}
 \end{Shaded}
 
-Bagaimana ingin menggunakan fungsi pada paket namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi \texttt{library()}? Untuk melakukannya kita perlu mengetikkan nama paket dikuti oleh tanda ``::'' diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi \texttt{read\_csv()} dari paket \texttt{readr} (salah satu paket yang terdapat pada kumpulan paket \texttt{tidyverse}) untuk membaca file \texttt{contoh.csv}:
+Bagaimana ingin menggunakan fungsi pada \emph{library} namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi \texttt{library()}? Untuk melakukannya kita perlu mengetikkan nama \emph{library} dikuti oleh tanda ``::'' diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi \texttt{read\_csv()} dari \emph{library} \texttt{readr} (salah satu \emph{library} yang terdapat pada kumpulan \emph{library} \texttt{tidyverse}) untuk membaca file \texttt{contoh.csv}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -477,7 +477,7 @@ Keterangan pada jendela pada Gambar \ref{fig:meandoc} adalah sebagia berikut:
 \item
   Pada bagian jendela kiri atas jendela \emph{help}, diberikan keterangan nama dari perintah yang sedang ditampilkan.
 \item
-  Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama \emph{library} yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama \emph{library} ditunjukkan pada teks \texttt{mean\ \{base\}} yang menunjukkan perintah \texttt{mean()} pada paket (\emph{library}) \emph{base} (paket bawaan \texttt{R}).
+  Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama \emph{library} yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama \emph{library} ditunjukkan pada teks \texttt{mean\ \{base\}} yang menunjukkan perintah \texttt{mean()} pada \emph{library} (\emph{library}) \emph{base} (\emph{library} bawaan \texttt{R}).
 \item
   Setiap jendela \emph{help} dari suatu perintah tertentu selanjutnya akan memuat bagian-bagian berikut:
 \end{enumerate}
@@ -922,7 +922,7 @@ Berikut adalah salah satu contoh penggunaannya:
 ## [1] -1
 \end{verbatim}
 
-Pada paket \texttt{pracma} fungsi-fungsi trigonometri dapat ditambah lagi. Fungsi-fungsi tersebut antara lain:
+Pada \emph{library} \texttt{pracma} fungsi-fungsi trigonometri dapat ditambah lagi. Fungsi-fungsi tersebut antara lain:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -956,7 +956,7 @@ fungsi hiperbolik yang tersedia antara lain:
 \end{Highlighting}
 \end{Shaded}
 
-Fungsi tersebut dapat ditambah lagi dari paket \texttt{pracma}. Fungsi-fungsi yang tersedia antara lain:
+Fungsi tersebut dapat ditambah lagi dari \emph{library} \texttt{pracma}. Fungsi-fungsi yang tersedia antara lain:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2277,7 +2277,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.334 2.334 3.334 4.334 5.334 6.334
+## [1] 2.458 3.458 4.458 5.458 6.458 7.458
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -4217,7 +4217,7 @@ Kita telah membahas dasar-dasar kalkulasi menggunakan \texttt{R} pada Chapter \r
 
 Pada \texttt{R} bentuk \emph{loop} dapat bermacam-macam (``\emph{for loop}'',``\emph{while loop}'', dll). \texttt{R} menyederhanakan bentuk \emph{loop} ini dengan menyediakan sejumlah fungsi seperti \texttt{apply()},\texttt{tapply()}, dll. Sehingga \texttt{loop} jarang sekali muncul dalam kode \texttt{R}. Sehingga \texttt{R} sering disebut sebagai \emph{loopless loop}.
 
-Meski \emph{loop} jarang muncul bukan berarti kita tidak akan melakukannya. Terkadang saat kita melakukan komputasi statistik atau matematik dan belum terdapat paket yang mendukung proses tersebut, sering kali kita akan membuat sintaks sendiri berdasarkan algoritma metode tersebut. Pada algoritma tersebut sering pula terdapat \emph{loop} yang diperlukan selama proses perhitungan. Secara sederhana diagram umum loop ditampilkan pada Gambar \ref{fig:loop}
+Meski \emph{loop} jarang muncul bukan berarti kita tidak akan melakukannya. Terkadang saat kita melakukan komputasi statistik atau matematik dan belum terdapat \emph{library} yang mendukung proses tersebut, sering kali kita akan membuat sintaks sendiri berdasarkan algoritma metode tersebut. Pada algoritma tersebut sering pula terdapat \emph{loop} yang diperlukan selama proses perhitungan. Secara sederhana diagram umum loop ditampilkan pada Gambar \ref{fig:loop}
 
 \begin{figure}
 
@@ -6915,7 +6915,7 @@ Jika kita mengalikan invers dengan matriks semula, maka akan dihasilkan output b
 \hypertarget{solvetridiagfunct}{%
 \subsection{Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi 'Solve.tridiag()`}\label{solvetridiagfunct}}
 
-Penyelesaian matriks tridiagonal selain menggunakan fungsi \texttt{solve()}, juga dapat menggunakan fungsi \texttt{Solve.tridiag()} dari paket \texttt{limSolve}. Untuk menginstall dan mengaktifkan paket tersebut, jalankan sintaks berikut:
+Penyelesaian matriks tridiagonal selain menggunakan fungsi \texttt{solve()}, juga dapat menggunakan fungsi \texttt{Solve.tridiag()} dari \emph{library} \texttt{limSolve}. Untuk menginstall dan mengaktifkan \emph{library} tersebut, jalankan sintaks berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7439,7 +7439,7 @@ Lakukan pengecekan apakah matriks hasil dekomposisi akan menghasilkan matriks \(
 ## [3,]    7   -1   -5
 \end{verbatim}
 
-Fungsi \texttt{lu()} pada paket \texttt{Matrix} dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan paket \texttt{Matrix}.
+Fungsi \texttt{lu()} pada \emph{library} \texttt{Matrix} dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan \emph{library} \texttt{Matrix}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7696,7 +7696,7 @@ Dekomposisi Cholesky menggunakan fungsi \texttt{cholesky\_solve()}, disajikan pa
 ## [3,]    6  -10   12
 \end{verbatim}
 
-Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi \texttt{chol()} pada paket \texttt{Matrix}. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh \ref{exm:cholexm2}.
+Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi \texttt{chol()} pada \emph{library} \texttt{Matrix}. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh \ref{exm:cholexm2}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7720,7 +7720,7 @@ Fungsi \texttt{chol()} hanya menampilkan matriks \(L^T\). Untuk menampilkan matr
 \hypertarget{othersdecomp}{%
 \subsection{Dekomposisi Lainnya}\label{othersdecomp}}
 
-Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada \emph{sub-chapter} ini antara lain: QR, \emph{singular value decomposition} (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada paket \texttt{base}.
+Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada \emph{sub-chapter} ini antara lain: QR, \emph{singular value decomposition} (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada \emph{library} \texttt{base}.
 
 \hypertarget{qrdecomp}{%
 \subsubsection{Dekomposisi QR}\label{qrdecomp}}
@@ -7786,7 +7786,7 @@ Berikut merupakan contoh penerapan fungsi \texttt{qr()} untuk menyelesaikan sist
 
 \emph{Singular value decomposition} (SVD) merupakan algoritma faktorisasi matriks yang mendekomposisi matriks segiempat menjadi matriks \(UDV_H\), dimana \(D\) merupakan mmatriks diagonal non negatif, \(U\) dan \(V\) merupakan matriks \emph{unitary}, dan \(V_H\) merupakan matriks tanspose konjugat dari matriks \(V\). Algoritma ini banyak digunakan dalam analisis \emph{principal component}.
 
-Pada \texttt{R}, SVD dapat dilakukan menggunakan fungsi \texttt{svd()} dari paket \texttt{base}. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:
+Pada \texttt{R}, SVD dapat dilakukan menggunakan fungsi \texttt{svd()} dari \emph{library} \texttt{base}. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7826,7 +7826,7 @@ Berikut adalah contoh penerapan fungsi \texttt{svd()}:
 
 Proses umum yang digunakan untuk menemukan nilai eigen dan vektor eigen suatu matriks segiempat dapat dilihat sebagai proses dari dekomposisi eigen. Proses ini akan mendekomposisi matriks menjadi \(VDV^{-1}\), dimana \(D\) merupakan matriks diagonal yang terbentuk dari nilai eigen, dan \(V\) merupakan vektor eigen. Proses dekomposisi ini akan berguna bagi pembaca yang ingin mempelajari \emph{principal component analysis}.
 
-Fungsi \texttt{eigen()} pada paket \texttt{base} dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:
+Fungsi \texttt{eigen()} pada \emph{library} \texttt{base} dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9303,7 +9303,7 @@ Untuk mempersingkat waktu iterasi kita akan menggunakan fungsi \texttt{root\_bis
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x000000000624fef0>
+## <bytecode: 0x0000000005d37de0>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9458,7 +9458,7 @@ Untuk mempercepat proses iterasi, kita dapat pula menggunakan fungsi \texttt{roo
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x0000000006eab630>
+## <bytecode: 0x000000000dff6140>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9573,7 +9573,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan bantuan fungsi \texttt{r
 ## {
 ##     -1/exp(-x)
 ## }
-## <bytecode: 0x000000001e227fa0>
+## <bytecode: 0x000000000f1a57f8>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9695,7 +9695,7 @@ Untuk mempercepat proses iterasi, kita dapat menggunakan fungsi \texttt{root\_ne
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x000000001c088c28>
+## <bytecode: 0x000000001daa76d8>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -9892,7 +9892,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan fungsi \texttt{root\_sec
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x0000000004e655b8>
+## <bytecode: 0x00000000186d87f8>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -9910,7 +9910,7 @@ Adapun kerugian dari metode ini adalah berpotensi menghasilkan hasil yang tidak 
 \hypertarget{uniroot}{%
 \section{\texorpdfstring{Penyelesaian Persamaan Non-Linier Menggunakan Fungsi \texttt{uniroot} dan \texttt{uniroot.all}}{Penyelesaian Persamaan Non-Linier Menggunakan Fungsi uniroot dan uniroot.all}}\label{uniroot}}
 
-Paket \texttt{base} pada \texttt{R} menyediakan fungsi \texttt{uniroot()} untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara \emph{root bracketing}, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:
+\emph{Library} \texttt{base} pada \texttt{R} menyediakan fungsi \texttt{uniroot()} untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara \emph{root bracketing}, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9963,7 +9963,7 @@ Berikut adalah contoh penerapan fungsi \texttt{uniroot()}:
 
 Berdasarkan hasil iterasi diperoleh akar persamaan tersebut adalah \(-0,5671433\) dengan jumlah iterasi sebanyak \(7\) iterasi dan tingkat presisi sebesar \(5e-08\).
 
-Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah \texttt{uniroot.all()} dari paket \texttt{rootSolve}. Fungsi ini mengatasi kelemahan dari \texttt{uniroot()}, dimana \texttt{uniroot()} tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol \(y=0\). Untuk memahaminya perhatikan contoh berikut:
+Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah \texttt{uniroot.all()} dari \emph{library} \texttt{rootSolve}. Fungsi ini mengatasi kelemahan dari \texttt{uniroot()}, dimana \texttt{uniroot()} tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol \(y=0\). Untuk memahaminya perhatikan contoh berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10019,7 +10019,7 @@ Jalankan kembali fungsi dan rentang di mana \texttt{uniroot()} tidak dapat beker
 \hypertarget{akar-persamaan-polinomial-menggunakan-fungsi-polyroot}{%
 \section{\texorpdfstring{Akar Persamaan Polinomial Menggunakan Fungsi \texttt{polyroot}}{Akar Persamaan Polinomial Menggunakan Fungsi polyroot}}\label{akar-persamaan-polinomial-menggunakan-fungsi-polyroot}}
 
-Fungsi \texttt{polyroot()} pada paket \texttt{base} dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub.
+Fungsi \texttt{polyroot()} pada \emph{library} \texttt{base} dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub.
 
 Untuk dapat menggunakannya kita hanya perlu memasukkan vektor koefisien dari polinomial. Pengisian elemen dalam vektor dimulai dari variabel dengan pangkat tertinggi menuju variabel dengan pangkat terendah. Berikut adalah contoh bagaimana fungsi \texttt{polyroot()} digunakan untuk mencari akar polinomial \(f\left(x\right)=x^2+1\):
 
@@ -10127,7 +10127,7 @@ Untuk penyelesaiannya penulis akan memberikan tebakan awal nilai \(h=h_0=0,6\). 
 ##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
 ##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
 ## }
-## <bytecode: 0x0000000006f51c48>
+## <bytecode: 0x0000000008489300>
 ## 
 ## $root
 ## [1] -0.2870309
@@ -11439,12 +11439,12 @@ Kita dapat menghitung kembali turunan kedua fungsi pada Contoh \ref{exm:diffexm}
 \hypertarget{diffother}{%
 \section{Diferensiasi Menggunakan Fungsi Lainnya di R}\label{diffother}}
 
-Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah paket, baik \emph{base package} maupun yang berasal dari paket lainnya.
+Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah \emph{library}, baik \emph{base package} maupun yang berasal dari \emph{library} lainnya.
 
 \hypertarget{diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff}{%
 \subsection{\texorpdfstring{Diferensiasi Metode Titik Pusat Mengggunakan Fungsi\texttt{diff()}}{Diferensiasi Metode Titik Pusat Mengggunakan Fungsidiff()}}\label{diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff}}
 
-Fungsi \texttt{diff()} pada paket \emph{base} dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung \emph{lag} suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen \texttt{lag\ =\ 2}. Berikut adalah contoh penerapan fungsi \texttt{diff()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
+Fungsi \texttt{diff()} pada \emph{library} \emph{base} dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung \emph{lag} suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen \texttt{lag\ =\ 2}. Berikut adalah contoh penerapan fungsi \texttt{diff()} untuk memperoleh turunan pertama persamaan matematik pada Contoh \ref{exm:diffexm}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11462,10 +11462,10 @@ Fungsi \texttt{diff()} pada paket \emph{base} dapat digunakan untuk menghitung t
 ## [1] -0.6406956
 \end{verbatim}
 
-\hypertarget{diferensiasi-menggunakan-paket-numderiv}{%
-\subsection{\texorpdfstring{Diferensiasi Menggunakan Paket \texttt{numDeriv}}{Diferensiasi Menggunakan Paket numDeriv}}\label{diferensiasi-menggunakan-paket-numderiv}}
+\hypertarget{diferensiasi-menggunakan-library-numderiv}{%
+\subsection{\texorpdfstring{Diferensiasi Menggunakan \emph{Library} \texttt{numDeriv}}{Diferensiasi Menggunakan Library numDeriv}}\label{diferensiasi-menggunakan-library-numderiv}}
 
-Paket standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah paket \texttt{numDeriv}. Pada paket tersebut terdapat fungsi \texttt{grad()} yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
+\emph{Library} standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah \emph{library} \texttt{numDeriv}. Pada \emph{library} tersebut terdapat fungsi \texttt{grad()} yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11509,10 +11509,10 @@ Berikut adalah contoh penerapan fungsi \texttt{grad()} untuk memperoleh turunan 
 ## [1] -0.6406956
 \end{verbatim}
 
-\hypertarget{diferensiasi-menggunakan-paket-pracma}{%
-\subsection{\texorpdfstring{DIferensiasi Menggunakan Paket \texttt{pracma}}{DIferensiasi Menggunakan Paket pracma}}\label{diferensiasi-menggunakan-paket-pracma}}
+\hypertarget{diferensiasi-menggunakan-library-pracma}{%
+\subsection{\texorpdfstring{DIferensiasi Menggunakan \emph{Library} \texttt{pracma}}{DIferensiasi Menggunakan Library pracma}}\label{diferensiasi-menggunakan-library-pracma}}
 
-Terdapat sejumlah fungsi pada paket \texttt{pracma} yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: \texttt{fderiv()}, \texttt{numderiv()}, \texttt{numdiff()}, dan \texttt{grad()}.
+Terdapat sejumlah fungsi pada \emph{library} \texttt{pracma} yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: \texttt{fderiv()}, \texttt{numderiv()}, \texttt{numdiff()}, dan \texttt{grad()}.
 
 Fungsi \texttt{fderiv()} dapat digunakan untuk melakukan diferensiasi orde pertama sampai dengan orde tinggi. Perlu dicatat bahwa diferensiasi cenderung kurang akurat jika orde diferensiasi semakin tinggi. Format yang digunakan untuk melakukan diferensiasi menggunakan fungsi \texttt{fderiv()} adalah sebagai berikut:
 
@@ -11664,7 +11664,7 @@ Berikut adalah contoh penerapan fungsi \texttt{numdiff()} untuk memperoleh turun
 ## [1] -0.64069556 -0.07450001  0.10951941 -0.02345058
 \end{verbatim}
 
-Fungsi \texttt{grad()} pada paket \texttt{pracma} berbeda dengan yang digunakan pada paket \texttt{numDeriv}. Perbedaan utama fungsi pada kedua paket tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada paket \texttt{pracma}, metode yang digunakan adalah metode titik pusat, sedangkan pada paket \texttt{numDeriv} metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan \emph{complex}. Format fungsi \texttt{grad()} pada paket \texttt{pracma} adalah sebagai berikut:
+Fungsi \texttt{grad()} pada \emph{library} \texttt{pracma} berbeda dengan yang digunakan pada \emph{library} \texttt{numDeriv}. Perbedaan utama fungsi pada kedua \emph{library} tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada \emph{library} \texttt{pracma}, metode yang digunakan adalah metode titik pusat, sedangkan pada \emph{library} \texttt{numDeriv} metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan \emph{complex}. Format fungsi \texttt{grad()} pada \emph{library} \texttt{pracma} adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12183,7 +12183,7 @@ Berikut adalah sintaks yang digunakan untuk melakukan proses integrasi Simpson 3
 \hypertarget{metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya}{%
 \section{Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya}\label{metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya}}
 
-Terdapat sejumlah paket yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada \texttt{R}. Paket \texttt{pracma} menyediakan fungsi-fungsi seperti \texttt{trapz()} dan \texttt{cotes()}.
+Terdapat sejumlah \emph{library} yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada \texttt{R}. \emph{Library} \texttt{pracma} menyediakan fungsi-fungsi seperti \texttt{trapz()} dan \texttt{cotes()}.
 
 Fungsi \texttt{trapz()} merupakan fungsi yang digunakan untuk melakukan integrasi dengan pendekatan trapesium. Penggunaan fungsi tersebut untuk melakukan perhitungan integral tidak dapat dilakukan secara langsung, kita perlu membuat terlebih dahulu seri koordinat \texttt{x} dan koordinat \texttt{y}. Program selanjutnya akan melakukan interpolasi linier terhadap selang yang saling berdekatan. Luas masing-masing panel selang selanjutnya dihitung dan dijumlahkan untuk memperoleh nilai integral. Format fungsi tersebut adalah sebagai berikut:
 
@@ -12443,7 +12443,7 @@ Kita juga dapat menggunakan fungsi \texttt{gauss\_legendre()} untuk melakukan in
 \hypertarget{othergauss}{%
 \section{\texorpdfstring{Metode Gauss-Legendre Menggunakan Fungsi \texttt{legendre.quadrature()}}{Metode Gauss-Legendre Menggunakan Fungsi legendre.quadrature()}}\label{othergauss}}
 
-Fungsi \texttt{legendre.quadrature()} dari paket \texttt{gaussquand} dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
+Fungsi \texttt{legendre.quadrature()} dari \emph{library} \texttt{gaussquand} dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12472,7 +12472,7 @@ Fungsi \texttt{legendre.quadrature()} dari paket \texttt{gaussquand} dapat dijad
 \end{itemize}
 \end{quote}
 
-Untuk menentukan \texttt{rule} pada fungsi \texttt{legendre.quadrature()}, diperlukan fungsi lain yang tersedia pada paket \texttt{gaussquad}. Fungsi tersebut adalah \texttt{legendre.quadrature.rules()}. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
+Untuk menentukan \texttt{rule} pada fungsi \texttt{legendre.quadrature()}, diperlukan fungsi lain yang tersedia pada \emph{library} \texttt{gaussquad}. Fungsi tersebut adalah \texttt{legendre.quadrature.rules()}. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12679,7 +12679,7 @@ Kita akan menghitung integral dari fungsi tersebut menggunakan fungsi \texttt{R}
 \hypertarget{metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r}{%
 \section{\texorpdfstring{Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada \texttt{R}}{Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada R}}\label{metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r}}
 
-Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada \texttt{R}. Fungsi-fungsi tersebut antara lain: \texttt{integrate()} dari paket \texttt{base} dan \texttt{integral()} dari paket \texttt{pracma}.
+Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada \texttt{R}. Fungsi-fungsi tersebut antara lain: \texttt{integrate()} dari \emph{library} \texttt{base} dan \texttt{integral()} dari \emph{library} \texttt{pracma}.
 
 Fungsi \texttt{integrate()} merupakan fungsi yang akan melakukan integrasi numerik menggunakan metode kudratur adaptif untuk sebuah variabel dengan selang terbatas (\emph{finite}) maupun tidak terbatas (\emph{infinite}). Format fungsi tersebut secara umum adalah sebagai berikut:
 
@@ -12727,7 +12727,7 @@ Contoh penerapan fungsi \texttt{integrate()} adalah sebagai berikut:
 ## 18.52494 with absolute error < 4.1e-10
 \end{verbatim}
 
-Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi \texttt{integral()} dari paket \texttt{pracma}. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi \texttt{integral()} adalah sebagai berikut:
+Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi \texttt{integral()} dari \emph{library} \texttt{pracma}. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi \texttt{integral()} adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12897,7 +12897,7 @@ Berdasarkan hasil perhitungan nilai integral fungsi tersebut adalah 18.524939.
 \hypertarget{metode-integrasi-romberg-menggunakan-fungsi-lainnya}{%
 \section{Metode Integrasi Romberg Menggunakan Fungsi Lainnya}\label{metode-integrasi-romberg-menggunakan-fungsi-lainnya}}
 
-Fungsi \texttt{romberg()} pada paket \texttt{pracma} dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
+Fungsi \texttt{romberg()} pada \emph{library} \texttt{pracma} dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13251,7 +13251,8 @@ Kita dapat menyelesaikan Persamaan \eqref{eq:terjun3} dengan menggunakan metode-
   Suparno, S. 2008. \textbf{Komputasi untuk Sains dan Teknik Edisi II}. Departemen Fisika-FMIPA Universitas Indonesia.
 \end{enumerate}
 
-\#\#Latihan
+\hypertarget{latihan-3}{%
+\section{Latihan}\label{latihan-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13267,6 +13268,647 @@ Kita dapat menyelesaikan Persamaan \eqref{eq:terjun3} dengan menggunakan metode-
 \item
   Fungsi \texttt{monte\_int()} hanya mampu melakukan integrasi pada domain positif. Buatlah algoritma baru sehingga metode ini dapat melakukan integrasi pada domain negatif !
 \end{enumerate}
+
+\hypertarget{diffeq}{%
+\chapter{Persamaan Diferensial}\label{diffeq}}
+
+Chapter ini dalam proses pembuatan
+
+\hypertarget{dataanalysis}{%
+\chapter{Analisis Data}\label{dataanalysis}}
+
+Pada Chapter \ref{dataanalysis}, kita akan membahas mengenai cara melakukan analisis data pada \texttt{R}. Pada \emph{Chapter} ini penulis akan memperkenalkan fungsi-fungsi yang ada pada \texttt{R} yang dapat membantu kita menganalisis data dan melakukan sejumlah uji statistik.
+
+Pada \emph{Chapter} ini kita tidak akan berfokus pada persamaan-persamaan matematika yang menjadi dasar suatu uji statistik. \emph{Chapter} ini menitik beratkan pada bagaimana pembaca dapat melakukan sejumlah uji statistik pada \texttt{R} dan gambaran metode yang digunakan.
+
+\hypertarget{importdata}{%
+\section{Import Data}\label{importdata}}
+
+Kita dapat melakukan import data dalam berbagai format pada \texttt{R}. Namun, pada \emph{sub-chapter} ini hanya akan dibahas bagaimana cara mengimport data dari file dengan format \texttt{.csv}dan \texttt{.txt}. Secara umum fungsi-fungsi yang digunakan untuk membaca data pada file dengan format tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{read.table}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{, }\DataTypeTok{dec =} \StringTok{"."}\NormalTok{,}
+           \DataTypeTok{stringsAsFactors =} \KeywordTok{default.stringsAsFactors}\NormalTok{())}
+
+\KeywordTok{read.csv}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{, }\DataTypeTok{dec =} \StringTok{"."}\NormalTok{)}
+
+\KeywordTok{read.csv2}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+
+\KeywordTok{read.delim}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{"."}\NormalTok{)}
+
+\KeywordTok{read.delim2}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{file} : lokasi dan nama file yang akan dibaca diakhiri dengan format file. Secara \emph{default} fungsi akan membaca file yang ada pada \emph{working directory}. Untuk mengetahui lokasi \emph{working directory}, jalankan fungsi \texttt{getwd()}. Salin file yang akan dibaca pada lokasi \emph{working directory}.
+\item
+  \texttt{header} : nilai logik yang menunjukkan apakah baris pertama pada file yang dibaca akan dibaca sebagai nama kolom.
+\item
+  \texttt{sep} : simbol yang menujukkan pemisah antar data. Pemisah antar data dapat berupa ``",'';``,''.", dll.
+\item
+  \texttt{dec} : simbol yang menujukkan desimal. Pemisah desimal dapat berupa ``.'' atau ``,''.
+\item
+  \texttt{stringsAsFactors} : nilai logik yang menunjukkan apakah jenis data \texttt{string} akan dikonversi menjadi \texttt{factor}.
+\end{itemize}
+\end{quote}
+
+Kelima fungsi tersebut digunakan untuk membaca data tabular atau data yang disusun kedalam format tabel. Fungsi \texttt{read.table()} merupakan bentuk umum dari keempat fungsi lainnya. Fungsi tersebut dapat digunakan untuk membaca data dalam kedua format yang telah disebutkan sebelumnya. Fungsi lainnya lebih spesifi, dimana fungsi \texttt{read.csv()} dan \texttt{read.csv2()} digunakan untuk membaca data dengan ekstensi \texttt{.csv}, sedangkan \texttt{read.delim()} dan \texttt{read.delim2()} untuk membaca data dengan ekstensi \texttt{.txt}. Berikut adalah contoh bagaimana cara membaca data dengan nama \texttt{data.csv} yang ada pada \emph{working directory} dengan pemisah antar data berupa \texttt{;} dan tanda koma berupa \texttt{,}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file=}\StringTok{"data.csv"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{";"}\NormalTok{, }\DataTypeTok{dec=}\StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{librarydata}{%
+\section{\texorpdfstring{Membaca Data Dari \emph{Library}}{Membaca Data Dari Library}}\label{librarydata}}
+
+Untuk keperluan pendidikan atau pengujian sebuah fungsi biasanya dalam sebuah \emph{library} disediakan dataset yang siap digunakan. \texttt{R} melalui \emph{library} \texttt{datasets} menyediakan sejumlah data yang dapat digunakan untuk berlatih menggunakan \texttt{R}. Berikut adalah fungsi yang digunakan untuk mengecek dataset apa saja yang tersedia pada sebuah \emph{library}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\DataTypeTok{package=}\KeywordTok{.packages}\NormalTok{(}\DataTypeTok{all.available =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{package}: nama \emph{library} yang hendak dicek dataset yang tersedia.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh cara melakukan pengecekan pada dataset yang tersedia pada \emph{library} \texttt{datasets}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\DataTypeTok{package=}\StringTok{"datasets"}\NormalTok{)}
+
+\CommentTok{# cek seluruh dataset dari seluruh library yg telah dimuat}
+\KeywordTok{data}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarystats}{%
+\section{Ringkasan Data}\label{summarystats}}
+
+Terdapat sejumlah fungsi yang akan pembaca sering gunakan untuk mengecek dataset yang akan pembaca analisa. Fungsi-fungsi tersebut antara lain:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{head()}: mengecek \(n\) (\emph{default} 6) observasi teratas.
+\item
+  \texttt{tail()}: mengecek \(n\) (\emph{default} 6) observasi terbawah.
+\item
+  \texttt{str()}: mengecek struktur data atau jenis data pada masing-masing kolom. Jenis data yang ada pada \texttt{R} dapat berupa \texttt{num} (numerik), \texttt{int} (integer), \texttt{Factor}(factor), \texttt{date} (tanggal), dan \texttt{chr} (karakter atau string).
+\item
+  \texttt{summary()}: ringkasan data.
+\end{itemize}
+
+Berikut adalah contoh penerapan fungsi-fungsi tersebut pada dataset \texttt{iris}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# cek 10 observasi teratas}
+\KeywordTok{head}\NormalTok{(iris, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# cek 10 observasi terbawah}
+\KeywordTok{tail}\NormalTok{(iris, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 141          6.7         3.1          5.6         2.4 virginica
+## 142          6.9         3.1          5.1         2.3 virginica
+## 143          5.8         2.7          5.1         1.9 virginica
+## 144          6.8         3.2          5.9         2.3 virginica
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# cek struktur data}
+\KeywordTok{str}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ringkasan data}
+\KeywordTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+Fungsi-fungsi lainnya yang dapat digunakan untuk melakukan analisis statistika deskriptif adalah sebagai berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mean()} : menghitung nilai rata-rata variabel numerik.
+\item
+  \texttt{sd()} : menghitung simpangan baku variabel numerik.
+\item
+  \texttt{var()} : menghitung varians variabel numerik.
+\item
+  \texttt{median()} : menghitung median suatu variabel numerik.
+\item
+  \texttt{range()} : memperoleh nilai minimum dan maksimum suatu variabel numerik.
+\item
+  \texttt{IQR()} : memperoleh nilai jarak antar kuartil.
+\item
+  \texttt{quantile()} : memperoleh kuantil variabel numerik.
+\end{itemize}
+
+Berikut adalah contoh penerapan fungsi-fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{attach}\NormalTok{(airquality)}
+
+\CommentTok{# rata-rata konsentrasi ozon}
+\KeywordTok{mean}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 42.12931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# median konsentrasi ozon}
+\KeywordTok{median}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# simpangan baku konsentrasi ozon}
+\KeywordTok{sd}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32.98788
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# varians konsentrasi ozon}
+\KeywordTok{var}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1088.201
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# range konsentrasi ozon}
+\KeywordTok{range}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   1 168
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# IQR konsentrasi ozon}
+\KeywordTok{IQR}\NormalTok{(Ozone, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 45.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# kuartil 1, 2 dan 3 konsentrasi ozon}
+\KeywordTok{quantile}\NormalTok{(Ozone, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{), }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   25%   50%   75% 
+## 18.00 31.50 63.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{detach}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{norm}{%
+\section{Uji Normalitas Data Tunggal}\label{norm}}
+
+Pada analisis statistik inferensial khususnya pada pengujian hipotesis, asumsi normalitas merupakan sesuatu yang harus terpenuhi jika prosedur uji yang digunakan merupakan prosedur uji parametrik. Terdapat dua buah cara untuk melakukan uji tersebut, antara lain:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Metode grafis (qq-plot, ECDF, plot densitas, histogram, dan boxplot).
+\item
+  Metode matematis (Shapiro-Wilk, Cramer-von Mises, Shapiro-Francia, Anderson-Darling, Liliefors, Pearson Chi-square, dll).
+\end{enumerate}
+
+Pada \emph{Chapter} ini, kita akan berfokus pada uji matematis karena cara pengujian dengan menggunakan metode grafis telah penulis jabarkan pada \emph{Chapter} visualisasi data.
+
+Metode uji normalitas yang sering digunakan pada \texttt{R} adalah metode Shapiro-Wilk. Metode ini merupakan metode uji yang memiliki power yang besar khusunya untuk ukuran sampel yang relatif kecil. Versi awal metode ini terbatas dengan jumlah sampel 3 sampai 50 sampel. Versi selanjutnya mengalami modifikasi sehingga dapat menangani sampel sampai dengan 5000 sampel bahkan lebih.
+
+Untuk melakukan uji SHapiro-Wilk pada \texttt{R}, pembaca dapat menggunakan fungsi \texttt{shapiro.test()}. Format fungsi tersebut adalah sebagai beriku:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} : vektor numerik.
+\end{itemize}
+\end{quote}
+
+Untuk lebih memahami impelementasi fungsi tersebut pada data, berikut adalah contoh penerapan fungsi tersebut untuk menguji normalitas distribusi konsentrasi ozon pada dataset \texttt{airquality}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(airquality}\OperatorTok{$}\NormalTok{Ozone)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  airquality$Ozone
+## W = 0.87867, p-value = 2.79e-08
+\end{verbatim}
+
+Berdasarkan hasil uji diperoleh nilai p-value \textless{} 0,05, sehingga \(H_0\) ditolak dan dapat disimpulkan bahwa distribusi konsentrasi ozon tidak mengikuti distribusi normal. Untuk lebih memahami prosedur pengujian normalitas distribusi suatu data pembaca dapat membaca lebih lanjut pada tautan \href{https://environmental-data-modeling.netlify.com/tutorial/11_uji_hipotesis/\#11-4-uji-asumsi-normalitas-distribusi-data}{Environmental Data Modelin}.
+
+\hypertarget{uji-rata-rata-satu-dan-dua-sampel}{%
+\section{Uji Rata-Rata Satu dan Dua Sampel}\label{uji-rata-rata-satu-dan-dua-sampel}}
+
+Uji rata-rata satu sampel merupakan uji statistik untuk menguji apakah rata-rata suatu sampel berasal dari suatu populasi yang telah diketahui nilai rata-ratanya. Sedangkan uji rata-rata untuk dua populasi dilakukan untuk menguji apakah kedua selisis rata-rata populasi tersebut bernilai nol yang menujukkan bahwa kedua populasi tersebut memiliki nilai rata-rata yang sama. Uji rata-rata dua populasi dapat dilakukan untuk sampel independen (contoh: uji rata-rata performa dua buah IPAL) dan berpasangan (contoh: uji rata-rata input dan output IPAL).
+
+Untuk melakukan uji rata-rata pada \texttt{R} dapat digunakan fungsi \texttt{t.test()} untuk uji parametrik dan \texttt{wilcox.test()} untuk melakukan uji non-parametrik \emph{sign rank test}. Format fungsi-fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(x, }\DataTypeTok{y =} \OtherTok{NULL}\NormalTok{,}
+       \DataTypeTok{alternative =} \KeywordTok{c}\NormalTok{(}\StringTok{"two.sided"}\NormalTok{, }\StringTok{"less"}\NormalTok{, }\StringTok{"greater"}\NormalTok{),}
+       \DataTypeTok{mu =} \DecValTok{0}\NormalTok{, }\DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{var.equal =} \OtherTok{FALSE}\NormalTok{,}
+       \DataTypeTok{conf.level =} \FloatTok{0.95}\NormalTok{, ...)}
+
+\KeywordTok{wilcox.test}\NormalTok{(x, }\DataTypeTok{y =} \OtherTok{NULL}\NormalTok{,}
+            \DataTypeTok{alternative =} \KeywordTok{c}\NormalTok{(}\StringTok{"two.sided"}\NormalTok{, }\StringTok{"less"}\NormalTok{, }\StringTok{"greater"}\NormalTok{),}
+            \DataTypeTok{mu =} \DecValTok{0}\NormalTok{, }\DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{conf.level =} \FloatTok{0.95}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x,y} : vektor numerik. Jika argumen \texttt{x} dan \texttt{y} diisikan maka uji hipotesis dilakukan untuk dua buah populasi.
+\item
+  \texttt{alternative}: digunakan untuk menentukan jenis uji hipotesis apakah satu sisi(``less'' dan ``greater''), atau dua sisi (``two.sided'').
+\item
+  \texttt{mu} : nilai rata-rata populasi atau nilai rata-rata selisih antar populasi jika dilakukan uji hipotesis terhadap dua populasi. Secara default nilainya 0.
+\item
+  \texttt{paired} : nilai logikal yang menentukan apakah uji dua populasi digunakan untuk sampel berpasangan (TRUE) atau tidak (FALSE).
+\item
+  \texttt{var.equal} : nilai logikal yang menunjukkan apakah varians kedua populasi diasumsikan sama atau berbeda.
+\item
+  \texttt{conf.level} : tingkat kepercayaan. Secara default tingkat kepercayaan yang digunakan adalah 95\%.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan fungsi tersebut untuk uji hipotesis satu dan dua populasi:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Uji hipotesis konsentrasi ozon = 40 ppm}
+\CommentTok{# parametrik}
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{airquality}\OperatorTok{$}\NormalTok{Ozone, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}
+       \DataTypeTok{mu =} \DecValTok{40}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  airquality$Ozone
+## t = 0.69521, df = 115, p-value = 0.4883
+## alternative hypothesis: true mean is not equal to 40
+## 95 percent confidence interval:
+##  36.06240 48.19622
+## sample estimates:
+## mean of x 
+##  42.12931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# nonparametrik}
+\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{airquality}\OperatorTok{$}\NormalTok{Ozone, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}
+       \DataTypeTok{mu =} \DecValTok{40}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  airquality$Ozone
+## V = 3188, p-value = 0.6826
+## alternative hypothesis: true location is not equal to 40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Uji hipotesis dua populasi}
+\NormalTok{dni3 <-}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(iris3)}
+\NormalTok{ii <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{aperm}\NormalTok{(iris3, }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)), }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{,}
+                        \DataTypeTok{dimnames =} \KeywordTok{list}\NormalTok{(}\OtherTok{NULL}\NormalTok{, }\KeywordTok{sub}\NormalTok{(}\StringTok{" L."}\NormalTok{,}\StringTok{".Length"}\NormalTok{,}
+                                        \KeywordTok{sub}\NormalTok{(}\StringTok{" W."}\NormalTok{,}\StringTok{".Width"}\NormalTok{, dni3[[}\DecValTok{2}\NormalTok{]])))),}
+    \DataTypeTok{Species =} \KeywordTok{gl}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DataTypeTok{labels =} \KeywordTok{sub}\NormalTok{(}\StringTok{"S"}\NormalTok{, }\StringTok{"s"}\NormalTok{, }\KeywordTok{sub}\NormalTok{(}\StringTok{"V"}\NormalTok{, }\StringTok{"v"}\NormalTok{, dni3[[}\DecValTok{3}\NormalTok{]]))))}
+\CommentTok{# parametrik}
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length, }
+       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  iris$Sepal.Length and ii$Sepal.Length
+## t = 0, df = 298, p-value = 1
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1881698  0.1881698
+## sample estimates:
+## mean of x mean of y 
+##  5.843333  5.843333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# nonparametrik}
+\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length, }
+       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  iris$Sepal.Length and ii$Sepal.Length
+## W = 11250, p-value = 1
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+Fungsi \texttt{t.test()} akan menghasilkan output berupa nilai t uji, derajat kebebasan (df), nilai p-value, rentang estimasi nilai rata-rata berdasarkan tingkat kepercayaan yang digunakan, serta estimasi nilai rata-rata sampel. Fungsi \texttt{wilcox.test()} akan menghasilkan dua buah output yaitu nilai W dan p-value berdasarkan nilai W yang dihasilkan.
+
+\hypertarget{korelasi-antar-variabel}{%
+\section{Korelasi Antar Variabel}\label{korelasi-antar-variabel}}
+
+Pada sebuah analisa, kita sering kali tertarik untuk menganalisa hubungan atau korelasi antara satu variabel terhadap variabel lainnya. Pengamatan adanya korelasi antar variabel dapat dilakukan melalui visualisasi menggunakan \emph{scatterplot} dan perhitungan matematis menggunakan metode Pearson untuk metode parametrik dan metode rangking Spearman dan Kendall untuk metode non-parametrik. Pada \emph{Chapter} ini kita akan berfokus untuk melakukan uji korelasi menggunakan \texttt{R} menggunakan metode matematis.
+
+Pada \texttt{R} uji korelasi dapat dilakukan dengan menggunakan fungsi \texttt{cor.test()}. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor.test}\NormalTok{(x, y,}
+         \DataTypeTok{alternative =} \KeywordTok{c}\NormalTok{(}\StringTok{"two.sided"}\NormalTok{, }\StringTok{"less"}\NormalTok{, }\StringTok{"greater"}\NormalTok{),}
+         \DataTypeTok{method =} \KeywordTok{c}\NormalTok{(}\StringTok{"pearson"}\NormalTok{, }\StringTok{"kendall"}\NormalTok{, }\StringTok{"spearman"}\NormalTok{),}
+         \DataTypeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x,y} : vektor numerik.
+\item
+  \texttt{alternative}: digunakan untuk menentukan jenis uji hipotesis apakah satu sisi(``less'' dan ``greater''), atau dua sisi (``two.sided'').
+\item
+  \texttt{method} : metode perhitungan korelasi yang digunakan.
+\item
+  \texttt{conf.level} : tingkat kepercayaan. Secara default tingkat kepercayaan yang digunakan adalah 95\%.
+\end{itemize}
+\end{quote}
+
+Berikut adalah penerapan fungsi \texttt{cor.test()} berdasarkan metode-metode yang telah disediakan pada fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Pearson}
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Ozone, }\DataTypeTok{y =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Solar.R,}
+         \DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}
+         \DataTypeTok{method =} \StringTok{"pearson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  airquality$Ozone and airquality$Solar.R
+## t = 3.8798, df = 109, p-value = 0.0001793
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.173194 0.502132
+## sample estimates:
+##       cor 
+## 0.3483417
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Kendall}
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Ozone, }\DataTypeTok{y =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Solar.R,}
+         \DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}
+         \DataTypeTok{method =} \StringTok{"kendall"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Kendall's rank correlation tau
+## 
+## data:  airquality$Ozone and airquality$Solar.R
+## z = 3.7096, p-value = 0.0002076
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.2403194
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Spearman}
+\KeywordTok{cor.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Ozone, }\DataTypeTok{y =}\NormalTok{ airquality}\OperatorTok{$}\NormalTok{Solar.R,}
+         \DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}
+         \DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Spearman's rank correlation rho
+## 
+## data:  airquality$Ozone and airquality$Solar.R
+## S = 148560, p-value = 0.0001806
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.3481865
+\end{verbatim}
+
+Berdasarkan output yang dihasilkan, metode Pearson menghasilkan output berupa nilai t uji, derajat kebebasan, nilai p-value, rentang estimasi nilai korelasi berdasarkan tingkat kepercayaan, dan estimasi nilai korelasi. Metode Kendall dan Spearman disisi lai menghasilkan output berupa nilai z uji dan S untuk masing-masing metode serta nilai p-value berdasarkan nilai statistika uji dan estimasi koefisien korelasi.
+
+\hypertarget{analisis-varians}{%
+\section{Analisis Varians}\label{analisis-varians}}
+
+Pada \emph{sub-Chapter} sebelumnya penulis telah menjelaskan uji rata-rata untuk satu sampel dan dua sampel. Pada kenyataannya dalam sebuah percobaan laboratorium, kita tidak hanya membandingkan dua buah grup sampel saja, namun beberapa grup dan sejumlah faktor. Untuk menganalisa apakah variasi perlakuan pada kelompok sampel akan memberikan hasil yang berbeda-beda pada rata-rata tiap grup atau tidak diperlukan analisis varians untuk menganilisa variasi perlakuan atau faktor pada masing-masing grup. Analisis varians dapat dilakukan baik untuk satu faktor maupun dua faktor atau lebih. Untuk melakukannya pada \texttt{R}, kita dapat menggunakan fungsi \texttt{aov()} untuk analisis varians dengan metode parametrik dan \texttt{kruskal.test()} untuk analisis varians dengan menggunakan metode nonparametrik. Berikut adalah format kedua fungsi tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{aov}\NormalTok{(formula, }\DataTypeTok{data =} \OtherTok{NULL}\NormalTok{)}
+
+\KeywordTok{kruskal.test}\NormalTok{(formula, data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{formula} : formula model yang digunakan.
+\item
+  \texttt{data}: dataset yang akan digunakan.
+\end{itemize}
+\end{quote}
+
+Berikut adalah contoh penerapan kedua fungsi tersebut untuk melihat apakah terdapat beda pada rata-rata konsentrasi bulanan ozon menggunakan dataset \texttt{airquality}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{aov}\NormalTok{(Ozone}\OperatorTok{~}\NormalTok{Month, airquality))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value Pr(>F)  
+## Month         1   3387    3387   3.171 0.0776 .
+## Residuals   114 121756    1068                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 37 observations deleted due to missingness
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kruskal.test}\NormalTok{(Ozone}\OperatorTok{~}\NormalTok{Month, airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Ozone by Month
+## Kruskal-Wallis chi-squared = 29.267, df = 4, p-value = 6.901e-06
+\end{verbatim}
+
+Berdasarkan hasil yang diperoleh diketahui bahwa rata-rata konsentrasi bulanan ozon tidak sama tiap bulannya atau minimal terdapat satu bulan dimana konsentrasi ozonnya berbeda secara signifikan dengan konsentrasi ozon pada bulan-bulan lainnya. Untuk lebih memahami terkait analisis varians pada \texttt{R} dan cara membaca output kedua fungsi tersebut, pembaca dapat membaca tulisan pada halaman situs \href{http://www.sthda.com/english/wiki/comparing-means-in-r}{sthda}.
 
 \bibliography{book.bib,packages.bib}
 

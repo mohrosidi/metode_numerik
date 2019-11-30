@@ -1,0 +1,12 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+# Persamaan Diferensial {#diffeq}
+
+Chapter ini dalam proses pembuatan

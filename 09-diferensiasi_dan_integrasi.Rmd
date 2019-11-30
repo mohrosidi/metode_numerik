@@ -136,11 +136,11 @@ findiff2(function(x){
 
 ## Diferensiasi Menggunakan Fungsi Lainnya di R {#diffother}
 
-Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah paket, baik *base package* maupun yang berasal dari paket lainnya.
+Terdapat sejumlah fungsi R yang dapat digunakan untuk menghitung turunan suatu persamaan matematik. Fungsi-fungsi tersebut tersedia dalam sejumlah *library*, baik *base package* maupun yang berasal dari *library* lainnya.
 
 ### Diferensiasi Metode Titik Pusat Mengggunakan Fungsi`diff()`
 
-Fungsi `diff()` pada paket *base* dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung *lag* suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen `lag = 2`. Berikut adalah contoh penerapan fungsi `diff()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
+Fungsi `diff()` pada *library* *base* dapat digunakan untuk menghitung turunan suatu persamaan menggunakan metode titik pusat. Fungsi ini pada umumnya digunakan untuk menghitung *lag* suatu data runtun waktu. Agar fungsi tersebut dapat digunakan untuk menghitung turunan pertama suatu persamaan, kita dapat menggunakan argumen `lag = 2`. Berikut adalah contoh penerapan fungsi `diff()` untuk memperoleh turunan pertama persamaan matematik pada Contoh \@ref(exm:diffexm):
 
 ```{r}
 f <- function(x){exp(-x)*sin(2*x)+1}
@@ -152,9 +152,9 @@ xvec <- seq(x-h, x+h, h)
 diff(f(xvec), lag=2)/(2*h)
 ```
 
-### Diferensiasi Menggunakan Paket `numDeriv`
+### Diferensiasi Menggunakan *Library* `numDeriv`
 
-Paket standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah paket `numDeriv`. Pada paket tersebut terdapat fungsi `grad()` yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
+*Library* standar yang sering digunakan untuk melakukan taksiran numerik turunan suatu fungsi adalah *library* `numDeriv`. Pada *library* tersebut terdapat fungsi `grad()` yang digunakan untuk menaksir turunan pertama suatu persamaan. Format fungsi tersebut adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 grad(func, x, method="Richardson", method.args=list(), ...)
@@ -178,9 +178,9 @@ numDeriv::grad(function(x){exp(-x)*sin(2*x)+1},
      method.args = list(eps=1*sqrt(.Machine$double.eps)))
 ```
 
-### DIferensiasi Menggunakan Paket `pracma`
+### DIferensiasi Menggunakan *Library* `pracma`
 
-Terdapat sejumlah fungsi pada paket `pracma` yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: `fderiv()`, `numderiv()`, `numdiff()`, dan `grad()`.
+Terdapat sejumlah fungsi pada *library* `pracma` yang dapat digunakan untuk melakukan diferensiasi suatu persamaan matematik. FUngsi-fungsi yang dapat digunakan untuk melakukan diferensiasi sederhana antara lain: `fderiv()`, `numderiv()`, `numdiff()`, dan `grad()`.
 
 Fungsi `fderiv()` dapat digunakan untuk melakukan diferensiasi orde pertama sampai dengan orde tinggi. Perlu dicatat bahwa diferensiasi cenderung kurang akurat jika orde diferensiasi semakin tinggi. Format yang digunakan untuk melakukan diferensiasi menggunakan fungsi `fderiv()` adalah sebagai berikut:
 
@@ -260,7 +260,7 @@ numdiff(function(x){exp(-x)*sin(2*x)+1},
        x = 1:4, h = 1*.Machine$double.eps^(1/3))
 ```
 
-Fungsi `grad()` pada paket `pracma` berbeda dengan yang digunakan pada paket `numDeriv`. Perbedaan utama fungsi pada kedua paket tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada paket `pracma`, metode yang digunakan adalah metode titik pusat, sedangkan pada paket `numDeriv` metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan *complex*. Format fungsi `grad()` pada paket `pracma` adalah sebagai berikut:
+Fungsi `grad()` pada *library* `pracma` berbeda dengan yang digunakan pada *library* `numDeriv`. Perbedaan utama fungsi pada kedua *library* tersebut adalah metode estimasi yang digunakan untuk menghitung turunan pertama suatu persamaan matematik. Pada *library* `pracma`, metode yang digunakan adalah metode titik pusat, sedangkan pada *library* `numDeriv` metode yang digunakan adalah metode selisih maju, ekstrapolasi Richardson, dan *complex*. Format fungsi `grad()` pada *library* `pracma` adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 grad(f, x0, heps = .Machine$double.eps^(1/3), 
@@ -661,7 +661,7 @@ simpson38(function(x)1/(1+x), a=0, b=1, m=9)
 
 ## Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya
 
-Terdapat sejumlah paket yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada `R`. Paket `pracma` menyediakan fungsi-fungsi seperti `trapz()` dan `cotes()`.
+Terdapat sejumlah *library* yang menyediakan fungsi yang dapat digunakan untuk melakukan proses integrasi suatu fungsi pada `R`. *Library* `pracma` menyediakan fungsi-fungsi seperti `trapz()` dan `cotes()`.
 
 Fungsi `trapz()` merupakan fungsi yang digunakan untuk melakukan integrasi dengan pendekatan trapesium. Penggunaan fungsi tersebut untuk melakukan perhitungan integral tidak dapat dilakukan secara langsung, kita perlu membuat terlebih dahulu seri koordinat `x` dan koordinat `y`. Program selanjutnya akan melakukan interpolasi linier terhadap selang yang saling berdekatan. Luas masing-masing panel selang selanjutnya dihitung dan dijumlahkan untuk memperoleh nilai integral. Format fungsi tersebut adalah sebagai berikut:
 
@@ -854,7 +854,7 @@ Kita juga dapat menggunakan fungsi `gauss_legendre()` untuk melakukan integrasi 
 
 ## Metode Gauss-Legendre Menggunakan Fungsi `legendre.quadrature()` {#othergauss}
 
-Fungsi `legendre.quadrature()` dari paket `gaussquand` dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
+Fungsi `legendre.quadrature()` dari *library* `gaussquand` dapat dijadikan alternatif untuk menghitung integral suatu fungsi menggunakan metode Gauss-Lagendre. Fortmat fungsi tersebut adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 legendre.quadrature(functn, rule, lower=-1, upper=1, 
@@ -870,7 +870,7 @@ legendre.quadrature(functn, rule, lower=-1, upper=1,
 > - **weighted**: nilai boolean yang menyatakan apakah bobot fungsi disertakan dalam integran
 > - **...**: argumen tambahan functn
 
-Untuk menentukan `rule` pada fungsi `legendre.quadrature()`, diperlukan fungsi lain yang tersedia pada paket `gaussquad`. Fungsi tersebut adalah `legendre.quadrature.rules()`. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
+Untuk menentukan `rule` pada fungsi `legendre.quadrature()`, diperlukan fungsi lain yang tersedia pada *library* `gaussquad`. Fungsi tersebut adalah `legendre.quadrature.rules()`. Fungsi tersebut akan menampilkan list data frame berdasarkan orde polinomial yang digunakan sebagai taksiran yang terdiri atas faktor bobot dan titik evaluasi. Format fungsi tersebut adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 legendre.quadrature.rules(n,normalized=FALSE)
@@ -993,7 +993,7 @@ riemann_adaptint(function(x)sin(x)^2 + log(x),
 
 ## Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada `R`
 
-Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada `R`. Fungsi-fungsi tersebut antara lain: `integrate()` dari paket `base` dan `integral()` dari paket `pracma`.
+Terdapat dua buah fungsi yang hendak penulis kenalkan pada pembaca yang berfungsi untuk melakukan integrasi adaptif pada `R`. Fungsi-fungsi tersebut antara lain: `integrate()` dari *library* `base` dan `integral()` dari *library* `pracma`.
 
 Fungsi `integrate()` merupakan fungsi yang akan melakukan integrasi numerik menggunakan metode kudratur adaptif untuk sebuah variabel dengan selang terbatas (*finite*) maupun tidak terbatas (*infinite*). Format fungsi tersebut secara umum adalah sebagai berikut:
 
@@ -1021,7 +1021,7 @@ integrate(function(x)sin(x)^2 + log(x),
           rel.tol = 1e-8)
 ```
 
-Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi `integral()` dari paket `pracma`. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi `integral()` adalah sebagai berikut:
+Fungsi lainnya yang dapat digunakan untuk melakukan komputasi integral adaptif adalah fungsi `integral()` dari *library* `pracma`. Terdapat dua buah metode integrasi adaptif yang dapat digunakan pada fungsi tersebut yaitu: Gauss-Konrod dan Simpson. Metode Clenshaw-Curtis yang tersedia masih belum dapat melakukan integrasi adaptif melalui fungsi tersebut. Format umum fungsi `integral()` adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 integral(fun, xmin, xmax,
@@ -1131,7 +1131,7 @@ Berdasarkan hasil perhitungan nilai integral fungsi tersebut adalah `r romberg(f
 
 ## Metode Integrasi Romberg Menggunakan Fungsi Lainnya
 
-Fungsi `romberg()` pada paket `pracma` dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
+Fungsi `romberg()` pada *library* `pracma` dapat digunakan untuk melakukan integrasi metode Romberg. Format umum fungsi tersebut adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 romberg(f, a, b, maxit = 25, tol = 1e-12, ...)
@@ -1363,7 +1363,7 @@ monte_int(f, a, b)
 6. Suparno, S. 2008. **Komputasi untuk Sains dan Teknik Edisi II**. Departemen Fisika-FMIPA Universitas Indonesia. 
 
 
-##Latihan
+## Latihan
 
 1. Hitung integral fungsi $f\left(x\right)=\sin^2\left(x\right)$ pada domain $x \in \left[0,\pi\right]$ !
 2. Tuliskan fungsi `R` yang dapat melakukan integrasi Riemann dengan aturan titik kiri !
