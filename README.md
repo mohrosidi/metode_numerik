@@ -21,7 +21,7 @@ Buku ini dapat diakses secara bebas oleh pembaca melalui tautan: <https://bookdo
 5. [Interpolasi dan Ekstrapolasi](https://bookdown.org/moh_rosidi2610/Metode_Numerik/interpolation.html)
 6. [Diferensiasi dan Integrasi Numerik](https://bookdown.org/moh_rosidi2610/Metode_Numerik/diffinteg.html)
 7. Persamaan Diferensial `on progress`
-8. Pengantar Analisis Data Menggunakan R `on progress`
+8. [Pengantar Analisis Data Menggunakan R](https://bookdown.org/moh_rosidi2610/Metode_Numerik/dataanalysis.html)
 9. Pengantar Pemodelan Data Menggunakan R `on progress`
 
 ## Ucapan Terimakasih
