@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-11-30}
+    \date{2019-12-03}
 
 \usepackage{booktabs}
 \usepackage{lscape}
@@ -2277,7 +2277,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.458 3.458 4.458 5.458 6.458 7.458
+## [1] 1.443 2.443 3.443 4.443 5.443 6.443
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -9303,7 +9303,7 @@ Untuk mempersingkat waktu iterasi kita akan menggunakan fungsi \texttt{root\_bis
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x0000000005d37de0>
+## <bytecode: 0x000000001af76218>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9458,7 +9458,7 @@ Untuk mempercepat proses iterasi, kita dapat pula menggunakan fungsi \texttt{roo
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x000000000dff6140>
+## <bytecode: 0x0000000025309e78>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9573,7 +9573,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan bantuan fungsi \texttt{r
 ## {
 ##     -1/exp(-x)
 ## }
-## <bytecode: 0x000000000f1a57f8>
+## <bytecode: 0x0000000011482990>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9695,7 +9695,7 @@ Untuk mempercepat proses iterasi, kita dapat menggunakan fungsi \texttt{root\_ne
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x000000001daa76d8>
+## <bytecode: 0x000000000731bed0>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -9892,7 +9892,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan fungsi \texttt{root\_sec
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x00000000186d87f8>
+## <bytecode: 0x000000001121cc80>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -10127,7 +10127,7 @@ Untuk penyelesaiannya penulis akan memberikan tebakan awal nilai \(h=h_0=0,6\). 
 ##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
 ##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
 ## }
-## <bytecode: 0x0000000008489300>
+## <bytecode: 0x000000001b7c5ec0>
 ## 
 ## $root
 ## [1] -0.2870309
@@ -13713,8 +13713,8 @@ Berikut adalah contoh penerapan fungsi tersebut untuk uji hipotesis satu dan dua
                                         \KeywordTok{sub}\NormalTok{(}\StringTok{" W."}\NormalTok{,}\StringTok{".Width"}\NormalTok{, dni3[[}\DecValTok{2}\NormalTok{]])))),}
     \DataTypeTok{Species =} \KeywordTok{gl}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DataTypeTok{labels =} \KeywordTok{sub}\NormalTok{(}\StringTok{"S"}\NormalTok{, }\StringTok{"s"}\NormalTok{, }\KeywordTok{sub}\NormalTok{(}\StringTok{"V"}\NormalTok{, }\StringTok{"v"}\NormalTok{, dni3[[}\DecValTok{3}\NormalTok{]]))))}
 \CommentTok{# parametrik}
-\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length, }
-       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length)}
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length[iris}\OperatorTok{$}\NormalTok{Species}\OperatorTok{==}\StringTok{"setosa"}\NormalTok{], }
+       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length[iris}\OperatorTok{$}\NormalTok{Species}\OperatorTok{==}\StringTok{"versicolor"}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -13722,21 +13722,21 @@ Berikut adalah contoh penerapan fungsi tersebut untuk uji hipotesis satu dan dua
 ## 
 ##  Welch Two Sample t-test
 ## 
-## data:  iris$Sepal.Length and ii$Sepal.Length
-## t = 0, df = 298, p-value = 1
+## data:  iris$Sepal.Length[iris$Species == "setosa"] and ii$Sepal.Length[iris$Species == "versicolor"]
+## t = -10.521, df = 86.538, p-value < 2.2e-16
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1881698  0.1881698
+##  -1.1057074 -0.7542926
 ## sample estimates:
 ## mean of x mean of y 
-##  5.843333  5.843333
+##     5.006     5.936
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# nonparametrik}
-\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length, }
-       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length)}
+\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{x=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Length[iris}\OperatorTok{$}\NormalTok{Species}\OperatorTok{==}\StringTok{"setosa"}\NormalTok{], }
+       \DataTypeTok{y=}\NormalTok{ii}\OperatorTok{$}\NormalTok{Sepal.Length[iris}\OperatorTok{$}\NormalTok{Species}\OperatorTok{==}\StringTok{"versicolor"}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -13744,8 +13744,8 @@ Berikut adalah contoh penerapan fungsi tersebut untuk uji hipotesis satu dan dua
 ## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
-## data:  iris$Sepal.Length and ii$Sepal.Length
-## W = 11250, p-value = 1
+## data:  iris$Sepal.Length[iris$Species == "setosa"] and ii$Sepal.Length[iris$Species == "versicolor"]
+## W = 168.5, p-value = 8.346e-14
 ## alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
 
@@ -13839,6 +13839,11 @@ Berikut adalah penerapan fungsi \texttt{cor.test()} berdasarkan metode-metode ya
 \end{Shaded}
 
 \begin{verbatim}
+## Warning in cor.test.default(x = airquality$Ozone, y = airquality$Solar.R, :
+## Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
 ## 
 ##  Spearman's rank correlation rho
 ## 
@@ -13909,6 +13914,1339 @@ Berikut adalah contoh penerapan kedua fungsi tersebut untuk melihat apakah terda
 \end{verbatim}
 
 Berdasarkan hasil yang diperoleh diketahui bahwa rata-rata konsentrasi bulanan ozon tidak sama tiap bulannya atau minimal terdapat satu bulan dimana konsentrasi ozonnya berbeda secara signifikan dengan konsentrasi ozon pada bulan-bulan lainnya. Untuk lebih memahami terkait analisis varians pada \texttt{R} dan cara membaca output kedua fungsi tersebut, pembaca dapat membaca tulisan pada halaman situs \href{http://www.sthda.com/english/wiki/comparing-means-in-r}{sthda}.
+
+\hypertarget{analisis-komponen-utama}{%
+\section{Analisis Komponen Utama}\label{analisis-komponen-utama}}
+
+Analisis komponen utama menggunakan transformasi ortogonal (umumnya nilai singular atau dekomposisi nilai eigen) untuk mengubah seperangkat variabel pengamatan yang mungkin berkorelasi menjadi seperangkat variabel tidak berkorelasi (ortogonal) yang disebut komponen utama. Transformasi didefinisikan sedemikian rupa sehingga komponen utama pertama memiliki varians setinggi mungkin (menyumbang variabilitas pada data sebanyak mungkin), dan masing-masing komponen berikutnya pada gilirannya memiliki varians tertinggi yang mungkin di bawah kendala, dimana komponen tersebut menjadi ortogonal ke komponen sebelumnya.
+
+Dalam R, analisis komponen utama umumnya dilakukan dengan fungsi \texttt{prcomp\ ()}. Format fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{prcomp}\NormalTok{(x, }\DataTypeTok{retx =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{center =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{scale. =} \OtherTok{FALSE}\NormalTok{,}
+       \DataTypeTok{tol =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} : data frame atau matriks kompleks numerik.
+\item
+  \texttt{retx} : nilai logik yang mengindikasikan apakah variabel hasil rotasi perlu ditampilkan.
+\item
+  \texttt{center} : nilai logik yang mengidikasikan apakah variabel perlu dilakukan pergeseran sehingga nilai rata-ratanya berpusat pada nilai nol.
+\item
+  \texttt{scale} : nilai logik yang mengidikasikan apakah variabel perlu dilakukan penskalaan sebelum dilakukan analisis.
+\item
+  \texttt{tol} : nilai toleransi yang menunjukkan batas nilai bagi komponen yang akan dipertahankan. Komponen yang dihilangkan jika simpangan bakunya kurang dari atau sama dengan \texttt{tol\ x\ simpangan\ baku\ pc1}.
+\end{itemize}
+\end{quote}
+
+Untuk memahami penerapan fungsi tersebut, kita akan melakukan simulasi menggunakan dataset \texttt{iris}. Output yang dihasilkan di bawah ini menunjukkan bagaimana empat variabel numerik ditransformasikan menjadi empat komponen utama. Penskalaan data mungkin tidak diperlukan dalam kasus ini, karena keempat pengukuran memiliki unit yang sama dan besarnya sama. Namun, penskalaan umumnya merupakan praktik yang baik.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_use <-}\StringTok{ }\NormalTok{iris[,}\OperatorTok{-}\DecValTok{5}\NormalTok{] }\CommentTok{# menghilangkan variabel non-numerik}
+\NormalTok{iris_pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(iris_use, }\DataTypeTok{scale. =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{iris_pca}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Standard deviations (1, .., p=4):
+## [1] 1.7083611 0.9560494 0.3830886 0.1439265
+## 
+## Rotation (n x k) = (4 x 4):
+##                     PC1         PC2        PC3        PC4
+## Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863
+## Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
+## Petal.Length  0.5804131 -0.02449161 -0.1421264 -0.8014492
+## Petal.Width   0.5648565 -0.06694199 -0.6342727  0.5235971
+\end{verbatim}
+
+Fungsi \texttt{summary} memberikan proporsi varians total yang dikaitkan dengan masing-masing komponen utama, dan proporsi kumulatif ketika masing-masing komponen ditambahkan. Kita melihat bahwa dua komponen pertama berperan lebih dari 95\% dari total varians.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(iris_pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                           PC1    PC2     PC3     PC4
+## Standard deviation     1.7084 0.9560 0.38309 0.14393
+## Proportion of Variance 0.7296 0.2285 0.03669 0.00518
+## Cumulative Proportion  0.7296 0.9581 0.99482 1.00000
+\end{verbatim}
+
+Histogram (hasil plot dalam analisis \texttt{prcomp}) secara grafis merekapitulasi proporsi varian yang disumbangkan oleh masing-masing komponen utama, sementara biplot menunjukkan bagaimana variabel awal diproyeksikan pada dua komponen utama pertama (Gambar \ref{fig:prcomp}). Ini juga menunjukkan koordinat dari masing-masing sampel dalam ruang (PC1, PC2). Satu spesies iris (yang berubahmenjadi setosa dari analisis kluster di bawah ini) secara jelas dipisahkan dari dua spesies lain dalam ruang koordinat ini.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/prcomp-1} 
+
+}
+
+\caption{Analisis komponen utama data iris.}\label{fig:prcomp}
+\end{figure}
+
+Untuk informasi lebih lanjut terkait metode analisis komponen utama, pembaca dapat membacanya pada laman \href{https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/}{Little Book of R for Multivariate Analysis}.
+
+\hypertarget{analisis-cluster}{%
+\section{Analisis Cluster}\label{analisis-cluster}}
+
+Analisis cluster mencoba untuk mengurutkan satu set objek ke dalam kelompok (cluster) sedemikian rupa sehingga objek dalam cluster yang sama lebih mirip satu sama lain dibandingkan objek pada cluster lainnya. Ini digunakan untuk analisis eksplorasi melalui proses penambangan data (\emph{data mining}) di banyak bidang, seperti bioinformatika, biologi evolusi, analisis gambar, lingkungan, dan pembelajaran mesin.
+
+Menurut Wikipedia: ``Analisis Cluster itu sendiri bukanlah salah satu algoritma spesifik, tetapi tugas umum yang harus dipecahkan. Ini dapat dicapai dengan berbagai algoritma yang berbeda secara signifikan dalam pengertian mereka tentang apa yang merupakan sebuah cluster dan bagaimana cara menemukannya secara efisien. Gagasan populer mengenai cluster termasuk kelompok dengan jarak rendah di antara anggota cluster, area padat ruang data, interval atau distribusi statistik tertentu. Algoritma pengelompokan dan pengaturan parameter yang sesuai (termasuk nilai-nilai seperti fungsi jarak yang akan digunakan, ambang kepadatan atau jumlah cluster yang diharapkan) tergantung pada dataset individual dan tujuan penggunaan hasil. Analisis cluster seperti itu bukan tugas otomatis, tetapi proses berulang penemuan pengetahuan yang melibatkan \emph{trial and error}. Seringkali diperlukan untuk memodifikasi preprocessing dan parameter sampai hasilnya mencapai properti yang diinginkan.
+
+\hypertarget{analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif}{%
+\subsection{Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif}\label{analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif}}
+
+Hierarchical clustering membangun hierarki cluster, di mana metrik hierarki adalah suatu ukuran ketidaksamaan antar cluster. Menurut halaman bantuan untuk \texttt{hclust()}, metode pengelompokan hierarkis aglomeratif, ``Fungsi ini melakukan analisis hierarki cluster menggunakan seperangkat ketidaksamaan untuk n objek yang dikelompokkan. Awalnya, masing-masing objek ditugaskan ke cluster sendiri dan kemudian algoritma melanjutkan secara iteratif, pada setiap tahap bergabung dengan dua cluster yang paling mirip, terus sampai hanya ada satu cluster. Pada setiap tahap, jarak antar kluster dihitung ulang dengan formula pembaruan ketidaksamaan Lance Williams sesuai dengan metode pengelompokan tertentu yang digunakan.''Ada tujuh metode aglomerasi yang tersedia, dengan lengkap --- yang mencari kluster kompak, bola --- sebagai default. Format umum fungsi \texttt{hclust()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hclust}\NormalTok{(d, }\DataTypeTok{method =} \StringTok{"complete"}\NormalTok{, }\DataTypeTok{members =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{d} : struktur ketidaksamaan yang dihasilkan dengan fungsi \texttt{dist}.
+\item
+  \texttt{method} : metode alglomerasi yang digunakan. Metode yang dapat digunakan antara lain: ``ward.D'', ``ward.D2'', ``single'', ``complete'', ``average'' (= UPGMA), ``mcquitty'' (= WPGMA), ``median'' (= WPGMC) atau ``centroid'' (= UPGMC)
+\item
+  \texttt{members}: NULL atau vektor dengan ukuran sama dengan \texttt{d}. Untuk info lebih lanjut jalankan sintaks \texttt{?hclust}.
+\end{itemize}
+\end{quote}
+
+Untuk memahami penerapan fungsi \texttt{hclust()}, kita akan kembali menggunakan data \texttt{iris\_use}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# menghitung jarak antar observasi}
+\NormalTok{iris_hclust <-}\StringTok{ }\KeywordTok{dist}\NormalTok{(iris_use)}
+
+\CommentTok{# Pembentukan Cluster}
+\NormalTok{hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(iris_hclust)}
+\NormalTok{hc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## hclust(d = iris_hclust)
+## 
+## Cluster method   : complete 
+## Distance         : euclidean 
+## Number of objects: 150
+\end{verbatim}
+
+Visualisasi cluster dibentuk melalui dendogram yang ditampilkan pada Gambar \ref{fig:hclust}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/hclust-1} 
+
+}
+
+\caption{Analisis pengelompokan hierarkis alglomeratif data iris.}\label{fig:hclust}
+\end{figure}
+
+\hypertarget{pengelompokan-hierarkis-divisif}{%
+\subsection{Pengelompokan Hierarkis Divisif}\label{pengelompokan-hierarkis-divisif}}
+
+Menurut halaman bantuan \texttt{diana()} (\emph{DIvisive ANAlysis Clustering}) dalam \emph{library} \texttt{cluster}, ``Algoritma diana membangun hierarki pengelompokan, dimulai dengan satu kluster besar yang berisi semua n pengamatan. Cluster dibagi sampai masing-masing cluster hanya berisi satu pengamatan. Pada setiap tahap, cluster dengan diameter terbesar dipilih. Format fungsi \texttt{diana()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{diana}\NormalTok{(x, }\DataTypeTok{metric =} \StringTok{"euclidean"}\NormalTok{, }\DataTypeTok{stand =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} : struktur ketidaksamaan yang dihasilkan dengan fungsi \texttt{dist} atau data frame.
+\item
+  \texttt{metric} : karakter string yang menyatakan metode pengukuran jarak yang digunakan. Metode pengukuran jarak dapat berupa ``euclidean'' dan ``manhattan''.
+\item
+  \texttt{stand}: vektor logik yang menyatakan apakah data akan dilakukan standardisasi terlebih dahulu sebelum dilakukan analisis.
+\end{itemize}
+\end{quote}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/diana-1} 
+
+}
+
+\caption{Analisis pengelompokan divisif data iris.}\label{fig:diana}
+\end{figure}
+
+\hypertarget{pengelompokan-menggunakan-algoritma-k-mean}{%
+\subsection{Pengelompokan Menggunakan Algoritma K-Mean}\label{pengelompokan-menggunakan-algoritma-k-mean}}
+
+k-means melakukan pengelompokan n pengamatan ke dalam k cluster di mana setiap pengamatan akan tergabung dengan pusat cluster terdekat. Pengguna harus menentukan jumlah pusat (cluster) yang diinginkan sebagai output. Untuk melakukan pengelompokan dengan algoritma k-means pada \texttt{R} dapat menggunakan fungsi \texttt{kmeans()}. Format fungsi tersebut secara umum adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kmeans}\NormalTok{(x, centers, }\DataTypeTok{iter.max =} \DecValTok{10}\NormalTok{,}
+       \DataTypeTok{algorithm =} \KeywordTok{c}\NormalTok{(}\StringTok{"Hartigan-Wong"}\NormalTok{, }\StringTok{"Lloyd"}\NormalTok{, }\StringTok{"Forgy"}\NormalTok{,}
+                     \StringTok{"MacQueen"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} : data frame.
+\item
+  \texttt{centers} : jumlah cluster yang ingin di buat.
+\item
+  \texttt{iter.max}: jumlah iterasi maksimum yang diijinkan.
+\item
+  \texttt{algorithm} : algoritma pengelompokan yang digunakan. Untuk informasi lebih lanjut jalankan sintaks \texttt{?kmeans}.
+\end{itemize}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_kmeans <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(iris_use, }\DataTypeTok{centers =} \DecValTok{3}\NormalTok{)}
+\NormalTok{iris_kmeans}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## K-means clustering with 3 clusters of sizes 33, 96, 21
+## 
+## Cluster means:
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1     5.175758    3.624242     1.472727   0.2727273
+## 2     6.314583    2.895833     4.973958   1.7031250
+## 3     4.738095    2.904762     1.790476   0.3523810
+## 
+## Clustering vector:
+##   [1] 1 3 3 3 1 1 1 1 3 3 1 1 3 3 1 1 1 1 1 1 1 1 1 1 3 3 1 1 1 3 3 1 1 1 3
+##  [36] 1 1 1 3 1 1 3 3 1 1 3 1 3 1 1 2 2 2 2 2 2 2 3 2 2 3 2 2 2 2 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 3 2 2 2 2 2 2
+## [106] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 2 2 2
+## 
+## Within cluster sum of squares by cluster:
+## [1]   6.432121 118.651875  17.669524
+##  (between_SS / total_SS =  79.0 %)
+## 
+## Available components:
+## 
+## [1] "cluster"      "centers"      "totss"        "withinss"    
+## [5] "tot.withinss" "betweenss"    "size"         "iter"        
+## [9] "ifault"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# menghitung lokasi pusat cluster}
+\NormalTok{ccent =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(cl) \{}
+\NormalTok{ f =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(i) }\KeywordTok{colMeans}\NormalTok{(iris_use[cl}\OperatorTok{==}\NormalTok{i,])}
+\NormalTok{ x =}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(cl)), f)}
+ \KeywordTok{colnames}\NormalTok{(x) =}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(cl))}
+ \KeywordTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+
+\KeywordTok{ccent}\NormalTok{(iris_kmeans}\OperatorTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      1        2        3
+## Sepal.Length 5.1757576 6.314583 4.738095
+## Sepal.Width  3.6242424 2.895833 2.904762
+## Petal.Length 1.4727273 4.973958 1.790476
+## Petal.Width  0.2727273 1.703125 0.352381
+\end{verbatim}
+
+\hypertarget{pengelompokan-menggunakan-algoritma-pam}{%
+\subsection{Pengelompokan Menggunakan Algoritma PAM}\label{pengelompokan-menggunakan-algoritma-pam}}
+
+pam mem-partisi data menjadi k cluster di sekitar medoid. Medoid dari set data yang terbatas merupakan titik data dengan nilai ketidaksamaan rata-rata untuk semua titik data adalah minimum. Hal tersebut menujukkan bahwa medoid merupakan pusat dari set cluster. Menurut halaman bantuan \texttt{pam()}, pendekatan k-medoid lebih kuat daripada pendekatan k-means ``karena meminimalkan jumlah ketidaksamaan daripada jumlah jarak euclidean kuadrat''. Format umum fungsi \texttt{pam()} adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pam}\NormalTok{(x, k, }\DataTypeTok{diss =} \KeywordTok{inherits}\NormalTok{(x, }\StringTok{"dist"}\NormalTok{),}
+    \DataTypeTok{metric =} \KeywordTok{c}\NormalTok{(}\StringTok{"euclidean"}\NormalTok{, }\StringTok{"manhattan"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} : data frame.
+\item
+  \texttt{k} : jumlah cluster yang ingin di buat.
+\item
+  \texttt{method}: metode perhitungan jarak yang digunakan. Untuk informasi lebih lanjut jalankan sintaks \texttt{?pam}.
+\end{itemize}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(cluster)}
+\NormalTok{iris_pam <-}\StringTok{ }\KeywordTok{pam}\NormalTok{(iris_use, }\DataTypeTok{k=}\DecValTok{3}\NormalTok{)}
+\NormalTok{iris_pam}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Medoids:
+##       ID Sepal.Length Sepal.Width Petal.Length Petal.Width
+## [1,]   8          5.0         3.4          1.5         0.2
+## [2,]  79          6.0         2.9          4.5         1.5
+## [3,] 113          6.8         3.0          5.5         2.1
+## Clustering vector:
+##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [36] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3
+## [106] 3 2 3 3 3 3 3 3 2 2 3 3 3 3 2 3 2 3 2 3 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3
+## [141] 3 3 2 3 3 3 2 3 3 2
+## Objective function:
+##     build      swap 
+## 0.6709391 0.6542077 
+## 
+## Available components:
+##  [1] "medoids"    "id.med"     "clustering" "objective"  "isolation" 
+##  [6] "clusinfo"   "silinfo"    "diss"       "call"       "data"
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/pam-1} 
+
+}
+
+\caption{Analisis pengelompokan metode pam data iris.}\label{fig:pam}
+\end{figure}
+
+\hypertarget{referensi-9}{%
+\section{Referensi}\label{referensi-9}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Bloomfield, V.A. 2014. \textbf{Using R for Numerical Analysis in Science and Engineering}. CRC Press.
+\item
+  Coqhlan, A. Tanpa Tahun. \textbf{Using R for Multivariate Analysis}. \url{https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html\#principal-component-analysis}.
+\item
+  Primartha, R. 2018. \textbf{Belajar Machine Learning Teori dan Praktik}. Penerbit Informatika : Bandung
+\item
+  Rosadi,D. 2016. \textbf{Analisis Statistika dengan R}. Gadjah Mada University Press: Yogyakarta.
+\item
+  Rosidi, M. 2019. \textbf{Uji Hipotesis}. \url{https://environmental-data-modeling.netlify.com/tutorial/11_uji_hipotesis/}.
+\item
+  STHDA. Tanpa Tahun. \textbf{Comparing Means in R}. \url{http://www.sthda.com/english/wiki/comparing-means-in-r}.
+\end{enumerate}
+
+\hypertarget{datamod}{%
+\chapter{Pemodelan Data}\label{datamod}}
+
+Pada Chapter \ref{datamod}, kita akan membahas cara membentuk model statistik menggunakan \texttt{R}. Terdapat 2 buah jenis model yang akan dibahas pada \emph{Chapter} ini, yaitu: regresi dan klasifikasi. Untuk informasi terkait cara untuk melakukan inferensi berdasarkan hasil yang diperoleh dan cara untuk melakukan prediksi menggunakan model yang terbentuk tidak akan dijelaskan dalam buku ini. Pembaca dapat membaca lebih lanjut pada referensi berikut:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf}{Introduction to Probability and Statistics Using R}
+\item
+  \href{http://www.sthda.com/english/}{STHDA}
+\item
+  \href{https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR\%20Seventh\%20Printing.pdf}{An Introduction to Statistical Learning}
+\end{itemize}
+
+\hypertarget{regresi-linier}{%
+\section{Regresi Linier}\label{regresi-linier}}
+
+Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Asumsi liniearitas}: kurva relasi yang terbentuk antara variabel independen terhadap variabel dependen harus linier. Asumsi ini dapat dipelajari melalui plot residual terhadap nilai \emph{fitted value}. Jika asumsi liniearitas terpenuhi, maka titik-titik residual yang di plotkan akan membentuk pola acak. Jika pada plot yang dihasilkan terbentuk pola tidak linear maka transformasi data pada variabel prediktor atau independen diperlukan.
+\item
+  \textbf{Error atau residu berdristribusi normal}: normalitas error di cek menggunakan qq-plot atau uji normalitas yang telah dibahas pada Chapter \ref{norm}.
+\item
+  \textbf{\emph{Outlier} dan \emph{high influence point}}: kedua pengamatan tersebut dideteksi melalui qq-plot, plot residual terhadap nilai \emph{fitted value}, dan plot \emph{residuals vs leverage}. Jika \emph{outlier} terjadi akibat adanya error selama pengukuran maka \emph{outlier} dapat dihilangkan.
+\item
+  \textbf{Error bersifat independen}: independensi residual dapat dideteksi melaui plot korelasi serial dengan mengeplotkan \(r_i\) vs \(r_{i-1}\).
+\item
+  \textbf{Varians bersifat konstan}: Varians bersifat konstan dicek melalui plot \textbf{square root standardize residual vs fitted value}. Pada kasus dimana varians tidak bersifat konstan, kita dapat memberikan bobot pada model yang akan kita bentuk (\emph{weighted least square}), dimana bobot yang diberikan proporsional dengan invers varians.
+\item
+  \textbf{multikolinearitas}: tidak ada variabel dependen yang saling berfkorelasi. Multikolinearitas dapat dideteksi melalui plot matriks korelasi. Pada model adanya kolinearitas ditunjukkan dari nilai \emph{variance inflation factor} (VIF) yang tinggi. Secara umum nilai VIF terkecil sebesar 1 dan jika kolinearitas terjadi nilainya dapat lebih besar dari 5 atau 10. Untuk mengatasi kolinearitas pada model dapat dilakukan dengan dua cara, yaitu: mengeluarkan variabel dengan nilai VIF yang tinggi pada model atau menggabungkan dua variabel prediktor yang saling berkorelasi menjadi satu variabel baru.
+\end{enumerate}
+
+Pembentukan model linier pada \texttt{R} dilakukan dengan menggunakan fungsi \texttt{lm()}. Format umum fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(formula, data, subset, weights)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{formula} : formula model yang hendak dibentuk.
+\item
+  \texttt{data}: data yang digunakan untuk membentuk model.
+\item
+  \texttt{subset} : subset data yang akan digunakan dalam pembentukan model.
+\item
+  \texttt{weight} : nilai pembobotan dalam pembentukan model.
+\end{itemize}
+\end{quote}
+
+\hypertarget{SLR}{%
+\subsection{\texorpdfstring{Regrasi Linier Sederhana (\emph{Simple Linear Regression})}{Regrasi Linier Sederhana (Simple Linear Regression)}}\label{SLR}}
+
+Pada Chapter \ref{SLR} akan diberikan contoh pembentukan model linier sederhana menggunakan dataset \texttt{Boston} dari \emph{library} \texttt{MASS} dengan jumlah observasi sebesar 506 observasi. Pada contoh kali ini kita akan mencoba membentuk model dengan variabel dependen berupa \texttt{medv} (median harga rumah) dan variabel independen berupa \texttt{lstat} (persen rumah tangga dengan status ekonomi menengah ke bawah). Berikut adalh sintaks untuk membentuk model tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{lstat, }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df Sum Sq Mean Sq F value    Pr(>F)    
+## lstat       1  23244 23243.9  601.62 < 2.2e-16 ***
+## Residuals 504  19472    38.6                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ lstat, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.168  -3.990  -1.318   2.034  24.500 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 34.55384    0.56263   61.41   <2e-16 ***
+## lstat       -0.95005    0.03873  -24.53   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.216 on 504 degrees of freedom
+## Multiple R-squared:  0.5441, Adjusted R-squared:  0.5432 
+## F-statistic: 601.6 on 1 and 504 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Plot residual disajikan pada Gambar \ref{fig:slr}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/slr-1} 
+
+}
+
+\caption{Analisis residual model linier medv vs lstat pada dataset Boston.}\label{fig:slr}
+\end{figure}
+
+Berdasarkan hasil plot dapat dilihat bahwa seluruh asumsi model linier tidak terpenuhi. Selain melalui plot residual, uji asumsi model linier dapat juga dilakukan secara matematis. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# error berdistribusi normal }
+\CommentTok{# (data tidak berdistribusi normal)}
+\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(lm.fit))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(lm.fit)
+## W = 0.87857, p-value < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# varians bersifat konstan }
+\CommentTok{# (varians tidak konstan)}
+\KeywordTok{library}\NormalTok{(lmtest)}
+\KeywordTok{bptest}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  studentized Breusch-Pagan test
+## 
+## data:  lm.fit
+## BP = 15.497, df = 1, p-value = 8.262e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# error bersifat independen}
+\CommentTok{# (error tidak bersifat independen)}
+\KeywordTok{dwtest}\NormalTok{(lm.fit, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Durbin-Watson test
+## 
+## data:  lm.fit
+## DW = 0.8915, p-value < 2.2e-16
+## alternative hypothesis: true autocorrelation is not 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# deteksi outlier (stdres > 2)}
+\NormalTok{sres <-}\StringTok{ }\KeywordTok{rstandard}\NormalTok{(lm.fit)}
+\NormalTok{sres[}\KeywordTok{which}\NormalTok{(}\KeywordTok{abs}\NormalTok{(sres)}\OperatorTok{>}\DecValTok{2}\NormalTok{)] }\CommentTok{# nomor observasi outlier}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        99       142       162       163       164       167       181 
+##  2.038479  2.037877  2.758553  2.787466  3.000496  3.058318  2.002509 
+##       187       196       204       205       215       225       226 
+##  3.172448  2.947239  2.833127  2.933544  2.788670  2.286679  3.199842 
+##       229       234       257       258       262       263       268 
+##  2.559571  2.822187  2.000582  3.274417  2.488441  3.201252  3.627671 
+##       281       283       284       369       370       371       372 
+##  2.325519  2.307994  2.976149  2.991366  3.062883  2.945717  3.946264 
+##       373       375       413       506 
+##  3.847133  2.498416  2.600516 -2.443658
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# influential observation}
+\CommentTok{# observasi > percentil 50}
+\CommentTok{# tidak ada observasi dengan jarak cook yang extrim}
+\NormalTok{cooksD <-}\StringTok{ }\KeywordTok{cooks.distance}\NormalTok{(lm.fit)}
+\NormalTok{p50 <-}\StringTok{ }\KeywordTok{qf}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{df1=}\DecValTok{2}\NormalTok{, }\DataTypeTok{df2=}\DecValTok{560-2}\NormalTok{)}
+\KeywordTok{any}\NormalTok{(cooksD}\OperatorTok{>}\NormalTok{p50)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\hypertarget{MLR}{%
+\subsection{\texorpdfstring{Regresi Linier Berganda (\emph{Multiple Linier Regression})}{Regresi Linier Berganda (Multiple Linier Regression)}}\label{MLR}}
+
+Pada Chapter \ref{MLR}, kita akan membuat tiga buah model regresi linier. Model pertama akan menambahkan variabel \texttt{age} (usia bangunan) pada model sebelumnya, model kedua akan menggunakan seluruh ariabel yang ada, dan model ketiga akan melakukan pembaharuan dengan mengeluarkan variabel dengan VIF paling tinggi dari model kedua. Berikut adalah sintaks untuk membentuk ketiag model tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\CommentTok{# Model pertama}
+\NormalTok{lm.fit1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv }\OperatorTok{~}\StringTok{ }\NormalTok{lstat}\OperatorTok{+}\NormalTok{age, }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq F value    Pr(>F)    
+## lstat       1 23243.9 23243.9 609.955 < 2.2e-16 ***
+## age         1   304.3   304.3   7.984  0.004907 ** 
+## Residuals 503 19168.1    38.1                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ lstat + age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.981  -3.978  -1.283   1.968  23.158 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 33.22276    0.73085  45.458  < 2e-16 ***
+## lstat       -1.03207    0.04819 -21.416  < 2e-16 ***
+## age          0.03454    0.01223   2.826  0.00491 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.173 on 503 degrees of freedom
+## Multiple R-squared:  0.5513, Adjusted R-squared:  0.5495 
+## F-statistic:   309 on 2 and 503 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{vif}\NormalTok{(lm.fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    lstat      age 
+## 1.569395 1.569395
+\end{verbatim}
+
+Berdasarkan hasil perhitungan diketahui nilai VIF dari model \textless{} 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar \ref{fig:mlr1}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/mlr1-1} 
+
+}
+
+\caption{Analisis residual model linier 1 pada dataset Boston.}\label{fig:mlr1}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Model 2}
+\NormalTok{lm.fit2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(>F)    
+## crim        1  6440.8  6440.8 286.0300 < 2.2e-16 ***
+## zn          1  3554.3  3554.3 157.8452 < 2.2e-16 ***
+## indus       1  2551.2  2551.2 113.2984 < 2.2e-16 ***
+## chas        1  1529.8  1529.8  67.9393 1.543e-15 ***
+## nox         1    76.2    76.2   3.3861 0.0663505 .  
+## rm          1 10938.1 10938.1 485.7530 < 2.2e-16 ***
+## age         1    90.3    90.3   4.0087 0.0458137 *  
+## dis         1  1779.5  1779.5  79.0262 < 2.2e-16 ***
+## rad         1    34.1    34.1   1.5159 0.2188325    
+## tax         1   329.6   329.6  14.6352 0.0001472 ***
+## ptratio     1  1309.3  1309.3  58.1454 1.266e-13 ***
+## black       1   593.3   593.3  26.3496 4.109e-07 ***
+## lstat       1  2410.8  2410.8 107.0634 < 2.2e-16 ***
+## Residuals 492 11078.8    22.5                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ ., data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.595  -2.730  -0.518   1.777  26.199 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.646e+01  5.103e+00   7.144 3.28e-12 ***
+## crim        -1.080e-01  3.286e-02  -3.287 0.001087 ** 
+## zn           4.642e-02  1.373e-02   3.382 0.000778 ***
+## indus        2.056e-02  6.150e-02   0.334 0.738288    
+## chas         2.687e+00  8.616e-01   3.118 0.001925 ** 
+## nox         -1.777e+01  3.820e+00  -4.651 4.25e-06 ***
+## rm           3.810e+00  4.179e-01   9.116  < 2e-16 ***
+## age          6.922e-04  1.321e-02   0.052 0.958229    
+## dis         -1.476e+00  1.995e-01  -7.398 6.01e-13 ***
+## rad          3.060e-01  6.635e-02   4.613 5.07e-06 ***
+## tax         -1.233e-02  3.760e-03  -3.280 0.001112 ** 
+## ptratio     -9.527e-01  1.308e-01  -7.283 1.31e-12 ***
+## black        9.312e-03  2.686e-03   3.467 0.000573 ***
+## lstat       -5.248e-01  5.072e-02 -10.347  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.745 on 492 degrees of freedom
+## Multiple R-squared:  0.7406, Adjusted R-squared:  0.7338 
+## F-statistic: 108.1 on 13 and 492 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{vif}\NormalTok{(lm.fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     crim       zn    indus     chas      nox       rm      age      dis 
+## 1.792192 2.298758 3.991596 1.073995 4.393720 1.933744 3.100826 3.955945 
+##      rad      tax  ptratio    black    lstat 
+## 7.484496 9.008554 1.799084 1.348521 2.941491
+\end{verbatim}
+
+Berdasarkan hasil perhitungan diperoleh nilai VIF untuk seluruh varaibel prediktor dalam model \textless{} 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar \ref{fig:mlr2}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/mlr2-1} 
+
+}
+
+\caption{Analisis residual model linier 2 pada dataset Boston.}\label{fig:mlr2}
+\end{figure}
+
+Pada model ketiga, kita akan mencoba untuk melakukan pembaharuan pada model kedua dengan melakukan drop variabel dengan vif yang paling tinggi. Pada hasil perhitungan sebelumnya, variabel \texttt{tax} (pajak) memiliki nilai VIF yang paling tinggi, sehingga pada model ketiga variabel tersebut tidak disertakan. Terdapat dua cara untuk melakukannya berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Model 3 (cara 1)}
+\NormalTok{lm.fit3 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{.}\OperatorTok{-}\NormalTok{tax, }\DataTypeTok{data=}\NormalTok{Boston)}
+
+\CommentTok{# Model 3 (cara 2)}
+\NormalTok{lm.fit3 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lm.fit2, }\OperatorTok{~}\NormalTok{.}\OperatorTok{-}\NormalTok{tax)}
+
+\KeywordTok{anova}\NormalTok{(lm.fit3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(>F)    
+## crim        1  6440.8  6440.8 280.4782 < 2.2e-16 ***
+## zn          1  3554.3  3554.3 154.7815 < 2.2e-16 ***
+## indus       1  2551.2  2551.2 111.0993 < 2.2e-16 ***
+## chas        1  1529.8  1529.8  66.6206 2.768e-15 ***
+## nox         1    76.2    76.2   3.3204   0.06903 .  
+## rm          1 10938.1 10938.1 476.3247 < 2.2e-16 ***
+## age         1    90.3    90.3   3.9309   0.04796 *  
+## dis         1  1779.5  1779.5  77.4923 < 2.2e-16 ***
+## rad         1    34.1    34.1   1.4865   0.22335    
+## ptratio     1  1401.2  1401.2  61.0172 3.434e-14 ***
+## black       1   611.6   611.6  26.6323 3.574e-07 ***
+## lstat       1  2388.0  2388.0 103.9924 < 2.2e-16 ***
+## Residuals 493 11321.0    23.0                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.fit3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ crim + zn + indus + chas + nox + rm + age + 
+##     dis + rad + ptratio + black + lstat, data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.1449  -2.9143  -0.5661   1.7438  26.3113 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.463e+01  5.123e+00   6.760 3.92e-11 ***
+## crim        -1.067e-01  3.319e-02  -3.216 0.001384 ** 
+## zn           3.637e-02  1.351e-02   2.692 0.007354 ** 
+## indus       -6.778e-02  5.583e-02  -1.214 0.225317    
+## chas         3.029e+00  8.637e-01   3.507 0.000494 ***
+## nox         -1.870e+01  3.847e+00  -4.862 1.57e-06 ***
+## rm           3.912e+00  4.209e-01   9.294  < 2e-16 ***
+## age         -6.054e-04  1.333e-02  -0.045 0.963804    
+## dis         -1.488e+00  2.014e-01  -7.390 6.31e-13 ***
+## rad          1.346e-01  4.125e-02   3.262 0.001182 ** 
+## ptratio     -9.851e-01  1.317e-01  -7.478 3.48e-13 ***
+## black        9.546e-03  2.711e-03   3.521 0.000470 ***
+## lstat       -5.222e-01  5.121e-02 -10.198  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.792 on 493 degrees of freedom
+## Multiple R-squared:  0.735,  Adjusted R-squared:  0.7285 
+## F-statistic: 113.9 on 12 and 493 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{vif}\NormalTok{(lm.fit3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     crim       zn    indus     chas      nox       rm      age      dis 
+## 1.791940 2.184240 3.226015 1.058220 4.369271 1.923075 3.098044 3.954446 
+##      rad  ptratio    black    lstat 
+## 2.837494 1.788839 1.347564 2.940800
+\end{verbatim}
+
+Plot residual ditampilkan pada Gambar \ref{fig:mlr3}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/mlr3-1} 
+
+}
+
+\caption{Analisis residual model linier 3 pada dataset Boston.}\label{fig:mlr3}
+\end{figure}
+
+\hypertarget{lminter}{%
+\subsection{Model Linier dengan Interaksi Antar Variabel Prediktor}\label{lminter}}
+
+Interaksi antar variabel pada model linier dapat dengan mudah dimasukkan kedalam fungsi \texttt{lm()}. Terdapat dua buah cara untuk melakukannya. Cara pertama dengan menggunakan tanda \texttt{:} pada formula (contoh: \(y1 ~ x1+x2+x1:x2\)). Tanda \texttt{:} menyatakan formula persamaan linier memasukkan interaksi antar variabel prediktor di dalamnya. Cara kedua adalah dengan menggunakan tanda \texttt{*}. Cara ini lebih sederhana, dimana fungsi \texttt{lm()} akan secara otomatis menerjemahkannya sebagai serangkaian variabel tunggal dan interaksinya. Berikut adalah contoh penerapannya menggunakan kedua cara tersebut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# cara 1}
+\NormalTok{lm.inter <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{lstat}\OperatorTok{+}\NormalTok{age}\OperatorTok{+}\NormalTok{lstat}\OperatorTok{:}\NormalTok{age, }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.inter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(>F)    
+## lstat       1 23243.9 23243.9 614.8498 < 2.2e-16 ***
+## age         1   304.3   304.3   8.0481  0.004739 ** 
+## lstat:age   1   190.4   190.4   5.0368  0.025249 *  
+## Residuals 502 18977.7    37.8                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.inter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ lstat + age + lstat:age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.806  -4.045  -1.333   2.085  27.552 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 36.0885359  1.4698355  24.553  < 2e-16 ***
+## lstat       -1.3921168  0.1674555  -8.313 8.78e-16 ***
+## age         -0.0007209  0.0198792  -0.036   0.9711    
+## lstat:age    0.0041560  0.0018518   2.244   0.0252 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.149 on 502 degrees of freedom
+## Multiple R-squared:  0.5557, Adjusted R-squared:  0.5531 
+## F-statistic: 209.3 on 3 and 502 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cara 2}
+\NormalTok{lm.inter <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{lstat}\OperatorTok{*}\NormalTok{age, }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.inter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(>F)    
+## lstat       1 23243.9 23243.9 614.8498 < 2.2e-16 ***
+## age         1   304.3   304.3   8.0481  0.004739 ** 
+## lstat:age   1   190.4   190.4   5.0368  0.025249 *  
+## Residuals 502 18977.7    37.8                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.inter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ lstat * age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.806  -4.045  -1.333   2.085  27.552 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 36.0885359  1.4698355  24.553  < 2e-16 ***
+## lstat       -1.3921168  0.1674555  -8.313 8.78e-16 ***
+## age         -0.0007209  0.0198792  -0.036   0.9711    
+## lstat:age    0.0041560  0.0018518   2.244   0.0252 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.149 on 502 degrees of freedom
+## Multiple R-squared:  0.5557, Adjusted R-squared:  0.5531 
+## F-statistic: 209.3 on 3 and 502 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Plot residual ditampilkan pada Gambar \ref{fig:lminter}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/lminter-1} 
+
+}
+
+\caption{Analisis residual model dengan melibatkan interaksi antar variabel pada dataset Boston.}\label{fig:lminter}
+\end{figure}
+
+\hypertarget{nlinpred}{%
+\subsection{Transformasi Non-linier Pada Prediktor}\label{nlinpred}}
+
+Fungsi \texttt{lm()} juga dapat melibatkan transformasi non-linier prediktor pada argumen \texttt{formula}-nya. Transformasi non-linier dilakukan dengan menambahkan fungsi identitas \texttt{I()}. Sebagai contoh model berikut melibatkan transformasi kuadrat pada variabel \texttt{lstat}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.trans <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{lstat}\OperatorTok{+}\KeywordTok{I}\NormalTok{(lstat}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.trans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##             Df  Sum Sq Mean Sq F value    Pr(>F)    
+## lstat        1 23243.9 23243.9  761.81 < 2.2e-16 ***
+## I(lstat^2)   1  4125.1  4125.1  135.20 < 2.2e-16 ***
+## Residuals  503 15347.2    30.5                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.trans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ lstat + I(lstat^2), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2834  -3.8313  -0.5295   2.3095  25.4148 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 42.862007   0.872084   49.15   <2e-16 ***
+## lstat       -2.332821   0.123803  -18.84   <2e-16 ***
+## I(lstat^2)   0.043547   0.003745   11.63   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.524 on 503 degrees of freedom
+## Multiple R-squared:  0.6407, Adjusted R-squared:  0.6393 
+## F-statistic: 448.5 on 2 and 503 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Cara yang lebih sederhana untuk melibatkan tranformasi polinomial kedalam model linier adalah dengan menggunakan fungsi \texttt{poly()}. Berikut adalah contoh penerapannya:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.trans <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\KeywordTok{poly}\NormalTok{(lstat,}\DecValTok{2}\NormalTok{), }\DataTypeTok{data=}\NormalTok{Boston)}
+\KeywordTok{anova}\NormalTok{(lm.trans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##                 Df Sum Sq Mean Sq F value    Pr(>F)    
+## poly(lstat, 2)   2  27369 13684.5  448.51 < 2.2e-16 ***
+## Residuals      503  15347    30.5                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.trans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ poly(lstat, 2), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2834  -3.8313  -0.5295   2.3095  25.4148 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       22.5328     0.2456   91.76   <2e-16 ***
+## poly(lstat, 2)1 -152.4595     5.5237  -27.60   <2e-16 ***
+## poly(lstat, 2)2   64.2272     5.5237   11.63   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.524 on 503 degrees of freedom
+## Multiple R-squared:  0.6407, Adjusted R-squared:  0.6393 
+## F-statistic: 448.5 on 2 and 503 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Plot residual ditampilkan pada Gambar \ref{fig:lmtrans}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/lmtrans-1} 
+
+}
+
+\caption{Analisis residual model dengan melibatkan transformasi non-linier variabel prediktor pada dataset Boston.}\label{fig:lmtrans}
+\end{figure}
+
+FUngsi trasnformasi lainnya juga dapat digunakan pada pembentukan model linier. Berikut adalah contoh penerapan transformasi logaritmik dan eksponensial pada model linier:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\KeywordTok{log}\NormalTok{(lstat), }\DataTypeTok{data=}\NormalTok{Boston))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ log(lstat), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.4599  -3.5006  -0.6686   2.1688  26.0129 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  52.1248     0.9652   54.00   <2e-16 ***
+## log(lstat)  -12.4810     0.3946  -31.63   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.329 on 504 degrees of freedom
+## Multiple R-squared:  0.6649, Adjusted R-squared:  0.6643 
+## F-statistic:  1000 on 1 and 504 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\KeywordTok{exp}\NormalTok{(lstat), }\DataTypeTok{data=}\NormalTok{Boston))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ exp(lstat), data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.573  -5.473  -1.373   2.427  27.427 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  2.257e+01  4.090e-01  55.187   <2e-16 ***
+## exp(lstat)  -4.436e-16  2.785e-16  -1.592    0.112    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.183 on 504 degrees of freedom
+## Multiple R-squared:  0.005006,   Adjusted R-squared:  0.003032 
+## F-statistic: 2.536 on 1 and 504 DF,  p-value: 0.1119
+\end{verbatim}
+
+\hypertarget{model-linier-dengan-prediktor-kategorikal}{%
+\subsection{Model Linier dengan Prediktor Kategorikal}\label{model-linier-dengan-prediktor-kategorikal}}
+
+Regresi linier dapat pula dilakukan dengan jenis variabel prediktor berupa variabel kategorikal. Untuk dapat melakukannya jenis data variabel kategorikal terlebih dahulu dirubah kedalam factor.
+
+Pada contoh kali ini, kita akan menggunakan dataset \texttt{utds} dari \emph{library} \texttt{edtaR} untuk memodelkan konsentrasi \texttt{uranium} dalam air tanah menggunakan variabel \texttt{TDS} pada berbagai kondisi kesadahan. Berikut adalah sintaks yang digunakan
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(edtaR)}
+\KeywordTok{str}\NormalTok{(utds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'tbl_df', 'tbl' and 'data.frame':    44 obs. of  3 variables:
+##  $ TDS        : num  683 819 304 1151 582 ...
+##  $ Uranium    : num  0.931 1.938 0.292 11.904 1.567 ...
+##  $ Bicarbonate: num  0 0 0 0 0 0 0 0 0 0 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ubah variabe Bicarbonat menjadi factor}
+\NormalTok{utds}\OperatorTok{$}\NormalTok{Bicarbonate <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(utds}\OperatorTok{$}\NormalTok{Bicarbonate,}
+                           \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+                           \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{" <= 50%"}\NormalTok{,}
+                                      \StringTok{" > 50%"}\NormalTok{))}
+
+\KeywordTok{str}\NormalTok{(utds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'tbl_df', 'tbl' and 'data.frame':    44 obs. of  3 variables:
+##  $ TDS        : num  683 819 304 1151 582 ...
+##  $ Uranium    : num  0.931 1.938 0.292 11.904 1.567 ...
+##  $ Bicarbonate: Factor w/ 2 levels " <= 50%"," > 50%": 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Uranium}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data=}\NormalTok{utds)}
+\KeywordTok{anova}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: Uranium
+##             Df Sum Sq Mean Sq F value    Pr(>F)    
+## TDS          1  27.44  27.442  3.3106   0.07614 .  
+## Bicarbonate  1 220.19 220.187 26.5637 6.825e-06 ***
+## Residuals   41 339.85   8.289                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Uranium ~ ., data = utds)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7102 -1.6818 -0.1214  1.1444  7.1177 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       -5.611878   1.876167  -2.991  0.00469 ** 
+## TDS                0.010512   0.002057   5.111 7.84e-06 ***
+## Bicarbonate > 50%  6.938445   1.346227   5.154 6.83e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.879 on 41 degrees of freedom
+## Multiple R-squared:  0.4215, Adjusted R-squared:  0.3933 
+## F-statistic: 14.94 on 2 and 41 DF,  p-value: 1.34e-05
+\end{verbatim}
+
+Plot residual yang ditampilkan pada Gambar \ref{fig:lmcat}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/lmcat-1} 
+
+}
+
+\caption{Analisis residual model dengan melibatkan variabel kategorikal pada dataset utds.}\label{fig:lmcat}
+\end{figure}
+
+\hypertarget{wlr}{%
+\subsection{Regresi linier dengan Pembobotan}\label{wlr}}
+
+Pada pembahasan sebelumnya kita telah menyaksikan bahwa sebagian model yang telah terbentuk tidak memenuhi asumsi varians yang konstan. Untuk mengatasi hal tersebut, kita dapat membentuk regresi dengan memberikan bobot sebesar invers variansnya. Untuk melakukannya diperlukan beberapa tahapan, antara lain:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Membentuk model linier dari variabel dataset: \texttt{fit\ \textless{}-\ lm(y\textasciitilde{}(variabel\ prediktor))}.
+\item
+  Menghitung error absolut (\texttt{abse\ \textless{}-\ abs(resid(fit))}) dan nilai *fitted value dari model (\texttt{yhat\ \textless{}-\ fitted(fit}).
+\item
+  Membentuk kembali model menggunakan data residual absolut (\texttt{efit\ \textless{}-\ lm(abse\textasciitilde{}poly(yhat,2))}) dan menghitung \emph{residual fitted value} (\texttt{shat\ \textless{}-\ fitted(efit)}).
+\item
+  Gunakan nilai bobot \texttt{w\ \textless{}-\ 1/shat\^{}2} untuk membentuk model regresi dengan pembobotan (\texttt{fitw\ \textless{}-lm(y\textasciitilde{}(variabel\ prediktor),\ weights=w)}).
+\end{enumerate}
+
+Kita akan membentuk kembali model menggunakan dataset \texttt{Boston} dengan menggunakan seluruh variabel, namun pada model kali ini kita akan memberikan bobot pada model yang terbentuk. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# langkah 1}
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data=}\NormalTok{Boston)}
+
+\CommentTok{# langkah 2}
+\NormalTok{abse <-}\StringTok{ }\KeywordTok{abs}\NormalTok{(}\KeywordTok{resid}\NormalTok{(fit))}
+\NormalTok{yhat <-}\StringTok{ }\KeywordTok{fitted}\NormalTok{(fit)}
+
+\CommentTok{# langkah 3}
+\NormalTok{efit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(abse}\OperatorTok{~}\KeywordTok{poly}\NormalTok{(yhat,}\DecValTok{2}\NormalTok{))}
+\NormalTok{shat <-}\StringTok{ }\KeywordTok{fitted}\NormalTok{(efit)}
+
+\CommentTok{# langkah 4}
+\NormalTok{fitw <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(medv}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data =}\NormalTok{ Boston, }\DataTypeTok{weights =} \DecValTok{1}\OperatorTok{/}\NormalTok{(shat}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\KeywordTok{anova}\NormalTok{(fitw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: medv
+##            Df Sum Sq Mean Sq  F value    Pr(>F)    
+## crim        1 367.13  367.13 188.5179 < 2.2e-16 ***
+## zn          1 148.25  148.25  76.1235 < 2.2e-16 ***
+## indus       1 124.51  124.51  63.9328 9.264e-15 ***
+## chas        1  41.31   41.31  21.2115 5.244e-06 ***
+## nox         1  38.33   38.33  19.6841 1.128e-05 ***
+## rm          1 363.47  363.47 186.6396 < 2.2e-16 ***
+## age         1  30.37   30.37  15.5945 8.994e-05 ***
+## dis         1 105.70  105.70  54.2755 7.407e-13 ***
+## rad         1   0.00    0.00   0.0003    0.9854    
+## tax         1  30.01   30.01  15.4080 9.897e-05 ***
+## ptratio     1  73.76   73.76  37.8761 1.565e-09 ***
+## black       1  64.38   64.38  33.0607 1.570e-08 ***
+## lstat       1 334.30  334.30 171.6631 < 2.2e-16 ***
+## Residuals 492 958.14    1.95                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(fitw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = medv ~ ., data = Boston, weights = 1/(shat^2))
+## 
+## Weighted Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2522 -0.7946 -0.0367  0.6976  9.2986 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  39.158445   4.474180   8.752  < 2e-16 ***
+## crim         -0.137382   0.032536  -4.222 2.88e-05 ***
+## zn            0.039751   0.013668   2.908 0.003797 ** 
+## indus         0.031072   0.052112   0.596 0.551285    
+## chas          2.886787   0.816335   3.536 0.000444 ***
+## nox         -15.844212   3.221769  -4.918 1.19e-06 ***
+## rm            2.322467   0.414237   5.607 3.44e-08 ***
+## age           0.005865   0.011469   0.511 0.609298    
+## dis          -1.137778   0.177740  -6.401 3.60e-10 ***
+## rad           0.302548   0.058053   5.212 2.76e-07 ***
+## tax          -0.011376   0.003277  -3.471 0.000564 ***
+## ptratio      -0.721781   0.115976  -6.224 1.04e-09 ***
+## black         0.008784   0.002342   3.751 0.000197 ***
+## lstat        -0.621847   0.047462 -13.102  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.396 on 492 degrees of freedom
+## Multiple R-squared:  0.6424, Adjusted R-squared:  0.633 
+## F-statistic:    68 on 13 and 492 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Plot residual ditampilkan pada Gambar \ref{fig:lmw}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Metode_Numerik_files/figure-latex/lmw-1} 
+
+}
+
+\caption{Analisis residual model regresi linier dengan pembobotan pada dataset Boston.}\label{fig:lmw}
+\end{figure}
+
+\hypertarget{logreg}{%
+\section{Regresi Logistik}\label{logreg}}
 
 \bibliography{book.bib,packages.bib}
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-11-30" />
+<meta name="date" content="2019-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="diffeq.html">
-
+<link rel="next" href="datamod.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -322,6 +322,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5" data-path="dataanalysis.html"><a href="dataanalysis.html#uji-rata-rata-satu-dan-dua-sampel"><i class="fa fa-check"></i><b>11.5</b> Uji Rata-Rata Satu dan Dua Sampel</a></li>
 <li class="chapter" data-level="11.6" data-path="dataanalysis.html"><a href="dataanalysis.html#korelasi-antar-variabel"><i class="fa fa-check"></i><b>11.6</b> Korelasi Antar Variabel</a></li>
 <li class="chapter" data-level="11.7" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-varians"><i class="fa fa-check"></i><b>11.7</b> Analisis Varians</a></li>
+<li class="chapter" data-level="11.8" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-komponen-utama"><i class="fa fa-check"></i><b>11.8</b> Analisis Komponen Utama</a></li>
+<li class="chapter" data-level="11.9" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-cluster"><i class="fa fa-check"></i><b>11.9</b> Analisis Cluster</a><ul>
+<li class="chapter" data-level="11.9.1" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif"><i class="fa fa-check"></i><b>11.9.1</b> Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif</a></li>
+<li class="chapter" data-level="11.9.2" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-hierarkis-divisif"><i class="fa fa-check"></i><b>11.9.2</b> Pengelompokan Hierarkis Divisif</a></li>
+<li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
+<li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#regresi-linier"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="datamod.html"><a href="datamod.html#SLR"><i class="fa fa-check"></i><b>12.1.1</b> Regrasi Linier Sederhana (<em>Simple Linear Regression</em>)</a></li>
+<li class="chapter" data-level="12.1.2" data-path="datamod.html"><a href="datamod.html#MLR"><i class="fa fa-check"></i><b>12.1.2</b> Regresi Linier Berganda (<em>Multiple Linier Regression</em>)</a></li>
+<li class="chapter" data-level="12.1.3" data-path="datamod.html"><a href="datamod.html#lminter"><i class="fa fa-check"></i><b>12.1.3</b> Model Linier dengan Interaksi Antar Variabel Prediktor</a></li>
+<li class="chapter" data-level="12.1.4" data-path="datamod.html"><a href="datamod.html#nlinpred"><i class="fa fa-check"></i><b>12.1.4</b> Transformasi Non-linier Pada Prediktor</a></li>
+<li class="chapter" data-level="12.1.5" data-path="datamod.html"><a href="datamod.html#model-linier-dengan-prediktor-kategorikal"><i class="fa fa-check"></i><b>12.1.5</b> Model Linier dengan Prediktor Kategorikal</a></li>
+<li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -567,27 +586,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb767-5" title="5">                                        <span class="kw">sub</span>(<span class="st">&quot; W.&quot;</span>,<span class="st">&quot;.Width&quot;</span>, dni3[[<span class="dv">2</span>]])))),</a>
 <a class="sourceLine" id="cb767-6" title="6">    <span class="dt">Species =</span> <span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">50</span>, <span class="dt">labels =</span> <span class="kw">sub</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;s&quot;</span>, <span class="kw">sub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;v&quot;</span>, dni3[[<span class="dv">3</span>]]))))</a>
 <a class="sourceLine" id="cb767-7" title="7"><span class="co"># parametrik</span></a>
-<a class="sourceLine" id="cb767-8" title="8"><span class="kw">t.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length, </a>
-<a class="sourceLine" id="cb767-9" title="9">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length)</a></code></pre></div>
+<a class="sourceLine" id="cb767-8" title="8"><span class="kw">t.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
+<a class="sourceLine" id="cb767-9" title="9">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
-## data:  iris$Sepal.Length and ii$Sepal.Length
-## t = 0, df = 298, p-value = 1
+## data:  iris$Sepal.Length[iris$Species == &quot;setosa&quot;] and ii$Sepal.Length[iris$Species == &quot;versicolor&quot;]
+## t = -10.521, df = 86.538, p-value &lt; 2.2e-16
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1881698  0.1881698
+##  -1.1057074 -0.7542926
 ## sample estimates:
 ## mean of x mean of y 
-##  5.843333  5.843333</code></pre>
+##     5.006     5.936</code></pre>
 <div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb769-1" title="1"><span class="co"># nonparametrik</span></a>
-<a class="sourceLine" id="cb769-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length, </a>
-<a class="sourceLine" id="cb769-3" title="3">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length)</a></code></pre></div>
+<a class="sourceLine" id="cb769-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
+<a class="sourceLine" id="cb769-3" title="3">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
-## data:  iris$Sepal.Length and ii$Sepal.Length
-## W = 11250, p-value = 1
+## data:  iris$Sepal.Length[iris$Species == &quot;setosa&quot;] and ii$Sepal.Length[iris$Species == &quot;versicolor&quot;]
+## W = 168.5, p-value = 8.346e-14
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Fungsi <code>t.test()</code> akan menghasilkan output berupa nilai t uji, derajat kebebasan (df), nilai p-value, rentang estimasi nilai rata-rata berdasarkan tingkat kepercayaan yang digunakan, serta estimasi nilai rata-rata sampel. Fungsi <code>wilcox.test()</code> akan menghasilkan dua buah output yaitu nilai W dan p-value berdasarkan nilai W yang dihasilkan.</p>
 </div>
@@ -641,6 +660,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb776-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
 <a class="sourceLine" id="cb776-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
 <a class="sourceLine" id="cb776-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in cor.test.default(x = airquality$Ozone, y = airquality$Solar.R, :
+## Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -655,9 +676,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analisis-varians" class="section level2">
 <h2><span class="header-section-number">11.7</span> Analisis Varians</h2>
 <p>Pada <em>sub-Chapter</em> sebelumnya penulis telah menjelaskan uji rata-rata untuk satu sampel dan dua sampel. Pada kenyataannya dalam sebuah percobaan laboratorium, kita tidak hanya membandingkan dua buah grup sampel saja, namun beberapa grup dan sejumlah faktor. Untuk menganalisa apakah variasi perlakuan pada kelompok sampel akan memberikan hasil yang berbeda-beda pada rata-rata tiap grup atau tidak diperlukan analisis varians untuk menganilisa variasi perlakuan atau faktor pada masing-masing grup. Analisis varians dapat dilakukan baik untuk satu faktor maupun dua faktor atau lebih. Untuk melakukannya pada <code>R</code>, kita dapat menggunakan fungsi <code>aov()</code> untuk analisis varians dengan metode parametrik dan <code>kruskal.test()</code> untuk analisis varians dengan menggunakan metode nonparametrik. Berikut adalah format kedua fungsi tersebut:</p>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb778-1" title="1"><span class="kw">aov</span>(formula, <span class="dt">data =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb778-2" title="2"></a>
-<a class="sourceLine" id="cb778-3" title="3"><span class="kw">kruskal.test</span>(formula, data)</a></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1"><span class="kw">aov</span>(formula, <span class="dt">data =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb779-2" title="2"></a>
+<a class="sourceLine" id="cb779-3" title="3"><span class="kw">kruskal.test</span>(formula, data)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -666,21 +687,236 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Berikut adalah contoh penerapan kedua fungsi tersebut untuk melihat apakah terdapat beda pada rata-rata konsentrasi bulanan ozon menggunakan dataset <code>airquality</code>:</p>
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(Ozone<span class="op">~</span>Month, airquality))</a></code></pre></div>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb780-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(Ozone<span class="op">~</span>Month, airquality))</a></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## Month         1   3387    3387   3.171 0.0776 .
 ## Residuals   114 121756    1068                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 37 observations deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" title="1"><span class="kw">kruskal.test</span>(Ozone<span class="op">~</span>Month, airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb782-1" title="1"><span class="kw">kruskal.test</span>(Ozone<span class="op">~</span>Month, airquality)</a></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  Ozone by Month
 ## Kruskal-Wallis chi-squared = 29.267, df = 4, p-value = 6.901e-06</code></pre>
 <p>Berdasarkan hasil yang diperoleh diketahui bahwa rata-rata konsentrasi bulanan ozon tidak sama tiap bulannya atau minimal terdapat satu bulan dimana konsentrasi ozonnya berbeda secara signifikan dengan konsentrasi ozon pada bulan-bulan lainnya. Untuk lebih memahami terkait analisis varians pada <code>R</code> dan cara membaca output kedua fungsi tersebut, pembaca dapat membaca tulisan pada halaman situs <a href="http://www.sthda.com/english/wiki/comparing-means-in-r">sthda</a>.</p>
+</div>
+<div id="analisis-komponen-utama" class="section level2">
+<h2><span class="header-section-number">11.8</span> Analisis Komponen Utama</h2>
+<p>Analisis komponen utama menggunakan transformasi ortogonal (umumnya nilai singular atau dekomposisi nilai eigen) untuk mengubah seperangkat variabel pengamatan yang mungkin berkorelasi menjadi seperangkat variabel tidak berkorelasi (ortogonal) yang disebut komponen utama. Transformasi didefinisikan sedemikian rupa sehingga komponen utama pertama memiliki varians setinggi mungkin (menyumbang variabilitas pada data sebanyak mungkin), dan masing-masing komponen berikutnya pada gilirannya memiliki varians tertinggi yang mungkin di bawah kendala, dimana komponen tersebut menjadi ortogonal ke komponen sebelumnya.</p>
+<p>Dalam R, analisis komponen utama umumnya dilakukan dengan fungsi <code>prcomp ()</code>. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1"><span class="kw">prcomp</span>(x, <span class="dt">retx =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale. =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb784-2" title="2">       <span class="dt">tol =</span> <span class="ot">NULL</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x</code> : data frame atau matriks kompleks numerik.</li>
+<li><code>retx</code> : nilai logik yang mengindikasikan apakah variabel hasil rotasi perlu ditampilkan.</li>
+<li><code>center</code> : nilai logik yang mengidikasikan apakah variabel perlu dilakukan pergeseran sehingga nilai rata-ratanya berpusat pada nilai nol.</li>
+<li><code>scale</code> : nilai logik yang mengidikasikan apakah variabel perlu dilakukan penskalaan sebelum dilakukan analisis.</li>
+<li><code>tol</code> : nilai toleransi yang menunjukkan batas nilai bagi komponen yang akan dipertahankan. Komponen yang dihilangkan jika simpangan bakunya kurang dari atau sama dengan <code>tol x simpangan baku pc1</code>.</li>
+</ul>
+</blockquote>
+<p>Untuk memahami penerapan fungsi tersebut, kita akan melakukan simulasi menggunakan dataset <code>iris</code>. Output yang dihasilkan di bawah ini menunjukkan bagaimana empat variabel numerik ditransformasikan menjadi empat komponen utama. Penskalaan data mungkin tidak diperlukan dalam kasus ini, karena keempat pengukuran memiliki unit yang sama dan besarnya sama. Namun, penskalaan umumnya merupakan praktik yang baik.</p>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb785-1" title="1">iris_use &lt;-<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>] <span class="co"># menghilangkan variabel non-numerik</span></a>
+<a class="sourceLine" id="cb785-2" title="2">iris_pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris_use, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb785-3" title="3">iris_pca</a></code></pre></div>
+<pre><code>## Standard deviations (1, .., p=4):
+## [1] 1.7083611 0.9560494 0.3830886 0.1439265
+## 
+## Rotation (n x k) = (4 x 4):
+##                     PC1         PC2        PC3        PC4
+## Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863
+## Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
+## Petal.Length  0.5804131 -0.02449161 -0.1421264 -0.8014492
+## Petal.Width   0.5648565 -0.06694199 -0.6342727  0.5235971</code></pre>
+<p>Fungsi <code>summary</code> memberikan proporsi varians total yang dikaitkan dengan masing-masing komponen utama, dan proporsi kumulatif ketika masing-masing komponen ditambahkan. Kita melihat bahwa dua komponen pertama berperan lebih dari 95% dari total varians.</p>
+<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb787-1" title="1"><span class="kw">summary</span>(iris_pca)</a></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4
+## Standard deviation     1.7084 0.9560 0.38309 0.14393
+## Proportion of Variance 0.7296 0.2285 0.03669 0.00518
+## Cumulative Proportion  0.7296 0.9581 0.99482 1.00000</code></pre>
+<p>Histogram (hasil plot dalam analisis <code>prcomp</code>) secara grafis merekapitulasi proporsi varian yang disumbangkan oleh masing-masing komponen utama, sementara biplot menunjukkan bagaimana variabel awal diproyeksikan pada dua komponen utama pertama (Gambar <a href="dataanalysis.html#fig:prcomp">11.1</a>). Ini juga menunjukkan koordinat dari masing-masing sampel dalam ruang (PC1, PC2). Satu spesies iris (yang berubahmenjadi setosa dari analisis kluster di bawah ini) secara jelas dipisahkan dari dua spesies lain dalam ruang koordinat ini.</p>
+<div class="figure" style="text-align: center"><span id="fig:prcomp"></span>
+<img src="Metode_Numerik_files/figure-html/prcomp-1.png" alt="Analisis komponen utama data iris." width="80%" />
+<p class="caption">
+Gambar 11.1: Analisis komponen utama data iris.
+</p>
+</div>
+<p>Untuk informasi lebih lanjut terkait metode analisis komponen utama, pembaca dapat membacanya pada laman <a href="https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/">Little Book of R for Multivariate Analysis</a>.</p>
+</div>
+<div id="analisis-cluster" class="section level2">
+<h2><span class="header-section-number">11.9</span> Analisis Cluster</h2>
+<p>Analisis cluster mencoba untuk mengurutkan satu set objek ke dalam kelompok (cluster) sedemikian rupa sehingga objek dalam cluster yang sama lebih mirip satu sama lain dibandingkan objek pada cluster lainnya. Ini digunakan untuk analisis eksplorasi melalui proses penambangan data (<em>data mining</em>) di banyak bidang, seperti bioinformatika, biologi evolusi, analisis gambar, lingkungan, dan pembelajaran mesin.</p>
+<p>Menurut Wikipedia: “Analisis Cluster itu sendiri bukanlah salah satu algoritma spesifik, tetapi tugas umum yang harus dipecahkan. Ini dapat dicapai dengan berbagai algoritma yang berbeda secara signifikan dalam pengertian mereka tentang apa yang merupakan sebuah cluster dan bagaimana cara menemukannya secara efisien. Gagasan populer mengenai cluster termasuk kelompok dengan jarak rendah di antara anggota cluster, area padat ruang data, interval atau distribusi statistik tertentu. Algoritma pengelompokan dan pengaturan parameter yang sesuai (termasuk nilai-nilai seperti fungsi jarak yang akan digunakan, ambang kepadatan atau jumlah cluster yang diharapkan) tergantung pada dataset individual dan tujuan penggunaan hasil. Analisis cluster seperti itu bukan tugas otomatis, tetapi proses berulang penemuan pengetahuan yang melibatkan <em>trial and error</em>. Seringkali diperlukan untuk memodifikasi preprocessing dan parameter sampai hasilnya mencapai properti yang diinginkan.</p>
+<div id="analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif" class="section level3">
+<h3><span class="header-section-number">11.9.1</span> Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif</h3>
+<p>Hierarchical clustering membangun hierarki cluster, di mana metrik hierarki adalah suatu ukuran ketidaksamaan antar cluster. Menurut halaman bantuan untuk <code>hclust()</code>, metode pengelompokan hierarkis aglomeratif, “Fungsi ini melakukan analisis hierarki cluster menggunakan seperangkat ketidaksamaan untuk n objek yang dikelompokkan. Awalnya, masing-masing objek ditugaskan ke cluster sendiri dan kemudian algoritma melanjutkan secara iteratif, pada setiap tahap bergabung dengan dua cluster yang paling mirip, terus sampai hanya ada satu cluster. Pada setiap tahap, jarak antar kluster dihitung ulang dengan formula pembaruan ketidaksamaan Lance Williams sesuai dengan metode pengelompokan tertentu yang digunakan.”Ada tujuh metode aglomerasi yang tersedia, dengan lengkap — yang mencari kluster kompak, bola — sebagai default. Format umum fungsi <code>hclust()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb789-1" title="1"><span class="kw">hclust</span>(d, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">members =</span> <span class="ot">NULL</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>d</code> : struktur ketidaksamaan yang dihasilkan dengan fungsi <code>dist</code>.</li>
+<li><code>method</code> : metode alglomerasi yang digunakan. Metode yang dapat digunakan antara lain: “ward.D”, “ward.D2”, “single”, “complete”, “average” (= UPGMA), “mcquitty” (= WPGMA), “median” (= WPGMC) atau “centroid” (= UPGMC)</li>
+<li><code>members</code>: NULL atau vektor dengan ukuran sama dengan <code>d</code>. Untuk info lebih lanjut jalankan sintaks <code>?hclust</code>.</li>
+</ul>
+</blockquote>
+<p>Untuk memahami penerapan fungsi <code>hclust()</code>, kita akan kembali menggunakan data <code>iris_use</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" title="1"><span class="co"># menghitung jarak antar observasi</span></a>
+<a class="sourceLine" id="cb790-2" title="2">iris_hclust &lt;-<span class="st"> </span><span class="kw">dist</span>(iris_use)</a>
+<a class="sourceLine" id="cb790-3" title="3"></a>
+<a class="sourceLine" id="cb790-4" title="4"><span class="co"># Pembentukan Cluster</span></a>
+<a class="sourceLine" id="cb790-5" title="5">hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(iris_hclust)</a>
+<a class="sourceLine" id="cb790-6" title="6">hc</a></code></pre></div>
+<pre><code>## 
+## Call:
+## hclust(d = iris_hclust)
+## 
+## Cluster method   : complete 
+## Distance         : euclidean 
+## Number of objects: 150</code></pre>
+<p>Visualisasi cluster dibentuk melalui dendogram yang ditampilkan pada Gambar <a href="dataanalysis.html#fig:hclust">11.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:hclust"></span>
+<img src="Metode_Numerik_files/figure-html/hclust-1.png" alt="Analisis pengelompokan hierarkis alglomeratif data iris." width="80%" />
+<p class="caption">
+Gambar 11.2: Analisis pengelompokan hierarkis alglomeratif data iris.
+</p>
+</div>
+</div>
+<div id="pengelompokan-hierarkis-divisif" class="section level3">
+<h3><span class="header-section-number">11.9.2</span> Pengelompokan Hierarkis Divisif</h3>
+<p>Menurut halaman bantuan <code>diana()</code> (<em>DIvisive ANAlysis Clustering</em>) dalam <em>library</em> <code>cluster</code>, “Algoritma diana membangun hierarki pengelompokan, dimulai dengan satu kluster besar yang berisi semua n pengamatan. Cluster dibagi sampai masing-masing cluster hanya berisi satu pengamatan. Pada setiap tahap, cluster dengan diameter terbesar dipilih. Format fungsi <code>diana()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb792-1" title="1"><span class="kw">diana</span>(x, <span class="dt">metric =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">stand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x</code> : struktur ketidaksamaan yang dihasilkan dengan fungsi <code>dist</code> atau data frame.</li>
+<li><code>metric</code> : karakter string yang menyatakan metode pengukuran jarak yang digunakan. Metode pengukuran jarak dapat berupa “euclidean” dan “manhattan”.</li>
+<li><code>stand</code>: vektor logik yang menyatakan apakah data akan dilakukan standardisasi terlebih dahulu sebelum dilakukan analisis.</li>
+</ul>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:diana"></span>
+<img src="Metode_Numerik_files/figure-html/diana-1.png" alt="Analisis pengelompokan divisif data iris." width="80%" />
+<p class="caption">
+Gambar 11.3: Analisis pengelompokan divisif data iris.
+</p>
+</div>
+</div>
+<div id="pengelompokan-menggunakan-algoritma-k-mean" class="section level3">
+<h3><span class="header-section-number">11.9.3</span> Pengelompokan Menggunakan Algoritma K-Mean</h3>
+<p>k-means melakukan pengelompokan n pengamatan ke dalam k cluster di mana setiap pengamatan akan tergabung dengan pusat cluster terdekat. Pengguna harus menentukan jumlah pusat (cluster) yang diinginkan sebagai output. Untuk melakukan pengelompokan dengan algoritma k-means pada <code>R</code> dapat menggunakan fungsi <code>kmeans()</code>. Format fungsi tersebut secara umum adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb793-1" title="1"><span class="kw">kmeans</span>(x, centers, <span class="dt">iter.max =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb793-2" title="2">       <span class="dt">algorithm =</span> <span class="kw">c</span>(<span class="st">&quot;Hartigan-Wong&quot;</span>, <span class="st">&quot;Lloyd&quot;</span>, <span class="st">&quot;Forgy&quot;</span>,</a>
+<a class="sourceLine" id="cb793-3" title="3">                     <span class="st">&quot;MacQueen&quot;</span>))</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x</code> : data frame.</li>
+<li><code>centers</code> : jumlah cluster yang ingin di buat.</li>
+<li><code>iter.max</code>: jumlah iterasi maksimum yang diijinkan.</li>
+<li><code>algorithm</code> : algoritma pengelompokan yang digunakan. Untuk informasi lebih lanjut jalankan sintaks <code>?kmeans</code>.</li>
+</ul>
+</blockquote>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb794-1" title="1">iris_kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris_use, <span class="dt">centers =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb794-2" title="2">iris_kmeans</a></code></pre></div>
+<pre><code>## K-means clustering with 3 clusters of sizes 33, 96, 21
+## 
+## Cluster means:
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1     5.175758    3.624242     1.472727   0.2727273
+## 2     6.314583    2.895833     4.973958   1.7031250
+## 3     4.738095    2.904762     1.790476   0.3523810
+## 
+## Clustering vector:
+##   [1] 1 3 3 3 1 1 1 1 3 3 1 1 3 3 1 1 1 1 1 1 1 1 1 1 3 3 1 1 1 3 3 1 1 1 3
+##  [36] 1 1 1 3 1 1 3 3 1 1 3 1 3 1 1 2 2 2 2 2 2 2 3 2 2 3 2 2 2 2 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 3 2 2 2 2 2 2
+## [106] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 2 2 2
+## 
+## Within cluster sum of squares by cluster:
+## [1]   6.432121 118.651875  17.669524
+##  (between_SS / total_SS =  79.0 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb796-1" title="1"><span class="co"># menghitung lokasi pusat cluster</span></a>
+<a class="sourceLine" id="cb796-2" title="2">ccent =<span class="st"> </span><span class="cf">function</span>(cl) {</a>
+<a class="sourceLine" id="cb796-3" title="3"> f =<span class="st"> </span><span class="cf">function</span>(i) <span class="kw">colMeans</span>(iris_use[cl<span class="op">==</span>i,])</a>
+<a class="sourceLine" id="cb796-4" title="4"> x =<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(cl)), f)</a>
+<a class="sourceLine" id="cb796-5" title="5"> <span class="kw">colnames</span>(x) =<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(cl))</a>
+<a class="sourceLine" id="cb796-6" title="6"> <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb796-7" title="7">}</a>
+<a class="sourceLine" id="cb796-8" title="8"></a>
+<a class="sourceLine" id="cb796-9" title="9"><span class="kw">ccent</span>(iris_kmeans<span class="op">$</span>cluster)</a></code></pre></div>
+<pre><code>##                      1        2        3
+## Sepal.Length 5.1757576 6.314583 4.738095
+## Sepal.Width  3.6242424 2.895833 2.904762
+## Petal.Length 1.4727273 4.973958 1.790476
+## Petal.Width  0.2727273 1.703125 0.352381</code></pre>
+</div>
+<div id="pengelompokan-menggunakan-algoritma-pam" class="section level3">
+<h3><span class="header-section-number">11.9.4</span> Pengelompokan Menggunakan Algoritma PAM</h3>
+<p>pam mem-partisi data menjadi k cluster di sekitar medoid. Medoid dari set data yang terbatas merupakan titik data dengan nilai ketidaksamaan rata-rata untuk semua titik data adalah minimum. Hal tersebut menujukkan bahwa medoid merupakan pusat dari set cluster. Menurut halaman bantuan <code>pam()</code>, pendekatan k-medoid lebih kuat daripada pendekatan k-means “karena meminimalkan jumlah ketidaksamaan daripada jumlah jarak euclidean kuadrat”. Format umum fungsi <code>pam()</code> adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb798-1" title="1"><span class="kw">pam</span>(x, k, <span class="dt">diss =</span> <span class="kw">inherits</span>(x, <span class="st">&quot;dist&quot;</span>),</a>
+<a class="sourceLine" id="cb798-2" title="2">    <span class="dt">metric =</span> <span class="kw">c</span>(<span class="st">&quot;euclidean&quot;</span>, <span class="st">&quot;manhattan&quot;</span>))</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x</code> : data frame.</li>
+<li><code>k</code> : jumlah cluster yang ingin di buat.</li>
+<li><code>method</code>: metode perhitungan jarak yang digunakan. Untuk informasi lebih lanjut jalankan sintaks <code>?pam</code>.</li>
+</ul>
+</blockquote>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb799-1" title="1"><span class="kw">library</span>(cluster)</a>
+<a class="sourceLine" id="cb799-2" title="2">iris_pam &lt;-<span class="st"> </span><span class="kw">pam</span>(iris_use, <span class="dt">k=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb799-3" title="3">iris_pam</a></code></pre></div>
+<pre><code>## Medoids:
+##       ID Sepal.Length Sepal.Width Petal.Length Petal.Width
+## [1,]   8          5.0         3.4          1.5         0.2
+## [2,]  79          6.0         2.9          4.5         1.5
+## [3,] 113          6.8         3.0          5.5         2.1
+## Clustering vector:
+##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [36] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3
+## [106] 3 2 3 3 3 3 3 3 2 2 3 3 3 3 2 3 2 3 2 3 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3
+## [141] 3 3 2 3 3 3 2 3 3 2
+## Objective function:
+##     build      swap 
+## 0.6709391 0.6542077 
+## 
+## Available components:
+##  [1] &quot;medoids&quot;    &quot;id.med&quot;     &quot;clustering&quot; &quot;objective&quot;  &quot;isolation&quot; 
+##  [6] &quot;clusinfo&quot;   &quot;silinfo&quot;    &quot;diss&quot;       &quot;call&quot;       &quot;data&quot;</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:pam"></span>
+<img src="Metode_Numerik_files/figure-html/pam-1.png" alt="Analisis pengelompokan metode pam data iris." width="80%" />
+<p class="caption">
+Gambar 11.4: Analisis pengelompokan metode pam data iris.
+</p>
+</div>
+</div>
+</div>
+<div id="referensi-9" class="section level2">
+<h2><span class="header-section-number">11.10</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press.</li>
+<li>Coqhlan, A. Tanpa Tahun. <strong>Using R for Multivariate Analysis</strong>. <a href="https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html#principal-component-analysis" class="uri">https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html#principal-component-analysis</a>.</li>
+<li>Primartha, R. 2018. <strong>Belajar Machine Learning Teori dan Praktik</strong>. Penerbit Informatika : Bandung</li>
+<li>Rosadi,D. 2016. <strong>Analisis Statistika dengan R</strong>. Gadjah Mada University Press: Yogyakarta.</li>
+<li>Rosidi, M. 2019. <strong>Uji Hipotesis</strong>. <a href="https://environmental-data-modeling.netlify.com/tutorial/11_uji_hipotesis/" class="uri">https://environmental-data-modeling.netlify.com/tutorial/11_uji_hipotesis/</a>.</li>
+<li>STHDA. Tanpa Tahun. <strong>Comparing Means in R</strong>. <a href="http://www.sthda.com/english/wiki/comparing-means-in-r" class="uri">http://www.sthda.com/english/wiki/comparing-means-in-r</a>.</li>
+</ol>
 
+<style>
+body{
+text-align: justify}
+</style>
 </div>
 </div>
             </section>
@@ -688,8 +924,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="diffeq.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="diffeq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datamod.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

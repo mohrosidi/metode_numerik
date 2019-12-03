@@ -163,3 +163,19 @@
 \contentsline {section}{\numberline {11.5}Uji Rata-Rata Satu dan Dua Sampel}{279}{section.11.5}% 
 \contentsline {section}{\numberline {11.6}Korelasi Antar Variabel}{281}{section.11.6}% 
 \contentsline {section}{\numberline {11.7}Analisis Varians}{283}{section.11.7}% 
+\contentsline {section}{\numberline {11.8}Analisis Komponen Utama}{285}{section.11.8}% 
+\contentsline {section}{\numberline {11.9}Analisis Cluster}{286}{section.11.9}% 
+\contentsline {subsection}{\numberline {11.9.1}Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif}{287}{subsection.11.9.1}% 
+\contentsline {subsection}{\numberline {11.9.2}Pengelompokan Hierarkis Divisif}{289}{subsection.11.9.2}% 
+\contentsline {subsection}{\numberline {11.9.3}Pengelompokan Menggunakan Algoritma K-Mean}{290}{subsection.11.9.3}% 
+\contentsline {subsection}{\numberline {11.9.4}Pengelompokan Menggunakan Algoritma PAM}{291}{subsection.11.9.4}% 
+\contentsline {section}{\numberline {11.10}Referensi}{292}{section.11.10}% 
+\contentsline {chapter}{\numberline {12}Pemodelan Data}{295}{chapter.12}% 
+\contentsline {section}{\numberline {12.1}Regresi Linier}{295}{section.12.1}% 
+\contentsline {subsection}{\numberline {12.1.1}Regrasi Linier Sederhana (\emph {Simple Linear Regression})}{296}{subsection.12.1.1}% 
+\contentsline {subsection}{\numberline {12.1.2}Regresi Linier Berganda (\emph {Multiple Linier Regression})}{299}{subsection.12.1.2}% 
+\contentsline {subsection}{\numberline {12.1.3}Model Linier dengan Interaksi Antar Variabel Prediktor}{305}{subsection.12.1.3}% 
+\contentsline {subsection}{\numberline {12.1.4}Transformasi Non-linier Pada Prediktor}{307}{subsection.12.1.4}% 
+\contentsline {subsection}{\numberline {12.1.5}Model Linier dengan Prediktor Kategorikal}{311}{subsection.12.1.5}% 
+\contentsline {subsection}{\numberline {12.1.6}Regresi linier dengan Pembobotan}{312}{subsection.12.1.6}% 
+\contentsline {section}{\numberline {12.2}Regresi Logistik}{315}{section.12.2}% 

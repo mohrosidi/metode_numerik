@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Pemodelan Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Pemodelan Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="github-repo" content="mohrosidi/metode_numerik" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Pemodelan Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
+  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  
+
+<meta name="author" content="Mohammad Rosidi" />
+
+
+<meta name="date" content="2019-12-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dataanalysis.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Metode Numerik Menggunakan R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#prosconsR"><i class="fa fa-check"></i><b>1.3</b> Kelebihan dan Kekurangan R</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#installR"><i class="fa fa-check"></i><b>1.5</b> Menginstall R dan RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#wdR"><i class="fa fa-check"></i><b>1.6</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
+<li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
+<li class="chapter" data-level="1.8.3" data-path="intro.html"><a href="intro.html#othershelp"><i class="fa fa-check"></i><b>1.8.3</b> Fasilitas Help Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#referensi"><i class="fa fa-check"></i><b>1.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="calculation.html"><a href="calculation.html"><i class="fa fa-check"></i><b>2</b> Kalkulasi Menggunakan R</a><ul>
+<li class="chapter" data-level="2.1" data-path="calculation.html"><a href="calculation.html#aritmetikoperator"><i class="fa fa-check"></i><b>2.1</b> Operator Aritmatik</a></li>
+<li class="chapter" data-level="2.2" data-path="calculation.html"><a href="calculation.html#aritmaticfunction"><i class="fa fa-check"></i><b>2.2</b> Fungsi Aritmetik</a></li>
+<li class="chapter" data-level="2.3" data-path="calculation.html"><a href="calculation.html#relationoperators"><i class="fa fa-check"></i><b>2.3</b> Operator Relasi</a></li>
+<li class="chapter" data-level="2.4" data-path="calculation.html"><a href="calculation.html#logicoperators"><i class="fa fa-check"></i><b>2.4</b> Operator Logika</a></li>
+<li class="chapter" data-level="2.5" data-path="calculation.html"><a href="calculation.html#assigningvar"><i class="fa fa-check"></i><b>2.5</b> Memasukkan Nilai Kedalam Variabel</a></li>
+<li class="chapter" data-level="2.6" data-path="calculation.html"><a href="calculation.html#typedata"><i class="fa fa-check"></i><b>2.6</b> Tipe dan Struktur Data</a></li>
+<li class="chapter" data-level="2.7" data-path="calculation.html"><a href="calculation.html#vector"><i class="fa fa-check"></i><b>2.7</b> Vektor</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="calculation.html"><a href="calculation.html#createvector"><i class="fa fa-check"></i><b>2.7.1</b> Membuat vektor</a></li>
+<li class="chapter" data-level="2.7.2" data-path="calculation.html"><a href="calculation.html#missingvalue"><i class="fa fa-check"></i><b>2.7.2</b> Missing Values</a></li>
+<li class="chapter" data-level="2.7.3" data-path="calculation.html"><a href="calculation.html#subsetvector"><i class="fa fa-check"></i><b>2.7.3</b> Subset Pada Vektor</a></li>
+<li class="chapter" data-level="2.7.4" data-path="calculation.html"><a href="calculation.html#vectorops"><i class="fa fa-check"></i><b>2.7.4</b> Operasi Matematis Menggunakan Vektor</a></li>
+<li class="chapter" data-level="2.7.5" data-path="calculation.html"><a href="calculation.html#seq"><i class="fa fa-check"></i><b>2.7.5</b> Membuat Deret Angka</a></li>
+<li class="chapter" data-level="2.7.6" data-path="calculation.html"><a href="calculation.html#repseq"><i class="fa fa-check"></i><b>2.7.6</b> Nilai Berulang</a></li>
+<li class="chapter" data-level="2.7.7" data-path="calculation.html"><a href="calculation.html#randnumb"><i class="fa fa-check"></i><b>2.7.7</b> Deret Bilangan Acak</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="calculation.html"><a href="calculation.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="calculation.html"><a href="calculation.html#creatematrix"><i class="fa fa-check"></i><b>2.8.1</b> Membuat matriks</a></li>
+<li class="chapter" data-level="2.8.2" data-path="calculation.html"><a href="calculation.html#subsetmatrix"><i class="fa fa-check"></i><b>2.8.2</b> Subset Pada Matriks</a></li>
+<li class="chapter" data-level="2.8.3" data-path="calculation.html"><a href="calculation.html#matrixcalculation"><i class="fa fa-check"></i><b>2.8.3</b> Perhitungan Menggunakan Matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="calculation.html"><a href="calculation.html#referensi-1"><i class="fa fa-check"></i><b>2.9</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataviz.html"><a href="dataviz.html"><i class="fa fa-check"></i><b>3</b> Visualisasi Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="dataviz.html"><a href="dataviz.html#plotfunc"><i class="fa fa-check"></i><b>3.1</b> Visualisasi Data Menggunakan Fungsi plot()</a></li>
+<li class="chapter" data-level="3.2" data-path="dataviz.html"><a href="dataviz.html#otherviz"><i class="fa fa-check"></i><b>3.2</b> Visualisasi Lainnya</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dataviz.html"><a href="dataviz.html#barplot"><i class="fa fa-check"></i><b>3.2.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dataviz.html"><a href="dataviz.html#histogram"><i class="fa fa-check"></i><b>3.2.2</b> Histogram dan Density Plot</a></li>
+<li class="chapter" data-level="3.2.3" data-path="dataviz.html"><a href="dataviz.html#boxplot"><i class="fa fa-check"></i><b>3.2.3</b> Box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataviz.html"><a href="dataviz.html#customise"><i class="fa fa-check"></i><b>3.3</b> Kustomisasi Parameter Grafik</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataviz.html"><a href="dataviz.html#addtitle"><i class="fa fa-check"></i><b>3.3.1</b> Menambahkan Judul</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataviz.html"><a href="dataviz.html#addlegend"><i class="fa fa-check"></i><b>3.3.2</b> Menambahkan Legend</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataviz.html"><a href="dataviz.html#addtext"><i class="fa fa-check"></i><b>3.3.3</b> Menambahkan Teks Pada Grafik</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataviz.html"><a href="dataviz.html#addlines"><i class="fa fa-check"></i><b>3.3.4</b> Menambahkan Garis Pada Plot</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataviz.html"><a href="dataviz.html#changepoint"><i class="fa fa-check"></i><b>3.3.5</b> Merubah Simbol plot dan Jenis Garis</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dataviz.html"><a href="dataviz.html#mengatur-axis-plot"><i class="fa fa-check"></i><b>3.3.6</b> Mengatur Axis Plot</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dataviz.html"><a href="dataviz.html#changecolor"><i class="fa fa-check"></i><b>3.3.7</b> Mengatur Warna</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataviz.html"><a href="dataviz.html#plot-dua-dan-tiga-dimensi"><i class="fa fa-check"></i><b>3.4</b> Plot Dua dan Tiga Dimensi</a></li>
+<li class="chapter" data-level="3.5" data-path="dataviz.html"><a href="dataviz.html#referensi-2"><i class="fa fa-check"></i><b>3.5</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programmingandfunction.html"><a href="programmingandfunction.html"><i class="fa fa-check"></i><b>4</b> Pemrograman dan Fungsi</a><ul>
+<li class="chapter" data-level="4.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loop"><i class="fa fa-check"></i><b>4.1</b> Loop</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#forloop"><i class="fa fa-check"></i><b>4.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="4.1.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#whileloop"><i class="fa fa-check"></i><b>4.1.2</b> While Loop</a></li>
+<li class="chapter" data-level="4.1.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#repeatloop"><i class="fa fa-check"></i><b>4.1.3</b> Repeat Loop</a></li>
+<li class="chapter" data-level="4.1.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#break"><i class="fa fa-check"></i><b>4.1.4</b> Break</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#loopapply"><i class="fa fa-check"></i><b>4.2</b> Loop Menggunakan Apply Family Function</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#apply"><i class="fa fa-check"></i><b>4.2.1</b> Apply</a></li>
+<li class="chapter" data-level="4.2.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#lapply"><i class="fa fa-check"></i><b>4.2.2</b> lapply</a></li>
+<li class="chapter" data-level="4.2.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#sapply"><i class="fa fa-check"></i><b>4.2.3</b> sapply</a></li>
+<li class="chapter" data-level="4.2.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#vapply"><i class="fa fa-check"></i><b>4.2.4</b> vapply</a></li>
+<li class="chapter" data-level="4.2.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#tapply"><i class="fa fa-check"></i><b>4.2.5</b> tapply</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#dm"><i class="fa fa-check"></i><b>4.3</b> Decision Making</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifstatement"><i class="fa fa-check"></i><b>4.3.1</b> if statement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="programmingandfunction.html"><a href="programmingandfunction.html#ifelsestatement"><i class="fa fa-check"></i><b>4.3.2</b> if else statement</a></li>
+<li class="chapter" data-level="4.3.3" data-path="programmingandfunction.html"><a href="programmingandfunction.html#switchstatement"><i class="fa fa-check"></i><b>4.3.3</b> switch statement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="programmingandfunction.html"><a href="programmingandfunction.html#fungsi"><i class="fa fa-check"></i><b>4.4</b> Fungsi</a></li>
+<li class="chapter" data-level="4.5" data-path="programmingandfunction.html"><a href="programmingandfunction.html#debugging"><i class="fa fa-check"></i><b>4.5</b> Debugging</a></li>
+<li class="chapter" data-level="4.6" data-path="programmingandfunction.html"><a href="programmingandfunction.html#referensi-3"><i class="fa fa-check"></i><b>4.6</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="numericmethod.html"><a href="numericmethod.html"><i class="fa fa-check"></i><b>5</b> Pengantar Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericmethod.html"><a href="numericmethod.html#numericmethodintro"><i class="fa fa-check"></i><b>5.1</b> Mengenal Metode Numerik</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="numericmethod.html"><a href="numericmethod.html#diffanalitycnumeric"><i class="fa fa-check"></i><b>5.1.1</b> Perbedaan Antara Metode Numerik dan Analitik</a></li>
+<li class="chapter" data-level="5.1.2" data-path="numericmethod.html"><a href="numericmethod.html#tahapan-penyelesaian-menggunakan-metode-numerik"><i class="fa fa-check"></i><b>5.1.2</b> Tahapan Penyelesaian Menggunakan Metode Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="numericmethod.html"><a href="numericmethod.html#acuracy"><i class="fa fa-check"></i><b>5.2</b> Akurasi dan Presisi</a></li>
+<li class="chapter" data-level="5.3" data-path="numericmethod.html"><a href="numericmethod.html#numerror"><i class="fa fa-check"></i><b>5.3</b> Error Numerik</a></li>
+<li class="chapter" data-level="5.4" data-path="numericmethod.html"><a href="numericmethod.html#referensi-4"><i class="fa fa-check"></i><b>5.4</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linearaljabar.html"><a href="linearaljabar.html"><i class="fa fa-check"></i><b>6</b> Aljabar Linier</a><ul>
+<li class="chapter" data-level="6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#vecmat"><i class="fa fa-check"></i><b>6.1</b> Vektor dan matriks</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="linearaljabar.html"><a href="linearaljabar.html#operasivektor"><i class="fa fa-check"></i><b>6.1.1</b> Operasi Vektor</a></li>
+<li class="chapter" data-level="6.1.2" data-path="linearaljabar.html"><a href="linearaljabar.html#operasimatrik"><i class="fa fa-check"></i><b>6.1.2</b> Operasi matriks</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#rowoperation"><i class="fa fa-check"></i><b>6.2</b> Operasi Baris Elementer</a></li>
+<li class="chapter" data-level="6.3" data-path="linearaljabar.html"><a href="linearaljabar.html#gausselimination"><i class="fa fa-check"></i><b>6.3</b> Eliminasi Gauss</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linearaljabar.html"><a href="linearaljabar.html#rowechelonform"><i class="fa fa-check"></i><b>6.3.1</b> <em>Row Echelon Form</em></a></li>
+<li class="chapter" data-level="6.3.2" data-path="linearaljabar.html"><a href="linearaljabar.html#redrowechelonform"><i class="fa fa-check"></i><b>6.3.2</b> Eliminasi Gauss-Jordan</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linearaljabar.html"><a href="linearaljabar.html#matriktridiagonal"><i class="fa fa-check"></i><b>6.3.3</b> Matrik Tridiagonal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linearaljabar.html"><a href="linearaljabar.html#solvefunc"><i class="fa fa-check"></i><b>6.3.4</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi <code>solve()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="linearaljabar.html"><a href="linearaljabar.html#solvetridiagfunct"><i class="fa fa-check"></i><b>6.3.5</b> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisimatriks"><i class="fa fa-check"></i><b>6.4</b> Dekomposisi Matriks</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="linearaljabar.html"><a href="linearaljabar.html#ludecomp"><i class="fa fa-check"></i><b>6.4.1</b> Dekomposisi LU</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linearaljabar.html"><a href="linearaljabar.html#dekomposisi-cholesky"><i class="fa fa-check"></i><b>6.4.2</b> Dekomposisi Cholesky</a></li>
+<li class="chapter" data-level="6.4.3" data-path="linearaljabar.html"><a href="linearaljabar.html#othersdecomp"><i class="fa fa-check"></i><b>6.4.3</b> Dekomposisi Lainnya</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="linearaljabar.html"><a href="linearaljabar.html#iteratif"><i class="fa fa-check"></i><b>6.5</b> Metode Iterasi</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="linearaljabar.html"><a href="linearaljabar.html#jacobiiter"><i class="fa fa-check"></i><b>6.5.1</b> Iterasi Jacobi</a></li>
+<li class="chapter" data-level="6.5.2" data-path="linearaljabar.html"><a href="linearaljabar.html#seideliter"><i class="fa fa-check"></i><b>6.5.2</b> Iterasi Gauss-Seidel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="linearaljabar.html"><a href="linearaljabar.html#studikasus"><i class="fa fa-check"></i><b>6.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="linearaljabar.html"><a href="linearaljabar.html#leastsquare"><i class="fa fa-check"></i><b>6.6.1</b> Metode Kuadrat Terkecil</a></li>
+<li class="chapter" data-level="6.6.2" data-path="linearaljabar.html"><a href="linearaljabar.html#reaktorkimia"><i class="fa fa-check"></i><b>6.6.2</b> Aliran Massa Dalam Reaktor</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="linearaljabar.html"><a href="linearaljabar.html#referensi-5"><i class="fa fa-check"></i><b>6.7</b> Referensi</a></li>
+<li class="chapter" data-level="6.8" data-path="linearaljabar.html"><a href="linearaljabar.html#latihan"><i class="fa fa-check"></i><b>6.8</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rootfinding.html"><a href="rootfinding.html"><i class="fa fa-check"></i><b>7</b> Akar Persamaan Non-Linier</a><ul>
+<li class="chapter" data-level="7.1" data-path="rootfinding.html"><a href="rootfinding.html#bracketing"><i class="fa fa-check"></i><b>7.1</b> Metode Tertutup</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="rootfinding.html"><a href="rootfinding.html#table"><i class="fa fa-check"></i><b>7.1.1</b> Metode Tabel</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rootfinding.html"><a href="rootfinding.html#bisection"><i class="fa fa-check"></i><b>7.1.2</b> Metode Biseksi</a></li>
+<li class="chapter" data-level="7.1.3" data-path="rootfinding.html"><a href="rootfinding.html#regulafalsi"><i class="fa fa-check"></i><b>7.1.3</b> Metode Regula Falsi</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rootfinding.html"><a href="rootfinding.html#openmethod"><i class="fa fa-check"></i><b>7.2</b> Metode Terbuka</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="rootfinding.html"><a href="rootfinding.html#fixpoint"><i class="fa fa-check"></i><b>7.2.1</b> Metode Iterasi Titik Tetap</a></li>
+<li class="chapter" data-level="7.2.2" data-path="rootfinding.html"><a href="rootfinding.html#newtonraphson"><i class="fa fa-check"></i><b>7.2.2</b> Metode Newton-Raphson</a></li>
+<li class="chapter" data-level="7.2.3" data-path="rootfinding.html"><a href="rootfinding.html#secant"><i class="fa fa-check"></i><b>7.2.3</b> Metode Secant</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="rootfinding.html"><a href="rootfinding.html#uniroot"><i class="fa fa-check"></i><b>7.3</b> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></a></li>
+<li class="chapter" data-level="7.4" data-path="rootfinding.html"><a href="rootfinding.html#akar-persamaan-polinomial-menggunakan-fungsi-polyroot"><i class="fa fa-check"></i><b>7.4</b> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></a></li>
+<li class="chapter" data-level="7.5" data-path="rootfinding.html"><a href="rootfinding.html#studi-kasus"><i class="fa fa-check"></i><b>7.5</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="rootfinding.html"><a href="rootfinding.html#persamaan-van-der-walls"><i class="fa fa-check"></i><b>7.5.1</b> Persamaan Van Der Walls</a></li>
+<li class="chapter" data-level="7.5.2" data-path="rootfinding.html"><a href="rootfinding.html#hukum-bernoulli"><i class="fa fa-check"></i><b>7.5.2</b> Hukum Bernoulli</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="rootfinding.html"><a href="rootfinding.html#referensi-6"><i class="fa fa-check"></i><b>7.6</b> Referensi</a></li>
+<li class="chapter" data-level="7.7" data-path="rootfinding.html"><a href="rootfinding.html#latihan-1"><i class="fa fa-check"></i><b>7.7</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="interpolation.html"><a href="interpolation.html"><i class="fa fa-check"></i><b>8</b> Interpolasi dan Ekstrapolasi</a><ul>
+<li class="chapter" data-level="8.1" data-path="interpolation.html"><a href="interpolation.html#poliinterpolation"><i class="fa fa-check"></i><b>8.1</b> Interpolasi Polinomial</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="interpolation.html"><a href="interpolation.html#mengevaluasi-polinomial"><i class="fa fa-check"></i><b>8.1.1</b> Mengevaluasi Polinomial</a></li>
+<li class="chapter" data-level="8.1.2" data-path="interpolation.html"><a href="interpolation.html#lininterpol"><i class="fa fa-check"></i><b>8.1.2</b> Interpolasi Linier</a></li>
+<li class="chapter" data-level="8.1.3" data-path="interpolation.html"><a href="interpolation.html#hopoliinter"><i class="fa fa-check"></i><b>8.1.3</b> Interpolasi Polinomial Orde Tinggi</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="interpolation.html"><a href="interpolation.html#pwinter"><i class="fa fa-check"></i><b>8.2</b> Interpolasi Piecewise</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="interpolation.html"><a href="interpolation.html#pwlininter"><i class="fa fa-check"></i><b>8.2.1</b> Interpolasi Linier Piecewise</a></li>
+<li class="chapter" data-level="8.2.2" data-path="interpolation.html"><a href="interpolation.html#cubicspline"><i class="fa fa-check"></i><b>8.2.2</b> Interpolasi Spline Kubik</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="interpolation.html"><a href="interpolation.html#studi-kasus-1"><i class="fa fa-check"></i><b>8.3</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="interpolation.html"><a href="interpolation.html#interpolasi-data-runtun-waktu"><i class="fa fa-check"></i><b>8.3.1</b> Interpolasi Data Runtun Waktu</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="interpolation.html"><a href="interpolation.html#referensi-7"><i class="fa fa-check"></i><b>8.4</b> Referensi</a></li>
+<li class="chapter" data-level="8.5" data-path="interpolation.html"><a href="interpolation.html#latihan-2"><i class="fa fa-check"></i><b>8.5</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="diffinteg.html"><a href="diffinteg.html"><i class="fa fa-check"></i><b>9</b> Diferensiasi dan Integrasi Numerik</a><ul>
+<li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
+<li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
+<li class="chapter" data-level="9.3.2" data-path="diffinteg.html"><a href="diffinteg.html#trapezoida"><i class="fa fa-check"></i><b>9.3.2</b> Metode Trapezoida</a></li>
+<li class="chapter" data-level="9.3.3" data-path="diffinteg.html"><a href="diffinteg.html#simpson"><i class="fa fa-check"></i><b>9.3.3</b> Metode Simpson</a></li>
+<li class="chapter" data-level="9.3.4" data-path="diffinteg.html"><a href="diffinteg.html#simpson38"><i class="fa fa-check"></i><b>9.3.4</b> Metode Simpson 3/8</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-newton-cotes-mengunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.4</b> Metode Integrasi Newton-Cotes Mengunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.5" data-path="diffinteg.html"><a href="diffinteg.html#kuadgauss"><i class="fa fa-check"></i><b>9.5</b> Metode Kuadratur Gauss</a></li>
+<li class="chapter" data-level="9.6" data-path="diffinteg.html"><a href="diffinteg.html#othergauss"><i class="fa fa-check"></i><b>9.6</b> Metode Gauss-Legendre Menggunakan Fungsi <code>legendre.quadrature()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="diffinteg.html"><a href="diffinteg.html#adaptifint"><i class="fa fa-check"></i><b>9.7</b> Metode Integrasi Adaptif</a></li>
+<li class="chapter" data-level="9.8" data-path="diffinteg.html"><a href="diffinteg.html#metode-integral-adaptif-menggunakan-fungsi-lainnya-pada-r"><i class="fa fa-check"></i><b>9.8</b> Metode Integral Adaptif Menggunakan Fungsi Lainnya Pada <code>R</code></a></li>
+<li class="chapter" data-level="9.9" data-path="diffinteg.html"><a href="diffinteg.html#romberg"><i class="fa fa-check"></i><b>9.9</b> Metode Integrasi Romberg</a></li>
+<li class="chapter" data-level="9.10" data-path="diffinteg.html"><a href="diffinteg.html#metode-integrasi-romberg-menggunakan-fungsi-lainnya"><i class="fa fa-check"></i><b>9.10</b> Metode Integrasi Romberg Menggunakan Fungsi Lainnya</a></li>
+<li class="chapter" data-level="9.11" data-path="diffinteg.html"><a href="diffinteg.html#montecarlo"><i class="fa fa-check"></i><b>9.11</b> Metode Integrasi Monte Carlo</a></li>
+<li class="chapter" data-level="9.12" data-path="diffinteg.html"><a href="diffinteg.html#studi-kasus-2"><i class="fa fa-check"></i><b>9.12</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="9.12.1" data-path="diffinteg.html"><a href="diffinteg.html#penerjung-payung"><i class="fa fa-check"></i><b>9.12.1</b> Penerjung Payung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
+<li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
+<li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
+<li class="chapter" data-level="11.3" data-path="dataanalysis.html"><a href="dataanalysis.html#summarystats"><i class="fa fa-check"></i><b>11.3</b> Ringkasan Data</a></li>
+<li class="chapter" data-level="11.4" data-path="dataanalysis.html"><a href="dataanalysis.html#norm"><i class="fa fa-check"></i><b>11.4</b> Uji Normalitas Data Tunggal</a></li>
+<li class="chapter" data-level="11.5" data-path="dataanalysis.html"><a href="dataanalysis.html#uji-rata-rata-satu-dan-dua-sampel"><i class="fa fa-check"></i><b>11.5</b> Uji Rata-Rata Satu dan Dua Sampel</a></li>
+<li class="chapter" data-level="11.6" data-path="dataanalysis.html"><a href="dataanalysis.html#korelasi-antar-variabel"><i class="fa fa-check"></i><b>11.6</b> Korelasi Antar Variabel</a></li>
+<li class="chapter" data-level="11.7" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-varians"><i class="fa fa-check"></i><b>11.7</b> Analisis Varians</a></li>
+<li class="chapter" data-level="11.8" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-komponen-utama"><i class="fa fa-check"></i><b>11.8</b> Analisis Komponen Utama</a></li>
+<li class="chapter" data-level="11.9" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-cluster"><i class="fa fa-check"></i><b>11.9</b> Analisis Cluster</a><ul>
+<li class="chapter" data-level="11.9.1" data-path="dataanalysis.html"><a href="dataanalysis.html#analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif"><i class="fa fa-check"></i><b>11.9.1</b> Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif</a></li>
+<li class="chapter" data-level="11.9.2" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-hierarkis-divisif"><i class="fa fa-check"></i><b>11.9.2</b> Pengelompokan Hierarkis Divisif</a></li>
+<li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
+<li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#regresi-linier"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="datamod.html"><a href="datamod.html#SLR"><i class="fa fa-check"></i><b>12.1.1</b> Regrasi Linier Sederhana (<em>Simple Linear Regression</em>)</a></li>
+<li class="chapter" data-level="12.1.2" data-path="datamod.html"><a href="datamod.html#MLR"><i class="fa fa-check"></i><b>12.1.2</b> Regresi Linier Berganda (<em>Multiple Linier Regression</em>)</a></li>
+<li class="chapter" data-level="12.1.3" data-path="datamod.html"><a href="datamod.html#lminter"><i class="fa fa-check"></i><b>12.1.3</b> Model Linier dengan Interaksi Antar Variabel Prediktor</a></li>
+<li class="chapter" data-level="12.1.4" data-path="datamod.html"><a href="datamod.html#nlinpred"><i class="fa fa-check"></i><b>12.1.4</b> Transformasi Non-linier Pada Prediktor</a></li>
+<li class="chapter" data-level="12.1.5" data-path="datamod.html"><a href="datamod.html#model-linier-dengan-prediktor-kategorikal"><i class="fa fa-check"></i><b>12.1.5</b> Model Linier dengan Prediktor Kategorikal</a></li>
+<li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metode Numerik Menggunakan R Untuk Teknik Lingkungan</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="datamod" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Pemodelan Data</h1>
+<p>Pada Chapter <a href="datamod.html#datamod">12</a>, kita akan membahas cara membentuk model statistik menggunakan <code>R</code>. Terdapat 2 buah jenis model yang akan dibahas pada <em>Chapter</em> ini, yaitu: regresi dan klasifikasi. Untuk informasi terkait cara untuk melakukan inferensi berdasarkan hasil yang diperoleh dan cara untuk melakukan prediksi menggunakan model yang terbentuk tidak akan dijelaskan dalam buku ini. Pembaca dapat membaca lebih lanjut pada referensi berikut:</p>
+<ul>
+<li><a href="http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf">Introduction to Probability and Statistics Using R</a></li>
+<li><a href="http://www.sthda.com/english/">STHDA</a></li>
+<li><a href="https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">An Introduction to Statistical Learning</a></li>
+</ul>
+<div id="regresi-linier" class="section level2">
+<h2><span class="header-section-number">12.1</span> Regresi Linier</h2>
+<p>Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Asumsi liniearitas</strong>: kurva relasi yang terbentuk antara variabel independen terhadap variabel dependen harus linier. Asumsi ini dapat dipelajari melalui plot residual terhadap nilai <em>fitted value</em>. Jika asumsi liniearitas terpenuhi, maka titik-titik residual yang di plotkan akan membentuk pola acak. Jika pada plot yang dihasilkan terbentuk pola tidak linear maka transformasi data pada variabel prediktor atau independen diperlukan.</li>
+<li><strong>Error atau residu berdristribusi normal</strong>: normalitas error di cek menggunakan qq-plot atau uji normalitas yang telah dibahas pada Chapter <a href="dataanalysis.html#norm">11.4</a>.</li>
+<li><strong><em>Outlier</em> dan <em>high influence point</em></strong>: kedua pengamatan tersebut dideteksi melalui qq-plot, plot residual terhadap nilai <em>fitted value</em>, dan plot <em>residuals vs leverage</em>. Jika <em>outlier</em> terjadi akibat adanya error selama pengukuran maka <em>outlier</em> dapat dihilangkan.</li>
+<li><strong>Error bersifat independen</strong>: independensi residual dapat dideteksi melaui plot korelasi serial dengan mengeplotkan <span class="math inline">\(r_i\)</span> vs <span class="math inline">\(r_{i-1}\)</span>.</li>
+<li><strong>Varians bersifat konstan</strong>: Varians bersifat konstan dicek melalui plot <strong>square root standardize residual vs fitted value</strong>. Pada kasus dimana varians tidak bersifat konstan, kita dapat memberikan bobot pada model yang akan kita bentuk (<em>weighted least square</em>), dimana bobot yang diberikan proporsional dengan invers varians.</li>
+<li><strong>multikolinearitas</strong>: tidak ada variabel dependen yang saling berfkorelasi. Multikolinearitas dapat dideteksi melalui plot matriks korelasi. Pada model adanya kolinearitas ditunjukkan dari nilai <em>variance inflation factor</em> (VIF) yang tinggi. Secara umum nilai VIF terkecil sebesar 1 dan jika kolinearitas terjadi nilainya dapat lebih besar dari 5 atau 10. Untuk mengatasi kolinearitas pada model dapat dilakukan dengan dua cara, yaitu: mengeluarkan variabel dengan nilai VIF yang tinggi pada model atau menggabungkan dua variabel prediktor yang saling berkorelasi menjadi satu variabel baru.</li>
+</ol>
+<p>Pembentukan model linier pada <code>R</code> dilakukan dengan menggunakan fungsi <code>lm()</code>. Format umum fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb801-1" title="1"><span class="kw">lm</span>(formula, data, subset, weights)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>formula</code> : formula model yang hendak dibentuk.</li>
+<li><code>data</code>: data yang digunakan untuk membentuk model.</li>
+<li><code>subset</code> : subset data yang akan digunakan dalam pembentukan model.</li>
+<li><code>weight</code> : nilai pembobotan dalam pembentukan model.</li>
+</ul>
+</blockquote>
+<div id="SLR" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> Regrasi Linier Sederhana (<em>Simple Linear Regression</em>)</h3>
+<p>Pada Chapter <a href="datamod.html#SLR">12.1.1</a> akan diberikan contoh pembentukan model linier sederhana menggunakan dataset <code>Boston</code> dari <em>library</em> <code>MASS</code> dengan jumlah observasi sebesar 506 observasi. Pada contoh kali ini kita akan mencoba membentuk model dengan variabel dependen berupa <code>medv</code> (median harga rumah) dan variabel independen berupa <code>lstat</code> (persen rumah tangga dengan status ekonomi menengah ke bawah). Berikut adalh sintaks untuk membentuk model tersebut:</p>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb802-1" title="1"><span class="kw">library</span>(MASS)</a></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" title="1">lm.fit &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>lstat, <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb803-2" title="2"><span class="kw">anova</span>(lm.fit)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## lstat       1  23244 23243.9  601.62 &lt; 2.2e-16 ***
+## Residuals 504  19472    38.6                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" title="1"><span class="kw">summary</span>(lm.fit)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.168  -3.990  -1.318   2.034  24.500 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.55384    0.56263   61.41   &lt;2e-16 ***
+## lstat       -0.95005    0.03873  -24.53   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.216 on 504 degrees of freedom
+## Multiple R-squared:  0.5441, Adjusted R-squared:  0.5432 
+## F-statistic: 601.6 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Plot residual disajikan pada Gambar <a href="datamod.html#fig:slr">12.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:slr"></span>
+<img src="Metode_Numerik_files/figure-html/slr-1.png" alt="Analisis residual model linier medv vs lstat pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.1: Analisis residual model linier medv vs lstat pada dataset Boston.
+</p>
+</div>
+<p>Berdasarkan hasil plot dapat dilihat bahwa seluruh asumsi model linier tidak terpenuhi. Selain melalui plot residual, uji asumsi model linier dapat juga dilakukan secara matematis. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" title="1"><span class="co"># error berdistribusi normal </span></a>
+<a class="sourceLine" id="cb807-2" title="2"><span class="co"># (data tidak berdistribusi normal)</span></a>
+<a class="sourceLine" id="cb807-3" title="3"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(lm.fit))</a></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(lm.fit)
+## W = 0.87857, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" title="1"><span class="co"># varians bersifat konstan </span></a>
+<a class="sourceLine" id="cb809-2" title="2"><span class="co"># (varians tidak konstan)</span></a>
+<a class="sourceLine" id="cb809-3" title="3"><span class="kw">library</span>(lmtest)</a></code></pre></div>
+<pre><code>## Warning: package &#39;lmtest&#39; was built under R version 3.5.3</code></pre>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" title="1"><span class="kw">bptest</span>(lm.fit)</a></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  lm.fit
+## BP = 15.497, df = 1, p-value = 8.262e-05</code></pre>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb813-1" title="1"><span class="co"># error bersifat independen</span></a>
+<a class="sourceLine" id="cb813-2" title="2"><span class="co"># (error tidak bersifat independen)</span></a>
+<a class="sourceLine" id="cb813-3" title="3"><span class="kw">dwtest</span>(lm.fit, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  lm.fit
+## DW = 0.8915, p-value &lt; 2.2e-16
+## alternative hypothesis: true autocorrelation is not 0</code></pre>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" title="1"><span class="co"># deteksi outlier (stdres &gt; 2)</span></a>
+<a class="sourceLine" id="cb815-2" title="2">sres &lt;-<span class="st"> </span><span class="kw">rstandard</span>(lm.fit)</a>
+<a class="sourceLine" id="cb815-3" title="3">sres[<span class="kw">which</span>(<span class="kw">abs</span>(sres)<span class="op">&gt;</span><span class="dv">2</span>)] <span class="co"># nomor observasi outlier</span></a></code></pre></div>
+<pre><code>##        99       142       162       163       164       167       181 
+##  2.038479  2.037877  2.758553  2.787466  3.000496  3.058318  2.002509 
+##       187       196       204       205       215       225       226 
+##  3.172448  2.947239  2.833127  2.933544  2.788670  2.286679  3.199842 
+##       229       234       257       258       262       263       268 
+##  2.559571  2.822187  2.000582  3.274417  2.488441  3.201252  3.627671 
+##       281       283       284       369       370       371       372 
+##  2.325519  2.307994  2.976149  2.991366  3.062883  2.945717  3.946264 
+##       373       375       413       506 
+##  3.847133  2.498416  2.600516 -2.443658</code></pre>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" title="1"><span class="co"># influential observation</span></a>
+<a class="sourceLine" id="cb817-2" title="2"><span class="co"># observasi &gt; percentil 50</span></a>
+<a class="sourceLine" id="cb817-3" title="3"><span class="co"># tidak ada observasi dengan jarak cook yang extrim</span></a>
+<a class="sourceLine" id="cb817-4" title="4">cooksD &lt;-<span class="st"> </span><span class="kw">cooks.distance</span>(lm.fit)</a>
+<a class="sourceLine" id="cb817-5" title="5">p50 &lt;-<span class="st"> </span><span class="kw">qf</span>(<span class="fl">0.5</span>, <span class="dt">df1=</span><span class="dv">2</span>, <span class="dt">df2=</span><span class="dv">560-2</span>)</a>
+<a class="sourceLine" id="cb817-6" title="6"><span class="kw">any</span>(cooksD<span class="op">&gt;</span>p50)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="MLR" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> Regresi Linier Berganda (<em>Multiple Linier Regression</em>)</h3>
+<p>Pada Chapter <a href="datamod.html#MLR">12.1.2</a>, kita akan membuat tiga buah model regresi linier. Model pertama akan menambahkan variabel <code>age</code> (usia bangunan) pada model sebelumnya, model kedua akan menggunakan seluruh ariabel yang ada, dan model ketiga akan melakukan pembaharuan dengan mengeluarkan variabel dengan VIF paling tinggi dari model kedua. Berikut adalah sintaks untuk membentuk ketiag model tersebut:</p>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb819-1" title="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb819-2" title="2"><span class="co"># Model pertama</span></a>
+<a class="sourceLine" id="cb819-3" title="3">lm.fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(medv <span class="op">~</span><span class="st"> </span>lstat<span class="op">+</span>age, <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb819-4" title="4"><span class="kw">anova</span>(lm.fit1)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## lstat       1 23243.9 23243.9 609.955 &lt; 2.2e-16 ***
+## age         1   304.3   304.3   7.984  0.004907 ** 
+## Residuals 503 19168.1    38.1                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb821-1" title="1"><span class="kw">summary</span>(lm.fit1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat + age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.981  -3.978  -1.283   1.968  23.158 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 33.22276    0.73085  45.458  &lt; 2e-16 ***
+## lstat       -1.03207    0.04819 -21.416  &lt; 2e-16 ***
+## age          0.03454    0.01223   2.826  0.00491 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.173 on 503 degrees of freedom
+## Multiple R-squared:  0.5513, Adjusted R-squared:  0.5495 
+## F-statistic:   309 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb823-1" title="1"><span class="kw">vif</span>(lm.fit1)</a></code></pre></div>
+<pre><code>##    lstat      age 
+## 1.569395 1.569395</code></pre>
+<p>Berdasarkan hasil perhitungan diketahui nilai VIF dari model &lt; 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar <a href="datamod.html#fig:mlr1">12.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:mlr1"></span>
+<img src="Metode_Numerik_files/figure-html/mlr1-1.png" alt="Analisis residual model linier 1 pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.2: Analisis residual model linier 1 pada dataset Boston.
+</p>
+</div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb825-1" title="1"><span class="co"># Model 2</span></a>
+<a class="sourceLine" id="cb825-2" title="2">lm.fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>., <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb825-3" title="3"><span class="kw">anova</span>(lm.fit2)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## crim        1  6440.8  6440.8 286.0300 &lt; 2.2e-16 ***
+## zn          1  3554.3  3554.3 157.8452 &lt; 2.2e-16 ***
+## indus       1  2551.2  2551.2 113.2984 &lt; 2.2e-16 ***
+## chas        1  1529.8  1529.8  67.9393 1.543e-15 ***
+## nox         1    76.2    76.2   3.3861 0.0663505 .  
+## rm          1 10938.1 10938.1 485.7530 &lt; 2.2e-16 ***
+## age         1    90.3    90.3   4.0087 0.0458137 *  
+## dis         1  1779.5  1779.5  79.0262 &lt; 2.2e-16 ***
+## rad         1    34.1    34.1   1.5159 0.2188325    
+## tax         1   329.6   329.6  14.6352 0.0001472 ***
+## ptratio     1  1309.3  1309.3  58.1454 1.266e-13 ***
+## black       1   593.3   593.3  26.3496 4.109e-07 ***
+## lstat       1  2410.8  2410.8 107.0634 &lt; 2.2e-16 ***
+## Residuals 492 11078.8    22.5                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb827-1" title="1"><span class="kw">summary</span>(lm.fit2)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ ., data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.595  -2.730  -0.518   1.777  26.199 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.646e+01  5.103e+00   7.144 3.28e-12 ***
+## crim        -1.080e-01  3.286e-02  -3.287 0.001087 ** 
+## zn           4.642e-02  1.373e-02   3.382 0.000778 ***
+## indus        2.056e-02  6.150e-02   0.334 0.738288    
+## chas         2.687e+00  8.616e-01   3.118 0.001925 ** 
+## nox         -1.777e+01  3.820e+00  -4.651 4.25e-06 ***
+## rm           3.810e+00  4.179e-01   9.116  &lt; 2e-16 ***
+## age          6.922e-04  1.321e-02   0.052 0.958229    
+## dis         -1.476e+00  1.995e-01  -7.398 6.01e-13 ***
+## rad          3.060e-01  6.635e-02   4.613 5.07e-06 ***
+## tax         -1.233e-02  3.760e-03  -3.280 0.001112 ** 
+## ptratio     -9.527e-01  1.308e-01  -7.283 1.31e-12 ***
+## black        9.312e-03  2.686e-03   3.467 0.000573 ***
+## lstat       -5.248e-01  5.072e-02 -10.347  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.745 on 492 degrees of freedom
+## Multiple R-squared:  0.7406, Adjusted R-squared:  0.7338 
+## F-statistic: 108.1 on 13 and 492 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb829-1" title="1"><span class="kw">vif</span>(lm.fit2)</a></code></pre></div>
+<pre><code>##     crim       zn    indus     chas      nox       rm      age      dis 
+## 1.792192 2.298758 3.991596 1.073995 4.393720 1.933744 3.100826 3.955945 
+##      rad      tax  ptratio    black    lstat 
+## 7.484496 9.008554 1.799084 1.348521 2.941491</code></pre>
+<p>Berdasarkan hasil perhitungan diperoleh nilai VIF untuk seluruh varaibel prediktor dalam model &lt; 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar <a href="datamod.html#fig:mlr2">12.3</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:mlr2"></span>
+<img src="Metode_Numerik_files/figure-html/mlr2-1.png" alt="Analisis residual model linier 2 pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.3: Analisis residual model linier 2 pada dataset Boston.
+</p>
+</div>
+<p>Pada model ketiga, kita akan mencoba untuk melakukan pembaharuan pada model kedua dengan melakukan drop variabel dengan vif yang paling tinggi. Pada hasil perhitungan sebelumnya, variabel <code>tax</code> (pajak) memiliki nilai VIF yang paling tinggi, sehingga pada model ketiga variabel tersebut tidak disertakan. Terdapat dua cara untuk melakukannya berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb831-1" title="1"><span class="co"># Model 3 (cara 1)</span></a>
+<a class="sourceLine" id="cb831-2" title="2">lm.fit3 &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>.<span class="op">-</span>tax, <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb831-3" title="3"></a>
+<a class="sourceLine" id="cb831-4" title="4"><span class="co"># Model 3 (cara 2)</span></a>
+<a class="sourceLine" id="cb831-5" title="5">lm.fit3 &lt;-<span class="st"> </span><span class="kw">update</span>(lm.fit2, <span class="op">~</span>.<span class="op">-</span>tax)</a>
+<a class="sourceLine" id="cb831-6" title="6"></a>
+<a class="sourceLine" id="cb831-7" title="7"><span class="kw">anova</span>(lm.fit3)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## crim        1  6440.8  6440.8 280.4782 &lt; 2.2e-16 ***
+## zn          1  3554.3  3554.3 154.7815 &lt; 2.2e-16 ***
+## indus       1  2551.2  2551.2 111.0993 &lt; 2.2e-16 ***
+## chas        1  1529.8  1529.8  66.6206 2.768e-15 ***
+## nox         1    76.2    76.2   3.3204   0.06903 .  
+## rm          1 10938.1 10938.1 476.3247 &lt; 2.2e-16 ***
+## age         1    90.3    90.3   3.9309   0.04796 *  
+## dis         1  1779.5  1779.5  77.4923 &lt; 2.2e-16 ***
+## rad         1    34.1    34.1   1.4865   0.22335    
+## ptratio     1  1401.2  1401.2  61.0172 3.434e-14 ***
+## black       1   611.6   611.6  26.6323 3.574e-07 ***
+## lstat       1  2388.0  2388.0 103.9924 &lt; 2.2e-16 ***
+## Residuals 493 11321.0    23.0                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb833-1" title="1"><span class="kw">summary</span>(lm.fit3)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ crim + zn + indus + chas + nox + rm + age + 
+##     dis + rad + ptratio + black + lstat, data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.1449  -2.9143  -0.5661   1.7438  26.3113 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.463e+01  5.123e+00   6.760 3.92e-11 ***
+## crim        -1.067e-01  3.319e-02  -3.216 0.001384 ** 
+## zn           3.637e-02  1.351e-02   2.692 0.007354 ** 
+## indus       -6.778e-02  5.583e-02  -1.214 0.225317    
+## chas         3.029e+00  8.637e-01   3.507 0.000494 ***
+## nox         -1.870e+01  3.847e+00  -4.862 1.57e-06 ***
+## rm           3.912e+00  4.209e-01   9.294  &lt; 2e-16 ***
+## age         -6.054e-04  1.333e-02  -0.045 0.963804    
+## dis         -1.488e+00  2.014e-01  -7.390 6.31e-13 ***
+## rad          1.346e-01  4.125e-02   3.262 0.001182 ** 
+## ptratio     -9.851e-01  1.317e-01  -7.478 3.48e-13 ***
+## black        9.546e-03  2.711e-03   3.521 0.000470 ***
+## lstat       -5.222e-01  5.121e-02 -10.198  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.792 on 493 degrees of freedom
+## Multiple R-squared:  0.735,  Adjusted R-squared:  0.7285 
+## F-statistic: 113.9 on 12 and 493 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb835-1" title="1"><span class="kw">vif</span>(lm.fit3)</a></code></pre></div>
+<pre><code>##     crim       zn    indus     chas      nox       rm      age      dis 
+## 1.791940 2.184240 3.226015 1.058220 4.369271 1.923075 3.098044 3.954446 
+##      rad  ptratio    black    lstat 
+## 2.837494 1.788839 1.347564 2.940800</code></pre>
+<p>Plot residual ditampilkan pada Gambar <a href="datamod.html#fig:mlr3">12.4</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:mlr3"></span>
+<img src="Metode_Numerik_files/figure-html/mlr3-1.png" alt="Analisis residual model linier 3 pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.4: Analisis residual model linier 3 pada dataset Boston.
+</p>
+</div>
+</div>
+<div id="lminter" class="section level3">
+<h3><span class="header-section-number">12.1.3</span> Model Linier dengan Interaksi Antar Variabel Prediktor</h3>
+<p>Interaksi antar variabel pada model linier dapat dengan mudah dimasukkan kedalam fungsi <code>lm()</code>. Terdapat dua buah cara untuk melakukannya. Cara pertama dengan menggunakan tanda <code>:</code> pada formula (contoh: <span class="math inline">\(y1 ~ x1+x2+x1:x2\)</span>). Tanda <code>:</code> menyatakan formula persamaan linier memasukkan interaksi antar variabel prediktor di dalamnya. Cara kedua adalah dengan menggunakan tanda <code>*</code>. Cara ini lebih sederhana, dimana fungsi <code>lm()</code> akan secara otomatis menerjemahkannya sebagai serangkaian variabel tunggal dan interaksinya. Berikut adalah contoh penerapannya menggunakan kedua cara tersebut:</p>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb837-1" title="1"><span class="co"># cara 1</span></a>
+<a class="sourceLine" id="cb837-2" title="2">lm.inter &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>lstat<span class="op">+</span>age<span class="op">+</span>lstat<span class="op">:</span>age, <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb837-3" title="3"><span class="kw">anova</span>(lm.inter)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## lstat       1 23243.9 23243.9 614.8498 &lt; 2.2e-16 ***
+## age         1   304.3   304.3   8.0481  0.004739 ** 
+## lstat:age   1   190.4   190.4   5.0368  0.025249 *  
+## Residuals 502 18977.7    37.8                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" title="1"><span class="kw">summary</span>(lm.inter)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat + age + lstat:age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.806  -4.045  -1.333   2.085  27.552 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 36.0885359  1.4698355  24.553  &lt; 2e-16 ***
+## lstat       -1.3921168  0.1674555  -8.313 8.78e-16 ***
+## age         -0.0007209  0.0198792  -0.036   0.9711    
+## lstat:age    0.0041560  0.0018518   2.244   0.0252 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.149 on 502 degrees of freedom
+## Multiple R-squared:  0.5557, Adjusted R-squared:  0.5531 
+## F-statistic: 209.3 on 3 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb841-1" title="1"><span class="co"># Cara 2</span></a>
+<a class="sourceLine" id="cb841-2" title="2">lm.inter &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>lstat<span class="op">*</span>age, <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb841-3" title="3"><span class="kw">anova</span>(lm.inter)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## lstat       1 23243.9 23243.9 614.8498 &lt; 2.2e-16 ***
+## age         1   304.3   304.3   8.0481  0.004739 ** 
+## lstat:age   1   190.4   190.4   5.0368  0.025249 *  
+## Residuals 502 18977.7    37.8                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb843-1" title="1"><span class="kw">summary</span>(lm.inter)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat * age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.806  -4.045  -1.333   2.085  27.552 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 36.0885359  1.4698355  24.553  &lt; 2e-16 ***
+## lstat       -1.3921168  0.1674555  -8.313 8.78e-16 ***
+## age         -0.0007209  0.0198792  -0.036   0.9711    
+## lstat:age    0.0041560  0.0018518   2.244   0.0252 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.149 on 502 degrees of freedom
+## Multiple R-squared:  0.5557, Adjusted R-squared:  0.5531 
+## F-statistic: 209.3 on 3 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Plot residual ditampilkan pada Gambar <a href="datamod.html#fig:lminter">12.5</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:lminter"></span>
+<img src="Metode_Numerik_files/figure-html/lminter-1.png" alt="Analisis residual model dengan melibatkan interaksi antar variabel pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.5: Analisis residual model dengan melibatkan interaksi antar variabel pada dataset Boston.
+</p>
+</div>
+</div>
+<div id="nlinpred" class="section level3">
+<h3><span class="header-section-number">12.1.4</span> Transformasi Non-linier Pada Prediktor</h3>
+<p>Fungsi <code>lm()</code> juga dapat melibatkan transformasi non-linier prediktor pada argumen <code>formula</code>-nya. Transformasi non-linier dilakukan dengan menambahkan fungsi identitas <code>I()</code>. Sebagai contoh model berikut melibatkan transformasi kuadrat pada variabel <code>lstat</code>:</p>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb845-1" title="1">lm.trans &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>lstat<span class="op">+</span><span class="kw">I</span>(lstat<span class="op">^</span><span class="dv">2</span>), <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb845-2" title="2"><span class="kw">anova</span>(lm.trans)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## lstat        1 23243.9 23243.9  761.81 &lt; 2.2e-16 ***
+## I(lstat^2)   1  4125.1  4125.1  135.20 &lt; 2.2e-16 ***
+## Residuals  503 15347.2    30.5                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb847-1" title="1"><span class="kw">summary</span>(lm.trans)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat + I(lstat^2), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2834  -3.8313  -0.5295   2.3095  25.4148 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 42.862007   0.872084   49.15   &lt;2e-16 ***
+## lstat       -2.332821   0.123803  -18.84   &lt;2e-16 ***
+## I(lstat^2)   0.043547   0.003745   11.63   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.524 on 503 degrees of freedom
+## Multiple R-squared:  0.6407, Adjusted R-squared:  0.6393 
+## F-statistic: 448.5 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Cara yang lebih sederhana untuk melibatkan tranformasi polinomial kedalam model linier adalah dengan menggunakan fungsi <code>poly()</code>. Berikut adalah contoh penerapannya:</p>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb849-1" title="1">lm.trans &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span><span class="kw">poly</span>(lstat,<span class="dv">2</span>), <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb849-2" title="2"><span class="kw">anova</span>(lm.trans)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##                 Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## poly(lstat, 2)   2  27369 13684.5  448.51 &lt; 2.2e-16 ***
+## Residuals      503  15347    30.5                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb851-1" title="1"><span class="kw">summary</span>(lm.trans)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ poly(lstat, 2), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2834  -3.8313  -0.5295   2.3095  25.4148 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       22.5328     0.2456   91.76   &lt;2e-16 ***
+## poly(lstat, 2)1 -152.4595     5.5237  -27.60   &lt;2e-16 ***
+## poly(lstat, 2)2   64.2272     5.5237   11.63   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.524 on 503 degrees of freedom
+## Multiple R-squared:  0.6407, Adjusted R-squared:  0.6393 
+## F-statistic: 448.5 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Plot residual ditampilkan pada Gambar <a href="datamod.html#fig:lmtrans">12.6</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:lmtrans"></span>
+<img src="Metode_Numerik_files/figure-html/lmtrans-1.png" alt="Analisis residual model dengan melibatkan transformasi non-linier variabel prediktor pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.6: Analisis residual model dengan melibatkan transformasi non-linier variabel prediktor pada dataset Boston.
+</p>
+</div>
+<p>FUngsi trasnformasi lainnya juga dapat digunakan pada pembentukan model linier. Berikut adalah contoh penerapan transformasi logaritmik dan eksponensial pada model linier:</p>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(medv<span class="op">~</span><span class="kw">log</span>(lstat), <span class="dt">data=</span>Boston))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ log(lstat), data = Boston)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.4599  -3.5006  -0.6686   2.1688  26.0129 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  52.1248     0.9652   54.00   &lt;2e-16 ***
+## log(lstat)  -12.4810     0.3946  -31.63   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.329 on 504 degrees of freedom
+## Multiple R-squared:  0.6649, Adjusted R-squared:  0.6643 
+## F-statistic:  1000 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb855-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(medv<span class="op">~</span><span class="kw">exp</span>(lstat), <span class="dt">data=</span>Boston))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ exp(lstat), data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.573  -5.473  -1.373   2.427  27.427 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.257e+01  4.090e-01  55.187   &lt;2e-16 ***
+## exp(lstat)  -4.436e-16  2.785e-16  -1.592    0.112    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.183 on 504 degrees of freedom
+## Multiple R-squared:  0.005006,   Adjusted R-squared:  0.003032 
+## F-statistic: 2.536 on 1 and 504 DF,  p-value: 0.1119</code></pre>
+</div>
+<div id="model-linier-dengan-prediktor-kategorikal" class="section level3">
+<h3><span class="header-section-number">12.1.5</span> Model Linier dengan Prediktor Kategorikal</h3>
+<p>Regresi linier dapat pula dilakukan dengan jenis variabel prediktor berupa variabel kategorikal. Untuk dapat melakukannya jenis data variabel kategorikal terlebih dahulu dirubah kedalam factor.</p>
+<p>Pada contoh kali ini, kita akan menggunakan dataset <code>utds</code> dari <em>library</em> <code>edtaR</code> untuk memodelkan konsentrasi <code>uranium</code> dalam air tanah menggunakan variabel <code>TDS</code> pada berbagai kondisi kesadahan. Berikut adalah sintaks yang digunakan</p>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb857-1" title="1"><span class="kw">library</span>(edtaR)</a>
+<a class="sourceLine" id="cb857-2" title="2"><span class="kw">str</span>(utds)</a></code></pre></div>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    44 obs. of  3 variables:
+##  $ TDS        : num  683 819 304 1151 582 ...
+##  $ Uranium    : num  0.931 1.938 0.292 11.904 1.567 ...
+##  $ Bicarbonate: num  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" title="1"><span class="co"># ubah variabe Bicarbonat menjadi factor</span></a>
+<a class="sourceLine" id="cb859-2" title="2">utds<span class="op">$</span>Bicarbonate &lt;-<span class="st"> </span><span class="kw">factor</span>(utds<span class="op">$</span>Bicarbonate,</a>
+<a class="sourceLine" id="cb859-3" title="3">                           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb859-4" title="4">                           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot; &lt;= 50%&quot;</span>,</a>
+<a class="sourceLine" id="cb859-5" title="5">                                      <span class="st">&quot; &gt; 50%&quot;</span>))</a>
+<a class="sourceLine" id="cb859-6" title="6"></a>
+<a class="sourceLine" id="cb859-7" title="7"><span class="kw">str</span>(utds)</a></code></pre></div>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    44 obs. of  3 variables:
+##  $ TDS        : num  683 819 304 1151 582 ...
+##  $ Uranium    : num  0.931 1.938 0.292 11.904 1.567 ...
+##  $ Bicarbonate: Factor w/ 2 levels &quot; &lt;= 50%&quot;,&quot; &gt; 50%&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb861-1" title="1">lm.fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Uranium<span class="op">~</span>., <span class="dt">data=</span>utds)</a>
+<a class="sourceLine" id="cb861-2" title="2"><span class="kw">anova</span>(lm.fit)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Uranium
+##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## TDS          1  27.44  27.442  3.3106   0.07614 .  
+## Bicarbonate  1 220.19 220.187 26.5637 6.825e-06 ***
+## Residuals   41 339.85   8.289                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb863-1" title="1"><span class="kw">summary</span>(lm.fit)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Uranium ~ ., data = utds)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7102 -1.6818 -0.1214  1.1444  7.1177 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -5.611878   1.876167  -2.991  0.00469 ** 
+## TDS                0.010512   0.002057   5.111 7.84e-06 ***
+## Bicarbonate &gt; 50%  6.938445   1.346227   5.154 6.83e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.879 on 41 degrees of freedom
+## Multiple R-squared:  0.4215, Adjusted R-squared:  0.3933 
+## F-statistic: 14.94 on 2 and 41 DF,  p-value: 1.34e-05</code></pre>
+<p>Plot residual yang ditampilkan pada Gambar <a href="datamod.html#fig:lmcat">12.7</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:lmcat"></span>
+<img src="Metode_Numerik_files/figure-html/lmcat-1.png" alt="Analisis residual model dengan melibatkan variabel kategorikal pada dataset utds." width="80%" />
+<p class="caption">
+Gambar 12.7: Analisis residual model dengan melibatkan variabel kategorikal pada dataset utds.
+</p>
+</div>
+</div>
+<div id="wlr" class="section level3">
+<h3><span class="header-section-number">12.1.6</span> Regresi linier dengan Pembobotan</h3>
+<p>Pada pembahasan sebelumnya kita telah menyaksikan bahwa sebagian model yang telah terbentuk tidak memenuhi asumsi varians yang konstan. Untuk mengatasi hal tersebut, kita dapat membentuk regresi dengan memberikan bobot sebesar invers variansnya. Untuk melakukannya diperlukan beberapa tahapan, antara lain:</p>
+<ol style="list-style-type: decimal">
+<li>Membentuk model linier dari variabel dataset: <code>fit &lt;- lm(y~(variabel prediktor))</code>.</li>
+<li>Menghitung error absolut (<code>abse &lt;- abs(resid(fit))</code>) dan nilai *fitted value dari model (<code>yhat &lt;- fitted(fit</code>).</li>
+<li>Membentuk kembali model menggunakan data residual absolut (<code>efit &lt;- lm(abse~poly(yhat,2))</code>) dan menghitung <em>residual fitted value</em> (<code>shat &lt;- fitted(efit)</code>).</li>
+<li>Gunakan nilai bobot <code>w &lt;- 1/shat^2</code> untuk membentuk model regresi dengan pembobotan (<code>fitw &lt;-lm(y~(variabel prediktor), weights=w)</code>).</li>
+</ol>
+<p>Kita akan membentuk kembali model menggunakan dataset <code>Boston</code> dengan menggunakan seluruh variabel, namun pada model kali ini kita akan memberikan bobot pada model yang terbentuk. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb865-1" title="1"><span class="co"># langkah 1</span></a>
+<a class="sourceLine" id="cb865-2" title="2">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>., <span class="dt">data=</span>Boston)</a>
+<a class="sourceLine" id="cb865-3" title="3"></a>
+<a class="sourceLine" id="cb865-4" title="4"><span class="co"># langkah 2</span></a>
+<a class="sourceLine" id="cb865-5" title="5">abse &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">resid</span>(fit))</a>
+<a class="sourceLine" id="cb865-6" title="6">yhat &lt;-<span class="st"> </span><span class="kw">fitted</span>(fit)</a>
+<a class="sourceLine" id="cb865-7" title="7"></a>
+<a class="sourceLine" id="cb865-8" title="8"><span class="co"># langkah 3</span></a>
+<a class="sourceLine" id="cb865-9" title="9">efit &lt;-<span class="st"> </span><span class="kw">lm</span>(abse<span class="op">~</span><span class="kw">poly</span>(yhat,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb865-10" title="10">shat &lt;-<span class="st"> </span><span class="kw">fitted</span>(efit)</a>
+<a class="sourceLine" id="cb865-11" title="11"></a>
+<a class="sourceLine" id="cb865-12" title="12"><span class="co"># langkah 4</span></a>
+<a class="sourceLine" id="cb865-13" title="13">fitw &lt;-<span class="st"> </span><span class="kw">lm</span>(medv<span class="op">~</span>., <span class="dt">data =</span> Boston, <span class="dt">weights =</span> <span class="dv">1</span><span class="op">/</span>(shat<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb865-14" title="14"><span class="kw">anova</span>(fitw)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: medv
+##            Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## crim        1 367.13  367.13 188.5179 &lt; 2.2e-16 ***
+## zn          1 148.25  148.25  76.1235 &lt; 2.2e-16 ***
+## indus       1 124.51  124.51  63.9328 9.264e-15 ***
+## chas        1  41.31   41.31  21.2115 5.244e-06 ***
+## nox         1  38.33   38.33  19.6841 1.128e-05 ***
+## rm          1 363.47  363.47 186.6396 &lt; 2.2e-16 ***
+## age         1  30.37   30.37  15.5945 8.994e-05 ***
+## dis         1 105.70  105.70  54.2755 7.407e-13 ***
+## rad         1   0.00    0.00   0.0003    0.9854    
+## tax         1  30.01   30.01  15.4080 9.897e-05 ***
+## ptratio     1  73.76   73.76  37.8761 1.565e-09 ***
+## black       1  64.38   64.38  33.0607 1.570e-08 ***
+## lstat       1 334.30  334.30 171.6631 &lt; 2.2e-16 ***
+## Residuals 492 958.14    1.95                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb867-1" title="1"><span class="kw">summary</span>(fitw)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ ., data = Boston, weights = 1/(shat^2))
+## 
+## Weighted Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2522 -0.7946 -0.0367  0.6976  9.2986 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  39.158445   4.474180   8.752  &lt; 2e-16 ***
+## crim         -0.137382   0.032536  -4.222 2.88e-05 ***
+## zn            0.039751   0.013668   2.908 0.003797 ** 
+## indus         0.031072   0.052112   0.596 0.551285    
+## chas          2.886787   0.816335   3.536 0.000444 ***
+## nox         -15.844212   3.221769  -4.918 1.19e-06 ***
+## rm            2.322467   0.414237   5.607 3.44e-08 ***
+## age           0.005865   0.011469   0.511 0.609298    
+## dis          -1.137778   0.177740  -6.401 3.60e-10 ***
+## rad           0.302548   0.058053   5.212 2.76e-07 ***
+## tax          -0.011376   0.003277  -3.471 0.000564 ***
+## ptratio      -0.721781   0.115976  -6.224 1.04e-09 ***
+## black         0.008784   0.002342   3.751 0.000197 ***
+## lstat        -0.621847   0.047462 -13.102  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.396 on 492 degrees of freedom
+## Multiple R-squared:  0.6424, Adjusted R-squared:  0.633 
+## F-statistic:    68 on 13 and 492 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Plot residual ditampilkan pada Gambar <a href="datamod.html#fig:lmw">12.8</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:lmw"></span>
+<img src="Metode_Numerik_files/figure-html/lmw-1.png" alt="Analisis residual model regresi linier dengan pembobotan pada dataset Boston." width="80%" />
+<p class="caption">
+Gambar 12.8: Analisis residual model regresi linier dengan pembobotan pada dataset Boston.
+</p>
+</div>
+</div>
+</div>
+<div id="logreg" class="section level2">
+<h2><span class="header-section-number">12.2</span> Regresi Logistik</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dataanalysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Metode_Numerik.pdf", "Metode_Numerik.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

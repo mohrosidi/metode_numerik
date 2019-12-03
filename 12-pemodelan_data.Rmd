@@ -1,0 +1,285 @@
+<style>
+body{
+text-align: justify}
+</style>
+
+# Pemodelan Data {#datamod}
+
+Pada Chapter \@ref(datamod), kita akan membahas cara membentuk model statistik menggunakan `R`. Terdapat 2 buah jenis model yang akan dibahas pada *Chapter* ini, yaitu: regresi dan klasifikasi. Untuk informasi terkait cara untuk melakukan inferensi berdasarkan hasil yang diperoleh dan cara untuk melakukan prediksi menggunakan model yang terbentuk tidak akan dijelaskan dalam buku ini. Pembaca dapat membaca lebih lanjut pada referensi berikut:
+
+* [Introduction to Probability and Statistics Using R](http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf)
+* [STHDA](http://www.sthda.com/english/)
+* [An Introduction to Statistical Learning](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
+
+## Regresi Linier
+
+Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:
+
+1. **Asumsi liniearitas**: kurva relasi yang terbentuk antara variabel independen terhadap variabel dependen harus linier. Asumsi ini dapat dipelajari melalui plot residual terhadap nilai *fitted value*. Jika asumsi liniearitas terpenuhi, maka titik-titik residual yang di plotkan akan membentuk pola acak. Jika pada plot yang dihasilkan terbentuk pola tidak linear maka transformasi data pada variabel prediktor atau independen diperlukan.
+2. **Error atau residu berdristribusi normal**: normalitas error di cek menggunakan qq-plot atau uji normalitas yang telah dibahas pada Chapter \@ref(norm).
+3. **_Outlier_ dan _high influence point_**: kedua pengamatan tersebut dideteksi melalui qq-plot, plot residual terhadap nilai *fitted value*, dan plot *residuals vs leverage*. Jika *outlier* terjadi akibat adanya error selama pengukuran maka *outlier* dapat dihilangkan.
+4. **Error bersifat independen**: independensi residual dapat dideteksi melaui plot korelasi serial dengan mengeplotkan $r_i$ vs $r_{i-1}$. 
+5. **Varians bersifat konstan**: Varians bersifat konstan dicek melalui plot **square root standardize residual vs fitted value**. Pada kasus dimana varians tidak bersifat konstan, kita dapat memberikan bobot pada model yang akan kita bentuk (*weighted least square*), dimana bobot yang diberikan proporsional dengan invers varians.
+6. **multikolinearitas**: tidak ada variabel dependen yang saling berfkorelasi. Multikolinearitas dapat dideteksi melalui plot matriks korelasi. Pada model adanya kolinearitas ditunjukkan dari nilai *variance inflation factor* (VIF) yang tinggi. Secara umum nilai VIF terkecil sebesar 1 dan jika kolinearitas terjadi nilainya dapat lebih besar dari 5 atau 10. Untuk mengatasi kolinearitas pada model dapat dilakukan dengan dua cara, yaitu: mengeluarkan variabel dengan nilai VIF yang tinggi pada model atau menggabungkan dua variabel prediktor yang saling berkorelasi menjadi satu variabel baru.
+
+Pembentukan model linier pada `R` dilakukan dengan menggunakan fungsi `lm()`. Format umum fungsi tersebut adalah sebagai berikut:
+
+```{r, eval=FALSE}
+lm(formula, data, subset, weights)
+```
+
+
+> **Catatan:**
+>
+> * `formula` : formula model yang hendak dibentuk.
+> * `data`: data yang digunakan untuk membentuk model.
+> * `subset` : subset data yang akan digunakan dalam pembentukan model.
+> * `weight` : nilai pembobotan dalam pembentukan model.
+
+### Regrasi Linier Sederhana (*Simple Linear Regression*) {#SLR}
+
+Pada Chapter \@ref(SLR) akan diberikan contoh pembentukan model linier sederhana menggunakan dataset `Boston` dari *library* `MASS` dengan jumlah observasi sebesar 506 observasi. Pada contoh kali ini kita akan mencoba membentuk model dengan variabel dependen berupa `medv` (median harga rumah) dan variabel independen berupa `lstat` (persen rumah tangga dengan status ekonomi menengah ke bawah). Berikut adalh sintaks untuk membentuk model tersebut:
+
+```{r}
+library(MASS)
+```
+
+```{r}
+lm.fit <- lm(medv~lstat, data=Boston)
+anova(lm.fit)
+summary(lm.fit)
+```
+
+Plot residual disajikan pada Gambar \@ref(fig:slr).
+
+```{r slr,echo=FALSE, fig.cap='Analisis residual model linier medv vs lstat pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.fit)
+par(mfrow=c(1,1))
+```
+
+Berdasarkan hasil plot dapat dilihat bahwa seluruh asumsi model linier tidak terpenuhi. Selain melalui plot residual, uji asumsi model linier dapat juga dilakukan secara matematis. Berikut adalah sintaks yang digunakan:
+
+```{r}
+# error berdistribusi normal 
+# (data tidak berdistribusi normal)
+shapiro.test(residuals(lm.fit))
+```
+
+```{r, message=FALSE, warning=TRUE}
+# varians bersifat konstan 
+# (varians tidak konstan)
+library(lmtest)
+bptest(lm.fit)
+```
+
+```{r}
+# error bersifat independen
+# (error tidak bersifat independen)
+dwtest(lm.fit, alternative = "two.sided")
+```
+
+```{r}
+# deteksi outlier (stdres > 2)
+sres <- rstandard(lm.fit)
+sres[which(abs(sres)>2)] # nomor observasi outlier
+```
+
+```{r}
+# influential observation
+# observasi > percentil 50
+# tidak ada observasi dengan jarak cook yang extrim
+cooksD <- cooks.distance(lm.fit)
+p50 <- qf(0.5, df1=2, df2=560-2)
+any(cooksD>p50)
+```
+
+### Regresi Linier Berganda (*Multiple Linier Regression*) {#MLR}
+
+Pada Chapter \@ref(MLR), kita akan membuat tiga buah model regresi linier. Model pertama akan menambahkan variabel `age` (usia bangunan) pada model sebelumnya, model kedua akan menggunakan seluruh ariabel yang ada, dan model ketiga akan melakukan pembaharuan dengan mengeluarkan variabel dengan VIF paling tinggi dari model kedua. Berikut adalah sintaks untuk membentuk ketiag model tersebut:
+
+```{r, message=FALSE, warning=FALSE}
+library(car)
+# Model pertama
+lm.fit1 <- lm(medv ~ lstat+age, data=Boston)
+anova(lm.fit1)
+summary(lm.fit1)
+vif(lm.fit1)
+```
+
+Berdasarkan hasil perhitungan diketahui nilai VIF dari model < 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar \@ref(fig:mlr1).
+
+```{r mlr1,echo=FALSE, fig.cap='Analisis residual model linier 1 pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.fit1)
+par(mfrow=c(1,1))
+```
+
+```{r}
+# Model 2
+lm.fit2 <- lm(medv~., data=Boston)
+anova(lm.fit2)
+summary(lm.fit2)
+vif(lm.fit2)
+```
+
+Berdasarkan hasil perhitungan diperoleh nilai VIF untuk seluruh varaibel prediktor dalam model < 10, sehingga asumsi multikolinearitas terpenuhi. Untuk asumsi lainnya dapat dicek pada plot residual yang ditampilkan pada Gambar \@ref(fig:mlr2).
+
+```{r mlr2,echo=FALSE, fig.cap='Analisis residual model linier 2 pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.fit2)
+par(mfrow=c(1,1))
+```
+
+Pada model ketiga, kita akan mencoba untuk melakukan pembaharuan pada model kedua dengan melakukan drop variabel dengan vif yang paling tinggi. Pada hasil perhitungan sebelumnya, variabel `tax` (pajak) memiliki nilai VIF yang paling tinggi, sehingga pada model ketiga variabel tersebut tidak disertakan. Terdapat dua cara untuk melakukannya berikut adalah sintaks yang digunakan:
+
+```{r}
+# Model 3 (cara 1)
+lm.fit3 <- lm(medv~.-tax, data=Boston)
+
+# Model 3 (cara 2)
+lm.fit3 <- update(lm.fit2, ~.-tax)
+
+anova(lm.fit3)
+summary(lm.fit3)
+vif(lm.fit3)
+```
+
+Plot residual ditampilkan pada Gambar \@ref(fig:mlr3).
+
+```{r mlr3,echo=FALSE, fig.cap='Analisis residual model linier 3 pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.fit3)
+par(mfrow=c(1,1))
+```
+
+### Model Linier dengan Interaksi Antar Variabel Prediktor {#lminter}
+
+Interaksi antar variabel pada model linier dapat dengan mudah dimasukkan kedalam fungsi `lm()`. Terdapat dua buah cara untuk melakukannya. Cara pertama dengan menggunakan tanda `:` pada formula (contoh: $y1 ~ x1+x2+x1:x2$). Tanda `:` menyatakan formula persamaan linier memasukkan interaksi antar variabel prediktor di dalamnya. Cara kedua adalah dengan menggunakan tanda `*`. Cara ini lebih sederhana, dimana fungsi `lm()` akan secara otomatis menerjemahkannya sebagai serangkaian variabel tunggal dan interaksinya. Berikut adalah contoh penerapannya menggunakan kedua cara tersebut:
+
+```{r}
+# cara 1
+lm.inter <- lm(medv~lstat+age+lstat:age, data=Boston)
+anova(lm.inter)
+summary(lm.inter)
+```
+
+```{r}
+# Cara 2
+lm.inter <- lm(medv~lstat*age, data=Boston)
+anova(lm.inter)
+summary(lm.inter)
+```
+
+Plot residual ditampilkan pada Gambar \@ref(fig:lminter).
+
+```{r lminter,echo=FALSE, fig.cap='Analisis residual model dengan melibatkan interaksi antar variabel pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.inter)
+par(mfrow=c(1,1))
+```
+
+### Transformasi Non-linier Pada Prediktor {#nlinpred}
+
+Fungsi `lm()` juga dapat melibatkan transformasi non-linier prediktor pada argumen `formula`-nya. Transformasi non-linier dilakukan dengan menambahkan fungsi identitas `I()`. Sebagai contoh model berikut melibatkan transformasi kuadrat pada variabel `lstat`:
+
+```{r}
+lm.trans <- lm(medv~lstat+I(lstat^2), data=Boston)
+anova(lm.trans)
+summary(lm.trans)
+```
+
+Cara yang lebih sederhana untuk melibatkan tranformasi polinomial kedalam model linier adalah dengan menggunakan fungsi `poly()`. Berikut adalah contoh penerapannya:
+
+```{r}
+lm.trans <- lm(medv~poly(lstat,2), data=Boston)
+anova(lm.trans)
+summary(lm.trans)
+```
+
+Plot residual ditampilkan pada Gambar \@ref(fig:lmtrans).
+
+```{r lmtrans,echo=FALSE, fig.cap='Analisis residual model dengan melibatkan transformasi non-linier variabel prediktor pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.inter)
+par(mfrow=c(1,1))
+```
+
+FUngsi trasnformasi lainnya juga dapat digunakan pada pembentukan model linier. Berikut adalah contoh penerapan transformasi logaritmik dan eksponensial pada model linier:
+
+```{r}
+summary(lm(medv~log(lstat), data=Boston))
+summary(lm(medv~exp(lstat), data=Boston))
+```
+
+### Model Linier dengan Prediktor Kategorikal
+
+Regresi linier dapat pula dilakukan dengan jenis variabel prediktor berupa variabel kategorikal. Untuk dapat melakukannya jenis data variabel kategorikal terlebih dahulu dirubah kedalam factor.
+
+Pada contoh kali ini, kita akan menggunakan dataset `utds` dari *library* `edtaR` untuk memodelkan konsentrasi `uranium` dalam air tanah menggunakan variabel `TDS` pada berbagai kondisi kesadahan. Berikut adalah sintaks yang digunakan
+
+```{r}
+library(edtaR)
+str(utds)
+
+# ubah variabe Bicarbonat menjadi factor
+utds$Bicarbonate <- factor(utds$Bicarbonate,
+                           levels = c(0,1),
+                           labels = c(" <= 50%",
+                                      " > 50%"))
+
+str(utds)
+```
+
+```{r}
+lm.fit <- lm(Uranium~., data=utds)
+anova(lm.fit)
+summary(lm.fit)
+```
+
+Plot residual yang ditampilkan pada Gambar \@ref(fig:lmcat).
+
+```{r lmcat,echo=FALSE, fig.cap='Analisis residual model dengan melibatkan variabel kategorikal pada dataset utds.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(lm.fit)
+par(mfrow=c(1,1))
+```
+
+### Regresi linier dengan Pembobotan {#wlr}
+
+Pada pembahasan sebelumnya kita telah menyaksikan bahwa sebagian model yang telah terbentuk tidak memenuhi asumsi varians yang konstan. Untuk mengatasi hal tersebut, kita dapat membentuk regresi dengan memberikan bobot sebesar invers variansnya. Untuk melakukannya diperlukan beberapa tahapan, antara lain:
+
+1. Membentuk model linier dari variabel dataset: `fit <- lm(y~(variabel prediktor))`.
+2. Menghitung error absolut (`abse <- abs(resid(fit))`) dan nilai *fitted value dari model (`yhat <- fitted(fit`).
+3. Membentuk kembali model menggunakan data residual absolut (`efit <- lm(abse~poly(yhat,2))`) dan menghitung *residual fitted value* (`shat <- fitted(efit)`).
+4. Gunakan nilai bobot `w <- 1/shat^2` untuk membentuk model regresi dengan pembobotan (`fitw <-lm(y~(variabel prediktor), weights=w)`).
+
+Kita akan membentuk kembali model menggunakan dataset `Boston` dengan menggunakan seluruh variabel, namun pada model kali ini kita akan memberikan bobot pada model yang terbentuk. Berikut adalah sintaks yang digunakan:
+
+```{r}
+# langkah 1
+fit <- lm(medv~., data=Boston)
+
+# langkah 2
+abse <- abs(resid(fit))
+yhat <- fitted(fit)
+
+# langkah 3
+efit <- lm(abse~poly(yhat,2))
+shat <- fitted(efit)
+
+# langkah 4
+fitw <- lm(medv~., data = Boston, weights = 1/(shat^2))
+anova(fitw)
+summary(fitw)
+```
+
+Plot residual ditampilkan pada Gambar \@ref(fig:lmw).
+
+```{r lmw,echo=FALSE, fig.cap='Analisis residual model regresi linier dengan pembobotan pada dataset Boston.', out.width='80%', fig.align='center', message=FALSE, warning=FALSE}
+par(mfrow=c(2,2))
+plot(fitw)
+par(mfrow=c(1,1))
+```
+
+## Regresi Logistik {#logreg}
