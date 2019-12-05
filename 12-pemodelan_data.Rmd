@@ -11,7 +11,7 @@ Pada Chapter \@ref(datamod), kita akan membahas cara membentuk model statistik m
 * [STHDA](http://www.sthda.com/english/)
 * [An Introduction to Statistical Learning](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
 
-## Regresi Linier
+## Regresi Linier {#reglin}
 
 Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:
 
@@ -283,3 +283,43 @@ par(mfrow=c(1,1))
 ```
 
 ## Regresi Logistik {#logreg}
+
+Pada Chapter \@ref(logreg), kita telah membahas cara untuk membangun model dengan output berupa variabel dengan nilai numerik. Pada Chapter \@ref(logreg), kita akan belajar cara membentuk model regresi dengan 2 respons (0 dan 1). Pada regresi ini pembentukan model didasarkan oleh kurva logistik, dimana melalui kurva tersebut nilai yang dihasilkan akan memiliki rentang dari 0 sampai 1. Karena model yang dibuat bertujuan untuk memprediksi dua buah kemungkinan (0 atau 1), maka diperlukan suatu nilai ambang (y<0,5 = 0 dan y >=  0,5 = 1).
+
+Fungsi `glm()` dapat digunakan untuk membentuk model regresi logistik. Format umum fungsi tersebut adalah sebagai berikut:
+
+
+```{r, eval=FALSE}
+glm(formula, family = gaussian, data, weights, subset,
+    )
+```
+
+
+> **Catatan:**
+>
+> * `formula` : formula model yang hendak dibentuk.
+> * `family` : distribusi yang digunakan. Untuk regresi logistik digunakan argumen `family=binomial`
+> * `data`: data yang digunakan untuk membentuk model.
+> * `subset` : subset data yang akan digunakan dalam pembentukan model.
+> * `weight` : nilai pembobotan dalam pembentukan model.
+
+Pada contoh berikut, kita akan membuat model untuk memprediksi *contamination rating* menggunakan dataset `contamination` dari *library* `edtaR`. Berikut adalah sintaks yang digunakan:
+
+```{r}
+log.model <- glm(CR ~ ., family=binomial, data=contamination)
+anova(log.model)
+summary(log.model)
+```
+
+## Referensi
+
+1. Akritas, M. 2016. **PROBABILITY & STATISTICS WITH R FOR ENGINEERS AND SCIENTISTS**. Pearson.
+2. Bloomfield, V.A. 2014. **Using R for Numerical Analysis in Science and Engineering**. CRC Press.
+3. James, G., Witten, D., Hastie, T., Tibshirani, R. 2013. **An Introduction to Statistical Learning**. Springer.
+4. Kerns, G.J., 2018. **Introduction to Probability and Statistics Using R**. Course notes for University of Auckland Paper STATS 330. <http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf>.
+5. Lee, A., Ihaka, R., Triggs, C. 2012. **ADVANCED STATISTICAL MODELLING**. 
+6. Primartha, R. 2018. **Belajar Machine Learning Teori dan Praktik**. Penerbit Informatika : Bandung.
+7. Rosadi,D. 2016. **Analisis Statistika dengan R**. Gadjah Mada University Press: Yogyakarta.
+8. STHDA. <(http://www.sthda.com/english/>
+
+

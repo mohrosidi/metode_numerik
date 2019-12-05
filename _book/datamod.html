@@ -24,7 +24,7 @@
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-03" />
+<meta name="date" content="2019-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -332,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
-<li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#regresi-linier"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
+<li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
 <li class="chapter" data-level="12.1.1" data-path="datamod.html"><a href="datamod.html#SLR"><i class="fa fa-check"></i><b>12.1.1</b> Regrasi Linier Sederhana (<em>Simple Linear Regression</em>)</a></li>
 <li class="chapter" data-level="12.1.2" data-path="datamod.html"><a href="datamod.html#MLR"><i class="fa fa-check"></i><b>12.1.2</b> Regresi Linier Berganda (<em>Multiple Linier Regression</em>)</a></li>
 <li class="chapter" data-level="12.1.3" data-path="datamod.html"><a href="datamod.html#lminter"><i class="fa fa-check"></i><b>12.1.3</b> Model Linier dengan Interaksi Antar Variabel Prediktor</a></li>
@@ -341,6 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -370,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="http://www.sthda.com/english/">STHDA</a></li>
 <li><a href="https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">An Introduction to Statistical Learning</a></li>
 </ul>
-<div id="regresi-linier" class="section level2">
+<div id="reglin" class="section level2">
 <h2><span class="header-section-number">12.1</span> Regresi Linier</h2>
 <p>Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:</p>
 <ol style="list-style-type: decimal">
@@ -1001,6 +1002,77 @@ Gambar 12.8: Analisis residual model regresi linier dengan pembobotan pada datas
 </div>
 <div id="logreg" class="section level2">
 <h2><span class="header-section-number">12.2</span> Regresi Logistik</h2>
+<p>Pada Chapter <a href="datamod.html#logreg">12.2</a>, kita telah membahas cara untuk membangun model dengan output berupa variabel dengan nilai numerik. Pada Chapter <a href="datamod.html#logreg">12.2</a>, kita akan belajar cara membentuk model regresi dengan 2 respons (0 dan 1). Pada regresi ini pembentukan model didasarkan oleh kurva logistik, dimana melalui kurva tersebut nilai yang dihasilkan akan memiliki rentang dari 0 sampai 1. Karena model yang dibuat bertujuan untuk memprediksi dua buah kemungkinan (0 atau 1), maka diperlukan suatu nilai ambang (y&lt;0,5 = 0 dan y &gt;= 0,5 = 1).</p>
+<p>Fungsi <code>glm()</code> dapat digunakan untuk membentuk model regresi logistik. Format umum fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb869-1" title="1"><span class="kw">glm</span>(formula, <span class="dt">family =</span> gaussian, data, weights, subset,</a>
+<a class="sourceLine" id="cb869-2" title="2">    )</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>formula</code> : formula model yang hendak dibentuk.</li>
+<li><code>family</code> : distribusi yang digunakan. Untuk regresi logistik digunakan argumen <code>family=binomial</code></li>
+<li><code>data</code>: data yang digunakan untuk membentuk model.</li>
+<li><code>subset</code> : subset data yang akan digunakan dalam pembentukan model.</li>
+<li><code>weight</code> : nilai pembobotan dalam pembentukan model.</li>
+</ul>
+</blockquote>
+<p>Pada contoh berikut, kita akan membuat model untuk memprediksi <em>contamination rating</em> menggunakan dataset <code>contamination</code> dari <em>library</em> <code>edtaR</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb870-1" title="1">log.model &lt;-<span class="st"> </span><span class="kw">glm</span>(CR <span class="op">~</span><span class="st"> </span>., <span class="dt">family=</span>binomial, <span class="dt">data=</span>contamination)</a>
+<a class="sourceLine" id="cb870-2" title="2"><span class="kw">anova</span>(log.model)</a></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model: binomial, link: logit
+## 
+## Response: CR
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##      Df Deviance Resid. Df Resid. Dev
+## NULL                   123     91.474
+## UZT   1  12.3823       122     79.092
+## AY    1   4.3228       121     74.769
+## GWQ   1   0.0147       120     74.755
+## HWM   1  25.0503       119     49.704</code></pre>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb872-1" title="1"><span class="kw">summary</span>(log.model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = CR ~ ., family = binomial, data = contamination)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.09450  -0.33494  -0.08567  -0.04624   2.13239  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -13.20539    3.55814  -3.711 0.000206 ***
+## UZT           0.51527    0.15094   3.414 0.000641 ***
+## AY            0.42909    0.27487   1.561 0.118506    
+## GWQ           0.03035    0.32461   0.093 0.925515    
+## HWM           1.08951    0.29863   3.648 0.000264 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 91.474  on 123  degrees of freedom
+## Residual deviance: 49.704  on 119  degrees of freedom
+## AIC: 59.704
+## 
+## Number of Fisher Scoring iterations: 7</code></pre>
+</div>
+<div id="referensi-10" class="section level2">
+<h2><span class="header-section-number">12.3</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Akritas, M. 2016. <strong>PROBABILITY &amp; STATISTICS WITH R FOR ENGINEERS AND SCIENTISTS</strong>. Pearson.</li>
+<li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press.</li>
+<li>James, G., Witten, D., Hastie, T., Tibshirani, R. 2013. <strong>An Introduction to Statistical Learning</strong>. Springer.</li>
+<li>Kerns, G.J., 2018. <strong>Introduction to Probability and Statistics Using R</strong>. Course notes for University of Auckland Paper STATS 330. <a href="http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf" class="uri">http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf</a>.</li>
+<li>Lee, A., Ihaka, R., Triggs, C. 2012. <strong>ADVANCED STATISTICAL MODELLING</strong>.</li>
+<li>Primartha, R. 2018. <strong>Belajar Machine Learning Teori dan Praktik</strong>. Penerbit Informatika : Bandung.</li>
+<li>Rosadi,D. 2016. <strong>Analisis Statistika dengan R</strong>. Gadjah Mada University Press: Yogyakarta.</li>
+<li>STHDA. &lt;(<a href="http://www.sthda.com/english/" class="uri">http://www.sthda.com/english/</a>&gt;</li>
+</ol>
 
 </div>
 </div>

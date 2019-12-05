@@ -178,4 +178,5 @@
 \contentsline {subsection}{\numberline {12.1.4}Transformasi Non-linier Pada Prediktor}{307}{subsection.12.1.4}% 
 \contentsline {subsection}{\numberline {12.1.5}Model Linier dengan Prediktor Kategorikal}{311}{subsection.12.1.5}% 
 \contentsline {subsection}{\numberline {12.1.6}Regresi linier dengan Pembobotan}{312}{subsection.12.1.6}% 
-\contentsline {section}{\numberline {12.2}Regresi Logistik}{315}{section.12.2}% 
+\contentsline {section}{\numberline {12.2}Regresi Logistik}{316}{section.12.2}% 
+\contentsline {section}{\numberline {12.3}Referensi}{317}{section.12.3}% 

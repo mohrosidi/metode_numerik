@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-12-03}
+    \date{2019-12-04}
 
 \usepackage{booktabs}
 \usepackage{lscape}
@@ -2277,7 +2277,7 @@ Berikut adalah contoh pembuatan vektor menggunakan bilangan acak berdistribusi n
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.443 2.443 3.443 4.443 5.443 6.443
+## [1] 0.974 1.974 2.974 3.974 4.974 5.974
 \end{verbatim}
 
 \hypertarget{matriks}{%
@@ -9303,7 +9303,7 @@ Untuk mempersingkat waktu iterasi kita akan menggunakan fungsi \texttt{root\_bis
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x000000001af76218>
+## <bytecode: 0x0000000006ca7510>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9458,7 +9458,7 @@ Untuk mempercepat proses iterasi, kita dapat pula menggunakan fungsi \texttt{roo
 ## {
 ##     x * exp(-x) + 1
 ## }
-## <bytecode: 0x0000000025309e78>
+## <bytecode: 0x0000000005c57630>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9573,7 +9573,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan bantuan fungsi \texttt{r
 ## {
 ##     -1/exp(-x)
 ## }
-## <bytecode: 0x0000000011482990>
+## <bytecode: 0x000000001d4b4dd0>
 ## 
 ## $root
 ## [1] -0.5671433
@@ -9695,7 +9695,7 @@ Untuk mempercepat proses iterasi, kita dapat menggunakan fungsi \texttt{root\_ne
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x000000000731bed0>
+## <bytecode: 0x000000001876e8c8>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -9892,7 +9892,7 @@ Untuk mempercepat proses iterasi kita dapat menggunakan fungsi \texttt{root\_sec
 ## {
 ##     x - exp(-x)
 ## }
-## <bytecode: 0x000000001121cc80>
+## <bytecode: 0x00000000084bf420>
 ## 
 ## $root
 ## [1] 0.5671433
@@ -10127,7 +10127,7 @@ Untuk penyelesaiannya penulis akan memberikan tebakan awal nilai \(h=h_0=0,6\). 
 ##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
 ##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
 ## }
-## <bytecode: 0x000000001b7c5ec0>
+## <bytecode: 0x0000000006ac6940>
 ## 
 ## $root
 ## [1] -0.2870309
@@ -14282,8 +14282,8 @@ Pada Chapter \ref{datamod}, kita akan membahas cara membentuk model statistik me
   \href{https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR\%20Seventh\%20Printing.pdf}{An Introduction to Statistical Learning}
 \end{itemize}
 
-\hypertarget{regresi-linier}{%
-\section{Regresi Linier}\label{regresi-linier}}
+\hypertarget{reglin}{%
+\section{Regresi Linier}\label{reglin}}
 
 Regresi linier merupakan model sederhana yang paling sering dibahas dalam buku-buku statistika. Modelnya cukup sederhana dimana kita berusaha membentuk model dengan pendekatan garis linier dengan prinsip meminimalkan jumlah kuadrat residual pada data. Model yang tebentuk akan menghasilkan dua buah nilai yaitu nilai konstanta (titik potong sumbu y) dan nilai slope kurva. Model yang terbentuk secara umum haruslah memenuhi asumsi dasar model linier berikut:
 
@@ -15247,6 +15247,120 @@ Plot residual ditampilkan pada Gambar \ref{fig:lmw}.
 
 \hypertarget{logreg}{%
 \section{Regresi Logistik}\label{logreg}}
+
+Pada Chapter \ref{logreg}, kita telah membahas cara untuk membangun model dengan output berupa variabel dengan nilai numerik. Pada Chapter \ref{logreg}, kita akan belajar cara membentuk model regresi dengan 2 respons (0 dan 1). Pada regresi ini pembentukan model didasarkan oleh kurva logistik, dimana melalui kurva tersebut nilai yang dihasilkan akan memiliki rentang dari 0 sampai 1. Karena model yang dibuat bertujuan untuk memprediksi dua buah kemungkinan (0 atau 1), maka diperlukan suatu nilai ambang (y\textless{}0,5 = 0 dan y \textgreater{}= 0,5 = 1).
+
+Fungsi \texttt{glm()} dapat digunakan untuk membentuk model regresi logistik. Format umum fungsi tersebut adalah sebagai berikut:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glm}\NormalTok{(formula, }\DataTypeTok{family =}\NormalTok{ gaussian, data, weights, subset,}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Catatan:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{formula} : formula model yang hendak dibentuk.
+\item
+  \texttt{family} : distribusi yang digunakan. Untuk regresi logistik digunakan argumen \texttt{family=binomial}
+\item
+  \texttt{data}: data yang digunakan untuk membentuk model.
+\item
+  \texttt{subset} : subset data yang akan digunakan dalam pembentukan model.
+\item
+  \texttt{weight} : nilai pembobotan dalam pembentukan model.
+\end{itemize}
+\end{quote}
+
+Pada contoh berikut, kita akan membuat model untuk memprediksi \emph{contamination rating} menggunakan dataset \texttt{contamination} dari \emph{library} \texttt{edtaR}. Berikut adalah sintaks yang digunakan:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{log.model <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(CR }\OperatorTok{~}\StringTok{ }\NormalTok{., }\DataTypeTok{family=}\NormalTok{binomial, }\DataTypeTok{data=}\NormalTok{contamination)}
+\KeywordTok{anova}\NormalTok{(log.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Deviance Table
+## 
+## Model: binomial, link: logit
+## 
+## Response: CR
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##      Df Deviance Resid. Df Resid. Dev
+## NULL                   123     91.474
+## UZT   1  12.3823       122     79.092
+## AY    1   4.3228       121     74.769
+## GWQ   1   0.0147       120     74.755
+## HWM   1  25.0503       119     49.704
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(log.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = CR ~ ., family = binomial, data = contamination)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.09450  -0.33494  -0.08567  -0.04624   2.13239  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -13.20539    3.55814  -3.711 0.000206 ***
+## UZT           0.51527    0.15094   3.414 0.000641 ***
+## AY            0.42909    0.27487   1.561 0.118506    
+## GWQ           0.03035    0.32461   0.093 0.925515    
+## HWM           1.08951    0.29863   3.648 0.000264 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 91.474  on 123  degrees of freedom
+## Residual deviance: 49.704  on 119  degrees of freedom
+## AIC: 59.704
+## 
+## Number of Fisher Scoring iterations: 7
+\end{verbatim}
+
+\hypertarget{referensi-10}{%
+\section{Referensi}\label{referensi-10}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Akritas, M. 2016. \textbf{PROBABILITY \& STATISTICS WITH R FOR ENGINEERS AND SCIENTISTS}. Pearson.
+\item
+  Bloomfield, V.A. 2014. \textbf{Using R for Numerical Analysis in Science and Engineering}. CRC Press.
+\item
+  James, G., Witten, D., Hastie, T., Tibshirani, R. 2013. \textbf{An Introduction to Statistical Learning}. Springer.
+\item
+  Kerns, G.J., 2018. \textbf{Introduction to Probability and Statistics Using R}. Course notes for University of Auckland Paper STATS 330. \url{http://ipsur.r-forge.r-project.org/book/download/IPSUR.pdf}.
+\item
+  Lee, A., Ihaka, R., Triggs, C. 2012. \textbf{ADVANCED STATISTICAL MODELLING}.
+\item
+  Primartha, R. 2018. \textbf{Belajar Machine Learning Teori dan Praktik}. Penerbit Informatika : Bandung.
+\item
+  Rosadi,D. 2016. \textbf{Analisis Statistika dengan R}. Gadjah Mada University Press: Yogyakarta.
+\item
+  STHDA. \textless{}(\url{http://www.sthda.com/english/}\textgreater{}
+\end{enumerate}
 
 \bibliography{book.bib,packages.bib}
 
