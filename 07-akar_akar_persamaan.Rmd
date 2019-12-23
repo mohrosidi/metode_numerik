@@ -704,7 +704,7 @@ Adapun kerugian dari metode ini adalah berpotensi menghasilkan hasil yang tidak 
 
 ## Penyelesaian Persamaan Non-Linier Menggunakan Fungsi `uniroot` dan `uniroot.all` {#uniroot}
 
-*Library* `base` pada `R` menyediakan fungsi `uniroot()` untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara *root bracketing*, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:
+Paket `base` pada `R` menyediakan fungsi `uniroot()` untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara *root bracketing*, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:
 
 ```{r, eval=FALSE}
 uniroot(f, interval, tol=.Machine$double.eps^0.25, 
@@ -727,7 +727,7 @@ uniroot(function(x){x*exp(-x)+1},
 
 Berdasarkan hasil iterasi diperoleh akar persamaan tersebut adalah $-0,5671433$ dengan jumlah iterasi sebanyak $7$ iterasi dan tingkat presisi sebesar $5e-08$.
 
-Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah `uniroot.all()` dari *library* `rootSolve`. Fungsi ini mengatasi kelemahan dari `uniroot()`, dimana `uniroot()` tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol $y=0$. Untuk memahaminya perhatikan contoh berikut:
+Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah `uniroot.all()` dari paket `rootSolve`. Fungsi ini mengatasi kelemahan dari `uniroot()`, dimana `uniroot()` tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol $y=0$. Untuk memahaminya perhatikan contoh berikut:
 
 ```{r, eval=FALSE}
 uniroot(function(x){sin(x)+1}, c(-pi,0))
@@ -753,7 +753,7 @@ uniroot.all(function(x){sin(x)+1}, c(-pi,0))
 
 ## Akar Persamaan Polinomial Menggunakan Fungsi `polyroot`
 
-Fungsi `polyroot()` pada *library* `base` dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub. 
+Fungsi `polyroot()` pada paket `base` dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub. 
 
 Untuk dapat menggunakannya kita hanya perlu memasukkan vektor koefisien dari polinomial. Pengisian elemen dalam vektor dimulai dari variabel dengan pangkat tertinggi menuju variabel dengan pangkat terendah. Berikut adalah contoh bagaimana fungsi `polyroot()` digunakan untuk mencari akar polinomial $f\left(x\right)=x^2+1$:
 

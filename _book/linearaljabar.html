@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Aljabar Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
-  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Aljabar Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Aljabar Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
-  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
-  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="numericmethod.html">
 <link rel="next" href="rootfinding.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -128,7 +128,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Metode Numerik Menggunakan R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#gambaran-isi-buku"><i class="fa fa-check"></i>Gambaran Isi Buku</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cara-berkontribusi-dalam-buku-ini"><i class="fa fa-check"></i>Cara Berkontribusi dalam Buku Ini</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ucapan-terima-kasih"><i class="fa fa-check"></i>Ucapan Terima Kasih</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lisensi"><i class="fa fa-check"></i>Lisensi</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
@@ -139,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
 <li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
 <li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
@@ -290,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
 <li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
-<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
-<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
@@ -313,7 +318,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
 <li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a><ul>
+<li class="chapter" data-level="10.1" data-path="diffeq.html"><a href="diffeq.html#ivp"><i class="fa fa-check"></i><b>10.1</b> <em>Initial value problems</em></a><ul>
+<li class="chapter" data-level="10.1.1" data-path="diffeq.html"><a href="diffeq.html#eulermethod"><i class="fa fa-check"></i><b>10.1.1</b> Metode Euler</a></li>
+<li class="chapter" data-level="10.1.2" data-path="diffeq.html"><a href="diffeq.html#heun"><i class="fa fa-check"></i><b>10.1.2</b> Metode Heun</a></li>
+<li class="chapter" data-level="10.1.3" data-path="diffeq.html"><a href="diffeq.html#midpt"><i class="fa fa-check"></i><b>10.1.3</b> Metode Titik Tengah</a></li>
+<li class="chapter" data-level="10.1.4" data-path="diffeq.html"><a href="diffeq.html#rungekutta"><i class="fa fa-check"></i><b>10.1.4</b> Metode Runge-Kutta Orde 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="diffeq.html"><a href="diffeq.html#mml"><i class="fa fa-check"></i><b>10.1.5</b> Metode Multistep Linier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="diffeq.html"><a href="diffeq.html#sysdiff"><i class="fa fa-check"></i><b>10.2</b> Sistem Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10.3" data-path="diffeq.html"><a href="diffeq.html#penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode"><i class="fa fa-check"></i><b>10.3</b> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></a></li>
+<li class="chapter" data-level="10.4" data-path="diffeq.html"><a href="diffeq.html#pasialdiff"><i class="fa fa-check"></i><b>10.4</b> Persamaan Diferensial Parsial</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-difusi"><i class="fa fa-check"></i><b>10.4.1</b> Persamaan Difusi</a></li>
+<li class="chapter" data-level="10.4.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang"><i class="fa fa-check"></i><b>10.4.2</b> Persamaan Gelombang</a></li>
+<li class="chapter" data-level="10.4.3" data-path="diffeq.html"><a href="diffeq.html#laplace"><i class="fa fa-check"></i><b>10.4.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.4.4" data-path="diffeq.html"><a href="diffeq.html#setup.grid.1d"><i class="fa fa-check"></i><b>10.4.4</b> <code>setup.grid.1D()</code></a></li>
+<li class="chapter" data-level="10.4.5" data-path="diffeq.html"><a href="diffeq.html#setup.prop.1d"><i class="fa fa-check"></i><b>10.4.5</b> <code>setup.prop.1D()</code></a></li>
+<li class="chapter" data-level="10.4.6" data-path="diffeq.html"><a href="diffeq.html#tran.1d"><i class="fa fa-check"></i><b>10.4.6</b> <code>tran.1D()</code></a></li>
+<li class="chapter" data-level="10.4.7" data-path="diffeq.html"><a href="diffeq.html#ode.1d-atau-steady.1d"><i class="fa fa-check"></i><b>10.4.7</b> <code>ode.1D()</code> atau <code>steady.1D()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="diffeq.html"><a href="diffeq.html#contoh-penerapan-paket-reactran"><i class="fa fa-check"></i><b>10.5</b> Contoh Penerapan Paket <code>ReacTran</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-adveksi-difuksi-1d"><i class="fa fa-check"></i><b>10.5.1</b> Persamaan Adveksi-Difuksi 1D</a></li>
+<li class="chapter" data-level="10.5.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang-1d"><i class="fa fa-check"></i><b>10.5.2</b> Persamaan Gelombang 1D</a></li>
+<li class="chapter" data-level="10.5.3" data-path="diffeq.html"><a href="diffeq.html#persamaan-laplace"><i class="fa fa-check"></i><b>10.5.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.5.4" data-path="diffeq.html"><a href="diffeq.html#persamaan-poisson-untuk-dipol"><i class="fa fa-check"></i><b>10.5.4</b> Persamaan Poisson untuk Dipol</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="diffeq.html"><a href="diffeq.html#studi-kasus-3"><i class="fa fa-check"></i><b>10.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="diffeq.html"><a href="diffeq.html#model-lotka-voltera"><i class="fa fa-check"></i><b>10.6.1</b> Model Lotka-Voltera</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="diffeq.html"><a href="diffeq.html#referensi-9"><i class="fa fa-check"></i><b>10.7</b> Referensi</a></li>
+<li class="chapter" data-level="10.8" data-path="diffeq.html"><a href="diffeq.html#latihan-4"><i class="fa fa-check"></i><b>10.8</b> Latihan</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
 <li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
@@ -329,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
 <li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-10"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
@@ -341,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
-<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-11"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -444,8 +479,8 @@ u \pm v = \begin{bmatrix}
 <p>Bagaimana jika kita melakukan operasi dua vektor, dimaana salah satu vektor memiliki penjang yang berbeda?. Untuk memnjawab hal tersebut, perhatikan sintaks berikut:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb378-2" title="2">u<span class="op">+</span>x</a></code></pre></div>
-<pre><code>## Warning in u + x: longer object length is not a multiple of shorter object
-## length</code></pre>
+<pre><code>## Warning in u + x: longer object length is not a
+## multiple of shorter object length</code></pre>
 <pre><code>## [1] 2 4 4 6 6</code></pre>
 <p>Berdasarkan contoh tersebut, <code>R</code> akan mengeluarkan peringatan yang menunjukkan operasi dilakukan pada vektor dengan panjang berbeda. <code>R</code> akan tetap melakukan perhitungan dengan menjumlahkan kembali vektor <span class="math inline">\(u\)</span> yang belum dijumlahkan dengan vektor <span class="math inline">\(x\)</span> sampai seluruh elemen vektor <span class="math inline">\(u\)</span> dilakukan operasi penjumlahan.</p>
 <p>Operasi lain yang dapat dilakukan pada vektor adalah menghitung <em>inner product</em> dan panjang vektor. Inner product dihitung menggunakan Persamaan <a href="linearaljabar.html#eq:innerproduct">(6.4)</a>.</p>
@@ -465,7 +500,7 @@ u.v=\sum_{i=1}^nu_1v_1+u_2v_2+\dots+u_nv_n
 ## [1,]  130</code></pre>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="co"># panjang vektor u</span></a>
 <a class="sourceLine" id="cb383-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(u<span class="op">*</span>u))</a></code></pre></div>
-<pre><code>## [1] 7.416198</code></pre>
+<pre><code>## [1] 7.416</code></pre>
 </div>
 <div id="operasimatrik" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Operasi matriks</h3>
@@ -697,7 +732,7 @@ A=\left[A|B\right]
 \end{equation}\]</span></p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-133" class="theorem"><strong>Teorema 6.1  (spltheorem)  </strong></span>Suatu sistem persamaan linier mempunyai penyelesaian tunggal bila memenuhi syarat-syarat sebagai berikut:
+<span id="thm:unnamed-chunk-134" class="theorem"><strong>Teorema 6.1  (spltheorem)  </strong></span>Suatu sistem persamaan linier mempunyai penyelesaian tunggal bila memenuhi syarat-syarat sebagai berikut:
 </div>
 
 <ul>
@@ -1280,10 +1315,10 @@ x = \begin{bmatrix}
 <pre><code>## [1] 1 2 3</code></pre>
 <p>Jika kita hanya memasukkan matriks persegi, maka output yang akan dihasilkan adalah invers dari matriks yang kita masukkan.</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">solve</span>(a)</a></code></pre></div>
-<pre><code>##      [,1] [,2]          [,3]
-## [1,]    2   -1  7.401487e-17
-## [2,]   14   -9 -1.000000e+00
-## [3,]   17  -11 -1.000000e+00</code></pre>
+<pre><code>##      [,1] [,2]       [,3]
+## [1,]    2   -1  7.401e-17
+## [2,]   14   -9 -1.000e+00
+## [3,]   17  -11 -1.000e+00</code></pre>
 <p>Jika kita mengalikan invers dengan matriks semula, maka akan dihasilkan output berupa matriks identitas.</p>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1">a<span class="op">%*%</span><span class="kw">solve</span>(a)</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -1293,7 +1328,7 @@ x = \begin{bmatrix}
 </div>
 <div id="solvetridiagfunct" class="section level3">
 <h3><span class="header-section-number">6.3.5</span> Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi ’Solve.tridiag()`</h3>
-<p>Penyelesaian matriks tridiagonal selain menggunakan fungsi <code>solve()</code>, juga dapat menggunakan fungsi <code>Solve.tridiag()</code> dari <em>library</em> <code>limSolve</code>. Untuk menginstall dan mengaktifkan <em>library</em> tersebut, jalankan sintaks berikut:</p>
+<p>Penyelesaian matriks tridiagonal selain menggunakan fungsi <code>solve()</code>, juga dapat menggunakan fungsi <code>Solve.tridiag()</code> dari Paket <code>limSolve</code>. Untuk menginstall dan mengaktifkan Paket tersebut, jalankan sintaks berikut:</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;limSolve&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1"><span class="kw">library</span>(limSolve)</a></code></pre></div>
 <p>Fungsi <code>Solve.tridiag()</code> memiliki format sebagai berikut:</p>
@@ -1661,7 +1696,7 @@ x_1=-1, x_2=2, x_3=0, x_4=1
 ## [1,]    0    1   -2
 ## [2,]    1    5    9
 ## [3,]    7   -1   -5</code></pre>
-<p>Fungsi <code>lu()</code> pada <em>library</em> <code>Matrix</code> dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan <em>library</em> <code>Matrix</code>.</p>
+<p>Fungsi <code>lu()</code> pada Paket <code>Matrix</code> dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan Paket <code>Matrix</code>.</p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;Matrix&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1"><span class="kw">library</span>(Matrix)</a></code></pre></div>
 <p>Untuk dapat menggunakannya kita hanya perlu menginputkan matriks kedalam fungsi tersebut. Berikut adalah contoh penerapannya:</p>
@@ -1683,17 +1718,17 @@ x_1=-1, x_2=2, x_3=0, x_4=1
 <a class="sourceLine" id="cb452-2" title="2">decomp</a></code></pre></div>
 <pre><code>## $L
 ## 3 x 3 Matrix of class &quot;dtrMatrix&quot; (unitriangular)
-##      [,1]       [,2]       [,3]      
-## [1,]  1.0000000          .          .
-## [2,]  0.7052632  1.0000000          .
-## [3,]  0.5894737 -0.2278591  1.0000000
+##      [,1]    [,2]    [,3]   
+## [1,]  1.0000       .       .
+## [2,]  0.7053  1.0000       .
+## [3,]  0.5895 -0.2279  1.0000
 ## 
 ## $U
 ## 3 x 3 Matrix of class &quot;dtrMatrix&quot;
-##      [,1]       [,2]       [,3]      
-## [1,] -0.9500000  0.5300000  1.7600000
-## [2,]          . -0.6037895 -0.7512632
-## [3,]          .          .  0.1913441
+##      [,1]    [,2]    [,3]   
+## [1,] -0.9500  0.5300  1.7600
+## [2,]       . -0.6038 -0.7513
+## [3,]       .       .  0.1913
 ## 
 ## $P
 ## 3 x 3 sparse Matrix of class &quot;pMatrix&quot;
@@ -1840,7 +1875,7 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 ## [1,]    9   -3    6
 ## [2,]   -3   17  -10
 ## [3,]    6  -10   12</code></pre>
-<p>Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi <code>chol()</code> pada <em>library</em> <code>Matrix</code>. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh <a href="linearaljabar.html#exm:cholexm2">6.8</a>.</p>
+<p>Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi <code>chol()</code> pada Paket <code>Matrix</code>. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh <a href="linearaljabar.html#exm:cholexm2">6.8</a>.</p>
 <div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="kw">chol</span>(a)</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    3   -1    2
@@ -1853,7 +1888,7 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 </div>
 <div id="othersdecomp" class="section level3">
 <h3><span class="header-section-number">6.4.3</span> Dekomposisi Lainnya</h3>
-<p>Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada <em>sub-chapter</em> ini antara lain: QR, <em>singular value decomposition</em> (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada <em>library</em> <code>base</code>.</p>
+<p>Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada <em>sub-chapter</em> ini antara lain: QR, <em>singular value decomposition</em> (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada Paket <code>base</code>.</p>
 <div id="qrdecomp" class="section level4">
 <h4><span class="header-section-number">6.4.3.1</span> Dekomposisi QR</h4>
 <p>Dekomposisi QR merupakan dekomposisi yang penting dalam menyelesaikan sistem persamaan linier. Dekomposisi ini juga berperan penting untuk menghitung koefisien regresi dan pengaplikasian algoritma Newton-Raphson.</p>
@@ -1868,17 +1903,17 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 <a class="sourceLine" id="cb462-6" title="6"><span class="co"># dekomposisi matriks A</span></a>
 <a class="sourceLine" id="cb462-7" title="7"><span class="kw">qr</span>(A)</a></code></pre></div>
 <pre><code>## $qr
-##            [,1]        [,2]       [,3]
-## [1,] -6.3777985 -12.1257372 -19.850120
-## [2,]  0.2774974  -6.3105459  -7.939245
-## [3,]  0.7147777  -0.6461294   2.351193
-## [4,]  0.6382310  -0.5653624   0.276672
+##         [,1]     [,2]     [,3]
+## [1,] -6.3778 -12.1257 -19.8501
+## [2,]  0.2775  -6.3105  -7.9392
+## [3,]  0.7148  -0.6461   2.3512
+## [4,]  0.6382  -0.5654   0.2767
 ## 
 ## $rank
 ## [1] 3
 ## 
 ## $qraux
-## [1] 1.068915 1.512720 1.960964
+## [1] 1.069 1.513 1.961
 ## 
 ## $pivot
 ## [1] 1 2 3
@@ -1887,36 +1922,36 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 ## [1] &quot;qr&quot;</code></pre>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" title="1"><span class="co"># memperoleh penyelesaian SPL</span></a>
 <a class="sourceLine" id="cb464-2" title="2"><span class="kw">qr.solve</span>(A,b)</a></code></pre></div>
-<pre><code>## [1]  0.3045952 -0.1111081  0.3236862</code></pre>
+<pre><code>## [1]  0.3046 -0.1111  0.3237</code></pre>
 </div>
 <div id="svddecomp" class="section level4">
 <h4><span class="header-section-number">6.4.3.2</span> <em>Singular Value Decomposition</em></h4>
 <p><em>Singular value decomposition</em> (SVD) merupakan algoritma faktorisasi matriks yang mendekomposisi matriks segiempat menjadi matriks <span class="math inline">\(UDV_H\)</span>, dimana <span class="math inline">\(D\)</span> merupakan mmatriks diagonal non negatif, <span class="math inline">\(U\)</span> dan <span class="math inline">\(V\)</span> merupakan matriks <em>unitary</em>, dan <span class="math inline">\(V_H\)</span> merupakan matriks tanspose konjugat dari matriks <span class="math inline">\(V\)</span>. Algoritma ini banyak digunakan dalam analisis <em>principal component</em>.</p>
-<p>Pada <code>R</code>, SVD dapat dilakukan menggunakan fungsi <code>svd()</code> dari <em>library</em> <code>base</code>. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:</p>
+<p>Pada <code>R</code>, SVD dapat dilakukan menggunakan fungsi <code>svd()</code> dari Paket <code>base</code>. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1">?svd</a></code></pre></div>
 <p>Berikut adalah contoh penerapan fungsi <code>svd()</code>:</p>
 <div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1"><span class="co"># dekomposisi matriks A</span></a>
 <a class="sourceLine" id="cb467-2" title="2"><span class="kw">svd</span>(A)</a></code></pre></div>
 <pre><code>## $d
-## [1] 26.094305  2.727495  1.329585
+## [1] 26.094  2.727  1.330
 ## 
 ## $u
-##            [,1]       [,2]       [,3]
-## [1,] -0.3684647 -0.5661362  0.6650563
-## [2,] -0.4706958 -0.5703414 -0.6113237
-## [3,] -0.5740273  0.4324050 -0.2589679
-## [4,] -0.5596176  0.4089332  0.3419343
+##         [,1]    [,2]    [,3]
+## [1,] -0.3685 -0.5661  0.6651
+## [2,] -0.4707 -0.5703 -0.6113
+## [3,] -0.5740  0.4324 -0.2590
+## [4,] -0.5596  0.4089  0.3419
 ## 
 ## $v
-##            [,1]        [,2]       [,3]
-## [1,] -0.2257101  0.87169376 -0.4349769
-## [2,] -0.5201583 -0.48536069 -0.7027520
-## [3,] -0.8237052  0.06763865  0.5629696</code></pre>
+##         [,1]     [,2]    [,3]
+## [1,] -0.2257  0.87169 -0.4350
+## [2,] -0.5202 -0.48536 -0.7028
+## [3,] -0.8237  0.06764  0.5630</code></pre>
 </div>
 <div id="eigendecomp" class="section level4">
 <h4><span class="header-section-number">6.4.3.3</span> Dekomposisi Eigen</h4>
 <p>Proses umum yang digunakan untuk menemukan nilai eigen dan vektor eigen suatu matriks segiempat dapat dilihat sebagai proses dari dekomposisi eigen. Proses ini akan mendekomposisi matriks menjadi <span class="math inline">\(VDV^{-1}\)</span>, dimana <span class="math inline">\(D\)</span> merupakan matriks diagonal yang terbentuk dari nilai eigen, dan <span class="math inline">\(V\)</span> merupakan vektor eigen. Proses dekomposisi ini akan berguna bagi pembaca yang ingin mempelajari <em>principal component analysis</em>.</p>
-<p>Fungsi <code>eigen()</code> pada <em>library</em> <code>base</code> dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:</p>
+<p>Fungsi <code>eigen()</code> pada Paket <code>base</code> dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:</p>
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1">?eigen</a></code></pre></div>
 <p>Berikut adalah contoh sintaks untuk melakukan dekomposisi eigen:</p>
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" title="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">nrow=</span><span class="dv">3</span>)</a>
@@ -1925,13 +1960,13 @@ l_{i,j}=\frac{1}{l_{i,i}}\left(a_{i,j}-\sum_{k=1}^{i-1}l_{i,k}l_{j,k}\right)
 <a class="sourceLine" id="cb470-4" title="4"><span class="kw">eigen</span>(A)</a></code></pre></div>
 <pre><code>## eigen() decomposition
 ## $values
-## [1] 3.4142136 2.0000000 0.5857864
+## [1] 3.4142 2.0000 0.5858
 ## 
 ## $vectors
-##            [,1]          [,2]      [,3]
-## [1,] -0.5000000 -7.071068e-01 0.5000000
-## [2,]  0.7071068  1.099065e-15 0.7071068
-## [3,] -0.5000000  7.071068e-01 0.5000000</code></pre>
+##         [,1]       [,2]   [,3]
+## [1,] -0.5000 -7.071e-01 0.5000
+## [2,]  0.7071  1.099e-15 0.7071
+## [3,] -0.5000  7.071e-01 0.5000</code></pre>
 </div>
 </div>
 </div>
@@ -2008,10 +2043,10 @@ Untuk mempermudah proses iterasi, kita akan menggunakan bantuan <code>R</code> u
 <pre><code>## [1] 0 0 0</code></pre>
 <p>Langkah selanjutnya adalah memperoleh invers matriks <span class="math inline">\(D\)</span>.</p>
 <div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1">(Dinv &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">diag</span>(A)))</a></code></pre></div>
-<pre><code>##      [,1]      [,2]  [,3]
-## [1,]  0.2 0.0000000 0.000
-## [2,]  0.0 0.1428571 0.000
-## [3,]  0.0 0.0000000 0.125</code></pre>
+<pre><code>##      [,1]   [,2]  [,3]
+## [1,]  0.2 0.0000 0.000
+## [2,]  0.0 0.1429 0.000
+## [3,]  0.0 0.0000 0.125</code></pre>
 <p>Persiapan terakhir sebelum iterasi dilakukan adalah menyiapkan matriks <span class="math inline">\(R\)</span>.</p>
 <div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1">(R&lt;-A<span class="op">-</span><span class="kw">diag</span>(<span class="kw">diag</span>(A)))</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -2021,25 +2056,25 @@ Untuk mempermudah proses iterasi, kita akan menggunakan bantuan <code>R</code> u
 <p>Iterasi selanjutnya dilakukan menggunakan Persamaan <a href="linearaljabar.html#eq:jacobi5">(6.38)</a>.</p>
 <p><strong>iterasi 1</strong></p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1">(x1 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x))</a></code></pre></div>
-<pre><code>##          [,1]
-## [1,] 8.000000
-## [2,] 5.571429
-## [3,] 6.875000</code></pre>
+<pre><code>##       [,1]
+## [1,] 8.000
+## [2,] 5.571
+## [3,] 6.875</code></pre>
 <p><strong>iterasi 2</strong></p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" title="1">(x2 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x1))</a></code></pre></div>
-<pre><code>##            [,1]
-## [1,]  1.6464286
-## [2,] -0.6428571
-## [3,]  3.7857143</code></pre>
+<pre><code>##         [,1]
+## [1,]  1.6464
+## [2,] -0.6429
+## [3,]  3.7857</code></pre>
 <p><strong>iterasi 3</strong></p>
 <div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1">(x3 &lt;-<span class="st"> </span>Dinv <span class="op">%*%</span><span class="st"> </span>(b<span class="op">-</span>R<span class="op">%*%</span>x2))</a></code></pre></div>
-<pre><code>##          [,1]
-## [1,] 5.985714
-## [2,] 2.937755
-## [3,] 6.910268</code></pre>
+<pre><code>##       [,1]
+## [1,] 5.986
+## [2,] 2.938
+## [3,] 6.910</code></pre>
 <p>Selama proses iterasi,jumlah akar jumlah kuadrat dihitung. Sebagai contoh berikut disajikan akar jumlah kuadrat pada iterasi ke-3:</p>
 <div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" title="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x3<span class="op">-</span>x2)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 11.04445</code></pre>
+<pre><code>## [1] 11.04</code></pre>
 <p>Selama proses iterasi nilai tersebut terus mengecil. Iterasi dihantikan jika nilai akar jumlah kuadrat tersebut lebih kecil dari nilai toleransi. Pada contoh ini digunakan nilai toleransi <span class="math inline">\(10^{-7}\)</span>.</p>
 <p>Proses iterasi berlangsung sampai dengan iterasi ke-62 dengan nilai <span class="math inline">\(x\)</span> akhir sebagai berikut:</p>
 <p><span class="math display">\[
@@ -2119,16 +2154,16 @@ x = \begin{bmatrix}
 <a class="sourceLine" id="cb493-3" title="3"></a>
 <a class="sourceLine" id="cb493-4" title="4"><span class="kw">jacobi</span>(A,b)</a></code></pre></div>
 <pre><code>## $X
-##          [,1]
-## [1,] 2.425476
-## [2,] 3.573016
-## [3,] 1.925954
+##       [,1]
+## [1,] 2.425
+## [2,] 3.573
+## [3,] 1.926
 ## 
 ## $iter
 ## [1] 17</code></pre>
 <p>Nilai vektor <span class="math inline">\(x\)</span> sesungguhnya dapat diperoleh menggunakan fungsi <code>solve()</code>.</p>
 <div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1"><span class="kw">solve</span>(A,b)</a></code></pre></div>
-<pre><code>## [1] 2.425476 3.573016 1.925954</code></pre>
+<pre><code>## [1] 2.425 3.573 1.926</code></pre>
 <p>Berdasarkan hasil perhitungan, vektor <span class="math inline">\(x\)</span> hasil iterasi memiliki nilai identik dengan nilai penyelesaian yang sebenarnya.</p>
 <p>Perlu diperhatikan dalam penggunaan fungsi <code>jacobi()</code> syarat utama matriks haruslah terpenuhi, seperti: nilai diagonal matriks <span class="math inline">\(A\)</span> lebih besar dari nilai elemen lainnya pada satu kolom. Selain itu, nilai diagonal matriks <span class="math inline">\(D\)</span> tidak boleh sama dengan nol agar inver matriks <span class="math inline">\(D\)</span> dapat diperoleh. Jika syarat-syarat tersebut terpenuhi, maka metode Jacobi dapat diterapkan. Jika tidak terpenuhi, maka penyelesaian yang konvergen mungkin masih dapat diperoleh meskipun penulis tidak dapat menjamin hal tersebut dapat terjadi.</p>
 </div>
@@ -2169,10 +2204,10 @@ x^{n+1}=L^{-1}\left(b-Ux^{n}\right)
 ## [3,]    0    0    0</code></pre>
 <p>Selanjutya lakukan invers terhadap matriks <span class="math inline">\(L\)</span> menggunakn fungsi <code>solve()</code>.</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1">(Linv &lt;-<span class="st"> </span><span class="kw">solve</span>(L))</a></code></pre></div>
-<pre><code>##               [,1]         [,2]       [,3]
-## [1,]  0.0370370370  0.000000000 0.00000000
-## [2,] -0.0148148148  0.066666667 0.00000000
-## [3,] -0.0004115226 -0.001234568 0.01851852</code></pre>
+<pre><code>##            [,1]      [,2]    [,3]
+## [1,]  0.0370370  0.000000 0.00000
+## [2,] -0.0148148  0.066667 0.00000
+## [3,] -0.0004115 -0.001235 0.01852</code></pre>
 <p>Tetapkan nilai estimasi awal dan nilai toleransi yang dikehendaki. Nilai toleransi pada proses ini ditetapkan sebesar <span class="math inline">\(10^-7\)</span>.</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1"><span class="co"># tebakan awal nilai x</span></a>
 <a class="sourceLine" id="cb505-2" title="2">(x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(b)))</a></code></pre></div>
@@ -2180,22 +2215,22 @@ x^{n+1}=L^{-1}\left(b-Ux^{n}\right)
 <p>Lakukan iterasi menggunakan Persamaan <a href="linearaljabar.html#eq:gaussseidel">(6.39)</a>.</p>
 <p><strong>Iterasi 1</strong></p>
 <div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb507-1" title="1">(x1 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x))</a></code></pre></div>
-<pre><code>##          [,1]
-## [1,] 3.148148
-## [2,] 3.540741
-## [3,] 1.913169</code></pre>
+<pre><code>##       [,1]
+## [1,] 3.148
+## [2,] 3.541
+## [3,] 1.913</code></pre>
 <div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
 <a class="sourceLine" id="cb509-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x1<span class="op">-</span>x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 8.602058</code></pre>
+<pre><code>## [1] 8.602</code></pre>
 <p><strong>Iterasi 2</strong></p>
 <div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">(x2 &lt;-<span class="st"> </span>Linv <span class="op">%*%</span><span class="st"> </span>(b <span class="op">-</span><span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>x1))</a></code></pre></div>
-<pre><code>##          [,1]
-## [1,] 2.432175
-## [2,] 3.572041
-## [3,] 1.925848</code></pre>
+<pre><code>##       [,1]
+## [1,] 2.432
+## [2,] 3.572
+## [3,] 1.926</code></pre>
 <div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1"><span class="co"># akar jumlah kuadrat</span></a>
 <a class="sourceLine" id="cb513-2" title="2"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x2<span class="op">-</span>x1)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 0.6719939</code></pre>
+<pre><code>## [1] 0.672</code></pre>
 <p>Iterasi terus dilakukan sampai dengan nilai akar jumlah kuadrat lebih kecil dari nilai toleransi. Setelah iterasi ke-7 diperoleh nilai vektor <span class="math inline">\(x\)</span> sebesar:</p>
 <p><span class="math display">\[
 x = \begin{bmatrix}
@@ -2251,10 +2286,10 @@ x = \begin{bmatrix}
 <p>Penyelesaiansistem persamaan linier tersebut menggunakan fungsi <code>gauss_seidel()</code> disajikan pada sintaks berikut:</p>
 <div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" title="1"><span class="kw">gauss_seidel</span>(A,b)</a></code></pre></div>
 <pre><code>## $X
-##          [,1]
-## [1,] 2.425476
-## [2,] 3.573016
-## [3,] 1.925954
+##       [,1]
+## [1,] 2.425
+## [2,] 3.573
+## [3,] 1.926
 ## 
 ## $iter
 ## [1] 7</code></pre>
@@ -2323,10 +2358,10 @@ A^{T}A=A^{T}b
 <a class="sourceLine" id="cb526-3" title="3"></a>
 <a class="sourceLine" id="cb526-4" title="4">Ab &lt;-<span class="st"> </span><span class="kw">cbind</span>(A,b)</a>
 <a class="sourceLine" id="cb526-5" title="5">(x &lt;-<span class="st"> </span><span class="kw">gauss_jordan</span>(Ab))</a></code></pre></div>
-<pre><code>##           intercept Girth Height            
-## intercept         1     0      0 -57.9876589
-## Girth             0     1      0   4.7081605
-## Height            0     0      1   0.3392512</code></pre>
+<pre><code>##           intercept Girth Height         
+## intercept         1     0      0 -57.9877
+## Girth             0     1      0   4.7082
+## Height            0     0      1   0.3393</code></pre>
 <p>Berdasarkan hasil yang diperoleh, persamaan linier yang terbentuk disajikan pada Persamaan <a href="linearaljabar.html#eq:trees3">(6.42)</a>.</p>
 <p><span class="math display" id="eq:trees3">\[\begin{equation}
 Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
@@ -2342,28 +2377,28 @@ Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
 ## [3,]    0    0    1
 ## 
 ## $L
-##          [,1]     [,2] [,3]
-## [1,]  1.00000 0.000000    0
-## [2,] 13.24839 1.000000    0
-## [3,] 76.00000 1.054369    1
+##       [,1]  [,2] [,3]
+## [1,]  1.00 0.000    0
+## [2,] 13.25 1.000    0
+## [3,] 76.00 1.054    1
 ## 
 ## $U
-##           intercept    Girth    Height
-## intercept        31 410.7000 2356.0000
-## Girth             0 295.4374  311.5000
-## Height            0   0.0000  889.5641
+##           intercept Girth Height
+## intercept        31 410.7 2356.0
+## Girth             0 295.4  311.5
+## Height            0   0.0  889.6
 ## 
 ## $result
-##             [,1]
-## [1,] -57.9876589
-## [2,]   4.7081605
-## [3,]   0.3392512</code></pre>
+##          [,1]
+## [1,] -57.9877
+## [2,]   4.7082
+## [3,]   0.3393</code></pre>
 <div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" title="1"><span class="co"># fungsi solve()</span></a>
 <a class="sourceLine" id="cb530-2" title="2"><span class="kw">solve</span>(A,b)</a></code></pre></div>
-<pre><code>##                  [,1]
-## intercept -57.9876589
-## Girth       4.7081605
-## Height      0.3392512</code></pre>
+<pre><code>##               [,1]
+## intercept -57.9877
+## Girth       4.7082
+## Height      0.3393</code></pre>
 <p><code>R</code> juga menyediakan fungsi untuk membentuk model regresi linier. Fungsi yang digunakan adalah <code>lm()</code>. Berikut sintaks yang digunakan untuk membentuk model linier menggunakan fungsi <code>lm()</code>:</p>
 <div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">lm</span>(Volume<span class="op">~</span>Girth<span class="op">+</span>Height, <span class="dt">data=</span>trees)</a></code></pre></div>
 <pre><code>## 
@@ -2372,7 +2407,7 @@ Volume=4.7081605 Girth + 0.3392512 Height  -57.9876589
 ## 
 ## Coefficients:
 ## (Intercept)        Girth       Height  
-##    -57.9877       4.7082       0.3393</code></pre>
+##     -57.988        4.708        0.339</code></pre>
 </div>
 <div id="reaktorkimia" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Aliran Massa Dalam Reaktor</h3>
@@ -2434,12 +2469,12 @@ c = \begin{bmatrix}
 <pre><code>## [1]  50   0 160   0   0</code></pre>
 <p><strong>Metode Eliminasi Gauss-Jordan</strong></p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1"><span class="kw">gauss_jordan</span>(<span class="kw">cbind</span>(A,b))</a></code></pre></div>
-<pre><code>##                       b
-## [1,] 1 0 0 0 0 11.50943
-## [2,] 0 1 0 0 0 11.50943
-## [3,] 0 0 1 0 0 19.05660
-## [4,] 0 0 0 1 0 16.99828
-## [5,] 0 0 0 0 1 11.50943</code></pre>
+<pre><code>##                    b
+## [1,] 1 0 0 0 0 11.51
+## [2,] 0 1 0 0 0 11.51
+## [3,] 0 0 1 0 0 19.06
+## [4,] 0 0 0 1 0 17.00
+## [5,] 0 0 0 0 1 11.51</code></pre>
 <p><strong>Metode Dekomposisi LU</strong></p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="kw">lu_solve</span>(A,b)</a></code></pre></div>
 <pre><code>## $P
@@ -2451,44 +2486,44 @@ c = \begin{bmatrix}
 ## [5,]    0    0    0    0    1
 ## 
 ## $L
-##      [,1]       [,2]       [,3] [,4] [,5]
-## [1,]  1.0  0.0000000  0.0000000    0    0
-## [2,] -0.5  1.0000000  0.0000000    0    0
-## [3,]  0.0 -0.3333333  1.0000000    0    0
-## [4,]  0.0 -0.3333333 -0.9245283    1    0
-## [5,] -0.5 -0.3333333 -0.0754717    0    1
+##      [,1]    [,2]     [,3] [,4] [,5]
+## [1,]  1.0  0.0000  0.00000    0    0
+## [2,] -0.5  1.0000  0.00000    0    0
+## [3,]  0.0 -0.3333  1.00000    0    0
+## [4,]  0.0 -0.3333 -0.92453    1    0
+## [5,] -0.5 -0.3333 -0.07547    0    1
 ## 
 ## $U
-##      [,1] [,2]          [,3] [,4] [,5]
-## [1,]    6    0 -1.000000e+00    0    0
-## [2,]    0    3 -5.000000e-01    0    0
-## [3,]    0    0  8.833333e+00    0    0
-## [4,]    0    0  0.000000e+00   11   -2
-## [5,]    0    0  1.110223e-16    0    4
+##      [,1] [,2]       [,3] [,4] [,5]
+## [1,]    6    0 -1.000e+00    0    0
+## [2,]    0    3 -5.000e-01    0    0
+## [3,]    0    0  8.833e+00    0    0
+## [4,]    0    0  0.000e+00   11   -2
+## [5,]    0    0  1.110e-16    0    4
 ## 
 ## $result
-## [1] 11.50943 11.50943 19.05660 16.99828 11.50943</code></pre>
+## [1] 11.51 11.51 19.06 17.00 11.51</code></pre>
 <p><strong>Metode Iterasi Jacobi</strong></p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1"><span class="kw">jacobi</span>(A,b, <span class="dt">maxiter=</span><span class="dv">100</span>)</a></code></pre></div>
 <pre><code>## $X
-##          [,1]
-## [1,] 11.50943
-## [2,] 11.50943
-## [3,] 19.05660
-## [4,] 16.99828
-## [5,] 11.50943
+##       [,1]
+## [1,] 11.51
+## [2,] 11.51
+## [3,] 19.06
+## [4,] 17.00
+## [5,] 11.51
 ## 
 ## $iter
 ## [1] 17</code></pre>
 <p><strong>Metode Iterasi Gauss-Seidel</strong></p>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" title="1"><span class="kw">gauss_seidel</span>(A,b, <span class="dt">maxiter=</span><span class="dv">200</span>)</a></code></pre></div>
 <pre><code>## $X
-##          [,1]
-## [1,] 11.50943
-## [2,] 11.50943
-## [3,] 19.05660
-## [4,] 16.99828
-## [5,] 11.50943
+##       [,1]
+## [1,] 11.51
+## [2,] 11.51
+## [3,] 19.06
+## [4,] 17.00
+## [5,] 11.51
 ## 
 ## $iter
 ## [1] 7</code></pre>
@@ -2559,13 +2594,13 @@ text-align: justify}
 <a href="rootfinding.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

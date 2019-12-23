@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Pemrograman dan Fungsi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
-  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Pemrograman dan Fungsi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Pemrograman dan Fungsi | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
-  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
-  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="dataviz.html">
 <link rel="next" href="numericmethod.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -128,7 +128,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Metode Numerik Menggunakan R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#gambaran-isi-buku"><i class="fa fa-check"></i>Gambaran Isi Buku</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cara-berkontribusi-dalam-buku-ini"><i class="fa fa-check"></i>Cara Berkontribusi dalam Buku Ini</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ucapan-terima-kasih"><i class="fa fa-check"></i>Ucapan Terima Kasih</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lisensi"><i class="fa fa-check"></i>Lisensi</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
@@ -139,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
 <li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
 <li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
@@ -290,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
 <li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
-<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
-<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
@@ -313,7 +318,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
 <li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a><ul>
+<li class="chapter" data-level="10.1" data-path="diffeq.html"><a href="diffeq.html#ivp"><i class="fa fa-check"></i><b>10.1</b> <em>Initial value problems</em></a><ul>
+<li class="chapter" data-level="10.1.1" data-path="diffeq.html"><a href="diffeq.html#eulermethod"><i class="fa fa-check"></i><b>10.1.1</b> Metode Euler</a></li>
+<li class="chapter" data-level="10.1.2" data-path="diffeq.html"><a href="diffeq.html#heun"><i class="fa fa-check"></i><b>10.1.2</b> Metode Heun</a></li>
+<li class="chapter" data-level="10.1.3" data-path="diffeq.html"><a href="diffeq.html#midpt"><i class="fa fa-check"></i><b>10.1.3</b> Metode Titik Tengah</a></li>
+<li class="chapter" data-level="10.1.4" data-path="diffeq.html"><a href="diffeq.html#rungekutta"><i class="fa fa-check"></i><b>10.1.4</b> Metode Runge-Kutta Orde 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="diffeq.html"><a href="diffeq.html#mml"><i class="fa fa-check"></i><b>10.1.5</b> Metode Multistep Linier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="diffeq.html"><a href="diffeq.html#sysdiff"><i class="fa fa-check"></i><b>10.2</b> Sistem Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10.3" data-path="diffeq.html"><a href="diffeq.html#penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode"><i class="fa fa-check"></i><b>10.3</b> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></a></li>
+<li class="chapter" data-level="10.4" data-path="diffeq.html"><a href="diffeq.html#pasialdiff"><i class="fa fa-check"></i><b>10.4</b> Persamaan Diferensial Parsial</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-difusi"><i class="fa fa-check"></i><b>10.4.1</b> Persamaan Difusi</a></li>
+<li class="chapter" data-level="10.4.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang"><i class="fa fa-check"></i><b>10.4.2</b> Persamaan Gelombang</a></li>
+<li class="chapter" data-level="10.4.3" data-path="diffeq.html"><a href="diffeq.html#laplace"><i class="fa fa-check"></i><b>10.4.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.4.4" data-path="diffeq.html"><a href="diffeq.html#setup.grid.1d"><i class="fa fa-check"></i><b>10.4.4</b> <code>setup.grid.1D()</code></a></li>
+<li class="chapter" data-level="10.4.5" data-path="diffeq.html"><a href="diffeq.html#setup.prop.1d"><i class="fa fa-check"></i><b>10.4.5</b> <code>setup.prop.1D()</code></a></li>
+<li class="chapter" data-level="10.4.6" data-path="diffeq.html"><a href="diffeq.html#tran.1d"><i class="fa fa-check"></i><b>10.4.6</b> <code>tran.1D()</code></a></li>
+<li class="chapter" data-level="10.4.7" data-path="diffeq.html"><a href="diffeq.html#ode.1d-atau-steady.1d"><i class="fa fa-check"></i><b>10.4.7</b> <code>ode.1D()</code> atau <code>steady.1D()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="diffeq.html"><a href="diffeq.html#contoh-penerapan-paket-reactran"><i class="fa fa-check"></i><b>10.5</b> Contoh Penerapan Paket <code>ReacTran</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-adveksi-difuksi-1d"><i class="fa fa-check"></i><b>10.5.1</b> Persamaan Adveksi-Difuksi 1D</a></li>
+<li class="chapter" data-level="10.5.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang-1d"><i class="fa fa-check"></i><b>10.5.2</b> Persamaan Gelombang 1D</a></li>
+<li class="chapter" data-level="10.5.3" data-path="diffeq.html"><a href="diffeq.html#persamaan-laplace"><i class="fa fa-check"></i><b>10.5.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.5.4" data-path="diffeq.html"><a href="diffeq.html#persamaan-poisson-untuk-dipol"><i class="fa fa-check"></i><b>10.5.4</b> Persamaan Poisson untuk Dipol</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="diffeq.html"><a href="diffeq.html#studi-kasus-3"><i class="fa fa-check"></i><b>10.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="diffeq.html"><a href="diffeq.html#model-lotka-voltera"><i class="fa fa-check"></i><b>10.6.1</b> Model Lotka-Voltera</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="diffeq.html"><a href="diffeq.html#referensi-9"><i class="fa fa-check"></i><b>10.7</b> Referensi</a></li>
+<li class="chapter" data-level="10.8" data-path="diffeq.html"><a href="diffeq.html#latihan-4"><i class="fa fa-check"></i><b>10.8</b> Latihan</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
 <li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
@@ -329,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
 <li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-10"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
@@ -341,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
-<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-11"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -504,7 +539,7 @@ Gambar 4.1: Diagram umum loop (sumber: Primartha, 2018).
 <a class="sourceLine" id="cb298-8" title="8">}</a>
 <a class="sourceLine" id="cb298-9" title="9"><span class="co"># print</span></a>
 <a class="sourceLine" id="cb298-10" title="10">a</a></code></pre></div>
-<pre><code>## [1] 5.843333 3.057333 3.758000 1.199333</code></pre>
+<pre><code>## [1] 5.843 3.057 3.758 1.199</code></pre>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="kw">class</span>(a) <span class="co"># cek kelas objek</span></a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>Metode alternatif lain untuk melakukan loop suatu fungsi adalah dengan menggunakan Apply function family. Metode ini memungkinkan kita untuk melakukan loop suatu fungsi tanpa perlu menuliskan sintaks loop. Berikut adalah beberapa fungsi dari apply family yang nantinya akan sering kita gunakan:</p>
@@ -575,8 +610,8 @@ Gambar 4.1: Diagram umum loop (sumber: Primartha, 2018).
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
 ## $beta
-## [1]  0.04978707  0.13533528  0.36787944  1.00000000  2.71828183  7.38905610
-## [7] 20.08553692
+## [1]  0.04979  0.13534  0.36788  1.00000  2.71828
+## [6]  7.38906 20.08554
 ## 
 ## $logic
 ## [1]  TRUE FALSE FALSE  TRUE</code></pre>
@@ -588,25 +623,25 @@ Gambar 4.1: Diagram umum loop (sumber: Primartha, 2018).
 ## [1] 5.5
 ## 
 ## $beta
-## [1] 4.535125
+## [1] 4.535
 ## 
 ## $logic
 ## [1] 0.5</code></pre>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="co">## Menghitung mean tiap kolom dataset iris</span></a>
 <a class="sourceLine" id="cb318-2" title="2"><span class="kw">lapply</span>(iris, <span class="dt">FUN=</span>mean)</a></code></pre></div>
-<pre><code>## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
-## returning NA</code></pre>
+<pre><code>## Warning in mean.default(X[[i]], ...): argument is not
+## numeric or logical: returning NA</code></pre>
 <pre><code>## $Sepal.Length
-## [1] 5.843333
+## [1] 5.843
 ## 
 ## $Sepal.Width
-## [1] 3.057333
+## [1] 3.057
 ## 
 ## $Petal.Length
 ## [1] 3.758
 ## 
 ## $Petal.Width
-## [1] 1.199333
+## [1] 1.199
 ## 
 ## $Species
 ## [1] NA</code></pre>
@@ -651,75 +686,82 @@ Gambar 4.1: Diagram umum loop (sumber: Primartha, 2018).
 <a class="sourceLine" id="cb326-3" title="3"></a>
 <a class="sourceLine" id="cb326-4" title="4"><span class="co">## menghitung nilai mean setiap elemen</span></a>
 <a class="sourceLine" id="cb326-5" title="5"><span class="kw">sapply</span>(x, <span class="dt">FUN=</span>mean)</a></code></pre></div>
-<pre><code>##        a     beta    logic 
-## 5.500000 4.535125 0.500000</code></pre>
+<pre><code>##     a  beta logic 
+## 5.500 4.535 0.500</code></pre>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" title="1"><span class="co">## menghitung nilai mean dengan output list</span></a>
 <a class="sourceLine" id="cb328-2" title="2"><span class="kw">sapply</span>(x, <span class="dt">FUN=</span>mean, <span class="dt">simplify=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## $a
 ## [1] 5.5
 ## 
 ## $beta
-## [1] 4.535125
+## [1] 4.535
 ## 
 ## $logic
 ## [1] 0.5</code></pre>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" title="1"><span class="co">## summary objek dataframe</span></a>
 <a class="sourceLine" id="cb330-2" title="2"><span class="kw">sapply</span>(mtcars, <span class="dt">FUN=</span>summary)</a></code></pre></div>
-<pre><code>##              mpg    cyl     disp       hp     drat      wt     qsec     vs
-## Min.    10.40000 4.0000  71.1000  52.0000 2.760000 1.51300 14.50000 0.0000
-## 1st Qu. 15.42500 4.0000 120.8250  96.5000 3.080000 2.58125 16.89250 0.0000
-## Median  19.20000 6.0000 196.3000 123.0000 3.695000 3.32500 17.71000 0.0000
-## Mean    20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375
-## 3rd Qu. 22.80000 8.0000 326.0000 180.0000 3.920000 3.61000 18.90000 1.0000
-## Max.    33.90000 8.0000 472.0000 335.0000 4.930000 5.42400 22.90000 1.0000
-##              am   gear   carb
-## Min.    0.00000 3.0000 1.0000
-## 1st Qu. 0.00000 3.0000 2.0000
-## Median  0.00000 4.0000 2.0000
-## Mean    0.40625 3.6875 2.8125
-## 3rd Qu. 1.00000 4.0000 4.0000
-## Max.    1.00000 5.0000 8.0000</code></pre>
+<pre><code>##           mpg   cyl  disp    hp  drat    wt  qsec
+## Min.    10.40 4.000  71.1  52.0 2.760 1.513 14.50
+## 1st Qu. 15.43 4.000 120.8  96.5 3.080 2.581 16.89
+## Median  19.20 6.000 196.3 123.0 3.695 3.325 17.71
+## Mean    20.09 6.188 230.7 146.7 3.597 3.217 17.85
+## 3rd Qu. 22.80 8.000 326.0 180.0 3.920 3.610 18.90
+## Max.    33.90 8.000 472.0 335.0 4.930 5.424 22.90
+##             vs     am  gear  carb
+## Min.    0.0000 0.0000 3.000 1.000
+## 1st Qu. 0.0000 0.0000 3.000 2.000
+## Median  0.0000 0.0000 4.000 2.000
+## Mean    0.4375 0.4062 3.688 2.812
+## 3rd Qu. 1.0000 1.0000 4.000 4.000
+## Max.    1.0000 1.0000 5.000 8.000</code></pre>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" title="1"><span class="co">## summary objek list</span></a>
 <a class="sourceLine" id="cb332-2" title="2">a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">mobil=</span>mtcars, <span class="dt">anggrek=</span>iris)</a>
 <a class="sourceLine" id="cb332-3" title="3"><span class="kw">sapply</span>(a, <span class="dt">FUN=</span>summary)</a></code></pre></div>
 <pre><code>## $mobil
-##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
-##       drat             wt             qsec             vs        
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
-##        am              gear            carb      
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
-##  Median :0.0000   Median :4.000   Median :2.000  
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
-##  Max.   :1.0000   Max.   :5.000   Max.   :8.000  
+##       mpg            cyl            disp      
+##  Min.   :10.4   Min.   :4.00   Min.   : 71.1  
+##  1st Qu.:15.4   1st Qu.:4.00   1st Qu.:120.8  
+##  Median :19.2   Median :6.00   Median :196.3  
+##  Mean   :20.1   Mean   :6.19   Mean   :230.7  
+##  3rd Qu.:22.8   3rd Qu.:8.00   3rd Qu.:326.0  
+##  Max.   :33.9   Max.   :8.00   Max.   :472.0  
+##        hp             drat            wt      
+##  Min.   : 52.0   Min.   :2.76   Min.   :1.51  
+##  1st Qu.: 96.5   1st Qu.:3.08   1st Qu.:2.58  
+##  Median :123.0   Median :3.69   Median :3.33  
+##  Mean   :146.7   Mean   :3.60   Mean   :3.22  
+##  3rd Qu.:180.0   3rd Qu.:3.92   3rd Qu.:3.61  
+##  Max.   :335.0   Max.   :4.93   Max.   :5.42  
+##       qsec            vs              am       
+##  Min.   :14.5   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:16.9   1st Qu.:0.000   1st Qu.:0.000  
+##  Median :17.7   Median :0.000   Median :0.000  
+##  Mean   :17.8   Mean   :0.438   Mean   :0.406  
+##  3rd Qu.:18.9   3rd Qu.:1.000   3rd Qu.:1.000  
+##  Max.   :22.9   Max.   :1.000   Max.   :1.000  
+##       gear           carb     
+##  Min.   :3.00   Min.   :1.00  
+##  1st Qu.:3.00   1st Qu.:2.00  
+##  Median :4.00   Median :2.00  
+##  Mean   :3.69   Mean   :2.81  
+##  3rd Qu.:4.00   3rd Qu.:4.00  
+##  Max.   :5.00   Max.   :8.00  
 ## 
 ## $anggrek
-##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
-##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
-##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
-##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
-##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
-##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
-##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##  virginica :50  
-##                 
-##                 
-## </code></pre>
+##   Sepal.Length   Sepal.Width    Petal.Length 
+##  Min.   :4.30   Min.   :2.00   Min.   :1.00  
+##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60  
+##  Median :5.80   Median :3.00   Median :4.35  
+##  Mean   :5.84   Mean   :3.06   Mean   :3.76  
+##  3rd Qu.:6.40   3rd Qu.:3.30   3rd Qu.:5.10  
+##  Max.   :7.90   Max.   :4.40   Max.   :6.90  
+##   Petal.Width        Species  
+##  Min.   :0.1   setosa    :50  
+##  1st Qu.:0.3   versicolor:50  
+##  Median :1.3   virginica :50  
+##  Mean   :1.2                  
+##  3rd Qu.:1.8                  
+##  Max.   :2.5</code></pre>
 </div>
 <div id="vapply" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> vapply</h3>
@@ -773,20 +815,20 @@ Gambar 4.1: Diagram umum loop (sumber: Primartha, 2018).
 <a class="sourceLine" id="cb339-2" title="2"><span class="kw">vapply</span>(mtcars, summary,</a>
 <a class="sourceLine" id="cb339-3" title="3">       <span class="kw">c</span>(<span class="dt">Min. =</span> <span class="dv">0</span>, <span class="st">&quot;1st Qu.&quot;</span> =<span class="st"> </span><span class="dv">0</span>, </a>
 <a class="sourceLine" id="cb339-4" title="4">         <span class="dt">Median =</span> <span class="dv">0</span>, <span class="st">&quot;3rd Qu.&quot;</span> =<span class="st"> </span><span class="dv">0</span>, <span class="dt">Max. =</span> <span class="dv">0</span>, <span class="dt">Mean=</span><span class="dv">0</span>))</a></code></pre></div>
-<pre><code>##              mpg    cyl     disp       hp     drat      wt     qsec     vs
-## Min.    10.40000 4.0000  71.1000  52.0000 2.760000 1.51300 14.50000 0.0000
-## 1st Qu. 15.42500 4.0000 120.8250  96.5000 3.080000 2.58125 16.89250 0.0000
-## Median  19.20000 6.0000 196.3000 123.0000 3.695000 3.32500 17.71000 0.0000
-## 3rd Qu. 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375
-## Max.    22.80000 8.0000 326.0000 180.0000 3.920000 3.61000 18.90000 1.0000
-## Mean    33.90000 8.0000 472.0000 335.0000 4.930000 5.42400 22.90000 1.0000
-##              am   gear   carb
-## Min.    0.00000 3.0000 1.0000
-## 1st Qu. 0.00000 3.0000 2.0000
-## Median  0.00000 4.0000 2.0000
-## 3rd Qu. 0.40625 3.6875 2.8125
-## Max.    1.00000 4.0000 4.0000
-## Mean    1.00000 5.0000 8.0000</code></pre>
+<pre><code>##           mpg   cyl  disp    hp  drat    wt  qsec
+## Min.    10.40 4.000  71.1  52.0 2.760 1.513 14.50
+## 1st Qu. 15.43 4.000 120.8  96.5 3.080 2.581 16.89
+## Median  19.20 6.000 196.3 123.0 3.695 3.325 17.71
+## 3rd Qu. 20.09 6.188 230.7 146.7 3.597 3.217 17.85
+## Max.    22.80 8.000 326.0 180.0 3.920 3.610 18.90
+## Mean    33.90 8.000 472.0 335.0 4.930 5.424 22.90
+##             vs     am  gear  carb
+## Min.    0.0000 0.0000 3.000 1.000
+## 1st Qu. 0.0000 0.0000 3.000 2.000
+## Median  0.0000 0.0000 4.000 2.000
+## 3rd Qu. 0.4375 0.4062 3.688 2.812
+## Max.    1.0000 1.0000 4.000 4.000
+## Mean    1.0000 1.0000 5.000 8.000</code></pre>
 </div>
 <div id="tapply" class="section level3">
 <h3><span class="header-section-number">4.2.5</span> tapply</h3>
@@ -987,7 +1029,7 @@ Gambar 4.4: Diagram switch statement (sumber: Primartha, 2018).
 <a class="sourceLine" id="cb365-8" title="8"><span class="kw">f1</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 32 21 12  5  0 -3</code></pre>
 <pre><code>## Warning in log(xsqminus4 - 4): NaNs produced</code></pre>
-<pre><code>## [1] 3.332205 2.833213 2.079442 0.000000      NaN      NaN</code></pre>
+<pre><code>## [1] 3.332 2.833 2.079 0.000   NaN   NaN</code></pre>
 <p>Untuk mengecek error yang terjadi dari sintaks tersebut, kita dapat menggunakan fungsi <code>debug()</code>. Pembaca tinggal memasukkan nama fungsi kedalam fungsi <code>debug()</code>. Fungsi tersebut akan secara otomatis akan menampilkan hasil samping dari pengaplikasian fungsi <code>f1()</code> untuk melihat sumber atau tahapan dimana error mulai muncul.</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1"><span class="kw">debug</span>(f1)</a>
 <a class="sourceLine" id="cb369-2" title="2"><span class="kw">f1</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
@@ -1005,7 +1047,7 @@ Gambar 4.4: Diagram switch statement (sumber: Primartha, 2018).
 ## debug at &lt;text&gt;#5: log(xsqminus4 - 4)</code></pre>
 <pre><code>## Warning in log(xsqminus4 - 4): NaNs produced</code></pre>
 <pre><code>## exiting from: f1(1:6)</code></pre>
-<pre><code>## [1]      NaN      NaN 0.000000 2.079442 2.833213 3.332205</code></pre>
+<pre><code>## [1]   NaN   NaN 0.000 2.079 2.833 3.332</code></pre>
 <p>Berdasarkan hasil <em>debugging</em>, <code>NaN</code> (<strong>missing value</strong>) muncul pada tahapan <em>debug</em> ke-4 (pembaca dapat melakukan enter terus menerus sampai proses <em>debug</em> selesai). Hal ini disebabkan karena terdapat nilai negatif pada objek <code>xsqminu4-4</code> yang selanjutnya dilakukan transformasi logaritmik. Untuk menghentikan proses <em>debugging</em> pembaca dapat mengetikkan <code>undebug(f1)</code>.</p>
 </div>
 <div id="referensi-3" class="section level2">
@@ -1031,13 +1073,13 @@ text-align: justify}
 <a href="numericmethod.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

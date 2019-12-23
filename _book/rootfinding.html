@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Akar Persamaan Non-Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
-  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Akar Persamaan Non-Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Akar Persamaan Non-Linier | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
-  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
-  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="linearaljabar.html">
 <link rel="next" href="interpolation.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -128,7 +128,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Metode Numerik Menggunakan R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#gambaran-isi-buku"><i class="fa fa-check"></i>Gambaran Isi Buku</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cara-berkontribusi-dalam-buku-ini"><i class="fa fa-check"></i>Cara Berkontribusi dalam Buku Ini</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ucapan-terima-kasih"><i class="fa fa-check"></i>Ucapan Terima Kasih</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lisensi"><i class="fa fa-check"></i>Lisensi</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
@@ -139,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
 <li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
 <li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
@@ -290,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
 <li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
-<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
-<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
@@ -313,7 +318,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
 <li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a><ul>
+<li class="chapter" data-level="10.1" data-path="diffeq.html"><a href="diffeq.html#ivp"><i class="fa fa-check"></i><b>10.1</b> <em>Initial value problems</em></a><ul>
+<li class="chapter" data-level="10.1.1" data-path="diffeq.html"><a href="diffeq.html#eulermethod"><i class="fa fa-check"></i><b>10.1.1</b> Metode Euler</a></li>
+<li class="chapter" data-level="10.1.2" data-path="diffeq.html"><a href="diffeq.html#heun"><i class="fa fa-check"></i><b>10.1.2</b> Metode Heun</a></li>
+<li class="chapter" data-level="10.1.3" data-path="diffeq.html"><a href="diffeq.html#midpt"><i class="fa fa-check"></i><b>10.1.3</b> Metode Titik Tengah</a></li>
+<li class="chapter" data-level="10.1.4" data-path="diffeq.html"><a href="diffeq.html#rungekutta"><i class="fa fa-check"></i><b>10.1.4</b> Metode Runge-Kutta Orde 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="diffeq.html"><a href="diffeq.html#mml"><i class="fa fa-check"></i><b>10.1.5</b> Metode Multistep Linier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="diffeq.html"><a href="diffeq.html#sysdiff"><i class="fa fa-check"></i><b>10.2</b> Sistem Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10.3" data-path="diffeq.html"><a href="diffeq.html#penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode"><i class="fa fa-check"></i><b>10.3</b> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></a></li>
+<li class="chapter" data-level="10.4" data-path="diffeq.html"><a href="diffeq.html#pasialdiff"><i class="fa fa-check"></i><b>10.4</b> Persamaan Diferensial Parsial</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-difusi"><i class="fa fa-check"></i><b>10.4.1</b> Persamaan Difusi</a></li>
+<li class="chapter" data-level="10.4.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang"><i class="fa fa-check"></i><b>10.4.2</b> Persamaan Gelombang</a></li>
+<li class="chapter" data-level="10.4.3" data-path="diffeq.html"><a href="diffeq.html#laplace"><i class="fa fa-check"></i><b>10.4.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.4.4" data-path="diffeq.html"><a href="diffeq.html#setup.grid.1d"><i class="fa fa-check"></i><b>10.4.4</b> <code>setup.grid.1D()</code></a></li>
+<li class="chapter" data-level="10.4.5" data-path="diffeq.html"><a href="diffeq.html#setup.prop.1d"><i class="fa fa-check"></i><b>10.4.5</b> <code>setup.prop.1D()</code></a></li>
+<li class="chapter" data-level="10.4.6" data-path="diffeq.html"><a href="diffeq.html#tran.1d"><i class="fa fa-check"></i><b>10.4.6</b> <code>tran.1D()</code></a></li>
+<li class="chapter" data-level="10.4.7" data-path="diffeq.html"><a href="diffeq.html#ode.1d-atau-steady.1d"><i class="fa fa-check"></i><b>10.4.7</b> <code>ode.1D()</code> atau <code>steady.1D()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="diffeq.html"><a href="diffeq.html#contoh-penerapan-paket-reactran"><i class="fa fa-check"></i><b>10.5</b> Contoh Penerapan Paket <code>ReacTran</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-adveksi-difuksi-1d"><i class="fa fa-check"></i><b>10.5.1</b> Persamaan Adveksi-Difuksi 1D</a></li>
+<li class="chapter" data-level="10.5.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang-1d"><i class="fa fa-check"></i><b>10.5.2</b> Persamaan Gelombang 1D</a></li>
+<li class="chapter" data-level="10.5.3" data-path="diffeq.html"><a href="diffeq.html#persamaan-laplace"><i class="fa fa-check"></i><b>10.5.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.5.4" data-path="diffeq.html"><a href="diffeq.html#persamaan-poisson-untuk-dipol"><i class="fa fa-check"></i><b>10.5.4</b> Persamaan Poisson untuk Dipol</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="diffeq.html"><a href="diffeq.html#studi-kasus-3"><i class="fa fa-check"></i><b>10.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="diffeq.html"><a href="diffeq.html#model-lotka-voltera"><i class="fa fa-check"></i><b>10.6.1</b> Model Lotka-Voltera</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="diffeq.html"><a href="diffeq.html#referensi-9"><i class="fa fa-check"></i><b>10.7</b> Referensi</a></li>
+<li class="chapter" data-level="10.8" data-path="diffeq.html"><a href="diffeq.html#latihan-4"><i class="fa fa-check"></i><b>10.8</b> Latihan</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
 <li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
@@ -329,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
 <li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-10"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
@@ -341,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
-<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-11"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -385,7 +420,7 @@ x_{1,2}=\frac{-b\pm\sqrt{b^2-4a}}{2a}
 <p>Untuk masalah yang lebih rumit, penyelesaian analitik sudah tidak mungkin dilakukan. Metode numerik dapat digunakan untuk menyelesaikan masalah yang lebih kompleks. Untuk mengetahui apakah suatu persamaan non-linier memiliki akar-akar penyelesaian atau tidak, diperlukan analisa menggunakan Teorema berikut:</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-205" class="theorem"><strong>Teorema 7.1  (root)  </strong></span>Suatu range x=[a,b] mempunyai akar bila f(a) dan f(b) berlawanan tanda atau memenuhi f(a).f(b)&lt;0
+<span id="thm:unnamed-chunk-206" class="theorem"><strong>Teorema 7.1  (root)  </strong></span>Suatu range x=[a,b] mempunyai akar bila f(a) dan f(b) berlawanan tanda atau memenuhi f(a).f(b)&lt;0
 </div>
 
 <p>Untuk memahami teorema tersebut perhatikan ilustrasi pada Gambar <a href="rootfinding.html#fig:Bolzano">7.2</a>.</p>
@@ -487,47 +522,47 @@ y_i=f\left(x_i \right)
 <tbody>
 <tr class="odd">
 <td align="right">-1.0</td>
-<td align="right">-0.6321206</td>
+<td align="right">-0.6321</td>
 </tr>
 <tr class="even">
 <td align="right">-0.9</td>
-<td align="right">-0.4934303</td>
+<td align="right">-0.4934</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.8</td>
-<td align="right">-0.3506710</td>
+<td align="right">-0.3507</td>
 </tr>
 <tr class="even">
 <td align="right">-0.7</td>
-<td align="right">-0.2034147</td>
+<td align="right">-0.2034</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.6</td>
-<td align="right">-0.0511884</td>
+<td align="right">-0.0512</td>
 </tr>
 <tr class="even">
 <td align="right">-0.5</td>
-<td align="right">0.1065307</td>
+<td align="right">0.1065</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.4</td>
-<td align="right">0.2703200</td>
+<td align="right">0.2703</td>
 </tr>
 <tr class="even">
 <td align="right">-0.3</td>
-<td align="right">0.4408182</td>
+<td align="right">0.4408</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.2</td>
-<td align="right">0.6187308</td>
+<td align="right">0.6187</td>
 </tr>
 <tr class="even">
 <td align="right">-0.1</td>
-<td align="right">0.8048374</td>
+<td align="right">0.8048</td>
 </tr>
 <tr class="odd">
 <td align="right">0.0</td>
-<td align="right">1.0000000</td>
+<td align="right">1.0000</td>
 </tr>
 </tbody>
 </table>
@@ -635,10 +670,10 @@ f\left(x \right).f\left(a \right)&lt;0
 ## {
 ##     x * exp(-x) + 1
 ## }
-## &lt;bytecode: 0x000000001e2283b0&gt;
+## &lt;bytecode: 0x000000001d62cab0&gt;
 ## 
 ## $root
-## [1] -0.5671433
+## [1] -0.5671
 ## 
 ## $iter
 ## [1] 24</code></pre>
@@ -739,10 +774,10 @@ f\left(x \right).f\left(a \right)&lt;0
 ## {
 ##     x * exp(-x) + 1
 ## }
-## &lt;bytecode: 0x00000000186dd9b8&gt;
+## &lt;bytecode: 0x000000001c7931a8&gt;
 ## 
 ## $root
-## [1] -0.5671433
+## [1] -0.5671
 ## 
 ## $iter
 ## [1] 15</code></pre>
@@ -815,10 +850,10 @@ x_2 = -\frac{1}{e^{2,718282}}=-0,06598802
 ## {
 ##     -1/exp(-x)
 ## }
-## &lt;bytecode: 0x000000001c599a80&gt;
+## &lt;bytecode: 0x0000000018c9ee40&gt;
 ## 
 ## $root
-## [1] -0.5671433
+## [1] -0.5671
 ## 
 ## $iter
 ## [1] 29</code></pre>
@@ -897,10 +932,10 @@ x_1=x_0-\frac{f\left(x_0\right)}{f&#39;\left(x_0\right)}=0-\frac{-1}{2}=0,5
 ## {
 ##     x - exp(-x)
 ## }
-## &lt;bytecode: 0x000000001e5aa160&gt;
+## &lt;bytecode: 0x000000001c59e158&gt;
 ## 
 ## $root
-## [1] 0.5671433
+## [1] 0.5671
 ## 
 ## $iter
 ## [1] 5</code></pre>
@@ -1026,10 +1061,10 @@ x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
 ## {
 ##     x - exp(-x)
 ## }
-## &lt;bytecode: 0x000000001b918100&gt;
+## &lt;bytecode: 0x000000001b4fc6b0&gt;
 ## 
 ## $root
-## [1] 0.5671433
+## [1] 0.5671
 ## 
 ## $iter
 ## [1] 6</code></pre>
@@ -1040,7 +1075,7 @@ x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
 </div>
 <div id="uniroot" class="section level2">
 <h2><span class="header-section-number">7.3</span> Penyelesaian Persamaan Non-Linier Menggunakan Fungsi <code>uniroot</code> dan <code>uniroot.all</code></h2>
-<p><em>Library</em> <code>base</code> pada <code>R</code> menyediakan fungsi <code>uniroot()</code> untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara <em>root bracketing</em>, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:</p>
+<p>Paket <code>base</code> pada <code>R</code> menyediakan fungsi <code>uniroot()</code> untuk mencari akar persamaan suatu fungsi pada rentang spesifik. Fungsi ini menggunakan metode Brent yaitu kombinasi antara <em>root bracketing</em>, biseksi, dan interpolasi invers kuadrat. Format fungsi tersebut secara sederhana adalah sebagai berikut:</p>
 <div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1"><span class="kw">uniroot</span>(f, interval, <span class="dt">tol=</span>.Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>, </a>
 <a class="sourceLine" id="cb563-2" title="2">        <span class="dt">maxiter=</span><span class="dv">1000</span>)</a></code></pre></div>
 <blockquote>
@@ -1056,10 +1091,10 @@ x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" title="1"><span class="kw">uniroot</span>(<span class="cf">function</span>(x){x<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>x)<span class="op">+</span><span class="dv">1</span>},</a>
 <a class="sourceLine" id="cb564-2" title="2">        <span class="dt">interval=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>), <span class="dt">tol=</span><span class="fl">1e-7</span>)</a></code></pre></div>
 <pre><code>## $root
-## [1] -0.5671433
+## [1] -0.5671
 ## 
 ## $f.root
-## [1] 1.532974e-08
+## [1] 1.533e-08
 ## 
 ## $iter
 ## [1] 7
@@ -1070,12 +1105,12 @@ x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
 ## $estim.prec
 ## [1] 5e-08</code></pre>
 <p>Berdasarkan hasil iterasi diperoleh akar persamaan tersebut adalah <span class="math inline">\(-0,5671433\)</span> dengan jumlah iterasi sebanyak <span class="math inline">\(7\)</span> iterasi dan tingkat presisi sebesar <span class="math inline">\(5e-08\)</span>.</p>
-<p>Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah <code>uniroot.all()</code> dari <em>library</em> <code>rootSolve</code>. Fungsi ini mengatasi kelemahan dari <code>uniroot()</code>, dimana <code>uniroot()</code> tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol <span class="math inline">\(y=0\)</span>. Untuk memahaminya perhatikan contoh berikut:</p>
+<p>Fungsi lain yang dapat digunakan untuk mencari akar persamaan adalah <code>uniroot.all()</code> dari paket <code>rootSolve</code>. Fungsi ini mengatasi kelemahan dari <code>uniroot()</code>, dimana <code>uniroot()</code> tidak bekerja jika fungsi hanya menyentuh dan tidak melewati sumbu nol <span class="math inline">\(y=0\)</span>. Untuk memahaminya perhatikan contoh berikut:</p>
 <div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" title="1"><span class="kw">uniroot</span>(<span class="cf">function</span>(x){<span class="kw">sin</span>(x)<span class="op">+</span><span class="dv">1</span>}, <span class="kw">c</span>(<span class="op">-</span>pi,<span class="dv">0</span>))</a></code></pre></div>
 <p>Bandingkan dengan sintaks berikut:</p>
 <div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" title="1"><span class="kw">uniroot</span>(<span class="cf">function</span>(x){<span class="kw">sin</span>(x)<span class="op">+</span><span class="dv">1</span>}, <span class="kw">c</span>(<span class="op">-</span>pi,<span class="op">-</span>pi<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
 <pre><code>## $root
-## [1] -1.570796
+## [1] -1.571
 ## 
 ## $f.root
 ## [1] 0
@@ -1092,17 +1127,17 @@ x_2=0+0,999998\frac{10^{-6}-0}{-0,999998+1}=0,499999
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb569-1" title="1"><span class="kw">library</span>(rootSolve)</a></code></pre></div>
 <p>Jalankan kembali fungsi dan rentang di mana <code>uniroot()</code> tidak dapat bekerja:</p>
 <div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb570-1" title="1"><span class="kw">uniroot.all</span>(<span class="cf">function</span>(x){<span class="kw">sin</span>(x)<span class="op">+</span><span class="dv">1</span>}, <span class="kw">c</span>(<span class="op">-</span>pi,<span class="dv">0</span>))</a></code></pre></div>
-<pre><code>## [1] -1.570796</code></pre>
+<pre><code>## [1] -1.571</code></pre>
 </div>
 <div id="akar-persamaan-polinomial-menggunakan-fungsi-polyroot" class="section level2">
 <h2><span class="header-section-number">7.4</span> Akar Persamaan Polinomial Menggunakan Fungsi <code>polyroot</code></h2>
-<p>Fungsi <code>polyroot()</code> pada <em>library</em> <code>base</code> dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub.</p>
+<p>Fungsi <code>polyroot()</code> pada paket <code>base</code> dapat digunakan untuk memperoleh akar dari suatu polinomial. Algortima yang digunakan dalam fungsi tersebut adalah algoritma Jenkins dan Traub.</p>
 <p>Untuk dapat menggunakannya kita hanya perlu memasukkan vektor koefisien dari polinomial. Pengisian elemen dalam vektor dimulai dari variabel dengan pangkat tertinggi menuju variabel dengan pangkat terendah. Berikut adalah contoh bagaimana fungsi <code>polyroot()</code> digunakan untuk mencari akar polinomial <span class="math inline">\(f\left(x\right)=x^2+1\)</span>:</p>
 <div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb572-1" title="1"><span class="kw">polyroot</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## [1] 0+1i 0-1i</code></pre>
 <p>Contoh lainnya adalah mencari akar polinomial <span class="math inline">\(f\left(x\right)=4x^2+5x+6\)</span>:</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb574-1" title="1"><span class="kw">polyroot</span>(<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>))</a></code></pre></div>
-<pre><code>## [1] -0.4166667+0.7021791i -0.4166667-0.7021791i</code></pre>
+<pre><code>## [1] -0.4167+0.7022i -0.4167-0.7022i</code></pre>
 <p>Pembaca dapat mencoba membuktikan hasil yang diperoleh tersebut menggunakan metode analitik.</p>
 </div>
 <div id="studi-kasus" class="section level2">
@@ -1155,10 +1190,10 @@ f\left(h\right)=h^3+\left(0,075-\frac{1,2^2}{2\times9,81\times1,8^2\times0,6^2}-
 ##     (h^3) + ((0.075 - ((1.2^2)/(2 * 9.81 * (1.8^2) * (0.6^2)))) * 
 ##         h^2) + (1.2^2/(2 * 9.81 * (1.8^2)))
 ## }
-## &lt;bytecode: 0x000000001ebde4b0&gt;
+## &lt;bytecode: 0x000000001d1483f0&gt;
 ## 
 ## $root
-## [1] -0.2870309
+## [1] -0.287
 ## 
 ## $iter
 ## [1] 26</code></pre>
@@ -1203,13 +1238,13 @@ text-align: justify}
 <a href="interpolation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

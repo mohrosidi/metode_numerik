@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
-  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 10 Persamaan Diferensial | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
-  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
-  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="diffinteg.html">
 <link rel="next" href="dataanalysis.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -128,7 +128,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Metode Numerik Menggunakan R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#gambaran-isi-buku"><i class="fa fa-check"></i>Gambaran Isi Buku</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cara-berkontribusi-dalam-buku-ini"><i class="fa fa-check"></i>Cara Berkontribusi dalam Buku Ini</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ucapan-terima-kasih"><i class="fa fa-check"></i>Ucapan Terima Kasih</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lisensi"><i class="fa fa-check"></i>Lisensi</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
@@ -139,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
 <li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
 <li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
@@ -290,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
 <li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
-<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
-<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
@@ -313,7 +318,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
 <li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a><ul>
+<li class="chapter" data-level="10.1" data-path="diffeq.html"><a href="diffeq.html#ivp"><i class="fa fa-check"></i><b>10.1</b> <em>Initial value problems</em></a><ul>
+<li class="chapter" data-level="10.1.1" data-path="diffeq.html"><a href="diffeq.html#eulermethod"><i class="fa fa-check"></i><b>10.1.1</b> Metode Euler</a></li>
+<li class="chapter" data-level="10.1.2" data-path="diffeq.html"><a href="diffeq.html#heun"><i class="fa fa-check"></i><b>10.1.2</b> Metode Heun</a></li>
+<li class="chapter" data-level="10.1.3" data-path="diffeq.html"><a href="diffeq.html#midpt"><i class="fa fa-check"></i><b>10.1.3</b> Metode Titik Tengah</a></li>
+<li class="chapter" data-level="10.1.4" data-path="diffeq.html"><a href="diffeq.html#rungekutta"><i class="fa fa-check"></i><b>10.1.4</b> Metode Runge-Kutta Orde 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="diffeq.html"><a href="diffeq.html#mml"><i class="fa fa-check"></i><b>10.1.5</b> Metode Multistep Linier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="diffeq.html"><a href="diffeq.html#sysdiff"><i class="fa fa-check"></i><b>10.2</b> Sistem Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10.3" data-path="diffeq.html"><a href="diffeq.html#penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode"><i class="fa fa-check"></i><b>10.3</b> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></a></li>
+<li class="chapter" data-level="10.4" data-path="diffeq.html"><a href="diffeq.html#pasialdiff"><i class="fa fa-check"></i><b>10.4</b> Persamaan Diferensial Parsial</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-difusi"><i class="fa fa-check"></i><b>10.4.1</b> Persamaan Difusi</a></li>
+<li class="chapter" data-level="10.4.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang"><i class="fa fa-check"></i><b>10.4.2</b> Persamaan Gelombang</a></li>
+<li class="chapter" data-level="10.4.3" data-path="diffeq.html"><a href="diffeq.html#laplace"><i class="fa fa-check"></i><b>10.4.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.4.4" data-path="diffeq.html"><a href="diffeq.html#setup.grid.1d"><i class="fa fa-check"></i><b>10.4.4</b> <code>setup.grid.1D()</code></a></li>
+<li class="chapter" data-level="10.4.5" data-path="diffeq.html"><a href="diffeq.html#setup.prop.1d"><i class="fa fa-check"></i><b>10.4.5</b> <code>setup.prop.1D()</code></a></li>
+<li class="chapter" data-level="10.4.6" data-path="diffeq.html"><a href="diffeq.html#tran.1d"><i class="fa fa-check"></i><b>10.4.6</b> <code>tran.1D()</code></a></li>
+<li class="chapter" data-level="10.4.7" data-path="diffeq.html"><a href="diffeq.html#ode.1d-atau-steady.1d"><i class="fa fa-check"></i><b>10.4.7</b> <code>ode.1D()</code> atau <code>steady.1D()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="diffeq.html"><a href="diffeq.html#contoh-penerapan-paket-reactran"><i class="fa fa-check"></i><b>10.5</b> Contoh Penerapan Paket <code>ReacTran</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-adveksi-difuksi-1d"><i class="fa fa-check"></i><b>10.5.1</b> Persamaan Adveksi-Difuksi 1D</a></li>
+<li class="chapter" data-level="10.5.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang-1d"><i class="fa fa-check"></i><b>10.5.2</b> Persamaan Gelombang 1D</a></li>
+<li class="chapter" data-level="10.5.3" data-path="diffeq.html"><a href="diffeq.html#persamaan-laplace"><i class="fa fa-check"></i><b>10.5.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.5.4" data-path="diffeq.html"><a href="diffeq.html#persamaan-poisson-untuk-dipol"><i class="fa fa-check"></i><b>10.5.4</b> Persamaan Poisson untuk Dipol</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="diffeq.html"><a href="diffeq.html#studi-kasus-3"><i class="fa fa-check"></i><b>10.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="diffeq.html"><a href="diffeq.html#model-lotka-voltera"><i class="fa fa-check"></i><b>10.6.1</b> Model Lotka-Voltera</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="diffeq.html"><a href="diffeq.html#referensi-9"><i class="fa fa-check"></i><b>10.7</b> Referensi</a></li>
+<li class="chapter" data-level="10.8" data-path="diffeq.html"><a href="diffeq.html#latihan-4"><i class="fa fa-check"></i><b>10.8</b> Latihan</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
 <li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
@@ -329,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
 <li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-10"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
@@ -341,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
-<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-11"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -365,12 +400,998 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="diffeq" class="section level1">
 <h1><span class="header-section-number">Chapter 10</span> Persamaan Diferensial</h1>
-<p>Chapter ini dalam proses pembuatan</p>
+<p>Persamaan diferensial merupakan persoalan matematis yang sering dijumpai dalam bidang teknik lingkungan. Sering kali suatu persamaan diferensial tidak dapat diselesaikan secara analitik sehingga diperlukan metode numerik untuk menyelesaikannya. Pada Chapter <a href="diffeq.html#diffeq">10</a>, kita akan membahas masalah-masalah dalam persamaan diferensial dan metode penyelesaiannya. Adapun yang akan dibahas pada Chapter <a href="diffeq.html#diffeq">10</a> kali ini antara lain:</p>
+<ul>
+<li><em>Initial value problems</em></li>
+<li>Sistem persamaan diferensial</li>
+<li>Persamaan diferensial parsial</li>
+</ul>
+<div id="ivp" class="section level2">
+<h2><span class="header-section-number">10.1</span> <em>Initial value problems</em></h2>
+<p><em>Initial value problems</em> merupakan permasalahan yang sering ditemukan pada proses dekomposisi zat kimia atau polutan dalam reaktor. Penyelesaiaan persamaan diferensial biasanya dipersulit dengan tidak tersedianya informasi yang cukup untuk menyelesaikannya.Sebuah persamaan diferensial <span class="math inline">\(f&#39;\left(x,\dots\right)\)</span> merupakan hasil diferensiasi beberapa fungsi <span class="math inline">\(f\left(x,\dots\right)\)</span>. Proses penyelesaian persamaan diferensial, dan menemukan nilai <span class="math inline">\(f \left(x,\dots\right)\)</span> untuk beberapa nilai x,… tidak dimungkinkan karena integral dari <span class="math inline">\(f&#39;\left(x,\dots\right)\)</span> hanya digambarkan bentuk umum. Pergeseran vertikal, atas atau bawah, tidak diketahui. Pergeseran vertikal ini menghasilkan konstanta integrasi.</p>
+<p>Selama proses diferensiasi, nilai apapun dari proses pergeseran vertikal (integrasi) akan hilang sebagai akibat dari eliminasi konstanta yang memiliki turunan 0. Kita biasa melakukannya ketika mengintegrasikan fungsi dengan menambahkan konstanta <span class="math inline">\(+ C\)</span> pada proses integrasi ke integral yang tidak terbatas. Hal ini terkadang bukan menjadi permasalahan sebab jika menemukan nilai integrasi pada suatu batas tertentu syarat <span class="math inline">\(+ C\)</span> dibatalkan dan konstanta integrasi tidak diperlukan.</p>
+<p>Untuk persamaan diferensial biasa, tidak ada pembatalan yang nyaman, yang mengarah ke <em>initial value problems</em>. <em>Initial value problems</em> memberikan nilai <span class="math inline">\(f\left(x_0,\dots\right)\)</span>, di mana <span class="math inline">\(x_0\)</span> biasanya bernilai 0, meski tidak diharuskan. Nilai awal ini memberikan informasi yang cukup untuk menyelesaikan persamaan dan menemukan nilai aktual dari <span class="math inline">\(f\left(x,\dots\right)\)</span> untuk sejumlah nilai <span class="math inline">\(x\)</span>. Terdapat beberapa metode yang akan dibahas pada Chapter <a href="diffeq.html#ivp">10.1</a>, antara lain:</p>
+<ul>
+<li>Metode Euler</li>
+<li>Metode Heun</li>
+<li>Metode Titik Tengah</li>
+<li>Metode Runge-Kutta Orde 4</li>
+<li>Metode multistep linier</li>
+</ul>
+<div id="eulermethod" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Metode Euler</h3>
+<p>Metode Euler merupakan metode paling sederhana yang diturunkan dari deret Taylor. Penyelesaian <em>initial value problems</em> menggunakan metode Euler dilakukan melalui Persamaan <a href="diffeq.html#eq:euler">(10.1)</a>.</p>
+<p><span class="math display" id="eq:euler">\[\begin{equation}
+y_{i+1}=y_i+f\left(x_i,y_i\right)h
+  \tag{10.1}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(i\)</span> merupakan tahapan iterasi.</p>
+<hr />
+<p><strong>Algoritma Metode Euler</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan titik awal integrasi <span class="math inline">\(x_0\)</span> dan <span class="math inline">\(y_0\)</span>.</li>
+<li>Tentukan jumlah iterasi <span class="math inline">\(n\)</span> dan <em>step size</em> <span class="math inline">\(h\)</span> yang digunakan.</li>
+<li>Lakukan integrasi menggunakan Persamaan <a href="diffeq.html#eq:euler">(10.1)</a>.</li>
+</ol>
+<hr />
+<p>Algoritma tersebut, selanjutnya dapat disusun ke dalam sebuah fungsi <code>R</code>. Fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1">euler &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n){</a>
+<a class="sourceLine" id="cb732-2" title="2">  x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb732-3" title="3">  y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb732-4" title="4">  </a>
+<a class="sourceLine" id="cb732-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb732-6" title="6">    y0 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>h<span class="op">*</span><span class="kw">f</span>(x0, y0)</a>
+<a class="sourceLine" id="cb732-7" title="7">    x0 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb732-8" title="8">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x,x0)</a>
+<a class="sourceLine" id="cb732-9" title="9">    y &lt;-<span class="st"> </span><span class="kw">c</span>(y, y0)</a>
+<a class="sourceLine" id="cb732-10" title="10">  }</a>
+<a class="sourceLine" id="cb732-11" title="11">  </a>
+<a class="sourceLine" id="cb732-12" title="12">  <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y))</a>
+<a class="sourceLine" id="cb732-13" title="13">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:eulerexmp" class="example"><strong>Contoh 10.1  </strong></span>Selesaikan persamaan diferensial di bawah ini, jika diketahui f(0)=1 menggunakan h=0,05 dan n=100!
+</div>
+
+<p><span class="math display">\[
+f&#39;\left(x,y\right)=\frac{y}{2x+1}
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Penyelesaian secara analitik persamaan tersebut untuk nilai <span class="math inline">\(f\left(0\right)=1\)</span> sebagai berikut:</p>
+<p><span class="math display">\[
+f\left(x\right)=\sqrt{2x+1}
+\]</span></p>
+<p>Secara numerik persamaan tersebut dapat diselesaikan sebagai berikut:</p>
+<p><strong>iterasi 1</strong></p>
+<p><span class="math display">\[
+y\left(0,5\right)=1+0,05\times\frac{1}{\left(2\cdot 0\right)+1}=1,05
+\]</span></p>
+<p><strong>iterasi 2</strong></p>
+<p><span class="math display">\[
+y\left(0,1\right)=1,05+0,05\times\frac{1}{\left(2\cdot0,05\right)+1}=1.097727
+\]</span></p>
+<p>Kita dapat juga menggunakan fungsi <code>euler()</code> untuk menyelesaikan persamaan tersebut secara numerik. Hasil yang diperoleh selanjutnya diplotkan dengan hasil yang diperoleh menggunakan metode analitik. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb733-1" title="1"><span class="co"># metode numerik</span></a>
+<a class="sourceLine" id="cb733-2" title="2">f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){y<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span>)}</a>
+<a class="sourceLine" id="cb733-3" title="3">num &lt;-<span class="st"> </span><span class="kw">euler</span>(f1, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb733-4" title="4"></a>
+<a class="sourceLine" id="cb733-5" title="5"><span class="co"># metode analitik</span></a>
+<a class="sourceLine" id="cb733-6" title="6">f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x){<span class="kw">sqrt</span>(<span class="dv">2</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span>)}</a>
+<a class="sourceLine" id="cb733-7" title="7">x0 &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb733-8" title="8">y0 &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb733-9" title="9">x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb733-10" title="10">y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb733-11" title="11"></a>
+<a class="sourceLine" id="cb733-12" title="12"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</a>
+<a class="sourceLine" id="cb733-13" title="13">  y0 &lt;-<span class="st"> </span><span class="kw">f2</span>(x0<span class="fl">+0.05</span>)</a>
+<a class="sourceLine" id="cb733-14" title="14">  x0 &lt;-<span class="st"> </span>x0<span class="fl">+0.05</span></a>
+<a class="sourceLine" id="cb733-15" title="15">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, x0)</a>
+<a class="sourceLine" id="cb733-16" title="16">  y &lt;-<span class="st"> </span><span class="kw">c</span>(y, y0)</a>
+<a class="sourceLine" id="cb733-17" title="17">}</a>
+<a class="sourceLine" id="cb733-18" title="18">true &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:eulerviz"></span>
+<img src="Metode_Numerik_files/figure-html/eulerviz-1.png" alt="Visualisasi integrasi numerik dengan metode Euler dan metode analitik" width="80%" />
+<p class="caption">
+Gambar 10.1: Visualisasi integrasi numerik dengan metode Euler dan metode analitik
+</p>
+</div>
+<p>Berdasarkan hasil visualisasi dapat dilihat bahwa metode Euler dapat dengan baik memberikan pendekatan nilai integrasi persamaan. Pembaca dapat mencoba untuk melakukan simulasi kembali dengan nilai <span class="math inline">\(h\)</span> yang lebih kecil.</p>
+</div>
+<div id="heun" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Metode Heun</h3>
+<p>Metode Heun merupakan salah satu peningkatan dari metode Euler. Metode ini melibatkan 2 buah persamaan. Persamaan pertama disebut sebagai persamaan prediktor yang digunakan untuk memprediksi nilai integrasi awal (Persamaan <a href="diffeq.html#eq:heun1">(10.2)</a>). Persamaan kedua disebut sebagai persamaan korektor yang mengoreksi hasil integrasi awal (Persamaan <a href="diffeq.html#eq:heun2">(10.3)</a>). Metode Heun pada <em>Chapter</em> ini merupakan metode prediktor-korektor satu tahapan. Akurasi integrasi dapat ditingkatkan dengan melakukan koreksi ulang terhadap nilai koreksi semula menggunakan persamaan kedua.</p>
+<p><span class="math display" id="eq:heun1">\[\begin{equation}
+y_{i+1}^{0}=y_i+f\left(x_i,y_i\right)h
+  \tag{10.2}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:heun2">\[\begin{equation}
+y_{i+1}=y_i+\frac{f\left(x_i,y_i\right)+f\left(x_{i+1},y_{i+1}^0\right)}{2}h
+  \tag{10.3}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Metode Heun</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan titik awal integrasi <span class="math inline">\(x_0\)</span> dan <span class="math inline">\(y_0\)</span>.</li>
+<li>Tentukan jumlah iterasi <span class="math inline">\(n\)</span> dan <em>step size</em> <span class="math inline">\(h\)</span> yang digunakan.</li>
+<li>Lakukan prediksi nilai awal dengan Persamaan <a href="diffeq.html#eq:heun1">(10.2)</a>.</li>
+<li>Lakukan koreksi nilai awal menggunakan Persamaan <a href="diffeq.html#eq:heun2">(10.3)</a>.</li>
+<li>Lakukan koreksi terhadap nilai koreksi yang dihasilkan sebelumnya menggunakan Persamaan <a href="diffeq.html#eq:heun2">(10.3)</a>.</li>
+</ol>
+<hr />
+<p>Kita dapat membangun sebuah fungsi yang dapat melakukan proses integrasi menggunakan metode Heun. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1">heun &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n, <span class="dt">iter=</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb734-2" title="2">  x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb734-3" title="3">  y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb734-4" title="4">  </a>
+<a class="sourceLine" id="cb734-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb734-6" title="6">    ypred0 &lt;-<span class="st"> </span><span class="kw">f</span>(x0,y0)</a>
+<a class="sourceLine" id="cb734-7" title="7">    ypred1 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>h<span class="op">*</span>ypred0</a>
+<a class="sourceLine" id="cb734-8" title="8">    ypred2 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="op">+</span>h,ypred1)</a>
+<a class="sourceLine" id="cb734-9" title="9">    ykor &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>h<span class="op">*</span>(ypred0<span class="op">+</span>ypred2)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb734-10" title="10">    <span class="cf">if</span>(iter<span class="op">!=</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb734-11" title="11">      <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>iter){</a>
+<a class="sourceLine" id="cb734-12" title="12">        ykor &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>h<span class="op">*</span>(ypred0<span class="op">+</span><span class="kw">f</span>(x0<span class="op">+</span>h,ykor))<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb734-13" title="13">      }</a>
+<a class="sourceLine" id="cb734-14" title="14">    }</a>
+<a class="sourceLine" id="cb734-15" title="15">    y0 &lt;-<span class="st"> </span>ykor</a>
+<a class="sourceLine" id="cb734-16" title="16">    x0 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb734-17" title="17">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, x0)</a>
+<a class="sourceLine" id="cb734-18" title="18">    y &lt;-<span class="st"> </span><span class="kw">c</span>(y, y0)</a>
+<a class="sourceLine" id="cb734-19" title="19">  }</a>
+<a class="sourceLine" id="cb734-20" title="20">  </a>
+<a class="sourceLine" id="cb734-21" title="21">  <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y))</a>
+<a class="sourceLine" id="cb734-22" title="22">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:heunexmp" class="example"><strong>Contoh 10.2  </strong></span>Selesaikan kembali persamaan yang ditampilkan pada Contoh <a href="diffeq.html#exm:eulerexmp">10.1</a> menggunakan metode Heun!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Contoh perhitungan secara manual menggunakan metode Heun untuk sekali iterasi adalah sebagai berikut:</p>
+<p><span class="math display">\[
+f&#39;\left(0;1\right)=\frac{1}{\left(2\cdot 0\right)+1}=1
+\]</span></p>
+<p><span class="math display">\[
+y_{1}^0=1+0,05\cdot1=1,05
+\]</span></p>
+<p><span class="math display">\[
+y&#39;_1=f&#39;\left(0,05;1,05\right)=\frac{1,05}{\left(2\cdot 0,05\right)+1}=0,9545455
+\]</span></p>
+<p><span class="math display">\[
+y_1=1+0,05\cdot\frac{1+0,9545455}{2}=1,047727
+\]</span></p>
+<p>Penyelesaian persamaan tersebut menggunakan fungsi <code>heun()</code> dengan iterasi pada nilai koreksi sebanyak 1 kali disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" title="1">num &lt;-<span class="st"> </span><span class="kw">heun</span>(f1, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">100</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:heunviz"></span>
+<img src="Metode_Numerik_files/figure-html/heunviz-1.png" alt="Visualisasi integrasi numerik dengan metode Heun dan metode analitik" width="80%" />
+<p class="caption">
+Gambar 10.2: Visualisasi integrasi numerik dengan metode Heun dan metode analitik
+</p>
+</div>
+</div>
+<div id="midpt" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> Metode Titik Tengah</h3>
+<p>Metode titik tengah menggunakan setengah <em>step size</em> pada metode Euler untuk melakukan estimasi terhadap integral suatu persamaan diferensial. Metode ini melakukan perhitungan melalui dua tahapan yaitu: menghitung nilai estimasi integral pada setengah <em>step size</em>(Persamaan <a href="diffeq.html#eq:mid1">(10.4)</a>) dan menghitung nilai integral menggunkan hasil perhitungan setengah <em>step size</em> sebelumnya (Persamaan <a href="diffeq.html#eq:mid2">(10.5)</a>).</p>
+<p><span class="math display" id="eq:mid1">\[\begin{equation}
+y_{i+\frac{1}{2}}=y_i+f\left(x_i,y_i\right)\frac{h}{2}
+  \tag{10.4}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:mid2">\[\begin{equation}
+y_{i+1}=y_i+f\left(x_{i+\frac{1}{2}},y_{i,\frac{1}{2}}\right)h
+  \tag{10.5}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Metode Tengah</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan titik awal integrasi <span class="math inline">\(x_0\)</span> dan <span class="math inline">\(y_0\)</span>.</li>
+<li>Tentukan jumlah iterasi <span class="math inline">\(n\)</span> dan <em>step size</em> <span class="math inline">\(h\)</span> yang digunakan.</li>
+<li>Lakukan integrasi pada setengah tahapan iterasi menggunakan Persamaan <a href="diffeq.html#eq:mid1">(10.4)</a>.</li>
+<li>Lakukan iterasi pada setengah tahapan selanjutnya menggunakan Persamaan <a href="diffeq.html#eq:mid2">(10.5)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada <code>R</code> yang adapat digunakan untuk menyelesaikan persamaan diferensial menggunakan metode titik tengah. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" title="1">midpt &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n){</a>
+<a class="sourceLine" id="cb736-2" title="2">  x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb736-3" title="3">  y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb736-4" title="4">  </a>
+<a class="sourceLine" id="cb736-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb736-6" title="6">    s1 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span><span class="kw">f</span>(x0,y0) <span class="op">*</span><span class="st"> </span>h<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb736-7" title="7">    s2 &lt;-<span class="st"> </span>h <span class="op">*</span><span class="st"> </span><span class="kw">f</span>(x0<span class="op">+</span>h<span class="op">/</span><span class="dv">2</span>,s1)</a>
+<a class="sourceLine" id="cb736-8" title="8">    y0 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>s2</a>
+<a class="sourceLine" id="cb736-9" title="9">    x0 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb736-10" title="10">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, x0)</a>
+<a class="sourceLine" id="cb736-11" title="11">    y &lt;-<span class="st"> </span><span class="kw">c</span>(y, y0)</a>
+<a class="sourceLine" id="cb736-12" title="12">  }</a>
+<a class="sourceLine" id="cb736-13" title="13">  </a>
+<a class="sourceLine" id="cb736-14" title="14">  <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y))</a>
+<a class="sourceLine" id="cb736-15" title="15">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:midexmp" class="example"><strong>Contoh 10.3  </strong></span>Selesaikan kembali persamaan yang ditampilkan pada Contoh <a href="diffeq.html#exm:eulerexmp">10.1</a> menggunakan metode titik tengah!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Contoh perhitungan secara manual menggunakan metode titik tengah untuk sekali iterasi adalah sebagai berikut:</p>
+<p><span class="math display">\[
+y_{\frac{1}{2}}=1+\frac{1}{\left(2\cdot 0\right)+1}\cdot\frac{0,05}{2}=1,025
+\]</span></p>
+<p><span class="math display">\[
+y_{1}=1+\frac{1,025}{\left(2\cdot 0,025\right)+1}\cdot0,05=1,0488
+\]</span></p>
+<p>Penyelesaian persamaan tersebut menggunakan fungsi <code>midpt()</code> dengan iterasi pada nilai koreksi sebanyak 1 kali disajikan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb737-1" title="1">num &lt;-<span class="st"> </span><span class="kw">midpt</span>(f1, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">100</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:midviz"></span>
+<img src="Metode_Numerik_files/figure-html/midviz-1.png" alt="Visualisasi integrasi numerik dengan metode titik tengah dan metode analitik" width="80%" />
+<p class="caption">
+Gambar 10.3: Visualisasi integrasi numerik dengan metode titik tengah dan metode analitik
+</p>
+</div>
+</div>
+<div id="rungekutta" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Metode Runge-Kutta Orde 4</h3>
+<p>Runge-Kutta orde 4 merupakan metode yang paling populer dalam penyelesaian persamaan diferensial. Metode ini dapat memperoleh akurasi deret Taylor tanpa memerlukan diferensiasi orde yang lebih tinggi. Metode Runge-Kutta orde 4 dituliskan ke dalam Persamaan <a href="diffeq.html#eq:rk">(10.6)</a>.</p>
+<p><span class="math display" id="eq:rk">\[\begin{equation}
+y_{i+1}=y_i+\frac{1}{6}\left(k_1+2k_2+2k_3+k_4\right)h
+  \tag{10.6}
+\end{equation}\]</span></p>
+<p>dimana</p>
+<p><span class="math display" id="eq:rk1">\[\begin{equation}
+k_1=f\left(x_i,y_i\right)
+  \tag{10.7}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:rk2">\[\begin{equation}
+k_2=f\left(x_i+\frac{1}{2}h,y_i+\frac{1}{2}k_1h\right)
+  \tag{10.8}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:rk3">\[\begin{equation}
+k_3=f\left(x_i+\frac{1}{2}h,y_i+\frac{1}{2}k_2h\right)
+  \tag{10.9}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:rk4">\[\begin{equation}
+k_4=f\left(x_i+h,y_i+k_3h\right)
+  \tag{10.10}
+\end{equation}\]</span></p>
+<hr />
+<p><strong>Algoritma Metode Tengah</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan titik awal integrasi <span class="math inline">\(x_0\)</span> dan <span class="math inline">\(y_0\)</span>.</li>
+<li>Tentukan jumlah iterasi <span class="math inline">\(n\)</span> dan <em>step size</em> <span class="math inline">\(h\)</span> yang digunakan.</li>
+<li>Lakukan integrasi menggunakan Persamaan <a href="diffeq.html#eq:rk">(10.6)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada <code>R</code> yang adapat digunakan untuk menyelesaikan persamaan diferensial menggunakan metode Runge-Kutta orde 4. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb738-1" title="1">rk4 &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n){</a>
+<a class="sourceLine" id="cb738-2" title="2">  x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb738-3" title="3">  y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb738-4" title="4">  </a>
+<a class="sourceLine" id="cb738-5" title="5">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb738-6" title="6">    k1 &lt;-<span class="st"> </span><span class="kw">f</span>(x0,y0)</a>
+<a class="sourceLine" id="cb738-7" title="7">    k2 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="fl">+0.5</span><span class="op">*</span>h,y0<span class="fl">+0.5</span><span class="op">*</span>k1<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb738-8" title="8">    k3 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="fl">+0.5</span><span class="op">*</span>h,y0<span class="fl">+0.5</span><span class="op">*</span>k2<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb738-9" title="9">    k4 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="op">+</span>h,y0<span class="op">+</span>k3<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb738-10" title="10">    y0 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>)<span class="op">*</span>(k1<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k2<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k3<span class="op">+</span>k4)<span class="op">*</span>h</a>
+<a class="sourceLine" id="cb738-11" title="11">    x0 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb738-12" title="12">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, x0)</a>
+<a class="sourceLine" id="cb738-13" title="13">    y &lt;-<span class="st"> </span><span class="kw">c</span>(y, y0)</a>
+<a class="sourceLine" id="cb738-14" title="14">  }</a>
+<a class="sourceLine" id="cb738-15" title="15">  </a>
+<a class="sourceLine" id="cb738-16" title="16">  <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y))</a>
+<a class="sourceLine" id="cb738-17" title="17">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:rkexmp" class="example"><strong>Contoh 10.4  </strong></span>Selesaikan kembali persamaan yang ditampilkan pada Contoh <a href="diffeq.html#exm:eulerexmp">10.1</a> menggunakan metode Runge-Kutta orde 4!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Contoh perhitungan secara manual menggunakan metode titik tengah untuk sekali iterasi adalah sebagai berikut:</p>
+<p><span class="math display">\[
+k_1=\frac{1}{\left(2\cdot 0\right)+1}=1
+\]</span></p>
+<p><span class="math display">\[
+k_2=\frac{1+\frac{1}{2}\cdot1\cdot0,05}{\left(2\cdot 0\cdot\frac{1}{2}\cdot0,05\right)+1}=1,025
+\]</span></p>
+<p><span class="math display">\[
+k_2=\frac{1+\frac{1}{2}\cdot1,025\cdot0,05}{\left(2\cdot 0\cdot\frac{1}{2}\cdot0,05\right)+1}=1,025625
+\]</span></p>
+<p><span class="math display">\[
+k_2=\frac{1+1,025625\cdot0,05}{\left(2\cdot 0\cdot0,05\right)+1}=1,051281
+\]</span></p>
+<p><span class="math display">\[
+y_1=1+\frac{1}{6}\left(1+2\cdot1,025+2\cdot1,025625+1,051281\right)0,05=1.051271
+\]</span></p>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb739-1" title="1"><span class="dv">1</span><span class="op">+</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="fl">1.025</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="fl">1.025625+1.051281</span>)<span class="op">*</span><span class="fl">0.05</span></a></code></pre></div>
+<pre><code>## [1] 1.051</code></pre>
+<p>Iterasi dapat pula dilakukan dengan menggunakan fungsi <code>rk4()</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb741-1" title="1">num &lt;-<span class="st"> </span><span class="kw">rk4</span>(f1, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">100</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:rkviz"></span>
+<img src="Metode_Numerik_files/figure-html/rkviz-1.png" alt="Visualisasi integrasi numerik dengan metode Runge-Kutta orde 4 dan metode analitik" width="80%" />
+<p class="caption">
+Gambar 10.4: Visualisasi integrasi numerik dengan metode Runge-Kutta orde 4 dan metode analitik
+</p>
+</div>
+</div>
+<div id="mml" class="section level3">
+<h3><span class="header-section-number">10.1.5</span> Metode Multistep Linier</h3>
+<p>Jika metode Runge-Kutta mengalami kesulitan karena terlalu banyak evaluasi fungsi yang digunakan, masuk akal untuk bertanya apakah kita dapat menggunakan kembali beberapa evaluasi fungsi sebelumnya, yang sudah kita buat. Sebagai contoh, kita ingin tahu apakah kita dapat menggunakan kembali estimasi <span class="math inline">\(f\left(0,1\right)\)</span> dan <span class="math inline">\(f\left(0,2\right)\)</span> untuk memperkirakan nilai <span class="math inline">\(f\left(0,3\right)\)</span>. Jika kita dapat menggunakan kembali perkiraan sebelumnya, kita dapat memperoleh akurasi tambahan tanpa menimbulkan penalti kinerja yang terkait dengan evaluasi fungsi tambahan. Metode multistep linier dikembangkan untuk mengatasi masalah ini.</p>
+<p>Di satu sisi, metode multistep linier dasar untuk persamaan diferensial hanya mencakup satu titik <span class="math inline">\(x_i\)</span>, dalam perhitungan <span class="math inline">\(x_i + 1\)</span>. Ini persis bagaimana fungsi metode Euler dan metode Euler merupakan metode multistep linier dasar. Metode selanjutnya menggunakan <span class="math inline">\(x_i − 1\)</span> dan <span class="math inline">\(x_i\)</span> untuk menghitung <span class="math inline">\(x_i + 1\)</span>. Metode Adams-Bashforth menggunakan tambahan berbobot, termasuk bobot negatif, dari langkah dan poin untuk sampai pada langkah berikutnya. Seperti metode numerik lainnya, bobot muncul dari interpolasi polinomial titik yang tersedia.</p>
+<p>Metode Adam-Bashforth orde 2 didasarkan pada Persamaan <a href="diffeq.html#eq:adam">(10.11)</a>.</p>
+<p><span class="math display" id="eq:adam">\[\begin{equation}
+y_{i+2}=y_{i+1}+\frac{h}{2}\left(3f\left(x_{i+1},y_{i+1}\right)-f\left(x_i,y_i\right)\right)
+  \tag{10.11}
+\end{equation}\]</span></p>
+<p>Pendekatan ini melakukan interpolasi antara titik sebelumnya untuk memperkirakan titik ketiga dalam grup. Titik ketiga ini menjadi titik tengah dari iterasi berikutnya saat seluruh proses berlanjut. Karena nilai sebelumnya disimpan dan digunakan kembali, evaluasi fungsi tambahan tidak diperlukan. Jika metode Runge-Kutta dapat dibandingkan dengan tip-toeing melalui bidang vektor, maka metode Adams-Bashforth dapat sama dibandingkan dengan menjalankan melalui bidang vektor. Namun, ini tidak berarti metode Adams-Bashforth lebih unggul.</p>
+<hr />
+<p><strong>Algoritma Metode Tengah</strong></p>
+<ol style="list-style-type: decimal">
+<li>Tentukan titik awal integrasi <span class="math inline">\(x_0\)</span> dan <span class="math inline">\(y_0\)</span>.</li>
+<li>Tentukan jumlah iterasi <span class="math inline">\(n\)</span> dan <em>step size</em> <span class="math inline">\(h\)</span> yang digunakan.</li>
+<li>Lakukan pendekatan pada iterasi ke-1 menggunakan metode Euler.</li>
+<li>Lakukan integrasi ke-2 sampai n menggunakan Persamaan <a href="diffeq.html#eq:adam">(10.11)</a>.</li>
+</ol>
+<hr />
+<p>Berdasarkan algoritma tersebut, kita dapat membangun sebuah fungsi pada <code>R</code> yang adapat digunakan untuk menyelesaikan persamaan diferensial menggunakan metode multistep linier. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" title="1">adambashforth &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n){</a>
+<a class="sourceLine" id="cb742-2" title="2">  <span class="co"># pendekatan Euler untuk x1 dan y1</span></a>
+<a class="sourceLine" id="cb742-3" title="3">  y1 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>h<span class="op">*</span><span class="kw">f</span>(x0,y0)</a>
+<a class="sourceLine" id="cb742-4" title="4">  x1 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb742-5" title="5">  </a>
+<a class="sourceLine" id="cb742-6" title="6">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x0,x1)</a>
+<a class="sourceLine" id="cb742-7" title="7">  y &lt;-<span class="st"> </span><span class="kw">c</span>(y0,y1)</a>
+<a class="sourceLine" id="cb742-8" title="8">  n &lt;-<span class="st"> </span>n<span class="dv">-1</span></a>
+<a class="sourceLine" id="cb742-9" title="9">  </a>
+<a class="sourceLine" id="cb742-10" title="10">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb742-11" title="11">    yn &lt;-<span class="st"> </span>y1 <span class="op">+</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span>h<span class="op">*</span><span class="kw">f</span>(x1,y1) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>h<span class="op">*</span><span class="kw">f</span>(x0,y0)</a>
+<a class="sourceLine" id="cb742-12" title="12">    xn &lt;-<span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb742-13" title="13">    </a>
+<a class="sourceLine" id="cb742-14" title="14">    y0 &lt;-<span class="st"> </span>y1</a>
+<a class="sourceLine" id="cb742-15" title="15">    x0 &lt;-<span class="st"> </span>x1</a>
+<a class="sourceLine" id="cb742-16" title="16">    y1 &lt;-<span class="st"> </span>yn</a>
+<a class="sourceLine" id="cb742-17" title="17">    x1 &lt;-<span class="st"> </span>xn</a>
+<a class="sourceLine" id="cb742-18" title="18">    </a>
+<a class="sourceLine" id="cb742-19" title="19">    y &lt;-<span class="st"> </span><span class="kw">c</span>(y,y1)</a>
+<a class="sourceLine" id="cb742-20" title="20">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x,x1)</a>
+<a class="sourceLine" id="cb742-21" title="21">  }</a>
+<a class="sourceLine" id="cb742-22" title="22">  </a>
+<a class="sourceLine" id="cb742-23" title="23">  <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y))</a>
+<a class="sourceLine" id="cb742-24" title="24">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:adamexmp" class="example"><strong>Contoh 10.5  </strong></span>Selesaikan kembali persamaan yang ditampilkan pada Contoh <a href="diffeq.html#exm:eulerexmp">10.1</a> menggunakan metode Runge-Kutta orde 4!
+</div>
+
+<p><strong>Jawab</strong>:</p>
+<p>Untuk melakukan iterasi, kita dapat menggunakan fungsi <code>adambashforth()</code>. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb743-1" title="1">num &lt;-<span class="st"> </span><span class="kw">rk4</span>(f1, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span><span class="dv">1</span>, <span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">n=</span><span class="dv">100</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:adamviz"></span>
+<img src="Metode_Numerik_files/figure-html/adamviz-1.png" alt="Visualisasi integrasi numerik dengan metode Adam-Bashfoth orde 2 dan metode analitik" width="80%" />
+<p class="caption">
+Gambar 10.5: Visualisasi integrasi numerik dengan metode Adam-Bashfoth orde 2 dan metode analitik
+</p>
+</div>
+</div>
+</div>
+<div id="sysdiff" class="section level2">
+<h2><span class="header-section-number">10.2</span> Sistem Persamaan Diferensial</h2>
+<p>Sistem persamaan diferensial akan sering pembaca temui dalam pemodelan sistem dinamik. Pada proses pemodelan sistem tersebut akan ditemukan aksi-interasi antar komponennya yang dinyatakan ke dalam suatu sistem persamaan diferensial.</p>
+<p>Pada fungsi <code>rk4sys()</code> disusun sebuah fungsi pada <code>R</code> untuk melakukan iterasi terhadap sistem persamaan diferensial menggunakan metode Runge-Kutta orde 4. Berikut adalah sintaks yang digunakan:</p>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb744-1" title="1">rk4sys &lt;-<span class="st"> </span><span class="cf">function</span>(f, x0, y0, h, n){</a>
+<a class="sourceLine" id="cb744-2" title="2">  x &lt;-<span class="st"> </span>x0</a>
+<a class="sourceLine" id="cb744-3" title="3">  y &lt;-<span class="st"> </span>y0</a>
+<a class="sourceLine" id="cb744-4" title="4">  </a>
+<a class="sourceLine" id="cb744-5" title="5">  values &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span>x,<span class="kw">t</span>(y0))</a>
+<a class="sourceLine" id="cb744-6" title="6">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb744-7" title="7">    k1 &lt;-<span class="st"> </span><span class="kw">f</span>(x0,y0)</a>
+<a class="sourceLine" id="cb744-8" title="8">    k2 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="fl">+0.5</span><span class="op">*</span>h,y0<span class="fl">+0.5</span><span class="op">*</span>k1<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb744-9" title="9">    k3 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="fl">+0.5</span><span class="op">*</span>h,y0<span class="fl">+0.5</span><span class="op">*</span>k2<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb744-10" title="10">    k4 &lt;-<span class="st"> </span><span class="kw">f</span>(x0<span class="op">+</span>h,y0<span class="op">+</span>k3<span class="op">*</span>h)</a>
+<a class="sourceLine" id="cb744-11" title="11">    y0 &lt;-<span class="st"> </span>y0 <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>)<span class="op">*</span>(k1<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k2<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k3<span class="op">+</span>k4)<span class="op">*</span>h</a>
+<a class="sourceLine" id="cb744-12" title="12">    x0 &lt;-<span class="st"> </span>x0 <span class="op">+</span><span class="st"> </span>h</a>
+<a class="sourceLine" id="cb744-13" title="13">    values &lt;-<span class="st"> </span><span class="kw">rbind</span>(values, <span class="kw">data.frame</span>(<span class="dt">x=</span>x0,<span class="kw">t</span>(y0)))</a>
+<a class="sourceLine" id="cb744-14" title="14">  }</a>
+<a class="sourceLine" id="cb744-15" title="15">  </a>
+<a class="sourceLine" id="cb744-16" title="16">  <span class="kw">return</span>(values)</a>
+<a class="sourceLine" id="cb744-17" title="17">}</a></code></pre></div>
+
+<div class="example">
+<span id="exm:rksysexmp" class="example"><strong>Contoh 10.6  </strong></span>Sebuah model populasi yang dibagi menjadi tiga kelompok umur: anak (0-12 tahun), melahirkan anak (13-40 tahun), dan usia (41 tahun atau lebih). Kelompok 0-12 meningkat berdasarkan kelahiran di kelompok 13-40, dan menurun dengan kematian dan lewat bagian ke kelompok 13-40. Kelompok 13–40 meningkat dengan perolehan dari kelompok 0-12, dan berkurang dengan kematian dan lewat bagian ke dalam kelompok&gt; = 41. Kelompok&gt; = 41 meningkat dengan keuntungan dari kelompok 13-40, dan menurun dengan kematian. Parameter dipilih untuk mewakili tingkat kelahiran dan kematian yang cukup tinggi seperti yang ditemukan di banyak masyarakat berkembang. Model interaksi tersebut dinyatakan ke dalam persamaan interkasi di bawah ini! Simulasikan dinamika populasi pada model tersebut pada 10 tahun ke depan, jika diketahui populasi semula masing-masing kelompok usia secara berurutan adalah 200,400, dan 400, serta nilai masing-masing koefisien kelahiran, kematian kelompok 1, kematian kelompok2, dan kematian kelompok 3 secara berurutan adalah 0,5;0,1;0,1;0,25!
+</div>
+
+<p><span class="math display">\[
+pop1&#39; = b\cdot pop2&#39;+\frac{11}{12}\cdot pop1&#39;\left(1-d1\right)  
+\]</span></p>
+<p><span class="math display">\[
+pop2&#39; = \frac{1}{12}\cdot pop1&#39;\cdot\left(1-d1\right)+\frac{26}{27}\cdot pop2&#39;\cdot \left(1-d2\right)  
+\]</span></p>
+<p><span class="math display">\[
+pop3, = \frac{1}{27}\cdot pop2,\cdot\left(1-d2\right)+ pop3&#39;\cdot \left(1-d3\right)  
+\]</span></p>
+<p><strong>Jawab</strong>:</p>
+<p>Sistem persamaan diferensial perlu ditransformasi ke dalam bentuk sebuah fungsi pada <code>R</code>.</p>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb745-1" title="1">Population =<span class="st"> </span><span class="cf">function</span>(x,y) {</a>
+<a class="sourceLine" id="cb745-2" title="2">   <span class="co"># parameter</span></a>
+<a class="sourceLine" id="cb745-3" title="3">   b =<span class="st"> </span><span class="fl">0.5</span> <span class="co"># Birth rate in 13-40 group</span></a>
+<a class="sourceLine" id="cb745-4" title="4">   d1 =<span class="st"> </span><span class="fl">0.1</span> <span class="co"># Death rate of 0-12 group</span></a>
+<a class="sourceLine" id="cb745-5" title="5">   d2 =<span class="st"> </span><span class="fl">0.1</span> <span class="co"># Death rate of 13-40 group</span></a>
+<a class="sourceLine" id="cb745-6" title="6">   d3 =<span class="st"> </span><span class="fl">0.25</span> <span class="co"># Death rate of 41 and older</span></a>
+<a class="sourceLine" id="cb745-7" title="7">   </a>
+<a class="sourceLine" id="cb745-8" title="8">   y1 =<span class="st"> </span>y[<span class="dv">1</span>] <span class="co"># 0-12 group population</span></a>
+<a class="sourceLine" id="cb745-9" title="9">   y2 =<span class="st"> </span>y[<span class="dv">2</span>] <span class="co"># 13-40 group population</span></a>
+<a class="sourceLine" id="cb745-10" title="10">   y3 =<span class="st"> </span>y[<span class="dv">3</span>] <span class="co"># 41 and older population</span></a>
+<a class="sourceLine" id="cb745-11" title="11">   y1.new =<span class="st"> </span>b<span class="op">*</span>y2 <span class="op">+</span><span class="st"> </span>(<span class="dv">11</span><span class="op">/</span><span class="dv">12</span>)<span class="op">*</span>y1<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d1)</a>
+<a class="sourceLine" id="cb745-12" title="12">   y2.new =<span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">12</span>)<span class="op">*</span>y1<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d1) <span class="op">+</span><span class="st"> </span>(<span class="dv">26</span><span class="op">/</span><span class="dv">27</span>)<span class="op">*</span>y2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d2)</a>
+<a class="sourceLine" id="cb745-13" title="13">   y3.new =<span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">27</span>)<span class="op">*</span>y2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d2) <span class="op">+</span><span class="st"> </span>y3<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d3)</a>
+<a class="sourceLine" id="cb745-14" title="14">   <span class="kw">return</span>(<span class="kw">c</span>(y1.new, y2.new, y3.new))</a>
+<a class="sourceLine" id="cb745-15" title="15">}</a></code></pre></div>
+<p>Nilai awal dituliskan seperti berikut:</p>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb746-1" title="1"><span class="co"># Nilai awal</span></a>
+<a class="sourceLine" id="cb746-2" title="2">y =<span class="st"> </span><span class="kw">c</span>(<span class="dt">pop1=</span><span class="dv">200</span>,<span class="dt">pop2=</span><span class="dv">400</span>,<span class="dt">pop3=</span><span class="dv">400</span>)</a></code></pre></div>
+<p>Simulasi model ditampilkan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb747-1" title="1">pop &lt;-<span class="st"> </span><span class="kw">rk4sys</span>(Population, <span class="dt">x0=</span><span class="dv">0</span>, <span class="dt">y0=</span>y, <span class="dt">h=</span><span class="fl">0.1</span>, <span class="dt">n=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb747-2" title="2"><span class="kw">head</span>(pop)</a></code></pre></div>
+<pre><code>##     x  pop1  pop2  pop3
+## 1 0.0 200.0 400.0 400.0
+## 2 0.1 239.0 437.9 432.6
+## 3 0.2 283.4 479.6 467.9
+## 4 0.3 334.0 525.4 506.1
+## 5 0.4 391.4 575.9 547.4
+## 6 0.5 456.4 631.3 592.1</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:sysdiffviz"></span>
+<img src="Metode_Numerik_files/figure-html/sysdiffviz-1.png" alt="Visualisasi hasil simulasi model dinamika populasi" width="80%" />
+<p class="caption">
+Gambar 10.6: Visualisasi hasil simulasi model dinamika populasi
+</p>
+</div>
+</div>
+<div id="penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode" class="section level2">
+<h2><span class="header-section-number">10.3</span> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></h2>
+<p>Fungsi <code>ode()</code> pada paket <code>deSolve</code> merupakan salah satu fungsi yang dapat digunakan untuk menyelesaikan persamaan dan sistem persamaan diferensial. Fungsi ini mudah digunakan serta menyediakan berbagai macam metode iterasi numerik untuk menyelesaikan persamaan diferensial. Format umum fungsi ini antara lain:</p>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb749-1" title="1"><span class="kw">ode</span>(y, times, func, parms,method , ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>y</code> : nilai awal (kondisi awal) suatu persamaan diferensial.</li>
+<li><code>times</code> : deret waktu yang terdiri dari kapan simulasi dimulai, kapan simulasi berkahir dan berapa <em>step size yang digunakan</em>.</li>
+<li><code>func</code> : fungsi yang berisi persamaan diferensial. <em>Return value</em> pada fungsi haruslah berupa list.</li>
+<li><code>parms</code> : list parameter yang diinputan kedalam <code>func</code>.</li>
+<li><p><code>method</code> : sebuah string yang berupa metode intgrasi yang digunakan. Metode yang tersedia dan kegunaan metode tersebut antara lain:</p>
+<ul>
+<li>“bdf”: menangani persamaan diferensial menggunakan formula diferensiasi mundur (<em>bacward differensiation</em>) dan cocok untuk menangani kondisi <em>stiff</em>. Metode ini setara dengan <code>method="lsode"</code>.</li>
+<li>“bdf_d”: menggunakan formula diferensiasi mundur yang memanfaatkan iterasi Jacobi-Newton (mengabaikan elemen diagonal Jacobian). Cocok digunakan persamaan atau sistem persamaan diferensial kondisi <em>stiff</em>. Metode ini setara dengan <code>method="lsode",mf=23</code>.</li>
+<li>“adams”: metode Adams yang menggunakan iterasi fungsional (tanpa menggunakan Jacobian). Cocok digunakan untuk persamaan atau sistem persamaan <em>non stiff</em>. Metode ini setara dengan <code>method="lsode", mf=10</code>.</li>
+<li>“impAdams”: metode Adams implisit yang menggunakan iterasi Newton-Raphson. Metode ini setara dengan <code>method="lsode",mf=12</code>.</li>
+<li>“impAdams_d”: metode Adams implisit yang menggunakan iterasi Jacobi-Newton. Metode ini setara dengan <code>method="lsode, mf=13"</code>.</li>
+<li>“euler”: metode iterasi Euler</li>
+<li>“rk4”: metode iterasi Runge-Kutta orde 4.</li>
+<li>metode lain: “lsoda”, “lsode”, “lsodes”, “lsodar”, “vode”, “daspk”, “ode23”, “ode45”, “radau”.</li>
+</ul></li>
+<li><p><code>...</code>: argumen tambahan untuk integrator atau method.</p></li>
+</ul>
+</blockquote>
+<p>Contoh penerapan fungsi tersebut menggunakan Contoh <a href="diffeq.html#exm:rksysexmp">10.6</a>, sebagai berikut:</p>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb750-1" title="1"><span class="kw">library</span>(deSolve)</a>
+<a class="sourceLine" id="cb750-2" title="2"></a>
+<a class="sourceLine" id="cb750-3" title="3"><span class="co"># sistem persamaan diferensial</span></a>
+<a class="sourceLine" id="cb750-4" title="4">Population =<span class="st"> </span><span class="cf">function</span>(t,y,param) {</a>
+<a class="sourceLine" id="cb750-5" title="5">  y1 =<span class="st"> </span>y[<span class="dv">1</span>] <span class="co"># 0-12 group population</span></a>
+<a class="sourceLine" id="cb750-6" title="6">  y2 =<span class="st"> </span>y[<span class="dv">2</span>] <span class="co"># 13-40 group population</span></a>
+<a class="sourceLine" id="cb750-7" title="7">  y3 =<span class="st"> </span>y[<span class="dv">3</span>] <span class="co"># 41 and older population</span></a>
+<a class="sourceLine" id="cb750-8" title="8">  y1.new =<span class="st"> </span>b<span class="op">*</span>y2 <span class="op">+</span><span class="st"> </span><span class="dv">11</span><span class="op">/</span><span class="dv">12</span><span class="op">*</span>y1<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d1)</a>
+<a class="sourceLine" id="cb750-9" title="9">  y2.new =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">12</span><span class="op">*</span>y1<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d1) <span class="op">+</span><span class="st"> </span><span class="dv">26</span><span class="op">/</span><span class="dv">27</span><span class="op">*</span>y2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d2)</a>
+<a class="sourceLine" id="cb750-10" title="10">  y3.new =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">27</span><span class="op">*</span>y2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d2) <span class="op">+</span><span class="st"> </span>y3<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>d3)</a>
+<a class="sourceLine" id="cb750-11" title="11">  <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(y1.new, y2.new, y3.new)))</a>
+<a class="sourceLine" id="cb750-12" title="12">}</a>
+<a class="sourceLine" id="cb750-13" title="13"></a>
+<a class="sourceLine" id="cb750-14" title="14"><span class="co"># parameter</span></a>
+<a class="sourceLine" id="cb750-15" title="15">b =<span class="st"> </span><span class="fl">0.5</span> <span class="co"># Birth rate in 13-40 group</span></a>
+<a class="sourceLine" id="cb750-16" title="16">d1 =<span class="st"> </span><span class="fl">0.1</span> <span class="co"># Death rate of 0-12 group</span></a>
+<a class="sourceLine" id="cb750-17" title="17">d2 =<span class="st"> </span><span class="fl">0.1</span> <span class="co"># Death rate of 13-40 group</span></a>
+<a class="sourceLine" id="cb750-18" title="18">d3 =<span class="st"> </span><span class="fl">0.25</span> <span class="co"># Death rate of 41 and older</span></a>
+<a class="sourceLine" id="cb750-19" title="19"></a>
+<a class="sourceLine" id="cb750-20" title="20"><span class="co"># nilai awal</span></a>
+<a class="sourceLine" id="cb750-21" title="21">y =<span class="st"> </span><span class="kw">c</span>(<span class="dt">pop1=</span><span class="dv">200</span>, <span class="dt">pop2=</span><span class="dv">400</span>, <span class="dt">pop3=</span><span class="dv">400</span>)</a>
+<a class="sourceLine" id="cb750-22" title="22"></a>
+<a class="sourceLine" id="cb750-23" title="23"><span class="co"># waktu</span></a>
+<a class="sourceLine" id="cb750-24" title="24">Tahun =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb750-25" title="25"></a>
+<a class="sourceLine" id="cb750-26" title="26"><span class="co"># simulasi</span></a>
+<a class="sourceLine" id="cb750-27" title="27">out =<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> Population, <span class="dt">y =</span> y, <span class="dt">times =</span> Tahun, </a>
+<a class="sourceLine" id="cb750-28" title="28">          <span class="dt">parms =</span> <span class="kw">c</span>(b,d1,d2,d3), <span class="dt">method =</span> <span class="st">&quot;rk4&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:sysdiffviz2"></span>
+<img src="Metode_Numerik_files/figure-html/sysdiffviz2-1.png" alt="Visualisasi hasil simulasi model dinamika populasi menggunakan paket desolve" width="80%" />
+<p class="caption">
+Gambar 10.7: Visualisasi hasil simulasi model dinamika populasi menggunakan paket desolve
+</p>
+</div>
+</div>
+<div id="pasialdiff" class="section level2">
+<h2><span class="header-section-number">10.4</span> Persamaan Diferensial Parsial</h2>
+<p>Persamaan diferensial parsial (PDE) banyak dijumpai pada pemodelan transport polutan dalam bidang teknik lingkungan. Persamaan diferensial parsial merupakan persamaan diferensial yang melibatkan lebih dari satu variabel independen, biasanya variabel waktu dan satu atau lebih variabel posisi atau beberapa variabel spasial. PDE diklasifikasikan menjadi 3 jenis: parabolik (<em>time-dependent</em> dan difusif), hiperbolik (<em>time-dependent</em> dan gelombang), dan eliptik (<em>time-independent</em>). Dalam penyelesaian PDE pada umumnya kita menggunakan metode FTCS (<em>forward in time, centered in space</em>). Untuk memahami definisi tersebut, pembaca dapat membaca kembali Chapter <a href="diffinteg.html#finitediff">9.1</a>.</p>
+<div id="persamaan-difusi" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Persamaan Difusi</h3>
+<p>Persamaan difusi merupakan contoh PDE parabolik. Persamaan difusi satu dimensi spasial ditampilkan pada Persamaan <a href="diffeq.html#eq:difusi">(10.12)</a>.</p>
+<p><span class="math display" id="eq:difusi">\[\begin{equation}
+\frac{\partial C}{\partial t}=D\frac{\partial^2C}{\partial x^2}
+  \tag{10.12}
+\end{equation}\]</span></p>
+<p>Persamaan tersebut mirip dengan persamaan konduksi panas. Pada persamaan konduksi panas, variabel konsentrasi <span class="math inline">\(C\)</span> diganti dengan variabel temperatur <span class="math inline">\(T\)</span>, dan koefisien difusi D diganti dengan koefsien difusi termal K.</p>
+<p>Untuk menyelesaikan Persamaan <a href="diffeq.html#eq:difusi">(10.12)</a>, persamaan tersebut diubah ke dalam bentuk metode beda hingga, dimana turunan waktu menggunakan pendekatan Euler (metode beda hingga maju) dan turunan variabel spasial diubah ke dalam bentuk pendekatan titik pusat. Proses diskretisasi Persamaan <a href="diffeq.html#eq:difusi">(10.12)</a>, ditampilkan pada Persamaan <a href="diffeq.html#eq:difusi2">(10.13)</a>.</p>
+<p><span class="math display" id="eq:difusi2">\[\begin{equation}
+\frac{C\left(i+1,j\right)-C\left(i,j\right)}{\Delta t}=D\frac{C\left(i,j+1\right)+C\left(i,j-1\right)-2C\left(i,j\right)}{\Delta x^2}
+  \tag{10.13}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(i\)</span> merupakan <em>step</em> untuk variabel waktu <span class="math inline">\(t\)</span> dan <span class="math inline">\(j\)</span> merupakan <em>step</em> untuk variabel spasial <span class="math inline">\(x\)</span>.</p>
+<p>Persamaan <a href="diffeq.html#eq:difusi2">(10.13)</a> dapat disusun kembali sehingga menjadi Persamaan <a href="diffeq.html#eq:difusi3">(10.14)</a> yang menyatakan persamaan konsentrasi <span class="math inline">\(C\)</span> pada saat <span class="math inline">\(i+1\)</span> pada posisi <span class="math inline">\(j\)</span>.</p>
+<p><span class="math display" id="eq:difusi3">\[\begin{equation}
+C\left(i+1,j\right)=C\left(i,j\right)+A\left[C\left(i,j+1\right)+C\left(i,j-1\right)-2C\left(i,j\right)\right]
+  \tag{10.14}
+\end{equation}\]</span></p>
+<p>dimana</p>
+<p><span class="math display" id="eq:difusi4">\[\begin{equation}
+A=D\frac{\Delta t}{\Delta x^2}
+  \tag{10.15}
+\end{equation}\]</span></p>
+<p>Untuk stabilitas komputasi, pemilihan peningkatan waktu terhadap jarak yang dinyatakan pada nilai <span class="math inline">\(A\)</span> harus <span class="math inline">\(\le\frac{1}{2}\)</span>.</p>
+<p>Pada contoh berikut, kita akan melakukan simulasi menggunakan Persamaan <a href="diffeq.html#eq:difusi3">(10.14)</a>. Parameter yang digunakan dan nilai awal yang digunakan dinyatakan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb751-1" title="1">dt    &lt;-<span class="st"> </span><span class="dv">3</span>                <span class="co"># Timestep, s</span></a>
+<a class="sourceLine" id="cb751-2" title="2">dx    &lt;-<span class="st"> </span><span class="fl">0.1</span>              <span class="co"># Distance step, cm</span></a>
+<a class="sourceLine" id="cb751-3" title="3">D     &lt;-<span class="st"> </span><span class="fl">1e-4</span>             <span class="co"># Diffusion coeff, cm^2/s</span></a>
+<a class="sourceLine" id="cb751-4" title="4"></a>
+<a class="sourceLine" id="cb751-5" title="5"><span class="co"># Cek apakah syarat stabilitas terpenuhi</span></a>
+<a class="sourceLine" id="cb751-6" title="6">D<span class="op">*</span>dt<span class="op">/</span>dx<span class="op">^</span><span class="dv">2</span> <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb753-1" title="1"><span class="co"># Desain grid points</span></a>
+<a class="sourceLine" id="cb753-2" title="2">L     &lt;-<span class="st"> </span><span class="dv">1</span>                <span class="co"># Length from -L/2 to L/2</span></a>
+<a class="sourceLine" id="cb753-3" title="3">n     &lt;-<span class="st"> </span>L<span class="op">/</span>dx <span class="op">+</span><span class="st"> </span><span class="dv">1</span>         <span class="co"># Number of grid points</span></a>
+<a class="sourceLine" id="cb753-4" title="4">x     &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>,L<span class="op">/</span><span class="dv">2</span>,dx) <span class="co"># Location of grid points</span></a>
+<a class="sourceLine" id="cb753-5" title="5">steps &lt;-<span class="st"> </span><span class="dv">30</span>               <span class="co"># Number of iterations</span></a>
+<a class="sourceLine" id="cb753-6" title="6">time  &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>steps</a></code></pre></div>
+<p>Langkah selanjutnya adalah inisiasi konsentrasi awal, dimana seluruh konsentrasi awal pada tiap grid adalah nol kecuali pada grid pusat.</p>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb754-1" title="1">C &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>, (steps<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>n), <span class="dt">nrow =</span> steps<span class="op">+</span><span class="dv">1</span>, <span class="dt">ncol =</span> n)</a>
+<a class="sourceLine" id="cb754-2" title="2">C[<span class="dv">1</span>, <span class="kw">round</span>(n<span class="op">/</span><span class="dv">2</span>)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>dx  <span class="co"># initial spike at central point</span></a></code></pre></div>
+<p>Simulasi selanjutnya dilakukan dengan melakukan iterasi pada <em>grid points</em> konsentrasi yang telah dibuat.</p>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb755-1" title="1"><span class="co"># Loop over desired number of time steps</span></a>
+<a class="sourceLine" id="cb755-2" title="2"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(steps<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb755-3" title="3">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb755-4" title="4">    C[i<span class="op">+</span><span class="dv">1</span>,j] &lt;-<span class="st"> </span>C[i,j] <span class="op">+</span><span class="st"> </span>(D<span class="op">*</span>dt<span class="op">/</span>dx<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span>(C[i,j<span class="op">+</span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>C[i,j<span class="dv">-1</span>] <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>C[i,j])</a>
+<a class="sourceLine" id="cb755-5" title="5">  }</a>
+<a class="sourceLine" id="cb755-6" title="6">}</a></code></pre></div>
+<p>Visualisasi dari hasil simulasi tersebut ditampilkan pada Gambar <a href="diffeq.html#fig:difusiviz">10.8</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:difusiviz"></span>
+<img src="Metode_Numerik_files/figure-html/difusiviz-1.png" alt="Visualisasi 3D simulasi difusi partikulat" width="80%" />
+<p class="caption">
+Gambar 10.8: Visualisasi 3D simulasi difusi partikulat
+</p>
+</div>
+</div>
+<div id="persamaan-gelombang" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> Persamaan Gelombang</h3>
+<p>Persamaan gelombang 1 dimensi ditampilkan pada Persamaan <a href="diffeq.html#eq:wave1">(10.16)</a>.</p>
+<p><span class="math display" id="eq:wave1">\[\begin{equation}
+\frac{\partial^2W}{\partial t^2}=c^2\frac{\partial^2W}{\partial x^2}
+  \tag{10.16}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(W\)</span> merupakan pemindahan dan <span class="math inline">\(c\)</span> merupakan kecepatan gelombang. Persamaan <a href="diffeq.html#eq:wave1">(10.16)</a> merupakan bentuk PDE hiperbolik. Versi lebih sederhana dari Persamaan <a href="diffeq.html#eq:wave1">(10.16)</a> adalah persamaan adveksi yang ditampilkan pada Persamaan <a href="diffeq.html#eq:wave2">(10.17)</a>.</p>
+<p><span class="math display" id="eq:wave2">\[\begin{equation}
+\frac{\partial y}{\partial t}=-c\frac{\partial y}{\partial x}
+  \tag{10.17}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="diffeq.html#eq:wave2">(10.17)</a> menggambarkan evolusi pada bidang skalar <span class="math inline">\(y\left(x,y\right)\)</span> dibawa oleh gelombang dengan kecepatan konstan <span class="math inline">\(c\)</span> dan bergerak dari kiri ke kanan jika <span class="math inline">\(c&gt;0\)</span>. Persamaan adveksi merupakan contoh palin sederhana dari persamaan konservasi flux.</p>
+<p>Diskretisasi Persamaan <a href="diffeq.html#eq:wave2">(10.17)</a> ditampilkan pada Persamaan <a href="diffeq.html#eq:wave3">(10.18)</a>.</p>
+<p><span class="math display" id="eq:wave3">\[\begin{equation}
+y\left(i+1,j\right)=y\left(i,j\right)-\frac{c\Delta t}{2\Delta x}\left[y\left(i,j+1\right)-y\left(i,j-1\right)\right]
+  \tag{10.18}
+\end{equation}\]</span></p>
+<p>Pada contoh berikut, kita akan melakukan simulasi menggunakan Persamaan <a href="diffeq.html#eq:wave2">(10.17)</a>. Parameter yang digunakan dan nilai awal yang digunakan dinyatakan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb756-1" title="1">dt    &lt;-<span class="st"> </span><span class="fl">0.002</span>              <span class="co"># Timestep, s</span></a>
+<a class="sourceLine" id="cb756-2" title="2">L     &lt;-<span class="st"> </span><span class="dv">1</span>                  <span class="co"># Length from -L/2 to L/2</span></a>
+<a class="sourceLine" id="cb756-3" title="3">n     &lt;-<span class="st"> </span><span class="dv">50</span>                 <span class="co"># Number of grid points</span></a>
+<a class="sourceLine" id="cb756-4" title="4">v     &lt;-<span class="st"> </span><span class="dv">1</span>                  <span class="co"># Wavespeed, cm/s</span></a>
+<a class="sourceLine" id="cb756-5" title="5">dx    &lt;-<span class="st"> </span>L<span class="op">/</span>n                <span class="co"># Distance step, cm</span></a>
+<a class="sourceLine" id="cb756-6" title="6">x     &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span>n<span class="fl">-0.5</span>)<span class="op">*</span>dx<span class="op">-</span>L<span class="op">/</span><span class="dv">2</span>   <span class="co"># Location of grid points</span></a>
+<a class="sourceLine" id="cb756-7" title="7">steps &lt;-<span class="st"> </span>L<span class="op">/</span>(v<span class="op">*</span>dt)           <span class="co"># Number of iterations</span></a>
+<a class="sourceLine" id="cb756-8" title="8">time  &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>steps  </a>
+<a class="sourceLine" id="cb756-9" title="9">sig   &lt;-<span class="st"> </span><span class="fl">0.1</span>                <span class="co"># Standard deviation of initial Gaussian wave</span></a>
+<a class="sourceLine" id="cb756-10" title="10">amp0  &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>x<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sig<span class="op">^</span><span class="dv">2</span>))<span class="co"># Initial Gaussian amplitude</span></a></code></pre></div>
+<p>Kondisi awal dan kondisi batas periodik dinyatakan sebagai berikut:</p>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb757-1" title="1">C &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>, (steps<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>n), <span class="dt">nrow =</span> steps<span class="op">+</span><span class="dv">1</span>, <span class="dt">ncol =</span> n)</a>
+<a class="sourceLine" id="cb757-2" title="2">C[<span class="dv">1</span>, ] &lt;-<span class="st"> </span>amp0</a>
+<a class="sourceLine" id="cb757-3" title="3">jplus1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span>n,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb757-4" title="4">jminus1 &lt;-<span class="st"> </span><span class="kw">c</span>(n,<span class="dv">1</span><span class="op">:</span>(n<span class="dv">-1</span>))</a></code></pre></div>
+<p>Langkah selanjutnya melakukan interasi untuk melihat perubahan nilai pada <em>grid points</em>.</p>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb758-1" title="1"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>steps){</a>
+<a class="sourceLine" id="cb758-2" title="2">  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb758-3" title="3">    C[i<span class="op">+</span><span class="dv">1</span>,j] &lt;-<span class="st"> </span>C[i,j] <span class="op">+</span><span class="st"> </span>(v<span class="op">*</span>dt<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>dx))<span class="op">*</span>(C[i,jplus1[j]] <span class="op">-</span><span class="st"> </span>C[i,jminus1[j]])</a>
+<a class="sourceLine" id="cb758-4" title="4">  }</a>
+<a class="sourceLine" id="cb758-5" title="5">}</a></code></pre></div>
+<p>Visualisasi dari hasil simulasi tersebut ditampilkan pada Gambar <a href="diffeq.html#fig:waveviz">10.9</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:waveviz"></span>
+<img src="Metode_Numerik_files/figure-html/waveviz-1.png" alt="Visualisasi simulasi adveksi" width="80%" />
+<p class="caption">
+Gambar 10.9: Visualisasi simulasi adveksi
+</p>
+</div>
+</div>
+<div id="laplace" class="section level3">
+<h3><span class="header-section-number">10.4.3</span> Persamaan Laplace</h3>
+<p>Persamaan Laplace dalam dua dimensi disajikan pada Persamaan <a href="diffeq.html#eq:laplace1">(10.19)</a>.</p>
+<p><span class="math display" id="eq:laplace1">\[\begin{equation}
+\frac{\partial V}{\partial x^2}+\frac{\partial V}{\partial y^2}=0
+  \tag{10.19}
+\end{equation}\]</span></p>
+<p>Persamaan <a href="diffeq.html#eq:laplace1">(10.19)</a> merupakan contoh tipe ketiga PDE, persamaan elips. Persoalan ini sering muncul dalam bidang elektrostatik, gravitasi, dan bidang lain di mana potensi <span class="math inline">\(V\)</span> harus dihitung sebagai fungsi posisi. Jika ada muatan atau massa dalam ruang, dan jika kita menggeneralisasi ke tiga dimensi, persamaannya menjadi persamaan Poisson</p>
+<p><span class="math display" id="eq:laplace2">\[\begin{equation}
+\frac{\partial V}{\partial x^2}+\frac{\partial V}{\partial y^2}+\frac{\partial V}{\partial z^2}=0
+  \tag{10.20}
+\end{equation}\]</span></p>
+<p>Bergantung pada geometri masalahnya, Persamaan <a href="diffeq.html#eq:laplace2">(10.20)</a> juga dapat ditulis dalam koordinat bola, silindris, atau lainnya.</p>
+<p>Untuk menyelesaikan persamaan eliptik jenis ini, persamaan harus diberi syarat batas. Biasanya dengan menentukan bahwa titik, garis, atau permukaan tertentu dipertahankan pada nilai konstan potensial. Kemudian potensi di titik lain disesuaikan sampai mencapai perkiraan yang diinginkan. (Dalam kasus yang jarang terjadi, persamaan dengan kondisi batas dapat diselesaikan dengan tepat secara analitis; tetapi biasanya solusi perkiraan harus cukup.)</p>
+<p>Ada banyak pendekatan untuk solusi numerik dari persamaan Laplace. Mungkin yang paling sederhana adalah Jacobi, di mana titik-titik interior secara berturut-turut didekati dengan rata-rata titik-titik di sekitarnya, sedangkan titik-batas dibatasi pada nilai-nilai tetap dan yang ditentukan. Kita asumsikan sebagai contoh bidang persegi, dibatasi oleh <span class="math inline">\(\left(0,1\right)\)</span> dalam arah <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span>, di mana ujung pada <span class="math inline">\(y = 1\)</span> dipertahankan pada <span class="math inline">\(V = 1\)</span> dan tiga tepi lainnya dipertahankan pada <span class="math inline">\(V = 0\)</span>. Kita buat tebakan awal yang paling sederhana untuk potensi di titik interior, tetapi ini akan disamakan saat solusinya menyatu.</p>
+<p>Pada contoh berikut, kita akan melakukan simulasi persamaan Laplace menggunakan metode Jacobi. Parameter yang digunakan dalam simulasi adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb759-1" title="1">n   &lt;-<span class="st"> </span><span class="dv">30</span>                 <span class="co"># Number of grid points/side</span></a>
+<a class="sourceLine" id="cb759-2" title="2">L   &lt;-<span class="st"> </span><span class="dv">1</span>                  <span class="co"># Length of a side</span></a>
+<a class="sourceLine" id="cb759-3" title="3">dx  &lt;-<span class="st"> </span>L<span class="op">/</span>(n<span class="dv">-1</span>)            <span class="co"># Grid spacing</span></a>
+<a class="sourceLine" id="cb759-4" title="4">x   &lt;-<span class="st"> </span>y    &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>(n<span class="dv">-1</span>)<span class="op">*</span>dx <span class="co"># x and y coorfinates</span></a></code></pre></div>
+<p>Tebakan awal untuk profil voltase adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb760-1" title="1">V0  &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb760-2" title="2">V   &lt;-<span class="st"> </span><span class="kw">matrix</span>(V0<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>x<span class="op">/</span>L)<span class="op">*</span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>y<span class="op">/</span>L),</a>
+<a class="sourceLine" id="cb760-3" title="3">              <span class="dt">nrow =</span> n, <span class="dt">ncol =</span> n, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Kondisi batas di tetapkan seperti berikut:</p>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb761-1" title="1">V[<span class="dv">1</span>,] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb761-2" title="2">V[n,] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb761-3" title="3">V[,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb761-4" title="4">V[,n] &lt;-<span class="st"> </span>V0<span class="op">*</span><span class="kw">rep</span>(<span class="dv">1</span>,n)</a></code></pre></div>
+<p>Selanjutnya visualisasikan tebakan awal.</p>
+<div class="figure" style="text-align: center"><span id="fig:laplaceviz"></span>
+<img src="Metode_Numerik_files/figure-html/laplaceviz-1.png" alt="Visualisasi tebakan awal solusi persaman Laplace" width="80%" />
+<p class="caption">
+Gambar 10.10: Visualisasi tebakan awal solusi persaman Laplace
+</p>
+</div>
+<p>Proses iterasi menggunakan metode Jacobi ditampilkan pada sintaks berikut:</p>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb762-1" title="1">newV  &lt;-<span class="st"> </span>V</a>
+<a class="sourceLine" id="cb762-2" title="2">itmax &lt;-<span class="st"> </span>n<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb762-3" title="3">tol   &lt;-<span class="st"> </span><span class="fl">1e-4</span></a>
+<a class="sourceLine" id="cb762-4" title="4"><span class="cf">for</span>(it <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>itmax){</a>
+<a class="sourceLine" id="cb762-5" title="5">  dVsum &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb762-6" title="6">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb762-7" title="7">    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n<span class="dv">-1</span>)){</a>
+<a class="sourceLine" id="cb762-8" title="8">      newV[i,j] &lt;-<span class="st"> </span><span class="fl">0.25</span><span class="op">*</span>(V[i<span class="dv">-1</span>,j]<span class="op">+</span>V[i<span class="op">+</span><span class="dv">1</span>,j]<span class="op">+</span>V[i,j<span class="dv">-1</span>]<span class="op">+</span>V[i,j<span class="op">+</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb762-9" title="9">      dVsum &lt;-<span class="st"> </span>dVsum <span class="op">+</span><span class="st"> </span><span class="kw">abs</span>(<span class="dv">1</span><span class="op">-</span>V[i,j]<span class="op">/</span>newV[i,j])</a>
+<a class="sourceLine" id="cb762-10" title="10">    }</a>
+<a class="sourceLine" id="cb762-11" title="11">  }</a>
+<a class="sourceLine" id="cb762-12" title="12">  V &lt;-<span class="st"> </span>newV</a>
+<a class="sourceLine" id="cb762-13" title="13">  dV =<span class="st"> </span>dVsum<span class="op">/</span>(n<span class="dv">-2</span>)<span class="op">^</span><span class="dv">2</span> <span class="co"># Average deviation from prev. value</span></a>
+<a class="sourceLine" id="cb762-14" title="14">  <span class="cf">if</span>(dV <span class="op">&lt;</span><span class="st"> </span>tol) <span class="cf">break</span> <span class="co"># Desired tolerance achived</span></a>
+<a class="sourceLine" id="cb762-15" title="15">}</a>
+<a class="sourceLine" id="cb762-16" title="16"></a>
+<a class="sourceLine" id="cb762-17" title="17">it <span class="co"># Iterations to achieve convergence to tol</span></a></code></pre></div>
+<pre><code>## [1] 419</code></pre>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb764-1" title="1">dV</a></code></pre></div>
+<pre><code>## [1] 9.908e-05</code></pre>
+<p>Hasil simulasi selanjutnya di visualisasikan kembali.</p>
+<div class="figure" style="text-align: center"><span id="fig:laplaceviz2"></span>
+<img src="Metode_Numerik_files/figure-html/laplaceviz2-1.png" alt="Visualisasi hasil simulasi solusi persaman Lplace" width="80%" />
+<p class="caption">
+Gambar 10.11: Visualisasi hasil simulasi solusi persaman Lplace
+</p>
+</div>
+<p><code>## Penyelesaian Persamaan Diferensial Parsial Menggunakan Paket</code>ReacTran`</p>
+<p>Package <code>ReacTran</code> memfasilitasi pemodelan transport reaktif dalam 1, 2, dan 3 dimensi. Paket ini "berisi rutinitas yang memungkinkan pengembangan model transportasi reaktif dalam sistem perairan (sungai, danau, lautan), media berpori (agregat flok, sedimen, …) dan bahkan organisme yang diidealkan.</p>
+<p>Pada paket <code>ReacTran</code> terdapat sejumlah fasilitas fungsi, antara lain:</p>
+<ul>
+<li>Fungsi untuk menyiapkan kisi beda hingga (1D atau 2D)</li>
+<li>Fungsi untuk melampirkan parameter dan properti ke kisi ini (1D atau 2D)</li>
+<li>Fungsi untuk menghitung jangka waktu transport adveksi-difusi di atas grid (1D, 2D, 3D)</li>
+<li>Berbagai fungsi lainnya.</li>
+</ul>
+<p>Saat paket <code>ReacTran</code> dimuat, paket ini juga memuat dua paket pendukung, yaitu: <code>rootSolve</code> dan <code>deSolve</code>. Paket <code>rootSolve</code> berguna untuk memecahkan persamaan diferensial untuk kondisi tunak baik persamaan diferensial uniform atau multikomponen (1D, 2D, dan 3D). Sedangkan <code>deSolve</code> berguna untuk menyediakan fungsi yang digunakan untuk memperoleh penyelesaian numerik persamaan diferensial biasa (ODE), persamaan diferensial parsial (PDE), persamaan aljabar diferensial (DAE) dan persamaan <em>delay differential</em>.</p>
+</div>
+<div id="setup.grid.1d" class="section level3">
+<h3><span class="header-section-number">10.4.4</span> <code>setup.grid.1D()</code></h3>
+<p>Fungsi <code>setup.grid.1D()</code> digunakan untuk membentuk kisi satu dimensi. Secara sederhana fungsi ini membagi ruang satu dimensi <span class="math inline">\(L\)</span> antara <span class="math inline">\(x.up\)</span> dan <span class="math inline">\(x.down\)</span> menjadi sejumlah <span class="math inline">\(N\)</span> kisi sebesar <code>dx.1</code>. Format umum fungsi tersebut, adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb766-1" title="1"><span class="kw">setup.grid.1D</span>(<span class="dt">x.up=</span><span class="dv">0</span>, <span class="dt">x.down=</span><span class="ot">NULL</span>,<span class="dt">L=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb766-2" title="2">              <span class="dt">N=</span><span class="ot">NULL</span>, <span class="dt">dx.1=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb766-3" title="3">              <span class="dt">p.dx.1=</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="kw">length</span>(L)), </a>
+<a class="sourceLine" id="cb766-4" title="4">              <span class="dt">max.dx.1=</span>L, <span class="dt">dx.N=</span><span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb766-5" title="5">              <span class="dt">p.dx.N=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="kw">length</span>(L)), </a>
+<a class="sourceLine" id="cb766-6" title="6">              <span class="dt">max.dx.N=</span>L)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>x.up</code> : posisi hilir.</li>
+<li><code>x.down</code> : posisi hulu.</li>
+<li><code>L</code> : <code>x.down</code>-<code>x.up</code>.</li>
+<li><code>N</code> : jumlah kisi = L/dx.1.</li>
+</ul>
+</blockquote>
+<p>Pada situasi yang lebih kompleks, ukuran sel atau kisi dapat bervariasi, atau dapat pula lebih dari satu zona. Kondisi ini dijelaskan lebih jauh pada laman bantuan fungsi.</p>
+<p>Nilai yang dihasilkan dari fungsi <code>setup.grid.1D()</code> termasuk <code>x.mid</code> (vektor sepanjang <span class="math inline">\(N\)</span> yang menyatakan posisi titik tengah) dan <code>x.int</code> (vektor sepanjang <span class="math inline">\(N+1\)</span> yang menyatakan posisi antar muka antara kisi sel dimana flux diukur).</p>
+<p>Fungsi plot untuk <code>grid.1D()</code> memvisualissikan baik posisi sel dan ketebalan kotak, menampilkan <code>x.mid</code> dan <code>x.int</code>. Contoh di halaman bantuan menunjukkan perilaku ini.</p>
+<p><code>setup.grid.1D()</code> berfungsi sebagai titik awal untuk <code>setup.grid.2D</code>, yang membuat kisi di atas domain persegi panjang yang ditentukan oleh dua kisi 1D ortogonal.</p>
+</div>
+<div id="setup.prop.1d" class="section level3">
+<h3><span class="header-section-number">10.4.5</span> <code>setup.prop.1D()</code></h3>
+<p>Banyak model transportasi akan melibatkan kisi-kisi dengan properti konstan. Tetapi jika beberapa properti yang mempengaruhi difusi atau adveksi bervariasi dengan posisi di grid, variasi dapat digabungkan dengan fungsi <code>setup.prop.1D()</code> (atau <code>setup.prop.2D()</code> dalam dua dimensi).</p>
+<p>Diberikan fungsi matematis atau matriks data, fungsi <code>setup.prop.1D()</code> menghitung nilai properti yang diminati di tengah sel kisi dan pada antarmuka antar sel. Format fungsi tersebut adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb767-1" title="1"><span class="kw">setup.prop.1D</span>(<span class="dt">func=</span><span class="ot">NULL</span>, <span class="dt">value=</span><span class="ot">NULL</span>, <span class="dt">xy=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb767-2" title="2">              <span class="dt">interpolate=</span><span class="st">&quot;spline&quot;</span>,grid, ...)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>func</code> : fungsi yang mengatur ketergantungan spasial properti.</li>
+<li><code>value</code> : nilai konstan yang diberikan ke properti jika tidak ada ketergantungan spasial.</li>
+<li><code>xy</code> : matriks data di mana kolom pertama memberikan posisi, dan kolom kedua memberikan nilai-nilai yang diinterpolasi di atas grid.</li>
+<li><code>iterpolate</code> : metode interpolasi yang digunakan (spline atau linier).</li>
+<li><code>grid</code>: objek yang dibentuk melalui fungsi <code>setup.grid.1D()</code>.</li>
+<li><code>...</code>: argumen tambahan <code>func</code>.</li>
+</ul>
+</blockquote>
+</div>
+<div id="tran.1d" class="section level3">
+<h3><span class="header-section-number">10.4.6</span> <code>tran.1D()</code></h3>
+<p>Fungsi ini menghitung istilah transportasi — laju perubahan konsentrasi akibat difusi dan adveksi — dalam model cairan 1D (fraksi volume = 1) atau padatan berpori (fraksi volume dapat bervariasi dan &lt;1).<code>tran.1D()</code> juga digunakan untuk masalah dalam geometri bola atau silinder, meskipun dalam kasus ini antarmuka sel jaringan akan memiliki area variabel. Format fungsi ini adalah sebagai berikut:</p>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb768-1" title="1"><span class="kw">tran.1D</span>(C, <span class="dt">C.up =</span> C[<span class="dv">1</span>], <span class="dt">C.down =</span> C[<span class="kw">length</span>(C)], </a>
+<a class="sourceLine" id="cb768-2" title="2">        <span class="dt">flux.up =</span> <span class="ot">NULL</span>, <span class="dt">flux.down =</span> <span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb768-3" title="3">        <span class="dt">a.bl.up =</span> <span class="ot">NULL</span>, <span class="dt">a.bl.down =</span> <span class="ot">NULL</span>, <span class="dt">D =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb768-4" title="4">        <span class="dt">v =</span> <span class="dv">0</span>, <span class="dt">AFDW =</span> <span class="dv">1</span>, <span class="dt">VF =</span> <span class="dv">1</span>, <span class="dt">A =</span> <span class="dv">1</span>, dx, </a>
+<a class="sourceLine" id="cb768-5" title="5">        <span class="dt">full.check =</span> <span class="ot">FALSE</span>, <span class="dt">full.output =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<blockquote>
+<p><strong>Catatan:</strong></p>
+<ul>
+<li><code>C</code> : vektor konsentrasi pada titik tengah kisi sel.</li>
+<li><code>C.up</code>, <code>C.down</code> : konsentrasi pada hulu dan hilir batas.</li>
+<li><code>flux.up</code>,<code>flux.down</code> : flux dari dan keluar sistem pada hulu dan hilir batas.</li>
+<li>Jika terdapat tranport konvektif sepanjang hulu dan hilir batas, <code>a.bl.up</code> dan <code>a.bl.down</code> merupakan koefisiennya.</li>
+<li><code>D</code>: Koefisien difusi.</li>
+<li><code>v</code>: koefisien adveksi.</li>
+<li><code>VF</code>: fraksi volume.</li>
+<li><code>A</code>: fraksi area.</li>
+<li><code>dx</code>: ketebalan kisi, baik nilai konstan atau vektor.</li>
+<li><code>full.check</code>, <code>full.output</code>: nilai logik untuk memeriksa konsistensi dan mengatur output dari perhitungan. Keduanya <code>FALSE</code> secara default.</li>
+</ul>
+</blockquote>
+<p>Ketika <code>full.output = FALSE</code>, nilai-nilai yang dikembalikan oleh <code>trans.1D()</code> adalah <code>dC</code>, yaitu: laju perubahan <code>C</code> di pusat setiap sel kisi karena transportasi, dan <code>flux.up</code> dan <code>flux.down</code>, yatu: fluks masuk dan keluar dari model di batas hulu dan hilir.</p>
+<p><code>ReacTran</code> juga memiliki fungsi untuk memperkirakan istilah difusi dan adveksi dalam model dua dan tiga dimensi, dan dalam koordinat silinder dan kutub. Jumlah input tumbuh dengan dimensi, tetapi input pada dasarnya sama seperti pada kasus 1D. Lihat halaman bantuan untuk <code>tran.2D()</code>, <code>tran.3D()</code>, <code>tran.cylindrical()</code>, dan <code>tran.polar()</code>.</p>
+<p>Namun penyempurnaan lain adalah fungsi <code>tran.volume.1D()</code>, yang memperkirakan istilah transportasi volumetrik dalam model 1D. Berbeda dengan <code>tran.1D()</code>, yang menggunakan fluks (massa per satuan luas per satuan waktu), <code>tran.volume.1D()</code> menggunakan aliran (massa per satuan waktu). Ini berguna untuk memodelkan saluran yang area lintas bagiannya berubah, ketika perubahan area tidak perlu dimodelkan secara eksplisit. Ini juga memungkinkan input lateral dari saluran samping.</p>
+</div>
+<div id="ode.1d-atau-steady.1d" class="section level3">
+<h3><span class="header-section-number">10.4.7</span> <code>ode.1D()</code> atau <code>steady.1D()</code></h3>
+<p>Setelah kisi telah diatur dan properti ditetapkan dan model transport telah diformulasikan dengan <code>tran.1D()</code> (atau analog 2D atau 3D-nya), maka <code>ReacTran</code> memanggil <code>ode.1D()</code> dari paket <code>deSolve</code> jika solusi <em>time-dependent</em> diperlukan, atau <code>stable.1D()</code> dari paket <code>rootSolve</code> jika solusi kondisi-stabil diinginkan. Sistem ODE yang dihasilkan dari metode pendekatan garis biasanya <em>sparse</em> dan <em>non-stiff</em>. Integrator dalam <code>deSolve</code>, seperti “lsoda” (metode default 1D) sangat cocok untuk menangani sistem persamaan tersebut. Jika sistem ODE <em>non-stiff</em>, maka “adams” umumnya merupakan metode yang baik.</p>
+</div>
+</div>
+<div id="contoh-penerapan-paket-reactran" class="section level2">
+<h2><span class="header-section-number">10.5</span> Contoh Penerapan Paket <code>ReacTran</code></h2>
+<div id="persamaan-adveksi-difuksi-1d" class="section level3">
+<h3><span class="header-section-number">10.5.1</span> Persamaan Adveksi-Difuksi 1D</h3>
+<p>Pada contoh kali ini, kita akan memodifikasi persamaan difusi satu dimensi yang telah dilakukan sebelumnya dengan menambahkan bagian adveksi serta diselesaikan menggunakan paket <code>Reactran</code>.</p>
+<p>Siapkan kisi menggunakan fungsi <code>setup.grid.1D()</code> dan persiapkan nilai parameter persamaan.</p>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb769-1" title="1"><span class="kw">library</span>(ReacTran)</a>
+<a class="sourceLine" id="cb769-2" title="2">N     &lt;-<span class="st"> </span><span class="dv">100</span>          <span class="co"># Number of grid cells</span></a>
+<a class="sourceLine" id="cb769-3" title="3">xgrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">0</span>, <span class="dt">x.down =</span> <span class="dv">1</span>, <span class="dt">N =</span> N)</a>
+<a class="sourceLine" id="cb769-4" title="4">x     &lt;-<span class="st"> </span>xgrid<span class="op">$</span>x.mid  <span class="co"># Midpoints of grid cells</span></a>
+<a class="sourceLine" id="cb769-5" title="5">D     &lt;-<span class="st"> </span><span class="fl">1e-4</span>         <span class="co"># Diffusion coefficient</span></a>
+<a class="sourceLine" id="cb769-6" title="6">v     &lt;-<span class="st"> </span><span class="fl">0.1</span>          <span class="co"># Advection velocity</span></a></code></pre></div>
+<p>Bentuk fungsi yang menyatakan persamaan adveksi-difusi.</p>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb770-1" title="1">Diffusion &lt;-<span class="st"> </span><span class="cf">function</span>(t, Y, parms) {</a>
+<a class="sourceLine" id="cb770-2" title="2">    tran&lt;-<span class="kw">tran.1D</span>(<span class="dt">C=</span>Y,<span class="dt">C.up=</span><span class="dv">0</span>,<span class="dt">C.down=</span><span class="dv">0</span>,<span class="dt">D=</span>D,<span class="dt">v=</span>v,<span class="dt">dx=</span> xgrid)</a>
+<a class="sourceLine" id="cb770-3" title="3">    <span class="kw">list</span>(<span class="dt">dY =</span> tran<span class="op">$</span>dC, <span class="dt">flux.up =</span> tran<span class="op">$</span>flux.up,</a>
+<a class="sourceLine" id="cb770-4" title="4">        <span class="dt">flux.down =</span> tran <span class="op">$</span>flux.down)</a>
+<a class="sourceLine" id="cb770-5" title="5">}</a></code></pre></div>
+<p>Inisiasi konsentrasi awal pada kisi sel.</p>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb771-1" title="1">Yini &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,N) <span class="co"># Initial concentration = 0</span></a>
+<a class="sourceLine" id="cb771-2" title="2">Yini[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">100</span>   <span class="co"># Except in the second cell</span></a></code></pre></div>
+<p>Lakukan perhitungandengn menggunakan <em>time step</em> 0,01.</p>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb772-1" title="1"><span class="co"># Calculate for 5 time units</span></a>
+<a class="sourceLine" id="cb772-2" title="2">times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb772-3" title="3">out &lt;-<span class="st"> </span><span class="kw">ode.1D</span>(<span class="dt">y =</span> Yini, <span class="dt">times =</span> times, <span class="dt">func =</span> Diffusion,</a>
+<a class="sourceLine" id="cb772-4" title="4">             <span class="dt">parms =</span> <span class="ot">NULL</span>,<span class="dt">dimens =</span> N)</a></code></pre></div>
+<p>Visualisasikan hasil perhitungan.</p>
+<div class="figure" style="text-align: center"><span id="fig:advdifviz"></span>
+<img src="Metode_Numerik_files/figure-html/advdifviz-1.png" alt="Visualisasi hasil simulasi persamaan adveksi-difusi menggunakan paket ReacTran" width="80%" />
+<p class="caption">
+Gambar 10.12: Visualisasi hasil simulasi persamaan adveksi-difusi menggunakan paket ReacTran
+</p>
+</div>
+</div>
+<div id="persamaan-gelombang-1d" class="section level3">
+<h3><span class="header-section-number">10.5.2</span> Persamaan Gelombang 1D</h3>
+<p>Persamaan <a href="diffeq.html#eq:wave1">(10.16)</a> dapat diselesaikan dengan cara yang sama dengan persamaan difusi dengan mengatur nilai <span class="math inline">\(c^2=D\)</span>, memisalkan <span class="math inline">\(W=u\)</span> dan <span class="math inline">\(\frac{\partial u}{\partial t}=v\)</span>, dan menyelesaikannya dengan cara yang familiar untuk variabel berpasangan <span class="math inline">\(\left(u,v\right)\)</span>. Di sini kita misalkan persamaan gelombang 1D untuk senar yang dipetik, yang awalnya ditahan pada <span class="math inline">\(0\)</span> amplitudo untuk <span class="math inline">\(x &lt;−25\)</span> dan <span class="math inline">\(x&gt; 25\)</span>, dan direntangkan secara linear hingga maksimum pada <span class="math inline">\(x = 0\)</span>. <code>ode.1D()</code> digunakan untuk menyelesaikan set himpunan ODE simultan dengan <span class="math inline">\(c = 1\)</span>.</p>
+<p>Langkah pertama yang harus dilakukan adalah melakukan penetapan parameter.</p>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb773-1" title="1">dx    &lt;-<span class="st"> </span><span class="fl">0.2</span>          <span class="co"># Spacing of grid cells</span></a>
+<a class="sourceLine" id="cb773-2" title="2"><span class="co"># String extends from -100 to +100</span></a>
+<a class="sourceLine" id="cb773-3" title="3">xgrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">-100</span>, </a>
+<a class="sourceLine" id="cb773-4" title="4">                       <span class="dt">x.down =</span> <span class="dv">100</span>, <span class="dt">dx.1 =</span> dx)</a>
+<a class="sourceLine" id="cb773-5" title="5">x     &lt;-<span class="st"> </span>xgrid<span class="op">$</span>x.mid  <span class="co"># midpoints of grid cells</span></a>
+<a class="sourceLine" id="cb773-6" title="6">N     &lt;-<span class="st"> </span>xgrid<span class="op">$</span>N      <span class="co"># number of grid cells</span></a></code></pre></div>
+<p>Menetapkan kondisi awal seperti ketinggian senar dan kecepatan.</p>
+<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb774-1" title="1">uini  &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,N) <span class="co"># String height vector before stretching</span></a>
+<a class="sourceLine" id="cb774-2" title="2">vini  &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,N) <span class="co"># Initial string velocity vector</span></a>
+<a class="sourceLine" id="cb774-3" title="3">displ &lt;-<span class="st"> </span><span class="dv">10</span>       <span class="co"># Initial displacement at center of string</span></a>
+<a class="sourceLine" id="cb774-4" title="4"><span class="co"># Impose initial triangular height profile on string between - 25</span></a>
+<a class="sourceLine" id="cb774-5" title="5"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N) {</a>
+<a class="sourceLine" id="cb774-6" title="6">  <span class="cf">if</span> (x[i] <span class="op">&gt;</span><span class="st"> </span><span class="dv">-25</span> <span class="op">&amp;</span><span class="st"> </span>x[i] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) uini[i] =<span class="st"> </span>displ<span class="op">/</span><span class="dv">25</span><span class="op">*</span>(<span class="dv">25</span> <span class="op">+</span><span class="st"> </span>x[i])<span class="cf">else</span></a>
+<a class="sourceLine" id="cb774-7" title="7">  <span class="cf">if</span> (x[i] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>x[i] <span class="op">&lt;</span><span class="st"> </span><span class="dv">25</span>) uini[i] =<span class="st"> </span>displ<span class="op">/</span><span class="dv">25</span><span class="op">*</span>(<span class="dv">25</span> <span class="op">-</span><span class="st"> </span>x[i])</a>
+<a class="sourceLine" id="cb774-8" title="8">}</a>
+<a class="sourceLine" id="cb774-9" title="9">yini  &lt;-<span class="st"> </span><span class="kw">c</span>(uini, vini)</a></code></pre></div>
+<p>Menetapkan deret waktu yang digunakan dalam simulasi.</p>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb775-1" title="1">times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">50</span>, <span class="dt">by =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p>Membangun fungsi yang akan diselesaikan secara numerik.</p>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb776-1" title="1"> wave &lt;-<span class="st"> </span><span class="cf">function</span>(t,y,parms) {</a>
+<a class="sourceLine" id="cb776-2" title="2">    u &lt;-<span class="st"> </span>y[<span class="dv">1</span><span class="op">:</span>N] <span class="co"># Separate displacement and velocity vectors</span></a>
+<a class="sourceLine" id="cb776-3" title="3">    v &lt;-<span class="st"> </span>y[(N<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span><span class="op">*</span>N)]</a>
+<a class="sourceLine" id="cb776-4" title="4">    du&lt;-v</a>
+<a class="sourceLine" id="cb776-5" title="5">    dv&lt;-<span class="kw">tran.1D</span>(<span class="dt">C=</span>u,<span class="dt">C.up=</span><span class="dv">0</span>,<span class="dt">C.down=</span><span class="dv">0</span>,<span class="dt">D=</span><span class="dv">1</span>,<span class="dt">dx=</span>xgrid)<span class="op">$</span>dC</a>
+<a class="sourceLine" id="cb776-6" title="6">    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(du, dv))) </a>
+<a class="sourceLine" id="cb776-7" title="7">}</a></code></pre></div>
+<p>Selesaikan persamaan menggunakan fungsi <code>ode.1D()</code> dengan metode <code>adams</code>.</p>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb777-1" title="1">out &lt;-<span class="st"> </span><span class="kw">ode.1D</span>(<span class="dt">func =</span> wave, <span class="dt">y =</span> yini, <span class="dt">times =</span> times,</a>
+<a class="sourceLine" id="cb777-2" title="2">             <span class="dt">parms =</span> <span class="ot">NULL</span>, <span class="dt">method =</span> <span class="st">&quot;adams&quot;</span>,</a>
+<a class="sourceLine" id="cb777-3" title="3">             <span class="dt">dimens =</span> N, <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;u&quot;</span>, <span class="st">&quot;v&quot;</span>))</a>
+<a class="sourceLine" id="cb777-4" title="4">u &lt;-<span class="st"> </span><span class="kw">subset</span>(out, <span class="dt">which =</span> <span class="st">&quot;u&quot;</span>) <span class="co"># Extract displacement vector</span></a></code></pre></div>
+<p>Visualisasikan hasil perhitungan.</p>
+<div class="figure" style="text-align: center"><span id="fig:wave2viz"></span>
+<img src="Metode_Numerik_files/figure-html/wave2viz-1.png" alt="Visualisasi hasil simulasi persamaan gelombang menggunakan paket ReacTran" width="80%" />
+<p class="caption">
+Gambar 10.13: Visualisasi hasil simulasi persamaan gelombang menggunakan paket ReacTran
+</p>
+</div>
+</div>
+<div id="persamaan-laplace" class="section level3">
+<h3><span class="header-section-number">10.5.3</span> Persamaan Laplace</h3>
+<p>Kita akan kembali melakukan simulasi terhadap Persamaan <a href="diffeq.html#eq:laplace1">(10.19)</a> menggunakan metode lainnya. Pada contoh kali ini, gradien pada sumbu <span class="math inline">\(y\)</span> bernilai -1. Gradien hanyalah fluks, <span class="math inline">\(D \left(\partial C = \partial x\right)\)</span>, dengan <span class="math inline">\(D\)</span> set sama dengan 1. Fungsi penyelesaian yang digunakan adalah <code>steady.2D()</code>, karena tidak ada ketergantungan waktu dalam persamaan. Sebagai kondisi awal yang arbitrer, kami menggunakan nomor acak <span class="math inline">\(N_x \times N_y\)</span> yang terdistribusi secara seragam. Kita juga harus menentukan <span class="math inline">\(nspec\)</span>, jumlah spesies dalam model (hanya satu, potensi, dalam hal ini), <span class="math inline">\(dimens\)</span>, vektor dengan 2 nilai dengan jumlah sel dalam arah <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span>, dan <code>lrw</code>, panjang array. Lihat halaman bantuan untuk <code>steady.2D()</code> untuk informasi lebih detail.</p>
+<p>Langkah pertama dalam melakukan simulasi adalah menetapkan parameter model.</p>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb778-1" title="1">Nx    &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb778-2" title="2">Ny    &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb778-3" title="3">xgrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">0</span>, <span class="dt">x.down =</span> <span class="dv">1</span>, <span class="dt">N =</span> Nx)</a>
+<a class="sourceLine" id="cb778-4" title="4">ygrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">0</span>, <span class="dt">x.down =</span> <span class="dv">1</span>, <span class="dt">N =</span> Ny)</a>
+<a class="sourceLine" id="cb778-5" title="5">x     &lt;-<span class="st"> </span>xgrid<span class="op">$</span>x.mid</a>
+<a class="sourceLine" id="cb778-6" title="6">y     &lt;-<span class="st"> </span>ygrid<span class="op">$</span>x.mid</a></code></pre></div>
+<p>Bentuk fungsi yang akan diselesaikan secara numerik.</p>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1">laplace &lt;-<span class="st"> </span><span class="cf">function</span>(t, U, parms) {</a>
+<a class="sourceLine" id="cb779-2" title="2">    w =<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> Nx, <span class="dt">ncol =</span> Ny, <span class="dt">data =</span> U)</a>
+<a class="sourceLine" id="cb779-3" title="3">    dw =<span class="st"> </span><span class="kw">tran.2D</span>(<span class="dt">C =</span> w, <span class="dt">C.x.up =</span> <span class="dv">0</span>, <span class="dt">C.y.down =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb779-4" title="4">    <span class="dt">flux.y.up =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb779-5" title="5">    <span class="dt">flux.y.down =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb779-6" title="6">    <span class="dt">D.x =</span> <span class="dv">1</span>, <span class="dt">D.y =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb779-7" title="7">    <span class="dt">dx =</span> xgrid, <span class="dt">dy =</span> ygrid)<span class="op">$</span>dC</a>
+<a class="sourceLine" id="cb779-8" title="8">    <span class="kw">list</span>(dw) </a>
+<a class="sourceLine" id="cb779-9" title="9">}</a></code></pre></div>
+<p>Mulia dengan bilangan acak uniform sebagai kondisi awal, kemudian selesaikan untuk memperoleh nilai pada kondisi tunak dan buat plot kontur.</p>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb780-1" title="1">out =<span class="st"> </span><span class="kw">steady.2D</span>(<span class="dt">y =</span> <span class="kw">runif</span>(Nx<span class="op">*</span>Ny), <span class="dt">func =</span> laplace, </a>
+<a class="sourceLine" id="cb780-2" title="2">                  <span class="dt">parms =</span> <span class="ot">NULL</span>,<span class="dt">nspec =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb780-3" title="3">                  <span class="dt">dimens =</span> <span class="kw">c</span>(Nx, Ny), <span class="dt">lrw =</span> <span class="fl">1e7</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:lapviz"></span>
+<img src="Metode_Numerik_files/figure-html/lapviz-1.png" alt="Visualisasi hasil simulasi persamaan laplace pada kondisi tunak menggunakan paket ReacTran" width="80%" />
+<p class="caption">
+Gambar 10.14: Visualisasi hasil simulasi persamaan laplace pada kondisi tunak menggunakan paket ReacTran
+</p>
+</div>
+</div>
+<div id="persamaan-poisson-untuk-dipol" class="section level3">
+<h3><span class="header-section-number">10.5.4</span> Persamaan Poisson untuk Dipol</h3>
+<p>Pada contoh kali ini, kita akan menyelesaikan persamaan Poisson untuk dipol yang ditampilkan pada Persamaan <a href="diffeq.html#eq:dipol">(10.21)</a>.</p>
+<p><span class="math display" id="eq:dipol">\[\begin{equation}
+\frac{\partial^2w}{\partial x^2}+\frac{\partial^2w}{\partial y^2}=-\frac{\rho}{\varepsilon_0}
+  \tag{10.21}
+\end{equation}\]</span></p>
+<p>untuk dipol yang terletak di tengah selembar persegi jika tidak pada 0 potensial. Untuk mempermudah, kita dapat mengatur semua faktor skala sama dengan satu. Dalam definisi fungsi poisson, nilai-nilai dalam matriks <span class="math inline">\(N_x \times N_y\)</span> w adalah input melalui vektor data <span class="math inline">\(U\)</span>. Seperti dalam persamaan Laplace di atas, kita menetapkan nilai awal <span class="math inline">\(w\)</span> pada sel-sel grid sama dengan angka acak uniform.</p>
+<p>Langkah pertama dalam melakukan simulasi adalah menetapkan parameter model.</p>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" title="1">Nx    &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb781-2" title="2">Ny    &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb781-3" title="3">xgrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">0</span>, <span class="dt">x.down =</span> <span class="dv">1</span>, <span class="dt">N =</span> Nx)</a>
+<a class="sourceLine" id="cb781-4" title="4">ygrid &lt;-<span class="st"> </span><span class="kw">setup.grid.1D</span>(<span class="dt">x.up =</span> <span class="dv">0</span>, <span class="dt">x.down =</span> <span class="dv">1</span>, <span class="dt">N =</span> Ny)</a>
+<a class="sourceLine" id="cb781-5" title="5">x     &lt;-<span class="st"> </span>xgrid<span class="op">$</span>x.mid</a>
+<a class="sourceLine" id="cb781-6" title="6">y     &lt;-<span class="st"> </span>ygrid<span class="op">$</span>x.mid</a></code></pre></div>
+<p>Cari nilai <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> pada titik kisi yang mendekati <span class="math inline">\(\left(0,4;0,5\right)\)</span> untuk muatan positif dan <span class="math inline">\(\left(0,6;0,5\right)\)</span> untuk muatan negatif.</p>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb782-1" title="1"><span class="co"># x and y coordinates of positive and negative charges</span></a>
+<a class="sourceLine" id="cb782-2" title="2">ipos &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>))</a>
+<a class="sourceLine" id="cb782-3" title="3">jpos &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(y <span class="op">-</span><span class="st"> </span><span class="fl">0.50</span>))</a>
+<a class="sourceLine" id="cb782-4" title="4">ineg &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="fl">0.6</span>))</a>
+<a class="sourceLine" id="cb782-5" title="5">jneg &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(y <span class="op">-</span><span class="st"> </span><span class="fl">0.50</span>))</a></code></pre></div>
+<p>Bentuk fungsi Poisson yang akan diselesaikan secara numerik.</p>
+<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb783-1" title="1">poisson &lt;-<span class="st"> </span><span class="cf">function</span>(t, U, parms) {</a>
+<a class="sourceLine" id="cb783-2" title="2">    w =<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> Nx, <span class="dt">ncol =</span> Ny, <span class="dt">data =</span> U)</a>
+<a class="sourceLine" id="cb783-3" title="3">    dw =<span class="st"> </span><span class="kw">tran.2D</span>(<span class="dt">C =</span> w, <span class="dt">C.x.up =</span> <span class="dv">0</span>, <span class="dt">C.y.down =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb783-4" title="4">    <span class="dt">flux.y.up =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb783-5" title="5">    <span class="dt">flux.y.down =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb783-6" title="6">    <span class="dt">D.x =</span> <span class="dv">1</span>, <span class="dt">D.y =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb783-7" title="7">    <span class="dt">dx =</span> xgrid, <span class="dt">dy =</span> ygrid)<span class="op">$</span>dC</a>
+<a class="sourceLine" id="cb783-8" title="8">    dw[ipos,jpos] =<span class="st"> </span>dw[ipos,jpos] <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb783-9" title="9">    dw[ineg,jneg] =<span class="st"> </span>dw[ineg,jneg] <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb783-10" title="10">    <span class="kw">list</span>(dw) </a>
+<a class="sourceLine" id="cb783-11" title="11">}</a></code></pre></div>
+<p>Selesaikan untuk kondisi tunak dan buat visualisasinya.</p>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1">out &lt;-<span class="st"> </span><span class="kw">steady.2D</span>(<span class="dt">y =</span> <span class="kw">runif</span>(Nx<span class="op">*</span>Ny), </a>
+<a class="sourceLine" id="cb784-2" title="2">                 <span class="dt">func =</span> poisson, </a>
+<a class="sourceLine" id="cb784-3" title="3">                 <span class="dt">parms =</span> <span class="ot">NULL</span>, </a>
+<a class="sourceLine" id="cb784-4" title="4">                 <span class="dt">nspec =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb784-5" title="5">                 <span class="dt">dimens =</span> <span class="kw">c</span>(Nx, Ny), </a>
+<a class="sourceLine" id="cb784-6" title="6">                 <span class="dt">lrw =</span> <span class="fl">1e7</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:poviz"></span>
+<img src="Metode_Numerik_files/figure-html/poviz-1.png" alt="Visualisasi hasil simulasi persamaan Poisson pada kondisi tunak menggunakan paket ReacTran" width="80%" />
+<p class="caption">
+Gambar 10.15: Visualisasi hasil simulasi persamaan Poisson pada kondisi tunak menggunakan paket ReacTran
+</p>
+</div>
+</div>
+</div>
+<div id="studi-kasus-3" class="section level2">
+<h2><span class="header-section-number">10.6</span> Studi Kasus</h2>
+<div id="model-lotka-voltera" class="section level3">
+<h3><span class="header-section-number">10.6.1</span> Model Lotka-Voltera</h3>
+<p>Model Lotka-Voltera merupakan model yang menggambarkan interaksi antara predator dan mangsa. Pada studi kasus kali ini model yang akan digunakan merupakan model dengan 3 bentuk interaksi yaitu: tanaman <span class="math inline">\(u\)</span>, herbivora <span class="math inline">\(v\)</span>, dan karnivora <span class="math inline">\(w\)</span>. Sistem persamaan diferensial sistem tersebut ditampilkan pada kumpulan persamaan berikut:</p>
+<p><span class="math display" id="eq:lv">\[\begin{equation}
+\frac{du}{dt}=au-\alpha_1f_1\left(u,v\right)
+  \tag{10.22}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:lv2">\[\begin{equation}
+\frac{dv}{dt}=-bv+\alpha_1f_1\left(u,v\right)-\alpha_2f_2\left(v,w\right)
+  \tag{10.23}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:lv3">\[\begin{equation}
+\frac{dw}{dt}=-c\left(w-w\ast\right)+\alpha_2f_2\left(v,w\right)
+  \tag{10.24}
+\end{equation}\]</span></p>
+<p>dimana <span class="math inline">\(w\ast\)</span> merupakan tingkat predasi minimum untuk menstabilkan populasi ketika populasi mangsa rendah. Interaksi antar komponen digambarkan ke dalam bentuk persamaan logistik.</p>
+<p><span class="math display" id="eq:lv4">\[\begin{equation}
+f_i\left(x,y\right)=\frac{xy}{1+k_ix}
+  \tag{10.25}
+\end{equation}\]</span></p>
+<p>Langkah pertama untuk menyelesaikan model adalah melakukan penentuan parameter model dan pembentukan fungsi model.</p>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb785-1" title="1"><span class="kw">library</span>(deSolve)</a>
+<a class="sourceLine" id="cb785-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x,y,k){x<span class="op">*</span>y<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>k<span class="op">*</span>x)}</a>
+<a class="sourceLine" id="cb785-3" title="3">model &lt;-<span class="st"> </span><span class="cf">function</span>(t, xx, parms) {</a>
+<a class="sourceLine" id="cb785-4" title="4">    u =<span class="st"> </span>xx[<span class="dv">1</span>] <span class="co"># plant resource</span></a>
+<a class="sourceLine" id="cb785-5" title="5">    v =<span class="st"> </span>xx[<span class="dv">2</span>] <span class="co"># herbivore</span></a>
+<a class="sourceLine" id="cb785-6" title="6">    w =<span class="st"> </span>xx[<span class="dv">3</span>] <span class="co"># carnivore</span></a>
+<a class="sourceLine" id="cb785-7" title="7">    <span class="kw">with</span>(<span class="kw">as.list</span>(parms),{</a>
+<a class="sourceLine" id="cb785-8" title="8">    du =<span class="st"> </span>a<span class="op">*</span>u <span class="op">-</span><span class="st"> </span>alpha1<span class="op">*</span><span class="kw">f</span>(u, v, k1)</a>
+<a class="sourceLine" id="cb785-9" title="9">    dv =<span class="st"> </span><span class="op">-</span>b<span class="op">*</span>v <span class="op">+</span><span class="st"> </span>alpha1<span class="op">*</span><span class="kw">f</span>(u, v, k1) <span class="op">-</span><span class="st"> </span>alpha2<span class="op">*</span><span class="kw">f</span>(v, w, k2)</a>
+<a class="sourceLine" id="cb785-10" title="10">    dw =<span class="st"> </span><span class="op">-</span>c<span class="op">*</span>(w <span class="op">-</span><span class="st"> </span>wstar) <span class="op">+</span><span class="st"> </span>alpha2<span class="op">*</span><span class="kw">f</span>(v, w, k2)</a>
+<a class="sourceLine" id="cb785-11" title="11">    <span class="kw">list</span>(<span class="kw">c</span>(du, dv, dw))</a>
+<a class="sourceLine" id="cb785-12" title="12">})}</a>
+<a class="sourceLine" id="cb785-13" title="13"></a>
+<a class="sourceLine" id="cb785-14" title="14">times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">200</span>, <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb785-15" title="15">parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a=</span><span class="dv">1</span>, <span class="dt">b=</span><span class="dv">1</span>, <span class="dt">c=</span><span class="dv">10</span>, <span class="dt">alpha1=</span><span class="fl">0.2</span>, <span class="dt">alpha2=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb785-16" title="16">k1&lt;-<span class="fl">0.05</span>, <span class="dt">k2=</span><span class="dv">0</span>, <span class="dt">wstar=</span><span class="fl">0.006</span>)</a>
+<a class="sourceLine" id="cb785-17" title="17">xstart &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">u=</span><span class="dv">10</span>, <span class="dt">v=</span><span class="dv">5</span>, <span class="dt">w=</span><span class="fl">0.1</span>)</a></code></pre></div>
+<p>Proses iterasi selanjutnya akan menggunakan metode <code>lsoda</code>, dimana metode iterasi ini dapat berganti secara otomatis dalam menangani sistem persamaan diferensial <em>stiff</em> dan <em>non-stiff</em>. Persamaan diferensial dikatakan <em>stiff</em> apabila variabel dependen berubah berdasarkan 2 atau lebih variabel independen yang sangat berbeda skalanya.</p>
+<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb786-1" title="1">out =<span class="st"> </span><span class="kw">ode</span>(xstart, times, model, parms, </a>
+<a class="sourceLine" id="cb786-2" title="2">          <span class="dt">method =</span><span class="st">&quot;lsoda&quot;</span>)</a></code></pre></div>
+<p>Ketiga variabel selanjutnya divisualisasikan.</p>
+<div class="figure" style="text-align: center"><span id="fig:lvviz"></span>
+<img src="Metode_Numerik_files/figure-html/lvviz-1.png" alt="Visualisasi simulasi model Lotka-Voltera" width="80%" />
+<p class="caption">
+Gambar 10.16: Visualisasi simulasi model Lotka-Voltera
+</p>
+</div>
+</div>
+</div>
+<div id="referensi-9" class="section level2">
+<h2><span class="header-section-number">10.7</span> Referensi</h2>
+<ol style="list-style-type: decimal">
+<li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press.</li>
+<li>Chapra, S.C. Canale, R.P. 2015. <strong>Numerical Methods For Engineers, Seventh Edition</strong>. Mc Graw Hill.</li>
+<li>Griffiths, G.W. 2016. <strong>Numerical analysis using R : solutions to ODEs and PDEs</strong>. Cambridge University Press.</li>
+<li>Howard, J.P. 2017. <strong>Computational Methods for Numerical Analysis with R</strong>. CRC Press.</li>
+<li>Kreyszig, E. 2011. <strong>Advanced Engineering Mathematics, 10th Edition</strong>. John Wiley &amp; Sons.</li>
+<li>Soetaert,K., Cash J., Mazzia F. 2012. <strong>Solving Differential Equations in R</strong>. Springer.</li>
+<li>Suparno, S. 2008. <strong>Komputasi untuk Sains dan Teknik Edisi II</strong>. Departemen Fisika-FMIPA Universitas Indonesia.</li>
+</ol>
+</div>
+<div id="latihan-4" class="section level2">
+<h2><span class="header-section-number">10.8</span> Latihan</h2>
+<ol style="list-style-type: decimal">
+<li>Tunjukkan 10 hasil iterasi metode Euler untuk persamaan diferensial <span class="math inline">\(f&#39;\left(x,y\right)=y\)</span> dimana <span class="math inline">\(x_0=0\)</span>, <span class="math inline">\(y_0=2\)</span> dan <em>step size</em> <span class="math inline">\(h=0,1\)</span>!</li>
+<li>Kerjakan lagi soal no.1 dengan menggunakan metode lainnya dan bandingkan seluruh metode tersebut menggunakan penyelesaian analitiknya!</li>
+<li>Bentuk kembali fungsi <code>rk4sys()</code> menggunakan algoritma metode Adams-Bashforth dan namai fungsi tersebut <code>adamsys()</code>!</li>
+</ol>
 
 <style>
 body{
 text-align: justify}
 </style>
+</div>
 </div>
             </section>
 
@@ -381,13 +1402,13 @@ text-align: justify}
 <a href="dataanalysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

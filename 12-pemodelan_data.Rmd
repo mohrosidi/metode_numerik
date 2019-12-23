@@ -322,4 +322,7 @@ summary(log.model)
 7. Rosadi,D. 2016. **Analisis Statistika dengan R**. Gadjah Mada University Press: Yogyakarta.
 8. STHDA. <(http://www.sthda.com/english/>
 
-
+<style>
+body{
+text-align: justify}
+</style>

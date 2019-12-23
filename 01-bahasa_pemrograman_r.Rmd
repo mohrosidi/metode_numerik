@@ -9,7 +9,7 @@ Dewasa ini tersedia banyak sekali *software* yang dapat digunakan untuk membantu
 
 `R` merupakan merupakan salah satu *software* gratis yang sangat populer di Indonesia. Kemudahan penggunaan serta banyaknya besarnya dukungan komunitas membuat `R` menjadi salah satu bahasa pemrograman paling populer di dunia.
 
-*Library* yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat `R` banyak digunakan oleh para analis data.
+Paket yang disediakan untuk analisis statistika dan analisa numerik juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat `R` banyak digunakan oleh para analis data.
 
 Pada *chapter* ini penulis akan memperkenalkan kepada pembaca mengenai bahasa pemrograman `R`. Mulai dari sejarah, cara instalasi sampai dengan bagaimana kita memanfaatkan fitur dasar bantuan untuk menggali lebih jauh tentang fungsi-fungsi `R`
 
@@ -24,7 +24,7 @@ include_graphics(img1_path)
 
 ```
 
-`R` dapat dibilang merupakan aplikasi sistem **statistik** yang kaya. Hal ini disebabkan banyak sekali *library* yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti *linear regression*, *clustering*, *statistical test*, dll. Selain itu, `R` juga dapat ditambahkan *library*-*library* lain yang dapat meningkatkan fiturnya.
+`R` dapat dibilang merupakan aplikasi sistem **statistik** yang kaya. Hal ini disebabkan banyak sekali Paket yang dikembangkan oleh pengembang dan komunitas untuk keperluan analisa statistik seperti *linear regression*, *clustering*, *statistical test*, dll. Selain itu, `R` juga dapat ditambahkan Paket-Paket lain yang dapat meningkatkan fiturnya.
 
 Sebagai sebuah bahasa pemrograman yang banyak digunakan untuk keperluan analisa data, `R` dapat dioperasikan pada berbagai sistem operasi pada komputer. Adapun sistem operasi yang didukung antara lain: `UNIX`, `Linux`, `Windows`, dan `MacOS`.
 
@@ -49,15 +49,15 @@ A == B
 3. **interpreted language atau script**. Bahasa `R` memungkinkan pengguna untuk melakukan kerja pada `R` tanpa perlu kompilasi kode program menjadi bahasa mesin.
 4. Mendukung proses **loop**, **decision making**, dan menyediakan berbagai jenis **operstor** (aritmatika, logika, dll).
 5. **Mendukung export dan import berbagai format file**, seperti:TXT, CSV, XLS, dll.
-6. **Mudah ditingkatkan melalui penambahan fungsi atau _library_**. Penambahan *library* dapat dilakukan secara online melalui [CRAN](https://cran.r-project.org/) atau melalui sumber seperti [github](https://github.com/).
-7. **Menyedikan berbagai fungsi untuk keperluan visualisasi data**. Visualisasi data pada `R` dapat menggunakan *library* bawaan atau *library* lain seperti `ggplo2`,`ggvis`, dll.
+6. **Mudah ditingkatkan melalui penambahan fungsi atau _library_**. Penambahan Paket dapat dilakukan secara online melalui [CRAN](https://cran.r-project.org/) atau melalui sumber seperti [github](https://github.com/).
+7. **Menyedikan berbagai fungsi untuk keperluan visualisasi data**. Visualisasi data pada `R` dapat menggunakan Paket bawaan atau Paket lain seperti `ggplo2`,`ggvis`, dll.
 
 ##  Kelebihan dan Kekurangan R {#prosconsR}
 
 Selain karena `R` dapat digunakan secara gratis terdapat **kelebihan** lain yang ditawarkan, antara lain:
 
 1. **Protability**. Penggunaan software dapat digunakan kapanpun tanpa terikat oleh masa berakhirnya lisensi.
-2. **Multiplatform**. `R` bersifat *Multiplatform Operating Systems*, dimana *software* `R` lebih kompatibel dibanding *software* statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena `R` baik pada sistem operasi seperti `windows` akan sama pengoperasiannya dengan yang ada di `Linux` (*library* yang digunakan sama).
+2. **Multiplatform**. `R` bersifat *Multiplatform Operating Systems*, dimana *software* `R` lebih kompatibel dibanding *software* statistika lainnya. Hal in berdampak pada kemudahan dalam penyesuaian jika pengguna harus berpindah sistem operasi karena `R` baik pada sistem operasi seperti `windows` akan sama pengoperasiannya dengan yang ada di `Linux` (Paket yang digunakan sama).
 3. **General** dan **Cutting-edge**. Berbagai metode statistik baik metode klasik maupun baru telah diprogram kedalam `R`. Dengan demikian *software* ini dapat digunakan untuk analisis statistika dengan pendekatan klasik dan pendekatan modern.
 4. **Programable**. Pengguna dapat memprogram metode baru atau mengembangakan modifikasi dari analisis statistika yang telah ada pada sistem `R`.
 5. **Berbasis analisis matriks**. Bahasa `R` sangat baik digunakan untuk *programming* dengan basis matriks.
@@ -65,8 +65,8 @@ Selain karena `R` dapat digunakan secara gratis terdapat **kelebihan** lain yang
 
 Adapun kekurangan dari `R` antara lain:
 
-1. **Point and Click GUI**. Interaksi utama dengan `R` bersifat *CLI* (*Command Line Interface*), walaupun saat ini telah dikembangkan *library* yang memungkinkan kita berinteraksi dengan `R` menggunakan *GUI* (*Graphical User Interface*) sederhana menggunakan *library* `R-Commander` yang memiliki fungsi yang terbatas. `R- Commander` sendiri merupakan *GUI* yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas *library* ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.
-2. **Missing statistical function**. Meskipun analisis statistika dalam `R` sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam `R`. Namun karena `R` merupakan *lingua franca* untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk *library* hanya masalah waktu saja.
+1. **Point and Click GUI**. Interaksi utama dengan `R` bersifat *CLI* (*Command Line Interface*), walaupun saat ini telah dikembangkan Paket yang memungkinkan kita berinteraksi dengan `R` menggunakan *GUI* (*Graphical User Interface*) sederhana menggunakan Paket `R-Commander` yang memiliki fungsi yang terbatas. `R- Commander` sendiri merupakan *GUI* yang diciptakan dengan tujuan untuk keperluan pengajaran sehingga analisis statistik yang disediakan adalah yang klasik. Meskipun terbatas Paket ini berguna jika kita membutuhkan analisis statistik sederhana dengan cara yang simpel.
+2. **Missing statistical function**. Meskipun analisis statistika dalam `R` sudah cukup lengkap, namun tidak semua metode statistika telah diimplementasikan ke dalam `R`. Namun karena `R` merupakan *lingua franca* untuk keperluan komputasi statistika modern staan ini, dapat dikatakan ketersediaan fungsi tambahan dalam bentuk Paket hanya masalah waktu saja.
 
 ## RStudio {#rstudio}
 
@@ -160,23 +160,23 @@ include_graphics(img1_path)
 
 ```
 
-## Memasang dan Mengaktifkan *Library* R {#installlibraryR}
+## Memasang dan Mengaktifkan Paket R {#installlibraryR}
 
-`R` dapat ditingkatkan fungsionalitasnya melalui *library*-*library* yang tersedia secara luas. *Library*-*library* ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: `tidyverse` untuk *data science*, `pracma` untuk analisis diferensial, dll. 
+`R` dapat ditingkatkan fungsionalitasnya melalui Paket-Paket yang tersedia secara luas. Paket-Paket ini dikembangkan secara spesifik oleh para pengembang sesuai dengan tujuan paketnya, seperti: `tidyverse` untuk *data science*, `pracma` untuk analisis diferensial, dll. 
 
-Untuk menginstall *library* yang kita inginkan, kita dapat menggunakan fungsi `install.packages()`. Berikut adalah contoh bagaimana cara menginstall *library* `tidyverse`:
+Untuk menginstall Paket yang kita inginkan, kita dapat menggunakan fungsi `install.packages()`. Berikut adalah contoh bagaimana cara menginstall Paket `tidyverse`:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-*Library* yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada *library* tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi `library()`. Berikut adalah contoh sintaks untuk mengaktifkan *library* `tidyverse`:
+Paket yang telah diinstall tidak dapat langsung digunakan. Untuk menggunakan fungsi-fungsi yang tersedia pada Paket tersebut kita perlu terlebih dahulu mengaktifkannya menggunakan fungsi `library()`. Berikut adalah contoh sintaks untuk mengaktifkan Paket `tidyverse`:
 
 ```{r, eval=FALSE}
 library(tidyverse)
 ```
 
-Bagaimana ingin menggunakan fungsi pada *library* namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi `library()`? Untuk melakukannya kita perlu mengetikkan nama *library* dikuti oleh tanda "::" diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi `read_csv()` dari *library* `readr` (salah satu *library* yang terdapat pada kumpulan *library* `tidyverse`) untuk membaca file `contoh.csv`:
+Bagaimana ingin menggunakan fungsi pada Paket namun tidak ingin mengaktifkan paketnya terlebih dahulu menggunakan fungsi `library()`? Untuk melakukannya kita perlu mengetikkan nama Paket dikuti oleh tanda "::" diikuti fungsi yang ingin kita gunakan. Berikut adalah contoh penggunaan fungsi `read_csv()` dari Paket `readr` (salah satu Paket yang terdapat pada kumpulan Paket `tidyverse`) untuk membaca file `contoh.csv`:
 
 ```{r, eval=FALSE}
 readr::read_csv("contoh.csv")
@@ -222,7 +222,7 @@ include_graphics(img1_path)
 Keterangan pada jendela pada Gambar \@ref(fig:meandoc) adalah sebagia berikut:
 
 1. Pada bagian jendela kiri atas jendela *help*, diberikan keterangan nama dari perintah yang sedang ditampilkan.
-2. Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama *library* yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama *library* ditunjukkan pada teks `mean {base}` yang menunjukkan perintah `mean()` pada *library* (*library*) *base* (*library* bawaan `R`).
+2. Selanjutnya, pada bagian atas dokumen, ditampilkan infomasi terkait nama perintah, dan nama Paket yang memuat perintah tersebut. Pada gambar diatas informasi terkait perintah dan nama Paket ditunjukkan pada teks `mean {base}` yang menunjukkan perintah `mean()` pada Paket (Paket) *base* (Paket bawaan `R`).
 3. Setiap jendela *help* dari suatu perintah tertentu selanjutnya akan memuat bagian-bagian berikut:
 - *Title*
 - *Description* : deskripsi singkat tentang perintah.

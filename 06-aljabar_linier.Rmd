@@ -1024,7 +1024,7 @@ a%*%solve(a)
 
 ### Penyelesaian Sistem Persamaan Linier Menggunakan Fungsi 'Solve.tridiag()` {#solvetridiagfunct}
 
-Penyelesaian matriks tridiagonal selain menggunakan fungsi `solve()`, juga dapat menggunakan fungsi `Solve.tridiag()` dari *library* `limSolve`. Untuk menginstall dan mengaktifkan *library* tersebut, jalankan sintaks berikut:
+Penyelesaian matriks tridiagonal selain menggunakan fungsi `solve()`, juga dapat menggunakan fungsi `Solve.tridiag()` dari Paket `limSolve`. Untuk menginstall dan mengaktifkan Paket tersebut, jalankan sintaks berikut:
 
 ```{r, eval=FALSE}
 install.packages("limSolve")
@@ -1442,7 +1442,7 @@ Lakukan pengecekan apakah matriks hasil dekomposisi akan menghasilkan matriks $A
 decomp$P %*% decomp$L %*% decomp$U
 ```
 
-Fungsi `lu()` pada *library* `Matrix` dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan *library* `Matrix`.
+Fungsi `lu()` pada Paket `Matrix` dapat digunakan untuk melakukan dekomposisi LU. Untuk meggunakan fungsi tersebut, kita harus menginstall dan mengaktifkan Paket `Matrix`.
 
 ```{r, eval=FALSE}
 install.packages("Matrix")
@@ -1608,7 +1608,7 @@ a <- matrix(c(9,-3,6,-3,17,-10,6,-10,12),3)
 decomp$tL %*% decomp$L
 ```
 
-Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi `chol()` pada *library* `Matrix`. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh \@ref(exm:cholexm2).
+Fungsi lain yang dapat digunakan untuk melakukan dekomposisi Cholesky adalah menggunakan fungsi `chol()` pada Paket `Matrix`. Pada fungsi tersebut, kita hanya perlu menginputkan objek matrik kedalamnya. Berikut adalah contoh penerapan fungsi tersebut menggunakan matriks pada Contoh \@ref(exm:cholexm2).
 
 ```{r}
 chol(a)
@@ -1620,7 +1620,7 @@ chol(a)
 
 ### Dekomposisi Lainnya {#othersdecomp}
 
-Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada *sub-chapter* ini antara lain: QR, *singular value decomposition* (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada *library* `base`.
+Terdapat beberapa algoritma lain yang telah dikembangkan untuk melakukan dekomposisi matriks. Pada buku ini hanya akan dijelaskan secara singkat terkait fungsi yang digunakan dalam melakukan dekomposisi matriks. Algoritma yang akan dijelaskan pada *sub-chapter* ini antara lain: QR, *singular value decomposition* (SVD), dan dekomposisi eigen. Untuk algoritma lainnya, pembaca dapat membaca buku terkait atau mengecek dokumentasinya pada Paket `base`.
 
 #### Dekomposisi QR {#qrdecomp}
 
@@ -1651,7 +1651,7 @@ qr.solve(A,b)
 
 *Singular value decomposition* (SVD) merupakan algoritma faktorisasi matriks yang mendekomposisi matriks segiempat menjadi matriks $UDV_H$, dimana $D$ merupakan mmatriks diagonal non negatif, $U$ dan $V$ merupakan matriks *unitary*, dan $V_H$ merupakan matriks tanspose konjugat dari matriks $V$. Algoritma ini banyak digunakan dalam analisis *principal component*.
 
-Pada `R`, SVD dapat dilakukan menggunakan fungsi `svd()` dari *library* `base`. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:
+Pada `R`, SVD dapat dilakukan menggunakan fungsi `svd()` dari Paket `base`. Berikut adalah sintaks untuk memperoleh informasi terkait fungsi tersebut:
 
 ```{r, eval=FALSE}
 ?svd
@@ -1668,7 +1668,7 @@ svd(A)
 
 Proses umum yang digunakan untuk menemukan nilai eigen  dan vektor eigen suatu matriks segiempat dapat dilihat sebagai proses dari dekomposisi eigen. Proses ini akan mendekomposisi matriks menjadi $VDV^{-1}$, dimana $D$ merupakan matriks diagonal yang terbentuk dari nilai eigen, dan $V$ merupakan vektor eigen. Proses dekomposisi ini akan berguna bagi pembaca yang ingin mempelajari *principal component analysis*.
 
-Fungsi `eigen()` pada *library* `base` dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:
+Fungsi `eigen()` pada Paket `base` dapat digunakan untuk melakukan dekomposisi eigen. Untuk mempelajari lebih jauh terkait fungsi ini, pambaca dapat menjalankan sintaks berikut:
 
 ```{r, eval=FALSE}
 ?eigen

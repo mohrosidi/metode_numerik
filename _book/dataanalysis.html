@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Analisis Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan</title>
-  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta name="description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Analisis Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
   <meta name="github-repo" content="mohrosidi/metode_numerik" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 Analisis Data | Metode Numerik Menggunakan R Untuk Teknik Lingkungan" />
   
-  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa" />
-  
+  <meta name="twitter:description" content="Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa." />
+  <meta name="twitter:image" content="images/cover.png" />
 
 <meta name="author" content="Mohammad Rosidi" />
 
 
-<meta name="date" content="2019-12-04" />
+<meta name="date" content="2019-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="diffeq.html">
 <link rel="next" href="datamod.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -128,7 +128,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Metode Numerik Menggunakan R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#gambaran-isi-buku"><i class="fa fa-check"></i>Gambaran Isi Buku</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cara-berkontribusi-dalam-buku-ini"><i class="fa fa-check"></i>Cara Berkontribusi dalam Buku Ini</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ucapan-terima-kasih"><i class="fa fa-check"></i>Ucapan Terima Kasih</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lisensi"><i class="fa fa-check"></i>Lisensi</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Bahasa Pemrograman R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#sejarahR"><i class="fa fa-check"></i><b>1.1</b> Sejarah R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#fiturR"><i class="fa fa-check"></i><b>1.2</b> Fitur dan Karakteristik R</a></li>
@@ -139,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#changewdR"><i class="fa fa-check"></i><b>1.6.1</b> Mengubah Lokasi Working Directory</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#defaultwdR"><i class="fa fa-check"></i><b>1.6.2</b> Mengubah Lokasi Working Directory Default</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan <em>Library</em> R</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#installlibraryR"><i class="fa fa-check"></i><b>1.7</b> Memasang dan Mengaktifkan Paket R</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#helpR"><i class="fa fa-check"></i><b>1.8</b> Fasilitas Help</a><ul>
 <li class="chapter" data-level="1.8.1" data-path="intro.html"><a href="intro.html#searchhelp"><i class="fa fa-check"></i><b>1.8.1</b> Mencari Help dari Suatu Perintah Tertentu</a></li>
 <li class="chapter" data-level="1.8.2" data-path="intro.html"><a href="intro.html#generalhelp"><i class="fa fa-check"></i><b>1.8.2</b> General Help</a></li>
@@ -290,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="diffinteg.html"><a href="diffinteg.html#finitediff"><i class="fa fa-check"></i><b>9.1</b> Metode Beda Hingga</a></li>
 <li class="chapter" data-level="9.2" data-path="diffinteg.html"><a href="diffinteg.html#diffother"><i class="fa fa-check"></i><b>9.2</b> Diferensiasi Menggunakan Fungsi Lainnya di R</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-metode-titik-pusat-mengggunakan-fungsidiff"><i class="fa fa-check"></i><b>9.2.1</b> Diferensiasi Metode Titik Pusat Mengggunakan Fungsi<code>diff()</code></a></li>
-<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan <em>Library</em> <code>numDeriv</code></a></li>
-<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-library-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan <em>Library</em> <code>pracma</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-numderiv"><i class="fa fa-check"></i><b>9.2.2</b> Diferensiasi Menggunakan Paket <code>numDeriv</code></a></li>
+<li class="chapter" data-level="9.2.3" data-path="diffinteg.html"><a href="diffinteg.html#diferensiasi-menggunakan-paket-pracma"><i class="fa fa-check"></i><b>9.2.3</b> DIferensiasi Menggunakan Paket <code>pracma</code></a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="diffinteg.html"><a href="diffinteg.html#newtoncotes"><i class="fa fa-check"></i><b>9.3</b> Metode Integrasi Newton-Cotes</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="diffinteg.html"><a href="diffinteg.html#riemann"><i class="fa fa-check"></i><b>9.3.1</b> Metode Integral Riemann</a></li>
@@ -313,7 +318,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.13" data-path="diffinteg.html"><a href="diffinteg.html#referensi-8"><i class="fa fa-check"></i><b>9.13</b> Referensi</a></li>
 <li class="chapter" data-level="9.14" data-path="diffinteg.html"><a href="diffinteg.html#latihan-3"><i class="fa fa-check"></i><b>9.14</b> Latihan</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10" data-path="diffeq.html"><a href="diffeq.html"><i class="fa fa-check"></i><b>10</b> Persamaan Diferensial</a><ul>
+<li class="chapter" data-level="10.1" data-path="diffeq.html"><a href="diffeq.html#ivp"><i class="fa fa-check"></i><b>10.1</b> <em>Initial value problems</em></a><ul>
+<li class="chapter" data-level="10.1.1" data-path="diffeq.html"><a href="diffeq.html#eulermethod"><i class="fa fa-check"></i><b>10.1.1</b> Metode Euler</a></li>
+<li class="chapter" data-level="10.1.2" data-path="diffeq.html"><a href="diffeq.html#heun"><i class="fa fa-check"></i><b>10.1.2</b> Metode Heun</a></li>
+<li class="chapter" data-level="10.1.3" data-path="diffeq.html"><a href="diffeq.html#midpt"><i class="fa fa-check"></i><b>10.1.3</b> Metode Titik Tengah</a></li>
+<li class="chapter" data-level="10.1.4" data-path="diffeq.html"><a href="diffeq.html#rungekutta"><i class="fa fa-check"></i><b>10.1.4</b> Metode Runge-Kutta Orde 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="diffeq.html"><a href="diffeq.html#mml"><i class="fa fa-check"></i><b>10.1.5</b> Metode Multistep Linier</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="diffeq.html"><a href="diffeq.html#sysdiff"><i class="fa fa-check"></i><b>10.2</b> Sistem Persamaan Diferensial</a></li>
+<li class="chapter" data-level="10.3" data-path="diffeq.html"><a href="diffeq.html#penyelesaian-persamaan-diferensial-dan-sistem-persamaan-diferensial-menggunakan-fungsi-ode"><i class="fa fa-check"></i><b>10.3</b> Penyelesaian Persamaan Diferensial dan Sistem Persamaan Diferensial Menggunakan Fungsi <code>ode()</code></a></li>
+<li class="chapter" data-level="10.4" data-path="diffeq.html"><a href="diffeq.html#pasialdiff"><i class="fa fa-check"></i><b>10.4</b> Persamaan Diferensial Parsial</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-difusi"><i class="fa fa-check"></i><b>10.4.1</b> Persamaan Difusi</a></li>
+<li class="chapter" data-level="10.4.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang"><i class="fa fa-check"></i><b>10.4.2</b> Persamaan Gelombang</a></li>
+<li class="chapter" data-level="10.4.3" data-path="diffeq.html"><a href="diffeq.html#laplace"><i class="fa fa-check"></i><b>10.4.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.4.4" data-path="diffeq.html"><a href="diffeq.html#setup.grid.1d"><i class="fa fa-check"></i><b>10.4.4</b> <code>setup.grid.1D()</code></a></li>
+<li class="chapter" data-level="10.4.5" data-path="diffeq.html"><a href="diffeq.html#setup.prop.1d"><i class="fa fa-check"></i><b>10.4.5</b> <code>setup.prop.1D()</code></a></li>
+<li class="chapter" data-level="10.4.6" data-path="diffeq.html"><a href="diffeq.html#tran.1d"><i class="fa fa-check"></i><b>10.4.6</b> <code>tran.1D()</code></a></li>
+<li class="chapter" data-level="10.4.7" data-path="diffeq.html"><a href="diffeq.html#ode.1d-atau-steady.1d"><i class="fa fa-check"></i><b>10.4.7</b> <code>ode.1D()</code> atau <code>steady.1D()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="diffeq.html"><a href="diffeq.html#contoh-penerapan-paket-reactran"><i class="fa fa-check"></i><b>10.5</b> Contoh Penerapan Paket <code>ReacTran</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="diffeq.html"><a href="diffeq.html#persamaan-adveksi-difuksi-1d"><i class="fa fa-check"></i><b>10.5.1</b> Persamaan Adveksi-Difuksi 1D</a></li>
+<li class="chapter" data-level="10.5.2" data-path="diffeq.html"><a href="diffeq.html#persamaan-gelombang-1d"><i class="fa fa-check"></i><b>10.5.2</b> Persamaan Gelombang 1D</a></li>
+<li class="chapter" data-level="10.5.3" data-path="diffeq.html"><a href="diffeq.html#persamaan-laplace"><i class="fa fa-check"></i><b>10.5.3</b> Persamaan Laplace</a></li>
+<li class="chapter" data-level="10.5.4" data-path="diffeq.html"><a href="diffeq.html#persamaan-poisson-untuk-dipol"><i class="fa fa-check"></i><b>10.5.4</b> Persamaan Poisson untuk Dipol</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="diffeq.html"><a href="diffeq.html#studi-kasus-3"><i class="fa fa-check"></i><b>10.6</b> Studi Kasus</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="diffeq.html"><a href="diffeq.html#model-lotka-voltera"><i class="fa fa-check"></i><b>10.6.1</b> Model Lotka-Voltera</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="diffeq.html"><a href="diffeq.html#referensi-9"><i class="fa fa-check"></i><b>10.7</b> Referensi</a></li>
+<li class="chapter" data-level="10.8" data-path="diffeq.html"><a href="diffeq.html#latihan-4"><i class="fa fa-check"></i><b>10.8</b> Latihan</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="dataanalysis.html"><a href="dataanalysis.html"><i class="fa fa-check"></i><b>11</b> Analisis Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="dataanalysis.html"><a href="dataanalysis.html#importdata"><i class="fa fa-check"></i><b>11.1</b> Import Data</a></li>
 <li class="chapter" data-level="11.2" data-path="dataanalysis.html"><a href="dataanalysis.html#librarydata"><i class="fa fa-check"></i><b>11.2</b> Membaca Data Dari <em>Library</em></a></li>
@@ -329,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.9.3" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-k-mean"><i class="fa fa-check"></i><b>11.9.3</b> Pengelompokan Menggunakan Algoritma K-Mean</a></li>
 <li class="chapter" data-level="11.9.4" data-path="dataanalysis.html"><a href="dataanalysis.html#pengelompokan-menggunakan-algoritma-pam"><i class="fa fa-check"></i><b>11.9.4</b> Pengelompokan Menggunakan Algoritma PAM</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-9"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
+<li class="chapter" data-level="11.10" data-path="dataanalysis.html"><a href="dataanalysis.html#referensi-10"><i class="fa fa-check"></i><b>11.10</b> Referensi</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="datamod.html"><a href="datamod.html"><i class="fa fa-check"></i><b>12</b> Pemodelan Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="datamod.html"><a href="datamod.html#reglin"><i class="fa fa-check"></i><b>12.1</b> Regresi Linier</a><ul>
@@ -341,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.6" data-path="datamod.html"><a href="datamod.html#wlr"><i class="fa fa-check"></i><b>12.1.6</b> Regresi linier dengan Pembobotan</a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="datamod.html"><a href="datamod.html#logreg"><i class="fa fa-check"></i><b>12.2</b> Regresi Logistik</a></li>
-<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-10"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
+<li class="chapter" data-level="12.3" data-path="datamod.html"><a href="datamod.html#referensi-11"><i class="fa fa-check"></i><b>12.3</b> Referensi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -370,16 +405,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importdata" class="section level2">
 <h2><span class="header-section-number">11.1</span> Import Data</h2>
 <p>Kita dapat melakukan import data dalam berbagai format pada <code>R</code>. Namun, pada <em>sub-chapter</em> ini hanya akan dibahas bagaimana cara mengimport data dari file dengan format <code>.csv</code>dan <code>.txt</code>. Secara umum fungsi-fungsi yang digunakan untuk membaca data pada file dengan format tersebut adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1"><span class="kw">read.table</span>(file, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
-<a class="sourceLine" id="cb732-2" title="2">           <span class="dt">stringsAsFactors =</span> <span class="kw">default.stringsAsFactors</span>())</a>
-<a class="sourceLine" id="cb732-3" title="3"></a>
-<a class="sourceLine" id="cb732-4" title="4"><span class="kw">read.csv</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)</a>
-<a class="sourceLine" id="cb732-5" title="5"></a>
-<a class="sourceLine" id="cb732-6" title="6"><span class="kw">read.csv2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
-<a class="sourceLine" id="cb732-7" title="7"></a>
-<a class="sourceLine" id="cb732-8" title="8"><span class="kw">read.delim</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)</a>
-<a class="sourceLine" id="cb732-9" title="9"></a>
-<a class="sourceLine" id="cb732-10" title="10"><span class="kw">read.delim2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb787-1" title="1"><span class="kw">read.table</span>(file, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</a>
+<a class="sourceLine" id="cb787-2" title="2">           <span class="dt">stringsAsFactors =</span> <span class="kw">default.stringsAsFactors</span>())</a>
+<a class="sourceLine" id="cb787-3" title="3"></a>
+<a class="sourceLine" id="cb787-4" title="4"><span class="kw">read.csv</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb787-5" title="5"></a>
+<a class="sourceLine" id="cb787-6" title="6"><span class="kw">read.csv2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb787-7" title="7"></a>
+<a class="sourceLine" id="cb787-8" title="8"><span class="kw">read.delim</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb787-9" title="9"></a>
+<a class="sourceLine" id="cb787-10" title="10"><span class="kw">read.delim2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -391,12 +426,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Kelima fungsi tersebut digunakan untuk membaca data tabular atau data yang disusun kedalam format tabel. Fungsi <code>read.table()</code> merupakan bentuk umum dari keempat fungsi lainnya. Fungsi tersebut dapat digunakan untuk membaca data dalam kedua format yang telah disebutkan sebelumnya. Fungsi lainnya lebih spesifi, dimana fungsi <code>read.csv()</code> dan <code>read.csv2()</code> digunakan untuk membaca data dengan ekstensi <code>.csv</code>, sedangkan <code>read.delim()</code> dan <code>read.delim2()</code> untuk membaca data dengan ekstensi <code>.txt</code>. Berikut adalah contoh bagaimana cara membaca data dengan nama <code>data.csv</code> yang ada pada <em>working directory</em> dengan pemisah antar data berupa <code>;</code> dan tanda koma berupa <code>,</code>:</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb733-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;data.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb788-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;data.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 </div>
 <div id="librarydata" class="section level2">
 <h2><span class="header-section-number">11.2</span> Membaca Data Dari <em>Library</em></h2>
 <p>Untuk keperluan pendidikan atau pengujian sebuah fungsi biasanya dalam sebuah <em>library</em> disediakan dataset yang siap digunakan. <code>R</code> melalui <em>library</em> <code>datasets</code> menyediakan sejumlah data yang dapat digunakan untuk berlatih menggunakan <code>R</code>. Berikut adalah fungsi yang digunakan untuk mengecek dataset apa saja yang tersedia pada sebuah <em>library</em>:</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1"><span class="kw">data</span>(<span class="dt">package=</span><span class="kw">.packages</span>(<span class="dt">all.available =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb789-1" title="1"><span class="kw">data</span>(<span class="dt">package=</span><span class="kw">.packages</span>(<span class="dt">all.available =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -404,10 +439,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Berikut adalah contoh cara melakukan pengecekan pada dataset yang tersedia pada <em>library</em> <code>datasets</code>:</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" title="1"><span class="kw">data</span>(<span class="dt">package=</span><span class="st">&quot;datasets&quot;</span>)</a>
-<a class="sourceLine" id="cb735-2" title="2"></a>
-<a class="sourceLine" id="cb735-3" title="3"><span class="co"># cek seluruh dataset dari seluruh library yg telah dimuat</span></a>
-<a class="sourceLine" id="cb735-4" title="4"><span class="kw">data</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" title="1"><span class="kw">data</span>(<span class="dt">package=</span><span class="st">&quot;datasets&quot;</span>)</a>
+<a class="sourceLine" id="cb790-2" title="2"></a>
+<a class="sourceLine" id="cb790-3" title="3"><span class="co"># cek seluruh dataset dari seluruh library yg telah dimuat</span></a>
+<a class="sourceLine" id="cb790-4" title="4"><span class="kw">data</span>()</a></code></pre></div>
 </div>
 <div id="summarystats" class="section level2">
 <h2><span class="header-section-number">11.3</span> Ringkasan Data</h2>
@@ -419,56 +454,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>summary()</code>: ringkasan data.</li>
 </ul>
 <p>Berikut adalah contoh penerapan fungsi-fungsi tersebut pada dataset <code>iris</code>:</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" title="1"><span class="co"># cek 10 observasi teratas</span></a>
-<a class="sourceLine" id="cb736-2" title="2"><span class="kw">head</span>(iris, <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1           5.1         3.5          1.4         0.2  setosa
-## 2           4.9         3.0          1.4         0.2  setosa
-## 3           4.7         3.2          1.3         0.2  setosa
-## 4           4.6         3.1          1.5         0.2  setosa
-## 5           5.0         3.6          1.4         0.2  setosa
-## 6           5.4         3.9          1.7         0.4  setosa
-## 7           4.6         3.4          1.4         0.3  setosa
-## 8           5.0         3.4          1.5         0.2  setosa
-## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb738-1" title="1"><span class="co"># cek 10 observasi terbawah</span></a>
-<a class="sourceLine" id="cb738-2" title="2"><span class="kw">tail</span>(iris, <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-## 141          6.7         3.1          5.6         2.4 virginica
-## 142          6.9         3.1          5.1         2.3 virginica
-## 143          5.8         2.7          5.1         1.9 virginica
-## 144          6.8         3.2          5.9         2.3 virginica
-## 145          6.7         3.3          5.7         2.5 virginica
-## 146          6.7         3.0          5.2         2.3 virginica
-## 147          6.3         2.5          5.0         1.9 virginica
-## 148          6.5         3.0          5.2         2.0 virginica
-## 149          6.2         3.4          5.4         2.3 virginica
-## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb740-1" title="1"><span class="co"># cek struktur data</span></a>
-<a class="sourceLine" id="cb740-2" title="2"><span class="kw">str</span>(iris)</a></code></pre></div>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb791-1" title="1"><span class="co"># cek 10 observasi teratas</span></a>
+<a class="sourceLine" id="cb791-2" title="2"><span class="kw">head</span>(iris, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1           5.1         3.5          1.4         0.2
+## 2           4.9         3.0          1.4         0.2
+## 3           4.7         3.2          1.3         0.2
+## 4           4.6         3.1          1.5         0.2
+## 5           5.0         3.6          1.4         0.2
+## 6           5.4         3.9          1.7         0.4
+## 7           4.6         3.4          1.4         0.3
+## 8           5.0         3.4          1.5         0.2
+## 9           4.4         2.9          1.4         0.2
+## 10          4.9         3.1          1.5         0.1
+##    Species
+## 1   setosa
+## 2   setosa
+## 3   setosa
+## 4   setosa
+## 5   setosa
+## 6   setosa
+## 7   setosa
+## 8   setosa
+## 9   setosa
+## 10  setosa</code></pre>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb793-1" title="1"><span class="co"># cek 10 observasi terbawah</span></a>
+<a class="sourceLine" id="cb793-2" title="2"><span class="kw">tail</span>(iris, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 141          6.7         3.1          5.6         2.4
+## 142          6.9         3.1          5.1         2.3
+## 143          5.8         2.7          5.1         1.9
+## 144          6.8         3.2          5.9         2.3
+## 145          6.7         3.3          5.7         2.5
+## 146          6.7         3.0          5.2         2.3
+## 147          6.3         2.5          5.0         1.9
+## 148          6.5         3.0          5.2         2.0
+## 149          6.2         3.4          5.4         2.3
+## 150          5.9         3.0          5.1         1.8
+##       Species
+## 141 virginica
+## 142 virginica
+## 143 virginica
+## 144 virginica
+## 145 virginica
+## 146 virginica
+## 147 virginica
+## 148 virginica
+## 149 virginica
+## 150 virginica</code></pre>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb795-1" title="1"><span class="co"># cek struktur data</span></a>
+<a class="sourceLine" id="cb795-2" title="2"><span class="kw">str</span>(iris)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 ##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" title="1"><span class="co"># ringkasan data</span></a>
-<a class="sourceLine" id="cb742-2" title="2"><span class="kw">summary</span>(iris)</a></code></pre></div>
-<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
-##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
-##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
-##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
-##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
-##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
-##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##  virginica :50  
-##                 
-##                 
-## </code></pre>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb797-1" title="1"><span class="co"># ringkasan data</span></a>
+<a class="sourceLine" id="cb797-2" title="2"><span class="kw">summary</span>(iris)</a></code></pre></div>
+<pre><code>##   Sepal.Length   Sepal.Width    Petal.Length 
+##  Min.   :4.30   Min.   :2.00   Min.   :1.00  
+##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60  
+##  Median :5.80   Median :3.00   Median :4.35  
+##  Mean   :5.84   Mean   :3.06   Mean   :3.76  
+##  3rd Qu.:6.40   3rd Qu.:3.30   3rd Qu.:5.10  
+##  Max.   :7.90   Max.   :4.40   Max.   :6.90  
+##   Petal.Width        Species  
+##  Min.   :0.1   setosa    :50  
+##  1st Qu.:0.3   versicolor:50  
+##  Median :1.3   virginica :50  
+##  Mean   :1.2                  
+##  3rd Qu.:1.8                  
+##  Max.   :2.5</code></pre>
 <p>Fungsi-fungsi lainnya yang dapat digunakan untuk melakukan analisis statistika deskriptif adalah sebagai berikut:</p>
 <ul>
 <li><code>mean()</code> : menghitung nilai rata-rata variabel numerik.</li>
@@ -480,31 +537,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>quantile()</code> : memperoleh kuantil variabel numerik.</li>
 </ul>
 <p>Berikut adalah contoh penerapan fungsi-fungsi tersebut:</p>
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb744-1" title="1"><span class="kw">attach</span>(airquality)</a>
-<a class="sourceLine" id="cb744-2" title="2"></a>
-<a class="sourceLine" id="cb744-3" title="3"><span class="co"># rata-rata konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb744-4" title="4"><span class="kw">mean</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 42.12931</code></pre>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb746-1" title="1"><span class="co"># median konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb746-2" title="2"><span class="kw">median</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb799-1" title="1"><span class="kw">attach</span>(airquality)</a>
+<a class="sourceLine" id="cb799-2" title="2"></a>
+<a class="sourceLine" id="cb799-3" title="3"><span class="co"># rata-rata konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb799-4" title="4"><span class="kw">mean</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 42.13</code></pre>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb801-1" title="1"><span class="co"># median konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb801-2" title="2"><span class="kw">median</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 31.5</code></pre>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb748-1" title="1"><span class="co"># simpangan baku konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb748-2" title="2"><span class="kw">sd</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 32.98788</code></pre>
-<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb750-1" title="1"><span class="co"># varians konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb750-2" title="2"><span class="kw">var</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 1088.201</code></pre>
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb752-1" title="1"><span class="co"># range konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb752-2" title="2"><span class="kw">range</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" title="1"><span class="co"># simpangan baku konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb803-2" title="2"><span class="kw">sd</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 32.99</code></pre>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" title="1"><span class="co"># varians konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb805-2" title="2"><span class="kw">var</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 1088</code></pre>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" title="1"><span class="co"># range konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb807-2" title="2"><span class="kw">range</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1]   1 168</code></pre>
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb754-1" title="1"><span class="co"># IQR konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb754-2" title="2"><span class="kw">IQR</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" title="1"><span class="co"># IQR konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb809-2" title="2"><span class="kw">IQR</span>(Ozone, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 45.25</code></pre>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb756-1" title="1"><span class="co"># kuartil 1, 2 dan 3 konsentrasi ozon</span></a>
-<a class="sourceLine" id="cb756-2" title="2"><span class="kw">quantile</span>(Ozone, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" title="1"><span class="co"># kuartil 1, 2 dan 3 konsentrasi ozon</span></a>
+<a class="sourceLine" id="cb811-2" title="2"><span class="kw">quantile</span>(Ozone, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##   25%   50%   75% 
 ## 18.00 31.50 63.25</code></pre>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb758-1" title="1"><span class="kw">detach</span>(airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb813-1" title="1"><span class="kw">detach</span>(airquality)</a></code></pre></div>
 </div>
 <div id="norm" class="section level2">
 <h2><span class="header-section-number">11.4</span> Uji Normalitas Data Tunggal</h2>
@@ -516,7 +573,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pada <em>Chapter</em> ini, kita akan berfokus pada uji matematis karena cara pengujian dengan menggunakan metode grafis telah penulis jabarkan pada <em>Chapter</em> visualisasi data.</p>
 <p>Metode uji normalitas yang sering digunakan pada <code>R</code> adalah metode Shapiro-Wilk. Metode ini merupakan metode uji yang memiliki power yang besar khusunya untuk ukuran sampel yang relatif kecil. Versi awal metode ini terbatas dengan jumlah sampel 3 sampai 50 sampel. Versi selanjutnya mengalami modifikasi sehingga dapat menangani sampel sampai dengan 5000 sampel bahkan lebih.</p>
 <p>Untuk melakukan uji SHapiro-Wilk pada <code>R</code>, pembaca dapat menggunakan fungsi <code>shapiro.test()</code>. Format fungsi tersebut adalah sebagai beriku:</p>
-<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb759-1" title="1"><span class="kw">shapiro.test</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb814-1" title="1"><span class="kw">shapiro.test</span>(x)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -524,26 +581,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Untuk lebih memahami impelementasi fungsi tersebut pada data, berikut adalah contoh penerapan fungsi tersebut untuk menguji normalitas distribusi konsentrasi ozon pada dataset <code>airquality</code>:</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb760-1" title="1"><span class="kw">shapiro.test</span>(airquality<span class="op">$</span>Ozone)</a></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" title="1"><span class="kw">shapiro.test</span>(airquality<span class="op">$</span>Ozone)</a></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  airquality$Ozone
-## W = 0.87867, p-value = 2.79e-08</code></pre>
+## W = 0.88, p-value = 3e-08</code></pre>
 <p>Berdasarkan hasil uji diperoleh nilai p-value &lt; 0,05, sehingga <span class="math inline">\(H_0\)</span> ditolak dan dapat disimpulkan bahwa distribusi konsentrasi ozon tidak mengikuti distribusi normal. Untuk lebih memahami prosedur pengujian normalitas distribusi suatu data pembaca dapat membaca lebih lanjut pada tautan <a href="https://environmental-data-modeling.netlify.com/tutorial/11_uji_hipotesis/#11-4-uji-asumsi-normalitas-distribusi-data">Environmental Data Modelin</a>.</p>
 </div>
 <div id="uji-rata-rata-satu-dan-dua-sampel" class="section level2">
 <h2><span class="header-section-number">11.5</span> Uji Rata-Rata Satu dan Dua Sampel</h2>
 <p>Uji rata-rata satu sampel merupakan uji statistik untuk menguji apakah rata-rata suatu sampel berasal dari suatu populasi yang telah diketahui nilai rata-ratanya. Sedangkan uji rata-rata untuk dua populasi dilakukan untuk menguji apakah kedua selisis rata-rata populasi tersebut bernilai nol yang menujukkan bahwa kedua populasi tersebut memiliki nilai rata-rata yang sama. Uji rata-rata dua populasi dapat dilakukan untuk sampel independen (contoh: uji rata-rata performa dua buah IPAL) dan berpasangan (contoh: uji rata-rata input dan output IPAL).</p>
 <p>Untuk melakukan uji rata-rata pada <code>R</code> dapat digunakan fungsi <code>t.test()</code> untuk uji parametrik dan <code>wilcox.test()</code> untuk melakukan uji non-parametrik <em>sign rank test</em>. Format fungsi-fungsi tersebut adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb762-1" title="1"><span class="kw">t.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb762-2" title="2">       <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
-<a class="sourceLine" id="cb762-3" title="3">       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb762-4" title="4">       <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</a>
-<a class="sourceLine" id="cb762-5" title="5"></a>
-<a class="sourceLine" id="cb762-6" title="6"><span class="kw">wilcox.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb762-7" title="7">            <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
-<a class="sourceLine" id="cb762-8" title="8">            <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</a></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" title="1"><span class="kw">t.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb817-2" title="2">       <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
+<a class="sourceLine" id="cb817-3" title="3">       <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb817-4" title="4">       <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</a>
+<a class="sourceLine" id="cb817-5" title="5"></a>
+<a class="sourceLine" id="cb817-6" title="6"><span class="kw">wilcox.test</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb817-7" title="7">            <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
+<a class="sourceLine" id="cb817-8" title="8">            <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>, ...)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -556,58 +613,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Berikut adalah contoh penerapan fungsi tersebut untuk uji hipotesis satu dan dua populasi:</p>
-<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb763-1" title="1"><span class="co"># Uji hipotesis konsentrasi ozon = 40 ppm</span></a>
-<a class="sourceLine" id="cb763-2" title="2"><span class="co"># parametrik</span></a>
-<a class="sourceLine" id="cb763-3" title="3"><span class="kw">t.test</span>(<span class="dt">x=</span>airquality<span class="op">$</span>Ozone, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb763-4" title="4">       <span class="dt">mu =</span> <span class="dv">40</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb818-1" title="1"><span class="co"># Uji hipotesis konsentrasi ozon = 40 ppm</span></a>
+<a class="sourceLine" id="cb818-2" title="2"><span class="co"># parametrik</span></a>
+<a class="sourceLine" id="cb818-3" title="3"><span class="kw">t.test</span>(<span class="dt">x=</span>airquality<span class="op">$</span>Ozone, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb818-4" title="4">       <span class="dt">mu =</span> <span class="dv">40</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  airquality$Ozone
-## t = 0.69521, df = 115, p-value = 0.4883
+## t = 0.7, df = 120, p-value = 0.5
 ## alternative hypothesis: true mean is not equal to 40
 ## 95 percent confidence interval:
-##  36.06240 48.19622
+##  36.06 48.20
 ## sample estimates:
 ## mean of x 
-##  42.12931</code></pre>
-<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb765-1" title="1"><span class="co"># nonparametrik</span></a>
-<a class="sourceLine" id="cb765-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>airquality<span class="op">$</span>Ozone, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb765-3" title="3">       <span class="dt">mu =</span> <span class="dv">40</span>)</a></code></pre></div>
+##     42.13</code></pre>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb820-1" title="1"><span class="co"># nonparametrik</span></a>
+<a class="sourceLine" id="cb820-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>airquality<span class="op">$</span>Ozone, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb820-3" title="3">       <span class="dt">mu =</span> <span class="dv">40</span>)</a></code></pre></div>
 <pre><code>## 
-##  Wilcoxon signed rank test with continuity correction
+##  Wilcoxon signed rank test with continuity
+##  correction
 ## 
 ## data:  airquality$Ozone
-## V = 3188, p-value = 0.6826
+## V = 3200, p-value = 0.7
 ## alternative hypothesis: true location is not equal to 40</code></pre>
-<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb767-1" title="1"><span class="co"># Uji hipotesis dua populasi</span></a>
-<a class="sourceLine" id="cb767-2" title="2">dni3 &lt;-<span class="st"> </span><span class="kw">dimnames</span>(iris3)</a>
-<a class="sourceLine" id="cb767-3" title="3">ii &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="kw">aperm</span>(iris3, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)), <span class="dt">ncol =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb767-4" title="4">                        <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="ot">NULL</span>, <span class="kw">sub</span>(<span class="st">&quot; L.&quot;</span>,<span class="st">&quot;.Length&quot;</span>,</a>
-<a class="sourceLine" id="cb767-5" title="5">                                        <span class="kw">sub</span>(<span class="st">&quot; W.&quot;</span>,<span class="st">&quot;.Width&quot;</span>, dni3[[<span class="dv">2</span>]])))),</a>
-<a class="sourceLine" id="cb767-6" title="6">    <span class="dt">Species =</span> <span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">50</span>, <span class="dt">labels =</span> <span class="kw">sub</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;s&quot;</span>, <span class="kw">sub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;v&quot;</span>, dni3[[<span class="dv">3</span>]]))))</a>
-<a class="sourceLine" id="cb767-7" title="7"><span class="co"># parametrik</span></a>
-<a class="sourceLine" id="cb767-8" title="8"><span class="kw">t.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
-<a class="sourceLine" id="cb767-9" title="9">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb822-1" title="1"><span class="co"># Uji hipotesis dua populasi</span></a>
+<a class="sourceLine" id="cb822-2" title="2">dni3 &lt;-<span class="st"> </span><span class="kw">dimnames</span>(iris3)</a>
+<a class="sourceLine" id="cb822-3" title="3">ii &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="kw">aperm</span>(iris3, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)), <span class="dt">ncol =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb822-4" title="4">                        <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="ot">NULL</span>, <span class="kw">sub</span>(<span class="st">&quot; L.&quot;</span>,<span class="st">&quot;.Length&quot;</span>,</a>
+<a class="sourceLine" id="cb822-5" title="5">                                        <span class="kw">sub</span>(<span class="st">&quot; W.&quot;</span>,<span class="st">&quot;.Width&quot;</span>, dni3[[<span class="dv">2</span>]])))),</a>
+<a class="sourceLine" id="cb822-6" title="6">    <span class="dt">Species =</span> <span class="kw">gl</span>(<span class="dv">3</span>, <span class="dv">50</span>, <span class="dt">labels =</span> <span class="kw">sub</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;s&quot;</span>, <span class="kw">sub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;v&quot;</span>, dni3[[<span class="dv">3</span>]]))))</a>
+<a class="sourceLine" id="cb822-7" title="7"><span class="co"># parametrik</span></a>
+<a class="sourceLine" id="cb822-8" title="8"><span class="kw">t.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
+<a class="sourceLine" id="cb822-9" title="9">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  iris$Sepal.Length[iris$Species == &quot;setosa&quot;] and ii$Sepal.Length[iris$Species == &quot;versicolor&quot;]
-## t = -10.521, df = 86.538, p-value &lt; 2.2e-16
+## t = -11, df = 87, p-value &lt;2e-16
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.1057074 -0.7542926
+##  -1.1057 -0.7543
 ## sample estimates:
 ## mean of x mean of y 
 ##     5.006     5.936</code></pre>
-<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb769-1" title="1"><span class="co"># nonparametrik</span></a>
-<a class="sourceLine" id="cb769-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
-<a class="sourceLine" id="cb769-3" title="3">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb824-1" title="1"><span class="co"># nonparametrik</span></a>
+<a class="sourceLine" id="cb824-2" title="2"><span class="kw">wilcox.test</span>(<span class="dt">x=</span>iris<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>], </a>
+<a class="sourceLine" id="cb824-3" title="3">       <span class="dt">y=</span>ii<span class="op">$</span>Sepal.Length[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>])</a></code></pre></div>
 <pre><code>## 
-##  Wilcoxon rank sum test with continuity correction
+##  Wilcoxon rank sum test with continuity
+##  correction
 ## 
 ## data:  iris$Sepal.Length[iris$Species == &quot;setosa&quot;] and ii$Sepal.Length[iris$Species == &quot;versicolor&quot;]
-## W = 168.5, p-value = 8.346e-14
+## W = 170, p-value = 8e-14
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Fungsi <code>t.test()</code> akan menghasilkan output berupa nilai t uji, derajat kebebasan (df), nilai p-value, rentang estimasi nilai rata-rata berdasarkan tingkat kepercayaan yang digunakan, serta estimasi nilai rata-rata sampel. Fungsi <code>wilcox.test()</code> akan menghasilkan dua buah output yaitu nilai W dan p-value berdasarkan nilai W yang dihasilkan.</p>
 </div>
@@ -615,10 +674,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.6</span> Korelasi Antar Variabel</h2>
 <p>Pada sebuah analisa, kita sering kali tertarik untuk menganalisa hubungan atau korelasi antara satu variabel terhadap variabel lainnya. Pengamatan adanya korelasi antar variabel dapat dilakukan melalui visualisasi menggunakan <em>scatterplot</em> dan perhitungan matematis menggunakan metode Pearson untuk metode parametrik dan metode rangking Spearman dan Kendall untuk metode non-parametrik. Pada <em>Chapter</em> ini kita akan berfokus untuk melakukan uji korelasi menggunakan <code>R</code> menggunakan metode matematis.</p>
 <p>Pada <code>R</code> uji korelasi dapat dilakukan dengan menggunakan fungsi <code>cor.test()</code>. Format fungsi tersebut adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb771-1" title="1"><span class="kw">cor.test</span>(x, y,</a>
-<a class="sourceLine" id="cb771-2" title="2">         <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
-<a class="sourceLine" id="cb771-3" title="3">         <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;pearson&quot;</span>, <span class="st">&quot;kendall&quot;</span>, <span class="st">&quot;spearman&quot;</span>),</a>
-<a class="sourceLine" id="cb771-4" title="4">         <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb826-1" title="1"><span class="kw">cor.test</span>(x, y,</a>
+<a class="sourceLine" id="cb826-2" title="2">         <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</a>
+<a class="sourceLine" id="cb826-3" title="3">         <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;pearson&quot;</span>, <span class="st">&quot;kendall&quot;</span>, <span class="st">&quot;spearman&quot;</span>),</a>
+<a class="sourceLine" id="cb826-4" title="4">         <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -629,57 +688,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Berikut adalah penerapan fungsi <code>cor.test()</code> berdasarkan metode-metode yang telah disediakan pada fungsi tersebut:</p>
-<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb772-1" title="1"><span class="co"># Pearson</span></a>
-<a class="sourceLine" id="cb772-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
-<a class="sourceLine" id="cb772-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb772-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb827-1" title="1"><span class="co"># Pearson</span></a>
+<a class="sourceLine" id="cb827-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
+<a class="sourceLine" id="cb827-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb827-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  airquality$Ozone and airquality$Solar.R
-## t = 3.8798, df = 109, p-value = 0.0001793
+## t = 3.9, df = 110, p-value = 2e-04
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.173194 0.502132
+##  0.1732 0.5021
 ## sample estimates:
-##       cor 
-## 0.3483417</code></pre>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb774-1" title="1"><span class="co"># Kendall</span></a>
-<a class="sourceLine" id="cb774-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
-<a class="sourceLine" id="cb774-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb774-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)</a></code></pre></div>
+##    cor 
+## 0.3483</code></pre>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb829-1" title="1"><span class="co"># Kendall</span></a>
+<a class="sourceLine" id="cb829-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
+<a class="sourceLine" id="cb829-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb829-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;kendall&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Kendall&#39;s rank correlation tau
 ## 
 ## data:  airquality$Ozone and airquality$Solar.R
-## z = 3.7096, p-value = 0.0002076
+## z = 3.7, p-value = 2e-04
 ## alternative hypothesis: true tau is not equal to 0
 ## sample estimates:
-##       tau 
-## 0.2403194</code></pre>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb776-1" title="1"><span class="co"># Spearman</span></a>
-<a class="sourceLine" id="cb776-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
-<a class="sourceLine" id="cb776-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb776-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning in cor.test.default(x = airquality$Ozone, y = airquality$Solar.R, :
-## Cannot compute exact p-value with ties</code></pre>
+##    tau 
+## 0.2403</code></pre>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb831-1" title="1"><span class="co"># Spearman</span></a>
+<a class="sourceLine" id="cb831-2" title="2"><span class="kw">cor.test</span>(<span class="dt">x =</span> airquality<span class="op">$</span>Ozone, <span class="dt">y =</span> airquality<span class="op">$</span>Solar.R,</a>
+<a class="sourceLine" id="cb831-3" title="3">         <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb831-4" title="4">         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in cor.test.default(x = airquality$Ozone, y =
+## airquality$Solar.R, : Cannot compute exact p-value with
+## ties</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
 ## data:  airquality$Ozone and airquality$Solar.R
-## S = 148560, p-value = 0.0001806
+## S = 150000, p-value = 2e-04
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
-##       rho 
-## 0.3481865</code></pre>
+##    rho 
+## 0.3482</code></pre>
 <p>Berdasarkan output yang dihasilkan, metode Pearson menghasilkan output berupa nilai t uji, derajat kebebasan, nilai p-value, rentang estimasi nilai korelasi berdasarkan tingkat kepercayaan, dan estimasi nilai korelasi. Metode Kendall dan Spearman disisi lai menghasilkan output berupa nilai z uji dan S untuk masing-masing metode serta nilai p-value berdasarkan nilai statistika uji dan estimasi koefisien korelasi.</p>
 </div>
 <div id="analisis-varians" class="section level2">
 <h2><span class="header-section-number">11.7</span> Analisis Varians</h2>
 <p>Pada <em>sub-Chapter</em> sebelumnya penulis telah menjelaskan uji rata-rata untuk satu sampel dan dua sampel. Pada kenyataannya dalam sebuah percobaan laboratorium, kita tidak hanya membandingkan dua buah grup sampel saja, namun beberapa grup dan sejumlah faktor. Untuk menganalisa apakah variasi perlakuan pada kelompok sampel akan memberikan hasil yang berbeda-beda pada rata-rata tiap grup atau tidak diperlukan analisis varians untuk menganilisa variasi perlakuan atau faktor pada masing-masing grup. Analisis varians dapat dilakukan baik untuk satu faktor maupun dua faktor atau lebih. Untuk melakukannya pada <code>R</code>, kita dapat menggunakan fungsi <code>aov()</code> untuk analisis varians dengan metode parametrik dan <code>kruskal.test()</code> untuk analisis varians dengan menggunakan metode nonparametrik. Berikut adalah format kedua fungsi tersebut:</p>
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1"><span class="kw">aov</span>(formula, <span class="dt">data =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb779-2" title="2"></a>
-<a class="sourceLine" id="cb779-3" title="3"><span class="kw">kruskal.test</span>(formula, data)</a></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb834-1" title="1"><span class="kw">aov</span>(formula, <span class="dt">data =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb834-2" title="2"></a>
+<a class="sourceLine" id="cb834-3" title="3"><span class="kw">kruskal.test</span>(formula, data)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -688,27 +748,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Berikut adalah contoh penerapan kedua fungsi tersebut untuk melihat apakah terdapat beda pada rata-rata konsentrasi bulanan ozon menggunakan dataset <code>airquality</code>:</p>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb780-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(Ozone<span class="op">~</span>Month, airquality))</a></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb835-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(Ozone<span class="op">~</span>Month, airquality))</a></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)  
-## Month         1   3387    3387   3.171 0.0776 .
+## Month         1   3387    3387    3.17  0.078 .
 ## Residuals   114 121756    1068                 
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 37 observations deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb782-1" title="1"><span class="kw">kruskal.test</span>(Ozone<span class="op">~</span>Month, airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb837-1" title="1"><span class="kw">kruskal.test</span>(Ozone<span class="op">~</span>Month, airquality)</a></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  Ozone by Month
-## Kruskal-Wallis chi-squared = 29.267, df = 4, p-value = 6.901e-06</code></pre>
+## Kruskal-Wallis chi-squared = 29, df = 4, p-value
+## = 7e-06</code></pre>
 <p>Berdasarkan hasil yang diperoleh diketahui bahwa rata-rata konsentrasi bulanan ozon tidak sama tiap bulannya atau minimal terdapat satu bulan dimana konsentrasi ozonnya berbeda secara signifikan dengan konsentrasi ozon pada bulan-bulan lainnya. Untuk lebih memahami terkait analisis varians pada <code>R</code> dan cara membaca output kedua fungsi tersebut, pembaca dapat membaca tulisan pada halaman situs <a href="http://www.sthda.com/english/wiki/comparing-means-in-r">sthda</a>.</p>
 </div>
 <div id="analisis-komponen-utama" class="section level2">
 <h2><span class="header-section-number">11.8</span> Analisis Komponen Utama</h2>
 <p>Analisis komponen utama menggunakan transformasi ortogonal (umumnya nilai singular atau dekomposisi nilai eigen) untuk mengubah seperangkat variabel pengamatan yang mungkin berkorelasi menjadi seperangkat variabel tidak berkorelasi (ortogonal) yang disebut komponen utama. Transformasi didefinisikan sedemikian rupa sehingga komponen utama pertama memiliki varians setinggi mungkin (menyumbang variabilitas pada data sebanyak mungkin), dan masing-masing komponen berikutnya pada gilirannya memiliki varians tertinggi yang mungkin di bawah kendala, dimana komponen tersebut menjadi ortogonal ke komponen sebelumnya.</p>
 <p>Dalam R, analisis komponen utama umumnya dilakukan dengan fungsi <code>prcomp ()</code>. Format fungsi tersebut adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1"><span class="kw">prcomp</span>(x, <span class="dt">retx =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale. =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb784-2" title="2">       <span class="dt">tol =</span> <span class="ot">NULL</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" title="1"><span class="kw">prcomp</span>(x, <span class="dt">retx =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale. =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb839-2" title="2">       <span class="dt">tol =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -720,25 +782,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>Untuk memahami penerapan fungsi tersebut, kita akan melakukan simulasi menggunakan dataset <code>iris</code>. Output yang dihasilkan di bawah ini menunjukkan bagaimana empat variabel numerik ditransformasikan menjadi empat komponen utama. Penskalaan data mungkin tidak diperlukan dalam kasus ini, karena keempat pengukuran memiliki unit yang sama dan besarnya sama. Namun, penskalaan umumnya merupakan praktik yang baik.</p>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb785-1" title="1">iris_use &lt;-<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>] <span class="co"># menghilangkan variabel non-numerik</span></a>
-<a class="sourceLine" id="cb785-2" title="2">iris_pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris_use, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb785-3" title="3">iris_pca</a></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb840-1" title="1">iris_use &lt;-<span class="st"> </span>iris[,<span class="op">-</span><span class="dv">5</span>] <span class="co"># menghilangkan variabel non-numerik</span></a>
+<a class="sourceLine" id="cb840-2" title="2">iris_pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris_use, <span class="dt">scale. =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb840-3" title="3">iris_pca</a></code></pre></div>
 <pre><code>## Standard deviations (1, .., p=4):
-## [1] 1.7083611 0.9560494 0.3830886 0.1439265
+## [1] 1.7084 0.9560 0.3831 0.1439
 ## 
 ## Rotation (n x k) = (4 x 4):
-##                     PC1         PC2        PC3        PC4
-## Sepal.Length  0.5210659 -0.37741762  0.7195664  0.2612863
-## Sepal.Width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
-## Petal.Length  0.5804131 -0.02449161 -0.1421264 -0.8014492
-## Petal.Width   0.5648565 -0.06694199 -0.6342727  0.5235971</code></pre>
+##                  PC1      PC2     PC3     PC4
+## Sepal.Length  0.5211 -0.37742  0.7196  0.2613
+## Sepal.Width  -0.2693 -0.92330 -0.2444 -0.1235
+## Petal.Length  0.5804 -0.02449 -0.1421 -0.8014
+## Petal.Width   0.5649 -0.06694 -0.6343  0.5236</code></pre>
 <p>Fungsi <code>summary</code> memberikan proporsi varians total yang dikaitkan dengan masing-masing komponen utama, dan proporsi kumulatif ketika masing-masing komponen ditambahkan. Kita melihat bahwa dua komponen pertama berperan lebih dari 95% dari total varians.</p>
-<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb787-1" title="1"><span class="kw">summary</span>(iris_pca)</a></code></pre></div>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb842-1" title="1"><span class="kw">summary</span>(iris_pca)</a></code></pre></div>
 <pre><code>## Importance of components:
-##                           PC1    PC2     PC3     PC4
-## Standard deviation     1.7084 0.9560 0.38309 0.14393
-## Proportion of Variance 0.7296 0.2285 0.03669 0.00518
-## Cumulative Proportion  0.7296 0.9581 0.99482 1.00000</code></pre>
+##                         PC1   PC2    PC3     PC4
+## Standard deviation     1.71 0.956 0.3831 0.14393
+## Proportion of Variance 0.73 0.229 0.0367 0.00518
+## Cumulative Proportion  0.73 0.958 0.9948 1.00000</code></pre>
 <p>Histogram (hasil plot dalam analisis <code>prcomp</code>) secara grafis merekapitulasi proporsi varian yang disumbangkan oleh masing-masing komponen utama, sementara biplot menunjukkan bagaimana variabel awal diproyeksikan pada dua komponen utama pertama (Gambar <a href="dataanalysis.html#fig:prcomp">11.1</a>). Ini juga menunjukkan koordinat dari masing-masing sampel dalam ruang (PC1, PC2). Satu spesies iris (yang berubahmenjadi setosa dari analisis kluster di bawah ini) secara jelas dipisahkan dari dua spesies lain dalam ruang koordinat ini.</p>
 <div class="figure" style="text-align: center"><span id="fig:prcomp"></span>
 <img src="Metode_Numerik_files/figure-html/prcomp-1.png" alt="Analisis komponen utama data iris." width="80%" />
@@ -755,7 +817,7 @@ Gambar 11.1: Analisis komponen utama data iris.
 <div id="analisis-cluster-menggunakan-algoritma-pengelompokan-hierarkis-aglomeratif" class="section level3">
 <h3><span class="header-section-number">11.9.1</span> Analisis Cluster Menggunakan Algoritma Pengelompokan Hierarkis Aglomeratif</h3>
 <p>Hierarchical clustering membangun hierarki cluster, di mana metrik hierarki adalah suatu ukuran ketidaksamaan antar cluster. Menurut halaman bantuan untuk <code>hclust()</code>, metode pengelompokan hierarkis aglomeratif, “Fungsi ini melakukan analisis hierarki cluster menggunakan seperangkat ketidaksamaan untuk n objek yang dikelompokkan. Awalnya, masing-masing objek ditugaskan ke cluster sendiri dan kemudian algoritma melanjutkan secara iteratif, pada setiap tahap bergabung dengan dua cluster yang paling mirip, terus sampai hanya ada satu cluster. Pada setiap tahap, jarak antar kluster dihitung ulang dengan formula pembaruan ketidaksamaan Lance Williams sesuai dengan metode pengelompokan tertentu yang digunakan.”Ada tujuh metode aglomerasi yang tersedia, dengan lengkap — yang mencari kluster kompak, bola — sebagai default. Format umum fungsi <code>hclust()</code> adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb789-1" title="1"><span class="kw">hclust</span>(d, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">members =</span> <span class="ot">NULL</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb844-1" title="1"><span class="kw">hclust</span>(d, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">members =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -765,12 +827,12 @@ Gambar 11.1: Analisis komponen utama data iris.
 </ul>
 </blockquote>
 <p>Untuk memahami penerapan fungsi <code>hclust()</code>, kita akan kembali menggunakan data <code>iris_use</code>. Berikut adalah sintaks yang digunakan:</p>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" title="1"><span class="co"># menghitung jarak antar observasi</span></a>
-<a class="sourceLine" id="cb790-2" title="2">iris_hclust &lt;-<span class="st"> </span><span class="kw">dist</span>(iris_use)</a>
-<a class="sourceLine" id="cb790-3" title="3"></a>
-<a class="sourceLine" id="cb790-4" title="4"><span class="co"># Pembentukan Cluster</span></a>
-<a class="sourceLine" id="cb790-5" title="5">hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(iris_hclust)</a>
-<a class="sourceLine" id="cb790-6" title="6">hc</a></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb845-1" title="1"><span class="co"># menghitung jarak antar observasi</span></a>
+<a class="sourceLine" id="cb845-2" title="2">iris_hclust &lt;-<span class="st"> </span><span class="kw">dist</span>(iris_use)</a>
+<a class="sourceLine" id="cb845-3" title="3"></a>
+<a class="sourceLine" id="cb845-4" title="4"><span class="co"># Pembentukan Cluster</span></a>
+<a class="sourceLine" id="cb845-5" title="5">hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(iris_hclust)</a>
+<a class="sourceLine" id="cb845-6" title="6">hc</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## hclust(d = iris_hclust)
@@ -789,7 +851,7 @@ Gambar 11.2: Analisis pengelompokan hierarkis alglomeratif data iris.
 <div id="pengelompokan-hierarkis-divisif" class="section level3">
 <h3><span class="header-section-number">11.9.2</span> Pengelompokan Hierarkis Divisif</h3>
 <p>Menurut halaman bantuan <code>diana()</code> (<em>DIvisive ANAlysis Clustering</em>) dalam <em>library</em> <code>cluster</code>, “Algoritma diana membangun hierarki pengelompokan, dimulai dengan satu kluster besar yang berisi semua n pengamatan. Cluster dibagi sampai masing-masing cluster hanya berisi satu pengamatan. Pada setiap tahap, cluster dengan diameter terbesar dipilih. Format fungsi <code>diana()</code> adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb792-1" title="1"><span class="kw">diana</span>(x, <span class="dt">metric =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">stand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb847-1" title="1"><span class="kw">diana</span>(x, <span class="dt">metric =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">stand =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -808,9 +870,9 @@ Gambar 11.3: Analisis pengelompokan divisif data iris.
 <div id="pengelompokan-menggunakan-algoritma-k-mean" class="section level3">
 <h3><span class="header-section-number">11.9.3</span> Pengelompokan Menggunakan Algoritma K-Mean</h3>
 <p>k-means melakukan pengelompokan n pengamatan ke dalam k cluster di mana setiap pengamatan akan tergabung dengan pusat cluster terdekat. Pengguna harus menentukan jumlah pusat (cluster) yang diinginkan sebagai output. Untuk melakukan pengelompokan dengan algoritma k-means pada <code>R</code> dapat menggunakan fungsi <code>kmeans()</code>. Format fungsi tersebut secara umum adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb793-1" title="1"><span class="kw">kmeans</span>(x, centers, <span class="dt">iter.max =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb793-2" title="2">       <span class="dt">algorithm =</span> <span class="kw">c</span>(<span class="st">&quot;Hartigan-Wong&quot;</span>, <span class="st">&quot;Lloyd&quot;</span>, <span class="st">&quot;Forgy&quot;</span>,</a>
-<a class="sourceLine" id="cb793-3" title="3">                     <span class="st">&quot;MacQueen&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb848-1" title="1"><span class="kw">kmeans</span>(x, centers, <span class="dt">iter.max =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb848-2" title="2">       <span class="dt">algorithm =</span> <span class="kw">c</span>(<span class="st">&quot;Hartigan-Wong&quot;</span>, <span class="st">&quot;Lloyd&quot;</span>, <span class="st">&quot;Forgy&quot;</span>,</a>
+<a class="sourceLine" id="cb848-3" title="3">                     <span class="st">&quot;MacQueen&quot;</span>))</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -820,52 +882,53 @@ Gambar 11.3: Analisis pengelompokan divisif data iris.
 <li><code>algorithm</code> : algoritma pengelompokan yang digunakan. Untuk informasi lebih lanjut jalankan sintaks <code>?kmeans</code>.</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb794-1" title="1">iris_kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris_use, <span class="dt">centers =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb794-2" title="2">iris_kmeans</a></code></pre></div>
-<pre><code>## K-means clustering with 3 clusters of sizes 33, 96, 21
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb849-1" title="1">iris_kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris_use, <span class="dt">centers =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb849-2" title="2">iris_kmeans</a></code></pre></div>
+<pre><code>## K-means clustering with 3 clusters of sizes 50, 38, 62
 ## 
 ## Cluster means:
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width
-## 1     5.175758    3.624242     1.472727   0.2727273
-## 2     6.314583    2.895833     4.973958   1.7031250
-## 3     4.738095    2.904762     1.790476   0.3523810
+## 1        5.006       3.428        1.462       0.246
+## 2        6.850       3.074        5.742       2.071
+## 3        5.902       2.748        4.394       1.434
 ## 
 ## Clustering vector:
-##   [1] 1 3 3 3 1 1 1 1 3 3 1 1 3 3 1 1 1 1 1 1 1 1 1 1 3 3 1 1 1 3 3 1 1 1 3
-##  [36] 1 1 1 3 1 1 3 3 1 1 3 1 3 1 1 2 2 2 2 2 2 2 3 2 2 3 2 2 2 2 2 2 2 2 2
-##  [71] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 3 2 2 2 2 2 2
-## [106] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-## [141] 2 2 2 2 2 2 2 2 2 2
+##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [26] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [51] 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [76] 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [101] 2 3 2 2 2 2 3 2 2 2 2 2 2 3 3 2 2 2 2 3 2 3 2 3 2
+## [126] 2 3 3 2 2 2 2 2 3 2 2 2 2 3 2 2 2 3 2 2 2 3 2 2 3
 ## 
 ## Within cluster sum of squares by cluster:
-## [1]   6.432121 118.651875  17.669524
-##  (between_SS / total_SS =  79.0 %)
+## [1] 15.15 23.88 39.82
+##  (between_SS / total_SS =  88.4 %)
 ## 
 ## Available components:
 ## 
-## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
-## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
-## [9] &quot;ifault&quot;</code></pre>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb796-1" title="1"><span class="co"># menghitung lokasi pusat cluster</span></a>
-<a class="sourceLine" id="cb796-2" title="2">ccent =<span class="st"> </span><span class="cf">function</span>(cl) {</a>
-<a class="sourceLine" id="cb796-3" title="3"> f =<span class="st"> </span><span class="cf">function</span>(i) <span class="kw">colMeans</span>(iris_use[cl<span class="op">==</span>i,])</a>
-<a class="sourceLine" id="cb796-4" title="4"> x =<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(cl)), f)</a>
-<a class="sourceLine" id="cb796-5" title="5"> <span class="kw">colnames</span>(x) =<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(cl))</a>
-<a class="sourceLine" id="cb796-6" title="6"> <span class="kw">return</span>(x)</a>
-<a class="sourceLine" id="cb796-7" title="7">}</a>
-<a class="sourceLine" id="cb796-8" title="8"></a>
-<a class="sourceLine" id="cb796-9" title="9"><span class="kw">ccent</span>(iris_kmeans<span class="op">$</span>cluster)</a></code></pre></div>
-<pre><code>##                      1        2        3
-## Sepal.Length 5.1757576 6.314583 4.738095
-## Sepal.Width  3.6242424 2.895833 2.904762
-## Petal.Length 1.4727273 4.973958 1.790476
-## Petal.Width  0.2727273 1.703125 0.352381</code></pre>
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;       
+## [4] &quot;withinss&quot;     &quot;tot.withinss&quot; &quot;betweenss&quot;   
+## [7] &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb851-1" title="1"><span class="co"># menghitung lokasi pusat cluster</span></a>
+<a class="sourceLine" id="cb851-2" title="2">ccent =<span class="st"> </span><span class="cf">function</span>(cl) {</a>
+<a class="sourceLine" id="cb851-3" title="3"> f =<span class="st"> </span><span class="cf">function</span>(i) <span class="kw">colMeans</span>(iris_use[cl<span class="op">==</span>i,])</a>
+<a class="sourceLine" id="cb851-4" title="4"> x =<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(cl)), f)</a>
+<a class="sourceLine" id="cb851-5" title="5"> <span class="kw">colnames</span>(x) =<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(cl))</a>
+<a class="sourceLine" id="cb851-6" title="6"> <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb851-7" title="7">}</a>
+<a class="sourceLine" id="cb851-8" title="8"></a>
+<a class="sourceLine" id="cb851-9" title="9"><span class="kw">ccent</span>(iris_kmeans<span class="op">$</span>cluster)</a></code></pre></div>
+<pre><code>##                  1     2     3
+## Sepal.Length 5.006 6.850 5.902
+## Sepal.Width  3.428 3.074 2.748
+## Petal.Length 1.462 5.742 4.394
+## Petal.Width  0.246 2.071 1.434</code></pre>
 </div>
 <div id="pengelompokan-menggunakan-algoritma-pam" class="section level3">
 <h3><span class="header-section-number">11.9.4</span> Pengelompokan Menggunakan Algoritma PAM</h3>
 <p>pam mem-partisi data menjadi k cluster di sekitar medoid. Medoid dari set data yang terbatas merupakan titik data dengan nilai ketidaksamaan rata-rata untuk semua titik data adalah minimum. Hal tersebut menujukkan bahwa medoid merupakan pusat dari set cluster. Menurut halaman bantuan <code>pam()</code>, pendekatan k-medoid lebih kuat daripada pendekatan k-means “karena meminimalkan jumlah ketidaksamaan daripada jumlah jarak euclidean kuadrat”. Format umum fungsi <code>pam()</code> adalah sebagai berikut:</p>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb798-1" title="1"><span class="kw">pam</span>(x, k, <span class="dt">diss =</span> <span class="kw">inherits</span>(x, <span class="st">&quot;dist&quot;</span>),</a>
-<a class="sourceLine" id="cb798-2" title="2">    <span class="dt">metric =</span> <span class="kw">c</span>(<span class="st">&quot;euclidean&quot;</span>, <span class="st">&quot;manhattan&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" title="1"><span class="kw">pam</span>(x, k, <span class="dt">diss =</span> <span class="kw">inherits</span>(x, <span class="st">&quot;dist&quot;</span>),</a>
+<a class="sourceLine" id="cb853-2" title="2">    <span class="dt">metric =</span> <span class="kw">c</span>(<span class="st">&quot;euclidean&quot;</span>, <span class="st">&quot;manhattan&quot;</span>))</a></code></pre></div>
 <blockquote>
 <p><strong>Catatan:</strong></p>
 <ul>
@@ -874,27 +937,34 @@ Gambar 11.3: Analisis pengelompokan divisif data iris.
 <li><code>method</code>: metode perhitungan jarak yang digunakan. Untuk informasi lebih lanjut jalankan sintaks <code>?pam</code>.</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb799-1" title="1"><span class="kw">library</span>(cluster)</a>
-<a class="sourceLine" id="cb799-2" title="2">iris_pam &lt;-<span class="st"> </span><span class="kw">pam</span>(iris_use, <span class="dt">k=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb799-3" title="3">iris_pam</a></code></pre></div>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb854-1" title="1"><span class="kw">library</span>(cluster)</a>
+<a class="sourceLine" id="cb854-2" title="2">iris_pam &lt;-<span class="st"> </span><span class="kw">pam</span>(iris_use, <span class="dt">k=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb854-3" title="3">iris_pam</a></code></pre></div>
 <pre><code>## Medoids:
-##       ID Sepal.Length Sepal.Width Petal.Length Petal.Width
-## [1,]   8          5.0         3.4          1.5         0.2
-## [2,]  79          6.0         2.9          4.5         1.5
-## [3,] 113          6.8         3.0          5.5         2.1
+##       ID Sepal.Length Sepal.Width Petal.Length
+## [1,]   8          5.0         3.4          1.5
+## [2,]  79          6.0         2.9          4.5
+## [3,] 113          6.8         3.0          5.5
+##      Petal.Width
+## [1,]         0.2
+## [2,]         1.5
+## [3,]         2.1
 ## Clustering vector:
-##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-##  [36] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-##  [71] 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3
-## [106] 3 2 3 3 3 3 3 3 2 2 3 3 3 3 2 3 2 3 2 3 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3
-## [141] 3 3 2 3 3 3 2 3 3 2
+##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [26] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [51] 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##  [76] 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [101] 3 2 3 3 3 3 2 3 3 3 3 3 3 2 2 3 3 3 3 2 3 2 3 2 3
+## [126] 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3 3 3 2 3 3 3 2 3 3 2
 ## Objective function:
-##     build      swap 
-## 0.6709391 0.6542077 
+##  build   swap 
+## 0.6709 0.6542 
 ## 
 ## Available components:
-##  [1] &quot;medoids&quot;    &quot;id.med&quot;     &quot;clustering&quot; &quot;objective&quot;  &quot;isolation&quot; 
-##  [6] &quot;clusinfo&quot;   &quot;silinfo&quot;    &quot;diss&quot;       &quot;call&quot;       &quot;data&quot;</code></pre>
+##  [1] &quot;medoids&quot;    &quot;id.med&quot;     &quot;clustering&quot;
+##  [4] &quot;objective&quot;  &quot;isolation&quot;  &quot;clusinfo&quot;  
+##  [7] &quot;silinfo&quot;    &quot;diss&quot;       &quot;call&quot;      
+## [10] &quot;data&quot;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:pam"></span>
 <img src="Metode_Numerik_files/figure-html/pam-1.png" alt="Analisis pengelompokan metode pam data iris." width="80%" />
 <p class="caption">
@@ -903,7 +973,7 @@ Gambar 11.4: Analisis pengelompokan metode pam data iris.
 </div>
 </div>
 </div>
-<div id="referensi-9" class="section level2">
+<div id="referensi-10" class="section level2">
 <h2><span class="header-section-number">11.10</span> Referensi</h2>
 <ol style="list-style-type: decimal">
 <li>Bloomfield, V.A. 2014. <strong>Using R for Numerical Analysis in Science and Engineering</strong>. CRC Press.</li>
@@ -929,13 +999,13 @@ text-align: justify}
 <a href="datamod.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

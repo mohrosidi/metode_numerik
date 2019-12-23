@@ -8,8 +8,105 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: mohrosidi/metode_numerik
-description: "Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa"
+description: "Komputasi metode numerik menggunakan R dengan contoh kasus di bidang teknik lingkungan. Buku ini dapat menjadi rujukan bagi mahasiswa yang ingin mendalami proses komputasi metode numerik menggunakan R. Buku ini disusun sedemikian rupa dengan bahasa yang sederhana agar mudah dipahami oleh mahasiswa."
+tags: [numerical-analysis, ecology, tutorial, r-programming]
+cover-image: images/cover.png
 ---
 
-# Kata Pengantar{-}
+```{r setup, include=FALSE}
 
+options(
+
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+
+)
+
+
+
+lapply(c(), function(pkg) {
+
+  if (system.file(package = pkg) == '') install.packages(pkg)
+
+})
+
+```
+
+<style>
+body{
+text-align: justify}
+</style>
+
+# Pengantar{-}
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), out.width='50%'}
+
+knitr::include_graphics('images/cover.png', dpi = NA)
+
+```
+
+Metone Numerik Menggunakan R Untuk Teknik Lingkungan merupakan buku yang penulis tulis dengan harapan dapat menjadi salah satu rujukan mahasiswa khusunya Teknik Lingkungan yang tertarik untuk belajar `R`. Selain itu, buku ini merupakan salah satu cara pengabdian penulis guna menyediakan sumber pembelajaran yang bersifat terbuka dan dapat diakses seluruh kalangan secara gratis.  
+
+**Mengapa perlu menulis buku ini?** Penulis merasa selama ini buku-buku metode numerik yang ada di pasaran masih didominasi oleh buku-buku pemrograman berbasis Matlab. Atas dasar tersebut, penulis merasa perlu adanya alternatif pembelajaran menggunakan bahasa pemrograman lain.
+
+**Mengapa harus `R`?** Sejak lama `R` dikenal secara luas sebagai bahasa pemrograman yang digunakan dalam bidang statistika dan *data science*. Selain kedua hal tersebut, `R` menyediakan basis dalam melakukan komputasi numerik yang dapat digunakan untuk menyusun sebuah program atau paket yang dapat menyelesaikan persoalan-persoalan metode numerik. Saat ini telah banyak paket yang dikembangkan khusus untuk menangani penyelesaian persamaan matematika menggunakan metode numerik. Paket-paket yang penulis maksud dan penulis sertakan dalam buku ini, antara lain: `limSolve`, `gaussquad`, `pracma`, `orthopolynom`, `deSolve`, `ReacTran`, dll.
+
+**Apakah saya harus fasih `R` untuk dapat menggunakan buku ini?** tidak. Buku ini telah disusun sedemikian rupa sehingga pemula sekalipun dapat dengan mudah belajar dasar-dasar pemrograman `R`.
+
+**Apa saja yang tersedia dalam buku ini?** Pada buku ini telah penulis sediakan beberapa hal, antara lain:
+
+* teori dasar metode numerik
+* algoritma penyelesaian menggunakan metode numerik
+* fungsi dan cara iterasi dalam menyelesaikan suatu persamaan menggunakan metode numerik
+* studi kasus dalam bidang Teknik Lingkungan, dan
+* latihan soal
+
+## Gambaran Isi Buku{-}
+
+Buku ini disusun ke dalam 11 **Chapter**. Secara garis besar gambaran ke-11 **Chapter** tersebut antara lain:
+
+**Dasar pemrograman menggunakan `R`**
+
+* **Chapter 1** : pada chapter ini dibahas sejarah, fitur dan karakteristik bahasa `R`, dan cara berinteraksi dengan `R` melalui `Rstudio`.
+* **Chapter 2** : pada chapter ini dibahas terkait cara melakukan perhitungan atau kalkulasi matematis menggunakan `R`. Selain itu, pada chapter ini juga dibahas terkait operator-operator yang digunakan dalam `R`, jenis data pada `R`, dan bagaimana cara menyimpan nilai ke dalam variabel.
+* **chapter 3** : chapter ini membahas cara membuat sebuah visualisasi data dan cara mengatur parameter visualisasi data pada `R`.
+* **chapter 4** : chapter ini membahas cara membentuk sebuah fungsi dan cara melakukan iterasi pada `R`.
+
+**Metode Numerik Menggunakan `R`**
+
+Pada bagian ini pembaca akan belajar teori dan aplikasi metode numerik menggunakan `R`. Adapun hal-hal yang dibahas dalam bagian ini antara lain:
+
+* pengantar metode numerik (**chapter 5**)
+* aljabar linier (**chapter 6**)
+* akar persamaan non-linier (**chapter 7**)
+* interpolasi dan ekstrapolasi (**chapter 8**)
+* diferensiasi dan integrasi numerik (**chapter 9**)
+* persamaan diferensial (**chapter 10**)
+
+**Analisis dan pemodelan statistik**
+
+Pada bagian ini pembaca akan belajar bagaimana cara membaca data menggunakan `R` dan cara melakukan analisis data menggunakan `R` (**chapter 11**). Pada bagian lainnya pembaca akan belajar cara membentuk sebuah model regresi linier dan logistik pada `R` (**chapter 12**)
+
+## Cara Berkontribusi dalam Buku Ini{-}
+
+Buku ini tidaklah sempurna. Masih terdapat banyak kekurangan dalam buku ini. Namun, kekurangan tersebut tetaplah dapat diperbaiki. Penulis membuka ruang seluas-luasnya dalam melakukan perbaikan dalam buku ini bagi pembaca. Untuk dapat melakukannya pembaca hanya perlu melakukan *pull request* ke akun github penulis atau pembaca dapat melakukannya melalui email yang selanjutnya akan penulis jadikan acuan perbaikan.
+
+Github : <https://github.com/mohrosidi/metode_numerik>
+Email : moh.rosidi2610@gmail.com
+
+## Ucapan Terima Kasih{-}
+
+Buku ini tidak akan ada apabila tidak adanya inspirasi dari rekan-rekan Teknik Lingkungan ITB dan paket `bookdown` dari Rstudio. Ucapan terima kasih juga penulis sampaikan komunitas `R` Idonesia yang telah memberikan banyak pelajaran bagi penulis dalam belajar `R`. Tidak pula penulis mengucapkan terima kasih pada pengembang paket-paket metode numerik yang karyanya telah membantu saya dalam menyusun buku ini.
+
+## Lisensi{-}
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This
+work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.
+
+<style>
+body{
+text-align: justify}
+</style>
