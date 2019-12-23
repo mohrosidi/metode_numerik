@@ -20,7 +20,7 @@ Buku ini dapat diakses secara bebas oleh pembaca melalui tautan: <https://bookdo
 4. [Akar Persamaan Non-Linier](https://bookdown.org/moh_rosidi2610/Metode_Numerik/rootfinding.html)
 5. [Interpolasi dan Ekstrapolasi](https://bookdown.org/moh_rosidi2610/Metode_Numerik/interpolation.html)
 6. [Diferensiasi dan Integrasi Numerik](https://bookdown.org/moh_rosidi2610/Metode_Numerik/diffinteg.html)
-7. Persamaan Diferensial `on progress`
+7. [Persamaan Diferensial](https://bookdown.org/moh_rosidi2610/Metode_Numerik/diffeq.html)
 8. [Pengantar Analisis Data Menggunakan R](https://bookdown.org/moh_rosidi2610/Metode_Numerik/dataanalysis.html)
 9. [Pengantar Pemodelan Data Menggunakan R](https://bookdown.org/moh_rosidi2610/Metode_Numerik/datamod.html)
 
